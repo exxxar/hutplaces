@@ -1,0 +1,16 @@
+{
+    "/js/admin/admin.js": "/js/admin/admin.js",
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/admin/admin.css": "/css/admin/admin.css",
+    "/js/achievement.bundle.js": "/js/achievement.bundle.js",
+    "/js/login.bundle.js": "/js/login.bundle.js",
+    "/js/lottery.bundle.js": "/js/lottery.bundle.js",
+    "/js/market.bundle.js": "/js/market.bundle.js",
+    "/js/playzone.bundle.js": "/js/playzone.bundle.js",
+    "/js/promo.bundle.js": "/js/promo.bundle.js",
+    "/js/randoms.bundle.js": "/js/randoms.bundle.js",
+    "/js/register.bundle.js": "/js/register.bundle.js",
+    "/js/vendors~lottery.bundle.js": "/js/vendors~lottery.bundle.js",
+    "/js/vendors~randoms.bundle.js": "/js/vendors~randoms.bundle.js"
+}

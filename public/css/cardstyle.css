@@ -1,0 +1,1354 @@
+@font-face {
+    font-family: 'steelfish';
+    src: url(../fonts/steelfish/steelfish.eot);
+    src: url(../fonts/steelfish/steelfish.eot?#iefix) format('embedded-opentype'), url(../fonts/steelfish/steelfish.woff2) format('woff2'), url(../fonts/steelfish/steelfish.woff) format('woff'), url(../fonts/steelfish/steelfish.ttf) format('truetype'), url(../fonts/steelfish/steelfish.svg#/assets/fonts/steelfish/steelfish) format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Bebas';
+    src: url(../fonts/BebasNeueBold.eot);
+    src: url(../fonts/BebasNeueBold.eot?#iefix) format('embedded-opentype'), url(../fonts/BebasNeueBold.woff2) format('woff2'), url(../fonts/BebasNeueBold.woff) format('woff'), url(../fonts/BebasNeueBold.ttf) format('truetype'), url(../fonts/BebasNeueBold.svg#/assets/fonts/tcdn) format('svg');
+    font-style: normal
+}
+
+.ncard,
+.ncard .backplate {
+    margin: auto;
+    z-index: 10;
+    cursor: pointer;
+    overflow: hidden;
+    background-size: contain;
+    //box-shadow: 0px 0px 1px 1px black;
+}
+
+.ncard .card-empty,
+.card-19-empty {
+    background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp)
+}
+
+.card-19-empty {
+    height: 100%;
+    width: 100%;
+    background-size: contain
+}
+
+.ncard .sgold {
+    background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp)
+}
+
+.ncard .sgold_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp)
+}
+
+.ncard .ssilver {
+    background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png)
+}
+
+.ncard .ssilver_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp)
+}
+
+.ncard .sbronze {
+    background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp)
+}
+
+.ncard .sbronze_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp)
+}
+
+.ncard .gold,
+.ncard .silver,
+.ncard .bronze {
+    background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png)
+}
+
+.ncard .gold_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp)
+}
+
+.ncard .silver_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp)
+}
+
+.ncard .bronze_tag {
+    background: url(/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp)
+}
+
+.ncard .gold_footer {
+    background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp)
+}
+
+.ncard .silver_footer {
+    background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp)
+}
+
+.ncard .bronze_footer {
+    background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp)
+}
+
+.ncard .alumni {
+    background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp)
+}
+
+.ncard .totw_gold {
+    background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png)
+}
+
+.ncard .totw_gold_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp)
+}
+
+.ncard .totw_gold_footer {
+    background: url(/assets/img/cards/19/totw_gold_footer.png)
+}
+
+.ncard .totw_gold_line {
+    background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png)
+}
+
+.ncard .totw_silver {
+    background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png)
+}
+
+.ncard .totw_silver_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp)
+}
+
+.ncard .totw_silver_footer {
+    background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png)
+}
+
+.ncard .totw_silver_line {
+    background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png)
+}
+
+.ncard .totw_bronze {
+    background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png)
+}
+
+.ncard .totw_bronze_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp)
+}
+
+.ncard .totw_bronze_footer {
+    background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png)
+}
+
+.ncard .totw_bronze_line {
+    background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png)
+}
+
+.ncard .gat {
+    background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png)
+}
+
+.ncard .hwn {
+    background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png)
+}
+
+.ncard .evo {
+    background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png)
+}
+
+.ncard .evo_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp)
+}
+
+.ncard .evo2 {
+    background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp)
+}
+
+.ncard .evo2_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp)
+}
+
+.ncard .cs {
+    background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);
+    background-size: cover
+}
+
+.ncard .cs_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp)
+}
+
+.ncard .pt {
+    background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp)
+}
+
+.ncard .pt_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp)
+}
+
+.ncard .ms {
+    background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp)
+}
+
+.ncard .ms_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp)
+}
+
+.ncard .tg {
+    background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp)
+}
+
+.ncard .tg_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp)
+}
+
+.ncard .xmas {
+    background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png)
+}
+
+.ncard .xmas_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp)
+}
+
+.ncard .gscsi {
+    background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp)
+}
+
+.ncard .gscse {
+    background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp)
+}
+
+.ncard .gscfi {
+    background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp)
+}
+
+.ncard .gscge {
+    background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp)
+}
+
+.ncard .gscsi_swipe {
+    background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp)
+}
+
+.ncard .gscse_swipe {
+    background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp)
+}
+
+.ncard .gscfi_swipe {
+    background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp)
+}
+
+.ncard .gscge_swipe {
+    background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp)
+}
+
+#my-card-list {
+    height: 500px;
+    overflow-y: scroll;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#my-card-list .card-wrap,
+#my-card-list .ncard .backplate,
+#my-card-list .ncard {
+    width: 136px;
+    height: 190px;
+    font-size: 10px;
+
+}
+
+.quick-search,
+.ncard,
+.ncard .backplate,
+.card-wrap {
+    width: 240px;
+    height: 340px;
+    font-size: 20px
+}
+
+@media (min-width: 1550px) {
+
+    .tb2 .quick-search,
+    .scale .ncard,
+    .scale .ncard .backplate {
+        width: 156px;
+        height: 220px;
+        font-size: 12.5px
+    }
+}
+
+@media (min-width: 1400px) and (max-width:1550px) {
+
+    .tb2 .quick-search,
+    .scale .ncard,
+    .scale .ncard .backplate {
+        width: 156px;
+        height: 220px;
+        font-size: 12.5px
+    }
+}
+
+@media (min-width: 1250px) and (max-width:1399px) {
+
+    .tb2 .quick-search,
+    .scale .ncard,
+    .scale .ncard .backplate {
+        width: 156px;
+        height: 220px;
+        font-size: 12.5px
+    }
+}
+
+@media (min-width: 1025px) and (max-width:1249px) {
+
+    .quick-search,
+    .scale .ncard,
+    .scale .ncard .backplate {
+        width: 156px;
+        height: 220px;
+        font-size: 12.5px
+    }
+}
+
+@media (min-width: 768px) and (max-width:1024px) {
+
+    .quick-search,
+    .scale .ncard,
+    .scale .ncard .backplate {
+        width: 113px;
+        height: 160px;
+        font-size: 10.5px
+    }
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+
+    .quick-search,
+    .scale .ncard,
+    .scale .ncard .backplate {
+        width: 99px;
+        height: 140px;
+        font-size: 8px
+    }
+}
+
+.ncard .tag {
+    background-size: cover;
+    height: 50%;
+    width: 100%;
+    z-index: 5
+}
+
+.ncard .top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: transparent !important
+}
+
+.ncard .cardtype {
+    position: absolute;
+    left: 1em;
+    font-size: .9em;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    top: .3em;
+    letter-spacing: .04em;
+    font-family: 'Bebas', 'Bebas Neue';
+    opacity: .7;
+    width: 3em;
+    z-index: 3;
+    text-align: center
+}
+
+.ncard .texture {
+    background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: 5
+}
+
+.ncard .background {
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: 3
+}
+
+.ncard .backplate {
+    position: absolute
+}
+
+.ncard .overall,
+.ncard .overall2 {
+    position: absolute;
+    font-family: 'steelfish';
+    font-size: 3.3em;
+    line-height: 1;
+    color: white;
+    font-weight: normal;
+    z-index: 5;
+    top: .58em;
+    left: .35em;
+    transform: scale(1, 1.1)
+}
+
+.ncard .overall2 {
+    left: 8.5% !important
+}
+
+.ncard .name {
+    position: absolute;
+    font-size: 1.4em;
+    color: white;
+    text-align: center;
+    width: 100%;
+    z-index: 4;
+    top: 56%;
+    font-family: 'Bebas';
+    font-style: italic;
+    left: 4%
+}
+
+.ncard .team,
+.ncard .team-right {
+    position: absolute;
+    z-index: 5;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    font-size: .4em;
+    bottom: 23.5%;
+    font-weight: 800;
+    color: #fff;
+    font-style: italic;
+    LINE-HEIGHT: 100%;
+}
+
+.ncard .team {
+    left: 8%
+}
+
+.ncard .team-right {
+    right: 1.3em
+}
+
+.ncard .firstname {
+    width: 100%;
+    text-align: left;
+    line-height: .5em;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    margin-left: 4%;
+    font-weight: normal
+}
+
+.ncard .lastname {
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.3em;
+    transform: translate(.15em, .3em);
+}
+
+.ncard .headshot {
+    height: 50%;
+    width: 100%;
+    z-index: 5;
+    filter: brightness(1.15);
+    background-size: cover;
+    background-position: -90%;
+    background-repeat: no-repeat
+}
+
+.ncard .logo-backdrop {
+    width: 100%;
+    height: 60%;
+    background-repeat: no-repeat;
+    background-position: center 20%;
+    background-size: 100%;
+    z-index: 3;
+    opacity: .2;
+    mix-blend-mode: overlay
+}
+
+.ncard .attributes {
+    display: flex;
+    position: absolute;
+    bottom: 1.75em;
+    width: 72%;
+    color: white;
+    z-index: 3;
+    padding: 0 001em;
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-style: italic
+}
+
+.ncard .attributes-right {
+    right: .4em
+}
+
+.ncard .attributes .attr-name {
+    width: 17%;
+    font-size: .55em;
+    font-weight: 600;
+    letter-spacing: .01em;
+    margin-left: 0%;
+    text-align: right;
+    color: #797979
+}
+
+.ncard .attributes .attr-value {
+    width: 17%;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: .01em;
+    left: -.2em;
+    position: relative;
+    line-height: .9em;
+    font-family: 'Bebas'
+}
+
+.ncard .logo {
+    width: 48%;
+    height: 40%;
+    position: absolute;
+    z-index: 6;
+    right: -17%;
+    top: 55%;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat
+}
+
+.ncard .info,
+.ncard .info2 {
+    position: absolute;
+    top: 51%;
+    font-size: .6em;
+    z-index: 5;
+    letter-spacing: 0;
+    font-weight: bold;
+    color: #000;
+    text-align: right;
+    right: 1.4em
+}
+
+.ncard .info div,
+.ncard .info2 div {
+    display: inline-block
+}
+
+.ncard .info .bullet,
+.ncard .info2 .bullet {
+    margin: 0;
+    width: 3px;
+    height: 2px;
+    border-radius: 0;
+    transform: translateY(-3px);
+    background: #000
+}
+
+.ncard .logo-bottom {
+    background-size: contain;
+    position: absolute;
+    bottom: .8em;
+    left: .65em;
+    height: 2.3em;
+    width: 2.3em;
+    z-index: 7
+}
+
+.ncard .footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: .25em;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    z-index: 4;
+    background-size: 100%
+}
+
+.totw-attributes {
+    transform: rotate(-16deg);
+    bottom: 15% !important;
+    right: -.5em
+}
+
+.totw-team {
+    transform: rotate(-16deg);
+    bottom: 31% !important;
+    right: 1.5em !important
+}
+
+.totw-name {
+    transform: rotate(-16deg);
+    top: 63.5% !important;
+    left: -.5em !important;
+    text-align: right !important;
+    font-size: 1.2em !important
+}
+
+.totw-logo {
+    bottom: 1em !important;
+    left: 1.5em !important
+}
+
+.totw_text {
+    opacity: 1 !important;
+    mix-blend-mode: unset !important;
+    background-position: top !important
+}
+
+.totw_line {
+    position: absolute;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 2em
+}
+
+.totw_footer {
+    position: absolute;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    bottom: 0;
+    right: -.5em
+}
+
+.totw_info {
+    right: unset !important;
+    transform: rotate(-16deg) !important;
+    top: 61% !important;
+    left: 5.5em !important;
+    color: #e1c885 !important
+}
+
+.totw_overall {
+    transform: rotate(-14deg) !important;
+    font-style: italic !important;
+    left: .25em !important;
+    top: .6em !important
+}
+
+.totw_cardtype {
+    transform: rotate(-14deg) !important;
+    font-style: italic !important;
+    font-size: .75em !important;
+    left: 1.3em !important
+}
+
+.totw_gold_color {
+    color: #d8bf7c !important
+}
+
+.totw_bronze_color {
+    color: #ecc5a4 !important
+}
+
+.totw_silver_color {
+    color: #e1e1e1 !important
+}
+
+.ncard .alm .info {
+    top: 5px;
+    color: #fff
+}
+
+.ncard .alm .logo-backdrop {
+    mix-blend-mode: normal;
+    opacity: .3 !important
+}
+
+.alumni-overlay {
+    background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 7;
+    background-size: contain
+}
+
+.ncard .alm .alm-tag {
+    z-index: 8
+}
+
+.ncard .alm .alm-overall {
+    left: 8%;
+    top: 7%;
+    color: #fff;
+    font-size: 4em
+}
+
+.alm-logo {
+    width: 16%;
+    height: 15%;
+    position: absolute;
+    z-index: 9;
+    right: 6%;
+    top: 44%;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, .95))
+}
+
+.ncard .alm .alm-name {
+    top: 60.5%;
+    left: -3%;
+    color: #fff
+}
+
+.ncard .alm .alm-name .firstname,
+.ncard .alm .alm-name .lastname {
+    text-align: center
+}
+
+.ncard .alm .alm-headshot {
+    height: 43%;
+    width: 80%;
+    left: 1.8em;
+    top: 1em;
+    background-position: center
+}
+
+.ncard .alm .alm-team {
+    position: absolute;
+    z-index: 5;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    font-size: .48em;
+    bottom: 46%;
+    font-weight: 800;
+    color: #fff;
+    font-style: italic;
+    width: 100%;
+    left: 0%;
+    text-align: center
+}
+
+.ncard .alm.backplate .alm-attributes {
+    display: flex;
+    position: absolute;
+    bottom: 6.15%;
+    width: 100%;
+    color: #fff;
+    z-index: 3;
+    padding: 0 10%;
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-style: italic
+}
+
+.alm .alm-attributes.attributes .attr-value {
+    line-height: 1.8em
+}
+
+.ncard .alm .alm-attributes.attributes .attr-name {
+    text-align: left;
+    padding-left: 3%;
+    color: #fff
+}
+
+.no-opacity {
+    opacity: 1
+}
+
+.hc-logo {
+    bottom: -2% !important;
+    height: 23% !important;
+    width: 23% !important;
+    background-repeat: no-repeat !important
+}
+
+.hc-team {
+    font-size: .6em !important;
+    bottom: 22% !important;
+    right: 10% !important
+}
+
+.hc-ovr {
+    top: 7% !important
+}
+
+.ncard .hc .attributes .attr-name,
+.ncard .hc .attributes .attr-value,
+.ncard .hc .team-right,
+.ncard .hc .cardtype {
+    color: #000
+}
+
+.ncard .hc .attributes,
+.ncard .cs .attributes,
+.ncard .pt .attributes {
+    bottom: 8%
+}
+
+.ncard .cs .logo-backdrop {
+    opacity: .5
+}
+
+.ncard .cs .attributes .attr-name,
+.ncard .cs .attributes .attr-value,
+.ncard .cs .team-right,
+.ncard .cs .name,
+.ncard .cs .info,
+.ncard .cs .cardtype {
+    color: #fff
+}
+
+.ncard .cs .cardtype {
+    color: #000
+}
+
+.cs-team {
+    font-size: .6em !important;
+    bottom: 21.5% !important;
+    right: 10% !important;
+    color: #000 !important
+}
+
+.cs-ovr {
+    top: 17% !important
+}
+
+.ncard .pt .logo-backdrop {
+    opacity: .5
+}
+
+.ncard .pt .attributes .attr-name,
+.ncard .pt .attributes .attr-value,
+.ncard .pt .team-right,
+.ncard .pt .name,
+.ncard .pt .info,
+.ncard .pt .cardtype {
+    color: #fff
+}
+
+.ncard .pt .cardtype {
+    color: #000
+}
+
+.pt-team {
+    font-size: .6em !important;
+    bottom: 21.5% !important;
+    right: 10% !important;
+    color: #fff !important
+}
+
+.pt-ovr {
+    top: 17% !important
+}
+
+.ncard .gat-headshot,
+.ncard .evo-headshot,
+    {
+    z-index: 2 !important
+}
+
+.ncard .hwn-headshot {
+    z-index: 3 !important
+}
+
+.gat-team,
+.evo-team,
+.hwn-team {
+    font-size: .6em !important;
+    bottom: 22% !important;
+    right: 10% !important;
+    color: #fff !important
+}
+
+.ncard .hwn-attr {
+    color: #fff !important
+}
+
+.ncard.gat-wrap .attributes .attr-name,
+.ncard.evo-wrap .attributes .attr-name,
+.ncard.hwn-wrap .attributes .attr-name {
+    color: #000
+}
+
+.ncard.gat-wrap .attributes .attr-value,
+.ncard.gat-wrap .name,
+.ncard.gat-wrap .info .bullet {
+    color: #fff
+}
+
+.ncard.gat-wrap .overall {
+    font-weight: 800;
+    font-style: italic;
+    color: #fff;
+    top: 7%;
+    left: 3%
+}
+
+.ncard.gat-wrap .info {
+    left: 5%;
+    top: 23%;
+    font-size: .4em;
+    color: #fff;
+    right: inherit
+}
+
+.ncard.gat-wrap .logo-backdrop,
+.ncard.evo-wrap .logo-backdrop {
+    z-index: 2
+}
+
+.gsc-texture {
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: 4
+}
+
+.gat-texture {
+    background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    mix-blend-mode: color-dodge
+}
+
+.evo-texture {
+    background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: 1
+}
+
+.ncard.evo-wrap .attributes {
+    bottom: 7% !important
+}
+
+.ms-texture {
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: 5
+}
+
+.ms-headshot {
+    background-position: 30% !important;
+    top: 3.5% !important
+}
+
+.ncard.ms-ol .attributes .attr-name,
+.ncard.ms-ol .attributes .attr-value,
+.ncard.ms-ol .team-right,
+.ncard.ms-ol .name,
+.ncard.ms-ol .cardtype {
+    color: #c6ac66 !important
+}
+
+.ncard.ms-ol .name .lastname {
+    font-size: 1em;
+    margin-left: 3.5%;
+    transform: unset
+}
+
+.ncard.ms-ol .name {
+    top: 58%
+}
+
+.ncard.ms-ol .ms-team {
+    color: #c6ac66;
+    font-size: .6em;
+    bottom: 21.5%
+}
+
+.ncard.ms-ol .ms-fill {
+    background: red
+}
+
+.ncard.ms-ol .ms-logo {
+    right: 5%;
+    top: 59%;
+    height: 20%;
+    width: 30%
+}
+
+.ncard.ms-ol .attributes {
+    width: 100%;
+    height: 12%;
+    transform: translateX(4%)
+}
+
+.ncard.ms-ol .attributes .attr-name {
+    transform: translateX(-150%) translateY(72%);
+    font-size: .5em
+}
+
+.ncard.ms-ol .overall {
+    left: 6%;
+    font-size: 3em
+}
+
+.ncard.ms-ol .info {
+    top: 3%;
+    color: #000
+}
+
+.ncard.ms-ol .cardtype {
+    left: 4%;
+    top: 10%;
+    color: #000 !important;
+    font-size: .8em
+}
+
+.hwn-ct {
+    top: 13% !important;
+    left: 8% !important;
+    font-size: .75em !important;
+    color: #000 !important
+}
+
+.hwn-team-text {
+    position: absolute;
+    bottom: 15%;
+    right: 2%;
+    font-family: Bebas;
+    font-style: italic;
+    font-size: 2em;
+    opacity: .3;
+    letter-spacing: .05em
+}
+
+.gsc-att {
+    bottom: 7% !important;
+    width: 75% !important;
+    padding-right: 0 !important
+}
+
+.gsc-att .attr-name {
+    padding-right: 2% !important;
+    padding-bottom: 3% !important
+}
+
+.gsc-ovr {
+    top: 18% !important;
+    left: 10% !important
+}
+
+.ncard.gscsi-wrap .attributes .attr-name,
+.ncard.gscsi-wrap .cardtype,
+.ncard.gscsi-wrap .info {
+    color: #ccc
+}
+
+.ncard.gscsi-wrap .bullet {
+    background: #ccc
+}
+
+.ncard.gscsi-wrap .attributes .attr-value,
+.ncard.gscsi-wrap .team-right,
+.ncard.gscsi-wrap .name,
+.ncard.gscsi-wrap .overall {
+    color: #fff
+}
+
+.ncard.gscfi-wrap .attributes .attr-name,
+.ncard.gscfi-wrap .cardtype,
+.ncard.gscfi-wrap .info {
+    color: #43c7e7
+}
+
+.ncard.gscfi-wrap .bullet {
+    background: #43c7e7
+}
+
+.ncard.gscfi-wrap .attributes .attr-value,
+.ncard.gscfi-wrap .team-right,
+.ncard.gscfi-wrap .name,
+.ncard.gscfi-wrap .overall {
+    color: #fff
+}
+
+.ncard.gscse-wrap .attributes .attr-name,
+.ncard.gscse-wrap .cardtype,
+.ncard.gscse-wrap .info {
+    color: #004998
+}
+
+.ncard.gscse-wrap .bullet {
+    background: #004998
+}
+
+.ncard.gscse-wrap .attributes .attr-value,
+.ncard.gscse-wrap .team-right,
+.ncard.gscse-wrap .name,
+.ncard.gscse-wrap .overall {
+    color: #011e41
+}
+
+.ncard.gscge-wrap .attributes .attr-name,
+.ncard.gscge-wrap .cardtype,
+.ncard.gscge-wrap .info {
+    color: #fff
+}
+
+.ncard.gscge-wrap .bullet {
+    background: #fff
+}
+
+.ncard.gscge-wrap .attributes .attr-value,
+.ncard.gscge-wrap .team-right,
+.ncard.gscge-wrap .name,
+.ncard.gscge-wrap .overall {
+    color: #facd01
+}
+
+.tg-texture {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);
+    z-index: 4;
+    left: 0;
+    height: 100%
+}
+
+.ncard.tg_main .headshot {
+    background-position: -20%;
+    top: 5%
+}
+
+.ncard.tg_main .logo-backdrop {
+    background-position: center top
+}
+
+.ncard.tg_main .attributes {
+    width: 90%;
+    left: 5%;
+    bottom: 8%
+}
+
+.ncard.tg_main .overall {
+    color: #fff;
+    left: 11.5%;
+    top: 32%;
+    font-size: 3.1em
+}
+
+.ncard.tg_main .team {
+    left: 8%;
+    text-align: left;
+    width: 50%;
+    bottom: 21.5%;
+    color: #000;
+    font-size: .45em
+}
+
+.ncard.tg_main .info {
+    font-size: .45em;
+    bottom: 21.5%;
+    top: inherit;
+    right: 8%
+}
+
+.ncard.tg_main .name {
+    color: #000;
+    left: 5%;
+    top: 59%
+}
+
+.ncard.tg_main .logo-bottom {
+    width: 3.5em;
+    height: 3.5em;
+    right: 5%;
+    left: inherit;
+    bottom: 25%
+}
+
+.ncard.tg_main .attributes .attr-name {
+    color: #000;
+    text-align: left;
+    transform: translateX(.3em);
+    margin-bottom: 1%
+}
+
+.ncard.xmas-wrap .headshot {
+    z-index: 2
+}
+
+.ncard.xmas-wrap .logo-backdrop {
+    z-index: 1
+}
+
+.ncard.xmas-wrap .overall {
+    left: 12%;
+    font-size: 3em;
+    top: 25%
+}
+
+.ncard.xmas-wrap .name {
+    top: 54%;
+    font-size: 1.25em
+}
+
+.xmas-top {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0
+}
+
+.ncard.xmas-wrap .info .bullet {
+    background: #717171
+}
+
+.ncard.xmas-wrap .info {
+    color: #717171
+}
+
+.ncard.xmas-wrap .attributes .attr-value,
+.ncard.xmas-wrap .team-right,
+.ncard.xmas-wrap .name,
+.ncard .attributes .attr-name,
+.ncard.xmas-wrap .overall {
+    color: #e9e9e9
+}
+
+.ncard.xmas-wrap .logo {
+    right: 1%;
+    height: 25%;
+    width: 25%;
+    top: 60%
+}
+
+.ncard.xmas-wrap .team {
+    font-size: .65em;
+    bottom: 24.75%
+}
+
+.ncard.xmas-wrap .cardtype {
+    top: 15%;
+    font-size: .75em;
+    left: 11%;
+    color: #fff
+}
+
+.ncard .ipotg {
+    background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png)
+}
+
+.ncard .ipotg_tag {
+    background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);
+    background-size: cover
+}
+
+.ncard .ipotg .black-background {
+    background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);
+    background-size: cover;
+    top: 0
+}
+
+.ncard .ipotg .silver-background {
+    background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);
+    background-size: cover;
+    z-index: 4;
+    top: 0
+}
+
+.ncard .ipotg .ice-background {
+    background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png)
+}
+
+.ncard.ipotg-wrap .headshot {
+    top: 0;
+    height: 50%;
+    background-position: center;
+    left: 8%;
+    z-index: 3
+}
+
+.ncard.ipotg-wrap .logo-fix {
+    top: 0;
+    left: 0
+}
+
+.ncard.ipotg-wrap .overall {
+    left: 8%
+}
+
+.ncard.ipotg-wrap .cardtype {
+    left: 6%;
+    top: 10%
+}
+
+.ncard.ipotg-wrap .attributes-right {
+    z-index: 5
+}
+
+.ncard.ipotg-wrap .attributes .attr-name {
+    color: #545454
+}
+
+.ncard.ipotg-wrap .ipotg-team {
+    color: #545454;
+    font-size: .5em;
+    bottom: 21.5%
+}
+
+.ncard.ipotg-wrap .logo-bottom {
+    left: 6%;
+    bottom: 8%
+}
+
+.ncard.ipotg-wrap .name {
+    top: 59%
+}
+
+.ncard.ipotg-wrap .logo-backdrop {
+    z-index: 2
+}
+
+.evo2-wrap.ncard .headshot,
+.evo2-wrap.ncard .logo-backdrop {
+    z-index: 2
+}
+
+.evo2-wrap.ncard .cardtype {
+    top: 5%;
+    left: 5.5%
+}
+
+.evo2-wrap.ncard .overall {
+    left: 7.5%
+}
+
+.evo2-wrap.ncard .cardtype,
+.evo2-wrap.ncard .overall,
+.evo2-wrap.ncard .attributes .attr-value,
+.evo2-wrap.ncard .info,
+.evo2-wrap.ncard .name {
+    color: #fff
+}
+
+.evo2-wrap.ncard .info .bullet {
+    background: #fff
+}
+
+.evo2-wrap.ncard .attributes {
+    bottom: 7.5%;
+    width: 80%;
+    right: 0%
+}
