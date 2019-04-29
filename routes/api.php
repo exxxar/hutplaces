@@ -19,6 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/reportSubmit', 'SinglePageController@reportSubmit');
 
+Route::group(['prefix' => 'payment'], function(){
+    Route::post('pay', 'SinglePageController@requestMoney');
+    Route::post('failed', 'SinglePageController@paymentFailed');
+    Route::post('success', 'SinglePageController@paymentSuccess');
+});
+
 Route::post('auth/register', 'AuthController@register');
 Route::post('auth/login', 'AuthController@login');
 Route::group(['middleware' => 'jwt.auth'], function(){

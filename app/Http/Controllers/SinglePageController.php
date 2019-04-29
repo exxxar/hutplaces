@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendReminderEmail;
+use App\Orders;
 use App\Tickets;
 use Carbon\Carbon;
+use G2APay\G2APay;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -84,5 +87,26 @@ class SinglePageController extends Controller
         });
 
         return response()->json(['success'=>'You have successfully upload image.']);
+    }
+
+    public function requestMoney(Request $request,G2APay $payment){
+            $order = new Orders();
+            $order->title = "Coins";
+            $order->currency = "USA";
+            $order->count=0.0;
+            $order->price=0.0;
+            $order->quantity=1;
+            $order->payment_provider = "G2A";
+            $order->save();
+
+
+
+        $payment->addItem(1, 'Coins', 1, 1, 9.95);
+        $extras = []; // Optional extras passed to order (Please refer G2APay docs)
+        if (env("G2A_SANDBOX")==false)
+            $response = $payment->createOrder($order->id, $extras);
+        else
+            $response = $payment->test()->createOrder($order->id, $extras);
+
     }
 }
