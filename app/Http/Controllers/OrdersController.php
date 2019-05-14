@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Orders;
 
 class OrdersController extends Controller
 {
@@ -13,7 +14,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Orders::paginate(15);
+
+        return view('admin.orders', ['orders' => $orders]);
     }
 
     /**
@@ -34,7 +37,24 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'count'=> 'numeric',
+            'price' => 'numeric',
+            'quantity' => 'integer'
+        ]);
+
+        $order = new Orders([
+            'title' => $request->input('title'),
+            'currency' => $request->input('currency'),
+            'count' => $request->input('count'),
+            'price' => $request->input('price'),
+            'payment_provider' => $request->input('payment_provider'),
+            'quantity' => $request->input('quantity')
+        ]);
+        $order->save();
+
+        return back()->with('success', 'Заказ успешно добавлен');
     }
 
     /**
@@ -68,7 +88,23 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'count'=> 'numeric',
+            'price' => 'numeric',
+            'quantity' => 'integer'
+        ]);
+
+        $order = Orders::find($id);
+        $order->title = $request->input('title');
+        $order->currency = $request->input('currency');
+        $order->count = $request->input('count');
+        $order->price = $request->input('price');
+        $order->payment_provider = $request->input('payment_provider');
+        $order->quantity = $request->input('quantity');
+        $order->save();
+
+        return back()->with('success', 'Заказ успешно отредактирован');
     }
 
     /**
@@ -79,6 +115,9 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Orders::find($id);
+        $order->delete();
+
+        return back()->with('success', 'Заказ успешно удален');
     }
 }
