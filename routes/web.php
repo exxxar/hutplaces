@@ -19,12 +19,21 @@ use Illuminate\Support\Facades\Log;
 Route::prefix('admin')->group(function () {
     Auth::routes();
 
+    
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/admin/{any?}', 'SinglePageController@admin')->where('any', '.*');
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+
+// Resource
+Route::resource('lots', 'LotsController');
+Route::resource('lotteries', 'LotteryController');
+Route::resource('orders', 'OrdersController');
+Route::resource('places', 'PlacesController');
+Route::resource('users', 'UserController');
+
 
 
 

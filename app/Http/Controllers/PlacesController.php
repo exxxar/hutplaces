@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Places;
 
 class PlacesController extends Controller
 {
@@ -13,7 +14,9 @@ class PlacesController extends Controller
      */
     public function index()
     {
-        //
+        $places = Places::paginate(15);
+
+        return view('admin.places', ['places' => $places]);
     }
 
     /**
@@ -34,7 +37,18 @@ class PlacesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'place_number' => 'integer'
+        ]);
+
+        $place = new Places([
+            'place_number' => $request->input('place_number'),
+            'lottery_id'=> $request->input('lottery_id'),
+            'user_id'=> $request->input('user_id')
+        ]);
+        $place->save();
+
+        return back()->with('success', 'Место успешно добавлено');
     }
 
     /**
@@ -68,7 +82,17 @@ class PlacesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'place_number' => 'integer'
+        ]);
+
+        $place = Places::find($id);
+        $place->place_number = $request->input('place_number');
+        $place->lottery_id = $request->input('lottery_id');
+        $place->user_id = $request->input('user_id');
+        $place->save();
+
+        return back()->with('success', 'Место успешно отредактировано');
     }
 
     /**
@@ -79,6 +103,9 @@ class PlacesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $place = Places::find($id);
+        $place->delete();
+
+        return back()->with('success', 'Место успешно удалено');
     }
 }

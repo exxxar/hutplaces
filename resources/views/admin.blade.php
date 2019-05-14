@@ -25,8 +25,10 @@
         </style>
     </head>
     <body>
-       <div id="app"></div>
-
-       <script src="{{asset('js/admin/admin.js')}}"></script>
+        @yield('content')
+        
+        <div id="app"></div>
+            
+        <script src="{{asset('js/admin/admin.js')}}"></script>
     </body>
 </html>
