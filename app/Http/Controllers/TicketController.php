@@ -83,20 +83,7 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'email' => 'required|email'
-        ]);
-
-        DB::table('tickets')
-            ->where('id', $id)
-            ->update([
-                'email' => $request->input('email'), 
-                'description' => $request->input('description'),
-                'directory' => $request->input('directory')
-            ]
-        );
-
-        return back()->with('success', 'Жалоба успешно отредактирована');
+        //
     }
 
     /**
