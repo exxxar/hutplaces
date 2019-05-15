@@ -28,13 +28,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
 
 // Resource
-Route::resource('lots', 'LotsController');
-Route::resource('lotteries', 'LotteryController');
-Route::resource('orders', 'OrdersController');
-Route::resource('places', 'PlacesController');
-Route::resource('users', 'UserController');
-
-
+Route::resources([
+    'lots' => 'LotsController',
+    'lotteries' => 'LotteryController',
+    'orders' => 'OrdersController',
+    'places' => 'PlacesController',
+    'users' => 'UserController',
+    'tickets' => 'TicketController'
+]);
 
 
 
