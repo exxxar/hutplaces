@@ -1,5 +1,5 @@
 @extends('layouts.admin')
 
 @section('content')
-    пользователи
+    колесо фортуны
 @endsection
