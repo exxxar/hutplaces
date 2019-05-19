@@ -379,3 +379,89 @@ body {
   margin-right: 2px;
 }
 
+.users form ul {
+  width: 100%;
+  height: 200px;
+  overflow-y: scroll;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px lightgray solid;
+}
+
+.users form textarea {
+  width: 100%;
+  height: 100px;
+}
+
+.users a.action {
+  font-size: 10pt;
+  text-decoration: underline;
+  color: brown;
+  cursor: pointer;
+}
+
+.users .message {
+  font-size: 14pt;
+  font-style: italic;
+  transition: 0.5s;
+}
+
+.users .message.success {
+  color: lime;
+  transition: 0.5s;
+}
+
+.users .message.error {
+  color: firebrick;
+  transition: 0.5s;
+}
+
+.users input[type=checkbox] {
+  position: relative !important;
+  left: 20px !important;
+  margin-right: 40px !important;
+  opacity: 1 !important;
+}
+
+.users .delete {
+  font-size: 8pt;
+  font-style: italic;
+  margin-left: 20px;
+}
+
+.users .eye {
+  width: 20px;
+  height: 20px;
+}
+
+.users .progress {
+  width: 100%;
+  height: 25px;
+  position: relative;
+  border: 1px lightgray solid;
+  border-radius: 4px;
+}
+
+.users .progress.hide {
+  display: none;
+}
+
+.users .progress .line {
+  width: 0%;
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  height: inherit;
+  top: 0;
+  background-color: #16e05e;
+  transition: 0.5s;
+}
+
+.users .progress p {
+  position: relative;
+  text-align: center;
+  color: #232221;
+  font-weight: 600;
+  margin-top: 5px;
+}
+

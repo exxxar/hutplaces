@@ -38,7 +38,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Найти" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Выход</a>
+            <a class="nav-link" href="{{url('/logout')}}">Выход</a>
         </li>
     </ul>
 </nav>
@@ -50,76 +50,101 @@
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ url("admin/") }}">
-                            <span data-feather="home"></span>
+                            <i class="fas fa-home"></i>
                             Главная страница <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/users") }}">
-                            <span data-feather="users"></span>
+                            <i class="fas fa-users"></i>
                             Пользователи
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url("admin/roles") }}">
+                            <i class="fas fa-user-tag"></i>
+                            Роли пользователей
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url("admin/levels") }}">
+                            <i class="fas fa-level-up-alt"></i>
+                            Уровни пользователей
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url("admin/tickets") }}">
+                            <i class="fas fa-clipboard-list"></i>
+                            Тикеты
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/cards") }}">
-
+                            <i class="far fa-address-card"></i>
                             Карточки
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/lottery") }}">
+                            <i class="fas fa-splotch"></i>
                             Розыгрыши
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/auction") }}">
+                            <i class="fas fa-random"></i>
                             Аукционы
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/mails") }}">
-
+                            <i class="fas fa-mail-bulk"></i>
                             Рассылка
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/promo") }}">
-
+                            <i class="fas fa-box-open"></i>
                             Бонусы и промокоды
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/statistic") }}">
-
+                            <i class="fas fa-chart-pie"></i>
                             Статистика
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/coins") }}">
-
+                            <i class="fas fa-coins"></i>
                             Монеты
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/wof") }}">
-
+                            <i class="fas fa-dharmachakra"></i>
                             Колесо фортуны
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/wager") }}">
-
+                            <i class="far fa-handshake"></i>
                             Пари-матчи
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/packs") }}">
-
+                            <i class="fas fa-hockey-puck"></i>
                             Паки игроков
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/achievements") }}">
+                            <i class="fas fa-trophy"></i>
                             Достижения
                         </a>
                     </li>
@@ -163,6 +188,12 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             @yield('content')
         </main>
+
+        <div id="huts-preloader">
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+        </div>
     </div>
 </div>
 
