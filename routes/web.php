@@ -53,6 +53,8 @@ Route::prefix('admin')->group(function () {
     Route::view('/tickets', 'admin.tickets');
     Route::view('/roles', 'admin.roles');
     Route::view('/levels', 'admin.levels');
+    Route::view('/storage', 'admin.cardstorage');
+    Route::view('/images', 'admin.imagestorage');
 });
 
 //Route::get('/admin/{any?}', 'SinglePageController@admin')->where('any', '.*');

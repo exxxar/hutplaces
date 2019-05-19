@@ -175,6 +175,23 @@
                 <a href="{{ url("admin/tickets") }}" class="btn btn-info">Переход к разделу</a>
             </div>
         </div>
+
+        <div class="col-sm-3">
+            <div class="custom-card">
+                <p><i class="fas fa-save"></i></p>
+                <h5>Хранилище карточек</h5>
+                <a href="{{ url("admin/storage") }}" class="btn btn-info">Переход к разделу</a>
+            </div>
+        </div>
+
+
+        <div class="col-sm-3">
+            <div class="custom-card">
+                <p><i class="fas fa-images"></i></p>
+                <h5>Хранилище изображений</h5>
+                <a href="{{ url("admin/images") }}" class="btn btn-info">Переход к разделу</a>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

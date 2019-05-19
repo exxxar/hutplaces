@@ -148,6 +148,20 @@
                             Достижения
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url("admin/storage") }}">
+                            <i class="fas fa-save"></i>
+                            Хранилище карточек
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url("admin/images") }}">
+                            <i class="fas fa-images"></i>
+                            Хранилище изображений
+                        </a>
+                    </li>
                 </ul>
 
                 <hr>
