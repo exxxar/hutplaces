@@ -25,18 +25,17 @@ Route::prefix('admin')->group(function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-// Resource
-Route::resources([
-    'lots' => 'LotsController',
-    'lotteries' => 'LotteryController',
-    'orders' => 'OrdersController',
-    'places' => 'PlacesController',
-    'users' => 'UserController',
-    'tickets' => 'TicketController'
-]);
-
 Route::prefix('admin')->group(function () {
+    // Resource
+    Route::resources([
+        'lots' => 'LotsController',
+        'lotteries' => 'LotteryController',
+        'orders' => 'OrdersController',
+        'places' => 'PlacesController',
+        'users' => 'UserController',
+        'tickets' => 'TicketController'
+    ]);
+
     Route::view('/', 'admin.main');
     Route::view('/auction', 'admin.auction');
     Route::view('/achievements', 'admin.achievements');
@@ -47,7 +46,7 @@ Route::prefix('admin')->group(function () {
     Route::view('/packs', 'admin.packs');
     Route::view('/promo', 'admin.promo');
     Route::view('/statistic', 'admin.statistic');
-    Route::view('/users', 'admin.users');
+    //Route::view('/users', 'admin.users');
     Route::view('/wager', 'admin.wager');
     Route::view('/wof', 'admin.wheeloffortune');
     Route::view('/tickets', 'admin.tickets');

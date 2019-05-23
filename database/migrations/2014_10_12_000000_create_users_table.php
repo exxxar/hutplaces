@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('skype')->default('');
-            $table->string('vk')->default('');
-            $table->string('fb')->default('');
-            $table->string('tw')->default('');
+            $table->string('skype')->default('')->nullable();
+            $table->string('vk')->default('')->nullable();
+            $table->string('fb')->default('')->nullable();
+            $table->string('tw')->default('')->nullable();
             $table->double('money')->default(0.0);
             $table->integer('level')->default(1);
             $table->integer('discount')->default(0);

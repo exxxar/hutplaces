@@ -46,8 +46,7 @@ class UserController extends Controller
             'level' => 'integer',
             'discount'=> 'integer',
             'base_discount' => 'integer',
-            'exp' => 'integer',
-            'avatar' => 'required'
+            'exp' => 'integer'
         ]);
 
         $user = new User([
@@ -104,7 +103,6 @@ class UserController extends Controller
         $request->validate([
             'name'=> 'required',
             'email' => 'required|email',
-            'password' => 'required',
             'money' => 'numeric',
             'level' => 'integer',
             'discount'=> 'integer',
