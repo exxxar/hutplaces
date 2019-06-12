@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
 //Auth::routes();
@@ -55,6 +56,10 @@ Route::prefix('admin')->group(function () {
     Route::view('/levels', 'admin.levels');
     Route::view('/storage', 'admin.cardstorage');
     Route::view('/images', 'admin.imagestorage');
+    Route::get('lang/{locale}', function ($locale) {
+        App::setLocale($locale);
+        return redirect("/admin");
+    });
 });
 
 //Route::get('/admin/{any?}', 'SinglePageController@admin')->where('any', '.*');
