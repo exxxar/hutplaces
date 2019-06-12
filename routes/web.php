@@ -29,7 +29,7 @@ Route::prefix('admin')->group(function () {
     // Resource
     Route::resources([
         'lots' => 'LotsController',
-        'lotteries' => 'LotteryController',
+        'lottery' => 'LotteryController',
         'orders' => 'OrdersController',
         'places' => 'PlacesController',
         'users' => 'UserController',
@@ -41,12 +41,10 @@ Route::prefix('admin')->group(function () {
     Route::view('/achievements', 'admin.achievements');
     Route::view('/cards', 'admin.cards');
     Route::view('/coins', 'admin.coins');
-    Route::view('/lottery', 'admin.lottery');
     Route::view('/mails', 'admin.mails');
     Route::view('/packs', 'admin.packs');
     Route::view('/promo', 'admin.promo');
     Route::view('/statistic', 'admin.statistic');
-    //Route::view('/users', 'admin.users');
     Route::view('/wager', 'admin.wager');
     Route::view('/wof', 'admin.wheeloffortune');
     Route::view('/tickets', 'admin.tickets');
