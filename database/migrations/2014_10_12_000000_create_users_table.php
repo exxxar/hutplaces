@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->integer('level')->default(1);
             $table->integer('discount')->default(0);
             $table->bigInteger('exp')->default(0);
+            $table->bigInteger('coins')->default(0);
             $table->boolean('active')->default(true);
             $table->string('avatar',500);
 

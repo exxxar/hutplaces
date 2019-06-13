@@ -17,8 +17,17 @@ class CreateLotsTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('lottery_id')->nullable();
+
+            $table->integer('coins')->nullable();
+
+            $table->unsignedInteger('items_id')->nullable();
+            $table->unsignedInteger('cards_id')->nullable();
+
+
             $table->foreign('lottery_id')->references('id')->on('lotteries');
 
+            $table->foreign('items_id')->references('id')->on('items');
+            $table->foreign('cards_id')->references('id')->on('cards_storage');
 
             $table->timestamps();
         });

@@ -24,6 +24,7 @@ class CreateCardsStorageTable extends Migration
             $table->integer("CHK")->nullable()->default(0);//89
             $table->integer("CHK_POS")->nullable()->default(0);//93
             $table->string("Card")->nullable()->default("");//"PT"
+            $table->string("Card_data")->nullable()->default("");//take it from other url https://hutdb.net/ajax/id.php?size=0&id=32006
             $table->integer("DAW_PPF")->nullable()->default(0);//99
             $table->integer("DEF_RBC")->nullable()->default(0);//98
             $table->integer("DEK_ANG")->nullable()->default(0);//99
