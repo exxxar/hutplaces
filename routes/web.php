@@ -49,7 +49,7 @@ Route::prefix('admin')->group(function () {
     //Route::view('/users', 'admin.users');
     Route::view('/wager', 'admin.wager');
     Route::view('/wof', 'admin.wheeloffortune');
-    Route::view('/tickets', 'admin.tickets');
+    //Route::view('/tickets', 'admin.tickets');
     Route::view('/roles', 'admin.roles');
     Route::view('/levels', 'admin.levels');
     Route::view('/storage', 'admin.cardstorage');
