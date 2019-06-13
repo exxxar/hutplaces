@@ -16,7 +16,7 @@ class LotteryController extends Controller
     {
         $lotteries = Lottery::paginate(15);
 
-        return view('admin.lotteries', ['lotteries' => $lotteries]);
+        return view('admin.lottery', ['lotteries' => $lotteries]);
     }
 
     /**
@@ -65,7 +65,7 @@ class LotteryController extends Controller
         ]);
         $lottery->save();
 
-        return back()->with('success', 'Лотерея успешно добавлена');
+        return back()->with('success', 'Розыгрыш успешно добавлен');
     }
 
     /**
@@ -126,7 +126,7 @@ class LotteryController extends Controller
         $lottery->lifetime = $request->input('lifetime');
         $lottery->save();
 
-        return back()->with('success', 'Лотерея успешно отредактирована');
+        return back()->with('success', 'Розыгрыш успешно отредактирован');
     }
 
     /**
@@ -140,6 +140,6 @@ class LotteryController extends Controller
         $lottery = Lottery::find($id);
         $lottery->delete();
 
-        return back()->with('success', 'Лотерея успешно удалена');
+        return back()->with('success', 'Розыгрыш успешно удален');
     }
 }
