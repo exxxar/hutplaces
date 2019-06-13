@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateCardsStorageTable extends Migration
 {
     /**
+     * 
      * Run the migrations.
      *
      * @return void

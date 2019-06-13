@@ -16,7 +16,7 @@ class TicketController extends Controller
     {
         $tickets = DB::table('tickets')->paginate(15);
 
-        return view('tickets.index', ['tickets' => $tickets]);
+        return view('admin.tickets', ['tickets' => $tickets]);
     }
 
     /**
