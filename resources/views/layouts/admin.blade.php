@@ -51,115 +51,115 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ url("admin/") }}">
                             <i class="fas fa-home"></i>
-                            Главная страница <span class="sr-only">(current)</span>
+                            @lang('admin.main') <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/users") }}">
                             <i class="fas fa-users"></i>
-                            Пользователи
+                            @lang('admin.users')
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/roles") }}">
                             <i class="fas fa-user-tag"></i>
-                            Роли пользователей
+                            @lang('admin.roles')
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/levels") }}">
                             <i class="fas fa-level-up-alt"></i>
-                            Уровни пользователей
+                            @lang('admin.levels')
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/tickets") }}">
                             <i class="fas fa-clipboard-list"></i>
-                            Тикеты
+                            @lang('admin.tickets')
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/cards") }}">
                             <i class="far fa-address-card"></i>
-                            Карточки
+                            @lang('admin.cards')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/lottery") }}">
                             <i class="fas fa-splotch"></i>
-                            Розыгрыши
+                            @lang('admin.lottery')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/auction") }}">
                             <i class="fas fa-random"></i>
-                            Аукционы
+                            @lang('admin.auctions')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/mails") }}">
                             <i class="fas fa-mail-bulk"></i>
-                            Рассылка
+                            @lang('admin.mails')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/promo") }}">
                             <i class="fas fa-box-open"></i>
-                            Бонусы и промокоды
+                            @lang('admin.promo')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/statistic") }}">
                             <i class="fas fa-chart-pie"></i>
-                            Статистика
+                            @lang('admin.statistic')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/coins") }}">
                             <i class="fas fa-coins"></i>
-                            Монеты
+                            @lang('admin.coins')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/wof") }}">
                             <i class="fas fa-dharmachakra"></i>
-                            Колесо фортуны
+                            @lang('admin.wof')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/wager") }}">
                             <i class="far fa-handshake"></i>
-                            Пари-матчи
+                            @lang('admin.wager')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/packs") }}">
                             <i class="fas fa-hockey-puck"></i>
-                            Паки игроков
+                            @lang('admin.packs')
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/achievements") }}">
                             <i class="fas fa-trophy"></i>
-                            Достижения
+                            @lang('admin.achievements')
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/storage") }}">
                             <i class="fas fa-save"></i>
-                            Хранилище карточек
+                            @lang('admin.storage')
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url("admin/images") }}">
                             <i class="fas fa-images"></i>
-                            Хранилище изображений
+                            @lang('admin.images')
                         </a>
                     </li>
                 </ul>
@@ -188,10 +188,10 @@
                 </ul>
                 <hr>
                 <div class="lang">
-                    <h4>Выбор языка</h4>
+                    <h4> @lang('admin.lang')</h4>
                     <ul class="select-lang">
-                        <li><a href=""><img src="{{url("/svg/en.svg")}}" alt=""></a></li>
-                        <li><a href=""><img src="{{url("/svg/ru.svg")}}" alt=""></a></li>
+                        <li><a href="{{url('admin/lang/en')}}"><img src="{{url("/svg/en.svg")}}" alt=""></a></li>
+                        <li><a href="{{url('admin/lang/ru')}}"><img src="{{url("/svg/ru.svg")}}" alt=""></a></li>
                     </ul>
                 </div>
                 <hr>
