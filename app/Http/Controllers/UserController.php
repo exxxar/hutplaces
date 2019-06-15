@@ -42,11 +42,6 @@ class UserController extends Controller
             'name'=> 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'money' => 'numeric',
-            'level' => 'integer',
-            'discount'=> 'integer',
-            'base_discount' => 'integer',
-            'exp' => 'integer'
         ]);
 
         $user = new User([
@@ -57,10 +52,6 @@ class UserController extends Controller
             'vk'=> $request->input('vk'),
             'fb'=> $request->input('fb'),
             'tw' => $request->input('tw'),
-            'money'=> $request->input('money'),
-            'level'=> $request->input('level'),
-            'discount' => $request->input('discount'),
-            'exp'=> $request->input('exp'),
             'active'=> $request->input('active'),
             'avatar' => $request->input('avatar')
         ]);
@@ -106,8 +97,8 @@ class UserController extends Controller
             'money' => 'numeric',
             'level' => 'integer',
             'discount'=> 'integer',
-            'base_discount' => 'integer',
             'exp' => 'integer',
+            'coins' => 'integer',
             'avatar' => 'required'
         ]);
 
@@ -123,6 +114,7 @@ class UserController extends Controller
         $user->level = $request->input('level');
         $user->discount = $request->input('discount');
         $user->exp = $request->input('exp');
+        $user->coins = $request->input('coins');
         $user->active = $request->input('active');
         $user->avatar = $request->input('avatar');
         $user->save();
