@@ -13,21 +13,21 @@ class CreateAchievementsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('achievements', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("category")->default(0);//0 - basik
             $table->integer("type")->default(0);//0 - частое, 1 - редкое, 2 - очень редко, 3 - легендарное
             $table->string("title")->default("");
             $table->string("description", 2000)->default("");
-            $table->string("description", 2000)->default("");
             $table->integer("discount" )->nullable();
             $table->integer("exp" )->nullable();
             $table->integer("coins" )->nullable();
             $table->double("money" )->nullable();
 
-            $table->integer("items_id" )->nullable();
-            $table->integer("cards_id" )->nullable();
-            $table->integer("images_storage_id" )->nullable();//achivement logo
+            $table->unsignedInteger("items_id" )->nullable();
+            $table->unsignedInteger("cards_id" )->nullable();
+            $table->unsignedInteger("images_storage_id" )->nullable();//achivement logo
 
             $table->boolean("isActive" )->default(1);
 
@@ -39,6 +39,7 @@ class CreateAchievementsTable extends Migration
 
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

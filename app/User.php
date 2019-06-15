@@ -32,7 +32,8 @@ class User extends Authenticatable implements JWTSubject
         'discount', 
         'exp',
         'active',
-        'avatar'
+        'avatar',
+        'coins'
     ];
 
     /**

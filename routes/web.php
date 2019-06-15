@@ -19,14 +19,12 @@ use Illuminate\Support\Facades\Log;
 
 Route::prefix('admin')->group(function () {
     Auth::routes();
-
-    
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::prefix('admin')->group(function () {
+Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
     // Resource
     Route::resources([
         'lots' => 'LotsController',
@@ -34,7 +32,9 @@ Route::prefix('admin')->group(function () {
         'orders' => 'OrdersController',
         'places' => 'PlacesController',
         'users' => 'UserController',
-        'tickets' => 'TicketController'
+        'tickets' => 'TicketController',
+        'settings' => 'SettingsController',
+        'roles' => 'RoleController'
     ]);
 
     Route::view('/', 'admin.main');
@@ -49,14 +49,11 @@ Route::prefix('admin')->group(function () {
     Route::view('/wager', 'admin.wager');
     Route::view('/wof', 'admin.wheeloffortune');
     //Route::view('/tickets', 'admin.tickets');
-    Route::view('/roles', 'admin.roles');
+  //  Route::view('/roles', 'admin.roles.index');
     Route::view('/levels', 'admin.levels');
     Route::view('/storage', 'admin.cardstorage');
     Route::view('/images', 'admin.imagestorage');
-    Route::get('lang/{locale}', function ($locale) {
-        App::setLocale($locale);
-        return redirect("/admin");
-    });
+    Route::get('/lang/{locale}', 'HomeController@setlang');
 });
 
 //Route::get('/admin/{any?}', 'SinglePageController@admin')->where('any', '.*');
