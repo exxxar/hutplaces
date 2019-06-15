@@ -25,7 +25,7 @@
                           Действие
                       </button>
                       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <form action="{{ route('cardstorage.destroy', $cardstorage->id)}}" method="post">
+                            <form action="{{ route('storage.destroy', $cardstorage->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="dropdown-item" type="submit">Удалить</button>

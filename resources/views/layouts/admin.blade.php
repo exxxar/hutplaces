@@ -150,7 +150,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url("admin/cardstorage") }}">
+                        <a class="nav-link" href="{{ url("admin/storage") }}">
                             <i class="fas fa-save"></i>
                             @lang('admin.storage')
                         </a>
