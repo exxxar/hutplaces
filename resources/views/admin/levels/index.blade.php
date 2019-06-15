@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Settings Management</h2>
+                <h2>Role Management</h2>
             </div>
             <div class="pull-right">
-                @can('settings-create')
-                    <a class="btn btn-success" href="{{ route('settings.create') }}"> Create New Setting</a>
+                @can('role-create')
+                    <a class="btn btn-success" href="{{ route('settings.create') }}"> Create New Role</a>
                 @endcan
             </div>
         </div>
@@ -25,23 +25,21 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Value</th>
+            <th>No</th>
+            <th>Name</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($settings as $key => $setting)
+        @foreach ($roles as $key => $role)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $setting->title }}</td>
-                <td>{{ $setting->value }}</td>
+                <td>{{ $role->name }}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('settings.show',$setting->id) }}">Show</a>
-                    @can('settings-edit')
-                        <a class="btn btn-primary" href="{{ route('settings.edit',$setting->id) }}">Edit</a>
+                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
+                    @can('role-edit')
+                        <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
                     @endcan
-                    @can('settings-delete')
-                        {!! Form::open(['method' => 'DELETE','route' => ['settings.destroy', $setting->id],'style'=>'display:inline']) !!}
+                    @can('role-delete')
+                        {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     @endcan
@@ -51,7 +49,7 @@
     </table>
 
 
-    {!! $settings->render() !!}
+    {!! $roles->render() !!}
 
 
 @endsection
