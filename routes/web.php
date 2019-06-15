@@ -34,7 +34,8 @@ Route::prefix('admin')->group(function () {
         'orders' => 'OrdersController',
         'places' => 'PlacesController',
         'users' => 'UserController',
-        'tickets' => 'TicketController'
+        'tickets' => 'TicketController',
+        'settings' => 'SettingsController'
     ]);
 
     Route::view('/', 'admin.main');
@@ -53,10 +54,7 @@ Route::prefix('admin')->group(function () {
     Route::view('/levels', 'admin.levels');
     Route::view('/storage', 'admin.cardstorage');
     Route::view('/images', 'admin.imagestorage');
-    Route::get('lang/{locale}', function ($locale) {
-        App::setLocale($locale);
-        return redirect("/admin");
-    });
+    Route::get('/lang/{locale}', 'HomeController@setlang');
 });
 
 //Route::get('/admin/{any?}', 'SinglePageController@admin')->where('any', '.*');
