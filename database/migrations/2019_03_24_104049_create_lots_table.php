@@ -13,6 +13,7 @@ class CreateLotsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('lots', function (Blueprint $table) {
             $table->increments('id');
 
@@ -31,6 +32,7 @@ class CreateLotsTable extends Migration
 
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

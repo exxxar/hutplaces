@@ -13,6 +13,7 @@ class CreatePromocodesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('promocodes', function (Blueprint $table) {
             $table->increments('id');
 
@@ -26,9 +27,9 @@ class CreatePromocodesTable extends Migration
             $table->integer('exp')->default(0);
             $table->integer('discount')->default(0);
 
-            $table->integer("items_id" )->nullable();
-            $table->integer("cards_id" )->nullable();
-            $table->integer("images_storage_id" )->nullable();//promocode logo
+            $table->unsignedInteger("items_id" )->nullable();
+            $table->unsignedInteger("cards_id" )->nullable();
+            $table->unsignedInteger("images_storage_id" )->nullable();//promocode logo
 
             $table->foreign('items_id')->references('id')->on('items');
             $table->foreign('cards_id')->references('id')->on('cards_storage');
@@ -36,6 +37,7 @@ class CreatePromocodesTable extends Migration
 
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -13,11 +14,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(15);
 
-        return view('admin.users', ['users' => $users]);
+        $users = User::orderBy('id','DESC')->paginate(15);
+        return view('admin.users.index',compact('users'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
+
+
     }
 
     /**
@@ -27,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::pluck('name','name')->all();
+        return view('admin.users.create',compact('roles'));
     }
 
     /**
@@ -77,7 +82,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.users.show',compact('user'));
     }
 
     /**
@@ -138,6 +144,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+
         $user = User::find($id);
         $user->delete();
 

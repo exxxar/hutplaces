@@ -13,16 +13,18 @@ class CreateUsersHasAchievementsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('users_has_achievements', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("users_id" );
-            $table->integer("achievements_id" );
+            $table->unsignedInteger("users_id" );
+            $table->unsignedInteger("achievements_id" );
 
 
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('achievements_id')->references('id')->on('achievements');
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

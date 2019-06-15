@@ -60,7 +60,7 @@ class CreateCardsStorageTable extends Migration
             $table->integer("Year")->nullable()->default(0);//19
             $table->integer("aOVR")->nullable()->default(0);//2019
             $table->integer("age")->nullable()->default(0);//31
-            $table->dateTime("create_date")->nullable()->default("0000-00-00 00:00:00"); //"2019-03-05 04:21:33"
+            $table->dateTime("create_date")->nullable()->default("2019-03-05 04:21:33"); //"2019-03-05 04:21:33"
             $table->integer("hutdb_id")->nullable()->default(0);//'id' = 31397, 'id'=>'hutdb_id'
             $table->integer("jersey")->nullable()->default(0);//31
             $table->string("nationality")->nullable()->default("");// "Canada"
