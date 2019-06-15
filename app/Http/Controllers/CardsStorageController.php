@@ -171,7 +171,7 @@ class CardsStorageController extends Controller
      * @param  \App\CardsStorage  $cardsStorage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CardsStorage $cardsStorage)
+    public function destroy($id)
     {
         $cardstorage = CardsStorage::find($id);
         $cardstorage->delete();

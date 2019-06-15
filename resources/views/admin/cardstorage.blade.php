@@ -13,10 +13,11 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($cardstorages as $key => $cardstorage)
         <tr>
-          <td>1</td>
-          <td>1234567</td>
-          <td>Тестовое Имя</td>
+          <td>{{$key + 1}}</td>
+          <td>{{$cardstorage->nhl_id}}</td>
+          <td>{{$cardstorage->Player}}</td>
           <td>
               <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                   <div class="btn-group" role="group">
@@ -24,14 +25,19 @@
                           Действие
                       </button>
                       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                          <a class="dropdown-item" href="#">Удалить</a>
+                            <form action="{{ route('cardstorage.destroy', $cardstorage->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="dropdown-item" type="submit">Удалить</button>
+                            </form>
+                          
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#cardEdit">Изменить</a>
                       </div>
                   </div>
               </div>
           </td>
         </tr>
-
+        @endforeach
         </tbody>
     </table>
 
