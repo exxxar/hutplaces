@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Promocodes;
 use Illuminate\Http\Request;
-use App\Orders;
 
-class OrdersController extends Controller
+class PromocodesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Orders::paginate(15);
+        $promocodes = Promocodes::paginate(15);
 
-        return view('admin.orders', ['orders' => $orders]);
+        return view('admin.promocodes', ['promocodes' => $promocodes]);
     }
 
     /**
@@ -37,27 +37,20 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'=>'required',
-            'count'=> 'numeric',
-            'price' => 'numeric',
-            'quantity' => 'integer'
-        ]);
-
         $input = $request->all(); 
 
-        $order = Orders::create($input); 
+        $promocodes = Promocodes::create($input); 
 
-        return back()->with('success', 'Заказ успешно добавлен');
+        return back()->with('success', 'Промокод успешно добавлен');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Promocodes  $promocodes
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Promocodes $promocodes)
     {
         //
     }
@@ -65,10 +58,10 @@ class OrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Promocodes  $promocodes
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Promocodes $promocodes)
     {
         //
     }
@@ -77,37 +70,30 @@ class OrdersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Promocodes  $promocodes
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title'=>'required',
-            'count'=> 'numeric',
-            'price' => 'numeric',
-            'quantity' => 'integer'
-        ]);
-
         $input = $request->all(); 
 
-        $order = Orders::find($id);
-        $order->update($input);
+        $promocodes = Promocodes::find($id);
+        $promocodes->update($input);
 
-        return back()->with('success', 'Заказ успешно отредактирован');
+        return back()->with('success', 'Промокод успешно отредактирован');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Promocodes  $promocodes
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $order = Orders::find($id);
-        $order->delete();
+        $promocodes = Promocodes::find($id);
+        $promocodes->delete();
 
-        return back()->with('success', 'Заказ успешно удален');
+        return back()->with('success', 'Промокод успешно удален');
     }
 }

@@ -37,10 +37,9 @@ class LotsController extends Controller
      */
     public function store(Request $request)
     {
-        $lot = new Lots([
-            'lottery_id' => $request->input('lottery_id'),
-        ]);
-        $lot->save();
+        $input = $request->all(); 
+
+        $lot = Lots::create($input); 
 
         return back()->with('success', 'Лот успешно добавлен');
     }
@@ -76,9 +75,10 @@ class LotsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $input = $request->all(); 
+
         $lot = Lots::find($id);
-        $lot->lottery_id = $request->input('lottery_id');
-        $lot->save();
+        $lot->update($input);
 
         return back()->with('success', 'Лот успешно отредактирован');
     }
