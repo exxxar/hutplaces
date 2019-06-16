@@ -114,7 +114,7 @@ class CardsStorageController extends Controller
      * @param  \App\CardsStorage  $cardsStorage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CardsStorage $cardsStorage)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'ACC_AGI' => 'integer',
