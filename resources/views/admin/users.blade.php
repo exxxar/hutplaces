@@ -110,7 +110,6 @@
                     <form method="post" action="{{ route('users.update', $user->id) }}">
                         @method('PATCH')
                         @csrf
-                        <input type="hidden" name="id" value={{ $user->id }}>
                         <div class="form-group">
                             <label for="nameUser">Имя пользователя</label>
                             <input type="text" class="form-control" id="nameUser" placeholder="name" name="name" value={{$user->name}}>

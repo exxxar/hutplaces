@@ -80,15 +80,7 @@ class ImagesStorageController extends Controller
      */
     public function update(Request $request, ImagesStorage $imagesStorage)
     {
-        $request->validate([
-            'name'=> 'required',
-        ]);
-        
-        $imagestorage = ImagesStorage::find($id);
-        $imagestorage->name = $request->input('name');
-        $imagestorage->save();
-
-        return back()->with('success', 'Изображение успешно отредактировано');
+        //
     }
 
     /**
