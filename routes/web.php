@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
     // Resource
 
-    Route::get('/images/g/{name}',"ImagesStorageController@get");
+
 
     Route::resources([
         'lots' => 'LotsController',

@@ -10,12 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class ImagesStorageController extends Controller
 {
 
-    public function get($name){
 
-       /* if (!Storage::exist(Storage::path("/public/".$name)))
-            return */
-        return response()->file(Storage::path("/public/".$name));
-    }
     /**
      * Display a listing of the resource.
      *
@@ -56,25 +51,30 @@ class ImagesStorageController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasAny('files'))
-        {
+        if ($request->hasAny('files')) {
             $tmp = [];
 
-            $allowedfileExtension=['jpeg','jpg','png','docx'];
+            $allowedfileExtension = ['jpeg', 'jpg', 'png','bmp'];
             $files = $request->file('files');
 
-            foreach($files as $file) {
+            foreach ($files as $file) {
                 $filename = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
                 $check = in_array($extension, $allowedfileExtension);
 
-                if ($check) {
+
+                if ($check&&!Storage::exists("/public/".$filename)) {
+
                     $file->storeAs(
                         'public', $filename
                     );
-                }
 
-                array_push($tmp,$filename) ;
+
+                    array_push($tmp, ["filename"=>$filename,"type"=>"success"]);
+                }
+                else
+                    array_push($tmp, ["filename"=>$filename,"type"=>"failed"]);
+
             }
 
             return \GuzzleHttp\json_encode($tmp);
@@ -90,9 +90,9 @@ class ImagesStorageController extends Controller
      * @param  \App\ImagesStorage $imagesStorage
      * @return \Illuminate\Http\Response
      */
-    public function show(ImagesStorage $imagesStorage)
+    public function show($name)
     {
-        //
+        return response()->file(Storage::path("/public/" . $name));
     }
 
     /**
@@ -101,7 +101,7 @@ class ImagesStorageController extends Controller
      * @param  \App\ImagesStorage $imagesStorage
      * @return \Illuminate\Http\Response
      */
-    public function edit(ImagesStorage $imagesStorage)
+    public function edit()
     {
         //
     }
@@ -127,7 +127,7 @@ class ImagesStorageController extends Controller
     public function destroy($name)
     {
 
-        Storage::delete('/public/'.$name);
+        Storage::delete('/public/' . $name);
         return back()->with('success', 'Изображение успешно удалено');
     }
 }

@@ -34,8 +34,8 @@
         }
 
         .image-items .image-container {
-            width:100px;
-            height:100px;
+            width:140px;
+            height:140px;
             position: relative;
             display:flex;
             justify-content: center;
@@ -74,6 +74,10 @@
         .upload-drop-zone.drop {
             color: #222;
             border-color: #222;
+        }
+
+        .list-group-item-failed {
+            background: indianred;
         }
     </style>
     <!-- Custom styles for this template -->
