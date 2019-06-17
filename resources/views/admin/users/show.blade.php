@@ -15,6 +15,14 @@
 
 
     <div class="row">
+        <div class="col-xs-12 col-sm-2 col-md-2">
+            <div class="form-group">
+                <strong>Avatar:</strong>
+                <img src="{{ route('images.show',$user->avatar) }}" class="border border-primary rounded-sm"  style="width:100%" alt="">
+
+            </div>
+        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>

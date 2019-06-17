@@ -48,11 +48,12 @@
     </div>
 <div class="row">
     @foreach ($files as $file)
-        <div class="col-sm-6 col-md-4 col-lg-3 image-items">
+        <div class="col-sm-6 col-md-4 col-lg-4 image-items">
             <div class="image-container">
                 <img src="{{ route('images.show',basename($file)) }}" class="border border-primary rounded-sm"  alt="">
 
                     <div class="controlls">
+
                         <a class="btn btn-info" target="_blank" href="{{ route('images.show',basename($file)) }}">Show</a>
                         @can('imagestorage-delete')
                             {!! Form::open(['method' => 'DELETE','route' => ['images.destroy',basename($file)],'style'=>'display:inline']) !!}

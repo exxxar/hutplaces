@@ -10,6 +10,7 @@ $(document).ready(function () {
 
     var startUpload = function (files) {
         console.log(files);
+
         var fd = new FormData();
 
         fd.append("_token",$("[name='_token']").val());

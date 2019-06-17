@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -18,8 +19,10 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
-        $data= User::orderBy('id','DESC')->paginate(15);
-        return view('admin.users.index',compact('data'))
+        $users= User::orderBy('id','DESC')->paginate(15);
+        $roles = Role::pluck('name','name')->all();
+
+        return view('admin.users.index',compact('users','roles'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
 
 
@@ -33,7 +36,18 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('admin.users.create',compact('roles'));
+
+        $files = Storage::files("/public/");
+
+        $images = array_filter($files, function ($str) {
+            return
+                strpos($str, ".jpg") != 0 ||
+                strpos($str, ".jpeg") != 0 ||
+                strpos($str, ".png") != 0;
+        });
+
+
+        return view('admin.users.create',compact('roles','images'));
     }
 
     /**
@@ -97,8 +111,17 @@ class UserController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
+        $files = Storage::files("/public/");
 
-        return view('admin.users.edit',compact('user','roles','userRole'));
+        $images = array_filter($files, function ($str) {
+            return
+                strpos($str, ".jpg") != 0 ||
+                strpos($str, ".jpeg") != 0 ||
+                strpos($str, ".png") != 0;
+        });
+
+
+        return view('admin.users.edit',compact('user','roles','userRole','images'));
     }
 
     /**

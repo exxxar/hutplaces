@@ -1,59 +1,103 @@
 @extends('layouts.admin')
 
+@section("content")
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div><br/>
+@endif
 
-@section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Users Management</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
-            </div>
-        </div>
+@if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ $message }}
     </div>
+@endif
 
+<table class="table">
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-
-    <table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">skype</th>
+        <th scope="col">vk</th>
+        <th scope="col">fb</th>
+        <th scope="col">tw</th>
+        <th scope="col">money</th>
+        <th scope="col">level</th>
+        <th scope="col">discount</th>
+        <th scope="col">exp</th>
+        <th scope="col">coins</th>
+        <th scope="col">active</th>
+        <th scope="col">avatar</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($users as $key => $user)
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Roles</th>
-            <th width="280px">Action</th>
+            <td>{{$key + 1}}</td>
+            <td><a href="{{ route('users.show',$user->id) }}">{{$user->name}}</a></td>
+            <td>{{$user->email}}</td>
+            <td>{{$user->skype}}</td>
+            <td>{{$user->vk}}</td>
+            <td>{{$user->fb}}</td>
+            <td>{{$user->tw}}</td>
+            <td>{{$user->money}}</td>
+            <td>{{$user->level}}</td>
+            <td>{{$user->discount}}</td>
+            <td>{{$user->exp}}</td>
+            <td>{{$user->coins}}</td>
+            <td>
+                @if(!empty($user->getRoleNames()))
+                    @foreach($user->getRoleNames() as $v)
+                        <label class="badge badge-success">{{ $v }}</label>
+                    @endforeach
+                @endif
+            </td>
+            <td>
+                @if($user->active == 1)
+                    Активен
+                @else
+                    Не активен
+                @endif
+            </td>
+            <td><a href="" data-toggle="modal" data-target="#editUserAvatar">Avatar</a></td>
+            <td>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <form action="{{ route('users.destroy', $user->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Удалить</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-4">
+
+                        <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}">Редактировать</a>
+
+
+                    </div>
+                </div>
+
+
+            </td>
         </tr>
-        @foreach ($data as $key => $user)
-            <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>
-                    @if(!empty($user->getRoleNames()))
-                        @foreach($user->getRoleNames() as $v)
-                            <label class="badge badge-success">{{ $v }}</label>
-                        @endforeach
-                    @endif
-                </td>
-                <td>
-                    <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-                </td>
-            </tr>
-        @endforeach
-    </table>
+    @endforeach
 
+    </tbody>
+</table>
 
-    {!! $data->render() !!}
+{{ $users->links() }}
 
 
 @endsection
+

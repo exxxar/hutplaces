@@ -25,10 +25,19 @@
             }
         }
 
+        .image-list {
+            width:100%;
+            height:350px;
+            overflow-y: scroll;
+            padding: 20px;
+            box-sizing: border-box;;
+        }
+
         .image-items {
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
             width: 150px;
             height: 150px;
         }
@@ -40,7 +49,7 @@
             display:flex;
             justify-content: center;
             align-items: center;
-            border-radius:10px;
+            flex-wrap: wrap;
             overflow: hidden;
             z-index: 1;
         }
@@ -48,13 +57,20 @@
         .image-items .image-container img{
             width:100%;
             height:100%;
-
+            padding:10px;
+            box-sizing: border-box;
         }
 
         .image-items .image-container .controlls{
             position: absolute;
             z-index:100;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
+
+
 
         /* layout.css Style */
         .upload-drop-zone {
