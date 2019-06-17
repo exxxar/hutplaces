@@ -37,6 +37,15 @@ class PromocodesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'lifetime' => 'integer',
+            'activation_count' => 'integer',
+            'count' => 'integer',
+            'exp' => 'integer',
+            'discount' => 'integer',
+            'money' => 'numeric',
+        ]);
+
         $input = $request->all(); 
 
         $promocodes = Promocodes::create($input); 
@@ -75,6 +84,15 @@ class PromocodesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'lifetime' => 'integer',
+            'activation_count' => 'integer',
+            'count' => 'integer',
+            'exp' => 'integer',
+            'discount' => 'integer',
+            'money' => 'numeric',
+        ]);
+        
         $input = $request->all(); 
 
         $promocodes = Promocodes::find($id);

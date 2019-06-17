@@ -37,6 +37,15 @@ class AchievementsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'category' => 'integer',
+            'type' => 'integer',
+            'discount' => 'integer',
+            'exp' => 'integer',
+            'coins' => 'integer',
+            'money' => 'numeric',
+        ]);
+
         $input = $request->all(); 
 
         $achievements = Achievements::create($input); 
@@ -75,6 +84,15 @@ class AchievementsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'category' => 'integer',
+            'type' => 'integer',
+            'discount' => 'integer',
+            'exp' => 'integer',
+            'coins' => 'integer',
+            'money' => 'numeric',
+        ]);
+        
         $input = $request->all(); 
 
         $achievements = Achievements::find($id);

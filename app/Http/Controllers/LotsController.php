@@ -37,6 +37,10 @@ class LotsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'coins' => 'integer',
+        ]);
+
         $input = $request->all(); 
 
         $lot = Lots::create($input); 
@@ -75,6 +79,10 @@ class LotsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'coins' => 'integer',
+        ]);
+        
         $input = $request->all(); 
 
         $lot = Lots::find($id);
