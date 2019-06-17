@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Achievements;
 use Illuminate\Http\Request;
-use App\Orders;
 
-class OrdersController extends Controller
+class AchievementsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Orders::paginate(15);
+        $achievements = Achievements::paginate(15);
 
-        return view('admin.orders', ['orders' => $orders]);
+        return view('admin.achievements', ['achievements' => $achievements]);
     }
 
     /**
@@ -37,27 +37,20 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'=>'required',
-            'count'=> 'numeric',
-            'price' => 'numeric',
-            'quantity' => 'integer'
-        ]);
-
         $input = $request->all(); 
 
-        $order = Orders::create($input); 
+        $achievements = Achievements::create($input); 
 
-        return back()->with('success', 'Заказ успешно добавлен');
+        return back()->with('success', 'Достижение успешно добавлено');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Achievements  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Achievements $achievements)
     {
         //
     }
@@ -65,10 +58,10 @@ class OrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Achievements  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Achievements $achievements)
     {
         //
     }
@@ -77,37 +70,30 @@ class OrdersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Achievements  $achievements
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title'=>'required',
-            'count'=> 'numeric',
-            'price' => 'numeric',
-            'quantity' => 'integer'
-        ]);
-
         $input = $request->all(); 
 
-        $order = Orders::find($id);
-        $order->update($input);
+        $achievements = Achievements::find($id);
+        $achievements->update($input);
 
-        return back()->with('success', 'Заказ успешно отредактирован');
+        return back()->with('success', 'Достижение успешно отредактировано');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Achievements  $achievements
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $order = Orders::find($id);
-        $order->delete();
+        $achievements = Achievements::find($id);
+        $achievements->delete();
 
-        return back()->with('success', 'Заказ успешно удален');
+        return back()->with('success', 'Достижение успешно удалено');
     }
 }

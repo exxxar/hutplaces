@@ -37,6 +37,7 @@
             <th scope="col">level</th>
             <th scope="col">discount</th>
             <th scope="col">exp</th>
+            <th scope="col">coins</th>
             <th scope="col">active</th>
             <th scope="col">avatar</th>
             <th scope="col">Actions</th>
@@ -56,6 +57,7 @@
                 <td>{{$user->level}}</td>
                 <td>{{$user->discount}}</td>
                 <td>{{$user->exp}}</td>
+                <td>{{$user->coins}}</td>
                 <td>
                     @if($user->active == 1)
                         Активен
@@ -108,7 +110,6 @@
                     <form method="post" action="{{ route('users.update', $user->id) }}">
                         @method('PATCH')
                         @csrf
-                        <input type="hidden" name="id" value={{ $user->id }}>
                         <div class="form-group">
                             <label for="nameUser">Имя пользователя</label>
                             <input type="text" class="form-control" id="nameUser" placeholder="name" name="name" value={{$user->name}}>
@@ -163,6 +164,11 @@
                         <div class="form-group">
                             <label for="expUser">Expirience</label>
                             <input type="number" min="0" class="form-control" id="expUser" placeholder="exp" name="exp" value={{$user->exp}}>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="coinsUser">Coins</label>
+                            <input type="number" min="0" class="form-control" id="coinsUser" placeholder="coins" name="coins" value={{$user->coins}}>
                         </div>
 
                         <div class="form-group">

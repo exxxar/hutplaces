@@ -34,7 +34,9 @@ Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
         'users' => 'UserController',
         'tickets' => 'TicketController',
         'settings' => 'SettingsController',
-        'roles' => 'RoleController'
+        'roles' => 'RoleController',
+        'storage' => 'CardsStorageController',
+        'images' => 'ImagesStorageController',
     ]);
 
     Route::view('/', 'admin.main');
@@ -48,11 +50,11 @@ Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
     Route::view('/statistic', 'admin.statistic');
     Route::view('/wager', 'admin.wager');
     Route::view('/wof', 'admin.wheeloffortune');
-    //Route::view('/tickets', 'admin.tickets');
-  //  Route::view('/roles', 'admin.roles.index');
+    //  Route::view('/tickets', 'admin.tickets');
+    //  Route::view('/roles', 'admin.roles.index');
     Route::view('/levels', 'admin.levels');
-    Route::view('/storage', 'admin.cardstorage');
-    Route::view('/images', 'admin.imagestorage');
+    // Route::view('/storage', 'admin.cardstorage');
+    // Route::view('/images', 'admin.imagestorage');
     Route::get('/lang/{locale}', 'HomeController@setlang');
 });
 

@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImagesStorage extends Model
 {
-    //
+    protected $fillable = [
+        'name'
+    ];
 }

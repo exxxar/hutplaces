@@ -355,7 +355,6 @@
                         <form method="post" action="{{ route('lottery.update', $lottery->id) }}">
                             @method('PATCH')
                             @csrf
-                            <input type="hidden" name="id" value={{ $lottery->id }}>
                             <div class="row">
                                 <div class="col-sm-12">
     

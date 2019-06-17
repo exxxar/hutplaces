@@ -64,11 +64,6 @@ class UserController extends Controller
             'vk'=> $request->input('vk'),
             'fb'=> $request->input('fb'),
             'tw' => $request->input('tw'),
-            'money'=> $request->input('money'),
-            'level'=> $request->input('level'),
-            'discount' => $request->input('discount'),
-            'exp'=> $request->input('exp'),
-            'active'=> $request->input('active'),
             'active'=> $request->input('active'),
             'avatar' => $request->input('avatar')
         ]);
@@ -121,10 +116,9 @@ class UserController extends Controller
             'money' => 'numeric',
             'level' => 'integer',
             'discount'=> 'integer',
-            'base_discount' => 'integer',
             'exp' => 'integer',
-            'avatar' => 'required',
-            'coins'=>'integer'
+            'coins' => 'integer',
+            'avatar' => 'required'
         ]);
 
         $input = $request->all();
@@ -141,6 +135,7 @@ class UserController extends Controller
 
 
         $user->assignRole($request->input('roles'));
+
 
         return back()->with('success', 'Пользователь успешно отредактирован');
     }
