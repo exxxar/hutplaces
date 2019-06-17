@@ -34,9 +34,8 @@
                 </div>
             </form>
 
-            <!-- Drop Zone -->
-            <h4>Or drag and drop files below</h4>
-            <div class="upload-drop-zone" id="drop-zone">
+            <br>
+                 <div class="upload-drop-zone" id="drop-zone">
                 Just drag and drop files here
             </div>
 
@@ -51,15 +50,18 @@
     @foreach ($files as $file)
         <div class="col-sm-6 col-md-4 col-lg-3 image-items">
             <div class="image-container">
-                <img src="{{url('/admin/images/g/'.basename($file))}}" class="border border-primary rounded-sm"  alt="">
+                <img src="{{ route('images.show',basename($file)) }}" class="border border-primary rounded-sm"  alt="">
 
                     <div class="controlls">
-                    {!! Form::open(['method' => 'DELETE','route' => ['images.destroy',basename($file)],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                        <a class="btn btn-info" target="_blank" href="{{ route('images.show',basename($file)) }}">Show</a>
+                        @can('imagestorage-delete')
+                            {!! Form::open(['method' => 'DELETE','route' => ['images.destroy',basename($file)],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                        @endcan
                     </div>
-                @can('imagestorage-delete')
-                @endcan
+
+
 
 
 
