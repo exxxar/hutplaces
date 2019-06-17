@@ -21,7 +21,19 @@ class PermissionTableSeeder extends Seeder
             'settings-list',
             'settings-create',
             'settings-edit',
-            'settings-delete'
+            'settings-delete',
+            'tickets-list',
+            'tickets-create',
+            'tickets-edit',
+            'tickets-delete',
+            'users-list',
+            'users-create',
+            'users-edit',
+            'users-delete',
+            'levels-list',
+            'levels-create',
+            'levels-edit',
+            'levels-delete',
         ];
 
 

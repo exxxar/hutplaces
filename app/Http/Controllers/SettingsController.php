@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class SettingsController extends Controller
 {
 
+
     function __construct()
     {
        // $this->middleware('permission:settings-list');

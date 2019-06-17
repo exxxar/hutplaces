@@ -15,10 +15,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
-//Auth::routes();
+
 
 Route::prefix('admin')->group(function () {
-    Auth::routes();
+    //Auth::routes();
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
