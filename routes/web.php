@@ -30,6 +30,12 @@ Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
 
 
     Route::resources([
+        'auction'=>'AuctionController',
+        'achievements'=>'AchievementsController',
+        'wof'=>'WOFController',
+        'wager'=>'WagerController',
+        'promo'=>'PromocodesController',
+        'levels'=>'LevelsController',
         'lots' => 'LotsController',
         'lottery' => 'LotteryController',
         'orders' => 'OrdersController',
@@ -43,21 +49,12 @@ Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
     ]);
 
     Route::view('/', 'admin.main');
-    Route::view('/auction', 'admin.auction');
-    Route::view('/achievements', 'admin.achievements');
+
     Route::view('/cards', 'admin.cards');
     Route::view('/coins', 'admin.coins');
     Route::view('/mails', 'admin.mails');
     Route::view('/packs', 'admin.packs');
-    Route::view('/promo', 'admin.promo');
     Route::view('/statistic', 'admin.statistic');
-    Route::view('/wager', 'admin.wager');
-    Route::view('/wof', 'admin.wheeloffortune');
-    //  Route::view('/tickets', 'admin.tickets');
-    //  Route::view('/roles', 'admin.roles.index');
-    Route::view('/levels', 'admin.levels');
-    // Route::view('/storage', 'admin.cardstorage');
-    // Route::view('/images', 'admin.imagestorage');
     Route::get('/lang/{locale}', 'HomeController@setlang');
 });
 
