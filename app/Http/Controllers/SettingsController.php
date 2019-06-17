@@ -2,26 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SettingsController extends Controller
 {
 
+
     function __construct()
     {
-        $this->middleware('permission:settings-list');
-        $this->middleware('permission:settings-create', ['only' => ['create','store']]);
-        $this->middleware('permission:settings-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:settings-delete', ['only' => ['destroy']]);
+       // $this->middleware('permission:settings-list');
+       // $this->middleware('permission:settings-create', ['only' => ['create','store']]);
+       // $this->middleware('permission:settings-edit', ['only' => ['edit','update']]);
+       // $this->middleware('permission:settings-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+
+        $settings = Settings::orderBy('id','DESC')->paginate(15);
+        return view('admin.settings.index',compact('settings'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
     /**
@@ -32,6 +39,7 @@ class SettingsController extends Controller
     public function create()
     {
         //
+         return view('admin.settings.create');
     }
 
     /**
@@ -42,7 +50,20 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|unique:settings,title',
+            'value' => 'required',
+        ]);
+
+
+        Settings::create([
+            'title' => $request->input('title'),
+            'value' => $request->input('value')
+        ]);
+
+
+        return redirect()->route('admin.settings.index')
+            ->with('success','Setting created successfully');
     }
 
     /**
@@ -53,7 +74,10 @@ class SettingsController extends Controller
      */
     public function show($id)
     {
-        //
+        $setting = Settings::find($id);
+
+
+        return view('admin.settings.show',compact('setting'));
     }
 
     /**
@@ -64,7 +88,9 @@ class SettingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $setting = Settings::find($id);
+
+        return view('admin.settings.edit',compact('setting'));
     }
 
     /**
@@ -76,7 +102,26 @@ class SettingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|unique:settings,title',
+            'value' => 'required',
+        ]);
+
+        Settings::create([
+            'title' => $request->input('title'),
+            'value' => $request->input('value')
+        ]);
+
+
+        $setting = Settings::find($id);
+        $setting->title = $request->input('title');
+        $setting->value = $request->input('value');
+        $setting->save();
+
+
+
+        return redirect()->route('admin.settings.index')
+            ->with('success','Setting updated successfully');
     }
 
     /**
@@ -87,6 +132,8 @@ class SettingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table("settings")->where('id',$id)->delete();
+        return redirect()->route('admin.settings.index')
+            ->with('success','Setting deleted successfully');
     }
 }

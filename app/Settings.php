@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Settings extends Model
 {
+    protected $fillable = [
+        'title',
+        'value'
+
+    ];
+
     public static function get($value)
     {
         $tmp = Settings::where('title', $value)->first();

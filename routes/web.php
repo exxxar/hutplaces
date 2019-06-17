@@ -15,10 +15,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
-//Auth::routes();
+
 
 Route::prefix('admin')->group(function () {
-    Auth::routes();
+    //Auth::routes();
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
     // Resource
+
+    Route::get('/images/g/{name}',"ImagesStorageController@get");
+
     Route::resources([
         'lots' => 'LotsController',
         'lottery' => 'LotteryController',
@@ -59,4 +62,4 @@ Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
 });
 
 //Route::get('/admin/{any?}', 'SinglePageController@admin')->where('any', '.*');
-Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+//Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
