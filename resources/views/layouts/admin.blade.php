@@ -24,6 +24,57 @@
                 font-size: 3.5rem;
             }
         }
+
+        .image-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+        }
+
+        .image-items .image-container {
+            width:100px;
+            height:100px;
+            position: relative;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            border-radius:10px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .image-items .image-container img{
+            width:100%;
+            height:100%;
+
+        }
+
+        .image-items .image-container .controlls{
+            position: absolute;
+            z-index:100;
+        }
+
+        /* layout.css Style */
+        .upload-drop-zone {
+            height: 200px;
+            border-width: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* skin.css Style*/
+        .upload-drop-zone {
+            color: #ccc;
+            border-style: dashed;
+            border-color: #ccc;
+            line-height: 200px;
+            text-align: center
+        }
+        .upload-drop-zone.drop {
+            color: #222;
+            border-color: #222;
+        }
     </style>
     <!-- Custom styles for this template -->
     <link href="{{url("/css/admin/admin.css")}}" rel="stylesheet">
@@ -236,16 +287,11 @@
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-<script src="main.js"></script>
+<script src="{{url('main.js')}}"></script>
+<script src="{{url('dropzone.js')}}"></script>
 </body>
 </html>
