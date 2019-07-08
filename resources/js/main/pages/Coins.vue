@@ -30,7 +30,7 @@
                 <input class="input-light inc" type="text">
                 <button class="button-dark dec">+</button>
             </div>
-            <div class="row second-row">
+            <div class="row">
                 <button class="button-light change">50k</button>
                 <button class="button-light change">100k</button>
                 <button class="button-light change">250k</button>
@@ -41,23 +41,26 @@
 
         <div class="price">
             <div class="main-price">
-                <div class="price-text">цена: </div>
+                <div class="price-text">{{$lang.messages.price}}: </div>
                 <div>
-                    <div class="price-amount">400.00 Pucks</div>
-                    <div class="price-amount">400.00 рублей</div>
+                    <div class="price-amount"><span class="red-text">400.00</span> Pucks</div>
+                    <div class="price-amount"><span class="red-text">400.00</span> рублей</div>
                 </div>
             </div>
-            <a class="how-to-buy">Как купить?</a>
+            <a href="#">{{$lang.messages.how_to_buy}}</a>
         </div>
 
         <form class="player">
-            <input class="input-dark" placeholder="Фамилия игрока" type="text">
-            <input class="input-dark" placeholder="Лига и команда игрока" type="text">
-            <input class="input-dark" placeholder="Рейтинг игрока" type="text">
-            <input class="input-dark" placeholder="Начальная цена вашей карточки" type="text">
-            <input class="input-dark" placeholder="Цена выкупа вашей карточки" type="text">
-            <input class="input-dark" placeholder="Название вашей команды в HUT" type="text">
-            <button class="button-yellow" type="submit">Купить</button>
+            <input placeholder="Фамилия игрока" type="text">
+            <input placeholder="Лига и команда игрока" type="text">
+            <input placeholder="Рейтинг игрока" type="text">
+            <input placeholder="Начальная цена вашей карточки" type="text">
+            <input placeholder="Цена выкупа вашей карточки" type="text">
+            <input placeholder="Название вашей команды в HUT" type="text">
+            <div class="buy-row">
+                <button type="submit">{{$lang.messages.buy}}</button>
+                <a href="#">{{$lang.messages.sell_to_us}}</a>
+            </div>
         </form>
     </div>
 </template>
@@ -127,6 +130,10 @@
         height: 140px;
         border-radius: 5px;
     }
+    .calc div:nth-child(2){
+        padding: 0 76px 0 76px;
+        margin-top: 10px; 
+    }
     .row{
         display:flex;
         justify-content: space-between;
@@ -160,10 +167,6 @@
         font-weight: bold;
         font-size: 16px;
     }
-    .second-row{
-        padding: 0 76px 0 76px;
-        margin-top: 10px; 
-    }
     .price{
         display:flex;
         justify-content: space-between;
@@ -188,11 +191,15 @@
         font-weight: bold;
         font-size: 16px;
     }
-    .how-to-buy{
+    .red-text{
+        color: red;
+    }
+    .price>a{
         font-weight: bold;
         color:#ffff00;
         border-bottom: 2px dashed #ffff00;
         align-self: flex-start;
+        text-decoration: none;
     }
     .player{
         display: flex;
@@ -201,7 +208,7 @@
         align-items: center;
         margin-top: 25px;
     }
-    .input-dark{
+    .player>input{
         border: 2px solid #ffff00;
         background: #404040;
         color: white;
@@ -211,13 +218,26 @@
         padding: 20px;
         margin-bottom: 7px;
     }
-    .button-yellow{
+    .buy-row{
+        width: 600px;
+        margin-top: 13px;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 225px;
+    }
+    .buy-row>a{
+        color:white;
+        border-bottom: 2px dashed white;
+        align-self: flex-start;
+        text-decoration: none;
+    }
+    .buy-row>button{
         width: 150px;
         height: 40px;
         background-color: #ffff00;
         color: #404040;
         text-transform: uppercase;
         font-weight: bold;
-        margin-top: 13px;
     }
+    
 </style>
