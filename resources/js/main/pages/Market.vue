@@ -6,7 +6,7 @@
                 <span></span>
             </router-link>
 
-            <router-link tag="li" disabled class="btn coins closed" to="/coins">
+            <router-link tag="li" disabled class="btn coins " to="/coins">
                 {{$lang.messages.coins}}
                 <span></span>
             </router-link>

@@ -8090,13 +8090,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       console: true,
       year: false,
-      currency: true
+      currency: true,
+      sum: 0
     };
   },
   methods: {
@@ -8111,6 +8136,16 @@ __webpack_require__.r(__webpack_exports__);
     checkCurrency: function checkCurrency(event) {
       console.log(event);
       this.currency = event;
+    },
+    increase: function increase() {
+      if (this.sum < 10000000) {
+        this.sum += 50000;
+      }
+    },
+    decrease: function decrease() {
+      if (this.sum >= 50000) {
+        this.sum -= 50000;
+      }
     }
   },
   components: {
@@ -8562,10 +8597,10 @@ exports.push([module.i, "#nhl-single-card-list {\n  display: grid;\n  justify-it
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8574,7 +8609,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".coins-section {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.switchers {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 600px;\n}\nh2 {\n  text-align: center;\n  text-transform: uppercase;\n  color: white;\n}\n.calc {\n  background: white;\n  padding: 20px;\n  box-sizing: border-box;\n  box-shadow: 3px 3px 2px 2px black;\n  width: 600px;\n}", ""]);
+exports.push([module.i, ".coins-section[data-v-df803302] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.switchers[data-v-df803302] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 600px;\n  margin-bottom: 20px;\n}\nh2[data-v-df803302] {\n  text-align: center;\n  text-transform: uppercase;\n  color: white;\n  font-size: 14px;\n  width: 100%;\n  margin-bottom: 17px;\n}\n.calc[data-v-df803302] {\n  background: white;\n  padding: 28px 24px 28px 24px;\n  box-sizing: border-box;\n  box-shadow: 3px 3px 2px 2px black;\n  width: 600px;\n  height: 140px;\n  border-radius: 5px;\n}\n.calc div[data-v-df803302]:nth-child(2) {\n  padding: 0 76px 0 76px;\n  margin-top: 10px;\n}\n.row[data-v-df803302] {\n  display: flex;\n  justify-content: space-between;\n}\n.button-dark[data-v-df803302] {\n  width: 40px;\n  height: 40px;\n  background: #404040;\n  color: white;\n  border-radius: 5px;\n  font-weight: bold;\n  font-size: 30px;\n  padding-bottom: 10px;\n}\n.input-light[data-v-df803302] {\n  color: #404040;\n  border: 1px solid #dcdcdc;\n  border-radius: 5px;\n  width: 400px;\n  height: 40px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 16px;\n}\n.button-light[data-v-df803302] {\n  color: #404040;\n  border: 1px solid #dcdcdc;\n  border-radius: 5px;\n  width: 75px;\n  height: 40px;\n  font-weight: bold;\n  font-size: 16px;\n}\n.price[data-v-df803302] {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 20px;\n  padding-left: 210px;\n  width: 600px;\n  border-bottom: 1px solid white;\n  padding-bottom: 15px;\n}\n.main-price[data-v-df803302] {\n  display: flex;\n}\n.price-text[data-v-df803302] {\n  text-transform: uppercase;\n  color: white;\n  font-weight: bold;\n  font-size: 16px;\n  margin-right: 10px;\n}\n.price-amount[data-v-df803302] {\n  color: white;\n  font-weight: bold;\n  font-size: 16px;\n}\n.red-text[data-v-df803302] {\n  color: red;\n}\n.link-yellow[data-v-df803302] {\n  font-weight: bold;\n  color: #ffff00;\n  border-bottom: 2px dashed #ffff00;\n  align-self: flex-start;\n  text-decoration: none;\n}\n.player[data-v-df803302] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  align-items: center;\n  margin-top: 25px;\n}\n.input-dark[data-v-df803302] {\n  border: 2px solid #ffff00;\n  background: #404040;\n  color: white;\n  width: 600px;\n  height: 40px;\n  border-radius: 5px;\n  padding: 20px;\n  margin-bottom: 7px;\n}\n.buy-row[data-v-df803302] {\n  width: 600px;\n  margin-top: 13px;\n  display: flex;\n  justify-content: space-between;\n  padding-left: 225px;\n}\n.link-light[data-v-df803302] {\n  color: white;\n  border-bottom: 2px dashed white;\n  align-self: flex-start;\n  text-decoration: none;\n}\n.yellow-button[data-v-df803302] {\n  width: 150px;\n  height: 40px;\n  background-color: #ffff00;\n  color: #404040;\n  text-transform: uppercase;\n  font-weight: bold;\n}", ""]);
 
 // exports
 
@@ -8612,7 +8647,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#main[data-v-a5de29f0] {\n  display: grid;\n  grid-template-columns: repeat(12, 1fr);\n  grid-auto-rows: minmax(auto, auto);\n  grid-template-areas: \"hd hd hd hd hd   hd   hd   hd   hd   hd hd hd\" \"main main main main main main main main main main main main\" \"ft ft ft ft ft   ft   ft   ft   ft   ft ft ft\";\n  height: 100vh;\n  width: 1232px;\n  padding: 100px 0;\n  margin: 0 auto;\n}\nheader[data-v-a5de29f0], footer[data-v-a5de29f0], article[data-v-a5de29f0], nav[data-v-a5de29f0], div[data-v-a5de29f0] {\n  padding: 20px;\n  box-sizing: border-box;\n}\n#pageHeader[data-v-a5de29f0] {\n  background: #393939;\n  display: grid;\n  justify-content: center;\n  align-items: center;\n  padding: 0;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  z-index: 1000;\n  min-width: 1232px;\n  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.65);\n}\n#pageHeader .center[data-v-a5de29f0] {\n  width: 1232px;\n  height: 100%;\n  display: grid;\n  grid-template-columns: 118px 700px auto;\n  align-items: center;\n  padding: 0;\n}\n#pageHeader .center .logo[data-v-a5de29f0] {\n  width: 120px;\n  height: 120px;\n}\n#pageHeader .center nav[data-v-a5de29f0] {\n  display: grid;\n  -webkit-column-gap: 10px;\n          column-gap: 10px;\n  grid-template-columns: auto auto auto auto auto;\n}\n#pageHeader .center nav li.btn[data-v-a5de29f0] {\n  list-style: none;\n  padding: 15px 10px;\n  background: #393939;\n  font-weight: 800;\n  text-align: center;\n  font-size: 18px;\n  color: white;\n  box-shadow: 0px 2px 2px 1px black, 0px 0px 8px 0px white inset;\n  cursor: pointer;\n  font-family: \"Open Sans\", sans-serif;\n  transition: 1s;\n}\n#pageHeader .center nav li.btn[data-v-a5de29f0]:hover {\n  transition: 1s;\n  box-shadow: 0px 2px 2px 1px black, 0px 0px 8px 0px yellow inset;\n}\n#pageHeader .center nav li.btn-yellow[data-v-a5de29f0] {\n  background: yellow;\n  color: #393939;\n  box-shadow: 0px 2px 2px 1px black;\n}\n#pageHeader .auth[data-v-a5de29f0] {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n}\n#pageHeader .auth button[data-v-a5de29f0] {\n  width: 176px;\n  font-size: 18px;\n  padding: 15px 10px;\n  color: white;\n  font-weight: 800;\n  box-shadow: 0px 2px 2px 1px black, 0px 0px 8px 0px white inset;\n}\n#pageHeader .auth button.login[data-v-a5de29f0] {\n  background-color: #03A9F4;\n}\n#pageHeader .auth button.register[data-v-a5de29f0] {\n  background-color: #8BC34A;\n}\n#pageHeader .user[data-v-a5de29f0] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 350px;\n  height: 120px;\n  padding: 0;\n  position: relative;\n}\n#pageHeader .user .info[data-v-a5de29f0] {\n  width: 260px;\n  height: 100%;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: flex-end;\n}\n#pageHeader .user .info p.name[data-v-a5de29f0] {\n  font-size: 18px;\n  margin: 0;\n  text-align: right;\n  color: white;\n  padding: 0;\n}\n#pageHeader .user .info p.email[data-v-a5de29f0] {\n  color: lightgray;\n  text-align: right;\n  margin: 0;\n}\n#pageHeader .user .info p.pucks[data-v-a5de29f0] {\n  color: white;\n  text-align: right;\n  margin: 0;\n}\n#pageHeader .user .info p.pucks strong[data-v-a5de29f0] {\n  font-size: 24px;\n  color: yellow;\n}\n#pageHeader .user .avatar[data-v-a5de29f0] {\n  width: 90px;\n  height: 90px;\n  padding: 5px;\n  box-sizing: border-box;\n  border: 3px yellow solid;\n  position: relative;\n}\n#pageHeader .user .avatar[data-v-a5de29f0]:after {\n  content: \"\";\n  width: 100%;\n  height: 16px;\n  position: absolute;\n  bottom: -19px;\n  left: 0;\n  background: url(\"/img/down-arrow.png\") center center no-repeat;\n}\n#pageHeader .user .avatar img[data-v-a5de29f0] {\n  width: 100%;\n  height: 100%;\n}\n#pageHeader .user .dropdown[data-v-a5de29f0] {\n  right: 0;\n  position: absolute;\n  bottom: -81px;\n  width: 200px;\n  padding: 0;\n  display: block;\n}\n#pageHeader .user .dropdown li[data-v-a5de29f0] {\n  padding: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background: #393939;\n}\n#pageHeader .user .dropdown li[data-v-a5de29f0]:hover {\n  background: yellow;\n  transition: 0.5s;\n}\n#pageHeader .user .dropdown li:hover a[data-v-a5de29f0] {\n  color: #393939;\n}\n#pageHeader .user .dropdown li a[data-v-a5de29f0] {\n  color: white;\n  font-weight: 800;\n  font-size: 15px;\n  text-decoration: none;\n  display: block;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n}\n#pageFooter[data-v-a5de29f0] {\n  grid-area: ft;\n}\n#pageFooter .report-btn[data-v-a5de29f0] {\n  width: 205px;\n  height: 80px;\n  background-color: #660000;\n  border-radius: 80px;\n  box-shadow: 2px 2px 2px 2px black;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  cursor: pointer;\n}\n#pageFooter .report-btn p[data-v-a5de29f0] {\n  color: white;\n  display: inline-block;\n  width: 95px;\n  text-transform: uppercase;\n  font-size: 14px;\n  font-weight: 800;\n  text-align: center;\n  padding-top: 15px;\n}\n#pageFooter .report-btn img[data-v-a5de29f0] {\n  display: inline-block;\n}\n#mainArticle[data-v-a5de29f0] {\n  grid-area: main;\n  padding: 0;\n}\n#mainNav[data-v-a5de29f0] {\n  display: grid;\n  grid-gap: 5px;\n  position: fixed;\n  top: 200px;\n  left: -20px;\n  transition: 0.5s;\n  border-radius: 0px 5px 5px 0px;\n}\n@media (max-width: 1500px) {\n#mainNav[data-v-a5de29f0] {\n    left: -190px;\n    transition: 0.5s;\n}\n#mainNav[data-v-a5de29f0]:hover {\n    left: -20px;\n    transition: 0.5s;\n}\n}\n#mainNav .btn[data-v-a5de29f0] {\n  list-style: none;\n  width: 212px;\n  height: 67px;\n  padding: 25px 25px;\n  background: #393939;\n  margin: 0;\n  font-size: 14px;\n  text-align: center;\n  text-transform: uppercase;\n  font-weight: 800;\n  color: white;\n  border-radius: 0px 5px 5px 0px;\n  box-shadow: 0px 2px 2px 1px black;\n  transition: 1s;\n  cursor: pointer;\n}\n#mainNav .btn[data-v-a5de29f0]:hover {\n  background: #ffff00;\n  color: #393939;\n  transition: 1s;\n}\n#mainNav .btn[disabled][data-v-a5de29f0] {\n  color: #868686;\n}\n#mainNav .active[data-v-a5de29f0] {\n  background: #ffff00;\n  color: #393939;\n  transition: 1s;\n}\n#mainNav .partners[data-v-a5de29f0] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  height: 50px;\n  width: 212px;\n}\n#mainNav .partners a[data-v-a5de29f0] {\n  text-decoration: underline;\n  -webkit-text-decoration-style: dashed;\n          text-decoration-style: dashed;\n  -webkit-text-decoration-color: #1b1e21;\n          text-decoration-color: #1b1e21;\n  color: #a7a5a5;\n  text-align: center;\n  font-size: 12px;\n  transition: 0.5s;\n}\n#mainNav .partners a[data-v-a5de29f0]:hover {\n  color: #d9d9d9;\n  transition: 0.5s;\n}\n#mainNav .lang[data-v-a5de29f0] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  height: 50px;\n}\n#mainNav .lang li[data-v-a5de29f0] {\n  list-style: none;\n  cursor: pointer;\n}\n#mainNav .lang li img[data-v-a5de29f0] {\n  width: 40px;\n  height: 20px;\n  transition: 0.5s;\n}\n#mainNav .lang li img[data-v-a5de29f0]:hover {\n  transition: 0.5s;\n  -webkit-transform: scale(1.1, 1.1);\n          transform: scale(1.1, 1.1);\n}\n#siteAds[data-v-a5de29f0] {\n  grid-area: ads;\n}\n.content[data-v-a5de29f0] {\n  width: 1223px;\n  min-height: 50px;\n}", ""]);
+exports.push([module.i, "#main[data-v-a5de29f0] {\n  display: grid;\n  grid-template-columns: repeat(12, 1fr);\n  grid-auto-rows: minmax(auto, auto);\n  grid-template-areas: \"hd hd hd hd hd   hd   hd   hd   hd   hd hd hd\" \"main main main main main main main main main main main main\" \"ft ft ft ft ft   ft   ft   ft   ft   ft ft ft\";\n  height: 100vh;\n  width: 1232px;\n  padding: 100px 0;\n  margin: 0 auto;\n}\nheader[data-v-a5de29f0], footer[data-v-a5de29f0], article[data-v-a5de29f0], nav[data-v-a5de29f0], div[data-v-a5de29f0] {\n  padding: 20px;\n  box-sizing: border-box;\n}\n#pageHeader[data-v-a5de29f0] {\n  background: #393939;\n  display: grid;\n  justify-content: center;\n  align-items: center;\n  padding: 0;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  z-index: 1000;\n  min-width: 1232px;\n  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.65);\n}\n#pageHeader .center[data-v-a5de29f0] {\n  width: 1232px;\n  height: 100%;\n  display: grid;\n  grid-template-columns: 118px 700px auto;\n  align-items: center;\n  padding: 0;\n}\n#pageHeader .center .logo[data-v-a5de29f0] {\n  width: 120px;\n  height: 120px;\n}\n#pageHeader .center nav[data-v-a5de29f0] {\n  display: grid;\n  -webkit-column-gap: 10px;\n          column-gap: 10px;\n  grid-template-columns: auto auto auto auto auto;\n}\n#pageHeader .center nav li.btn[data-v-a5de29f0] {\n  list-style: none;\n  padding: 15px 10px;\n  background: #393939;\n  font-weight: 800;\n  text-align: center;\n  font-size: 18px;\n  color: white;\n  box-shadow: 0px 2px 2px 1px black, 0px 0px 8px 0px white inset;\n  cursor: pointer;\n  font-family: \"Open Sans\", sans-serif;\n  transition: 1s;\n}\n#pageHeader .center nav li.btn[data-v-a5de29f0]:hover {\n  transition: 1s;\n  box-shadow: 0px 2px 2px 1px black, 0px 0px 8px 0px yellow inset;\n}\n#pageHeader .center nav li.btn-yellow[data-v-a5de29f0] {\n  background: yellow;\n  color: #393939;\n  box-shadow: 0px 2px 2px 1px black;\n}\n#pageHeader .auth[data-v-a5de29f0] {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n}\n#pageHeader .auth button[data-v-a5de29f0] {\n  width: 176px;\n  font-size: 18px;\n  padding: 15px 10px;\n  color: white;\n  font-weight: 800;\n  box-shadow: 0px 2px 2px 1px black, 0px 0px 8px 0px white inset;\n}\n#pageHeader .auth button.login[data-v-a5de29f0] {\n  background-color: #03A9F4;\n}\n#pageHeader .auth button.register[data-v-a5de29f0] {\n  background-color: #8BC34A;\n}\n#pageHeader .user[data-v-a5de29f0] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 350px;\n  height: 120px;\n  padding: 0;\n  position: relative;\n}\n#pageHeader .user .info[data-v-a5de29f0] {\n  width: 260px;\n  height: 100%;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: flex-end;\n}\n#pageHeader .user .info p.name[data-v-a5de29f0] {\n  font-size: 18px;\n  margin: 0;\n  text-align: right;\n  color: white;\n  padding: 0;\n}\n#pageHeader .user .info p.email[data-v-a5de29f0] {\n  color: lightgray;\n  text-align: right;\n  margin: 0;\n}\n#pageHeader .user .info p.pucks[data-v-a5de29f0] {\n  color: white;\n  text-align: right;\n  margin: 0;\n}\n#pageHeader .user .info p.pucks strong[data-v-a5de29f0] {\n  font-size: 24px;\n  color: yellow;\n}\n#pageHeader .user .avatar[data-v-a5de29f0] {\n  width: 90px;\n  height: 90px;\n  padding: 5px;\n  box-sizing: border-box;\n  border: 3px yellow solid;\n  position: relative;\n}\n#pageHeader .user .avatar[data-v-a5de29f0]:after {\n  content: \"\";\n  width: 100%;\n  height: 16px;\n  position: absolute;\n  bottom: -19px;\n  left: 0;\n  background: url(\"/img/down-arrow.png\") center center no-repeat;\n}\n#pageHeader .user .avatar img[data-v-a5de29f0] {\n  width: 100%;\n  height: 100%;\n}\n#pageHeader .user .dropdown[data-v-a5de29f0] {\n  right: 0;\n  position: absolute;\n  bottom: -81px;\n  width: 200px;\n  padding: 0;\n  display: block;\n}\n#pageHeader .user .dropdown li[data-v-a5de29f0] {\n  padding: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background: #393939;\n}\n#pageHeader .user .dropdown li[data-v-a5de29f0]:hover {\n  background: yellow;\n  transition: 0.5s;\n}\n#pageHeader .user .dropdown li:hover a[data-v-a5de29f0] {\n  color: #393939;\n}\n#pageHeader .user .dropdown li a[data-v-a5de29f0] {\n  color: white;\n  font-weight: 800;\n  font-size: 15px;\n  text-decoration: none;\n  display: block;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n}\n#pageFooter[data-v-a5de29f0] {\n  grid-area: ft;\n}\n#pageFooter .report-btn[data-v-a5de29f0] {\n  width: 205px;\n  height: 80px;\n  background-color: #660000;\n  border-radius: 80px;\n  box-shadow: 2px 2px 2px 2px black;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  z-index: 1000;\n  cursor: pointer;\n}\n#pageFooter .report-btn p[data-v-a5de29f0] {\n  color: white;\n  display: inline-block;\n  width: 95px;\n  text-transform: uppercase;\n  font-size: 14px;\n  font-weight: 800;\n  text-align: center;\n  padding-top: 15px;\n}\n#pageFooter .report-btn img[data-v-a5de29f0] {\n  display: inline-block;\n}\n#mainArticle[data-v-a5de29f0] {\n  grid-area: main;\n  padding: 0;\n}\n#mainNav[data-v-a5de29f0] {\n  display: grid;\n  grid-gap: 5px;\n  position: fixed;\n  z-index: 1000;\n  top: 200px;\n  left: -20px;\n  transition: 0.5s;\n  border-radius: 0px 5px 5px 0px;\n}\n@media (max-width: 1500px) {\n#mainNav[data-v-a5de29f0] {\n    left: -190px;\n    transition: 0.5s;\n}\n#mainNav[data-v-a5de29f0]:hover {\n    left: -20px;\n    transition: 0.5s;\n}\n}\n#mainNav .btn[data-v-a5de29f0] {\n  list-style: none;\n  width: 212px;\n  height: 67px;\n  padding: 25px 25px;\n  background: #393939;\n  margin: 0;\n  font-size: 14px;\n  text-align: center;\n  text-transform: uppercase;\n  font-weight: 800;\n  color: white;\n  border-radius: 0px 5px 5px 0px;\n  box-shadow: 0px 2px 2px 1px black;\n  transition: 1s;\n  cursor: pointer;\n}\n#mainNav .btn[data-v-a5de29f0]:hover {\n  background: #ffff00;\n  color: #393939;\n  transition: 1s;\n}\n#mainNav .btn[disabled][data-v-a5de29f0] {\n  color: #868686;\n}\n#mainNav .active[data-v-a5de29f0] {\n  background: #ffff00;\n  color: #393939;\n  transition: 1s;\n}\n#mainNav .partners[data-v-a5de29f0] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  height: 50px;\n  width: 212px;\n}\n#mainNav .partners a[data-v-a5de29f0] {\n  text-decoration: underline;\n  -webkit-text-decoration-style: dashed;\n          text-decoration-style: dashed;\n  -webkit-text-decoration-color: #1b1e21;\n          text-decoration-color: #1b1e21;\n  color: #a7a5a5;\n  text-align: center;\n  font-size: 12px;\n  transition: 0.5s;\n}\n#mainNav .partners a[data-v-a5de29f0]:hover {\n  color: #d9d9d9;\n  transition: 0.5s;\n}\n#mainNav .lang[data-v-a5de29f0] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  height: 50px;\n}\n#mainNav .lang li[data-v-a5de29f0] {\n  list-style: none;\n  cursor: pointer;\n}\n#mainNav .lang li img[data-v-a5de29f0] {\n  width: 40px;\n  height: 20px;\n  transition: 0.5s;\n}\n#mainNav .lang li img[data-v-a5de29f0]:hover {\n  transition: 0.5s;\n  -webkit-transform: scale(1.1, 1.1);\n          transform: scale(1.1, 1.1);\n}\n#siteAds[data-v-a5de29f0] {\n  grid-area: ads;\n}\n.content[data-v-a5de29f0] {\n  width: 1223px;\n  min-height: 50px;\n}", ""]);
 
 // exports
 
@@ -29628,15 +29663,15 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--8-2!../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./Coins.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss&");
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--8-2!../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -43042,10 +43077,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302& ***!
-  \********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43097,7 +43132,7 @@ var render = function() {
             check: _vm.currency,
             id: "sw-currency",
             labelon: "PUCKS",
-            labeloff: "РУБЛИ",
+            labeloff: _vm.$lang.messages.rub,
             width: 160
           },
           on: {
@@ -43112,7 +43147,179 @@ var render = function() {
     _vm._v(" "),
     _c("h2", [_vm._v(_vm._s(_vm.$lang.messages.coins_h2))]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "calc" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "button",
+          { staticClass: "button-dark", on: { click: _vm.decrease } },
+          [_vm._v("-")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model.number",
+              value: _vm.sum,
+              expression: "sum",
+              modifiers: { number: true }
+            }
+          ],
+          staticClass: "input-light",
+          attrs: { type: "text" },
+          domProps: { value: _vm.sum },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.sum = _vm._n($event.target.value)
+            },
+            blur: function($event) {
+              return _vm.$forceUpdate()
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "button-dark", on: { click: _vm.increase } },
+          [_vm._v("+")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "button",
+          {
+            staticClass: "button-light change",
+            on: {
+              click: function($event) {
+                _vm.sum = 50000
+              }
+            }
+          },
+          [_vm._v("50k")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button-light change",
+            on: {
+              click: function($event) {
+                _vm.sum = 100000
+              }
+            }
+          },
+          [_vm._v("100k")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button-light change",
+            on: {
+              click: function($event) {
+                _vm.sum = 250000
+              }
+            }
+          },
+          [_vm._v("250k")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button-light change",
+            on: {
+              click: function($event) {
+                _vm.sum = 500000
+              }
+            }
+          },
+          [_vm._v("500k")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button-light change",
+            on: {
+              click: function($event) {
+                _vm.sum = 1000000
+              }
+            }
+          },
+          [_vm._v("1M")]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "price" }, [
+      _c("div", { staticClass: "main-price" }, [
+        _c("div", { staticClass: "price-text" }, [
+          _vm._v(_vm._s(_vm.$lang.messages.price) + ": ")
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "price-amount" }, [
+            _c("span", { staticClass: "red-text" }, [_vm._v("400.00")]),
+            _vm._v(" " + _vm._s(_vm.$lang.messages.rubles))
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "link-yellow", attrs: { href: "#" } }, [
+        _vm._v(_vm._s(_vm.$lang.messages.how_to_buy))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("form", { staticClass: "player" }, [
+      _c("input", {
+        staticClass: "input-dark",
+        attrs: { placeholder: _vm.$lang.messages.player, type: "text" }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "input-dark",
+        attrs: { placeholder: _vm.$lang.messages.team, type: "text" }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "input-dark",
+        attrs: { placeholder: _vm.$lang.messages.rating, type: "text" }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "input-dark",
+        attrs: { placeholder: _vm.$lang.messages.initial_price, type: "text" }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "input-dark",
+        attrs: { placeholder: _vm.$lang.messages.buyout_price, type: "text" }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "input-dark",
+        attrs: { placeholder: _vm.$lang.messages.team_hut, type: "text" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "buy-row" }, [
+        _c(
+          "button",
+          { staticClass: "yellow-button", attrs: { type: "submit" } },
+          [_vm._v(_vm._s(_vm.$lang.messages.buy))]
+        ),
+        _vm._v(" "),
+        _c("a", { staticClass: "link-light", attrs: { href: "#" } }, [
+          _vm._v(_vm._s(_vm.$lang.messages.sell_to_us))
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -43120,26 +43327,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "calc" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("button", { staticClass: "inc" }, [_vm._v("-")]),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "text" } }),
-        _vm._v(" "),
-        _c("button", { staticClass: "dec" }, [_vm._v("+")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("button", { staticClass: "change" }, [_vm._v("50k")]),
-        _vm._v(" "),
-        _c("button", { staticClass: "change" }, [_vm._v("100k")]),
-        _vm._v(" "),
-        _c("button", { staticClass: "change" }, [_vm._v("250k")]),
-        _vm._v(" "),
-        _c("button", { staticClass: "change" }, [_vm._v("500k")]),
-        _vm._v(" "),
-        _c("button", { staticClass: "change" }, [_vm._v("1M")])
-      ])
+    return _c("div", { staticClass: "price-amount" }, [
+      _c("span", { staticClass: "red-text" }, [_vm._v("400.00")]),
+      _vm._v(" Pucks")
     ])
   }
 ]
@@ -85579,7 +85769,20 @@ module.exports = {
   achievement: 'Achievement',
   report: 'Bug reports',
   my_reports: 'My reports',
-  coins_h2: 'PLEASE SHOW YOUR PLAYER\'S CARD AT 24 HOURS AUCTION'
+  // coins
+  rub: 'RUB',
+  coins_h2: 'PLEASE SHOW YOUR PLAYER\'S CARD AT 24 HOURS AUCTION',
+  how_to_buy: 'How to buy?',
+  sell_to_us: 'Sell coins to us',
+  price: 'price',
+  rubles: 'rubles',
+  player: 'Player\'s second name',
+  team: 'Player\'s league and team',
+  rating: 'Player\'s rating',
+  initial_price: 'The initial price of your card',
+  buyout_price: 'The buyout price of your card',
+  team_hut: 'Name of your team in HUT',
+  buy: 'buy'
 };
 
 /***/ }),
@@ -85615,7 +85818,20 @@ module.exports = {
   achievement: 'Достижения',
   report: 'Баг репорты',
   my_reports: 'Мои отчеты',
-  coins_h2: 'ПОЖАЛУЙСТА, ВЫСТАВЛЯЙТЕ КАРТОЧКУ ВАШЕГО ИГРОКА НА АУКЦИОН НА 24 ЧАСА'
+  // монеты
+  rub: 'РУБЛИ',
+  coins_h2: 'ПОЖАЛУЙСТА, ВЫСТАВЛЯЙТЕ КАРТОЧКУ ВАШЕГО ИГРОКА НА АУКЦИОН НА 24 ЧАСА',
+  how_to_buy: 'Как купить?',
+  sell_to_us: 'Продать монеты нам',
+  price: 'цена',
+  rubles: 'рублей',
+  player: 'Фамилия игрока',
+  team: 'Лига и команда игрока',
+  rating: 'Рейтинг игрока',
+  initial_price: 'Начальная цена вашей карточки',
+  buyout_price: 'Цена выкупа вашей карточки',
+  team_hut: 'Название вашей команды в HUT',
+  buy: 'купить'
 };
 
 /***/ }),
@@ -85629,9 +85845,9 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Coins_vue_vue_type_template_id_df803302___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Coins.vue?vue&type=template&id=df803302& */ "./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&");
+/* harmony import */ var _Coins_vue_vue_type_template_id_df803302_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Coins.vue?vue&type=template&id=df803302&scoped=true& */ "./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&scoped=true&");
 /* harmony import */ var _Coins_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Coins.vue?vue&type=script&lang=js& */ "./resources/js/main/pages/Coins.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Coins_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Coins.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Coins_vue_vue_type_style_index_0_id_df803302_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true& */ "./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -85643,11 +85859,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Coins_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Coins_vue_vue_type_template_id_df803302___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Coins_vue_vue_type_template_id_df803302___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Coins_vue_vue_type_template_id_df803302_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Coins_vue_vue_type_template_id_df803302_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "df803302",
   null
   
 )
@@ -85673,35 +85889,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss& ***!
-  \*****************************************************************************/
+/***/ "./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true& ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--8-2!../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./Coins.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&lang=scss&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_df803302_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--8-2!../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=style&index=0&id=df803302&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_df803302_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_df803302_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_df803302_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_df803302_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_df803302_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302& ***!
-  \**************************************************************************/
+/***/ "./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&scoped=true&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&scoped=true& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_template_id_df803302___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Coins.vue?vue&type=template&id=df803302& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_template_id_df803302___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_template_id_df803302_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Coins.vue?vue&type=template&id=df803302&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/main/pages/Coins.vue?vue&type=template&id=df803302&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_template_id_df803302_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_template_id_df803302___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_template_id_df803302_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

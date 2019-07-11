@@ -25,9 +25,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
-    // Resource
-
-
 
     Route::resources([
         'auction'=>'AuctionController',
@@ -59,4 +56,4 @@ Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
 });
 
 //Route::get('/admin/{any?}', 'SinglePageController@admin')->where('any', '.*');
-//Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');

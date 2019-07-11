@@ -87,7 +87,7 @@ var render = function() {
         _c(
           "router-link",
           {
-            staticClass: "btn coins closed",
+            staticClass: "btn coins ",
             attrs: { tag: "li", disabled: "", to: "/coins" }
           },
           [

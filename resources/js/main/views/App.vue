@@ -405,6 +405,7 @@
             position: fixed;
             bottom: 50px;
             right: 50px;
+            z-index:1000;
             cursor:pointer;
             p {
                 color: white;
@@ -433,6 +434,7 @@
         display: grid;
         grid-gap: 5px;
         position: fixed;
+        z-index:1000;
         top: 200px;
         left: -20px;
         transition: .5s;

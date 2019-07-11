@@ -27,7 +27,7 @@
         <div class="calc">
             <div class="row">
                 <button class="button-dark" v-on:click="decrease">-</button>
-                <input class="input-light" type="text" v-model="sum">
+                <input class="input-light" type="text" v-model.number="sum">
                 <button class="button-dark" v-on:click="increase">+</button>
             </div>
             <div class="row">
@@ -108,7 +108,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .coins-section {
         display: flex;
         justify-content: center;

@@ -309,6 +309,12 @@ body {
   font-weight: 600;
 }
 
+[role=main] h4 {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 .table td {
   vertical-align: baseline;
 }
