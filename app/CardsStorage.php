@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CardsStorage extends Model
 {
+    protected $table = 'cards_storage';
+
     protected $fillable = [
         'ACC_AGI',
         'AGI_DUR',
