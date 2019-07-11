@@ -97,7 +97,7 @@
                 }
             },
             decrease: function () {
-                if(this.sum>0){
+                if(this.sum>=50000){
                     this.sum-=50000;
                 }
             }
