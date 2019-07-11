@@ -26,16 +26,16 @@
 
         <div class="calc">
             <div class="row">
-                <button class="button-dark inc">-</button>
-                <input class="input-light inc" type="text">
-                <button class="button-dark dec">+</button>
+                <button class="button-dark" v-on:click="decrease">-</button>
+                <input class="input-light" type="text" v-model="sum">
+                <button class="button-dark" v-on:click="increase">+</button>
             </div>
             <div class="row">
-                <button class="button-light change">50k</button>
-                <button class="button-light change">100k</button>
-                <button class="button-light change">250k</button>
-                <button class="button-light change">500k</button>
-                <button class="button-light change">1M</button>
+                <button class="button-light change" v-on:click="sum = 50000">50k</button>
+                <button class="button-light change" v-on:click="sum = 100000">100k</button>
+                <button class="button-light change" v-on:click="sum = 250000">250k</button>
+                <button class="button-light change" v-on:click="sum = 500000">500k</button>
+                <button class="button-light change" v-on:click="sum = 1000000">1M</button>
             </div>
         </div>
 
@@ -74,14 +74,14 @@
           return {
               console:true,
               year:false,
-              currency:true
+              currency:true,
+              sum: 0,
           }
         },
         methods:{
             checkConsole: function (event) {
                 console.log(event);
                 this.console = event;
-
             },
             checkYear: function (event) {
                 console.log(event);
@@ -91,6 +91,16 @@
                 console.log(event);
                 this.currency = event;
             },
+            increase: function () {
+                if(this.sum<10000000){
+                    this.sum+=50000;
+                }
+            },
+            decrease: function () {
+                if(this.sum>0){
+                    this.sum-=50000;
+                }
+            }
         },
         components: {
             Toggle
