@@ -22,9 +22,18 @@ module.exports = {
     achievement:'Achievement',
     report:'Bug reports',
     my_reports:'My reports',
+    // coins
+    rub: 'RUB',
     coins_h2:'PLEASE SHOW YOUR PLAYER\'S CARD AT 24 HOURS AUCTION',
     how_to_buy:'How to buy?',
     sell_to_us:'Sell coins to us',
     price:'price',
+    rubles: 'rubles',
+    player: 'Player\'s second name',
+    team: 'Player\'s league and team',
+    rating: 'Player\'s rating',
+    initial_price: 'The initial price of your card',
+    buyout_price: 'The buyout price of your card',
+    team_hut: 'Name of your team in HUT',
     buy:'buy'
 }

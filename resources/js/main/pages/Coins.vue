@@ -18,7 +18,7 @@
                     :id="'sw-currency'"
                     v-on:check="checkCurrency($event)"
                     :labelon="'PUCKS'"
-                    :labeloff="'РУБЛИ'"
+                    :labeloff="$lang.messages.rub"
                     :width="160"></toggle>
         </div>
 
@@ -44,22 +44,22 @@
                 <div class="price-text">{{$lang.messages.price}}: </div>
                 <div>
                     <div class="price-amount"><span class="red-text">400.00</span> Pucks</div>
-                    <div class="price-amount"><span class="red-text">400.00</span> рублей</div>
+                    <div class="price-amount"><span class="red-text">400.00</span> {{$lang.messages.rubles}}</div>
                 </div>
             </div>
-            <a href="#">{{$lang.messages.how_to_buy}}</a>
+            <a class="link-yellow" href="#">{{$lang.messages.how_to_buy}}</a>
         </div>
 
         <form class="player">
-            <input placeholder="Фамилия игрока" type="text">
-            <input placeholder="Лига и команда игрока" type="text">
-            <input placeholder="Рейтинг игрока" type="text">
-            <input placeholder="Начальная цена вашей карточки" type="text">
-            <input placeholder="Цена выкупа вашей карточки" type="text">
-            <input placeholder="Название вашей команды в HUT" type="text">
+            <input class="input-dark" :placeholder="$lang.messages.player" type="text">
+            <input class="input-dark" :placeholder="$lang.messages.team" type="text">
+            <input class="input-dark" :placeholder="$lang.messages.rating" type="text">
+            <input class="input-dark" :placeholder="$lang.messages.initial_price" type="text">
+            <input class="input-dark" :placeholder="$lang.messages.buyout_price" type="text">
+            <input class="input-dark" :placeholder="$lang.messages.team_hut" type="text">
             <div class="buy-row">
-                <button type="submit">{{$lang.messages.buy}}</button>
-                <a href="#">{{$lang.messages.sell_to_us}}</a>
+                <button class="yellow-button" type="submit">{{$lang.messages.buy}}</button>
+                <a class="link-light" href="#">{{$lang.messages.sell_to_us}}</a>
             </div>
         </form>
     </div>
@@ -123,7 +123,7 @@
     }
     .calc {
         background: white;
-        padding: 28px 24px 28px 24px; 
+        padding: 28px 24px 28px 24px;
         box-sizing: border-box;
         box-shadow: 3px 3px 2px 2px black;
         width:600px;
@@ -132,7 +132,7 @@
     }
     .calc div:nth-child(2){
         padding: 0 76px 0 76px;
-        margin-top: 10px; 
+        margin-top: 10px;
     }
     .row{
         display:flex;
@@ -194,7 +194,7 @@
     .red-text{
         color: red;
     }
-    .price>a{
+    .link-yellow{
         font-weight: bold;
         color:#ffff00;
         border-bottom: 2px dashed #ffff00;
@@ -208,7 +208,7 @@
         align-items: center;
         margin-top: 25px;
     }
-    .player>input{
+    .input-dark{
         border: 2px solid #ffff00;
         background: #404040;
         color: white;
@@ -225,13 +225,13 @@
         justify-content: space-between;
         padding-left: 225px;
     }
-    .buy-row>a{
+    .link-light{
         color:white;
         border-bottom: 2px dashed white;
         align-self: flex-start;
         text-decoration: none;
     }
-    .buy-row>button{
+    .yellow-button{
         width: 150px;
         height: 40px;
         background-color: #ffff00;
@@ -239,5 +239,5 @@
         text-transform: uppercase;
         font-weight: bold;
     }
-    
+
 </style>
