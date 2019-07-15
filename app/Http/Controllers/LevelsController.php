@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Levels;
 
 class LevelsController extends Controller
 {
@@ -11,9 +13,11 @@ class LevelsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $levels = Levels::orderBy('id','DESC')->paginate(15);
+        return view('admin.levels.index',compact('levels'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
     /**
@@ -23,7 +27,7 @@ class LevelsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.levels.create');
     }
 
     /**
@@ -34,7 +38,19 @@ class LevelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=> 'required',
+            'experience' => 'integer|min:0|max:2147483647',
+            'level'=> 'integer|min:0|max:2147483647',
+            'discount' => 'integer|min:0|max:2147483647',
+        ]);
+
+        $input = $request->all(); 
+
+        $level = Levels::create($input); 
+
+        return redirect()->route('levels.index')
+            ->with('success','Level created successfully');
     }
 
     /**
@@ -45,7 +61,8 @@ class LevelsController extends Controller
      */
     public function show($id)
     {
-        //
+        $level = Levels::find($id);
+        return view('admin.levels.show',compact('level'));
     }
 
     /**
@@ -56,7 +73,9 @@ class LevelsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $level = Levels::find($id);
+
+        return view('admin.levels.edit',compact('level'));
     }
 
     /**
@@ -68,7 +87,20 @@ class LevelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=> 'required',
+            'experience' => 'integer|min:0|max:2147483647',
+            'level'=> 'integer|min:0|max:2147483647',
+            'discount' => 'integer|min:0|max:2147483647',
+        ]);
+
+        $input = $request->all(); 
+
+        $level = Levels::find($id);
+        $level->update($input);
+
+        return redirect()->route('levels.index')
+            ->with('success','Level updated successfully');
     }
 
     /**
@@ -79,6 +111,8 @@ class LevelsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table("levels")->where('id',$id)->delete();
+        return redirect()->route('levels.index')
+            ->with('success','Level deleted successfully');
     }
 }

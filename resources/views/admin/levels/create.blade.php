@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Create New Setting</h2>
+                <h2>Create New Level</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('levels.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -16,6 +16,7 @@
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
@@ -26,23 +27,30 @@
     @endif
 
 
-    {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
+    {!! Form::open(array('route' => 'levels.store','method'=>'POST')) !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                <strong>title:</strong>
+                {!! Form::text('title', null, array('placeholder' => 'title','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Permission:</strong>
-                <br/>
-                @foreach($permission as $value)
-                    <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                        {{ $value->name }}</label>
-                    <br/>
-                @endforeach
+                <strong>experience:</strong>
+                {!! Form::text('experience', null, array('placeholder' => 'experience','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>level:</strong>
+                {!! Form::text('level', null, array('placeholder' => 'level','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>discount:</strong>
+                {!! Form::text('discount', null, array('placeholder' => 'discount','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

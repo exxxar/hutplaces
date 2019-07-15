@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Role Management</h2>
+                <h2>Levels Management</h2>
             </div>
             <div class="pull-right">
-                @can('role-create')
-                    <a class="btn btn-success" href="{{ route('settings.create') }}"> Create New Role</a>
+                @can('levels-create')
+                    <a class="btn btn-success" href="{{ route('levels.create') }}"> Create New Level</a>
                 @endcan
             </div>
         </div>
@@ -18,28 +18,34 @@
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <p>{{ $message }}</p>
         </div>
     @endif
 
-
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
+            <th>title</th>
+            <th>experience</th>
+            <th>level</th>
+            <th>discount</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($roles as $key => $role)
+        @foreach ($levels as $key => $level)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $role->name }}</td>
+                <td>{{ $level->title }}</td>
+                <td>{{ $level->experience }}</td>
+                <td>{{ $level->level }}</td>
+                <td>{{ $level->discount }}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-                    @can('role-edit')
-                        <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                    <a class="btn btn-info" href="{{ route('levels.show',$level->id) }}">Show</a>
+                    @can('levels-edit')
+                        <a class="btn btn-primary" href="{{ route('levels.edit',$level->id) }}">Edit</a>
                     @endcan
-                    @can('role-delete')
-                        {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                    @can('levels-delete')
+                        {!! Form::open(['method' => 'DELETE','route' => ['levels.destroy', $level->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     @endcan
@@ -49,7 +55,7 @@
     </table>
 
 
-    {!! $roles->render() !!}
+    {!! $levels->render() !!}
 
 
 @endsection
