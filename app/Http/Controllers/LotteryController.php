@@ -76,7 +76,7 @@ class LotteryController extends Controller
     {
         $lottery = Lottery::find($id);
 
-        return view('admin.levels.edit',compact('lottery'));
+        return view('admin.lottery.edit',compact('lottery'));
     }
 
     /**
