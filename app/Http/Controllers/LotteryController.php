@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Lottery;
 
 class LotteryController extends Controller
@@ -12,11 +13,11 @@ class LotteryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $lotteries = Lottery::paginate(15);
-
-        return view('admin.lottery', ['lotteries' => $lotteries]);
+        $lotteries = Lottery::orderBy('id','DESC')->paginate(15);
+        return view('admin.lottery.index',compact('lotteries'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
     /**
@@ -26,7 +27,7 @@ class LotteryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.lottery.create');
     }
 
     /**
@@ -39,17 +40,18 @@ class LotteryController extends Controller
     {
         $request->validate([
             'base_price'=> 'numeric',
-            'base_discount' => 'integer',
-            'places' => 'integer',
-            'occupied_places' => 'integer',
-            'lifetime' => 'integer'
+            'base_discount' => 'integer|min:0|max:2147483647',
+            'places' => 'integer|min:1|max:2147483647',
+            'occupied_places' => 'integer|min:1|max:2147483647',
+            'lifetime' => 'integer|min:0|max:2147483647'
         ]);
 
         $input = $request->all(); 
 
         $lottery = Lottery::create($input); 
 
-        return back()->with('success', 'Розыгрыш успешно добавлен');
+        return redirect()->route('lottery.index')
+            ->with('success','Lottery created successfully');
     }
 
     /**
@@ -60,7 +62,8 @@ class LotteryController extends Controller
      */
     public function show($id)
     {
-        //
+        $lottery = Lottery::find($id);
+        return view('admin.lottery.show',compact('lottery'));
     }
 
     /**
@@ -71,7 +74,9 @@ class LotteryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $lottery = Lottery::find($id);
+
+        return view('admin.levels.edit',compact('lottery'));
     }
 
     /**
@@ -85,10 +90,10 @@ class LotteryController extends Controller
     {
         $request->validate([
             'base_price'=> 'numeric',
-            'base_discount' => 'integer',
-            'places' => 'integer',
-            'occupied_places' => 'integer',
-            'lifetime' => 'integer'
+            'base_discount' => 'integer|min:0|max:2147483647',
+            'places' => 'integer|min:1|max:2147483647',
+            'occupied_places' => 'integer|min:1|max:2147483647',
+            'lifetime' => 'integer|min:0|max:2147483647'
         ]);
         
         $input = $request->all(); 
@@ -96,7 +101,8 @@ class LotteryController extends Controller
         $lottery = Lottery::find($id);
         $lottery->update($input);
 
-        return back()->with('success', 'Розыгрыш успешно отредактирован');
+        return redirect()->route('lottery.index')
+            ->with('success','Lottery updated successfully');
     }
 
     /**
@@ -107,9 +113,8 @@ class LotteryController extends Controller
      */
     public function destroy($id)
     {
-        $lottery = Lottery::find($id);
-        $lottery->delete();
-
-        return back()->with('success', 'Розыгрыш успешно удален');
+        DB::table("lotteries")->where('id',$id)->delete();
+        return redirect()->route('lottery.index')
+            ->with('success','Lottery deleted successfully');
     }
 }

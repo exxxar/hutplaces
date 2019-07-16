@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Role Management</h2>
+                <h2>Lottery Management</h2>
             </div>
             <div class="pull-right">
-                @can('role-create')
-                    <a class="btn btn-success" href="{{ route('settings.create') }}"> Create New Role</a>
+                @can('lottery-create')
+                    <a class="btn btn-success" href="{{ route('lottery.create') }}"> Create New lottery</a>
                 @endcan
             </div>
         </div>
@@ -26,20 +26,30 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
+            <th>title</th>
+            <th>lot_type</th>
+            <th>visible</th>
+            <th>completed</th>
+            <th>active</th>
+            <th>lifetime</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($roles as $key => $role)
+        @foreach ($lotteries as $key => $lottery)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $role->name }}</td>
+                <td>{{ $lottery->title }}</td>
+                <td>{{ $lottery->lot_type }}</td>
+                <td>{{ $lottery->visible }}</td>
+                <td>{{ $lottery->completed }}</td>
+                <td>{{ $lottery->active }}</td>
+                <td>{{ $lottery->lifetime }}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-                    @can('role-edit')
-                        <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                    <a class="btn btn-info" href="{{ route('lottery.show',$lottery->id) }}">Show</a>
+                    @can('lottery-edit')
+                        <a class="btn btn-primary" href="{{ route('lottery.edit',$lottery->id) }}">Edit</a>
                     @endcan
-                    @can('role-delete')
-                        {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                    @can('lottery-delete')
+                        {!! Form::open(['method' => 'DELETE','route' => ['lottery.destroy', $lottery->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     @endcan
@@ -49,7 +59,7 @@
     </table>
 
 
-    {!! $roles->render() !!}
+    {!! $lotteries->render() !!}
 
 
 @endsection
