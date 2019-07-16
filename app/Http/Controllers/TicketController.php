@@ -12,11 +12,12 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $tickets = DB::table('tickets')->paginate(15);
 
-        return view('admin.tickets', ['tickets' => $tickets]);
+        return view('admin.tickets.index',compact('tickets'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
     /**
@@ -49,7 +50,7 @@ class TicketController extends Controller
             ]
         );
 
-        return back()->with('success', 'Жалоба успешно добавлена');
+        return back()->with('success', 'Ticket added successfully');
     }
 
     /**
@@ -60,7 +61,8 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = DB::table('tickets')->find($id);
+        return view('admin.tickets.show',compact('ticket'));
     }
 
     /**
@@ -96,6 +98,7 @@ class TicketController extends Controller
     {
         DB::table('tickets')->where('id', $id)->delete();
 
-        return back()->with('success', 'Жалоба успешно удалена');
+        return redirect()->route('tickets.index')
+            ->with('success','Ticket deleted successfully');
     }
 }
