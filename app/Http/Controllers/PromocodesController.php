@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Promocodes;
+use App\Promocode;
 use Illuminate\Http\Request;
 
 class PromocodesController extends Controller
@@ -14,7 +14,7 @@ class PromocodesController extends Controller
      */
     public function index()
     {
-        $promocodes = Promocodes::paginate(15);
+        $promocodes = Promocode::paginate(15);
 
         return view('admin.promocodes', ['promocodes' => $promocodes]);
     }
@@ -48,7 +48,7 @@ class PromocodesController extends Controller
 
         $input = $request->all(); 
 
-        $promocodes = Promocodes::create($input); 
+        $promocodes = Promocode::create($input); 
 
         return back()->with('success', 'Промокод успешно добавлен');
     }
@@ -56,10 +56,10 @@ class PromocodesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Promocodes  $promocodes
+     * @param  \App\Promocode  $promocodes
      * @return \Illuminate\Http\Response
      */
-    public function show(Promocodes $promocodes)
+    public function show(Promocode $promocodes)
     {
         //
     }
@@ -67,10 +67,10 @@ class PromocodesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Promocodes  $promocodes
+     * @param  \App\Promocode  $promocodes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Promocodes $promocodes)
+    public function edit(Promocode $promocodes)
     {
         //
     }
@@ -79,7 +79,7 @@ class PromocodesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Promocodes  $promocodes
+     * @param  \App\Promocode  $promocodes
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -95,7 +95,7 @@ class PromocodesController extends Controller
         
         $input = $request->all(); 
 
-        $promocodes = Promocodes::find($id);
+        $promocodes = Promocode::find($id);
         $promocodes->update($input);
 
         return back()->with('success', 'Промокод успешно отредактирован');
@@ -104,12 +104,12 @@ class PromocodesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Promocodes  $promocodes
+     * @param  \App\Promocode  $promocodes
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $promocodes = Promocodes::find($id);
+        $promocodes = Promocode::find($id);
         $promocodes->delete();
 
         return back()->with('success', 'Промокод успешно удален');

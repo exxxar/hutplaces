@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Promocodes extends Model
+class Promocode extends Model
 {
     protected $fillable = [
         'lifetime',

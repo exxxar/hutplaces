@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Orders;
+use App\Order;
 
 class OrdersController extends Controller
 {
@@ -14,7 +14,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Orders::paginate(15);
+        $orders = Order::paginate(15);
 
         return view('admin.orders', ['orders' => $orders]);
     }
@@ -46,7 +46,7 @@ class OrdersController extends Controller
 
         $input = $request->all(); 
 
-        $order = Orders::create($input); 
+        $order = Order::create($input); 
 
         return back()->with('success', 'Заказ успешно добавлен');
     }
@@ -91,7 +91,7 @@ class OrdersController extends Controller
 
         $input = $request->all(); 
 
-        $order = Orders::find($id);
+        $order = Order::find($id);
         $order->update($input);
 
         return back()->with('success', 'Заказ успешно отредактирован');
@@ -105,7 +105,7 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        $order = Orders::find($id);
+        $order = Order::find($id);
         $order->delete();
 
         return back()->with('success', 'Заказ успешно удален');

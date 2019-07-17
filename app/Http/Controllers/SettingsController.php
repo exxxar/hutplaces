@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Settings;
+use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +26,7 @@ class SettingsController extends Controller
     {
         //
 
-        $settings = Settings::orderBy('id','DESC')->paginate(15);
+        $settings = Setting::orderBy('id','DESC')->paginate(15);
         return view('admin.settings.index',compact('settings'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
     }
@@ -56,7 +56,7 @@ class SettingsController extends Controller
         ]);
 
 
-        Settings::create([
+        Setting::create([
             'title' => $request->input('title'),
             'value' => $request->input('value')
         ]);
@@ -74,7 +74,7 @@ class SettingsController extends Controller
      */
     public function show($id)
     {
-        $setting = Settings::find($id);
+        $setting = Setting::find($id);
 
 
         return view('admin.settings.show',compact('setting'));
@@ -88,7 +88,7 @@ class SettingsController extends Controller
      */
     public function edit($id)
     {
-        $setting = Settings::find($id);
+        $setting = Setting::find($id);
 
         return view('admin.settings.edit',compact('setting'));
     }
@@ -107,13 +107,13 @@ class SettingsController extends Controller
             'value' => 'required',
         ]);
 
-        Settings::create([
+        Setting::create([
             'title' => $request->input('title'),
             'value' => $request->input('value')
         ]);
 
 
-        $setting = Settings::find($id);
+        $setting = Setting::find($id);
         $setting->title = $request->input('title');
         $setting->value = $request->input('value');
         $setting->save();

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Places extends Model
+class Place extends Model
 {
     protected $fillable = [
         'place_number',

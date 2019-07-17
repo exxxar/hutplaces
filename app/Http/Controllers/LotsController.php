@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Lots;
+use App\Lot;
 
 class LotsController extends Controller
 {
@@ -14,7 +14,7 @@ class LotsController extends Controller
      */
     public function index()
     {
-        $lots = Lots::paginate(15);
+        $lots = Lot::paginate(15);
 
         return view('admin.lots', ['lots' => $lots]);
     }
@@ -43,7 +43,7 @@ class LotsController extends Controller
 
         $input = $request->all(); 
 
-        $lot = Lots::create($input); 
+        $lot = Lot::create($input); 
 
         return back()->with('success', 'Лот успешно добавлен');
     }
@@ -85,7 +85,7 @@ class LotsController extends Controller
         
         $input = $request->all(); 
 
-        $lot = Lots::find($id);
+        $lot = Lot::find($id);
         $lot->update($input);
 
         return back()->with('success', 'Лот успешно отредактирован');
@@ -99,7 +99,7 @@ class LotsController extends Controller
      */
     public function destroy($id)
     {
-        $lot = Lots::find($id);
+        $lot = Lot::find($id);
         $lot->delete();
 
         return back()->with('success', 'Лот успешно удален');

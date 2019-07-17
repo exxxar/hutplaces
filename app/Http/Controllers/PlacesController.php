@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Places;
+use App\Place;
 
 class PlacesController extends Controller
 {
@@ -14,7 +14,7 @@ class PlacesController extends Controller
      */
     public function index()
     {
-        $places = Places::paginate(15);
+        $places = Place::paginate(15);
 
         return view('admin.places', ['places' => $places]);
     }
@@ -41,7 +41,7 @@ class PlacesController extends Controller
             'place_number' => 'integer'
         ]);
 
-        $place = new Places([
+        $place = new Place([
             'place_number' => $request->input('place_number'),
             'lottery_id'=> $request->input('lottery_id'),
             'user_id'=> $request->input('user_id')
@@ -86,7 +86,7 @@ class PlacesController extends Controller
             'place_number' => 'integer'
         ]);
 
-        $place = Places::find($id);
+        $place = Place::find($id);
         $place->place_number = $request->input('place_number');
         $place->lottery_id = $request->input('lottery_id');
         $place->user_id = $request->input('user_id');
@@ -103,7 +103,7 @@ class PlacesController extends Controller
      */
     public function destroy($id)
     {
-        $place = Places::find($id);
+        $place = Place::find($id);
         $place->delete();
 
         return back()->with('success', 'Место успешно удалено');

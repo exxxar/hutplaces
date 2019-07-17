@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tickets extends Model
+class Level extends Model
 {
     protected $fillable = [
-        'email',
-        'description',
-        'directory'
+        'title',
+        'experience',
+        'level',
+        'discount',
     ];
 }

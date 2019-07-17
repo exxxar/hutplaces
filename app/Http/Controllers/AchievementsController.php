@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Achievements;
+use App\Achievement;
 use Illuminate\Http\Request;
 
 class AchievementsController extends Controller
@@ -14,7 +14,7 @@ class AchievementsController extends Controller
      */
     public function index()
     {
-        $achievements = Achievements::paginate(15);
+        $achievements = Achievement::paginate(15);
 
         return view('admin.achievements', ['achievements' => $achievements]);
     }
@@ -48,7 +48,7 @@ class AchievementsController extends Controller
 
         $input = $request->all(); 
 
-        $achievements = Achievements::create($input); 
+        $achievements = Achievement::create($input);
 
         return back()->with('success', 'Достижение успешно добавлено');
     }
@@ -56,10 +56,10 @@ class AchievementsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Achievements  $achievements
+     * @param  \App\Achievement  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function show(Achievements $achievements)
+    public function show(Achievement $achievements)
     {
         //
     }
@@ -67,10 +67,10 @@ class AchievementsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Achievements  $achievements
+     * @param  \App\Achievement  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function edit(Achievements $achievements)
+    public function edit(Achievement $achievements)
     {
         //
     }
@@ -79,7 +79,7 @@ class AchievementsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Achievements  $achievements
+     * @param  \App\Achievement  $achievements
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -95,7 +95,7 @@ class AchievementsController extends Controller
         
         $input = $request->all(); 
 
-        $achievements = Achievements::find($id);
+        $achievements = Achievement::find($id);
         $achievements->update($input);
 
         return back()->with('success', 'Достижение успешно отредактировано');
@@ -104,12 +104,12 @@ class AchievementsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Achievements  $achievements
+     * @param  \App\Achievement  $achievements
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $achievements = Achievements::find($id);
+        $achievements = Achievement::find($id);
         $achievements->delete();
 
         return back()->with('success', 'Достижение успешно удалено');

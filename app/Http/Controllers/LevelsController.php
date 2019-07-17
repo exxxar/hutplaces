@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Levels;
+use App\Level;
 
 class LevelsController extends Controller
 {
@@ -15,7 +15,7 @@ class LevelsController extends Controller
      */
     public function index(Request $request)
     {
-        $levels = Levels::orderBy('id','DESC')->paginate(15);
+        $levels = Level::orderBy('id','DESC')->paginate(15);
         return view('admin.levels.index',compact('levels'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
     }
@@ -47,7 +47,7 @@ class LevelsController extends Controller
 
         $input = $request->all(); 
 
-        $level = Levels::create($input); 
+        $level = Level::create($input); 
 
         return redirect()->route('levels.index')
             ->with('success','Level created successfully');
@@ -61,7 +61,7 @@ class LevelsController extends Controller
      */
     public function show($id)
     {
-        $level = Levels::find($id);
+        $level = Level::find($id);
         return view('admin.levels.show',compact('level'));
     }
 
@@ -73,7 +73,7 @@ class LevelsController extends Controller
      */
     public function edit($id)
     {
-        $level = Levels::find($id);
+        $level = Level::find($id);
 
         return view('admin.levels.edit',compact('level'));
     }
@@ -96,7 +96,7 @@ class LevelsController extends Controller
 
         $input = $request->all(); 
 
-        $level = Levels::find($id);
+        $level = Level::find($id);
         $level->update($input);
 
         return redirect()->route('levels.index')

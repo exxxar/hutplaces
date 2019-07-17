@@ -1,6 +1,6 @@
 <?php
 
-use App\Settings;
+use App\Setting;
 use Illuminate\Database\Seeder;
 
 class SettingsTableSeeder extends Seeder
@@ -13,30 +13,30 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         //
-        Settings::create([
+        Setting::create([
             'title' => 'tax',
             'value' => '5'
         ]);
 
-        Settings::create([
+        Setting::create([
             'title' => 'coins_exchange',
             'value' => '5'
         ]);
 
 
-        Settings::create([
+        Setting::create([
             'title' => 'money_exchange',
             'value' => '1'
         ]);
 
 
-        Settings::create([
+        Setting::create([
             'title' => 'coins_title',
             'value' => 'pucks'
         ]);
 
 
-        Settings::create([
+        Setting::create([
             'title' => 'years',
             'value' => '{"2018","2019","220"}'
         ]);

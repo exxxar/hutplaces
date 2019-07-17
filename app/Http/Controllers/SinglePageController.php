@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendReminderEmail;
-use App\Orders;
-use App\Tickets;
+use App\Order;
+use App\Ticket;
 use Carbon\Carbon;
 use G2APay\G2APay;
 use Illuminate\Http\Request;
@@ -41,7 +41,7 @@ class SinglePageController extends Controller
         Storage::makeDirectory("public\\".$dirName);
 
         $description = $request->get("description");
-        $ticket = new Tickets();
+        $ticket = new Ticket();
         $ticket->email = $request->get("email");
         $ticket->description = $description;
         $ticket->directory = $dirName;
@@ -90,7 +90,7 @@ class SinglePageController extends Controller
     }
 
     public function requestMoney(Request $request,G2APay $payment){
-            $order = new Orders();
+            $order = new Order();
             $order->title = "Coins";
             $order->currency = "USA";
             $order->count=0.0;
