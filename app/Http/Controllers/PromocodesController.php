@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Promocode;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PromocodesController extends Controller
@@ -12,11 +13,11 @@ class PromocodesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $promocodes = Promocode::paginate(15);
-
-        return view('admin.promocodes', ['promocodes' => $promocodes]);
+        $promocodes = Promocode::orderBy('id','DESC')->paginate(15);
+        return view('admin.promo.index',compact('promocodes'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
     /**
@@ -26,7 +27,7 @@ class PromocodesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.promo.create');
     }
 
     /**
@@ -38,19 +39,20 @@ class PromocodesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'lifetime' => 'integer',
-            'activation_count' => 'integer',
-            'count' => 'integer',
-            'exp' => 'integer',
-            'discount' => 'integer',
+            'lifetime' => 'integer|min:0|max:2147483647',
+            'activation_count' => 'integer|min:0|max:2147483647',
+            'count' => 'integer|min:0|max:2147483647',
+            'exp' => 'integer|min:0|max:2147483647',
+            'discount' => 'integer|min:0|max:2147483647',
             'money' => 'numeric',
         ]);
 
         $input = $request->all(); 
 
-        $promocodes = Promocode::create($input); 
+        $promocodes = Promocode::create($input);
 
-        return back()->with('success', 'Промокод успешно добавлен');
+        return redirect()->route('promo.index')
+            ->with('success','Promocode created successfully');
     }
 
     /**
@@ -59,9 +61,10 @@ class PromocodesController extends Controller
      * @param  \App\Promocode  $promocodes
      * @return \Illuminate\Http\Response
      */
-    public function show(Promocode $promocodes)
+    public function show($id)
     {
-        //
+        $promocode = Promocode::find($id);
+        return view('admin.promo.show',compact('promocode'));
     }
 
     /**
@@ -70,9 +73,11 @@ class PromocodesController extends Controller
      * @param  \App\Promocode  $promocodes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Promocode $promocodes)
+    public function edit($id)
     {
-        //
+        $promocode = Promocode::find($id);
+
+        return view('admin.promo.edit',compact('promocode'));
     }
 
     /**
@@ -85,11 +90,11 @@ class PromocodesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'lifetime' => 'integer',
-            'activation_count' => 'integer',
-            'count' => 'integer',
-            'exp' => 'integer',
-            'discount' => 'integer',
+            'lifetime' => 'integer|min:0|max:2147483647',
+            'activation_count' => 'integer|min:0|max:2147483647',
+            'count' => 'integer|min:0|max:2147483647',
+            'exp' => 'integer|min:0|max:2147483647',
+            'discount' => 'integer|min:0|max:2147483647',
             'money' => 'numeric',
         ]);
         
@@ -98,7 +103,8 @@ class PromocodesController extends Controller
         $promocodes = Promocode::find($id);
         $promocodes->update($input);
 
-        return back()->with('success', 'Промокод успешно отредактирован');
+        return redirect()->route('promo.index')
+            ->with('success','Promocode updated successfully');
     }
 
     /**
@@ -109,9 +115,8 @@ class PromocodesController extends Controller
      */
     public function destroy($id)
     {
-        $promocodes = Promocode::find($id);
-        $promocodes->delete();
-
-        return back()->with('success', 'Промокод успешно удален');
+        DB::table("promocodes")->where('id',$id)->delete();
+        return redirect()->route('promo.index')
+            ->with('success','Promocode deleted successfully');
     }
 }
