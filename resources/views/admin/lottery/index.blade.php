@@ -39,11 +39,71 @@
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $lottery->title }}</td>
-                <td>{{ $lottery->lot_type }}</td>
-                <td>{{ $lottery->visible }}</td>
-                <td>{{ $lottery->completed }}</td>
-                <td>{{ $lottery->active }}</td>
-                <td>{{ $lottery->lifetime }}</td>
+                <td>
+                    @switch($lottery->lot_type)
+                        @case(0)
+                            card
+                            @break
+                    
+                        @case(1)
+                            coins
+                            @break
+    
+                        @case(2)
+                            other
+                            @break
+    
+                        @default
+                            {{$lottery->lot_type}}
+                    @endswitch 
+                </td>
+                <td>
+                    @if($lottery->visible)
+                        yes
+                    @else
+                        no
+                    @endif
+                </td>
+                <td>
+                    @if($lottery->completed)
+                        yes
+                    @else
+                        no
+                    @endif
+                </td>
+                <td>
+                    @if($lottery->active)
+                        yes
+                    @else
+                        no
+                    @endif
+                </td>
+                <td>
+                    @switch($lottery->lifetime)
+                        @case(0)
+                            unlimited
+                            @break
+                    
+                        @case(1)
+                            12
+                            @break
+    
+                        @case(2)
+                            24
+                            @break
+                        
+                        @case(3)
+                            36
+                            @break
+                            
+                        @case(4)
+                            48
+                            @break
+    
+                        @default
+                            {{$lottery->lifetime}}
+                    @endswitch 
+                </td>
                 <td>
                     <a class="btn btn-info" href="{{ route('lottery.show',$lottery->id) }}">Show</a>
                     @can('lottery-edit')
