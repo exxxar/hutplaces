@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Achievement;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AchievementsController extends Controller
@@ -12,11 +13,11 @@ class AchievementsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $achievements = Achievement::paginate(15);
-
-        return view('admin.achievements', ['achievements' => $achievements]);
+        $achievements = Achievement::orderBy('id','DESC')->paginate(15);
+        return view('admin.achievements.index',compact('achievements'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
     /**
@@ -26,7 +27,7 @@ class AchievementsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.achievements.create');
     }
 
     /**
@@ -38,19 +39,20 @@ class AchievementsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category' => 'integer',
-            'type' => 'integer',
-            'discount' => 'integer',
-            'exp' => 'integer',
-            'coins' => 'integer',
+            'category' => 'integer|min:0|max:2147483647',
+            'type' => 'integer|min:0|max:2147483647',
+            'discount' => 'integer|min:0|max:2147483647',
+            'exp' => 'integer|min:0|max:2147483647',
+            'coins' => 'integer|min:0|max:2147483647',
             'money' => 'numeric',
         ]);
 
         $input = $request->all(); 
 
-        $achievements = Achievement::create($input);
+        $achievement = Achievement::create($input); 
 
-        return back()->with('success', 'Достижение успешно добавлено');
+        return redirect()->route('achievements.index')
+            ->with('success','Achievement created successfully');
     }
 
     /**
@@ -59,9 +61,10 @@ class AchievementsController extends Controller
      * @param  \App\Achievement  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function show(Achievement $achievements)
+    public function show($id)
     {
-        //
+        $achievement = Achievement::find($id);
+        return view('admin.achievements.show',compact('achievement'));
     }
 
     /**
@@ -70,9 +73,11 @@ class AchievementsController extends Controller
      * @param  \App\Achievement  $achievements
      * @return \Illuminate\Http\Response
      */
-    public function edit(Achievement $achievements)
+    public function edit($id)
     {
-        //
+        $achievement = Achievement::find($id);
+
+        return view('admin.achievements.edit',compact('achievement'));
     }
 
     /**
@@ -85,20 +90,23 @@ class AchievementsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'category' => 'integer',
-            'type' => 'integer',
-            'discount' => 'integer',
-            'exp' => 'integer',
-            'coins' => 'integer',
+            'title' => 'required',
+            'description' => 'required',
+            'category' => 'integer|min:0|max:2147483647',
+            'type' => 'integer|min:0|max:2147483647',
+            'discount' => 'integer|min:0|max:2147483647',
+            'exp' => 'integer|min:0|max:2147483647',
+            'coins' => 'integer|min:0|max:2147483647',
             'money' => 'numeric',
         ]);
         
         $input = $request->all(); 
 
-        $achievements = Achievement::find($id);
-        $achievements->update($input);
+        $achievement = Achievement::find($id);
+        $achievement->update($input);
 
-        return back()->with('success', 'Достижение успешно отредактировано');
+        return redirect()->route('achievements.index')
+            ->with('success','Achievement updated successfully');
     }
 
     /**
@@ -109,9 +117,8 @@ class AchievementsController extends Controller
      */
     public function destroy($id)
     {
-        $achievements = Achievement::find($id);
-        $achievements->delete();
-
-        return back()->with('success', 'Достижение успешно удалено');
+        DB::table("achievements")->where('id',$id)->delete();
+        return redirect()->route('achievements.index')
+            ->with('success','Achievement deleted successfully');
     }
 }

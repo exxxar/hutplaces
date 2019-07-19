@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Role Management</h2>
+                <h2>Achievement Management</h2>
             </div>
             <div class="pull-right">
-                @can('role-create')
-                    <a class="btn btn-success" href="{{ route('settings.create') }}"> Create New Role</a>
+                @can('achievement-create')
+                    <a class="btn btn-success" href="{{ route('achievements.create') }}"> Create New achievement</a>
                 @endcan
             </div>
         </div>
@@ -18,6 +18,7 @@
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <p>{{ $message }}</p>
         </div>
     @endif
@@ -26,20 +27,54 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
+            <th>title</th>
+            <th>type</th>
+            <th>category</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($roles as $key => $role)
+        @foreach ($achievements as $key => $achievement)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $role->name }}</td>
+                <td>{{ $achievement->title }}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-                    @can('role-edit')
-                        <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                    @switch($achievement->type)
+                        @case(0)
+                            частое
+                            @break
+                    
+                        @case(1)
+                            редкое
+                            @break
+    
+                        @case(2)
+                            очень редкое
+                            @break
+                        
+                        @case(3)
+                            легендарное
+                            @break
+
+                        @default
+                            {{$achievement->type}}
+                    @endswitch
+                </td>
+                <td>
+                    @switch($achievement->category)
+                        @case(0)
+                            basic
+                            @break
+
+                        @default
+                            {{$achievement->category}}
+                    @endswitch
+                </td>
+                <td>
+                    <a class="btn btn-info" href="{{ route('achievements.show',$achievement->id) }}">Show</a>
+                    @can('achievement-edit')
+                        <a class="btn btn-primary" href="{{ route('achievements.edit',$achievement->id) }}">Edit</a>
                     @endcan
-                    @can('role-delete')
-                        {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                    @can('achievement-delete')
+                        {!! Form::open(['method' => 'DELETE','route' => ['achievements.destroy', $achievement->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     @endcan
@@ -49,7 +84,7 @@
     </table>
 
 
-    {!! $roles->render() !!}
+    {!! $achievements->render() !!}
 
 
 @endsection
