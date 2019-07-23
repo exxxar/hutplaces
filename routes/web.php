@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
 
+    Route::post('/search', 'CardsStorageController@search')->name('card.search');
+    Route::get('/cards', 'CardsStorageController@cards')->name('card.index');
+
     Route::resources([
         'auction'=>'AuctionController',
         'achievements'=>'AchievementsController',
@@ -47,7 +50,7 @@ Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
 
     Route::view('/', 'admin.main');
 
-    Route::view('/cards', 'admin.cards');
+    //Route::view('/cards', 'admin.cards');
     Route::view('/coins', 'admin.coins');
     Route::view('/mails', 'admin.mails');
     Route::view('/packs', 'admin.packs');
