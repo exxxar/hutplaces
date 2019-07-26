@@ -46,6 +46,7 @@ Route::group(['prefix'=>'admin',/*'middleware' => ['auth']*/], function() {
         'roles' => 'RoleController',
         'storage' => 'CardsStorageController',
         'images' => 'ImagesStorageController',
+        'transactions' => 'TransactionController',
     ]);
 
     Route::view('/', 'admin.main');

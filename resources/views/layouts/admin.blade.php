@@ -253,6 +253,13 @@
                                     @lang('admin.images')
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url("admin/transactions") }}">
+                                    <i class="fas fa-money-check-alt"></i>
+                                    @lang('admin.transactions')
+                                </a>
+                            </li>
                         </ul>
 
                         <hr>
