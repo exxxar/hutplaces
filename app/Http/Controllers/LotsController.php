@@ -104,4 +104,11 @@ class LotsController extends Controller
 
         return back()->with('success', 'Лот успешно удален');
     }
+
+    public function byId($lotteryId){
+        return response()->json([
+            'data' =>  Lot::where('lottery_id',$lotteryId)->first(),
+            'status' => 200
+        ]);
+    }
 }

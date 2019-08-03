@@ -117,4 +117,18 @@ class LotteryController extends Controller
         return redirect()->route('lottery.index')
             ->with('success','Lottery deleted successfully');
     }
+
+    public function all(){
+        return response()->json([
+            'data' =>  Lottery::all(),
+            'status' => 200
+        ]);
+    }
+
+    public function byId($lotteryId){
+        return response()->json([
+            'data' =>  Lottery::find($lotteryId),
+            'status' => 200
+        ]);
+    }
 }

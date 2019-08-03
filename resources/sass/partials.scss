@@ -1,0 +1,143 @@
+@import "utilits.scss";
+
+ul {
+ @include flex(center,flex-start);
+  list-style: none;
+  padding: 10px 10px 100px 10px;
+  width:1000px;
+  @media (max-width: 1000px) {
+    & {
+      //flex-direction: column;
+      width:100%;
+    }
+
+  }
+
+  li {
+    @include flex(center,flex-start);
+
+
+    position: relative;
+    background-position: center center;
+    background-size: auto;
+
+    background-repeat: no-repeat;
+    height: 370px;
+    width: 270px;
+
+    @media (max-height: 850px) {
+      & {
+        height:350px;
+        width:250px;
+      }
+    }
+
+    @media (max-height: 670px) {
+      & {
+        height:300px;
+        width:200px;
+      }
+    }
+    text-transform: uppercase;
+    box-shadow: 2px 2px 2px 0px $color12;
+    cursor: pointer;
+    background-color: $color14;
+    box-sizing: border-box;
+    padding: 30px;
+    font-size: 32px;
+    text-align: center;
+    font-weight: 400;
+    color: $color16;
+    transition: .5s;
+    text-shadow: 2px 2px 2px $color12;
+    margin-left:10px;
+    margin-bottom: 10px;
+
+
+
+    span {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      bottom: 15px;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+    }
+
+    &.closed {
+      color: $color6;
+      box-shadow: 0px 0px 2px 0px $color12;//, 0px 0px 14px 5px white inset;
+
+      &:hover {
+        transition: .5s;
+        //box-shadow: 0px 0px 2px 0px #424242, 0px 0px 14px 5px #7c0100 inset;
+        color: $color5;
+
+        span {
+          animation: 1.2s ease-in-out 0s normal none infinite running lockAnim;
+
+        }
+      }
+
+      span {
+        background-image: url('/img/lock-close.png');
+        transform-origin: center center;
+      }
+    }
+
+    &.opened {
+      box-shadow: 0px 0px 2px 0px $color12;
+
+      &:hover {
+        transition: .5s;
+        box-shadow: 0px 0px 2px 0px $color12, 0px 0px 14px 5px $color15 inset;
+      }
+
+      span {
+
+        background-image: url('/img/lock-open.png');
+      }
+    }
+
+    &.auction {
+
+      background-image: url('/img/auction-bg.png');
+    }
+
+    &.coins {
+      background-image: url('/img/coins-bg.png');
+    }
+
+    &.packs {
+      background-image: url('/img/packs-bg.png');
+    }
+
+    &.randoms {
+      background-image: url('/img/lottery-bg.png');
+    }
+
+    &.fortune {
+      background-image: url('/img/wheel-of-fortune-bg.png');
+    }
+
+    &.wager {
+      background-image: url('/img/wager-bg.png');
+    }
+
+  }
+
+}
+
+@keyframes lockAnim {
+  0%, 50%, 100% {
+    transform: rotate(0deg);
+  }
+  10%, 30% {
+    transform: rotate(-10deg);
+  }
+  20%, 40% {
+    transform: rotate(10deg);
+  }
+}

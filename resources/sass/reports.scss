@@ -1,0 +1,81 @@
+.report {
+  width:500px;
+  @include flex(center,center);
+  .reports-link {
+    color:$color4;
+    font-size: 14px;
+    text-decoration-color: $color4;
+    text-decoration-style: dashed;
+    cursor:pointer;
+  }
+
+  .alert {
+    color: #acff7d;
+    width:100%;
+    line-height: 200%;
+    text-align: center;
+    cursor:pointer;
+
+  }
+  form {
+    @include flex(center,center);
+    padding-top:20px;
+    box-sizing: border-box;
+
+    .input-group {
+
+      input {
+        text-align: left;
+        font-size: 14px;
+        text-transform: initial;
+      }
+
+      textarea {
+        text-transform: initial;
+      }
+
+      .btn {
+        margin-left: 0;
+      }
+    }
+
+
+  }
+
+  .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .inputfile + label {
+    font-size: 14px;
+    padding: 15px 20px;
+    width: 100%;
+    display: block;
+    border: 2px #fbfffb dashed;
+    text-align: center;
+    color: $color4;
+    font-weight: 100;
+    transition: .5s border;
+  }
+
+  .inputfile:focus + label,
+  .inputfile + label:hover {
+    border: 2px $color3 dashed;
+    transition: .5s border;
+    p {
+      cursor:pointer;
+    }
+
+  }
+
+
+  .inputfile:focus + label {
+    outline: none;
+  }
+
+}

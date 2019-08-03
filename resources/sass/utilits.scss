@@ -1,0 +1,247 @@
+$width: 1200px;
+
+$bp1: 1400px;
+
+/*
+ТЕМА 1
+$mainBg:'img/background.jpg';
+$color1:#2c3e50; //color
+$color2: #393939; //bg color
+$color3:yellow; //color \ btn-color
+$color4:white; // color \ btn-color
+$color5:darkred; //color
+$color6:gray;
+$color7:#74b65f; //btn-random
+$color8:#5fa252; //btn-random line
+$color9:#d86a43; //btn-buy
+$color10:#393939af; //slot in lottery + opacity
+$color11:#50504f; //number in slot
+$color12:black; //number in slot
+$color13:lightgray;*/
+
+/*
+ТЕМА 2
+
+$mainBg:'img/background-landing-2.jpg';
+$color1:#393939; //color
+$color2: #4a2626; //bg color
+$color3:yellow; //color \ btn-color
+$color4:white; // color \ btn-color
+$color5:darkred; //color
+$color6:gray;
+$color7:#74b65f; //btn-random
+$color8:#5fa252; //btn-random line
+$color9:#d86a43; //btn-buy
+$color10:#393939af; //slot in lottery + opacity
+$color11:#50504f; //number in slot
+$color12:black; //number in slot
+$color13:lightgray;*/
+
+/*ТЕМА 3*/
+$mainBg: '/img/background-landing.jpg';
+$color1: #393939; //color
+$color2: #2c3e50; //bg color
+$color3: yellow; //color \ btn-color
+$color4: white; // color \ btn-color
+$color5: darkred; //color
+$color6: gray;
+$color7: #74b65f; //btn-random
+$color8: #5fa252; //btn-random line
+$color9: #d86a43; //btn-buy
+$color10: #393939af; //slot in lottery + opacity
+$color11: #50504f; //number in slot
+$color12: black; //number in slot
+$color13: lightgray;
+$color14: yellow; //partials block
+$color15: #2c3e50; //partials shadow color
+$color16: #2c3e50; //partials label color
+
+@mixin flex($horizontal:center, $vertical:center,$wrap:wrap) {
+  display: flex;
+  justify-content: $horizontal;
+  align-items: $vertical;
+  flex-wrap: $wrap;
+}
+
+@mixin text($size:12px,$color:white,$weight:400,$align:center,$height:150%,$transform:none) {
+  font-size: $size;
+  color: $color;
+  font-weight: $weight;
+  text-align: $align;
+  // width: 100%;
+  line-height: $height;
+  text-transform: $transform;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+@mixin bg($color,$url,$size:cover,$attachment:scroll,$position:center center) {
+  background-color: $color;
+  background-image: url($url);
+  background-size: $size;
+  background-position: $position;
+  background-attachment: $attachment
+}
+
+@mixin psClass($left:unset,$top:unset,$right:unset,$bottom:unset,$width:unset,$height:unset,$index:0) {
+  content: '';
+  width: $width;
+  height: $height;
+  bottom: $bottom;
+  top: $top;
+  left: $left;
+  right: $right;
+  z-index: $index;
+  position: absolute;
+
+}
+
+button,
+textarea,
+select,
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Close modal button*/
+.close {
+  position: fixed;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #fff;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+
+}
+
+/* Scroll top button*/
+.scrollTop {
+  position: fixed;
+  bottom: 80px;
+  right: 0px;
+  background: red;
+  opacity: 0.3;
+  z-index: 100;
+  padding: 20px;
+  color: white;
+  font-weight: 800;
+  transition: .5s;
+  cursor: pointer;
+  &:hover {
+    transition: .5s;
+    opacity: 0.9;
+  }
+}
+
+/* Scroll area*/
+.scroll-area {
+  height: 100%;
+  width: 100%;
+  padding: 100px 0px;
+  box-sizing: border-box;
+}
+
+/* Google recaptcha btn*/
+.grecaptcha-badge {
+  z-index: 100;
+}
+
+/* notifications*/
+.vue-notification {
+  padding: 20px;
+  margin: 0 5px 5px;
+
+  font-size: 14px;
+
+  color: #ffffff;
+  background: #44A4FC;
+  border-left: 5px solid #187FE7;
+  box-shadow: 0px 0px 5px 0px black;
+
+  &.warn {
+    background: #393939;
+    border-left-color: yellow;
+    color: yellow;
+
+  }
+
+  &.error {
+    background: yellow;
+    color: #393939;
+    border-left-color: #393939;
+
+  }
+
+  &.success {
+    background: rgb(160, 205, 0);
+    border-left-color: #42A85F;
+  }
+}
+
+/* modal window*/
+.v--modal-overlay {
+  background: rgba(0, 0, 0, 0.97);
+
+  .v--modal-background-click {
+    @include flex(center, center);
+    .v--modal {
+      background: transparent;
+      box-shadow: none;
+      @include flex(center, center);
+
+      width: 100% !important;
+      left: 0px !important;
+      top: 0px !important;
+
+    }
+  }
+
+}
+
+.v--modal-overlay.scrollable {
+  height: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: transparent;
+  opacity: 0.9;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
+  background-color: yellow;
+  width: 7px;
+}

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -34,4 +34,17 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
 Route::group(['middleware' => 'jwt.refresh'], function(){
     Route::get('auth/refresh', 'AuthController@refresh');
+});*/
+
+Route::post('/registration', 'API\AuthController@register');
+Route::post('/login', 'API\AuthController@login');
+
+Route::get('/lottery/all', 'LotteryController@all');
+Route::get('/lottery/get/{lotteryId}', 'LotteryController@byId');
+Route::get('/lot/get/{lotteryId}', 'LotsController@byId');
+
+Route::middleware('auth:api')->group(function () {
+    Route::post('/logout', 'API\AuthController@logout');
+    Route::get('/get-user', 'API\AuthController@getUser');
 });
+

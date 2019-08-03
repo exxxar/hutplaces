@@ -1,0 +1,593 @@
+@import "utilits.scss";
+@import 'modals.scss';
+@import 'tooltip.scss';
+
+.hutplace-preloader {
+  color:red;
+  font-weight: 900;
+
+  .loading-circle {
+    border-left-color: red !important;
+
+  }
+
+  .loading-text {
+    margin-top: 15px;
+    color: $color3;
+    font-size: 12px;
+    font-family: 'Open Sans';
+  }
+}
+
+body {
+  overflow: hidden;
+}
+
+
+.full {
+  width:100%;
+  box-sizing: border-box;
+}
+.btn {
+  padding: 20px 20px;
+  text-align: center;
+  font-weight: 800;
+  list-style: none;
+  cursor: pointer;
+  border: none;
+  box-shadow: 2px 2px 2px 0px $color12;
+  transition: .5s;
+
+  a {
+    text-decoration: none;
+
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.btn-yellow {
+    color: $color2;
+    background-color: $color3;
+    box-shadow: 2px 2px 2px 0px $color12;
+    a {
+      color: $color2;
+    }
+
+    &:hover {
+      background-color: $color4;
+      transition: .5s;
+      color:$color2;
+      a {
+        color:$color2;
+      }
+    }
+
+  }
+
+  &.btn-black {
+    color: $color4;
+    background-color: $color2;
+    box-shadow: 2px 2px 2px 0px $color12, 0px 0px 5px 2px $color4 inset;
+
+    a {
+      color: $color4;
+    }
+
+    &:hover {
+      box-shadow: 2px 2px 2px 0px $color12, 0px 0px 5px 2px $color3 inset;
+
+      transition: .5s;
+
+    }
+
+  }
+
+  &.btn-black-2 {
+    color: $color4;
+    background-color: $color2;
+    box-shadow: 2px 2px 2px 0px $color12;
+
+    a {
+      color: $color4;
+    }
+
+    &:hover {
+      transition: .5s;
+      background-color: $color4;
+      color:$color2;
+
+      a {
+        color:$color2;
+      }
+
+    }
+
+    &.active {
+      background-color: $color3;
+      color:$color2;
+
+
+    }
+  }
+
+  &.btn-primary {
+    color: $color4;
+    background-color: #7ab300;
+
+    a {
+      color: $color4;
+    }
+
+    &:hover {
+      background-color: $color4;
+      transition: .5s;
+    }
+  }
+
+  &.btn-info {
+    color: $color4;
+    background-color: #007fb3;
+
+    a {
+      color: $color4;
+    }
+
+    &:hover {
+      background-color: $color4;
+      transition: .5s;
+    }
+  }
+
+}
+
+header, section, footer {
+  width: 100%;
+  @include flex(center, flex-start);
+
+  .center {
+    padding: 10px;
+    box-sizing: border-box;
+    width: $width;
+    @include flex(space-between, center);
+
+    @media (max-width: $width) {
+      & {
+        width:100%;
+      }
+    }
+  }
+}
+
+header {
+  height: 80px;
+  .center {
+    height: inherit;
+  }
+}
+
+#app {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  color: $color1;
+  width: 100%;
+  height: 100vh;
+
+  background-image: url($mainBg);
+  background-color: $color2;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+}
+
+header {
+  height: 80px;
+  background-color: $color2;
+  box-shadow: 0px 0px 6px 0px $color12;
+  position: relative;
+  z-index: 101;
+  .center {
+    @include flex(space-between, flex-start);
+
+
+    .logo-wrapper {
+      background-color: $color2;
+      padding: 0 10px 10px 10px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 2;
+
+      &:after {
+        content: '';
+        width: 100%;
+        height: 54px;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        position: absolute;
+        box-shadow: 7px 8px 2px -5px $color12;
+
+      }
+
+      .logo {
+        width: 100px;
+        transition: .5s;
+      }
+
+      @media (max-width: 1050px) {
+        & {
+          background-color: transparent;
+          &:after {
+            content: none;
+
+          }
+          .logo {
+            width: 60px;
+            transition: .5s;
+          }
+        }
+      }
+    }
+
+    .auth {
+      @include flex(center, center);
+      width: 300px;
+      button {
+        margin-left:10px;
+      }
+    }
+    .user {
+      @include flex(space-around, center);
+      width: 300px;
+      position: relative;
+      z-index: 0;
+
+      .info {
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+
+        p {
+          text-align: left;
+          color: $color4;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 10pt;
+          line-height: 150%;
+          margin-top:0px;
+
+          &.pucks {
+            color: $color3;
+            font-weight: 600;
+
+            strong {
+              color: $color4;
+            }
+          }
+        }
+
+      }
+
+      .avatar {
+        border: 2px solid $color3;
+        padding: 5px;
+        position: relative;
+        width:50px;
+        height:50px;
+        img {
+          width:100%;
+          height:100%;
+        }
+
+        &:after {
+          content: '';
+          width: 20px;
+          height: 1px;
+          background: $color4;
+          position: absolute;
+          bottom: -5px;
+          left: 22px;
+        }
+      }
+
+      .dropdown {
+
+        transition: .5s;
+        z-index: 2;
+        position: absolute;
+        left: 0;
+        bottom: -75px;
+        width: 100%;
+        @include flex(flex-end, flex-start);
+
+        ul {
+          li {
+            padding: 10px 25px;
+            background-color: $color2;
+
+            a {
+              text-align: left;
+              text-decoration: none;
+              color: $color4;
+
+              &:hover {
+                color: $color3;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .btn-mobile {
+      display: none;
+      width:150px;
+      margin-left: -80px;
+      @media (max-width: 1050px) {
+        &{
+          display: block;
+          padding: 15px 15px;
+          margin-top:5px;
+        }
+
+      }
+
+      @media (max-width: 700px) {
+        &{
+          margin-left:-40px;
+        }
+      }
+
+    }
+    nav {
+      @include flex(space-around, center);
+      position: relative;
+      border: none;
+      li {
+        margin-left:10px;
+      }
+      @media (max-width: 1050px) {
+        & {
+          width: 25px;
+          height: 20px;
+          border-top: 1px $color4 solid;
+          border-bottom: 1px $color4 solid;
+
+          top: 15px;
+          right: 20px;
+
+
+          &:after {
+            content: '';
+            width: 100%;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            height: 1px;
+            background: $color4;
+          }
+          li {
+            display: none !important;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+aside {
+  position: fixed;
+  z-index: 100;
+  top: 150px;
+  left: 10px;
+  width: 200px;
+
+  nav {
+    width: 100%;
+    & > ul {
+      width: 100%;
+      & > li {
+        margin-bottom: 10px;
+        transition:.5s;
+
+        box-sizing: border-box;
+
+        &.more-menu {
+          width: 100%;
+          padding: 10px;
+          box-sizing: border-box;
+          .lang {
+            @include flex(center, center);
+
+            a {
+              padding: 5px;
+            }
+          }
+
+          ul.more {
+            li {
+              cursor:pointer;
+              a {
+                text-align: center;
+                color: $color13;
+                font-size: 16px;
+                text-decoration: none;
+                transition:.5s;
+
+
+                &:hover {
+                  color: $color3;
+                }
+
+                &.report {
+                  font-weight: 900;
+                  color: $color3;
+
+                  &:hover {
+                    color: $color5;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  @media (max-width: 1400px) {
+    & {
+      left:0px;
+      width: 50px;
+      &:hover {
+        width: 200px;
+      }
+      & > nav {
+        width: 50px;
+
+        background-image: url('/img/btn-menu.png');
+        background-position: center center;
+        background-color: $color3;
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        box-shadow: 2px 2px 2px 0px $color12;
+        height: 50px;
+        border-radius: 0px 50% 50% 0px;
+
+        &:hover {
+          background: none;
+          box-shadow: none;
+          width: auto;
+          height: auto;
+          border-radius: initial;
+
+          & > ul {
+            display: block;
+          }
+        }
+
+        & > ul {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    & {
+      left:0px;
+
+
+      &:hover {
+        padding-top:50px;
+        width:100%;
+        top:80px;
+        background-color: $color2;
+        & > nav {
+          background: none;
+          box-shadow: none;
+          height: 100vh;
+          border-radius: initial;
+          width: 100%;
+
+          & > ul {
+            display: block;
+            width: 100%;
+
+            & > li {
+              font-size: 24px;
+              transition:.5s;
+
+              &.more-menu {
+                ul.more {
+                  li {
+                    a {
+                      font-size: 18px;
+                      line-height: 150%;
+                      transition: .5s;
+                    }
+                  }
+                }
+
+              }
+            }
+            .btn {
+              background-color: transparent;
+              box-shadow: none;
+              border:none;
+            }
+            .btn.btn-black-2 {
+              box-shadow: none;
+            }
+
+            .btn.btn-yellow {
+              color:$color3;
+              &:hover {
+                color:$color2;
+              }
+            }
+
+
+          }
+        }
+      }
+
+      & > nav {
+        width: 50px;
+
+        background-image: url('/img/btn-menu.png');
+        background-position: center center;
+        background-color: $color3;
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        box-shadow: 0px 0px 2px 0px $color12;
+        height: 50px;
+        border-radius: 0px 50% 50% 0px;
+
+
+        & > ul {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+#pageContent {
+  height: 100vh;
+
+  width: 100%;
+  .center {
+    @include flex(center, center);
+
+    @media (max-width: 600px) {
+      & {
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        width: 100%;
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

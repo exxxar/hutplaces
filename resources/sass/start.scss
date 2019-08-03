@@ -1,0 +1,859 @@
+@import 'reset.scss';
+@import "cardstyle.scss";
+@import "utilits.scss";
+@import "tooltip.scss";
+
+body {
+  font-family: 'Open Sans';
+}
+
+header, section, footer {
+  width: 100%;
+  position: relative;
+
+  @include flex(center, center);
+
+  .center {
+    width: 1200px;
+    @include flex(center, center);
+    padding: 10px;
+    box-sizing: border-box;
+  }
+}
+
+ul.social {
+  width: 200px;
+  @include flex(space-around, center);
+
+  li {
+    width: 50px;
+    height: 50px;
+    background: yellow;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 0px black;
+    color: #393939;
+    cursor: pointer;
+    transition: 0.5s;
+    @include flex(center, center);
+
+    &:hover {
+      background: white;
+      transition: 0.5s;
+    }
+  }
+}
+
+header {
+  height: 80px;
+  background-color: #2c3e50;
+  box-shadow: 0px 3px 3px 0px black;
+  z-index: 2;
+
+  .center {
+    justify-content: space-between;
+    height: inherit;
+
+    .logo-wrapper {
+      background-color: #2c3e50;
+      padding: 0 10px 10px 10px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 2;
+
+      &:after {
+
+        @include psClass($left: 0, $bottom: 0, $height: 43px, $width: 100%);
+        box-shadow: 3px 3px 3px 0px black;
+
+      }
+
+      .logo {
+        width: 100px;
+        transition: .5s;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      @media (max-width: 700px) {
+        & {
+          background-color: transparent;
+
+          &:after {
+            content: none;
+
+          }
+
+          .logo {
+            width: 60px;
+            transition: .5s;
+
+          }
+        }
+      }
+    }
+
+    p {
+      @include text(24px, white, 100, right, 150%, uppercase);
+      margin-top: -47px;
+    }
+
+    ul.social {
+      margin-top: -47px;
+    }
+
+    @media (max-width: 700px) {
+      & {
+        p {
+          display: none;
+        }
+
+        ul.social {
+          margin-top: -10px;
+        }
+      }
+    }
+
+
+  }
+}
+
+.section-1 {
+  height: 100vh;
+  min-height: 650px;
+  z-index: 1;
+
+  @include bg(#2c3e50, '/img/background-landing.jpg', cover, fixed);
+
+  .center {
+    h1 {
+      width:100%;
+      @include text(54px, white, 900, right, 150%, uppercase);
+
+      span {
+        color: yellow;
+      }
+    }
+
+    h3 {
+      width:100%;
+      @include text(18px, white, 900, right, 150%, uppercase);
+    }
+
+    nav {
+      @include flex(flex-end, center);
+      width: 100%;
+      padding-top: 20px;
+
+      ul {
+        width: 430px;
+
+        @media (max-width: 500px) {
+          & {
+            width: 100%;
+          }
+        }
+
+        li {
+          width: 100%;
+          position: relative;
+
+          h5 {
+            @include text(18px, yellow, 900, left, 150%, uppercase);
+            padding-top: 10px;
+          }
+
+          p {
+            @include text(16px, white, 400, left, 150%);
+            padding-top: 5px;
+          }
+
+          &:after {
+
+            @include psClass($left: -70px, $top: 19px, $height: 50px, $width: 54px);
+            @include bg(transparent, '/img/rect.png', cover);
+            @include flex(center, center);
+
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            text-shadow: 0px 0px 11px #FFEB3B;
+
+
+            color: white;
+            font-size: 18px;
+          }
+
+          &:nth-of-type(1):after {
+            content: '\f135';
+          }
+
+          &:nth-of-type(2):after {
+            content: '\f79c';
+          }
+
+          &:nth-of-type(3):after {
+            content: '\f1b3';
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.section-2 {
+  background-color: #2c3e50;
+  height: 250px;
+
+  .center {
+    justify-content: space-around;
+
+    .left {
+      img {
+        position: absolute;
+        z-index: 3;
+        top: -95px;
+      }
+
+
+      @media (max-width: 1000px) {
+        & {
+          img {
+            width: 200px;
+            top: -25px;
+          }
+        }
+      }
+
+      @media (max-width: 850px) {
+        & {
+          img {
+            width: 150px;
+            top: 0px;
+          }
+        }
+      }
+
+      @media (max-width: 700px) {
+        & {
+          display: none;
+        }
+      }
+    }
+
+    .right {
+      width: 400px;
+      @include flex(center, center);
+
+      .text {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-left: 3px yellow solid;
+
+        p {
+
+          @include text(14px, white, 600, left, 150%, uppercase);
+
+          strong {
+            font-size: 24px;
+          }
+
+          del {
+            font-size: 36px;
+            text-decoration-line: line-through;
+            text-decoration-color: yellow;
+            text-decoration-width: 5px;
+            font-weight: 900;
+            color: red;
+          }
+        }
+
+        ul {
+          width: 100%;
+          padding: 20px;
+          box-sizing: border-box;
+        }
+      }
+
+      @media (max-width: 500px) {
+        & {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.section-3 {
+  height: 650px;
+  min-height: 650px;
+  z-index: 1;
+  @include bg(#2c3e50, '/img/background-landing-2.jpg', cover, fixed);
+
+
+  @media (max-width: 700px) {
+    & {
+      min-height:950px;
+    }
+  }
+
+  .center {
+    h1 {
+      padding-top: 10px;
+      @include text(36px, yellow, 900, center, 150%, uppercase);
+    }
+
+    ul {
+      width: 100%;
+      @include flex(space-around, center);
+      padding: 50px;
+      box-sizing: border-box;
+
+      li {
+        width: 250px;
+
+        @include flex(center, center);
+        flex-direction: column;
+
+        h4 {
+          padding-top: 10px;
+          @include text(16px, white, 900, center, 150%, uppercase);
+
+        }
+
+        .circle {
+          margin-top: 30px;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          border: 10px yellow solid;
+          @include flex(center, center);
+          background-color: #2c3e50;
+          box-shadow: -3px 0px 2px 0px black, 0px 0px 8px 7px #000000 inset;
+
+          p {
+            @include text(24px, white, 900, center, 150%, uppercase);
+          }
+
+          &.large {
+            padding: 20px;
+
+            p {
+              margin-top: 10px;
+              font-size: 34px;
+
+              &:nth-of-type(2) {
+                font-size: 14px;
+                margin-top: -20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.section-4 {
+  background-color: #2c3e50;
+  min-height: 250px;
+  padding: 50px;
+  box-sizing: border-box;
+
+  .center {
+    h1 {
+      @include text(24px, white, 900, center, 150%, uppercase);
+    }
+
+    ul {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      @include flex(space-around, center);
+
+      li {
+        width: 170px;
+        height: 70px;
+        padding: 10px;
+        box-sizing: border-box;
+
+        img {
+          height: 100%;
+
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+.section-5 {
+  height: 650px;
+  min-height: 650px;
+  z-index: 1;
+  @include bg(rgba(8, 29, 50, 0.83), '/img/background-landing-3.jpg', cover, fixed);
+
+
+  .center {
+    .slider {
+      width: 100%;
+      height: 400px;
+    }
+
+  }
+
+  .modal {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(8, 29, 50, 0.83);
+    top: 0;
+    left: 0;
+    @include flex(center, center);
+
+    h1 {
+      width: 100%;
+      @include text(24px, white, 900, center, 150%, uppercase);
+    }
+
+    ul.social {
+      padding-top: 20px;
+    }
+  }
+}
+
+
+.section-6 {
+  background-color: #1c3c50;
+  height: 100vh;
+  min-height: 1000px;
+
+  .center {
+    height: 100%;
+    padding: 50px 0px;
+    box-sizing: border-box;
+
+    @include bg(#1c3c50, '/img/bg-2.png', cover);
+
+    h1 {
+      align-self: flex-start;
+      @include text(42px, white, 900, center, 150%, uppercase);
+
+      span {
+        color: yellow;
+      }
+
+    }
+
+    h2 {
+      align-self: flex-end;
+      @include text(42px, white, 100, center, 150%, uppercase);
+
+      @media (max-width: 580px) {
+        & {
+          font-size: 32px;
+        }
+      }
+    }
+
+    .bonus {
+      position: relative;
+      width: 100%;
+      @include flex(center, center);
+
+      img {
+        border: 10px transparent solid;
+        border-radius: 50%;
+
+        &:hover {
+          border: 10px yellow solid;
+          transition: border .5s;
+          cursor: pointer;
+        }
+      }
+
+      img:nth-of-type(1) {
+        position: absolute;
+        right: 400px;
+        top: 0;
+        z-index: 2;
+
+      }
+
+      img:nth-of-type(2) {
+        position: absolute;
+        right: 200px;
+        top: 0;
+        z-index: 1;
+      }
+
+      img:nth-of-type(3) {
+        position: absolute;
+        right: 0;
+        top: -160px;
+        z-index: 0;
+      }
+
+      @media (max-width: 700px) {
+        & {
+          img:nth-of-type(1) {
+            width: 125px;
+            height: 125px;
+            top: 58px;
+            right: 37px;
+
+          }
+
+          img:nth-of-type(2) {
+            width: 150px;
+            height: 150px;
+            right: 26px;
+            top: -35px;
+          }
+
+          img:nth-of-type(3) {
+            width: 200px;
+            height: 200px;
+            top: -174px;
+            right: 4px;
+          }
+        }
+      }
+
+    }
+
+    .arrow {
+      position: relative;
+      width: 100%;
+      height: 20px;
+      @include flex(flex-end, flex-start);
+
+      img {
+        position: absolute;
+        top: 60px;
+
+      }
+    }
+  }
+}
+
+.section-7 {
+  background-color: #1c3c50;
+  padding:50px 0px;
+
+  .center {
+    height: 100%;
+    padding: 50px 0px;
+
+    h1 {
+      align-self: flex-start;
+      width: 100%;
+      @include text(42px, white, 900, center, 150%, uppercase);
+      position: relative;
+
+      span {
+        color: yellow;
+      }
+
+      &.top:after {
+        @include psClass($left: 10%, $top: 25px, $height: 207px, $width: 65px);
+        @include bg(transparent, '/img/arrow-down.png', cover);
+
+
+        @media (max-width: 900px) {
+          & {
+            left: 5%;
+            top: 53px;
+          }
+        }
+      }
+
+      &.bottom:after {
+        @include psClass($right: 15%, $bottom: 26px, $height: 215px, $width: 65px);
+        @include bg(transparent, '/img/arrow-up.png', cover);
+
+        @media (max-width: 900px) {
+          & {
+            width: 37px;
+            height: 128px;
+          }
+        }
+
+
+        @media (max-width: 650px) {
+          & {
+
+            bottom: 53px;
+          }
+        }
+      }
+    }
+
+    ul {
+      width: 100%;
+      @include flex(center, flex-start);
+
+      li {
+        width: 270px;
+        height: 370px;
+        background-color: yellow;
+        box-shadow: 2px 2px 2px 0px black;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom:10px;
+        @include flex(center, flex-start);
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        padding: 20px;
+        box-sizing: border-box;
+
+
+        &:hover {
+          box-shadow: 0px 0px 2px 0px black, 0px 0px 11px 5px #2c3e50 inset;
+          transition: .5s;
+        }
+
+        p {
+          @include text(36px, #2c3e50, 400, center, 100%, uppercase);
+          text-shadow: 2px 2px 2px black;
+
+        }
+
+        &:nth-of-type(1) {
+          background-image: url('/img/lottery-bg.png');
+        }
+
+        &:nth-of-type(2) {
+          background-image: url('/img/coins-bg.png');
+        }
+
+        @media (max-width: 900px) {
+          & {
+            width: 250px;
+            height: 350px;
+
+            p {
+              font-size: 24px;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.section-8 {
+  background-color: #2c3e50;
+  padding: 50px 0px;
+
+  .center {
+    justify-content: space-around;
+
+
+    h1 {
+      padding: 15px 0px;
+      @include text(42px, white, 900, center, 150%, uppercase);
+
+      span {
+        color: yellow;
+      }
+    }
+
+    .logo {
+      width: 100%;
+      @include flex(center, center);
+      color: yellow;
+      font-size: 56px;
+    }
+
+    .row {
+      width: 100%;
+      @include flex(center, center);
+
+      .input-group {
+        width: 400px;
+
+        label {
+          width: 100%;
+          @include text(10px, white, 900, left, 150%, uppercase);
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          box-sizing: border-box;
+          border: none;
+          border-bottom: 2px white solid;
+          background-color: transparent;
+
+          @include text(24px, white, 900, center, 150%, uppercase);
+
+          &::placeholder {
+            @include text(24px, lightgray, 100, left, 150%);
+
+          }
+
+        }
+
+        .btn {
+          margin-top: 20px;
+          padding: 20px 20px;
+          text-align: center;
+          font-weight: 800;
+          list-style: none;
+          cursor: pointer;
+          border: none;
+          width: 100%;
+          box-shadow: 0px 0px 3px 0px black;
+          transition: .5s;
+
+          a {
+            text-decoration: none;
+
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          &.btn-yellow {
+            color: #393939;
+            background-color: yellow;
+
+            a {
+              color: #393939;
+            }
+
+            &:hover {
+              background-color: white;
+              transition: .5s;
+              color: #393939;
+
+              a {
+                color: #393939;
+              }
+            }
+
+          }
+
+          &.btn-black {
+            color: white;
+            background-color: #393939;
+            box-shadow: 0px 0px 3px 0px black, 0px 0px 5px 2px white inset;
+
+            a {
+              color: white;
+            }
+
+            &:hover {
+              box-shadow: 0px 0px 3px 0px black, 0px 0px 5px 2px yellow inset;
+
+              transition: .5s;
+
+            }
+
+          }
+
+          &.btn-black-2 {
+            color: white;
+            background-color: #393939;
+            box-shadow: 0px 0px 3px 0px black;
+
+            a {
+              color: white;
+            }
+
+            &:hover {
+              transition: .5s;
+              background-color: white;
+              color: #393939;
+
+              a {
+                color: #393939;
+              }
+
+            }
+
+            &.active {
+              background-color: yellow;
+              color: #393939;
+
+            }
+          }
+
+          &.btn-primary {
+            color: white;
+            background-color: #7ab300;
+
+            a {
+              color: white;
+            }
+
+            &:hover {
+              background-color: white;
+              transition: .5s;
+            }
+          }
+
+          &.btn-info {
+            color: white;
+            background-color: #007fb3;
+
+            a {
+              color: white;
+            }
+
+            &:hover {
+              background-color: white;
+              transition: .5s;
+            }
+          }
+
+        }
+      }
+
+      & > a {
+        @include text(12px, white, 900, center, 150%);
+        padding: 25px 0px;
+        text-decoration-style: dashed;
+      }
+    }
+
+  }
+}
+
+footer {
+  height: 200px;
+  background-color: #393939;
+
+  .center {
+
+    p {
+      padding: 10px;
+      width:100%;
+      @include text(10px, white, 900, center, 150%);
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

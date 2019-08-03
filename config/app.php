@@ -164,6 +164,7 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         \App\Providers\GoogleDriveServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -1,0 +1,157 @@
+
+@import "utilits.scss";
+
+.example-slide {
+ @include flex(center,center);
+
+  background-color: $color6;
+  color: $color13;
+
+  font-size: 1.5rem;
+  min-height: 10rem;
+}
+
+h1 {
+  color: #ff0;
+  font-weight: 600;
+  text-align: center;
+  font-size: 30px;
+  strong {
+    font-size: 36px;
+    color: $color4;
+    i {
+      color: #ff0;
+      font-style: italic;
+    }
+  }
+
+}
+
+.ps > .ps__scrollbar-y-rail > .ps__scrollbar-y {
+  background-color: #ff0 !important;
+}
+
+.random-games {
+  @include flex(center,center);
+  width:1000px;
+
+  @media (max-width: 1000px) {
+    & {
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      min-width: 500px;
+    }
+  }
+  .games-list {
+    padding: 10px 10px 100px 10px;
+    @include flex(center, center);
+
+    width: 100%;
+    box-sizing: border-box;
+
+
+    .game {
+      @include flex(center, center);
+
+      height: 550px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 0px 10px 0px;
+
+      .row {
+        position: relative;
+        @include flex(center, center);
+        width:100%;
+      }
+      a[target="_blank"] {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: $color4;
+        line-height: 35px;
+        text-decoration-style: dashed;
+
+        &:after {
+          content: '';
+          width: 23px;
+          height: 15px;
+          background: url('/img/link-arrow.png');
+          top: 0;
+          left: 0;
+          display: block;
+          margin: 10px auto;
+        }
+      }
+
+      .game-logo {
+        width: 50px;
+        height: 50px;
+      }
+
+      .large-promo {
+        height: 350px;
+        box-sizing: border-box;
+        border: 2px $color6 solid;
+        padding: 10px;
+        width: 100%;
+      }
+
+      .control {
+        margin-top: 10px;
+        height: 50px;
+        width: 100%;
+        background-color: $color2;
+        box-shadow: 2px 2px 2px 0px $color12;
+        @include flex(space-between, center);
+        box-sizing: border-box;
+        position: relative;
+
+        p {
+          margin: 0;
+        }
+
+        p.label {
+          font-size: 16px;
+          font-weight: 900;
+          margin-left: 20px;
+          color: $color6;
+        }
+
+        .platforms {
+          display: flex;
+
+          li {
+            list-style: none;
+
+            a {
+              color: $color4;
+              padding-left: 5px;
+              padding-right: 5px;
+              text-decoration-style: dashed;
+            }
+          }
+        }
+
+        p.counter {
+          @include flex(center, center);
+          color: $color6;
+          font-weight: 900;
+
+          span {
+            width: 70px;
+            height: 50px;
+            @include flex(center, center);
+            margin-left: 20px;
+            background: $color3;
+            color: $color12;
+            font-size: 16px;
+            font-weight: 900;
+
+          }
+        }
+      }
+
+    }
+  }
+}

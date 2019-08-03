@@ -19,11 +19,14 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
-        "vue-template-compiler": "^2.6.8"
+        "vue-template-compiler": "^2.6.8",
+        "webpack-cli": "^3.3.6"
     },
     "dependencies": {
         "@chenfengyuan/vue-carousel": "^1.0.1",
+        "@vue/cli": "^3.9.3",
         "@websanova/vue-auth": "^2.21.14-beta",
+        "laravel-mix-alias": "^1.0.2",
         "npm-font-open-sans": "^1.1.0",
         "redis": "^2.8.0",
         "redis-server": "^1.2.2",
@@ -31,12 +34,22 @@
         "vue-2-breadcrumbs": "^0.5.0",
         "vue-axios": "^2.1.4",
         "vue-beautiful-chat": "^2.2.0",
+        "vue-carousel-3d": "^0.2.0",
+        "vue-cli": "^2.9.6",
+        "vue-clipboard2": "^0.3.0",
         "vue-cookies": "^1.5.12",
         "vue-custom-scrollbar": "^1.0.0",
+        "vue-extend-layout": "^2.0.6",
+        "vue-js-modal": "^1.3.31",
         "vue-loading-overlay": "^3.2.0",
+        "vue-notification": "^1.3.16",
         "vue-perfect-scrollbar": "^0.1.0",
+        "vue-recaptcha-v3": "^1.5.0",
         "vue-router": "^3.0.2",
-        "vuejs-localization": "^1.0.3",
-        "vuetify": "^1.5.3"
+        "vue-scrollto": "^2.15.0",
+        "vue-tabs-component": "^1.5.0",
+        "vue-winwheel": "^0.1.2",
+        "vuejs-loading-plugin": "^1.0.5",
+        "vuejs-localization": "^1.0.3"
     }
 }
