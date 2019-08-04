@@ -11,6 +11,19 @@
 |
 */
 
+use Illuminate\Support\Facades\Broadcast;
+
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('raffle-chanel', function(){
+    return true;
+});
+Broadcast::channel('pick-place-chanel', function(){
+    return true;
+});
+
+Broadcast::channel('test-chanel', function(){
+    return true;
 });

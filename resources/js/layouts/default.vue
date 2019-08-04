@@ -188,6 +188,14 @@
             }
         },
         methods: {
+            message(title,message,type){
+                this.$notify({
+                    group: 'main',
+                    type: type,
+                    title: title,
+                    text: message
+                })
+            },
             logout() {
                 auth.logout();
                 this.$router.push('signin');
@@ -211,6 +219,24 @@
 
         },
         mounted: function () {
+
+            var message = this.message;
+
+            pusher.subscribe('pick-place-chanel').bind('pick-place-event', function(data) {
+                console.log(JSON.stringify(data));
+                message("Сообщение от администрации",`${data.message}`,'warn');
+            });
+
+            pusher.subscribe('raffle-chanel').bind('raffle-event', function(data) {
+                console.log(JSON.stringify(data));
+                message("Сообщение от администрации",`${data.message}`,'warn');
+            });
+
+            pusher.subscribe('test-chanel').bind('test-event', function(data) {
+                console.log(JSON.stringify(data));
+                message("Сообщение от администрации",`${data.message}`,'warn');
+            });
+
 
             if (this.$route.query.token) {
                 auth.retriveUser(this.$route.query.token);

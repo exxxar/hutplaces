@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NewRaffleNotification;
-use App\Events\UserPickPlaceEvent;
+use App\Events\RaffleNotification;
+use App\Events\TestMessage;
+use App\Events\PickPlace;
 use App\Place;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Lottery;
+use Illuminate\Support\Facades\Log;
 use RandomOrg\Random;
 
 class LotteryController extends Controller
@@ -137,6 +139,20 @@ class LotteryController extends Controller
         ]);
     }
 
+    public function testbrodcast(){
+
+        Log::info("test brodcast 1");
+
+
+        Log::info("test brodcast 2");
+
+        event(new TestMessage("testXXXX"));
+        broadcast(new TestMessage("Thank"));
+
+        Log::info("test brodcast 3");
+        return "test";
+    }
+
     public function pickPlace(Request $request){
 
         //lottery id, place number
@@ -195,11 +211,11 @@ class LotteryController extends Controller
             $lottery->save();
 
             //отправляем всем пользоватемя в выбранной лотерее запрос на обновление данных
-            broadcast(new NewRaffleNotification($lottery))->toOthers();
+            broadcast(new RaffleNotification($lottery))->toOthers();
         }
 
         //отправляем всем пользователям на сайте инфуормацию о том что какой-то пользователя в лотерее выбрал определенное место
-        broadcast(new UserPickPlaceEvent($user,$lottery, $place))->toOthers();
+        broadcast(new PickPlace($user,$lottery, $place))->toOthers();
 
         return response()->json([
             'data' => 'Вы успешно заняли место!',

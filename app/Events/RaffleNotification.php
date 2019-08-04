@@ -4,6 +4,7 @@ namespace App\Events;
 
 use App\Lottery;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class NewRaffleNotification
+class RaffleNotification implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -22,7 +23,7 @@ class NewRaffleNotification
      *
      * @return void
      */
-    public function __construct(Lottery $lottery)
+    public function __construct($lottery)
     {
         $this->lottery = $lottery;
     }
@@ -35,5 +36,10 @@ class NewRaffleNotification
     public function broadcastOn()
     {
         return new Channel("raffle-chanel");
+    }
+
+    public function broadcastAs()
+    {
+        return 'raffle-event';
     }
 }

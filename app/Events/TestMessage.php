@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -10,7 +11,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserPickPlaceEvent
+class TestMessage implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +20,13 @@ class UserPickPlaceEvent
      *
      * @return void
      */
-    public function __construct()
+    public $message;
+
+
+    public function __construct($message)
     {
         //
+        $this->message = $message;
     }
 
     /**
@@ -31,6 +36,11 @@ class UserPickPlaceEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('test-chanel');
+    }
+
+    public function broadcastAs()
+    {
+        return 'test-event';
     }
 }

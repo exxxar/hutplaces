@@ -2,7 +2,6 @@ import './bootstrap';
 import Auth from './auth';
 import Api from './api.js';
 
-
 import Vue from 'vue'
 import App from './Main'
 import router from './routes'
@@ -22,6 +21,7 @@ window.api = new Api();
 
 window.auth = new Auth();
 window.Event = new Vue;
+
 
 Vue.component('tabs', Tabs);
 Vue.component('tab', Tab);

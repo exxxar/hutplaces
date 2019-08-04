@@ -1,5 +1,12 @@
 <?php
 
+Route::get('/brod',function(){
+    return view("brod");
+});
+
+Route::get('/lottery/testbrodcast', 'LotteryController@testbrodcast');
+
+
 Route::get('/social-auth/{provider}', 'Auth\SocialController@redirectToProvider')->name('auth.social');
 Route::get('/social-auth/{provider}/callback', 'Auth\SocialController@handleProviderCallback')->name('auth.social.callback');
 

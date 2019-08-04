@@ -39,13 +39,14 @@ Route::group(['middleware' => 'jwt.refresh'], function(){
 Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
+
 Route::get('/lottery/all', 'LotteryController@all');
-Route::post('/lottery/pickplace', 'LotteryController@pickPlace');
 Route::get('/lottery/get/{lotteryId}', 'LotteryController@byId');
 Route::get('/lot/get/{lotteryId}', 'LotsController@byId');
 
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', 'API\AuthController@logout');
     Route::get('/get-user', 'API\AuthController@getUser');
+    Route::post('/lottery/pickplace', 'LotteryController@pickPlace');
 });
 

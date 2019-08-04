@@ -1028,6 +1028,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    message: function message(title, _message, type) {
+      this.$notify({
+        group: 'main',
+        type: type,
+        title: title,
+        text: _message
+      });
+    },
     logout: function logout() {
       auth.logout();
       this.$router.push('signin');
@@ -1047,6 +1055,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     var _this = this;
+
+    var message = this.message;
+    pusher.subscribe('pick-place-chanel').bind('pick-place-event', function (data) {
+      console.log(JSON.stringify(data));
+      message("Сообщение от администрации", "".concat(data.message), 'warn');
+    });
+    pusher.subscribe('raffle-chanel').bind('raffle-event', function (data) {
+      console.log(JSON.stringify(data));
+      message("Сообщение от администрации", "".concat(data.message), 'warn');
+    });
+    pusher.subscribe('test-chanel').bind('test-event', function (data) {
+      console.log(JSON.stringify(data));
+      message("Сообщение от администрации", "".concat(data.message), 'warn');
+    });
 
     if (this.$route.query.token) {
       auth.retriveUser(this.$route.query.token);
