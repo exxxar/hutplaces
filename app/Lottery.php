@@ -24,4 +24,8 @@ class Lottery extends Model
         'active',
         'lifetime'
     ];
+
+    public function isFull(){
+        return $this->occupied_places==$this->places;
+    }
 }

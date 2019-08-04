@@ -40,6 +40,7 @@ Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
 Route::get('/lottery/all', 'LotteryController@all');
+Route::post('/lottery/pickplace', 'LotteryController@pickPlace');
 Route::get('/lottery/get/{lotteryId}', 'LotteryController@byId');
 Route::get('/lot/get/{lotteryId}', 'LotsController@byId');
 

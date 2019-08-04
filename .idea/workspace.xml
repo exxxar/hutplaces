@@ -2,230 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7300405c-d11a-49c5-8c8a-b5b92f5b0902" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.rnd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/1280px-Qiwi_logo.svg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/1280px-Логотип_Яндекс.Денег.svg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/MasterCard_Logo.svg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Visa_Inc._logo.svg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/ach-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/ach-2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/ach-3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/arrow-2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/arrow-down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/arrow-up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/background-landing-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/background-landing-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/background-landing.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/bg-2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/card-example.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-all-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-block.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-count-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-info-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-occupied-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-ovr-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-price-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-security-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/cards-share-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/en.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/money-card-icon-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/money-icon-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/noavatar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/promo-logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/rect.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/ru.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/security-icon-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/time-icon-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/vk-login-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/wheel-of-fortune-bg.psd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Без имени-1.psd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/экран + макет карт.psd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/vendor/vue-winwheel/src/spinner-marker.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/WebMoney_logo_blue.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-components-Toggle-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-components-modals-CardInfo-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-layouts-default-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Cabinet-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Coins-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Games-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Lottery-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Main-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Market-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-PageNotFound-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Playzone-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Randoms-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-Start-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/layout-pages-WheelWin-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/vendors~layout-layouts-default-vue~layout-pages-Cabinet-vue~layout-pages-Lottery-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/vendors~layout-pages-Randoms-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/vendors~layout-pages-Start-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/vendors~layout-pages-WheelWin-vue.bundle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-Breadcrumbs-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-FAQ-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-Help-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-History-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-Howtostart-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-Login-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-Payment-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-Promo-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-Registration-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-components-modals-Report-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-layouts-auth-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-layouts-default-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-layouts-start-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-pages-Home-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-pages-Login-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-pages-NHL-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/layout-pages-Reports-vue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/Main.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/auth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/Toggle.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/CardInfo.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/FAQ.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/Help.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/History.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/Howtostart.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/Login.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/Promo.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/Registration.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/Report.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/modals/Security.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/en/messages.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/messages.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/layouts/auth.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/layouts/default.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/layouts/start.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Cabinet.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Coins.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Games.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Login.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Lottery.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Main.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Market.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/PageNotFound.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Playzone.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Randoms.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Reports.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/Start.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/pages/WheelWin.vue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/routes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/cabinet.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/coins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/fonts.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/games.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/lottery.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/main.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/modals.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/partials.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/radio.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/randoms.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/reports.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/start.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/toggle.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/tooltip.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/sass/utilits.scss" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/css/admin/admin.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/css/main/app.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/css/ps.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/vendor/vue-beautiful-chat/src/chat-icon.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/vendor/vue-beautiful-chat/src/close-icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/vendor/vue-beautiful-chat/src/close.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/vendor/vue-beautiful-chat/src/file.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/vendor/vue-beautiful-chat/src/logo-no-bg.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/2.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/3.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/admin/admin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/login.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/lottery.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/market.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/playzone.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/randoms.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/vendors~achievement.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/vendors~lottery.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/vendors~randoms.bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/svg/403.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/svg/404.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/svg/500.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/svg/503.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/svg/en.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/svg/ru.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/admin/admin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/admin/routes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/admin/views/App.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/Toggle.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/chainsCards.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/modals/FAQ.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/modals/Help.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/modals/History.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/modals/Howtostart.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/modals/Payment.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/modals/Promo.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/modals/Report.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/components/singleCards.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/lang/en/messages.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/lang/ru/messages.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Cabinet.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Coins.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Login.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Lottery.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Market.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/pages/PageNotFound.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Playzone.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Randoms.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/routes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/main/views/App.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/auction-bg.png" afterPath="$PROJECT_DIR$/public/img/auction-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/background.jpg" afterPath="$PROJECT_DIR$/public/img/background.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/coins-bg.png" afterPath="$PROJECT_DIR$/public/img/coins-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/lottery-bg.png" afterPath="$PROJECT_DIR$/public/img/lottery-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/packs-bg.png" afterPath="$PROJECT_DIR$/public/img/packs-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/wager-bg.png" afterPath="$PROJECT_DIR$/public/img/wager-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/wheel-of-fortune-bg.png" afterPath="$PROJECT_DIR$/public/img/wheel-of-fortune-bg.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LotsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LotsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Lottery.php" afterPath="$PROJECT_DIR$/app/Lottery.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/auth.php" afterPath="$PROJECT_DIR$/config/auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/services.php" afterPath="$PROJECT_DIR$/config/services.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/mix-manifest.json" afterPath="$PROJECT_DIR$/public/mix-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/app.scss" afterPath="$PROJECT_DIR$/resources/sass/app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/app.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.mix.js" afterPath="$PROJECT_DIR$/webpack.mix.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/css/cardstyle.css" afterPath="$PROJECT_DIR$/resources/sass/cardstyle.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/images/vendor/vue-beautiful-chat/src/chat-icon-open.png" afterPath="$PROJECT_DIR$/public/img/btn-menu.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/0.bundle.js" afterPath="$PROJECT_DIR$/public/layout-pages-History-vue.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/1.bundle.js" afterPath="$PROJECT_DIR$/public/layout-pages-Help-vue.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/achievement.bundle.js" afterPath="$PROJECT_DIR$/public/layout-pages-Achievement-vue.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/example-component.bundle.js" afterPath="$PROJECT_DIR$/public/js/layout-components-modals-Security-vue.bundle.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/promo.bundle.js" afterPath="$PROJECT_DIR$/public/layout-pages-Promo-vue.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/js/register.bundle.js" afterPath="$PROJECT_DIR$/public/layout-pages-Register-vue.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/admin/bootstrap.js" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/main/components/Breadcrumbs.vue" afterPath="$PROJECT_DIR$/resources/js/components/Breadcrumbs.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Achievement.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Achievement.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Help.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Help.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/main/pages/History.vue" afterPath="$PROJECT_DIR$/resources/js/pages/History.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Home.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Home.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/main/pages/NHL.vue" afterPath="$PROJECT_DIR$/resources/js/pages/NHL.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Promo.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Promo.vue" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/js/main/pages/Register.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Register.vue" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -238,13 +21,33 @@
     <favorites_list name="hut-randoms.com" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.55975795">
+    <splitter split-orientation="horizontal" split-proportion="0.47344634">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/web.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="507">
+                  <caret line="41" column="23" lean-forward="false" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="48" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/routes/api.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="99">
+                  <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="Register.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/js/pages/Register.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
+                <state relative-caret-position="0">
                   <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
                   <folding />
                 </state>
@@ -254,7 +57,7 @@
           <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="178">
+                <state relative-caret-position="331">
                   <caret line="89" column="19" lean-forward="false" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="19" />
                   <folding>
                     <element signature="e#44#86#0#PHP" expanded="true" />
@@ -266,7 +69,7 @@
           <file leaf-file-name="Login.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/js/pages/Login.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
+                <state relative-caret-position="476">
                   <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
                   <folding />
                 </state>
@@ -286,18 +89,8 @@
           <file leaf-file-name="Start.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/js/pages/Start.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-455">
+                <state relative-caret-position="17">
                   <caret line="209" column="14" lean-forward="false" selection-start-line="209" selection-start-column="14" selection-end-line="209" selection-end-column="14" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="default.vue" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/resources/js/layouts/default.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="290">
-                  <caret line="229" column="30" lean-forward="false" selection-start-line="229" selection-start-column="30" selection-end-line="229" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
@@ -306,7 +99,7 @@
           <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/js/auth.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="159">
+                <state relative-caret-position="544">
                   <caret line="32" column="75" lean-forward="false" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
                   <folding />
                 </state>
@@ -327,63 +120,45 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <file leaf-file-name="NewRaffleNotification.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Events/NewRaffleNotification.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="235">
-                  <caret line="41" column="23" lean-forward="false" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="48" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.env">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-51">
-                  <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SocialController.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/SocialController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="121">
-                  <caret line="62" column="66" lean-forward="false" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
+                <state relative-caret-position="289">
+                  <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
                   <folding>
-                    <element signature="e#45#67#0#PHP" expanded="true" />
+                    <element signature="e#30#46#0#PHP" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="helpers.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
+          <file leaf-file-name="LotteryController.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotteryController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="141">
-                  <caret line="689" column="68" lean-forward="false" selection-start-line="689" selection-start-column="68" selection-end-line="689" selection-end-column="68" />
+                <state relative-caret-position="166">
+                  <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#40#77#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Place.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Place.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="11" selection-end-column="17" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Socialite.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/vendor/laravel/socialite/src/Facades/Socialite.php">
+          <file leaf-file-name="Lottery.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Lottery.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SocialiteManager.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/vendor/laravel/socialite/src/SocialiteManager.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+                <state relative-caret-position="204">
+                  <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="15" />
                   <folding />
                 </state>
               </provider>
@@ -399,22 +174,34 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="2019_08_03_190038_create_social_accounts_table.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_03_190038_create_social_accounts_table.php">
+          <file leaf-file-name="channels.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/channels.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="27" column="11" lean-forward="false" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SocialAccount.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/SocialAccount.php">
+          <file leaf-file-name="EventServiceProvider.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+                <state relative-caret-position="323">
+                  <caret line="25" column="10" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SocialController.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/SocialController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1037">
+                  <caret line="62" column="66" lean-forward="false" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
+                  <folding>
+                    <element signature="e#45#67#0#PHP" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -482,9 +269,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/node_modules/vue-extend-layout/vue-extend-layout.vue" />
-        <option value="$PROJECT_DIR$/resources/js/Main.vue" />
-        <option value="$PROJECT_DIR$/resources/js/pages/Coins.vue" />
         <option value="$PROJECT_DIR$/resources/js/pages/Main.vue" />
         <option value="$PROJECT_DIR$/resources/js/pages/Market.vue" />
         <option value="$PROJECT_DIR$/resources/js/pages/Playzone.vue" />
@@ -505,7 +289,6 @@
         <option value="$PROJECT_DIR$/resources/views/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/bootstrap.js" />
         <option value="$PROJECT_DIR$/resources/js/Api.js" />
-        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/AcceptInfo.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/AcceptInfo.blade.php" />
         <option value="$PROJECT_DIR$/storage/logs/laravel-2019-08-01.log" />
@@ -515,9 +298,7 @@
         <option value="$PROJECT_DIR$/resources/js/api.js" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/resources/views/auth/accept.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LotsController.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/resources/js/routes.js" />
         <option value="$PROJECT_DIR$/resources/sass/main.scss" />
         <option value="$PROJECT_DIR$/resources/sass/utilits.scss" />
@@ -530,9 +311,15 @@
         <option value="$PROJECT_DIR$/resources/js/pages/Register.vue" />
         <option value="$PROJECT_DIR$/resources/js/pages/Login.vue" />
         <option value="$PROJECT_DIR$/resources/js/auth.js" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/SocialController.php" />
         <option value="$PROJECT_DIR$/resources/js/layouts/default.vue" />
+        <option value="$PROJECT_DIR$/routes/channels.php" />
+        <option value="$PROJECT_DIR$/app/Events/NewRaffleNotification.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Lottery.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" />
       </list>
     </option>
   </component>
@@ -558,7 +345,7 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-544" />
     <option name="y" value="8" />
     <option name="width" value="1230" />
@@ -580,6 +367,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -600,24 +388,12 @@
             <path>
               <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -732,12 +508,13 @@
       <workItem from="1562606175647" duration="1254000" />
       <workItem from="1563346786610" duration="3067000" />
       <workItem from="1564484691344" duration="83768000" />
-      <workItem from="1564858701133" duration="10222000" />
+      <workItem from="1564858701133" duration="13069000" />
+      <workItem from="1564926850607" duration="6530000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="490572000" />
+    <option name="totallyTimeSpent" value="499949000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -749,18 +526,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3441755" sideWeight="0.48072562" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20801815" sideWeight="0.48072562" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32718894" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20045386" sideWeight="0.51927435" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21354167" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20045386" sideWeight="0.51927435" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3824885" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2795699" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -768,6 +544,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -795,61 +572,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/sass/lottery.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="306" column="36" lean-forward="false" selection-start-line="306" selection-start-column="36" selection-end-line="306" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/Main.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Events/Registered.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/vue-carousel-3d/docs/node_modules/basic-auth/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1006">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -871,7 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="24" column="58" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="24" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,13 +605,6 @@
         <state relative-caret-position="-4800">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="75" lean-forward="false" selection-start-line="24" selection-start-column="75" selection-end-line="24" selection-end-column="75" />
         </state>
       </provider>
     </entry>
@@ -918,7 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="50" lean-forward="false" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -926,7 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="66" column="30" lean-forward="false" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -946,22 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotteryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="115" column="39" lean-forward="false" selection-start-line="115" selection-start-column="39" selection-end-line="115" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="43" column="55" lean-forward="false" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1564">
@@ -974,7 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -990,9 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1887">
           <caret line="131" column="14" lean-forward="false" selection-start-line="131" selection-start-column="14" selection-end-line="131" selection-end-column="14" />
-          <folding>
-            <element signature="e#363#723#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1000,9 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3604">
           <caret line="324" column="5" lean-forward="false" selection-start-line="324" selection-start-column="5" selection-end-line="324" selection-end-column="5" />
-          <folding>
-            <element signature="e#397#1994#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1018,15 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="35" column="52" lean-forward="false" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1034,7 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="27" column="11" lean-forward="false" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1054,17 +737,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/Register.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/pages/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="476">
           <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
           <folding />
         </state>
@@ -1074,7 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1090,7 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
           <caret line="39" column="29" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1102,21 +775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="89" column="19" lean-forward="false" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="19" />
-          <folding>
-            <element signature="e#44#86#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/AccessTokenController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-561">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1124,31 +786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1083">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/Start.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-455">
-          <caret line="209" column="14" lean-forward="false" selection-start-line="209" selection-start-column="14" selection-end-line="209" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="41" column="23" lean-forward="false" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-955">
-          <caret line="166" column="32" lean-forward="false" selection-start-line="166" selection-start-column="32" selection-end-line="166" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1162,33 +799,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
+        <state relative-caret-position="11356">
           <caret line="689" column="68" lean-forward="false" selection-start-line="689" selection-start-column="68" selection-end-line="689" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/SocialController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="62" column="66" lean-forward="false" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
-          <folding>
-            <element signature="e#45#67#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
+        <state relative-caret-position="544">
           <caret line="32" column="75" lean-forward="false" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
           <folding />
         </state>
@@ -1199,6 +818,158 @@
         <state relative-caret-position="290">
           <caret line="229" column="30" lean-forward="false" selection-start-line="229" selection-start-column="30" selection-end-line="229" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/broadcasting.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/channels.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Start.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="209" column="14" lean-forward="false" selection-start-line="209" selection-start-column="14" selection-end-line="209" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="41" column="23" lean-forward="false" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PlacesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/SocialController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="62" column="66" lean-forward="false" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
+          <folding>
+            <element signature="e#45#67#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="25" column="10" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="89" column="19" lean-forward="false" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="19" />
+          <folding>
+            <element signature="e#44#86#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Register.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="37" column="17" lean-forward="false" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="30" column="18" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Events/NewRaffleNotification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+          <folding>
+            <element signature="e#30#46#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="234" column="55" lean-forward="false" selection-start-line="234" selection-start-column="55" selection-end-line="234" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Place.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Lottery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotteryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="194" column="0" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+          <folding>
+            <element signature="e#40#77#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
