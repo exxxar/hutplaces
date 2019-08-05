@@ -27,3 +27,7 @@ Broadcast::channel('pick-place-chanel', function(){
 Broadcast::channel('message-chanel', function(){
     return true;
 });
+
+Broadcast::channel('user-update-chanel', function () {
+    return true;
+});

@@ -1,8 +1,13 @@
 <?php
 
 use App\Events\BroadcastMessage;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Request;
 use Maksa988\FreeKassa\Facades\FreeKassa;
+
+Broadcast::routes(['middleware' => ['auth:api']]);
+
+
 
 
 Route::get('/brod',function(){

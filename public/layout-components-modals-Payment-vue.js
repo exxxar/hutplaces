@@ -42,7 +42,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       payment_system: "test",
-      money: 0
+      money: ''
     };
   },
   methods: {
@@ -115,14 +115,11 @@ var render = function() {
         attrs: {
           type: "number",
           autocomplete: "off",
-          min: "0",
+          min: "1",
           id: "input-value"
         },
         domProps: { value: _vm.money },
         on: {
-          focus: function($event) {
-            _vm.money == 0 ? "" : _vm.money
-          },
           input: function($event) {
             if ($event.target.composing) {
               return

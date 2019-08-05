@@ -5,7 +5,7 @@
     <h1>Введите сумму пополнения</h1>
     <div class="input-group">
       <label for="input-value">Сумма пополнения</label>
-      <input type="number" autocomplete="off" min="0" id="input-value" v-model="money" @focus="money==0?'':money">
+      <input type="number" autocomplete="off" min="1" id="input-value" v-model="money">
     </div>
 
     <div class="input-group">
@@ -33,7 +33,7 @@
       data(){
         return {
             payment_system:"test",
-            money:0
+            money:''
         }
       },
     methods: {
