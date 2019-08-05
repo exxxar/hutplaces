@@ -24,6 +24,6 @@ Broadcast::channel('pick-place-chanel', function(){
     return true;
 });
 
-Broadcast::channel('test-chanel', function(){
+Broadcast::channel('message-chanel', function(){
     return true;
 });

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\RaffleNotification;
-use App\Events\TestMessage;
+use App\Events\BroadcastMessage;
 use App\Events\PickPlace;
 use App\Place;
 use App\User;
@@ -139,19 +139,6 @@ class LotteryController extends Controller
         ]);
     }
 
-    public function testbrodcast(){
-
-        Log::info("test brodcast 1");
-
-
-        Log::info("test brodcast 2");
-
-        event(new TestMessage("testXXXX"));
-        broadcast(new TestMessage("Thank"));
-
-        Log::info("test brodcast 3");
-        return "test";
-    }
 
     public function pickPlace(Request $request){
 

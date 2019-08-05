@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BroadcastMessage;
 use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -135,5 +136,14 @@ class SettingsController extends Controller
         DB::table("settings")->where('id',$id)->delete();
         return redirect()->route('admin.settings.index')
             ->with('success','Setting deleted successfully');
+    }
+
+    public function broadcast(Request $request)
+    {
+
+       broadcast(new BroadcastMessage($request->get("title"), $request->get("message")));
+
+        return redirect()
+            ->back();
     }
 }

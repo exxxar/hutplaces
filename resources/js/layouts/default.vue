@@ -232,9 +232,9 @@
                 message("Сообщение от администрации",`${data.message}`,'warn');
             });
 
-            pusher.subscribe('test-chanel').bind('test-event', function(data) {
+            pusher.subscribe('message-chanel').bind('message-event', function(data) {
                 console.log(JSON.stringify(data));
-                message("Сообщение от администрации",`${data.message}`,'warn');
+                message(`${data.title}`,`${data.message}`,'warn');
             });
 
 

@@ -1065,9 +1065,9 @@ __webpack_require__.r(__webpack_exports__);
       console.log(JSON.stringify(data));
       message("Сообщение от администрации", "".concat(data.message), 'warn');
     });
-    pusher.subscribe('test-chanel').bind('test-event', function (data) {
+    pusher.subscribe('message-chanel').bind('message-event', function (data) {
       console.log(JSON.stringify(data));
-      message("Сообщение от администрации", "".concat(data.message), 'warn');
+      message("".concat(data.title), "".concat(data.message), 'warn');
     });
 
     if (this.$route.query.token) {

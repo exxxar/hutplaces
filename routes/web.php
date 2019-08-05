@@ -1,10 +1,13 @@
 <?php
 
+use App\Events\BroadcastMessage;
+use Illuminate\Support\Facades\Request;
+
 Route::get('/brod',function(){
     return view("brod");
 });
 
-Route::get('/lottery/testbrodcast', 'LotteryController@testbrodcast');
+Route::post('/broadcast', 'SettingsController@broadcast')->name("broadcast.message");
 
 
 Route::get('/social-auth/{provider}', 'Auth\SocialController@redirectToProvider')->name('auth.social');

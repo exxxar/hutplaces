@@ -14,6 +14,26 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <style>
+
+        .custom-card {
+            padding:10px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width:25%;
+            min-width:200px;
+            height:150px;
+            border:1px lightseagreen solid;
+            margin-top:10px;
+        }
+
+        .custom-card p,
+        .custom-card h5 {
+            text-align: center;
+        }
+
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;

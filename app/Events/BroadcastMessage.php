@@ -11,7 +11,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TestMessage implements ShouldBroadcastNow
+class BroadcastMessage implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -21,12 +21,14 @@ class TestMessage implements ShouldBroadcastNow
      * @return void
      */
     public $message;
+    public $title;
 
 
-    public function __construct($message)
+    public function __construct($title,$message)
     {
         //
         $this->message = $message;
+        $this->title = $title;
     }
 
     /**
@@ -36,11 +38,11 @@ class TestMessage implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('test-chanel');
+        return new Channel('message-chanel');
     }
 
     public function broadcastAs()
     {
-        return 'test-event';
+        return 'message-event';
     }
 }
