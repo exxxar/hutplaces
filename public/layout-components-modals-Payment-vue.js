@@ -36,9 +36,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'payment',
-  methods: {}
+  data: function data() {
+    return {
+      payment_system: "test",
+      money: 0
+    };
+  },
+  methods: {
+    message: function message(title, _message, type) {
+      this.$notify({
+        group: 'main',
+        type: type,
+        title: title,
+        text: _message
+      });
+    },
+    requestPayment: function requestPayment() {
+      var message = this.message;
+
+      if (!auth.check()) {
+        message("Ошибка", "\u0414\u043B\u044F \u043F\u043E\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F \u0441\u0447\u0435\u0442\u0430 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u0443\u0439\u0442\u0435\u0441\u044C!", "warn");
+        this.$emit('hide', "payment");
+        return;
+      }
+
+      axios.post('/payment/testPaymanet', {
+        payment_system: this.selected,
+        money: this.money
+      }).then(function (response) {
+        var tmp = response.data;
+        console.log(tmp);
+        message("Успех!", "\u0414\u0435\u043D\u044C\u0433\u0438 \u0432 \u0440\u0430\u0437\u043C\u0435\u0440\u0435 ".concat(tmp.money, " ").concat(tmp.currency, " \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B!"), "warn");
+      })["catch"](function (error) {});
+      this.$emit('hide', "payment");
+    }
+  }
 });
 
 /***/ }),
@@ -58,55 +93,116 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "modal-body" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("h1", [_vm._v("Введите сумму пополнения")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group" }, [
+      _c("label", { attrs: { for: "input-value" } }, [
+        _vm._v("Сумма пополнения")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.money,
+            expression: "money"
+          }
+        ],
+        attrs: {
+          type: "number",
+          autocomplete: "off",
+          min: "0",
+          id: "input-value"
+        },
+        domProps: { value: _vm.money },
+        on: {
+          focus: function($event) {
+            _vm.money == 0 ? "" : _vm.money
+          },
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.money = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group" }, [
+      _c("label", { attrs: { for: "select-payment" } }, [
+        _vm._v("Платежная система")
+      ]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.payment_system,
+              expression: "payment_system"
+            }
+          ],
+          attrs: { id: "select-payment" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.payment_system = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "test" } }, [_vm._v("Test.Деньги")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "yandex" } }, [
+            _vm._v("Яндекс.Деньги")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "webmoney" } }, [_vm._v("WebMoney")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "paypal" } }, [_vm._v("PAYPAL")])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-yellow full",
+          on: {
+            click: function($event) {
+              return _vm.requestPayment()
+            }
+          }
+        },
+        [_vm._v("Пополнить")]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("div", { staticClass: "modal-logo" }, [
-        _c("img", { attrs: { src: "/img/money-card-icon-1.png", alt: "" } })
-      ]),
-      _vm._v(" "),
-      _c("h1", [_vm._v("Введите сумму пополнения")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "input-value" } }, [
-          _vm._v("Сумма пополнения")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          attrs: {
-            type: "number",
-            autocomplete: "off",
-            min: "0",
-            id: "input-value",
-            value: "0"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "select-payment" } }, [
-          _vm._v("Платежная система")
-        ]),
-        _vm._v(" "),
-        _c("select", { attrs: { id: "select-payment" } }, [
-          _c("option", { attrs: { value: "" } }, [_vm._v("Яндекс.Деньги")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "" } }, [_vm._v("WebMoney")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "" } }, [_vm._v("PAYPAL")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("button", { staticClass: "btn btn-yellow full" }, [
-          _vm._v("Пополнить")
-        ])
-      ])
+    return _c("div", { staticClass: "modal-logo" }, [
+      _c("img", { attrs: { src: "/img/money-card-icon-1.png", alt: "" } })
     ])
   }
 ]

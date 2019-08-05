@@ -36,6 +36,7 @@ Route::group(['middleware' => 'jwt.refresh'], function(){
     Route::get('auth/refresh', 'AuthController@refresh');
 });*/
 
+
 Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
@@ -48,5 +49,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', 'API\AuthController@logout');
     Route::get('/get-user', 'API\AuthController@getUser');
     Route::post('/lottery/pickplace', 'LotteryController@pickPlace');
+    Route::post('/payment/{paymentProvider}','UserController@payment');
 });
 

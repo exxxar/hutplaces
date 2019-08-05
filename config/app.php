@@ -165,6 +165,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         \App\Providers\GoogleDriveServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
+        Maksa988\FreeKassa\FreeKassaServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +234,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'RandomOrg' => RandomOrg\Facades\Random::class,
+        'FreeKassa' => Maksa988\FreeKassa\Facades\FreeKassa::class,
     ],
 
 ];

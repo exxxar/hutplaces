@@ -107,7 +107,7 @@
 
         <modal name="payment" height="auto">
             <a href="#" @click="hide('payment')" class="close"></a>
-            <payment></payment>
+            <payment v-on:hide="hide($event)"></payment>
         </modal>
 
         <modal name="howtostart" :adaptive="true" width="100%" height="100%">
@@ -196,6 +196,8 @@
                     text: message
                 })
             },
+
+
             logout() {
                 auth.logout();
                 this.$router.push('signin');
@@ -214,6 +216,11 @@
                 this.$modal.show(name)
             },
             hide(name) {
+                api.call('get', '/get-user')
+                    .then(({data}) => {
+                        this.user = data;
+
+                    });
                 this.$modal.hide(name)
             },
 
