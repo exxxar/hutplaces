@@ -30,5 +30,6 @@ mix.config.webpackConfig.output = {
 
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/admin.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 

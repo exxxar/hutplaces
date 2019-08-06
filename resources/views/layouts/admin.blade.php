@@ -321,7 +321,9 @@
 
 
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div id="app">
                     @yield('content')
+                    </div>
                 </main>
 
                 <div id="huts-preloader">
@@ -338,6 +340,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="{{asset('js/admin.js')}}"></script>
 <script src="{{url('main.js')}}"></script>
 <script src="{{url('dropzone.js')}}"></script>
 </body>
