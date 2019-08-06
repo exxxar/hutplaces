@@ -82,6 +82,29 @@
         <hr>
     </form>
 
+    <form action="{{route('slider.upload')}}" method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <h2>Загрузка изображений для слайдера</h2>
+        <div class="row">
+
+            <div class="col-12">
+                <div class="form-group ">
+                    <label for="images">Изображения</label>
+                    <input type="file" class="form-control" id="images" name="images[]" multiple accept="image/*">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </div>
+        </div>
+
+        <hr>
+    </form>
+
     <div class="row">
         <div class="col-sm-3">
             <div class="custom-card">

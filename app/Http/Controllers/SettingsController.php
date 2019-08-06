@@ -6,6 +6,7 @@ use App\Events\BroadcastMessage;
 use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Filesystem\Filesystem;
 
 class SettingsController extends Controller
 {
@@ -145,5 +146,34 @@ class SettingsController extends Controller
 
         return redirect()
             ->back();
+    }
+
+    public function sliderUpload(Request $request)
+    {
+        if (($request->has('images'))) {
+
+        //$file = new Filesystem;
+        //$file->cleanDirectory(storage_path() . '/app/public/slider');
+
+        $destinationPath = storage_path() . '/app/public/slider/';
+        $fullDestinations = [];
+
+        foreach ($request->file('images') as $file) {
+           $storeName =  $file->getClientOriginalName();
+           // Store the file in the disk
+           $file->move($destinationPath, $storeName);
+           array_push($fullDestinations, $destinationPath . $storeName);
+        }
+
+        $result = json_encode($fullDestinations);
+
+        $setting = Setting::updateOrCreate(
+            ['title' => 'slider_images'],
+            ['value' => $result]
+        );
+       }
+
+       return redirect()
+           ->back();
     }
 }

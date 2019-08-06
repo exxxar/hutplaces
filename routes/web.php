@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
 
     Route::post('/broadcast', 'SettingsController@broadcast')->name("broadcast.message");
     Route::post('/search', 'CardsStorageController@search')->name('card.search');
+    Route::post('/slider', 'SettingsController@sliderUpload')->name('slider.upload');
     Route::get('/cards', 'CardsStorageController@cards')->name('card.index');
 
     Route::resources([
