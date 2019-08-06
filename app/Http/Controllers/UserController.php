@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserUpdate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -120,6 +121,7 @@ class UserController extends Controller
                 strpos($str, ".png") != 0;
         });
 
+        broadcast(new UserUpdate($id));
 
         return view('admin.users.edit', compact('user', 'roles', 'userRole', 'images'));
     }
@@ -159,6 +161,7 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
+        broadcast(new UserUpdate($id));
 
         return back()->with('success', 'Пользователь успешно отредактирован');
     }
@@ -185,6 +188,8 @@ class UserController extends Controller
 
             $user->money += $money;
             $user->save();
+
+        broadcast(new UserUpdate($user->id));
 
             return response()
                 ->json([

@@ -585,7 +585,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       payment_system: "test",
-      money: 0
+      money: ''
     };
   },
   methods: {
@@ -1076,7 +1076,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push('signin');
     },
     getAvatar: function getAvatar(img) {
-      if (img == '' || img == null || img == undefined) return "/img/noavatar.png";else img;
+      if (img == '' || img == null || img == undefined) return "/img/noavatar.png";else return img;
     },
     scrollHanle: function scrollHanle(evt) {
       console.log(evt);
@@ -1085,19 +1085,21 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.show(name);
     },
     hide: function hide(name) {
-      var _this = this;
-
-      api.call('get', '/get-user').then(function (_ref) {
-        var data = _ref.data;
-        _this.user = data;
-      });
+      /*api.call('get', '/get-user')
+          .then(({data}) => {
+              this.user = data;
+           });*/
       this.$modal.hide(name);
+    },
+    setUser: function setUser(user) {
+      this.user = user;
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     var message = this.message;
+    var user = this.setUser;
     pusher.subscribe('pick-place-chanel').bind('pick-place-event', function (data) {
       console.log(JSON.stringify(data));
       message("Сообщение от администрации", "".concat(data.message), 'warn');
@@ -1109,6 +1111,12 @@ __webpack_require__.r(__webpack_exports__);
     pusher.subscribe('message-chanel').bind('message-event', function (data) {
       console.log(JSON.stringify(data));
       message("".concat(data.title), "".concat(data.message), 'warn');
+    });
+    pusher.subscribe("user-update-chanel").bind('user-update-event', function (data) {
+      if (window.auth.user.id == data.userId) api.call('get', '/get-user').then(function (_ref) {
+        var data = _ref.data;
+        user(data);
+      });
     });
 
     if (this.$route.query.token) {
@@ -1140,19 +1148,19 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     Event.$on('userLoggedIn', function () {
-      _this2.authenticated = true;
-      _this2.user = auth.user;
+      _this.authenticated = true;
+      _this.user = auth.user;
 
-      _this2.$notify({
+      _this.$notify({
         group: 'main',
         type: 'success',
         title: 'Вход в систему',
-        text: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C ".concat(_this2.user.name, " \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0432\u043E\u0448\u0435\u043B \u0432 \u0441\u0438\u0441\u0442\u0435\u043C\u0443!")
+        text: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C ".concat(_this.user.name, " \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0432\u043E\u0448\u0435\u043B \u0432 \u0441\u0438\u0441\u0442\u0435\u043C\u0443!")
       });
     });
     Event.$on('userLoggedOut', function () {
-      _this2.authenticated = false;
-      _this2.user = null;
+      _this.authenticated = false;
+      _this.user = null;
     });
   },
   components: {
@@ -1852,14 +1860,11 @@ var render = function() {
         attrs: {
           type: "number",
           autocomplete: "off",
-          min: "0",
+          min: "1",
           id: "input-value"
         },
         domProps: { value: _vm.money },
         on: {
-          focus: function($event) {
-            _vm.money == 0 ? "" : _vm.money
-          },
           input: function($event) {
             if ($event.target.composing) {
               return

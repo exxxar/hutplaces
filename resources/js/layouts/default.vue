@@ -206,7 +206,7 @@
                 if (img == '' || img == null || img == undefined)
                     return "/img/noavatar.png";
                 else
-                    img;
+                    return img;
             },
             scrollHanle(evt) {
                 console.log(evt)
@@ -216,18 +216,23 @@
                 this.$modal.show(name)
             },
             hide(name) {
-                api.call('get', '/get-user')
+                /*api.call('get', '/get-user')
                     .then(({data}) => {
                         this.user = data;
 
-                    });
+                    });*/
                 this.$modal.hide(name)
             },
+
+            setUser(user){
+                this.user = user;
+            }
 
         },
         mounted: function () {
 
             var message = this.message;
+            var user = this.setUser;
 
             pusher.subscribe('pick-place-chanel').bind('pick-place-event', function(data) {
                 console.log(JSON.stringify(data));
@@ -243,6 +248,17 @@
                 console.log(JSON.stringify(data));
                 message(`${data.title}`,`${data.message}`,'warn');
             });
+
+
+           pusher.subscribe(`user-update-chanel`).bind('user-update-event', function(data) {
+                if (window.auth.user.id==data.userId)
+                    api.call('get', '/get-user')
+                        .then(({data}) => {
+                          user(data);
+                        });
+            });
+
+
 
 
             if (this.$route.query.token) {
