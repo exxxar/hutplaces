@@ -51,7 +51,7 @@
             <td>{{$user->fb}}</td>
             <td>{{$user->tw}}</td>
             <td>{{$user->money}}</td>
-            <td>{{$user->level}}</td>
+            <td>{{$user->level()->title}}</td>
             <td>{{$user->discount}}</td>
             <td>{{$user->exp}}</td>
             <td>{{$user->coins}}</td>

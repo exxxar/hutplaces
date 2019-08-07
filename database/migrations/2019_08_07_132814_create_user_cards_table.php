@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersHasAchievementsTable extends Migration
+class CreateUserCardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,14 @@ class CreateUsersHasAchievementsTable extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('users_has_achievements', function (Blueprint $table) {
+        Schema::create('user_card', function (Blueprint $table) {
+
             $table->increments('id');
-            $table->unsignedInteger("users_id" );
-            $table->unsignedInteger("achievements_id" );
+            $table->unsignedInteger("user_id" );
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger("card_id" );
+            $table->foreign('card_id')->references('id')->on('cards_storage');
 
-
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('achievements_id')->references('id')->on('achievements');
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();
@@ -34,6 +34,6 @@ class CreateUsersHasAchievementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_has_achievements');
+        Schema::dropIfExists('user_card');
     }
 }

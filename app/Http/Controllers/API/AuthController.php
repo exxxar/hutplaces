@@ -19,6 +19,7 @@ class AuthController extends Controller
             'name' => request('name'),
             'email' => request('email'),
             'avatar' => '',
+            'level_id'=>(Level::where("level","1")->first())->id,
             'password' => bcrypt(request('password'))
         ]);
 

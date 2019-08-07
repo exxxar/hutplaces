@@ -176,4 +176,10 @@ class SettingsController extends Controller
        return redirect()
            ->back();
     }
+
+    public function setlang($locale){
+        App::setLocale($locale);
+        //session(['my_locale' => $locale]);
+        return redirect()->back();
+    }
 }

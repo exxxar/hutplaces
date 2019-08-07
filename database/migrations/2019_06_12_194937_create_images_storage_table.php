@@ -13,7 +13,7 @@ class CreateImagesStorageTable extends Migration
      */
     public function up()
     {
-        Schema::create('images_storage', function (Blueprint $table) {
+        Schema::create('image_storage', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();

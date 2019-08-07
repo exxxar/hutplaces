@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'fb'=>'',
             'tw'=>'',
             'money'=>100000,
-            'level'=>100,
+            'level_id'=>1,
             'discount'=>100,
             'exp'=>0,
             'active'=>1,

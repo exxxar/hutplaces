@@ -10,6 +10,7 @@ class Lottery extends Model
         'title',
         'console_type',
         'lot_type',
+        'lot_id',
         'game_type',
         'base_price',
         'base_discount',
@@ -27,5 +28,19 @@ class Lottery extends Model
 
     public function isFull(){
         return $this->occupied_places==$this->places;
+    }
+
+    public function lot()
+    {
+        return $this->hasOne('App\Lot');
+    }
+
+    public function users(){
+        return $this->belongsToMany('App\User')->using('App\UserLottery');
+    }
+
+    public function places()
+    {
+        return $this->hasMany('App\Place');
     }
 }

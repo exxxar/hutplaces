@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-default-vue":"layout-layouts-default-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Achievement-vue":"layout-pages-Achievement-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Home-vue":"layout-pages-Home-vue","layout-pages-NHL-vue":"layout-pages-NHL-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-admin-CardSearch-vue":"layout-components-admin-CardSearch-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-default-vue":"layout-layouts-default-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Achievement-vue":"layout-pages-Achievement-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Home-vue":"layout-pages-Home-vue","layout-pages-NHL-vue":"layout-pages-NHL-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -3168,6 +3168,10 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
+  mounted: function mounted() {
+    alert("games load start");
+    this.loadLotteries();
+  },
   methods: {
     getCardList: function getCardList(min, max) {
       var sort = null;
@@ -3242,6 +3246,15 @@ __webpack_require__.r(__webpack_exports__);
       return {
         '--line-width': c1 / c2 * 100 + '%'
       };
+    },
+    loadLotteries: function loadLotteries() {
+      var _this = this;
+
+      api.call('get', '/lottery/all').then(function (_ref) {
+        var data = _ref.data;
+        console.log(data);
+        _this.cards = data.data;
+      });
     },
     lotteryOpen: function lotteryOpen(cardId) {
       this.$router.push({
@@ -71392,6 +71405,10 @@ var map = {
 	],
 	"./components/Toggle.vue": [
 		"./resources/js/components/Toggle.vue"
+	],
+	"./components/admin/CardSearch.vue": [
+		"./resources/js/components/admin/CardSearch.vue",
+		"layout-components-admin-CardSearch-vue"
 	],
 	"./components/modals/CardInfo.vue": [
 		"./resources/js/components/modals/CardInfo.vue"

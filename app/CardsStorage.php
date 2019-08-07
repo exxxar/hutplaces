@@ -62,4 +62,14 @@ class CardsStorage extends Model
         'salary',
         'synergy'
     ];
+
+    public function lots()
+    {
+       return $this->hasMany('App\Lot');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->using('App\UserCard');
+    }
 }

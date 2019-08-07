@@ -12,4 +12,9 @@ class Level extends Model
         'level',
         'discount',
     ];
+
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
 }

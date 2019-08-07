@@ -9,7 +9,7 @@ use Laravel\Passport\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
@@ -30,7 +30,7 @@ class User extends Authenticatable implements JWTSubject
         'fb',
         'tw', 
         'money',
-        'level',
+        'level_id',
         'discount', 
         'exp',
         'active',
@@ -47,13 +47,22 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
+    public function lotteries() {
+        return $this->belongsToMany('App\Lottery')->using('App\UserLottery');
     }
-    public function getJWTCustomClaims()
+
+    public function cards()
     {
-        return [];
+        return $this->belongsToMany('App\CardsStorage')->using('App\UserCard');
+    }
+
+    public function achievements()
+    {
+        return $this->belongsToMany('App\Achievement')->using('App\UserAchievement');
+    }
+
+    public function level()
+    {
+        return $this->belongsTo('App\Level');
     }
 }

@@ -11,4 +11,9 @@ class Place extends Model
         'lottery_id',
         'user_id'
     ];
+
+    public function lottery()
+    {
+        return $this->belongsTo('App\Lottery');
+    }
 }

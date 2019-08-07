@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserUpdate;
+use App\Level;
+use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -12,6 +14,14 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+
+
+
+  public function __construct()
+  {
+      $this->middleware('levels');
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -64,7 +74,6 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required',
             'money' => 'numeric',
-            'level' => 'integer',
             'discount' => 'integer',
             'base_discount' => 'integer',
             'exp' => 'integer',
@@ -108,6 +117,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $levels = Level::all();
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
@@ -123,7 +133,7 @@ class UserController extends Controller
 
         broadcast(new UserUpdate($id));
 
-        return view('admin.users.edit', compact('user', 'roles', 'userRole', 'images'));
+        return view('admin.users.edit', compact('user', 'roles', 'userRole', 'images','levels'));
     }
 
     /**
@@ -139,11 +149,10 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'money' => 'numeric',
-            'level' => 'integer',
-            'discount' => 'integer',
+             'discount' => 'integer',
             'exp' => 'integer',
             'coins' => 'integer',
-            'avatar' => 'required'
+
         ]);
 
         $input = $request->all();
@@ -188,6 +197,13 @@ class UserController extends Controller
 
             $user->money += $money;
             $user->save();
+
+            Transaction::create([
+                'user_id'=>$user->id,
+                'amount'=>$money,
+                'payment_system'=>$paymentProvider,
+                'currency'=>'rub'
+            ]);
 
         broadcast(new UserUpdate($user->id));
 

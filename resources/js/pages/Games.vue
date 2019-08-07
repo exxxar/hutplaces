@@ -151,6 +151,10 @@ export default {
     }
   },
 
+    mounted(){
+      alert("games load start")
+      this.loadLotteries();
+    },
   methods: {
     getCardList: function (min, max) {
       var sort = null
@@ -178,6 +182,14 @@ export default {
         '--line-width': ((c1 / c2) * 100) + '%'
       }
     },
+     loadLotteries(){
+         api.call('get', '/lottery/all')
+             .then(({data}) => {
+             console.log(data);
+
+                 this.cards = data.data;
+             });
+     },
     lotteryOpen: function (cardId) {
       this.$router.push({ name: 'Lottery', params: { id: cardId } })
     }

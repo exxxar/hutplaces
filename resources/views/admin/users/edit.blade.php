@@ -83,8 +83,17 @@
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group">
                     <label for="levelUser">Level</label>
-                    <input type="number" min="1" class="form-control" id="levelUser" placeholder="1" name="level"
-                           value={{$user->level}}>
+                    <select class="form-control" id="levelUser" name="level">
+
+                        @foreach($levels as $level)
+                            @if ($level->id==$user->level->id)
+                                 <option value="{{$level->id}}" selected>{{$level->title}}</option>
+                                @else
+                                <option value="{{$level->id}}" >{{$level->title}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+
                 </div>
             </div>
 

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Request;
 use Maksa988\FreeKassa\Facades\FreeKassa;
 
-Broadcast::routes(['middleware' => ['auth:api']]);
+Broadcast::routes();
 
 
 
@@ -54,7 +54,6 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
         'levels' => 'LevelsController',
         'lots' => 'LotsController',
         'lottery' => 'LotteryController',
-        'orders' => 'OrdersController',
         'places' => 'PlacesController',
         'users' => 'UserController',
         'tickets' => 'TicketController',
@@ -66,13 +65,10 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
     ]);
 
     Route::view('/', 'admin.main');
-
-    //Route::view('/cards', 'admin.cards');
     Route::view('/coins', 'admin.coins');
     Route::view('/mails', 'admin.mails');
     Route::view('/packs', 'admin.packs');
-    Route::view('/statistic', 'admin.statistic');
-    Route::get('/lang/{locale}', 'HomeController@setlang');
+    Route::get('/lang/{locale}', 'SettingsController@setlang');
 });
 
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*')->name("front");

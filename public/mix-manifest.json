@@ -1,7 +1,9 @@
 {
+    "/js/admin.js": "/js/admin.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/layout-components-Breadcrumbs-vue.js": "/layout-components-Breadcrumbs-vue.js",
+    "/layout-components-admin-CardSearch-vue.js": "/layout-components-admin-CardSearch-vue.js",
     "/layout-components-modals-FAQ-vue.js": "/layout-components-modals-FAQ-vue.js",
     "/layout-components-modals-Help-vue.js": "/layout-components-modals-Help-vue.js",
     "/layout-components-modals-History-vue.js": "/layout-components-modals-History-vue.js",

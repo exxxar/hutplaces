@@ -12,4 +12,18 @@ class Lot extends Model
         'items_id',
         'cards_id',
     ];
+
+    public function lottery() {
+        return $this->belongsTo('App\Lottery');
+    }
+
+    public function card()
+    {
+       return $this->belongsTo('App\CardsStorage');
+    }
+
+    public function item()
+    {
+        return $this->hasOne('App\Item');
+    }
 }

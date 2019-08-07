@@ -20,4 +20,9 @@ class Achievement extends Model
         'images_storage_id',
         'isActive',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Users')->using('App\UserAchievement');
+    }
 }
