@@ -76,11 +76,17 @@
                     <input type="text" class="form-control" id="twUser" placeholder="money" name="money" value="">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group">
                     <label for="levelUser">Level</label>
-                    <input type="number" min="1" class="form-control" id="levelUser" placeholder="1" name="level"
-                           value="" }>
+                    <select class="form-control" id="levelUser" name="level">
+
+                        @foreach($levels as $level)
+                                <option value="{{$level->id}}" >{{$level->title}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+
                 </div>
             </div>
 

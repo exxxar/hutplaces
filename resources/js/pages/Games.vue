@@ -46,13 +46,13 @@
           </div>
       </div>
 
-      <div v-for="category in categories" class="category" v-if="getCardList(category.min,category.max).length>0">
+      <div v-for="category in categories" class="category" v-if="getLotteriesList(category.min,category.max).length>0">
         <h1 class="category"><span>{{category.title}} Pucks</span></h1>
         <div class="cards" >
-          <div class="card" v-for="c in getCardList(category.min,category.max)"  >
+          <div class="card" v-for="c in getLotteriesList(category.min,category.max)" >
             <div class="card-wrapper" >
-              <div v-html="prepareUrl(c.card_data)" class="card-data" @click="lotteryOpen(c.card_id)" ></div>
-              <div class="price">{{c.price }} Pucks</div>
+              <div v-html="prepareUrl(c)" class="card-data" @click="lotteryOpen(c.id)" ></div>
+              <div class="price">{{c.base_price }} Pucks</div>
               <div class="places">{{c.places}}</div>
             </div>
             <div class="progress">
@@ -90,73 +90,44 @@ export default {
         {min:25,max:50,title:'0-50'},
         {min:50,max:100,title:'50-100'},
         {min:100,max:200,title:'100-200'},
-        {min:200,max:1000,title:'200+'},
+        {min:200,max:100000,title:'200+'},
       ],
-      cards: [
-        {
-          card_id: 1,
-          places: 28,
-          card_data: "<div class=\"ncard toty-ol\"> <div class=\"backplate\" style=\"background-image: url(/assets/img/cards/19/toty/ygtoty/nhl/tor.png);\"> <div class=\"background toty\"></div> <div class=\"toty_tag tag top\"> <div class=\"cardtype\">OVR</div> <div class=\"overall\">99</div> </div> <div class=\"headshot toty-headshot top\" style=\"background-image: url('/assets/img/headshots/active/9810.png');\"></div> <div class=\"name\"> <div class=\"firstname\">MITCHELL</div> <div class=\"lastname\">MARNER</div> </div> <div class=\"info\"> <div class=\"position\">RW</div> <div class=\"bullet\"></div> <div class=\"type\">PLY</div> </div> <div class=\"attributes\"> <div class=\"attr-value\"> <div class=\"attr-name\">SKT</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">SHT</div> 97 </div> <div class=\"attr-value\"> <div class=\"attr-name\">HND</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">CHK</div> 91 </div> <div class=\"attr-value\"> <div class=\"attr-name\">DEF</div> 96 </div> </div> <div class=\"team toty-team team-right\">Maple Leafs</div> <div class=\"logo toty-logo\" style=\"background-image: url('/assets/img/logos/nhl/tor.png');\"></div> </div> </div> ",
-          price: 250,
-          occupied_places: 20,
-          player_name: 'Jeff Carter',
-          ovr: 94
-        },
-        {
-          card_id: 1,
-          places: 31,
-          card_data: "<div class=\"ncard toty-ol\"> <div class=\"backplate\" style=\"background-image: url(/assets/img/cards/19/toty/ygtoty/nhl/tor.png);\"> <div class=\"background toty\"></div> <div class=\"toty_tag tag top\"> <div class=\"cardtype\">OVR</div> <div class=\"overall\">99</div> </div> <div class=\"headshot toty-headshot top\" style=\"background-image: url('/assets/img/headshots/active/9810.png');\"></div> <div class=\"name\"> <div class=\"firstname\">MITCHELL</div> <div class=\"lastname\">MARNER</div> </div> <div class=\"info\"> <div class=\"position\">RW</div> <div class=\"bullet\"></div> <div class=\"type\">PLY</div> </div> <div class=\"attributes\"> <div class=\"attr-value\"> <div class=\"attr-name\">SKT</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">SHT</div> 97 </div> <div class=\"attr-value\"> <div class=\"attr-name\">HND</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">CHK</div> 91 </div> <div class=\"attr-value\"> <div class=\"attr-name\">DEF</div> 96 </div> </div> <div class=\"team toty-team team-right\">Maple Leafs</div> <div class=\"logo toty-logo\" style=\"background-image: url('/assets/img/logos/nhl/tor.png');\"></div> </div> </div> ",
-          price: 25,
-          occupied_places: 10,
-          player_name: 'Jeff Carter',
-          ovr: 94
-        },
-        {
-          card_id: 1,
-          places: 25,
-          card_data: "<div class=\"ncard toty-ol\"> <div class=\"backplate\" style=\"background-image: url(/assets/img/cards/19/toty/ygtoty/nhl/tor.png);\"> <div class=\"background toty\"></div> <div class=\"toty_tag tag top\"> <div class=\"cardtype\">OVR</div> <div class=\"overall\">99</div> </div> <div class=\"headshot toty-headshot top\" style=\"background-image: url('/assets/img/headshots/active/9810.png');\"></div> <div class=\"name\"> <div class=\"firstname\">MITCHELL</div> <div class=\"lastname\">MARNER</div> </div> <div class=\"info\"> <div class=\"position\">RW</div> <div class=\"bullet\"></div> <div class=\"type\">PLY</div> </div> <div class=\"attributes\"> <div class=\"attr-value\"> <div class=\"attr-name\">SKT</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">SHT</div> 97 </div> <div class=\"attr-value\"> <div class=\"attr-name\">HND</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">CHK</div> 91 </div> <div class=\"attr-value\"> <div class=\"attr-name\">DEF</div> 96 </div> </div> <div class=\"team toty-team team-right\">Maple Leafs</div> <div class=\"logo toty-logo\" style=\"background-image: url('/assets/img/logos/nhl/tor.png');\"></div> </div> </div> ",
-          price: 55,
-          occupied_places: 18,
-          player_name: 'Jeff Carter',
-          ovr: 94
-        },
-        {
-          card_id: 1,
-          places: 14,
-          card_data: "<div class=\"ncard toty-ol\"> <div class=\"backplate\" style=\"background-image: url(/assets/img/cards/19/toty/ygtoty/nhl/tor.png);\"> <div class=\"background toty\"></div> <div class=\"toty_tag tag top\"> <div class=\"cardtype\">OVR</div> <div class=\"overall\">99</div> </div> <div class=\"headshot toty-headshot top\" style=\"background-image: url('/assets/img/headshots/active/9810.png');\"></div> <div class=\"name\"> <div class=\"firstname\">MITCHELL</div> <div class=\"lastname\">MARNER</div> </div> <div class=\"info\"> <div class=\"position\">RW</div> <div class=\"bullet\"></div> <div class=\"type\">PLY</div> </div> <div class=\"attributes\"> <div class=\"attr-value\"> <div class=\"attr-name\">SKT</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">SHT</div> 97 </div> <div class=\"attr-value\"> <div class=\"attr-name\">HND</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">CHK</div> 91 </div> <div class=\"attr-value\"> <div class=\"attr-name\">DEF</div> 96 </div> </div> <div class=\"team toty-team team-right\">Maple Leafs</div> <div class=\"logo toty-logo\" style=\"background-image: url('/assets/img/logos/nhl/tor.png');\"></div> </div> </div> ",
-          price: 25,
-          occupied_places: 11,
-          player_name: 'Jeff Carter',
-          ovr: 94
-        },
-        {
-          card_id: 1,
-          places: 78,
-          card_data: "<div class=\"ncard toty-ol\"> <div class=\"backplate\" style=\"background-image: url(/assets/img/cards/19/toty/ygtoty/nhl/tor.png);\"> <div class=\"background toty\"></div> <div class=\"toty_tag tag top\"> <div class=\"cardtype\">OVR</div> <div class=\"overall\">99</div> </div> <div class=\"headshot toty-headshot top\" style=\"background-image: url('/assets/img/headshots/active/9810.png');\"></div> <div class=\"name\"> <div class=\"firstname\">MITCHELL</div> <div class=\"lastname\">MARNER</div> </div> <div class=\"info\"> <div class=\"position\">RW</div> <div class=\"bullet\"></div> <div class=\"type\">PLY</div> </div> <div class=\"attributes\"> <div class=\"attr-value\"> <div class=\"attr-name\">SKT</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">SHT</div> 97 </div> <div class=\"attr-value\"> <div class=\"attr-name\">HND</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">CHK</div> 91 </div> <div class=\"attr-value\"> <div class=\"attr-name\">DEF</div> 96 </div> </div> <div class=\"team toty-team team-right\">Maple Leafs</div> <div class=\"logo toty-logo\" style=\"background-image: url('/assets/img/logos/nhl/tor.png');\"></div> </div> </div> ",
-          price: 25,
-          occupied_places: 12,
-          player_name: 'Jeff Carter',
-          ovr: 94
-        },
-        {
-          card_id: 1,
-          places: 12,
-          card_data: "<div class=\"ncard toty-ol\"> <div class=\"backplate\" style=\"background-image: url(/assets/img/cards/19/toty/ygtoty/nhl/tor.png);\"> <div class=\"background toty\"></div> <div class=\"toty_tag tag top\"> <div class=\"cardtype\">OVR</div> <div class=\"overall\">99</div> </div> <div class=\"headshot toty-headshot top\" style=\"background-image: url('/assets/img/headshots/active/9810.png');\"></div> <div class=\"name\"> <div class=\"firstname\">MITCHELL</div> <div class=\"lastname\">MARNER</div> </div> <div class=\"info\"> <div class=\"position\">RW</div> <div class=\"bullet\"></div> <div class=\"type\">PLY</div> </div> <div class=\"attributes\"> <div class=\"attr-value\"> <div class=\"attr-name\">SKT</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">SHT</div> 97 </div> <div class=\"attr-value\"> <div class=\"attr-name\">HND</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">CHK</div> 91 </div> <div class=\"attr-value\"> <div class=\"attr-name\">DEF</div> 96 </div> </div> <div class=\"team toty-team team-right\">Maple Leafs</div> <div class=\"logo toty-logo\" style=\"background-image: url('/assets/img/logos/nhl/tor.png');\"></div> </div> </div> ",
-          price: 25,
-          occupied_places: 14,
-          player_name: 'Jeff Carter',
-          ovr: 94
-        }
+      lotteries: [
+          {
+              active: 0,
+              base_discount: 0,
+              base_price: 12312,
+              completed: 0,
+              console_type: 0,
+              created_at: "2019-08-07 21:22:22",
+              game_type: "0",
+              id: 4,
+              is_only_one: 0,
+              lifetime: 0,
+              lot: {
+                  id: 4,
+                  lottery_id: 4,
+                  coins: null,
+                  items_id: null,
+                  cards_id: 4,
+                  card:{
+                      Card_data:null
+                  }
+              },
+              occupied_places: 0,
+              places: 122,
+              visible: 0,
+              winner_id: null,
+          },
       ]
     }
   },
 
     mounted(){
-      alert("games load start")
       this.loadLotteries();
     },
   methods: {
-    getCardList: function (min, max) {
+    getLotteriesList: function (min, max) {
       var sort = null
       switch (this.sort) {
         default:
@@ -166,16 +137,19 @@ export default {
         case 'places-down': sort = (a, b) => a.places - b.places; break;
         case 'occupied-places-up': sort = (a, b) => b.occupied_places - a.occupied_places; break;
         case 'occupied-places-down': sort = (a, b) => a.occupied_places - b.occupied_places;  break;
-        case 'ovr-up': sort = (a, b) => a.ovr - b.ovr;  break;
-        case 'ovr-down': sort = (a, b) => a.ovr - b.ovr;  break;
+        case 'ovr-up': sort = (a, b) => a.lot.card.OVR - b.lot.card.OVR;  break;
+        case 'ovr-down': sort = (a, b) => a.lot.card.OVR - b.lot.card.OVR;  break;
       }
-      return this.cards
-        .filter(card => card.price >= min && card.price < max)
-        .sort(sort)
+      var result = this.lotteries
+          .filter(lottery => lottery.base_price >= min && lottery.base_price < max && lottery.lot.card.Card_data!=null)
+          .sort(sort);
+
+      return result
     },
 
     prepareUrl: function (template) {
-      return template.replace(/\/assets/gi, 'https://hutdb.net/assets')
+        var cardData = JSON.parse(template.lot.card.Card_data);
+        return cardData.value
     },
     lineWidth: function (c1, c2) {
       return {
@@ -185,13 +159,12 @@ export default {
      loadLotteries(){
          api.call('get', '/lottery/all')
              .then(({data}) => {
-             console.log(data);
+                 this.lotteries = data.data;
 
-                 this.cards = data.data;
              });
      },
-    lotteryOpen: function (cardId) {
-      this.$router.push({ name: 'Lottery', params: { id: cardId } })
+    lotteryOpen: function (lotteryId) {
+      this.$router.push({ name: 'Lottery', params: { id: lotteryId } })
     }
   }
 

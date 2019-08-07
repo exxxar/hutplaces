@@ -127,7 +127,7 @@ class LotteryController extends Controller
 
     public function all(){
         return response()->json([
-            'data' =>  Lottery::all(),
+            'data' =>  Lottery::with(["lot","lot.card"])->get(),
             'status' => 200
         ]);
     }

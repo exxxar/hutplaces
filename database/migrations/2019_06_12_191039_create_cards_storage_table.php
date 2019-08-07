@@ -23,8 +23,6 @@ class CreateCardsStorageTable extends Migration
             $table->integer("BLK_REC")->nullable()->default(0);//89
             $table->integer("CHK")->nullable()->default(0);//89
             $table->integer("CHK_POS")->nullable()->default(0);//93
-            $table->string("Card")->nullable()->default("");//"PT"
-            $table->string("Card_data")->nullable()->default("");//take it from other url https://hutdb.net/ajax/id.php?size=0&id=32006
             $table->integer("DAW_PPF")->nullable()->default(0);//99
             $table->integer("DEF_RBC")->nullable()->default(0);//98
             $table->integer("DEK_ANG")->nullable()->default(0);//99
@@ -60,14 +58,18 @@ class CreateCardsStorageTable extends Migration
             $table->integer("Year")->nullable()->default(0);//19
             $table->integer("aOVR")->nullable()->default(0);//2019
             $table->integer("age")->nullable()->default(0);//31
+          $table->integer("jersey")->nullable()->default(0);//31
             $table->dateTime("create_date")->nullable()->default("2019-03-05 04:21:33"); //"2019-03-05 04:21:33"
-            $table->integer("hutdb_id")->nullable()->default(0);//'id' = 31397, 'id'=>'hutdb_id'
-            $table->integer("jersey")->nullable()->default(0);//31
+
             $table->string("nationality")->nullable()->default("");// "Canada"
             $table->string("nhl_id")->nullable()->default("");// "8471675"
             $table->string("picture")->nullable()->default("");// "7337"
             $table->string("salary")->nullable()->default(""); //"8700000"
             $table->string("synergy")->nullable()->default("");// "{"PP":2,"DZ":1}"
+            $table->string("Card")->nullable()->default("");//"PT"
+            $table->string("Card_data",5000)->nullable()->default("");//take it from other url https://hutdb.net/ajax/id.php?size=0&id=32006
+           $table->integer("hutdb_id")->nullable()->default(0);//'id' = 31397, 'id'=>'hutdb_id'
+
             $table->timestamps();
         });
     }

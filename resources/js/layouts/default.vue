@@ -216,12 +216,7 @@
                 this.$modal.show(name)
             },
             hide(name) {
-                /*api.call('get', '/get-user')
-                    .then(({data}) => {
-                        this.user = data;
-
-                    });*/
-                this.$modal.hide(name)
+                  this.$modal.hide(name)
             },
 
             setUser(user){

@@ -49,7 +49,7 @@ window.Echo = new Echo({
 
 var Pusher = require('pusher-js');
 
-Pusher.logToConsole = true;
+Pusher.logToConsole = false;
 
 var pusher = new Pusher('37f1cfbd4bda023198c9', {
 

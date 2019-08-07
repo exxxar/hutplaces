@@ -17,7 +17,8 @@ class CreateLotteriesTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('lotteries', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger("lot_id" );
+            $table->unsignedInteger("lot_id" )->nullable();
+
             $table->string('title')->default('');
             $table->integer('console_type')->default(0);//0 - xbox, 1 - ps4, 2 - pc
             $table->string('lot_type')->default(0);//0 - card, 1 - coins, 2 - other
@@ -36,7 +37,7 @@ class CreateLotteriesTable extends Migration
             $table->integer('lifetime')->default(0);//0 - unlimited, 1 - 12, 2 - 24, 3 - 36...
 
 
-            $table->foreign('lot_id')->references('id')->on('lot');
+            $table->foreign('lot_id')->references('id')->on('lots');
 
             $table->timestamps();
         });

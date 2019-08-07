@@ -1085,10 +1085,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.show(name);
     },
     hide: function hide(name) {
-      /*api.call('get', '/get-user')
-          .then(({data}) => {
-              this.user = data;
-           });*/
       this.$modal.hide(name);
     },
     setUser: function setUser(user) {

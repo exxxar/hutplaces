@@ -16,8 +16,6 @@ class CardsStorage extends Model
         'BLK_REC',
         'CHK',
         'CHK_POS',
-        'Card',
-        'Card_data',
         'DAW_PPF',
         'DEF_RBC',
         'DEK_ANG',
@@ -53,14 +51,16 @@ class CardsStorage extends Model
         'Year',
         'aOVR',
         'age',
-        'create_date',
-        'hutdb_id',
         'jersey',
         'nationality',
         'nhl_id',
         'picture',
         'salary',
-        'synergy'
+        'synergy',
+        'Card',
+        'Card_data',
+        'create_date',
+        'hutdb_id',
     ];
 
     public function lots()

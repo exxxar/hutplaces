@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\CardsStorage;
+use App\Lottery;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CardsStorageController extends Controller
 {
@@ -194,5 +196,51 @@ class CardsStorageController extends Controller
     {
         $cards = [];
         return view('admin.cards',compact('cards'));
+    }
+
+    public function add(Request $request){
+
+       // Log::info(var_dump($request->get("data")));
+
+        $price = $request->get("data")["price"];
+        $places = $request->get("data")["places"];
+        $console = $request->get("data")["console"];
+
+        $id = $request->get("data")["card"]["id"];
+        $card = CardsStorage::create($request->get("data")["card"]);
+
+        $content = file_get_contents("https://hutdb.net/ajax/id.php?size=0&id=".$id);
+        $content = str_replace("/assets" , "https://hutdb.net/assets", json_decode($content)->value  );
+        $result = json_encode(["value"=>$content]);
+
+        $card->Card_data = $result;
+        $card->save();
+
+
+        $lottery = Lottery::create([
+            'title'=>"",
+            'console_type'=>$console,
+            'lot_type'=>0,
+            'game_type'=>0,
+            'base_price'=>$price,
+            'base_discount'=>0,
+            'places'=>$places,
+            'occupied_places'>0,
+            'visible'=>0,
+            'is_only_one'=>false,
+            'completed'=>false,
+            'active'=>false,
+            'lifetime'=>0
+        ]);
+
+        $lot = $lottery->lot()->create([
+            'cards_id'=>$card->id,
+        ]);
+
+        $lottery->lot_id = $lot->id;
+        $lottery->save();
+
+        return "ok";
+
     }
 }

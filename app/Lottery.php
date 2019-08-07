@@ -23,7 +23,9 @@ class Lottery extends Model
         'is_only_one',
         'completed',
         'active',
-        'lifetime'
+        'lifetime',
+
+
     ];
 
     public function isFull(){
@@ -32,8 +34,10 @@ class Lottery extends Model
 
     public function lot()
     {
-        return $this->hasOne('App\Lot');
+        return $this->hasOne('App\Lot','id');
     }
+
+
 
     public function users(){
         return $this->belongsToMany('App\User')->using('App\UserLottery');

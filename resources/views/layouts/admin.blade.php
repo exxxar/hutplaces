@@ -8,126 +8,21 @@
 
     <title>Панель администратора</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <style>
-
-        .custom-card {
-            padding:10px;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width:25%;
-            min-width:200px;
-            height:150px;
-            border:1px lightseagreen solid;
-            margin-top:10px;
-        }
-
-        .custom-card p,
-        .custom-card h5 {
-            text-align: center;
-        }
-
-
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .image-list {
-            width:100%;
-            height:350px;
-            overflow-y: scroll;
-            padding: 20px;
-            box-sizing: border-box;;
-        }
-
-        .image-items {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            width: 150px;
-            height: 150px;
-        }
-
-        .image-items .image-container {
-            width:140px;
-            height:140px;
-            position: relative;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .image-items .image-container img{
-            width:100%;
-            height:100%;
-            padding:10px;
-            box-sizing: border-box;
-        }
-
-        .image-items .image-container .controlls{
-            position: absolute;
-            z-index:100;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-
-
-        /* layout.css Style */
-        .upload-drop-zone {
-            height: 200px;
-            border-width: 2px;
-            margin-bottom: 20px;
-        }
-
-        /* skin.css Style*/
-        .upload-drop-zone {
-            color: #ccc;
-            border-style: dashed;
-            border-color: #ccc;
-            line-height: 200px;
-            text-align: center
-        }
-        .upload-drop-zone.drop {
-            color: #222;
-            border-color: #222;
-        }
-
-        .list-group-item-failed {
-            background: indianred;
-        }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{{url("/css/admin/admin.css")}}" rel="stylesheet">
+    <link href="{{url("css/app.css")}}" rel="stylesheet">
 
 </head>
 
 <body>
 
-
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
 
 
-    @auth
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">HUTPLACES</a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Найти" aria-label="Search">
         <ul class="navbar-nav px-3">
@@ -135,7 +30,7 @@
                 <a class="nav-link" href="{{url('/logout')}}">Выход</a>
             </li>
         </ul>
-    @endauth
+
 
 
 
@@ -155,7 +50,7 @@
 
             <div class="row">
 
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+               <nav class="col-md-2 d-none d-md-block bg-light sidebar">
 
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
@@ -320,7 +215,7 @@
                 </nav>
 
 
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
                     <div id="app">
                     @yield('content')
                     </div>

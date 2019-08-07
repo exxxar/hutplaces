@@ -46,6 +46,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $levels = Level::all();
         $roles = Role::pluck('name', 'name')->all();
 
         $files = Storage::files("/public/");
@@ -58,7 +59,7 @@ class UserController extends Controller
         });
 
 
-        return view('admin.users.create', compact('roles', 'images'));
+        return view('admin.users.create', compact('roles', 'images','levels'));
     }
 
     /**
