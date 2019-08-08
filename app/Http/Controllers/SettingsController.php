@@ -161,6 +161,7 @@ class SettingsController extends Controller
 
         $destinationPath = storage_path() . '/app/public/slider/';
         $fullDestinations = [];
+        $resultArray = [];
 
         foreach ($request->file('images') as $file) {
            $storeName =  $file->getClientOriginalName();
@@ -169,7 +170,13 @@ class SettingsController extends Controller
            array_push($fullDestinations, $destinationPath . $storeName);
         }
 
-        $result = json_encode(Storage::files('public/slider'));
+        $allFiles = Storage::files('public/slider');
+
+        foreach ($allFiles as $file) {
+            array_push($resultArray, basename($file));
+        }
+
+        $result = json_encode($resultArray);
 
         $setting = Setting::updateOrCreate(
             ['title' => 'slider_images'],
