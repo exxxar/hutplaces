@@ -6,7 +6,7 @@ use App\Events\BroadcastMessage;
 use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
 {
@@ -148,12 +148,16 @@ class SettingsController extends Controller
             ->back();
     }
 
-    public function sliderUpload(Request $request)
+    public function main()
+    {
+        $images = Storage::files('public/slider');
+
+        return view('admin.main',compact('images'));
+    }
+
+    public function sliderImageUpload(Request $request)
     {
         if (($request->has('images'))) {
-
-        //$file = new Filesystem;
-        //$file->cleanDirectory(storage_path() . '/app/public/slider');
 
         $destinationPath = storage_path() . '/app/public/slider/';
         $fullDestinations = [];
@@ -165,7 +169,7 @@ class SettingsController extends Controller
            array_push($fullDestinations, $destinationPath . $storeName);
         }
 
-        $result = json_encode($fullDestinations);
+        $result = json_encode(Storage::files('public/slider'));
 
         $setting = Setting::updateOrCreate(
             ['title' => 'slider_images'],
@@ -175,6 +179,19 @@ class SettingsController extends Controller
 
        return redirect()
            ->back();
+    }
+
+    public function sliderImageGet($filename)
+    {
+        $file = Storage::disk('public/slider')->get($filename);
+        return new Responce($file, 200);
+    }
+
+    public function sliderImageDelete(Request $request)
+    {
+        $file = $request->image;
+        Storage::disk('public')->delete('slider/' . $file);
+        return back();
     }
 
     public function setlang($locale){

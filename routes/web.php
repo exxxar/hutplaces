@@ -37,14 +37,23 @@ Route::get("/pay",function (){
 Route::get('/social-auth/{provider}', 'Auth\SocialController@redirectToProvider')->name('auth.social');
 Route::get('/social-auth/{provider}/callback', 'Auth\SocialController@handleProviderCallback')->name('auth.social.callback');
 
+// slider image get
+Route::get('/storage/slider/{filename}', 'SettingsController@sliderImageGet')->name('slider.image.get');
 
 Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
 
+    // main page with images for slider
+    Route::get('/', 'SettingsController@main')->name('main');
+
     Route::post('/broadcast', 'SettingsController@broadcast')->name("broadcast.message");
     Route::post('/search', 'CardsStorageController@search')->name('card.search');
-    Route::post('/addcard', 'CardsStorageController@add')->name('card.search');
-    Route::post('/slider', 'SettingsController@sliderUpload')->name('slider.upload');
+    Route::post('/addcard', 'CardsStorageController@add')->name('card.add');
     Route::get('/cards', 'CardsStorageController@cards')->name('card.index');
+
+    // slider images
+    Route::post('slider-upload', 'SettingsController@sliderImageUpload')->name('slider.image.upload');
+    Route::post('slider-delete', 'SettingsController@sliderImageDelete')->name('slider.image.delete');
+
 
     Route::resources([
         'auction' => 'AuctionController',
@@ -65,7 +74,7 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
         'transactions' => 'TransactionController',
     ]);
 
-    Route::view('/', 'admin.main');
+    //Route::view('/', 'admin.main');
     Route::view('/coins', 'admin.coins');
     Route::view('/mails', 'admin.mails');
     Route::view('/packs', 'admin.packs');
