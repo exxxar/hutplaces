@@ -576,36 +576,6 @@
 
         </modal>
 
-        <modal name="card-add">
-            <div class="center-modal">
-                <div class="row">
-
-                    <div class="form-group  col-sm-12">
-                        <label>Цена карточки</label>
-                        <input type="number" min="0" class="form-control"  v-model="savedCard.price">
-
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <label>Количество мест</label>
-                        <input type="number" min="0" class="form-control "  v-model="savedCard.places">
-
-                    </div>
-
-                    <div class="form-group col-sm-12">
-                        <label>Платформа</label>
-                        <select class="form-control " v-model="savedCard.console">
-                            <option value="0">All</option>
-                            <option value="1">PLAYSTATION 4</option>
-                            <option value="2">XBOX</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-12">
-                        <button class="btn btn-info" @click="save()">Добавить</button>
-                    </div>
-
-                </div>
-            </div>
-        </modal>
     </div>
 </template>
 
@@ -686,24 +656,10 @@
             }
         },
         methods: {
-            save() {
-                var tmp = this.savedCard;
-
-                axios.post('addcard', {data: this.savedCard})
-                    .then(res => {
-                        this.hide("card-add");
-                    }).catch(err => {
-                    console.log(err)
-                })
-
-                this.savedCard = tmp;
-            },
             addCard(card) {
-                this.savedCard.card=card;
-                this.show("card-add");
+                 this.$emit('card',card);
             },
             show(name) {
-
                 this.$modal.show(name)
             },
             hide(name) {
@@ -813,9 +769,4 @@
     }
 </script>
 
-<style lang="scss">
-    .center-modal {
-        padding: 20px;
-    }
-</style>
 

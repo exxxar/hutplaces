@@ -22,5 +22,6 @@
     "/layout-pages-Home-vue.js": "/layout-pages-Home-vue.js",
     "/layout-pages-NHL-vue.js": "/layout-pages-NHL-vue.js",
     "/layout-pages-Promo-vue.js": "/layout-pages-Promo-vue.js",
-    "/layout-pages-Reports-vue.js": "/layout-pages-Reports-vue.js"
+    "/layout-pages-Reports-vue.js": "/layout-pages-Reports-vue.js",
+    "/layout-components-admin-AdminCardPanel-vue.js": "/layout-components-admin-AdminCardPanel-vue.js"
 }

@@ -216,7 +216,6 @@ class CardsStorageController extends Controller
         $card->Card_data = $result;
         $card->save();
 
-
         $lottery = Lottery::create([
             'title'=>"",
             'console_type'=>$console,
