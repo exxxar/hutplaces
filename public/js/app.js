@@ -3481,6 +3481,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    message: function message(title, _message, type) {
+      this.$notify({
+        group: 'main',
+        type: type,
+        title: title,
+        text: _message
+      });
+    },
     addCard: function addCard(card) {
       this.$emit('card', card);
     },
@@ -3506,6 +3514,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.show("card");
       })["catch"](function (err) {
         console.log(err);
+
+        _this.$loading(false);
+
+        _this.message("Ошибка загрузки карточки", "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E!", 'error');
       });
     },
     synDec: function synDec(id) {
@@ -3536,6 +3548,10 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.$loading(false);
       })["catch"](function (err) {
+        _this2.message("Ошибка поиска", "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E!", 'error');
+
+        _this2.$loading(false);
+
         console.log(err);
       });
     },
@@ -3845,23 +3861,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      console: true,
-      year: false,
-      currency: true,
-      sum: 0,
-      player: '',
-      team: '',
-      rating: '',
-      initial_price: '',
-      buyout_price: '',
-      team_hut: ''
+      final_price_pucks: 0,
+      final_price_money: 0,
+      pucks_koef: 0.0005,
+      money_koef: 0.0005,
+      info: {
+        console: true,
+        year: false,
+        currency: true,
+        sum: 0,
+        player: '',
+        team: '',
+        rating: '',
+        initial_price: '',
+        buyout_price: '',
+        team_hut: ''
+      }
     };
   },
+  watch: {
+    'info.sum': {
+      handler: function handler(newVal, oldVal) {
+        this.final_price_pucks = this.info.sum * this.pucks_koef;
+        this.final_price_money = this.info.sum * this.money_koef;
+      }
+    }
+  },
   methods: {
+    reset: function reset() {
+      Object.assign(this.$data, this.$options.data.call(this));
+    },
+    message: function message(title, _message, type) {
+      this.$notify({
+        group: 'main',
+        type: type,
+        title: title,
+        text: _message
+      });
+    },
+    requestCoins: function requestCoins() {
+      var _this = this;
+
+      if (this.info.sum == 0) {
+        this.message("Отправка монет", "Укажите желаемую сумму", "error");
+        return;
+      }
+
+      if (this.info.player.trim() == '' || this.info.team.trim() == '' || this.info.rating.trim() == '' || this.info.initial_price.trim() == '' || this.info.buyout_price.trim() == '' || this.info.team_hut.trim() == '') {
+        this.message("Отправка монет", "Не все поля заполнены", "error");
+        return;
+      }
+
+      axios.post('coinsrequest', {
+        info: this.info
+      }).then(function (res) {
+        _this.message("Отправка монет", "Запрос успешно отправлен", "error");
+
+        _this.reset();
+      })["catch"](function (err) {
+        _this.message("Отправка монет", "Ошибка запроса(", "error");
+      });
+    },
     getCard: function getCard(data) {
-      this.player = data.Player;
-      this.team = "".concat(data.League, " ").concat(data.Team);
-      this.rating = data.OVR;
+      this.info.player = data.Player;
+      this.info.team = "".concat(data.League, " ").concat(data.Team);
+      this.info.rating = data.OVR;
+      this.info.initial_price = data.salary;
       this.hide("card-search");
     },
     show: function show(name) {
@@ -3871,25 +3936,22 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.hide(name);
     },
     checkConsole: function checkConsole(event) {
-      console.log(event);
-      this.console = event;
+      this.info.console = event;
     },
     checkYear: function checkYear(event) {
-      console.log(event);
-      this.year = event;
+      this.info.year = event;
     },
     checkCurrency: function checkCurrency(event) {
-      console.log(event);
-      this.currency = event;
+      this.info.currency = event;
     },
     increase: function increase() {
-      if (this.sum < 10000000) {
-        this.sum += 50000;
+      if (this.info.sum < 10000000) {
+        this.info.sum += 50000;
       }
     },
     decrease: function decrease() {
-      if (this.sum >= 50000) {
-        this.sum -= 50000;
+      if (this.info.sum >= 50000) {
+        this.info.sum -= 50000;
       }
     }
   },
@@ -5291,7 +5353,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.97);\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\n.search-form {\n  width: 700px;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n}\n@media (max-width: 700px) {\n.search-form {\n    width: 100%;\n}\n}\n.search-form hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.search-form .row {\n  width: 100%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: flex-start;\n}\n.search-form .row > div {\n  width: 50%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  flex-wrap: wrap;\n}\n@media (max-width: 700px) {\n.search-form .row > div {\n    width: 100%;\n}\n}\n.search-form .row > div.player {\n  width: 100%;\n}\n.search-form .row > div label {\n  font-size: 12px;\n  font-weight: 900;\n  width: 100%;\n  text-align: left;\n  margin-bottom: 5px;\n  color: white;\n}\n.search-form .row > div input,\n.search-form .row > div select {\n  border: 2px solid yellow;\n  background: #2c3e50;\n  color: white;\n  width: 100%;\n  border-radius: 5px;\n  padding: 15px;\n  margin-bottom: 7px;\n  box-sizing: border-box;\n}\n.search-form .row > div input::-webkit-input-placeholder,\n.search-form .row > div select::-webkit-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::-moz-placeholder,\n.search-form .row > div select::-moz-placeholder {\n  color: gray;\n}\n.search-form .row > div input:-ms-input-placeholder,\n.search-form .row > div select:-ms-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::-ms-input-placeholder,\n.search-form .row > div select::-ms-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::placeholder,\n.search-form .row > div select::placeholder {\n  color: gray;\n}\n.search-form .row > div hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.search-form .row > div button {\n  width: 100%;\n}\n.search-form table {\n  width: 100%;\n  color: white;\n  text-align: center;\n  border-collapse: separate;\n  border-spacing: 0 8px;\n}\n.search-form table thead th {\n  font-weight: 900;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.97);\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\n.search-form {\n  width: 700px;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n}\n@media (max-width: 700px) {\n.search-form {\n    width: 100%;\n}\n}\n.search-form hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.search-form .row {\n  width: 100%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: flex-start;\n}\n.search-form .row.synergy div {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  color: white;\n  font-weight: 900;\n  line-height: 150%;\n}\n.search-form .row.synergy div span {\n  order: 2;\n}\n.search-form .row.synergy div button {\n  width: 50px;\n  height: 50px;\n  margin: 5px;\n  padding: 0px;\n}\n.search-form .row.synergy div button:nth-of-type(1) {\n  order: 1;\n}\n.search-form .row.synergy div button:nth-of-type(2) {\n  order: 3;\n}\n.search-form .row > div {\n  width: 50%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  flex-wrap: wrap;\n}\n@media (max-width: 700px) {\n.search-form .row > div {\n    width: 100%;\n}\n}\n.search-form .row > div.player {\n  width: 100%;\n}\n.search-form .row > div label {\n  font-size: 12px;\n  font-weight: 900;\n  width: 100%;\n  text-align: left;\n  margin-bottom: 5px;\n  color: white;\n}\n.search-form .row > div input,\n.search-form .row > div select {\n  border: 2px solid yellow;\n  background: #2c3e50;\n  color: white;\n  width: 100%;\n  border-radius: 5px;\n  padding: 15px;\n  margin-bottom: 7px;\n  box-sizing: border-box;\n}\n.search-form .row > div input::-webkit-input-placeholder,\n.search-form .row > div select::-webkit-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::-moz-placeholder,\n.search-form .row > div select::-moz-placeholder {\n  color: gray;\n}\n.search-form .row > div input:-ms-input-placeholder,\n.search-form .row > div select:-ms-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::-ms-input-placeholder,\n.search-form .row > div select::-ms-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::placeholder,\n.search-form .row > div select::placeholder {\n  color: gray;\n}\n.search-form .row > div hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.search-form .row > div button {\n  width: 100%;\n}\n.search-form table {\n  width: 100%;\n  color: white;\n  text-align: center;\n  border-collapse: separate;\n  border-spacing: 0 8px;\n}\n.search-form table thead th {\n  font-weight: 900;\n}\n.search-form table tbody tr td span {\n  font-weight: 900;\n  color: yellow;\n}", ""]);
 
 // exports
 
@@ -51382,17 +51444,14 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "row" },
+        { staticClass: "row synergy" },
         _vm._l(_vm.synergyRate, function(syn, index) {
           return _vm.synergy.includes(syn.name)
             ? _c("div", { key: syn.id, staticClass: "col-3  mt-3 mb-3" }, [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(syn.name) +
-                    " - " +
-                    _vm._s(syn.rate) +
-                    "\n            "
-                ),
+                _c("span", [
+                  _vm._v(_vm._s(syn.name) + " - " + _vm._s(syn.rate))
+                ]),
+                _vm._v(" "),
                 _c(
                   "button",
                   {
@@ -51452,7 +51511,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v(_vm._s(result.id))]
+                    [_c("span", [_vm._v(_vm._s(result.id))])]
                   ),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(result.League))]),
@@ -51787,7 +51846,7 @@ var render = function() {
         [
           _c("toggle", {
             attrs: {
-              check: _vm.console,
+              check: _vm.info.console,
               id: "sw-console",
               labelon: "XBOX",
               labeloff: "PS4",
@@ -51802,7 +51861,7 @@ var render = function() {
           _vm._v(" "),
           _c("toggle", {
             attrs: {
-              check: _vm.year,
+              check: _vm.info.year,
               id: "sw-year",
               labelon: "2020",
               labeloff: "2021",
@@ -51817,7 +51876,7 @@ var render = function() {
           _vm._v(" "),
           _c("toggle", {
             attrs: {
-              check: _vm.currency,
+              check: _vm.info.currency,
               id: "sw-currency",
               labelon: "PUCKS",
               labeloff: _vm.$lang.messages.rub,
@@ -51844,19 +51903,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model.number",
-                value: _vm.sum,
-                expression: "sum",
+                value: _vm.info.sum,
+                expression: "info.sum",
                 modifiers: { number: true }
               }
             ],
             attrs: { type: "text" },
-            domProps: { value: _vm.sum },
+            domProps: { value: _vm.info.sum },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.sum = _vm._n($event.target.value)
+                _vm.$set(_vm.info, "sum", _vm._n($event.target.value))
               },
               blur: function($event) {
                 return _vm.$forceUpdate()
@@ -51873,7 +51932,7 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.sum = 50000
+                  _vm.info.sum = 50000
                 }
               }
             },
@@ -51885,7 +51944,7 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.sum = 100000
+                  _vm.info.sum = 100000
                 }
               }
             },
@@ -51897,7 +51956,7 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.sum = 250000
+                  _vm.info.sum = 250000
                 }
               }
             },
@@ -51909,7 +51968,7 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.sum = 500000
+                  _vm.info.sum = 500000
                 }
               }
             },
@@ -51921,7 +51980,7 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  _vm.sum = 1000000
+                  _vm.info.sum = 1000000
                 }
               }
             },
@@ -51937,10 +51996,13 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "price-amount" }, [
-            _vm._m(0),
+            _c("div", [
+              _c("span", [_vm._v(_vm._s(_vm.final_price_pucks))]),
+              _vm._v(" Pucks")
+            ]),
             _vm._v(" "),
             _c("div", [
-              _c("span", [_vm._v("400.00")]),
+              _c("span", [_vm._v(_vm._s(_vm.final_price_money))]),
               _vm._v(" " + _vm._s(_vm.$lang.messages.rubles))
             ])
           ])
@@ -51975,18 +52037,18 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.player,
-              expression: "player"
+              value: _vm.info.player,
+              expression: "info.player"
             }
           ],
           attrs: { placeholder: _vm.$lang.messages.player, type: "text" },
-          domProps: { value: _vm.player },
+          domProps: { value: _vm.info.player },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.player = $event.target.value
+              _vm.$set(_vm.info, "player", $event.target.value)
             }
           }
         }),
@@ -51996,18 +52058,18 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.team,
-              expression: "team"
+              value: _vm.info.team,
+              expression: "info.team"
             }
           ],
           attrs: { placeholder: _vm.$lang.messages.team, type: "text" },
-          domProps: { value: _vm.team },
+          domProps: { value: _vm.info.team },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.team = $event.target.value
+              _vm.$set(_vm.info, "team", $event.target.value)
             }
           }
         }),
@@ -52017,18 +52079,18 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.rating,
-              expression: "rating"
+              value: _vm.info.rating,
+              expression: "info.rating"
             }
           ],
           attrs: { placeholder: _vm.$lang.messages.rating, type: "text" },
-          domProps: { value: _vm.rating },
+          domProps: { value: _vm.info.rating },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.rating = $event.target.value
+              _vm.$set(_vm.info, "rating", $event.target.value)
             }
           }
         }),
@@ -52038,21 +52100,21 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.initial_price,
-              expression: "initial_price"
+              value: _vm.info.initial_price,
+              expression: "info.initial_price"
             }
           ],
           attrs: {
             placeholder: _vm.$lang.messages.initial_price,
             type: "text"
           },
-          domProps: { value: _vm.initial_price },
+          domProps: { value: _vm.info.initial_price },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.initial_price = $event.target.value
+              _vm.$set(_vm.info, "initial_price", $event.target.value)
             }
           }
         }),
@@ -52062,18 +52124,18 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.buyout_price,
-              expression: "buyout_price"
+              value: _vm.info.buyout_price,
+              expression: "info.buyout_price"
             }
           ],
           attrs: { placeholder: _vm.$lang.messages.buyout_price, type: "text" },
-          domProps: { value: _vm.buyout_price },
+          domProps: { value: _vm.info.buyout_price },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.buyout_price = $event.target.value
+              _vm.$set(_vm.info, "buyout_price", $event.target.value)
             }
           }
         }),
@@ -52083,18 +52145,18 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.team_hut,
-              expression: "team_hut"
+              value: _vm.info.team_hut,
+              expression: "info.team_hut"
             }
           ],
           attrs: { placeholder: _vm.$lang.messages.team_hut, type: "text" },
-          domProps: { value: _vm.team_hut },
+          domProps: { value: _vm.info.team_hut },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.team_hut = $event.target.value
+              _vm.$set(_vm.info, "team_hut", $event.target.value)
             }
           }
         }),
@@ -52102,7 +52164,15 @@ var render = function() {
         _c("div", { staticClass: "buy-row" }, [
           _c(
             "button",
-            { staticClass: "btn btn-yellow", attrs: { type: "submit" } },
+            {
+              staticClass: "btn btn-yellow",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.requestCoins()
+                }
+              }
+            },
             [_vm._v(_vm._s(_vm.$lang.messages.buy))]
           ),
           _vm._v(" "),
@@ -52156,14 +52226,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("span", [_vm._v("400.00")]), _vm._v(" Pucks")])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

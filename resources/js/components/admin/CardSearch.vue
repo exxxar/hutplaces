@@ -532,10 +532,10 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row synergy">
             <div class="col-3  mt-3 mb-3" v-if="synergy.includes(syn.name)" v-for="(syn, index) in synergyRate"
                  v-bind:key="syn.id">
-                {{ syn.name }} - {{ syn.rate }}
+                <span>{{ syn.name }} - {{ syn.rate }}</span>
                 <button class="btn btn-info" v-on:click="synDec(syn.id)">-</button>
                 <button class="btn btn-info" v-on:click="synInc(syn.id)">+</button>
             </div>
@@ -558,7 +558,7 @@
             </thead>
             <tbody>
             <tr v-for="result in results" v-bind:key="result.id">
-                <td @click="getCard(result.id)" style="cursor:pointer;">{{ result.id }}</td>
+                <td @click="getCard(result.id)" style="cursor:pointer;"><span>{{ result.id }}</span></td>
                 <td>{{ result.League }}</td>
                 <td>{{ result.Team }}</td>
                 <td>{{ result.Player }}</td>
@@ -657,6 +657,14 @@
             }
         },
         methods: {
+            message(title,message,type){
+                this.$notify({
+                    group: 'main',
+                    type: type,
+                    title: title,
+                    text: message
+                })
+            },
             addCard(card) {
                 this.$emit('card', card);
             },
@@ -679,6 +687,9 @@
 
                     }).catch(err => {
                     console.log(err)
+                    this.$loading(false)
+                    this.message("Ошибка загрузки карточки",`Ничего не найдено!`,'error');
+
                 })
             },
             synDec: function (id) {
@@ -698,6 +709,8 @@
                         this.results.shift();
                         this.$loading(false)
                     }).catch(err => {
+                    this.message("Ошибка поиска",`Ничего не найдено!`,'error');
+                    this.$loading(false)
                     console.log(err)
                 })
             },
