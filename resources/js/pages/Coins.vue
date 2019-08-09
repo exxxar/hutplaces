@@ -48,21 +48,20 @@
                     <div><span>{{final_price_money}}</span> {{$lang.messages.rubles}}</div>
                 </div>
             </div>
-            <a class="link-yellow" href="#">{{$lang.messages.how_to_buy}}</a>
+            <a class="link-yellow" href="#" @click="show('how-to-buy')">{{$lang.messages.how_to_buy}}</a>
         </div>
 
-        <hr>
         <p><a href="#" @click="show('card-search')">Найдите карточку</a> или, впишите вручную</p>
         <form class="player">
             <input :placeholder="$lang.messages.player" type="text" v-model="info.player">
             <input :placeholder="$lang.messages.team" type="text" v-model="info.team">
-            <input :placeholder="$lang.messages.rating" type="text" v-model="info.rating">
-            <input :placeholder="$lang.messages.initial_price" type="text" v-model="info.initial_price">
-            <input :placeholder="$lang.messages.buyout_price" type="text" v-model="info.buyout_price">
+            <input type="number" :placeholder="$lang.messages.rating"  v-model="info.rating">
+            <input type="number" :placeholder="$lang.messages.initial_price"  v-model="info.initial_price">
+            <input type="number" :placeholder="$lang.messages.buyout_price" v-model="info.buyout_price">
             <input :placeholder="$lang.messages.team_hut" type="text" v-model="info.team_hut">
             <div class="buy-row">
                 <button class="btn btn-yellow" type="button" @click="requestCoins()">{{$lang.messages.buy}}</button>
-                <a class="link-light" href="#">{{$lang.messages.sell_to_us}}</a>
+                <a class="link-light" href="#" @click="show('sell-to-us')">{{$lang.messages.sell_to_us}}</a>
             </div>
         </form>
 
@@ -71,6 +70,28 @@
                 <a href="#" @click="hide('card-search')" class="close"></a>
                 <h1>Поиск карточек игроков</h1>
                 <card-search v-on:card="getCard($event)"></card-search>
+            </scroll>
+        </modal>
+
+        <modal name="sell-to-us" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('sell-to-us')" class="close"></a>
+                <h1>Продать нам</h1>
+
+            </scroll>
+        </modal>
+
+        <modal name="how-to-buy" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('how-to-buy')" class="close"></a>
+                <h1>Как купить</h1>
+            </scroll>
+        </modal>
+
+        <modal name="coins-invoice" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('coins-invoice')" class="close"></a>
+                <h1>Запрос оплаты</h1>
             </scroll>
         </modal>
     </div>
@@ -206,7 +227,7 @@
         text-align: center;
         color: white;
         width: 100%;
-
+        margin-top: 20px;
         a {
             font-weight: 900;
             color: white;
