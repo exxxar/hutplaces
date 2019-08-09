@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
         'storage' => 'CardsStorageController',
         'images' => 'ImagesStorageController',
         'transactions' => 'TransactionController',
+        'content' => 'ContentController',
     ]);
 
     //Route::view('/', 'admin.main');

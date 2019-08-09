@@ -159,6 +159,14 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="custom-card">
+                <p><i class="fas fa-file-word"></i>/p>
+                <h5>Управление контентом</h5>
+                <a href="{{ url("admin/content") }}" class="btn btn-info">Переход к разделу</a>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="custom-card">
                 <p><i class="fas fa-users"></i></p>
                 <h5>Пользователи</h5>
                 <a href="{{ url("admin/users") }}" class="btn btn-info">Переход к разделу</a>

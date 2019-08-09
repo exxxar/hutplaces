@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContentController extends Controller
 {
@@ -12,9 +13,14 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+
+        $content = Content::orderBy('id','DESC')->paginate(5);
+
+        return view('admin.content.index',compact('content'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +30,7 @@ class ContentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.content.create');
     }
 
     /**
@@ -36,6 +42,16 @@ class ContentController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'title' => 'required',
+            'type' => 'required',
+            'content' => 'required'
+        ]);
+
+        Content::create($request->all());
+
+        return redirect()->route('content.index')
+            ->with('success','Content created successfully');
     }
 
     /**
@@ -44,9 +60,14 @@ class ContentController extends Controller
      * @param  \App\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function show(Content $content)
+    public function show($id)
     {
         //
+
+        $content = Content::find($id);
+
+
+        return view('admin.content.show',compact('content'));
     }
 
     /**
@@ -55,9 +76,14 @@ class ContentController extends Controller
      * @param  \App\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function edit(Content $content)
+    public function edit($id)
     {
         //
+
+        $content = Content::find($id);
+
+
+        return view('admin.content.edit',compact('content'));
     }
 
     /**
@@ -67,9 +93,25 @@ class ContentController extends Controller
      * @param  \App\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Content $content)
+    public function update(Request $request,$id)
     {
         //
+        $this->validate($request, [
+            'title' => 'required',
+            'type' => 'required',
+            'content' => 'required'
+        ]);
+
+
+        $content = Content::find($id);
+        $content->title = $request->input('title');
+        $content->type = $request->input('type');
+        $content->content = $request->input('content');
+        $content->save();
+
+
+        return redirect()->route('content.index')
+            ->with('success','Content updated successfully');
     }
 
     /**
@@ -78,8 +120,11 @@ class ContentController extends Controller
      * @param  \App\Content  $content
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Content $content)
+    public function destroy($id)
     {
         //
+        DB::table("content")->where('id',$id)->delete();
+        return redirect()->route('content.index')
+            ->with('success','Content deleted successfully');
     }
 }
