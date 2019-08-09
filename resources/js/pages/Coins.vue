@@ -60,7 +60,7 @@
             <input type="number" :placeholder="$lang.messages.buyout_price" v-model="info.buyout_price">
             <input :placeholder="$lang.messages.team_hut" type="text" v-model="info.team_hut">
             <div class="buy-row">
-                <button class="btn btn-yellow" type="button" @click="requestCoins()">{{$lang.messages.buy}}</button>
+                <button class="btn btn-yellow" type="button" @click="doInvoice()">{{$lang.messages.buy}}</button>
                 <a class="link-light" href="#" @click="show('sell-to-us')">{{$lang.messages.sell_to_us}}</a>
             </div>
         </form>
@@ -89,10 +89,16 @@
         </modal>
 
         <modal name="coins-invoice" :adaptive="true" width="100%" height="100%">
-            <scroll class="scroll-area">
+            <div class="modal-content">
                 <a href="#" @click="hide('coins-invoice')" class="close"></a>
                 <h1>Запрос оплаты</h1>
-            </scroll>
+                <p v-if="info.currency">{{final_price_pucks}}<span>Pucks</span></p>
+                <p v-else>{{final_price_money}}<span>Руб.</span></p>
+                <h1>Заказано монет</h1>
+                <p><span>{{info.sum}}</span></p>
+                <button class="btn btn-yellow full" type="button" @click="requestCoins()">{{$lang.messages.buy}}</button>
+
+            </div>
         </modal>
     </div>
 </template>
@@ -136,15 +142,7 @@
             reset() {
                 Object.assign(this.$data, this.$options.data.call(this));
             },
-            message(title,message,type){
-                this.$notify({
-                    group: 'main',
-                    type: type,
-                    title: title,
-                    text: message
-                })
-            },
-            requestCoins(){
+            doInvoice(){
                 if (this.info.sum==0) {
                     this.message("Отправка монет", "Укажите желаемую сумму", "error");
                     return
@@ -161,6 +159,23 @@
                     return
                 }
 
+                if (!auth.check()&&this.info.currency){
+                    this.message("Отправка монет","Авторизируйтесь в системе для оплаты в Pucks","error");
+                    return
+                }
+
+                this.show('coins-invoice');
+            },
+            message(title,message,type){
+                this.$notify({
+                    group: 'main',
+                    type: type,
+                    title: title,
+                    text: message
+                })
+            },
+            requestCoins(){
+
                 axios.post('coinsrequest', {info: this.info})
                     .then(res => {
                         this.message("Отправка монет","Запрос успешно отправлен","error");
@@ -168,6 +183,8 @@
                     }).catch(err => {
                     this.message("Отправка монет","Ошибка запроса(","error");
                 })
+
+                this.hide('coins-invoice');
             },
             getCard(data) {
                 this.info.player = data.Player;
@@ -232,6 +249,22 @@
             font-weight: 900;
             color: white;
             text-decoration-style: dashed;
+        }
+    }
+
+    .modal-content {
+        width:400px;
+        p {
+            line-height: 150%;
+            font-weight: 900;
+            font-size: 36px;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-top: 0px;
+
+            span {
+                color:yellow;
+            }
         }
     }
 </style>
