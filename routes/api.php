@@ -45,6 +45,8 @@ Route::get('/lottery/all', 'LotteryController@all');
 Route::get('/lottery/get/{lotteryId}', 'LotteryController@byId');
 Route::get('/lot/get/{lotteryId}', 'LotsController@byId');
 
+Route::post('/search', 'CardsStorageController@search');
+
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', 'API\AuthController@logout');
     Route::get('/get-user', 'API\AuthController@getUser');

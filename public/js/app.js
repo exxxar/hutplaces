@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-admin-CardSearch-vue":"layout-components-admin-CardSearch-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-default-vue":"layout-layouts-default-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Achievement-vue":"layout-pages-Achievement-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Home-vue":"layout-pages-Home-vue","layout-pages-NHL-vue":"layout-pages-NHL-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-default-vue":"layout-layouts-default-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Achievement-vue":"layout-pages-Achievement-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Home-vue":"layout-pages-Home-vue","layout-pages-NHL-vue":"layout-pages-NHL-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2753,6 +2753,867 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'SearchForm',
+  data: function data() {
+    return {
+      savedCard: {
+        console: 0,
+        places: 0,
+        price: 0,
+        card: null
+      },
+      cardExample: "",
+      year: '19',
+      proxyurl: 'https://cors-anywhere.herokuapp.com/',
+      request: '',
+      sort: 'DESC',
+      player: '',
+      league: 'Any',
+      pos: [],
+      shoots: 'Any',
+      hgt: [],
+      synergy: [],
+      synergyRate: [{
+        id: 0,
+        name: 'PP',
+        rate: 0
+      }, {
+        id: 1,
+        name: 'S',
+        rate: 0
+      }, {
+        id: 2,
+        name: 'NP',
+        rate: 0
+      }, {
+        id: 3,
+        name: 'FM',
+        rate: 0
+      }, {
+        id: 4,
+        name: 'CS',
+        rate: 0
+      }, {
+        id: 5,
+        name: 'DZ',
+        rate: 0
+      }, {
+        id: 6,
+        name: 'HT',
+        rate: 0
+      }, {
+        id: 7,
+        name: 'BE',
+        rate: 0
+      }, {
+        id: 8,
+        name: 'DW',
+        rate: 0
+      }, {
+        id: 9,
+        name: 'BM',
+        rate: 0
+      }, {
+        id: 10,
+        name: 'T',
+        rate: 0
+      }, {
+        id: 11,
+        name: 'BR',
+        rate: 0
+      }, {
+        id: 12,
+        name: 'FB',
+        rate: 0
+      }, {
+        id: 13,
+        name: 'TB',
+        rate: 0
+      }, {
+        id: 14,
+        name: 'BU',
+        rate: 0
+      }, {
+        id: 15,
+        name: 'HH',
+        rate: 0
+      }, {
+        id: 16,
+        name: 'CP',
+        rate: 0
+      }, {
+        id: 17,
+        name: 'FS',
+        rate: 0
+      }],
+      ovrmin: '',
+      ovrmax: '',
+      team: 'Any',
+      stype: [],
+      scard: [],
+      wgtmin: '',
+      wgtmax: '',
+      nationality: 'Any',
+      results: ''
+    };
+  },
+  watch: {
+    synergy: {
+      handler: function handler(newVal, oldVal) {
+        if (newVal.length > oldVal.length) {
+          var difference = newVal.filter(function (x) {
+            return !oldVal.includes(x);
+          });
+          var elem = difference[0];
+          this.synergyRate.find(function (syn) {
+            return syn.name === elem;
+          }).rate = 1;
+        }
+
+        if (newVal.length < oldVal.length) {
+          var _difference = oldVal.filter(function (x) {
+            return !newVal.includes(x);
+          });
+
+          var _elem = _difference[0];
+          this.synergyRate.find(function (syn) {
+            return syn.name === _elem;
+          }).rate = 0;
+        }
+      }
+    },
+    synergyRate: {
+      handler: function handler(val) {//
+      },
+      deep: true
+    }
+  },
+  methods: {
+    addCard: function addCard(card) {
+      this.$emit('card', card);
+    },
+    show: function show(name) {
+      this.$modal.show(name);
+    },
+    hide: function hide(name) {
+      this.$modal.hide(name);
+    },
+    getCard: function getCard(id) {
+      var _this = this;
+
+      this.$loading(true);
+      this.request = "https://hutdb.net/ajax/id.php?size=0&id=".concat(id);
+      axios.post('search', {
+        url: this.request
+      }).then(function (res) {
+        console.log(res);
+        _this.cardExample = JSON.parse(JSON.stringify(res.data.value).replace(/\/assets/gi, 'https://hutdb.net/assets'));
+
+        _this.$loading(false);
+
+        _this.show("card");
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    synDec: function synDec(id) {
+      if (this.synergyRate.find(function (syn) {
+        return syn.id === id;
+      }).rate > 1) {
+        this.synergyRate.find(function (syn) {
+          return syn.id === id;
+        }).rate--;
+      }
+    },
+    synInc: function synInc(id) {
+      this.synergyRate.find(function (syn) {
+        return syn.id === id;
+      }).rate++;
+    },
+    search: function search() {
+      var _this2 = this;
+
+      this.$loading(true);
+      this.makeUrl();
+      axios.post('search', {
+        url: this.request
+      }).then(function (res) {
+        _this2.results = res.data;
+
+        _this2.results.shift();
+
+        _this2.$loading(false);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    makeUrl: function makeUrl() {
+      var _this3 = this;
+
+      this.request = "https://hutdb.net/ajax/stats.php?year=".concat(this.year, "&page=0&selected=OVR&sort=").concat(this.sort);
+
+      if (this.player !== '') {
+        var player = this.player.replace(' ', '%20');
+        this.request += "&player=".concat(player);
+      }
+
+      if (this.league !== 'Any') {
+        this.request += "&league=".concat(this.league);
+      }
+
+      if (this.pos.length > 0) {
+        this.request += "&pos=".concat(this.pos);
+      }
+
+      if (this.shoots !== 'Any') {
+        this.request += "&shoots=".concat(this.shoots);
+      }
+
+      if (this.hgt.length > 0) {
+        this.request += "&hgt=".concat(this.hgt);
+      }
+
+      if (this.synergy.length > 0) {
+        this.request += "&synergy=";
+        this.synergy.map(function (synName) {
+          _this3.request += "".concat(synName, "-").concat(_this3.synergyRate.find(function (syn) {
+            return syn.name === synName;
+          }).rate, ",");
+        });
+        this.request = this.request.slice(0, -1);
+      }
+
+      if (this.ovrmin !== '') {
+        this.request += "&ovrmin=".concat(ovrmin);
+      }
+
+      if (this.ovrmax !== '') {
+        this.request += "&ovrmax=".concat(ovrmax);
+      }
+
+      if (this.team !== 'Any') {
+        this.request += "&team=".concat(this.team);
+      }
+
+      if (this.stype.length > 0) {
+        this.request += "&stype=".concat(this.stype);
+      }
+
+      if (this.scard.length > 0) {
+        this.request += "&scard=".concat(this.scard);
+      }
+
+      if (this.wgtmin !== '') {
+        this.request += "&wgtmin=".concat(wgtmin);
+      }
+
+      if (this.wgtmax !== '') {
+        this.request += "&wgtmax=".concat(wgtmax);
+      }
+
+      if (this.nationality !== 'Any') {
+        this.request += "&nationality=".concat(this.nationality);
+      }
+
+      console.log(this.request);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/CardInfo.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/CardInfo.vue?vue&type=script&lang=js& ***!
@@ -2897,6 +3758,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Toggle_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Toggle.vue */ "./resources/js/components/Toggle.vue");
+/* harmony import */ var _components_admin_CardSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/admin/CardSearch.vue */ "./resources/js/components/admin/CardSearch.vue");
+/* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-custom-scrollbar */ "./node_modules/vue-custom-scrollbar/dist/vueScrollbar.umd.min.js");
+/* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2966,16 +3840,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       console: true,
       year: false,
       currency: true,
-      sum: 0
+      sum: 0,
+      player: '',
+      team: '',
+      rating: '',
+      initial_price: '',
+      buyout_price: '',
+      team_hut: ''
     };
   },
   methods: {
+    getCard: function getCard(data) {
+      this.player = data.Player;
+      this.team = "".concat(data.League, " ").concat(data.Team);
+      this.rating = data.OVR;
+      this.hide("card-search");
+    },
+    show: function show(name) {
+      this.$modal.show(name);
+    },
+    hide: function hide(name) {
+      this.$modal.hide(name);
+    },
     checkConsole: function checkConsole(event) {
       console.log(event);
       this.console = event;
@@ -3000,7 +3894,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    Toggle: _components_Toggle_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Toggle: _components_Toggle_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    CardSearch: _components_admin_CardSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Scroll: vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2___default.a
   }
 });
 
@@ -4376,7 +5272,26 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-779e1b49]:focus,\ntextarea[data-v-779e1b49]:focus,\nselect[data-v-779e1b49]:focus,\ninput[data-v-779e1b49]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-779e1b49] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-779e1b49]:hover {\n  opacity: 1;\n}\n.close[data-v-779e1b49]:before, .close[data-v-779e1b49]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-779e1b49]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-779e1b49]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-779e1b49] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-779e1b49]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-779e1b49] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-779e1b49] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-779e1b49] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-779e1b49] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-779e1b49] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-779e1b49] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-779e1b49] {\n  background: rgba(0, 0, 0, 0.97);\n}\n.v--modal-overlay .v--modal-background-click[data-v-779e1b49] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-779e1b49] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-779e1b49] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-779e1b49]:hover,\n.ps .ps__rail-y[data-v-779e1b49]:hover,\n.ps .ps__rail-x[data-v-779e1b49]:focus,\n.ps .ps__rail-y[data-v-779e1b49]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-779e1b49],\n.ps .ps__rail-y.ps--clicking[data-v-779e1b49] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-779e1b49],\n.ps__rail-y:focus > .ps__thumb-y[data-v-779e1b49],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-779e1b49] {\n  background-color: yellow;\n  width: 7px;\n}\ninput[data-v-779e1b49]:focus {\n  outline: none;\n}\nbutton[data-v-779e1b49] {\n  border: none;\n}\nbutton[data-v-779e1b49]:focus {\n  outline: none;\n}\n.coins-section[data-v-779e1b49] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 500px;\n  padding: 0px 0px 100px 0px;\n}\n.coins-section h1[data-v-779e1b49] {\n  font-size: 24px;\n  color: white;\n  font-weight: 100;\n  width: 100%;\n  padding: 10px;\n  box-sizing: border-box;\n}\n@media (max-width: 500px) {\n.coins-section[data-v-779e1b49] {\n    width: 100%;\n}\n}\n.switchers[data-v-779e1b49] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100%;\n  margin-bottom: 20px;\n}\nh2[data-v-779e1b49] {\n  text-align: center;\n  text-transform: uppercase;\n  color: white;\n  font-size: 14px;\n  width: 100%;\n  margin-bottom: 17px;\n}\n.calc[data-v-779e1b49] {\n  background: white;\n  padding: 28px 24px 28px 24px;\n  box-sizing: border-box;\n  box-shadow: 0px 0px 2px 0px black;\n  width: 100%;\n  height: 140px;\n  border-radius: 5px;\n}\n.calc .row[data-v-779e1b49] {\n  display: flex;\n  justify-content: space-between;\n}\n.calc .row input[data-v-779e1b49] {\n  color: #2c3e50;\n  border: 1px solid #dcdcdc;\n  border-radius: 5px;\n  width: 300px;\n  height: 40px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 16px;\n}\n@media (max-width: 500px) {\n.calc .row input[data-v-779e1b49] {\n    width: 250px;\n}\n}\n.calc .row:nth-child(1) button[data-v-779e1b49] {\n  width: 40px;\n  height: 40px;\n  background: #2c3e50;\n  color: white;\n  border-radius: 5px;\n  font-weight: bold;\n  font-size: 30px;\n  padding-bottom: 10px;\n  cursor: pointer;\n}\n.calc .row[data-v-779e1b49]:nth-child(2) {\n  padding: 0px;\n  margin-top: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n@media (max-width: 500px) {\n.calc .row[data-v-779e1b49]:nth-child(2) {\n    padding: 0;\n}\n}\n.calc .row:nth-child(2) button[data-v-779e1b49] {\n  color: #2c3e50;\n  border: 1px solid lightgray;\n  border-radius: 5px;\n  width: 45px;\n  height: 40px;\n  font-weight: bold;\n  font-size: 12px;\n  cursor: pointer;\n  margin-left: 10px;\n  margin-right: 10px;\n}\n.price[data-v-779e1b49] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  margin-top: 20px;\n  padding-left: 210px;\n  width: 100%;\n  border-bottom: 1px solid white;\n  padding-bottom: 15px;\n}\n@media (max-width: 500px) {\n.price[data-v-779e1b49] {\n    padding-left: 0;\n}\n}\n.price .main-price[data-v-779e1b49] {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n.price .main-price .price-text[data-v-779e1b49] {\n  text-transform: uppercase;\n  color: white;\n  font-weight: bold;\n  font-size: 16px;\n  margin-right: 10px;\n}\n.price .main-price .price-amount div[data-v-779e1b49] {\n  color: white;\n  font-weight: bold;\n  font-size: 16px;\n}\n.price .main-price .price-amount div span[data-v-779e1b49] {\n  color: red;\n}\n.price .link-yellow[data-v-779e1b49] {\n  font-weight: bold;\n  color: yellow;\n  border-bottom: 1px dashed yellow;\n  align-self: flex-start;\n  text-decoration: none;\n}\n.player[data-v-779e1b49] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  align-items: center;\n  margin-top: 25px;\n}\n.player input[data-v-779e1b49] {\n  border: 2px solid yellow;\n  background: #2c3e50;\n  color: white;\n  width: 100%;\n  border-radius: 5px;\n  padding: 15px;\n  margin-bottom: 7px;\n  box-sizing: border-box;\n}\n.player .buy-row[data-v-779e1b49] {\n  width: 100%;\n  margin-top: 13px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.player .buy-row .link-light[data-v-779e1b49] {\n  color: white;\n  border-bottom: 1px dashed white;\n  margin-left: 10px;\n  text-decoration: none;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-779e1b49]:focus,\ntextarea[data-v-779e1b49]:focus,\nselect[data-v-779e1b49]:focus,\ninput[data-v-779e1b49]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-779e1b49] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-779e1b49]:hover {\n  opacity: 1;\n}\n.close[data-v-779e1b49]:before, .close[data-v-779e1b49]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-779e1b49]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-779e1b49]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-779e1b49] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-779e1b49]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-779e1b49] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-779e1b49] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-779e1b49] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-779e1b49] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-779e1b49] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-779e1b49] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-779e1b49] {\n  background: rgba(0, 0, 0, 0.97);\n}\n.v--modal-overlay .v--modal-background-click[data-v-779e1b49] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-779e1b49] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-779e1b49] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-779e1b49]:hover,\n.ps .ps__rail-y[data-v-779e1b49]:hover,\n.ps .ps__rail-x[data-v-779e1b49]:focus,\n.ps .ps__rail-y[data-v-779e1b49]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-779e1b49],\n.ps .ps__rail-y.ps--clicking[data-v-779e1b49] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-779e1b49],\n.ps__rail-y:focus > .ps__thumb-y[data-v-779e1b49],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-779e1b49] {\n  background-color: yellow;\n  width: 7px;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-779e1b49]:focus,\ntextarea[data-v-779e1b49]:focus,\nselect[data-v-779e1b49]:focus,\ninput[data-v-779e1b49]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-779e1b49] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-779e1b49]:hover {\n  opacity: 1;\n}\n.close[data-v-779e1b49]:before, .close[data-v-779e1b49]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-779e1b49]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-779e1b49]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-779e1b49] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-779e1b49]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-779e1b49] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-779e1b49] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-779e1b49] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-779e1b49] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-779e1b49] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-779e1b49] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-779e1b49] {\n  background: rgba(0, 0, 0, 0.97);\n}\n.v--modal-overlay .v--modal-background-click[data-v-779e1b49] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-779e1b49] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-779e1b49] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-779e1b49]:hover,\n.ps .ps__rail-y[data-v-779e1b49]:hover,\n.ps .ps__rail-x[data-v-779e1b49]:focus,\n.ps .ps__rail-y[data-v-779e1b49]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-779e1b49],\n.ps .ps__rail-y.ps--clicking[data-v-779e1b49] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-779e1b49],\n.ps__rail-y:focus > .ps__thumb-y[data-v-779e1b49],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-779e1b49] {\n  background-color: yellow;\n  width: 7px;\n}\n.modal-body[data-v-779e1b49] {\n  min-height: 300px;\n  height: auto;\n  width: 500px;\n  padding: 20px;\n  box-sizing: border-box;\n}\n@media (max-width: 600px) {\n.modal-body[data-v-779e1b49] {\n    width: 100%;\n}\n}\n.modal-body .modal-logo[data-v-779e1b49] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  padding: 20px;\n  box-sizing: border-box;\n}\n.modal-body p[data-v-779e1b49] {\n  width: 100%;\n  text-align: center;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n}\n.modal-body p span[data-v-779e1b49] {\n  color: yellow;\n}\n.modal-body hr[data-v-779e1b49] {\n  border: none;\n  width: 100%;\n  height: 1px;\n  background-color: white;\n}\n.modal-body h1[data-v-779e1b49] {\n  width: 100%;\n  text-align: center;\n  font-weight: 100;\n  font-size: 24px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n  padding: 10px;\n  box-sizing: border-box;\n}\n.modal-body h2[data-v-779e1b49] {\n  width: 100%;\n  text-align: center;\n  font-weight: 900;\n  font-size: 24px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n}\n.modal-body h2 span[data-v-779e1b49] {\n  color: yellow;\n}\n.modal-body .input-group[data-v-779e1b49] {\n  width: 100%;\n  box-sizing: border-box;\n  padding: 10px;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.modal-body .input-group label[data-v-779e1b49] {\n  font-weight: 600;\n  font-size: 10px;\n  color: white;\n}\n.modal-body .input-group textarea[data-v-779e1b49],\n.modal-body .input-group select[data-v-779e1b49],\n.modal-body .input-group input[data-v-779e1b49] {\n  border: none;\n  border-bottom: 1px solid white;\n  color: white;\n  font-weight: 100;\n  font-size: 24px;\n  width: 100%;\n  text-align: center;\n  background: transparent;\n  padding: 15px;\n  box-sizing: border-box;\n  text-transform: uppercase;\n  font-family: \"Open Sans\";\n}\n.modal-body .input-group textarea option[data-v-779e1b49],\n.modal-body .input-group select option[data-v-779e1b49],\n.modal-body .input-group input option[data-v-779e1b49] {\n  color: #2c3e50;\n}\n.modal-body .input-group textarea[data-v-779e1b49] {\n  font-size: 16px;\n  text-align: left;\n}\n.modal-body .input-group select[data-v-779e1b49] {\n  font-size: 16px;\n  text-transform: initial;\n}\n.promo-modal[data-v-779e1b49] {\n  width: 500px;\n}\n.questions-modal[data-v-779e1b49] {\n  padding: 20px;\n  box-sizing: border-box;\n}\n.questions-modal > ul[data-v-779e1b49] {\n  position: relative;\n  margin-top: 10px;\n  width: 100%;\n  padding: 10px 20px;\n  border: 1px yellow solid;\n  overflow: hidden;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition: 0.5s;\n}\n.questions-modal > ul.active[data-v-779e1b49]:after {\n  content: \"\";\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  transform-origin: center center;\n  border-right: 2px solid yellow;\n  border-bottom: 2px solid yellow;\n  width: 10px;\n  height: 10px;\n  transform: rotate(45deg);\n  transition: 0.5s;\n}\n.questions-modal > ul[data-v-779e1b49]:after {\n  content: \"\";\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  transform-origin: center center;\n  border-bottom: 2px solid yellow;\n  width: 10px;\n  height: 10px;\n  transition: 0.5s;\n}\n.questions-modal > ul.active[data-v-779e1b49] {\n  height: auto;\n}\n.questions-modal > ul.active > li > ul[data-v-779e1b49] {\n  display: block;\n}\n.questions-modal > ul[data-v-779e1b49]:focus, .questions-modal > ul[data-v-779e1b49]:active, .questions-modal > ul[data-v-779e1b49]:hover {\n  height: auto;\n  transition: 0.5s;\n}\n.questions-modal > ul[data-v-779e1b49]:focus:after, .questions-modal > ul[data-v-779e1b49]:active:after, .questions-modal > ul[data-v-779e1b49]:hover:after {\n  transform: rotate(45deg);\n  transition: 0.5s;\n  border-right: 2px solid yellow;\n}\n.questions-modal > ul:focus > li > ul[data-v-779e1b49], .questions-modal > ul:active > li > ul[data-v-779e1b49], .questions-modal > ul:hover > li > ul[data-v-779e1b49] {\n  display: block;\n}\n.questions-modal > ul > li > p[data-v-779e1b49] {\n  color: white;\n  line-height: 150%;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 10px;\n  text-align: left;\n  text-overflow: ellipsis;\n  word-break: keep-all;\n}\n.questions-modal > ul > li > ul[data-v-779e1b49] {\n  width: 100%;\n  display: none;\n}\n.questions-modal > ul > li > ul li[data-v-779e1b49] {\n  color: yellow;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 5px 5px;\n}\n.history-modal[data-v-779e1b49] {\n  width: 800px;\n}\n.history-modal ul[data-v-779e1b49] {\n  border: 1px yellow solid;\n  margin-top: 10px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.history-modal ul li[data-v-779e1b49] {\n  width: 16%;\n  text-align: center;\n  color: white;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 10px;\n  box-sizing: border-box;\n}\n.history-modal ul li a[data-v-779e1b49] {\n  color: yellow;\n}\ninput[data-v-779e1b49]:focus {\n  outline: none;\n}\nbutton[data-v-779e1b49] {\n  border: none;\n}\nbutton[data-v-779e1b49]:focus {\n  outline: none;\n}\n.coins-section[data-v-779e1b49] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 500px;\n  padding: 0px 0px 100px 0px;\n}\n.coins-section h1[data-v-779e1b49] {\n  font-size: 24px;\n  color: white;\n  font-weight: 100;\n  width: 100%;\n  padding: 10px;\n  box-sizing: border-box;\n}\n@media (max-width: 500px) {\n.coins-section[data-v-779e1b49] {\n    width: 100%;\n}\n}\n.switchers[data-v-779e1b49] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100%;\n  margin-bottom: 20px;\n}\nh2[data-v-779e1b49] {\n  text-align: center;\n  text-transform: uppercase;\n  color: white;\n  font-size: 14px;\n  width: 100%;\n  margin-bottom: 17px;\n}\n.calc[data-v-779e1b49] {\n  background: white;\n  padding: 28px 24px 28px 24px;\n  box-sizing: border-box;\n  box-shadow: 0px 0px 2px 0px black;\n  width: 100%;\n  height: 140px;\n  border-radius: 5px;\n}\n.calc .row[data-v-779e1b49] {\n  display: flex;\n  justify-content: space-between;\n}\n.calc .row input[data-v-779e1b49] {\n  color: #2c3e50;\n  border: 1px solid #dcdcdc;\n  border-radius: 5px;\n  width: 300px;\n  height: 40px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 16px;\n}\n@media (max-width: 500px) {\n.calc .row input[data-v-779e1b49] {\n    width: 250px;\n}\n}\n.calc .row:nth-child(1) button[data-v-779e1b49] {\n  width: 40px;\n  height: 40px;\n  background: #2c3e50;\n  color: white;\n  border-radius: 5px;\n  font-weight: bold;\n  font-size: 30px;\n  padding-bottom: 10px;\n  cursor: pointer;\n}\n.calc .row[data-v-779e1b49]:nth-child(2) {\n  padding: 0px;\n  margin-top: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n@media (max-width: 500px) {\n.calc .row[data-v-779e1b49]:nth-child(2) {\n    padding: 0;\n}\n}\n.calc .row:nth-child(2) button[data-v-779e1b49] {\n  color: #2c3e50;\n  border: 1px solid lightgray;\n  border-radius: 5px;\n  width: 45px;\n  height: 40px;\n  font-weight: bold;\n  font-size: 12px;\n  cursor: pointer;\n  margin-left: 10px;\n  margin-right: 10px;\n}\n.price[data-v-779e1b49] {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  margin-top: 20px;\n  padding-left: 210px;\n  width: 100%;\n  border-bottom: 1px solid white;\n  padding-bottom: 15px;\n}\n@media (max-width: 500px) {\n.price[data-v-779e1b49] {\n    padding-left: 0;\n}\n}\n.price .main-price[data-v-779e1b49] {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n.price .main-price .price-text[data-v-779e1b49] {\n  text-transform: uppercase;\n  color: white;\n  font-weight: bold;\n  font-size: 16px;\n  margin-right: 10px;\n}\n.price .main-price .price-amount div[data-v-779e1b49] {\n  color: white;\n  font-weight: bold;\n  font-size: 16px;\n}\n.price .main-price .price-amount div span[data-v-779e1b49] {\n  color: red;\n}\n.price .link-yellow[data-v-779e1b49] {\n  font-weight: bold;\n  color: yellow;\n  border-bottom: 1px dashed yellow;\n  align-self: flex-start;\n  text-decoration: none;\n}\n.player[data-v-779e1b49] {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  align-items: center;\n  margin-top: 25px;\n}\n.player input[data-v-779e1b49] {\n  border: 2px solid yellow;\n  background: #2c3e50;\n  color: white;\n  width: 100%;\n  border-radius: 5px;\n  padding: 15px;\n  margin-bottom: 7px;\n  box-sizing: border-box;\n}\n.player .buy-row[data-v-779e1b49] {\n  width: 100%;\n  margin-top: 13px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.player .buy-row .link-light[data-v-779e1b49] {\n  color: white;\n  border-bottom: 1px dashed white;\n  margin-left: 10px;\n  text-decoration: none;\n}\nh1[data-v-779e1b49] {\n  width: 100%;\n  text-align: center;\n  font-weight: 100;\n  font-size: 24px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n  padding: 10px;\n  box-sizing: border-box;\n}\np[data-v-779e1b49] {\n  text-align: center;\n  color: white;\n  width: 100%;\n}\np a[data-v-779e1b49] {\n  font-weight: 900;\n  color: white;\n  -webkit-text-decoration-style: dashed;\n          text-decoration-style: dashed;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.97);\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\n.search-form {\n  width: 700px;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n}\n@media (max-width: 700px) {\n.search-form {\n    width: 100%;\n}\n}\n.search-form hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.search-form .row {\n  width: 100%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: flex-start;\n}\n.search-form .row > div {\n  width: 50%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  flex-wrap: wrap;\n}\n@media (max-width: 700px) {\n.search-form .row > div {\n    width: 100%;\n}\n}\n.search-form .row > div.player {\n  width: 100%;\n}\n.search-form .row > div label {\n  font-size: 12px;\n  font-weight: 900;\n  width: 100%;\n  text-align: left;\n  margin-bottom: 5px;\n  color: white;\n}\n.search-form .row > div input,\n.search-form .row > div select {\n  border: 2px solid yellow;\n  background: #2c3e50;\n  color: white;\n  width: 100%;\n  border-radius: 5px;\n  padding: 15px;\n  margin-bottom: 7px;\n  box-sizing: border-box;\n}\n.search-form .row > div input::-webkit-input-placeholder,\n.search-form .row > div select::-webkit-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::-moz-placeholder,\n.search-form .row > div select::-moz-placeholder {\n  color: gray;\n}\n.search-form .row > div input:-ms-input-placeholder,\n.search-form .row > div select:-ms-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::-ms-input-placeholder,\n.search-form .row > div select::-ms-input-placeholder {\n  color: gray;\n}\n.search-form .row > div input::placeholder,\n.search-form .row > div select::placeholder {\n  color: gray;\n}\n.search-form .row > div hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.search-form .row > div button {\n  width: 100%;\n}\n.search-form table {\n  width: 100%;\n  color: white;\n  text-align: center;\n  border-collapse: separate;\n  border-spacing: 0 8px;\n}\n.search-form table thead th {\n  font-weight: 900;\n}", ""]);
 
 // exports
 
@@ -42716,6 +43631,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Coins.vue?vue&type=style&index=1&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Games.vue?vue&type=style&index=0&lang=scss&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Games.vue?vue&type=style&index=0&lang=scss& ***!
@@ -48870,6 +49815,1726 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "search-form" },
+    [
+      _c("div", { staticClass: "row ff" }, [
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "sort" } },
+            [_vm._v("Sort")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.sort,
+                  expression: "sort"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "sort" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.sort = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "DESC", selected: "" } }, [
+                _vm._v("По убыванию")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "ASC" } }, [
+                _vm._v("По возрастанию")
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "year" } },
+            [_vm._v("Year")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.year,
+                  expression: "year"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "year" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.year = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", [_vm._v("18")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("19")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("20")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-6 player" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "player" } },
+            [_vm._v("Player")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.trim",
+                value: _vm.player,
+                expression: "player",
+                modifiers: { trim: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "player" },
+            domProps: { value: _vm.player },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.player = $event.target.value.trim()
+              },
+              blur: function($event) {
+                return _vm.$forceUpdate()
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-3" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "ovrmin" } },
+            [_vm._v("Ovrmin")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.number",
+                value: _vm.ovrmin,
+                expression: "ovrmin",
+                modifiers: { number: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "ovrmin" },
+            domProps: { value: _vm.ovrmin },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.ovrmin = _vm._n($event.target.value)
+              },
+              blur: function($event) {
+                return _vm.$forceUpdate()
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-3" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "ovrmax" } },
+            [_vm._v("Ovrmax")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.number",
+                value: _vm.ovrmax,
+                expression: "ovrmax",
+                modifiers: { number: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "ovrmax" },
+            domProps: { value: _vm.ovrmax },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.ovrmax = _vm._n($event.target.value)
+              },
+              blur: function($event) {
+                return _vm.$forceUpdate()
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "league" } },
+            [_vm._v("League")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.league,
+                  expression: "league"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "league" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.league = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", [_vm._v("Any")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("NHL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("SHL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Liiga")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("AHL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("NL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("OHL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("DEL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("ELH")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("EBEL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("CHL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("ECHL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Allsvenska")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("WHL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("QMJHL")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("National")])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "team" } },
+            [_vm._v("Team")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.team,
+                  expression: "team"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "team" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.team = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", [_vm._v("Any")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Pittsburgh Penguins")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Edmonton Oilers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Edmonton Oil Kings")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Washington Capitals")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Ottawa Senators")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Ottawa 67's")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Los Angeles Kings")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Tampa Bay Lightning")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Philadelphia Flyers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Toronto Maple Leafs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Toronto Marlies")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Nashville Predators")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("New Jersey Devils")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Colorado Avalanche")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Colorado Eagles")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("St. Louis Blues")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Boston Bruins")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("San Jose Sharks")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Winnipeg Jets")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Chicago Blackhawks")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Dallas Stars")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Calgary Flames")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Calgary Hitmen")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Columbus Blue Jackets")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Minnesota Wild")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Anaheim Ducks")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Vegas Golden Knights")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Arizona Coyotes")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Florida Panthers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Florida Everblades")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("New York Islanders")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Buffalo Sabres")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Montreal Canadiens")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Carolina Hurricanes")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Cardiff Devils")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Vancouver Canucks")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Vancouver Giants")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Detroit Red Wings")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("New York Rangers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("NHL Free Agents")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Frolunda Indians")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("TPS Turku")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Rockford IceHogs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("EV Zug")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Lugano")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("San Antonio Rampage")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Sarnia Sting")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Rochester Americans")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Manitoba Moose")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Manchester Monarchs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Barrie Colts")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Linkopings HC")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("ZSC Lions")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("EHC Munchen")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Eisbaren Berlin")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("SC Bern")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Plzen")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Djurgardens Hockey")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Geneve-Servette HC")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Iowa Wild")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("EHC Biel")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Grand Rapids Griffins")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Providence Bruins")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("SCL Tigers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Chicago Wolves")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Red Bull Salzburg")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Texas Stars")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Tucson Roadrunners")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Bakersfield Condors")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("San Diego Gulls")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Ontario Reign")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Bili Tygri Liberec")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Kometa Brno")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("JYP Jyvaskyla")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("ERC Ingolstadt")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Sparta Praha")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Vitkovice Steel")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Vita Hasten")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Dynamo Pardubice")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Bridgeport Sound Tigers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Banska Bystrica")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Kolner Haie")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Adler Mannheim")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Lehigh Valley Phantoms")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Laval Rockets")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Augsburger Panther")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Milwaukee Admirals")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Utica Comets")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Stockton Heat")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Storhamar Hamar")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Syracuse Crunch")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Hartford Wolf Pack")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Hartford Whalers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Cleveland Monsters")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Wilkes-Barre/Scranton Penguins")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Hershey Bears")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Charlotte Checkers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Belleville Senators")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Binghamton Devils")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Fribourg-Gotteron")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Brynas IF")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Skelleftea AIK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Vaxjo Lakers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Davos")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Ambri-Piotta")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Thomas Sabo Ice Tigers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Medicine Hat Tigers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Medvescak Zagreb")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC VERVA Litvinov")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Energie Karlovy Vary")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Pirati Chomutov")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Lausanne")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Grizzly Adams Wolfsburg")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Rapperswil-Jona Lakers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("San Jose Barracuda")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Fort Wayne Komets")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Springfield Thunderbirds")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Malmo Redhawks")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Almtuna IS")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Newfoundland Growlers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HV71")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Sodertalje SK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Helsingin IFK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Dusseldorfer EG")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Lulea Hockey")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Fischtown Pinguins")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Graz 99ers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Norway")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Norfolk Admirals")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Iserlohn Roosters")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("SaiPa Lappeenranta")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Mountfield HK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Olomouc")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC Ocelari Trinec")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Tri-City Americans")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Rogle BK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Vienna Capitals")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Orebro Hockey")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Straubing Tigers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("EC VSV")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Schwenninger Wild Wings")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("BK Mlada Boleslav")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Krefeld Pinguine")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Portland Pirates ")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Portland Winter Hawks")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Halifax Mooseheads")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Oulun Karpat")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("KooKoo Kouvala")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Kootenay Ice")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Leksands IF")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Rauman Lukko")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HPK Hameenlinna")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Hamilton Bulldogs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("PSG Zlin")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Karlskrona HK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Mora IK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Black Wings Linz")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Atlanta Gladiators")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Tampereen Tappara")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("IK Pantern")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Toledo Walleye")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Sudbury Wolves")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HCB Sudtirol Alperia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Great Britain")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Greenville Swamp Rabbits")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Tampereen Ilves")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Wheeling Nailers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Dornbirner EC")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Idaho Steelheads")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Mikkelin Jukurit")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("KalPa Kuopio")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Kalamazoo Wings")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Farjestad BK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Kansas City Mavericks")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Sault Ste. Marie Greyhounds")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Mississauga Steelheads")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Missouri Mavericks")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Cincinnati Cyclones")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("SAPA Fehervar AV 19")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Brandon Wheat Kings")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Brampton Beast")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("EC KAC")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Orlando Solar Bears")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Allen Americans")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Adirondack Thunder")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Reading Royals")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Rapid City Rush")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Maine Mariners")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Timra IK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Vaasan Sport")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Moose Jaw Warriors")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Kelowna Rockets")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("HC TWK Innsbruck")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("MODO Hockey")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Pelicans Lahti")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("South Carolina Stingrays")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Worcester Railers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("AIK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Indy Fuel")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Wichita Thunder")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Porin Assat")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Orli Znojmo")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Owen Sound Attack")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Kitchener Rangers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Regina Pats")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("IF Bjorkloven")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Kingston Frontenacs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Acadie-Bathurst Titan")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Vasterviks IK")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Utah Grizzlies")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Tulsa Oilers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("IK Oskarshamn")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Jacksonville IceMen")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Spokane Chiefs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Victoriaville Tigres")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Victoria Royals")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Saginaw Spirit")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Guelph Storm")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("London Knights")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Drummondville Voltigeurs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Tingsryds AIF")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("GKS Tychy")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Sherbrooke Phoenix")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Peterborough Petes")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Swift Current Broncos")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("North Bay Battalion")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Rimouski Oceanic")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Quebec Remparts")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Prince Albert Raiders")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Gatineau Olympiques")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Blainville-Boisbriand Armada")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Windsor Spitfires")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("BIK Karlskoga")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Neman Grodno")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Everett Silvertips")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Baie-Comeau Drakkar")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Charlottetown Islanders")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Kamloops Blazers")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Seattle Thunderbirds")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Red Deer Rebels")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Niagara IceDogs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Flint Firebirds")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("St. Johns Ice Caps")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Saint John Sea Dogs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Val-D'Or Foreurs")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Valerenga Ishockey")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Oshawa Generals")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Lethbridge Hurricanes")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Aalborg Pirates")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Cape Breton Screaming Eagles")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Saskatoon Blades")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Moncton Wildcats")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Prince George Cougars")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Erie Otters")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Chicoutimi Sagueneens")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Rouyn-Noranda Huskies")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Shawinigan Cataractes")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Minnesota North Stars")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Quebec Nordiques")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Austria")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Canada")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Czech Republic")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Finland")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("France")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Germany")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Denmark ")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Italy")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Russia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Slovakia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Sweden")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Switzerland")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("USA")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Atlantic All-Stars")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Pacific All-Stars")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Binghamton Senators")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Springfield Falcons")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Latvia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Lake Erie Monsters ")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Ukraine")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "pos" } },
+            [_vm._v("Position")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.pos,
+                  expression: "pos"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "pos", multiple: "multiple" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.pos = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "LW" } }, [_vm._v("Left Wing")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "C" } }, [_vm._v("Center")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "RW" } }, [_vm._v("Right Wing")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "LD" } }, [
+                _vm._v("Left Defensemen")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "RD" } }, [
+                _vm._v("Right Defensemen")
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "stype" } },
+            [_vm._v("Type")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.stype,
+                  expression: "stype"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "stype", multiple: "multiple" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.stype = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "PLY" } }, [_vm._v("Playmaker")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "PWF" } }, [
+                _vm._v("Power Forward")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "TWF" } }, [
+                _vm._v("Two-Way Forward")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "TWD" } }, [
+                _vm._v("Two-Way Defensemen")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "OFD" } }, [
+                _vm._v("Offenive Defensemen")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "SNP" } }, [_vm._v("Sniper")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "DFD" } }, [
+                _vm._v("Defensive Defesemen")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "GRN" } }, [_vm._v("Grinder")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "ENF" } }, [_vm._v("Enforcer")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "shoots" } },
+            [_vm._v("Shoots")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.shoots,
+                  expression: "shoots"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "shoots" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.shoots = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", [_vm._v("Any")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Left")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Right")])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "hgt" } },
+            [_vm._v("Height")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.hgt,
+                  expression: "hgt"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "hgt", multiple: "multiple" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.hgt = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "6%279" } }, [_vm._v("6'9")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%278" } }, [_vm._v("6'8")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%277" } }, [_vm._v("6'7")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%276" } }, [_vm._v("6'6")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%275" } }, [_vm._v("6'5")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%274" } }, [_vm._v("6'4")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%273" } }, [_vm._v("6'3")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%272" } }, [_vm._v("6'2")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%271" } }, [_vm._v("6'1")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6%270" } }, [_vm._v("6'0")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5%2711" } }, [_vm._v("5'11")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5%2710" } }, [_vm._v("5'10")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5%279" } }, [_vm._v("5'9")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5%278" } }, [_vm._v("5'8")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5%277" } }, [_vm._v("5'7")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5%276" } }, [_vm._v("5'6")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5%275" } }, [_vm._v("5'5")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "synergy" } },
+            [_vm._v("Synergy")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.synergy,
+                  expression: "synergy"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "synergy", multiple: "multiple" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.synergy = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "PP" } }, [
+                _vm._v("PP - Passing Playmaker")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "S" } }, [
+                _vm._v("S - Speedsters")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "NP" } }, [
+                _vm._v("NP - Net Front Presence")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "FM" } }, [
+                _vm._v("FM - Faceoff Master")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "CS" } }, [
+                _vm._v("CS - Call The Shot")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "DZ" } }, [
+                _vm._v("DZ - Dangle Zone")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "HT" } }, [
+                _vm._v("HT - Hammer Time")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "BE" } }, [
+                _vm._v("BE - The Beast")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "DW" } }, [
+                _vm._v("DW - Defensive Warrior")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "BM" } }, [
+                _vm._v("BM - Breakout Master")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "T" } }, [
+                _vm._v("T - It's a Trap")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "BR" } }, [
+                _vm._v("BR - Bruiser")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "FB" } }, [
+                _vm._v("FB - For The Boys")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "TB" } }, [
+                _vm._v("TB - The Beauty")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "BU" } }, [_vm._v("BU - Burner")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "HH" } }, [
+                _vm._v("HH - Heavy Hitter")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "CP" } }, [
+                _vm._v("CP - Clutch Player")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "FS" } }, [
+                _vm._v("FS - Fine Shooting")
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "scard" } },
+            [_vm._v("Card")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.scard,
+                  expression: "scard"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "scard", multiple: "multiple" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.scard = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "sGold" } }, [
+                _vm._v("Rare Gold")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Gold" } }, [_vm._v("Gold")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "sSilver" } }, [
+                _vm._v("Rare SIlver")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Silver" } }, [_vm._v("Silver")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "sBronze" } }, [
+                _vm._v("Rare Bronze")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Bronze" } }, [_vm._v("Bronze")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "TOTW" } }, [
+                _vm._v("Team of the Week (Gold)")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "STOTW" } }, [
+                _vm._v("Team of the Week (Silver)")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "BTOTW" } }, [
+                _vm._v("Team of the Week (Bronze)")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "LGD" } }, [_vm._v("Legends")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "ROOK" } }, [_vm._v("Rookies")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "COVER" } }, [_vm._v("Cover")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "ALM" } }, [_vm._v("Alumni")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "CS" } }, [
+                _vm._v("Competitive Seasons")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "HC" } }, [
+                _vm._v("Hut Champion")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "DC" } }, [
+                _vm._v("Draft Champions")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "GAT" } }, [_vm._v("Gatorade")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "EVO" } }, [_vm._v("Evolution")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "PT" } }, [_vm._v("Prime Time")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "MS" } }, [_vm._v("Milestone")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "HWN" } }, [_vm._v("Halloween")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "MSP" } }, [
+                _vm._v("Master Set Player")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "GSCGE" } }, [
+                _vm._v("Global Series Germany")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "GSCFI" } }, [
+                _vm._v("Global Series Finland")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "GSCSE" } }, [
+                _vm._v("Global Series Sweden")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "GSCSI" } }, [
+                _vm._v("Global Series Switzerland")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "TG" } }, [
+                _vm._v("Thanksgiving")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "DIAM" } }, [_vm._v("DIamond")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "XMAS" } }, [_vm._v("Christmas")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "IPOTG" } }, [
+                _vm._v("International Player of the Game")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "WC" } }, [
+                _vm._v("Winter Classic")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "EVO2" } }, [
+                _vm._v("Evolution 2")
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-3" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "wgtmin" } },
+            [_vm._v("Weight min")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.number",
+                value: _vm.wgtmin,
+                expression: "wgtmin",
+                modifiers: { number: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "wgtmin" },
+            domProps: { value: _vm.wgtmin },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.wgtmin = _vm._n($event.target.value)
+              },
+              blur: function($event) {
+                return _vm.$forceUpdate()
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-3" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "wgtmax" } },
+            [_vm._v("Weight max")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.number",
+                value: _vm.wgtmax,
+                expression: "wgtmax",
+                modifiers: { number: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "wgtmax" },
+            domProps: { value: _vm.wgtmax },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.wgtmax = _vm._n($event.target.value)
+              },
+              blur: function($event) {
+                return _vm.$forceUpdate()
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6" }, [
+          _c(
+            "label",
+            { staticClass: "col-form-label", attrs: { for: "nationality" } },
+            [_vm._v("Nationality")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.nationality,
+                  expression: "nationality"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "nationality" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.nationality = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", [_vm._v("Any")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Australia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Austria")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Belarus")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Belgium")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Canada")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Cezech Republic")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Croatia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Czech Republic")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Denmark")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("England")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Estonia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Finland")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("France")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Germany")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Hungary")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Italy")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Latvia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Liberia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Lithuania")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Netherlands")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Norway")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Poland")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Romania")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Russia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Slovakia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Slovenia")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Sweden")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Switzerland")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("Ukraine")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("USA")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.synergyRate, function(syn, index) {
+          return _vm.synergy.includes(syn.name)
+            ? _c("div", { key: syn.id, staticClass: "col-3  mt-3 mb-3" }, [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(syn.name) +
+                    " - " +
+                    _vm._s(syn.rate) +
+                    "\n            "
+                ),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    on: {
+                      click: function($event) {
+                        return _vm.synDec(syn.id)
+                      }
+                    }
+                  },
+                  [_vm._v("-")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    on: {
+                      click: function($event) {
+                        return _vm.synInc(syn.id)
+                      }
+                    }
+                  },
+                  [_vm._v("+")]
+                )
+              ])
+            : _vm._e()
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-5 mb-5" }, [
+        _c("div", { staticClass: "col-12 d-flex justify-content-center" }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", on: { click: _vm.search } },
+            [_vm._v("SEARCH")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.results != ""
+        ? _c("table", { staticClass: "table table-striped table-lg" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.results, function(result) {
+                return _c("tr", { key: result.id }, [
+                  _c(
+                    "td",
+                    {
+                      staticStyle: { cursor: "pointer" },
+                      on: {
+                        click: function($event) {
+                          return _vm.getCard(result.id)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(result.id))]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.League))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.Team))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.Player))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.salary))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.OVR))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-info",
+                        on: {
+                          click: function($event) {
+                            return _vm.addCard(result)
+                          }
+                        }
+                      },
+                      [_vm._v("Выбрать")]
+                    )
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "modal",
+        { attrs: { name: "card", width: "240px", height: "340px" } },
+        [
+          _c("a", {
+            staticClass: "close",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                return _vm.hide("card")
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { domProps: { innerHTML: _vm._s(_vm.cardExample) } })
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Card")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("League")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Team")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Salary")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("OVR")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Действие")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/CardInfo.vue?vue&type=template&id=f50e5ce8&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/CardInfo.vue?vue&type=template&id=f50e5ce8& ***!
@@ -49110,217 +51775,386 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "coins-section" }, [
-    _c("h1", [_vm._v("ПОКУПА \\ ПРОДАЖА МОНЕТ")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "switchers" },
-      [
-        _c("toggle", {
-          attrs: {
-            check: _vm.console,
-            id: "sw-console",
-            labelon: "XBOX",
-            labeloff: "PS4",
-            width: 148
-          },
-          on: {
-            check: function($event) {
-              return _vm.checkConsole($event)
+  return _c(
+    "div",
+    { staticClass: "coins-section" },
+    [
+      _c("h1", [_vm._v("ПОКУПА \\ ПРОДАЖА МОНЕТ")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "switchers" },
+        [
+          _c("toggle", {
+            attrs: {
+              check: _vm.console,
+              id: "sw-console",
+              labelon: "XBOX",
+              labeloff: "PS4",
+              width: 148
+            },
+            on: {
+              check: function($event) {
+                return _vm.checkConsole($event)
+              }
             }
-          }
-        }),
-        _vm._v(" "),
-        _c("toggle", {
-          attrs: {
-            check: _vm.year,
-            id: "sw-year",
-            labelon: "2020",
-            labeloff: "2021",
-            width: 140
-          },
-          on: {
-            check: function($event) {
-              return _vm.checkYear($event)
+          }),
+          _vm._v(" "),
+          _c("toggle", {
+            attrs: {
+              check: _vm.year,
+              id: "sw-year",
+              labelon: "2020",
+              labeloff: "2021",
+              width: 140
+            },
+            on: {
+              check: function($event) {
+                return _vm.checkYear($event)
+              }
             }
-          }
-        }),
-        _vm._v(" "),
-        _c("toggle", {
-          attrs: {
-            check: _vm.currency,
-            id: "sw-currency",
-            labelon: "PUCKS",
-            labeloff: _vm.$lang.messages.rub,
-            width: 160
-          },
-          on: {
-            check: function($event) {
-              return _vm.checkCurrency($event)
+          }),
+          _vm._v(" "),
+          _c("toggle", {
+            attrs: {
+              check: _vm.currency,
+              id: "sw-currency",
+              labelon: "PUCKS",
+              labeloff: _vm.$lang.messages.rub,
+              width: 160
+            },
+            on: {
+              check: function($event) {
+                return _vm.checkCurrency($event)
+              }
             }
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("h2", [_vm._v(_vm._s(_vm.$lang.messages.coins_h2))]),
-    _vm._v(" "),
-    _c("div", { staticClass: "calc" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("button", { on: { click: _vm.decrease } }, [_vm._v("-")]),
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("h2", [_vm._v(_vm._s(_vm.$lang.messages.coins_h2))]),
+      _vm._v(" "),
+      _c("div", { staticClass: "calc" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("button", { on: { click: _vm.decrease } }, [_vm._v("-")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.number",
+                value: _vm.sum,
+                expression: "sum",
+                modifiers: { number: true }
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.sum },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.sum = _vm._n($event.target.value)
+              },
+              blur: function($event) {
+                return _vm.$forceUpdate()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("button", { on: { click: _vm.increase } }, [_vm._v("+")])
+        ]),
         _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm.sum = 50000
+                }
+              }
+            },
+            [_vm._v("50k")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm.sum = 100000
+                }
+              }
+            },
+            [_vm._v("100k")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm.sum = 250000
+                }
+              }
+            },
+            [_vm._v("250k")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm.sum = 500000
+                }
+              }
+            },
+            [_vm._v("500k")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm.sum = 1000000
+                }
+              }
+            },
+            [_vm._v("1M")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "price" }, [
+        _c("div", { staticClass: "main-price" }, [
+          _c("div", { staticClass: "price-text" }, [
+            _vm._v(_vm._s(_vm.$lang.messages.price) + ":")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "price-amount" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", [
+              _c("span", [_vm._v("400.00")]),
+              _vm._v(" " + _vm._s(_vm.$lang.messages.rubles))
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "link-yellow", attrs: { href: "#" } }, [
+          _vm._v(_vm._s(_vm.$lang.messages.how_to_buy))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("p", [
+        _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                return _vm.show("card-search")
+              }
+            }
+          },
+          [_vm._v("Найдите карточку")]
+        ),
+        _vm._v(" или, впишите вручную")
+      ]),
+      _vm._v(" "),
+      _c("form", { staticClass: "player" }, [
         _c("input", {
           directives: [
             {
               name: "model",
-              rawName: "v-model.number",
-              value: _vm.sum,
-              expression: "sum",
-              modifiers: { number: true }
+              rawName: "v-model",
+              value: _vm.player,
+              expression: "player"
             }
           ],
-          attrs: { type: "text" },
-          domProps: { value: _vm.sum },
+          attrs: { placeholder: _vm.$lang.messages.player, type: "text" },
+          domProps: { value: _vm.player },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.sum = _vm._n($event.target.value)
-            },
-            blur: function($event) {
-              return _vm.$forceUpdate()
+              _vm.player = $event.target.value
             }
           }
         }),
         _vm._v(" "),
-        _c("button", { on: { click: _vm.increase } }, [_vm._v("+")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.sum = 50000
-              }
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.team,
+              expression: "team"
             }
-          },
-          [_vm._v("50k")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.sum = 100000
+          ],
+          attrs: { placeholder: _vm.$lang.messages.team, type: "text" },
+          domProps: { value: _vm.team },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
+              _vm.team = $event.target.value
             }
-          },
-          [_vm._v("100k")]
-        ),
+          }
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.sum = 250000
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.rating,
+              expression: "rating"
+            }
+          ],
+          attrs: { placeholder: _vm.$lang.messages.rating, type: "text" },
+          domProps: { value: _vm.rating },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
+              _vm.rating = $event.target.value
             }
-          },
-          [_vm._v("250k")]
-        ),
+          }
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.sum = 500000
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.initial_price,
+              expression: "initial_price"
+            }
+          ],
+          attrs: {
+            placeholder: _vm.$lang.messages.initial_price,
+            type: "text"
+          },
+          domProps: { value: _vm.initial_price },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
+              _vm.initial_price = $event.target.value
             }
-          },
-          [_vm._v("500k")]
-        ),
+          }
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.sum = 1000000
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.buyout_price,
+              expression: "buyout_price"
+            }
+          ],
+          attrs: { placeholder: _vm.$lang.messages.buyout_price, type: "text" },
+          domProps: { value: _vm.buyout_price },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
+              _vm.buyout_price = $event.target.value
             }
-          },
-          [_vm._v("1M")]
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "price" }, [
-      _c("div", { staticClass: "main-price" }, [
-        _c("div", { staticClass: "price-text" }, [
-          _vm._v(_vm._s(_vm.$lang.messages.price) + ":")
-        ]),
+          }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "price-amount" }, [
-          _vm._m(0),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.team_hut,
+              expression: "team_hut"
+            }
+          ],
+          attrs: { placeholder: _vm.$lang.messages.team_hut, type: "text" },
+          domProps: { value: _vm.team_hut },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.team_hut = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "buy-row" }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-yellow", attrs: { type: "submit" } },
+            [_vm._v(_vm._s(_vm.$lang.messages.buy))]
+          ),
           _vm._v(" "),
-          _c("div", [
-            _c("span", [_vm._v("400.00")]),
-            _vm._v(" " + _vm._s(_vm.$lang.messages.rubles))
+          _c("a", { staticClass: "link-light", attrs: { href: "#" } }, [
+            _vm._v(_vm._s(_vm.$lang.messages.sell_to_us))
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("a", { staticClass: "link-yellow", attrs: { href: "#" } }, [
-        _vm._v(_vm._s(_vm.$lang.messages.how_to_buy))
-      ])
-    ]),
-    _vm._v(" "),
-    _c("form", { staticClass: "player" }, [
-      _c("input", {
-        attrs: { placeholder: _vm.$lang.messages.player, type: "text" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { placeholder: _vm.$lang.messages.team, type: "text" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { placeholder: _vm.$lang.messages.rating, type: "text" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { placeholder: _vm.$lang.messages.initial_price, type: "text" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { placeholder: _vm.$lang.messages.buyout_price, type: "text" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { placeholder: _vm.$lang.messages.team_hut, type: "text" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "buy-row" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-yellow", attrs: { type: "submit" } },
-          [_vm._v(_vm._s(_vm.$lang.messages.buy))]
-        ),
-        _vm._v(" "),
-        _c("a", { staticClass: "link-light", attrs: { href: "#" } }, [
-          _vm._v(_vm._s(_vm.$lang.messages.sell_to_us))
-        ])
-      ])
-    ])
-  ])
+      _c(
+        "modal",
+        {
+          attrs: {
+            name: "card-search",
+            adaptive: true,
+            width: "100%",
+            height: "100%"
+          }
+        },
+        [
+          _c(
+            "scroll",
+            { staticClass: "scroll-area" },
+            [
+              _c("a", {
+                staticClass: "close",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.hide("card-search")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("h1", [_vm._v("Поиск карточек игроков")]),
+              _vm._v(" "),
+              _c("card-search", {
+                on: {
+                  card: function($event) {
+                    return _vm.getCard($event)
+                  }
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -71387,8 +74221,7 @@ var map = {
 		"layout-components-admin-AdminCardPanel-vue"
 	],
 	"./components/admin/CardSearch.vue": [
-		"./resources/js/components/admin/CardSearch.vue",
-		"layout-components-admin-CardSearch-vue"
+		"./resources/js/components/admin/CardSearch.vue"
 	],
 	"./components/modals/CardInfo.vue": [
 		"./resources/js/components/modals/CardInfo.vue"
@@ -72004,6 +74837,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/CardSearch.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/admin/CardSearch.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardSearch.vue?vue&type=template&id=38ea53fa& */ "./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&");
+/* harmony import */ var _CardSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardSearch.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CardSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/CardSearch.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardSearch.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardSearch.vue?vue&type=template&id=38ea53fa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/modals/CardInfo.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/modals/CardInfo.vue ***!
@@ -72391,7 +75293,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Coins_vue_vue_type_template_id_779e1b49_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Coins.vue?vue&type=template&id=779e1b49&scoped=true& */ "./resources/js/pages/Coins.vue?vue&type=template&id=779e1b49&scoped=true&");
 /* harmony import */ var _Coins_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Coins.vue?vue&type=script&lang=js& */ "./resources/js/pages/Coins.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _Coins_vue_vue_type_style_index_0_id_779e1b49_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Coins.vue?vue&type=style&index=0&id=779e1b49&lang=scss&scoped=true& */ "./resources/js/pages/Coins.vue?vue&type=style&index=0&id=779e1b49&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Coins_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Coins.vue?vue&type=style&index=1&lang=scss& */ "./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -72400,7 +75304,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(
   _Coins_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Coins_vue_vue_type_template_id_779e1b49_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Coins_vue_vue_type_template_id_779e1b49_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -72445,6 +75349,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_779e1b49_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_779e1b49_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_779e1b49_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_779e1b49_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_0_id_779e1b49_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss&":
+/*!************************************************************************!*\
+  !*** ./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss& ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Coins.vue?vue&type=style&index=1&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Coins.vue?vue&type=style&index=1&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Coins_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

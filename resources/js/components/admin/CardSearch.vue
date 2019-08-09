@@ -1,6 +1,6 @@
 <template>
     <div class="search-form">
-        <div class="row">
+        <div class="row ff">
             <div class="col-6">
 
                 <label for="sort" class="col-form-label">Sort</label>
@@ -26,7 +26,7 @@
         <hr>
 
         <div class="row">
-            <div class="col-6">
+            <div class="col-6 player">
 
                 <label for="player" class="col-form-label">Player</label>
                 <input id="player" class="form-control" v-model.trim="player">
@@ -546,8 +546,8 @@
                 <button class="btn btn-primary" v-on:click="search">SEARCH</button>
             </div>
         </div>
-        <table class="table table-striped table-lg">
-            <tr>
+        <table class="table table-striped table-lg" v-if="results!=''">
+            <thead>
                 <th>Card</th>
                 <th>League</th>
                 <th>Team</th>
@@ -555,7 +555,8 @@
                 <th>Salary</th>
                 <th>OVR</th>
                 <th>Действие</th>
-            </tr>
+            </thead>
+            <tbody>
             <tr v-for="result in results" v-bind:key="result.id">
                 <td @click="getCard(result.id)" style="cursor:pointer;">{{ result.id }}</td>
                 <td>{{ result.League }}</td>
@@ -565,15 +566,15 @@
                 <td>{{ result.OVR }}</td>
 
                 <td>
-                    <button class="btn btn-info"  @click="addCard(result)">Добавить</button>
+                    <button class="btn btn-info" @click="addCard(result)">Выбрать</button>
                 </td>
             </tr>
+            </tbody>
         </table>
 
         <modal name="card" width="240px" height="340px">
-
+            <a href="#" @click="hide('card')" class="close"></a>
             <div v-html="cardExample"></div>
-
         </modal>
 
     </div>
@@ -585,10 +586,10 @@
         data: function () {
             return {
                 savedCard: {
-                  console:0,
-                  places:0,
-                  price:0,
-                    card:null
+                    console: 0,
+                    places: 0,
+                    price: 0,
+                    card: null
                 },
                 cardExample: "",
                 year: '19',
@@ -657,7 +658,7 @@
         },
         methods: {
             addCard(card) {
-                 this.$emit('card',card);
+                this.$emit('card', card);
             },
             show(name) {
                 this.$modal.show(name)
@@ -689,11 +690,13 @@
                 this.synergyRate.find(syn => syn.id === id).rate++;
             },
             search: function () {
+                this.$loading(true)
                 this.makeUrl();
                 axios.post('search', {url: this.request})
                     .then(res => {
                         this.results = res.data;
                         this.results.shift();
+                        this.$loading(false)
                     }).catch(err => {
                     console.log(err)
                 })
@@ -769,4 +772,7 @@
     }
 </script>
 
+<style lang="scss">
+
+</style>
 

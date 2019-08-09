@@ -2386,6 +2386,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SearchForm',
   data: function data() {
@@ -2567,6 +2568,7 @@ __webpack_require__.r(__webpack_exports__);
     search: function search() {
       var _this2 = this;
 
+      this.$loading(true);
       this.makeUrl();
       axios.post('search', {
         url: this.request
@@ -2574,6 +2576,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.results = res.data;
 
         _this2.results.shift();
+
+        _this2.$loading(false);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -30194,7 +30198,7 @@ var render = function() {
     "div",
     { staticClass: "search-form" },
     [
-      _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "row ff" }, [
         _c("div", { staticClass: "col-6" }, [
           _c(
             "label",
@@ -30293,7 +30297,7 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "col-6 player" }, [
           _c(
             "label",
             { staticClass: "col-form-label", attrs: { for: "player" } },
@@ -31794,61 +31798,74 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "table",
-        { staticClass: "table table-striped table-lg" },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._l(_vm.results, function(result) {
-            return _c("tr", { key: result.id }, [
-              _c(
-                "td",
-                {
-                  staticStyle: { cursor: "pointer" },
-                  on: {
-                    click: function($event) {
-                      return _vm.getCard(result.id)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(result.id))]
-              ),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(result.League))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(result.Team))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(result.Player))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(result.salary))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(result.OVR))]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-info",
-                    on: {
-                      click: function($event) {
-                        return _vm.addCard(result)
+      _vm.results != ""
+        ? _c("table", { staticClass: "table table-striped table-lg" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.results, function(result) {
+                return _c("tr", { key: result.id }, [
+                  _c(
+                    "td",
+                    {
+                      staticStyle: { cursor: "pointer" },
+                      on: {
+                        click: function($event) {
+                          return _vm.getCard(result.id)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Добавить")]
-                )
-              ])
-            ])
-          })
-        ],
-        2
-      ),
+                    },
+                    [_vm._v(_vm._s(result.id))]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.League))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.Team))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.Player))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.salary))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(result.OVR))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-info",
+                        on: {
+                          click: function($event) {
+                            return _vm.addCard(result)
+                          }
+                        }
+                      },
+                      [_vm._v("Выбрать")]
+                    )
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "modal",
         { attrs: { name: "card", width: "240px", height: "340px" } },
-        [_c("div", { domProps: { innerHTML: _vm._s(_vm.cardExample) } })]
+        [
+          _c("a", {
+            staticClass: "close",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                return _vm.hide("card")
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { domProps: { innerHTML: _vm._s(_vm.cardExample) } })
+        ]
       )
     ],
     1
@@ -31859,7 +31876,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
+    return _c("thead", [
       _c("th", [_vm._v("Card")]),
       _vm._v(" "),
       _c("th", [_vm._v("League")]),

@@ -51,24 +51,36 @@
       <a class="link-yellow" href="#">{{$lang.messages.how_to_buy}}</a>
     </div>
 
+    <hr>
+   <p><a href="#" @click="show('card-search')">Найдите карточку</a> или, впишите вручную</p>
     <form class="player">
-      <input :placeholder="$lang.messages.player" type="text">
-      <input :placeholder="$lang.messages.team" type="text">
-      <input :placeholder="$lang.messages.rating" type="text">
-      <input :placeholder="$lang.messages.initial_price" type="text">
-      <input :placeholder="$lang.messages.buyout_price" type="text">
-      <input :placeholder="$lang.messages.team_hut" type="text">
+      <input :placeholder="$lang.messages.player" type="text" v-model="player">
+      <input :placeholder="$lang.messages.team" type="text"  v-model="team">
+      <input :placeholder="$lang.messages.rating" type="text"  v-model="rating">
+      <input :placeholder="$lang.messages.initial_price" type="text"  v-model="initial_price">
+      <input :placeholder="$lang.messages.buyout_price" type="text"  v-model="buyout_price">
+      <input :placeholder="$lang.messages.team_hut" type="text"  v-model="team_hut">
       <div class="buy-row">
         <button class="btn btn-yellow" type="submit">{{$lang.messages.buy}}</button>
         <a class="link-light" href="#">{{$lang.messages.sell_to_us}}</a>
       </div>
     </form>
+
+    <modal name="card-search" :adaptive="true" width="100%" height="100%">
+      <scroll class="scroll-area">
+          <a href="#" @click="hide('card-search')" class="close"></a>
+          <h1>Поиск карточек игроков</h1>
+          <card-search v-on:card="getCard($event)"></card-search>
+      </scroll>
+    </modal>
   </div>
 </template>
 
 <script>
 
 import Toggle from '../components/Toggle.vue'
+import CardSearch from '../components/admin/CardSearch.vue'
+import Scroll from 'vue-custom-scrollbar'
 
 export default {
   data () {
@@ -76,10 +88,32 @@ export default {
       console: true,
       year: false,
       currency: true,
-      sum: 0
+      sum: 0,
+        player:'',
+        team:'',
+        rating:'',
+        initial_price:'',
+        buyout_price:'',
+        team_hut:''
+
+
     }
   },
   methods: {
+      getCard(data){
+
+        this.player = data.Player;
+        this.team = `${data.League} ${data.Team}`;
+        this.rating = data.OVR;
+        this.hide("card-search")
+
+      },
+      show(name) {
+          this.$modal.show(name)
+      },
+      hide(name) {
+          this.$modal.hide(name)
+      },
     checkConsole: function (event) {
       console.log(event)
       this.console = event
@@ -104,13 +138,39 @@ export default {
     }
   },
   components: {
-    Toggle
+    Toggle, CardSearch,Scroll
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "~/coins.scss";
+  @import "~/coins.scss";
 
+  h1 {
+    width: 100%;
+    text-align: center;
+    font-weight: 100;
+    font-size: 24px;
+    line-height: 150%;
+    text-transform: uppercase;
+    color:$color4;
+    padding: 10px;
+    box-sizing: border-box;
+  }
 
+  p {
+    text-align: center;
+    color: white;
+    width: 100%;
+
+    a {
+      font-weight: 900;
+      color:white;
+      text-decoration-style: dashed;
+    }
+  }
+</style>
+
+<style lang="scss">
+  @import "~/cardsearch.scss";
 </style>
