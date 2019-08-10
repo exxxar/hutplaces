@@ -40,9 +40,12 @@ Route::group(['middleware' => 'jwt.refresh'], function(){
 Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
+Route::post('/coinsrequest', 'CoinsController@coinsrequest');
+
+Route::get('/content/{type}/all','ContentController@all');
 
 Route::get('/lottery/all', 'LotteryController@all');
-Route::post('/coinsrequest', 'CoinsController@coinsrequest');
+
 Route::get('/lottery/get/{lotteryId}', 'LotteryController@byId');
 Route::get('/lot/get/{lotteryId}', 'LotsController@byId');
 

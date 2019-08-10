@@ -32,7 +32,7 @@
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $c->title }}</td>
-                <td>{{ $c->type }}</td>
+                <td><a class="btn btn-primary" href="{{route("content.all",["type"=>$c->type])}}">{{ $c->type }}</a></td>
                 <td>
                     <a class="btn btn-info" href="{{ route('content.show',$c->id) }}">Show</a>
 

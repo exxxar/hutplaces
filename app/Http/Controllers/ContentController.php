@@ -127,4 +127,31 @@ class ContentController extends Controller
         return redirect()->route('content.index')
             ->with('success','Content deleted successfully');
     }
+
+    public function all(Request $request,$type) {
+
+
+        if ($request->ajax())
+            return response()
+                ->json(Content::where("type",$type)->get());
+
+        $content = Content::where("type",$type)
+            ->orderBy('id','DESC')
+            ->paginate(5);
+
+        return view('admin.content.index',compact('content'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function get(Request $request,$id) {
+
+
+        if ($request->ajax())
+            return response()
+                ->json(Content::where("id",$id)
+                    ->get());
+
+        return redirect()
+            ->action("ContentController@show",["id"=>$id]);
+    }
 }
