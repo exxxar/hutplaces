@@ -1,34 +1,34 @@
 <template>
     <div>
         <h1>Home</h1>
-      <vue-winwheel :segments="options"/>
+      <wheel-of-fortune :segments="options"/>
     </div>
 </template>
 
 <script>
-  import VueWinwheel from 'vue-winwheel'
+  import WheelOfFortune from '../components/WheelOfFortune'
 
   export default {
     components:{
-      VueWinwheel
+        WheelOfFortune
     },
     data(){
       return{
         options:[
           {
-            textFillStyle: '#fff',
+            textFillStyle: 'red',
             fillStyle: '#000',
-            text:'Prize 1'
+            text:'Card'
           },
           {
             textFillStyle: '#000',
             fillStyle: '#fadede',
-            text:'Prize 2'
+            text:'100 coins'
           },
           {
             textFillStyle: '#fff',
             fillStyle: '#000',
-            text:'Prize 3'
+            text:'Good mood'
           },
           {
             textFillStyle: '#000',
