@@ -79,6 +79,6 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from) => {
     setTimeout(function () {
         app.$loading(false)
-    },500)
+    },1000)
 
 })

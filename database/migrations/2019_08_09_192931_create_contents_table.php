@@ -18,6 +18,7 @@ class CreateContentsTable extends Migration
             $table->string('title')->default('');
             $table->string('content',5000)->default('');
             $table->string('type')->default('');
+            $table->string('lang')->default('rus');
 
             $table->timestamps();
         });

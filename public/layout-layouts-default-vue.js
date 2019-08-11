@@ -1086,32 +1086,27 @@ __webpack_require__.r(__webpack_exports__);
     },
     hide: function hide(name) {
       this.$modal.hide(name);
-    },
-    setUser: function setUser(user) {
-      this.user = user;
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    var message = this.message;
-    var user = this.setUser;
     pusher.subscribe('pick-place-chanel').bind('pick-place-event', function (data) {
-      console.log(JSON.stringify(data));
-      message("Сообщение от администрации", "".concat(data.message), 'warn');
+      Event.$emit("updatePlaces");
+      if (_this.user != null) if (data.user.id == _this.user.id) return;
+
+      _this.message("Лотерея", "".concat(data.user.name, " \u0437\u0430\u043D\u044F\u043B \u043C\u0435\u0441\u0442\u043E \u0432 \u043B\u043E\u0442\u0435\u0440\u0435\u0435 ").concat(data.lottery.title), 'warn');
     });
     pusher.subscribe('raffle-chanel').bind('raffle-event', function (data) {
-      console.log(JSON.stringify(data));
-      message("Сообщение от администрации", "".concat(data.message), 'warn');
+      _this.message("Сообщение от администрации", "".concat(data.message), 'warn');
     });
     pusher.subscribe('message-chanel').bind('message-event', function (data) {
-      console.log(JSON.stringify(data));
-      message("".concat(data.title), "".concat(data.message), 'warn');
+      _this.message("".concat(data.title), "".concat(data.message), 'warn');
     });
     pusher.subscribe("user-update-chanel").bind('user-update-event', function (data) {
       if (window.auth.user.id == data.userId) api.call('get', '/get-user').then(function (_ref) {
-        var data = _ref.data;
-        user(data);
+        var resposne = _ref.resposne;
+        _this.user = resposne;
       });
     });
 
@@ -1152,6 +1147,11 @@ __webpack_require__.r(__webpack_exports__);
         type: 'success',
         title: 'Вход в систему',
         text: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C ".concat(_this.user.name, " \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0432\u043E\u0448\u0435\u043B \u0432 \u0441\u0438\u0441\u0442\u0435\u043C\u0443!")
+      });
+    });
+    Event.$on('updateUserProfile', function () {
+      axios.get('/get-user').then(function (response) {
+        _this.user = response.data;
       });
     });
     Event.$on('userLoggedOut', function () {

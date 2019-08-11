@@ -45,7 +45,8 @@ class ContentController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'type' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'lang' => 'required'
         ]);
 
         Content::create($request->all());
@@ -99,7 +100,8 @@ class ContentController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'type' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'lang' => 'required'
         ]);
 
 
@@ -107,6 +109,7 @@ class ContentController extends Controller
         $content->title = $request->input('title');
         $content->type = $request->input('type');
         $content->content = $request->input('content');
+        $content->lang = $request->input('lang');
         $content->save();
 
 
@@ -123,7 +126,7 @@ class ContentController extends Controller
     public function destroy($id)
     {
         //
-        DB::table("content")->where('id',$id)->delete();
+        DB::table("contents")->where('id',$id)->delete();
         return redirect()->route('content.index')
             ->with('success','Content deleted successfully');
     }

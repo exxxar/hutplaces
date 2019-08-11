@@ -43,8 +43,8 @@ class Lottery extends Model
         return $this->belongsToMany('App\User')->using('App\UserLottery');
     }
 
-    public function places()
+    public function placeList()
     {
-        return $this->hasMany('App\Place');
+        return $this->hasMany('App\Place','lottery_id');
     }
 }

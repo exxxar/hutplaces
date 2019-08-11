@@ -8,9 +8,12 @@ class Content extends Model
 {
     //
 
+    protected $table = 'contents';
+
     protected $fillable = [
        'title',
         'content',
         'type',
+        'lang',
     ];
 }

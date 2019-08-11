@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\RegisterFormRequest;
+use App\Level;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

@@ -188,7 +188,7 @@
             }
         },
         methods: {
-            message(title,message,type){
+            message(title, message, type) {
                 this.$notify({
                     group: 'main',
                     type: type,
@@ -216,49 +216,41 @@
                 this.$modal.show(name)
             },
             hide(name) {
-                  this.$modal.hide(name)
+                this.$modal.hide(name)
             },
 
-            setUser(user){
-                this.user = user;
-            }
 
         },
         mounted: function () {
+            pusher.subscribe('pick-place-chanel').bind('pick-place-event', (data) => {
+                Event.$emit("updatePlaces")
+                if (this.user != null)
+                    if (data.user.id == this.user.id)
+                        return;
 
-            var message = this.message;
-            var user = this.setUser;
+                this.message("Лотерея", `${data.user.name} занял место в лотерее ${data.lottery.title}`, 'warn');
 
-            pusher.subscribe('pick-place-chanel').bind('pick-place-event', function(data) {
-                console.log(JSON.stringify(data));
-                message("Сообщение от администрации",`${data.message}`,'warn');
             });
 
-            pusher.subscribe('raffle-chanel').bind('raffle-event', function(data) {
-                console.log(JSON.stringify(data));
-                message("Сообщение от администрации",`${data.message}`,'warn');
+            pusher.subscribe('raffle-chanel').bind('raffle-event', (data) => {
+                this.message("Сообщение от администрации", `${data.message}`, 'warn');
             });
 
-            pusher.subscribe('message-chanel').bind('message-event', function(data) {
-                console.log(JSON.stringify(data));
-                message(`${data.title}`,`${data.message}`,'warn');
+            pusher.subscribe('message-chanel').bind('message-event', (data) => {
+                this.message(`${data.title}`, `${data.message}`, 'warn');
             });
 
-
-           pusher.subscribe(`user-update-chanel`).bind('user-update-event', function(data) {
-                if (window.auth.user.id==data.userId)
+            pusher.subscribe(`user-update-chanel`).bind('user-update-event', (data) => {
+                if (window.auth.user.id == data.userId)
                     api.call('get', '/get-user')
-                        .then(({data}) => {
-                          user(data);
+                        .then(({resposne}) => {
+                            this.user = resposne;
                         });
             });
 
-
-
-
             if (this.$route.query.token) {
                 auth.retriveUser(this.$route.query.token);
-                this.$router.replace( { query: ''} );
+                this.$router.replace({query: ''});
             }
 
             if (this.$route.query.error) {
@@ -269,7 +261,7 @@
                         error = "Данная учетная запись уже зарегестриривана через другую социальную сеть!"
                         break;
                 }
-                this.$router.replace( { query: ''} );
+                this.$router.replace({query: ''});
 
                 this.$notify({
                     group: 'main',
@@ -289,6 +281,16 @@
                     title: 'Вход в систему',
                     text: `Пользователь ${this.user.name} успешно вошел в систему!`
                 })
+
+            });
+
+            Event.$on('updateUserProfile', () => {
+
+                axios
+                    .get('/get-user').then(response => {
+                    this.user = response.data;
+                });
+
 
             });
 

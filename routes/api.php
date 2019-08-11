@@ -13,10 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+/*
 Route::post('/reportSubmit', 'SinglePageController@reportSubmit');
 
 Route::group(['prefix' => 'payment'], function(){
@@ -25,17 +22,7 @@ Route::group(['prefix' => 'payment'], function(){
     Route::post('success', 'SinglePageController@paymentSuccess');
 });
 
-Route::post('auth/register', 'AuthController@register');
-Route::post('auth/login', 'AuthController@login');
-Route::group(['middleware' => 'jwt.auth'], function(){
-    Route::get('auth/user', 'AuthController@user');
-    Route::post('auth/logout', 'AuthController@logout');
-});
-
-Route::group(['middleware' => 'jwt.refresh'], function(){
-    Route::get('auth/refresh', 'AuthController@refresh');
-});*/
-
+*/
 
 Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
@@ -46,8 +33,13 @@ Route::get('/content/{type}/all','ContentController@all');
 
 Route::get('/lottery/all', 'LotteryController@all');
 
-Route::get('/lottery/get/{lotteryId}', 'LotteryController@byId');
-Route::get('/lot/get/{lotteryId}', 'LotsController@byId');
+Route::post('/lottery/pick/', 'LotteryController@pick');
+Route::post('/lottery/pick/random', 'LotteryController@random');
+
+Route::get('/lottery/get/{lotteryId}', 'LotteryController@lottery');
+Route::get('/lottery/places/{lotteryId}', 'LotteryController@places');
+
+Route::get('/lot/get/{lotteryId}', 'LotsController@lot');
 
 Route::post('/search', 'CardsStorageController@search');
 

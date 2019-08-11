@@ -48,6 +48,14 @@
                 {!! Form::textarea('content', null, array('placeholder' => 'Content','class' => 'form-control','rows' => 4, 'cols' => 54)) !!}
             </div>
         </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Lang:</strong>
+                {!! Form::text('lang', null, array('placeholder' => 'Lang','class' => 'form-control')) !!}
+            </div>
+        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

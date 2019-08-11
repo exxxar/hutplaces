@@ -18,9 +18,9 @@ class PickPlace implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $user;
-    private $lottery;
-    private $place;
+    public $user;
+    public $lottery;
+    public $place;
 
     /**
      * Create a new event instance.

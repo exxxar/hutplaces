@@ -25,6 +25,7 @@
         <tr>
             <th>No</th>
             <th>Title</th>
+            <th>lang</th>
             <th>Type</th>
             <th width="280px">Action</th>
         </tr>
@@ -32,6 +33,7 @@
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $c->title }}</td>
+                <td>{{ $c->lang }}</td>
                 <td><a class="btn btn-primary" href="{{route("content.all",["type"=>$c->type])}}">{{ $c->type }}</a></td>
                 <td>
                     <a class="btn btn-info" href="{{ route('content.show',$c->id) }}">Show</a>

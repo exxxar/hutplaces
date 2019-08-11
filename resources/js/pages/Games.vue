@@ -164,7 +164,8 @@ export default {
              });
      },
     lotteryOpen: function (lotteryId) {
-      this.$router.push({ name: 'Lottery', params: { id: lotteryId } })
+      this.$router.push({ name: 'Lottery', params: { gameId: lotteryId } })
+     /*   Event.$emit('load-new-game');*/
     }
   }
 

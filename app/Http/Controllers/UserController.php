@@ -195,7 +195,7 @@ class UserController extends Controller
             $user = User::find(auth()->user()->id);
 
             $money = $request->get("money");
-
+            $user->exp += $money;
             $user->money += $money;
             $user->save();
 

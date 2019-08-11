@@ -17,18 +17,6 @@ require('laravel-mix-alias');
 mix.alias('@', '/resources/js');
 mix.alias('~', '/resources/sass');
 
-/**
- * Override Laravel Mix Webpack Configuration
- * @type {{chunkFilename: string, publicPath: string}}
- */
-/*
-mix.config.webpackConfig.output = {
-    chunkFilename: 'js/[name].bundle.js',
-    publicPath: '/',
-};
-*/
-
-
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/admin.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');

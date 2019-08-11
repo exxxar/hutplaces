@@ -14,4 +14,5 @@ return [
      */
 
     'apiKey' => env('RANDOM_ORG_API_KEY', '00000000-0000-0000-0000-000000000000'),
+    'apiUrl' => env('RANDOM_ORG_API_URL', 'https://api.random.org/json-rpc/2/invoke'),
 ];

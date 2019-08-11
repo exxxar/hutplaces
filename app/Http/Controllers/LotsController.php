@@ -54,9 +54,11 @@ class LotsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         //
+
+
     }
 
     /**
@@ -105,7 +107,7 @@ class LotsController extends Controller
         return back()->with('success', 'Лот успешно удален');
     }
 
-    public function byId($lotteryId){
+    public function lot($lotteryId){
         return response()->json([
             'data' =>  Lot::where('lottery_id',$lotteryId)->first(),
             'status' => 200

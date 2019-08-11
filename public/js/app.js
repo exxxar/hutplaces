@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-default-vue":"layout-layouts-default-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Achievement-vue":"layout-pages-Achievement-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Home-vue":"layout-pages-Home-vue","layout-pages-NHL-vue":"layout-pages-NHL-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-default-vue":"layout-layouts-default-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Achievement-vue":"layout-pages-Achievement-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2753,6 +2753,184 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WheelOfFortune.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/WheelOfFortune.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _winwheel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../winwheel */ "./resources/js/winwheel.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'WheelOfFortune',
+  props: {
+    segments: {
+      "default": function _default() {
+        return [{
+          textFillStyle: '#fff',
+          fillStyle: '#000',
+          text: 'Prize 1'
+        }, {
+          textFillStyle: '#000',
+          fillStyle: '#fadede',
+          text: 'Prize 2'
+        }, {
+          textFillStyle: '#fff',
+          fillStyle: '#000',
+          text: 'Prize 3'
+        }, {
+          textFillStyle: '#000',
+          fillStyle: '#fadede',
+          text: 'Prize 4'
+        }, {
+          textFillStyle: '#fff',
+          fillStyle: '#000',
+          text: 'Prize 5'
+        }, {
+          textFillStyle: '#000',
+          fillStyle: '#fadede',
+          text: 'Prize 6'
+        }, {
+          textFillStyle: '#fff',
+          fillStyle: '#000',
+          text: 'Prize 7'
+        }, {
+          textFillStyle: '#000',
+          fillStyle: '#fadede',
+          text: 'Prize 8'
+        }];
+      }
+    }
+  },
+  data: function data() {
+    return {
+      loadingPrize: false,
+      theWheel: null,
+      modalPrize: false,
+      wheelPower: 1,
+      wheelSpinning: false,
+      prizeName: 'BUY 1 GET 1',
+      WinWheelOptions: {
+        textFontSize: 14,
+        outterRadius: 410,
+        innerRadius: 25,
+        lineWidth: 8,
+        animation: {
+          type: 'spinOngoing',
+          duration: 0.5
+        }
+      }
+    };
+  },
+  methods: {
+    showPrize: function showPrize() {
+      this.modalPrize = true;
+    },
+    hidePrize: function hidePrize() {
+      this.modalPrize = false;
+    },
+    startSpin: function startSpin() {
+      if (this.wheelSpinning === false) {
+        this.theWheel.startAnimation();
+        this.wheelSpinning = true;
+        this.theWheel = new _winwheel__WEBPACK_IMPORTED_MODULE_0__["Winwheel"](_objectSpread({}, this.WinWheelOptions, {
+          numSegments: this.segments.length,
+          segments: this.segments,
+          animation: {
+            type: 'spinToStop',
+            duration: 5,
+            spins: 5,
+            callbackFinished: this.onFinishSpin
+          }
+        })); // example input prize number get from Backend
+        // Important thing is to set the stopAngle of the animation before stating the spin.
+
+        var prizeNumber = Math.floor(Math.random() * this.segments.length); // or just get from Backend
+
+        var stopAt = 360 / this.segments.length * prizeNumber - 360 / this.segments.length / 2; // center pin
+        // var stopAt = 360 / this.segments.length * prizeNumber - Math.floor(Math.random() * 60) //random location
+
+        this.theWheel.animation.stopAngle = stopAt;
+        this.theWheel.startAnimation();
+        this.wheelSpinning = false;
+      }
+    },
+    resetWheel: function resetWheel() {
+      this.theWheel = new _winwheel__WEBPACK_IMPORTED_MODULE_0__["Winwheel"](_objectSpread({}, this.WinWheelOptions, {
+        numSegments: this.segments.length,
+        segments: this.segments
+      }));
+
+      if (this.wheelSpinning) {
+        this.theWheel.stopAnimation(false); // Stop the animation, false as param so does not call callback function.
+      }
+
+      this.theWheel.rotationAngle = 0; // Re-set the wheel angle to 0 degrees.
+
+      this.theWheel.draw(); // Call draw to render changes to the wheel.
+
+      this.wheelSpinning = false; // Reset to false to power buttons and spin can be clicked again.
+    },
+    initSpin: function initSpin() {
+      this.loadingPrize = true;
+      this.resetWheel();
+      this.loadingPrize = false;
+    },
+    onFinishSpin: function onFinishSpin(indicatedSegment) {
+      this.prizeName = indicatedSegment.text;
+      this.$emit('prize-name', this.prizeName);
+      this.showPrize();
+    }
+  },
+  computed: {},
+  updated: function updated() {},
+  mounted: function mounted() {
+    this.initSpin(); // this.resetWheel()
+  },
+  created: function created() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js& ***!
@@ -4231,9 +4409,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'Lottery',
         params: {
-          id: lotteryId
+          gameId: lotteryId
         }
       });
+      /*   Event.$emit('load-new-game');*/
     }
   }
 });
@@ -4408,109 +4587,80 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['gameId'],
   components: {
     vueCustomScrollbar: vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_0___default.a,
     CardInfo: _components_modals_CardInfo__WEBPACK_IMPORTED_MODULE_1__["default"],
     Security: _components_modals_Security__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  watch: {
+    'gameId': function gameId(newVal, oldVal) {
+      this.loadGame();
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.loadGame();
+    Event.$on("updatePlaces", function () {
+      _this.updatePlaces();
+    });
   },
   data: function data() {
     return {
       settings: {
         maxScrollbarLength: 60
       },
-      card: {
-        card_id: 1,
-        places: 32,
-        card_data: "<div class=\"ncard toty-ol\"> <div class=\"backplate\" style=\"background-image: url(/assets/img/cards/19/toty/ygtoty/nhl/tor.png);\"> <div class=\"background toty\"></div> <div class=\"toty_tag tag top\"> <div class=\"cardtype\">OVR</div> <div class=\"overall\">99</div> </div> <div class=\"headshot toty-headshot top\" style=\"background-image: url('/assets/img/headshots/active/9810.png');\"></div> <div class=\"name\"> <div class=\"firstname\">MITCHELL</div> <div class=\"lastname\">MARNER</div> </div> <div class=\"info\"> <div class=\"position\">RW</div> <div class=\"bullet\"></div> <div class=\"type\">PLY</div> </div> <div class=\"attributes\"> <div class=\"attr-value\"> <div class=\"attr-name\">SKT</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">SHT</div> 97 </div> <div class=\"attr-value\"> <div class=\"attr-name\">HND</div> 99 </div> <div class=\"attr-value\"> <div class=\"attr-name\">CHK</div> 91 </div> <div class=\"attr-value\"> <div class=\"attr-name\">DEF</div> 96 </div> </div> <div class=\"team toty-team team-right\">Maple Leafs</div> <div class=\"logo toty-logo\" style=\"background-image: url('/assets/img/logos/nhl/tor.png');\"></div> </div> </div> ",
-        price: 2500,
-        occupied_places: 20,
-        year: 2019,
-        player_name: 'Jeff Carter',
-        ovr: 94,
-        shop_id: null
-      },
-      platform: 1,
-      //1 - xbox, 2 - ps4, 3 - pc
-      places: [{
-        user_id: 1,
-        name: 'Stefan J',
-        date_pick: '11.04.2019',
-        time_pick: '15:35:55',
-        place_id: 2,
-        photo: 'https://pp.userapi.com/c845021/v845021943/147293/DwHXe3mC_9I.jpg?ava=1',
-        vk_link: 'http://vk.com/id1'
-      }, {
-        user_id: 1,
-        name: 'Stefan J',
-        date_pick: '11.04.2019',
-        time_pick: '15:35:55',
-        place_id: 6,
-        photo: 'https://pp.userapi.com/c845021/v845021943/147293/DwHXe3mC_9I.jpg?ava=1',
-        vk_link: 'http://vk.com/id1'
-      }, {
-        user_id: 1,
-        name: 'Stefan J',
-        date_pick: '11.04.2019',
-        time_pick: '15:35:55',
-        place_id: 10,
-        photo: 'https://pp.userapi.com/c845021/v845021943/147293/DwHXe3mC_9I.jpg?ava=1',
-        vk_link: 'http://vk.com/id1'
-      }, {
-        user_id: 1,
-        name: 'Stefan J',
-        date_pick: '11.04.2019',
-        time_pick: '15:35:55',
-        place_id: 12,
-        photo: 'https://pp.userapi.com/c845021/v845021943/147293/DwHXe3mC_9I.jpg?ava=1',
-        vk_link: 'http://vk.com/id1'
-      }, {
-        user_id: 1,
-        name: 'Stefan J',
-        date_pick: '11.04.2019',
-        time_pick: '15:35:55',
-        place_id: 13,
-        photo: 'https://pp.userapi.com/c845021/v845021943/147293/DwHXe3mC_9I.jpg?ava=1',
-        vk_link: 'http://vk.com/id1'
-      }, {
-        user_id: 1,
-        name: 'Stefan J',
-        date_pick: '11.04.2019',
-        time_pick: '15:35:55',
-        place_id: 14,
-        photo: 'https://pp.userapi.com/c845021/v845021943/147293/DwHXe3mC_9I.jpg?ava=1',
-        vk_link: 'http://vk.com/id1'
-      }, {
-        user_id: 1,
-        name: 'Stefan J',
-        date_pick: '11.04.2019',
-        time_pick: '15:35:55',
-        place_id: 17,
-        photo: 'https://pp.userapi.com/c845021/v845021943/147293/DwHXe3mC_9I.jpg?ava=1',
-        vk_link: 'http://vk.com/id1'
-      }, {
-        user_id: 1,
-        name: 'Stefan J',
-        date_pick: '11.04.2019',
-        time_pick: '15:35:55',
-        place_id: 18,
-        photo: 'https://pp.userapi.com/c845021/v845021943/147293/DwHXe3mC_9I.jpg?ava=1',
-        vk_link: 'http://vk.com/id1'
-      }]
+      game: null
     };
   },
   computed: {
     cssProps: function cssProps() {
       return {
-        '--line-width': this.card.occupied_places / this.card.places * 100 + "%"
+        '--line-width': this.game.occupied_places / this.game.places * 100 + "%"
       };
     }
   },
   methods: {
+    message: function message(title, _message, type) {
+      this.$notify({
+        group: 'main',
+        type: type,
+        title: title,
+        text: _message
+      });
+    },
+    updatePlaces: function updatePlaces() {
+      var _this2 = this;
+
+      axios.get("/lottery/places/".concat(this.gameId)).then(function (response) {
+        _this2.game.place_list = response.data.place_list;
+      });
+    },
+    loadGame: function loadGame() {
+      var _this3 = this;
+
+      this.$loading(true);
+      axios.get("/lottery/get/".concat(this.gameId)).then(function (response) {
+        if (response.data.status == 404) {
+          _this3.$router.push({
+            name: 'Games'
+          });
+
+          _this3.$loading(true);
+
+          return;
+        }
+
+        _this3.game = response.data.game;
+        setTimeout(function () {
+          return _this3.$loading(false);
+        }, 2000);
+      });
+    },
     startAnim: function startAnim() {
-      //lottery-animation
       var lotery = document.querySelectorAll(".lotery")[0];
       lotery.classList.add("lottery-animation");
-      alert("test");
     },
     showModal: function showModal(name) {
       this.$modal.show(name);
@@ -4521,15 +4671,13 @@ __webpack_require__.r(__webpack_exports__);
     toClipboard: function toClipboard() {
       var currentUrl = window.location.host + window.location.pathname;
       this.$copyText(currentUrl);
-      this.$notify({
-        group: 'main',
-        type: 'error',
-        title: 'Копирование ссылки',
-        text: "\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u0438\u0433\u0440\u0443 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u0430!"
-      });
+      this.message('Копирование ссылки', "\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u0438\u0433\u0440\u0443 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u0430!", "error");
+    },
+    getAvatar: function getAvatar(img) {
+      return img == '' || img == null || img == undefined ? "/img/noavatar.png" : img;
     },
     getPlatform: function getPlatform() {
-      switch (this.platform) {
+      switch (this.game.console_type) {
         default:
         case 1:
           return "/img/xbox-icon.png";
@@ -4541,8 +4689,40 @@ __webpack_require__.r(__webpack_exports__);
           return "/img/pc-icon.png";
       }
     },
-    clickFreeSlot: function clickFreeSlot() {
-      alert("FreeSlot");
+    pickRandom: function pickRandom(place) {
+      var _this4 = this;
+
+      axios.post('/lottery/pick/random', {
+        id: this.gameId
+      }).then(function (response) {
+        if (response.data.status != 200) {
+          _this4.message('Участие в рандоме', "".concat(response.data.message), "error");
+
+          return;
+        }
+
+        _this4.message('Участие в рандоме', "".concat(response.data.message, " ").concat(response.data.place), "error");
+
+        Event.$emit("updateUserProfile");
+      });
+    },
+    pickSlot: function pickSlot(place) {
+      var _this5 = this;
+
+      axios.post('/lottery/pick/', {
+        id: this.gameId,
+        place_number: place
+      }).then(function (response) {
+        if (response.data.status != 200) {
+          _this5.message('Участие в рандоме', "".concat(response.data.message), "error");
+
+          return;
+        }
+
+        _this5.message('Участи в рандоме', "".concat(response.data.message, " ").concat(response.data.place), "error");
+
+        Event.$emit("updateUserProfile");
+      });
     },
     clickUserSlot: function clickUserSlot() {
       alert("EmptySlot");
@@ -4550,12 +4730,12 @@ __webpack_require__.r(__webpack_exports__);
     prepareSlots: function prepareSlots() {
       var tmp = [];
 
-      for (var i = 0; i < this.card.places; i++) {
+      for (var i = 0; i < this.game.places; i++) {
         var finde = false;
 
-        for (var u in this.places) {
-          if (i == this.places[u].place_id) {
-            tmp.push(this.places[u]);
+        for (var u in this.game.place_list) {
+          if (i == this.game.place_list[u].place_number) {
+            tmp.push(this.game.place_list[u].user);
             finde = true;
             break;
           }
@@ -4566,14 +4746,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      console.log(tmp);
       return tmp;
     },
-    prepareUrl: function prepareUrl(template) {
-      return template.replace(/\/assets/gi, "https://hutdb.net/assets");
-    },
-    scrollHanle: function scrollHanle(evt) {
-      console.log(evt);
+    prepareUrl: function prepareUrl() {
+      if (this.game.lot.card != null) return JSON.parse(this.game.lot.card.Card_data).value;
+      return '/img/noavatar.png';
     }
   }
 });
@@ -5230,7 +5407,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_winwheel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-winwheel */ "./node_modules/vue-winwheel/src/VueWinwheel.vue");
+/* harmony import */ var _components_WheelOfFortune__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/WheelOfFortune */ "./resources/js/components/WheelOfFortune.vue");
 //
 //
 //
@@ -5241,22 +5418,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    VueWinwheel: vue_winwheel__WEBPACK_IMPORTED_MODULE_0__["default"]
+    WheelOfFortune: _components_WheelOfFortune__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
       options: [{
-        textFillStyle: '#fff',
+        textFillStyle: 'red',
         fillStyle: '#000',
-        text: 'Prize 1'
+        text: 'Card'
       }, {
         textFillStyle: '#000',
         fillStyle: '#fadede',
-        text: 'Prize 2'
+        text: '100 coins'
       }, {
         textFillStyle: '#fff',
         fillStyle: '#000',
-        text: 'Prize 3'
+        text: 'Good mood'
       }, {
         textFillStyle: '#000',
         fillStyle: '#fadede',
@@ -5586,26 +5763,6 @@ exports.push([module.i, "@charset \"UTF-8\";\nhtml, body, div, span, applet, obj
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var escape = __webpack_require__(/*! ../../css-loader/lib/url/escape.js */ "./node_modules/css-loader/lib/url/escape.js");
-exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.vue-winwheel[data-v-b05d8190] {\n\ttext-align: center;\n\tbackground-image: url('/static/img/obstacle-run/bg-spinner-mobile.svg');\n\tbackground-size: cover;\n\tbackground-position: center bottom;\n\tbackground-repeat: no-repeat;\n}\n.vue-winwheel h1[data-v-b05d8190] {\n\tcolor: #b32656;\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\tfont-size: 36px;\n\tline-height: 90px;\n\tletter-spacing: 4px;\n\tmargin: 0;\n}\n.vue-winwheel h2[data-v-b05d8190] {\n\tmargin: 0;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content[data-v-b05d8190] {\n\twidth: calc(100vw - 30px);\n\tpadding-top: 52px;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content h2[data-v-b05d8190] {\n\ttext-transform: uppercase;\n\tcolor: #b32656;\n\tmargin-bottom: 16px;\n\tmargin-top: 0;\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\tfont-size: 18px;\n\tletter-spacing: 1.1px;\n\tmargin: 0;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content p[data-v-b05d8190] {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\tfont-size: 14px;\n\tcolor: black;\n\ttext-align: center;\n\tline-height: 25px;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content p strong[data-v-b05d8190] {\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content .modal-dismiss[data-v-b05d8190] {\n\ttop: 12px;\n\tright: 12px;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content .modal-dismiss i.icon_close[data-v-b05d8190] {\n\tfont-size: 30px;\n\tcolor: #da2a52;\n}\n.vue-winwheel canvas#canvas[data-v-b05d8190] {\n\tposition: relative;\n}\n.vue-winwheel .canvas-wrapper[data-v-b05d8190] {\n\tposition: relative;\n}\n.vue-winwheel .canvas-wrapper[data-v-b05d8190]:after {\n\tcontent: '';\n\tdisplay: block;\n\twidth: 42px;\n\tbackground: #c4376f;\n\theight: 42px;\n\tposition: absolute;\n\tleft: calc(50% - 25px);\n\tmargin: auto;\n\tborder-radius: 100%;\n\ttop: calc(50% - 29px);\n\tborder: 5px solid white;\n\t-webkit-box-sizing: content-box;\n\t        box-sizing: content-box;\n}\n.vue-winwheel .canvas-wrapper[data-v-b05d8190]:before {\n\tcontent: '';\n\tdisplay: block;\n\twidth: 310px;\n\tbackground: #0f0f0f;\n\theight: 310px;\n\tposition: absolute;\n\tleft: 0;\n\tright: 0;\n\tmargin: 0 auto;\n\tborder-radius: 100%;\n\ttop: 0;\n}\n.vue-winwheel .wheel-wrapper[data-v-b05d8190] {\n\tposition: relative;\n}\n.vue-winwheel .wheel-wrapper[data-v-b05d8190]:before {\n\tcontent: '';\n\twidth: 62px;\n\theight: 47px;\n\tposition: absolute;\n\ttop: -10px;\n\tleft: calc(50% - 31px);\n\tright: 0;\n\tdisplay: block;\n\tz-index: 99999;\n\tbackground-image: url(" + escape(__webpack_require__(/*! ./spinner-marker.svg */ "./node_modules/vue-winwheel/src/spinner-marker.svg")) + ");\n\tbackground-repeat: no-repeat;\n\tbackground-size: contain;\n\tbackground-position: center;\n}\n.vue-winwheel .wheel-wrapper .button-wrapper[data-v-b05d8190] {\n\tmargin: 0 auto;\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t    -ms-flex-pack: center;\n\t        justify-content: center;\n\twidth: 231px;\n\theight: 118px;\n}\n.vue-winwheel .wheel-wrapper .btn.btn-play[data-v-b05d8190] {\n\tpadding: 0 58px !important;\n\tbackground: #c4376f;\n\theight: 40px;\n\tline-height: 40px;\n\tcolor: white;\n\tfont-weight: bold;\n\ttext-decoration: none;\n\tborder-radius: 2px;\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n\tletter-spacing: 2px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vuejs-loading-plugin/Loading.vue?vue&type=style&index=0&id=7ab65994&scoped=true&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vuejs-loading-plugin/Loading.vue?vue&type=style&index=0&id=7ab65994&scoped=true&lang=css& ***!
@@ -5619,6 +5776,26 @@ exports = module.exports = __webpack_require__(/*! ../css-loader/lib/css-base.js
 
 // module
 exports.push([module.i, "\n.loading-screen[data-v-7ab65994] {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  height: 100vh;\r\n  width: 100vw;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  z-index: 300;\r\n  flex-direction: column;\r\n  -webkit-user-select: none;\r\n     -moz-user-select: none;\r\n      -ms-user-select: none;\r\n          user-select: none;\n}\n.loading-circle[data-v-7ab65994] {\r\n  width: 50px;\r\n  height: 50px;\r\n  border-radius: 100%;\r\n  border: 2px solid transparent;\r\n  border-left-color: #ababab;\r\n  -webkit-animation: circleanimation-data-v-7ab65994 .45s linear infinite;\r\n          animation: circleanimation-data-v-7ab65994 .45s linear infinite\n}\n.loading-text[data-v-7ab65994] {\r\n  margin-top: 15px;\r\n  color: #808080;\r\n  font-size: 12px;\n}\n@-webkit-keyframes circleanimation-data-v-7ab65994 {\nfrom {\r\n    transform: rotateZ(0deg);\n}\nto {\r\n    transform: rotateZ(360deg);\n}\n}\n@keyframes circleanimation-data-v-7ab65994 {\nfrom {\r\n    transform: rotateZ(0deg);\n}\nto {\r\n    transform: rotateZ(360deg);\n}\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(/*! ../../../node_modules/css-loader/lib/url/escape.js */ "./node_modules/css-loader/lib/url/escape.js");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.vue-winwheel[data-v-5be040fa] {\r\n\ttext-align: center;\r\n\t/*background-image: url('/static/img/obstacle-run/bg-spinner-mobile.svg');*/\r\n\tbackground-size: cover;\r\n\tbackground-position: center bottom;\r\n\tbackground-repeat: no-repeat;\n}\n.vue-winwheel h1[data-v-5be040fa] {\r\n\tcolor: #b32656;\r\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\r\n\tfont-size: 36px;\r\n\tline-height: 90px;\r\n\tletter-spacing: 4px;\r\n\tmargin: 0;\n}\n.vue-winwheel h2[data-v-5be040fa] {\r\n\tmargin: 0;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content[data-v-5be040fa] {\r\n\twidth: calc(100vw - 30px);\r\n\tpadding-top: 52px;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content h2[data-v-5be040fa] {\r\n\ttext-transform: uppercase;\r\n\tcolor: #b32656;\r\n\tmargin-bottom: 16px;\r\n\tmargin-top: 0;\r\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\r\n\tfont-size: 18px;\r\n\tletter-spacing: 1.1px;\r\n\tmargin: 0;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content p[data-v-5be040fa] {\r\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\r\n\tfont-size: 14px;\r\n\tcolor: black;\r\n\ttext-align: center;\r\n\tline-height: 25px;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content p strong[data-v-5be040fa] {\r\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content .modal-dismiss[data-v-5be040fa] {\r\n\ttop: 12px;\r\n\tright: 12px;\n}\n.vue-winwheel #modalSpinwheel.custom-modal .content-wrapper .content .modal-dismiss i.icon_close[data-v-5be040fa] {\r\n\tfont-size: 30px;\r\n\tcolor: #da2a52;\n}\n.vue-winwheel canvas#canvas[data-v-5be040fa] {\r\n\tposition: relative;\n}\n.vue-winwheel .canvas-wrapper[data-v-5be040fa] {\r\n\tposition: relative;\n}\n.vue-winwheel .canvas-wrapper[data-v-5be040fa]:after {\r\n\tcontent: '';\r\n\tdisplay: block;\r\n\twidth: 42px;\r\n\tbackground: #c4376f;\r\n\theight: 42px;\r\n\tposition: absolute;\r\n\tleft: calc(50% - 25px);\r\n\tmargin: auto;\r\n\tborder-radius: 100%;\r\n\ttop: calc(50% - 29px);\r\n\tborder: 5px solid white;\r\n\tbox-sizing: content-box;\n}\n.vue-winwheel .canvas-wrapper[data-v-5be040fa]:before {\r\n\tcontent: '';\r\n\tdisplay: block;\r\n\twidth: 310px;\r\n\tbackground: #0f0f0f;\r\n\theight: 310px;\r\n\tposition: absolute;\r\n\tleft: 0;\r\n\tright: 0;\r\n\tmargin: 0 auto;\r\n\tborder-radius: 100%;\r\n\ttop: 0;\n}\n.vue-winwheel .wheel-wrapper[data-v-5be040fa] {\r\n\tposition: relative;\n}\n.vue-winwheel .wheel-wrapper[data-v-5be040fa]:before {\r\n\tcontent: '';\r\n\twidth: 62px;\r\n\theight: 47px;\r\n\tposition: absolute;\r\n\ttop: -10px;\r\n\tleft: calc(50% - 31px);\r\n\tright: 0;\r\n\tdisplay: block;\r\n\tz-index: 99999;\r\n\tbackground-image: url(" + escape(__webpack_require__(/*! ../assets/spinner-marker.svg */ "./resources/js/assets/spinner-marker.svg")) + ");\r\n\tbackground-repeat: no-repeat;\r\n\tbackground-size: contain;\r\n\tbackground-position: center;\n}\n.vue-winwheel .wheel-wrapper .button-wrapper[data-v-5be040fa] {\r\n\tmargin: 0 auto;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\talign-items: center;\r\n\tjustify-content: center;\r\n\twidth: 231px;\r\n\theight: 118px;\n}\n.vue-winwheel .wheel-wrapper .btn.btn-play[data-v-5be040fa] {\r\n\tpadding: 0 58px !important;\r\n\tbackground: #c4376f;\r\n\theight: 40px;\r\n\tline-height: 40px;\r\n\tcolor: white;\r\n\tfont-weight: bold;\r\n\ttext-decoration: none;\r\n\tborder-radius: 2px;\r\n\tfont-family: 'Avenir', Helvetica, Arial, sans-serif;\r\n\tletter-spacing: 2px;\n}\r\n", ""]);
 
 // exports
 
@@ -44059,36 +44236,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../vue-loader/lib/loaders/stylePostLoader.js!../../postcss-loader/src??ref--6-2!../../vue-loader/lib??vue-loader-options!./VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vuejs-loading-plugin/Loading.vue?vue&type=style&index=0&id=7ab65994&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vuejs-loading-plugin/Loading.vue?vue&type=style&index=0&id=7ab65994&scoped=true&lang=css& ***!
@@ -44112,6 +44259,36 @@ options.transform = transform
 options.insertInto = undefined;
 
 var update = __webpack_require__(/*! ../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -49394,191 +49571,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Winwheel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Winwheel */ "./node_modules/vue-winwheel/src/Winwheel.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'VueWinWheel',
-  props:{
-		segments:{
-			default(){
-				return [
-					{
-						textFillStyle: '#fff',
-						fillStyle: '#000',
-						text:'Prize 1'
-					},
-					{
-						textFillStyle: '#000',
-						fillStyle: '#fadede',
-						text:'Prize 2'
-					},
-					{
-						textFillStyle: '#fff',
-						fillStyle: '#000',
-						text:'Prize 3'
-					},
-					{
-						textFillStyle: '#000',
-						fillStyle: '#fadede',
-						text:'Prize 4'
-					},
-					{
-						textFillStyle: '#fff',
-						fillStyle: '#000',
-						text:'Prize 5'
-					},
-					{
-						textFillStyle: '#000',
-						fillStyle: '#fadede',
-						text:'Prize 6'
-					},
-					{
-						textFillStyle: '#fff',
-						fillStyle: '#000',
-						text:'Prize 7'
-					},
-					{
-						textFillStyle: '#000',
-						fillStyle: '#fadede',
-						text:'Prize 8'
-					}
-				]
-			}
-		}
-  },
-  data () {
-    return {
-      loadingPrize: false,
-      theWheel: null,
-      modalPrize: false,
-      wheelPower: 1,
-      wheelSpinning: false,
-      prizeName: 'BUY 1 GET 1',
-      WinWheelOptions: {
-        textFontSize: 14,
-        outterRadius: 410,
-        innerRadius: 25,
-        lineWidth: 8,
-        animation: {
-          type: 'spinOngoing',
-          duration: 0.5
-        }
-      }
-    }
-  },
-  methods: {
-    showPrize () {
-      this.modalPrize = true
-    },
-    hidePrize () {
-      this.modalPrize = false
-    },
-    startSpin () {
-      if (this.wheelSpinning === false) {
-        this.theWheel.startAnimation()
-        this.wheelSpinning = true
-        this.theWheel = new _Winwheel__WEBPACK_IMPORTED_MODULE_0__["Winwheel"]({
-          ...this.WinWheelOptions,
-          numSegments: this.segments.length,
-          segments: this.segments,
-          animation: {
-            type: 'spinToStop',
-            duration: 5,
-            spins: 5,
-            callbackFinished: this.onFinishSpin
-          }
-        })
-
-        // example input prize number get from Backend
-        // Important thing is to set the stopAngle of the animation before stating the spin.
-
-        var prizeNumber = Math.floor(Math.random() * this.segments.length) // or just get from Backend
-        var stopAt = 360 / this.segments.length * prizeNumber - 360 / this.segments.length / 2 // center pin
-        // var stopAt = 360 / this.segments.length * prizeNumber - Math.floor(Math.random() * 60) //random location
-        this.theWheel.animation.stopAngle = stopAt
-        this.theWheel.startAnimation()
-        this.wheelSpinning = false
-      }
-    },
-    resetWheel () {
-      this.theWheel = new _Winwheel__WEBPACK_IMPORTED_MODULE_0__["Winwheel"]({
-        ...this.WinWheelOptions,
-        numSegments: this.segments.length,
-        segments: this.segments
-      })
-
-      if (this.wheelSpinning) {
-        this.theWheel.stopAnimation(false) // Stop the animation, false as param so does not call callback function.
-      }
-
-      this.theWheel.rotationAngle = 0 // Re-set the wheel angle to 0 degrees.
-      this.theWheel.draw() // Call draw to render changes to the wheel.
-      this.wheelSpinning = false // Reset to false to power buttons and spin can be clicked again.
-    },
-    initSpin () {
-      this.loadingPrize = true
-            this.resetWheel()
-            this.loadingPrize = false
-    },
-    onFinishSpin (indicatedSegment) {
-      this.prizeName = indicatedSegment.text
-      this.showPrize()
-    }
-  },
-  computed: {},
-  updated () {},
-  mounted () {
-    this.initSpin()
-    // this.resetWheel()
-  },
-  created () {}
-});
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vuejs-loading-plugin/Loading.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vuejs-loading-plugin/Loading.vue?vue&type=script&lang=js& ***!
@@ -49637,108 +49629,6 @@ var render = function() {
   return _c(_vm.currentLayout, { tag: "component" })
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=template&id=b05d8190&scoped=true&":
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=template&id=b05d8190&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "vue-winwheel" }, [
-    _c("div", { staticClass: "mobile-container" }, [
-      _c("h1", [_vm._v("Vue-Winwheel")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "wheel-wrapper" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "button-wrapper" }, [
-          !_vm.loadingPrize && !_vm.wheelSpinning
-            ? _c(
-                "a",
-                {
-                  staticClass: "btn btn-play",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.startSpin()
-                    }
-                  }
-                },
-                [_vm._v("SPIN!")]
-              )
-            : _vm._e()
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.modalPrize
-      ? _c(
-          "div",
-          {
-            staticClass: "custom-modal modal-mask",
-            attrs: { id: "modalSpinwheel" }
-          },
-          [
-            _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "modal-dismiss",
-                  attrs: { href: "" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.hidePrize()
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "icon_close" })]
-              ),
-              _vm._v(" "),
-              _c("h2", [_vm._v("\n\t\t\t\tYay you got the prize!!\n\t\t\t")]),
-              _vm._v(" "),
-              _c("h1", [_vm._v(" " + _vm._s(_vm.prizeName))])
-            ])
-          ]
-        )
-      : _vm._e()
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "canvas-wrapper" }, [
-      _c("canvas", { attrs: { id: "canvas", width: "310", height: "310" } }, [
-        _c(
-          "p",
-          { staticStyle: { "{color": "white}" }, attrs: { align: "center" } },
-          [
-            _vm._v(
-              "Sorry, your browser doesn't support canvas. Please try Google Chrome."
-            )
-          ]
-        )
-      ])
-    ])
-  }
-]
 render._withStripped = true
 
 
@@ -49907,6 +49797,108 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WheelOfFortune.vue?vue&type=template&id=5be040fa&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/WheelOfFortune.vue?vue&type=template&id=5be040fa&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "vue-winwheel" }, [
+    _c("div", { staticClass: "mobile-container" }, [
+      _c("h1", [_vm._v("Vue-Winwheel")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "wheel-wrapper" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "button-wrapper" }, [
+          !_vm.loadingPrize && !_vm.wheelSpinning
+            ? _c(
+                "a",
+                {
+                  staticClass: "btn btn-play",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.startSpin()
+                    }
+                  }
+                },
+                [_vm._v("SPIN!")]
+              )
+            : _vm._e()
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.modalPrize
+      ? _c(
+          "div",
+          {
+            staticClass: "custom-modal modal-mask",
+            attrs: { id: "modalSpinwheel" }
+          },
+          [
+            _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "modal-dismiss",
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.hidePrize()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "icon_close" })]
+              ),
+              _vm._v(" "),
+              _c("h2", [_vm._v("\n\t\t\t\tYay you got the prize!!\n\t\t\t")]),
+              _vm._v(" "),
+              _c("h1", [_vm._v(" " + _vm._s(_vm.prizeName))])
+            ])
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "canvas-wrapper" }, [
+      _c("canvas", { attrs: { id: "canvas", width: "310", height: "310" } }, [
+        _c(
+          "p",
+          { staticStyle: { "{color": "white}" }, attrs: { align: "center" } },
+          [
+            _vm._v(
+              "Sorry, your browser doesn't support canvas. Please try Google Chrome."
+            )
+          ]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -52807,228 +52799,241 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "lottery-section", attrs: { id: "lottery-section" } },
-    [
-      _c("div", { staticClass: "left-side" }, [
-        _c("div", { staticClass: "fixed" }, [
-          _c("div", { staticClass: "controls" }, [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "tooltip",
-                    rawName: "v-tooltip.bottom",
-                    value: "Поделиться игрой",
-                    expression: "'Поделиться игрой'",
-                    modifiers: { bottom: true }
-                  }
-                ],
-                staticClass: "mini-btn",
-                on: {
-                  click: function($event) {
-                    return _vm.toClipboard()
-                  }
-                }
-              },
-              [
-                _c("img", {
-                  attrs: { src: "/img/cards-share-icon.png", alt: "" }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "tooltip",
-                    rawName: "v-tooltip.bottom",
-                    value: "Защита выигрыша",
-                    expression: "'Защита выигрыша'",
-                    modifiers: { bottom: true }
-                  }
-                ],
-                staticClass: "mini-btn",
-                on: {
-                  click: function($event) {
-                    return _vm.showModal("security")
-                  }
-                }
-              },
-              [
-                _c("img", {
-                  attrs: { src: "/img/cards-security-icon.png", alt: "" }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "tooltip",
-                    rawName: "v-tooltip.bottom",
-                    value: "Информация по карточке",
-                    expression: "'Информация по карточке'",
-                    modifiers: { bottom: true }
-                  }
-                ],
-                staticClass: "mini-btn",
-                on: {
-                  click: function($event) {
-                    return _vm.showModal("cardinfo")
-                  }
-                }
-              },
-              [
-                _c("img", {
-                  attrs: { src: "/img/cards-info-icon.png", alt: "" }
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "card",
-            domProps: { innerHTML: _vm._s(_vm.prepareUrl(_vm.card.card_data)) }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "buttons" }, [
-            _c(
-              "div",
-              {
-                staticClass: "random",
-                on: {
-                  click: function($event) {
-                    return _vm.startAnim()
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "line", style: _vm.cssProps }),
-                _vm._v(" "),
-                _c("div", { staticClass: "text" }, [_vm._v("Случайное место")])
-              ]
-            ),
-            _vm._v(" "),
-            _c("button", { staticClass: "buy" }, [_vm._v("Купить сразу")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "vue-custom-scrollbar",
-        { staticClass: "right-side", attrs: { id: "right-side" } },
+  return _vm.game
+    ? _c(
+        "div",
+        { staticClass: "lottery-section", attrs: { id: "lottery-section" } },
         [
-          _c(
-            "ul",
-            { staticClass: "lotery " },
-            _vm._l(_vm.prepareSlots(), function(p) {
-              return _c("li", { staticClass: "slot" }, [
-                typeof p === "object"
-                  ? _c("div", [
-                      _c("img", {
-                        attrs: { src: p.photo, alt: "" },
+          _c("div", { staticClass: "left-side" }, [
+            _c("div", { staticClass: "fixed" }, [
+              _c("div", { staticClass: "controls" }, [
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "tooltip",
+                        rawName: "v-tooltip.bottom",
+                        value: "Поделиться игрой",
+                        expression: "'Поделиться игрой'",
+                        modifiers: { bottom: true }
+                      }
+                    ],
+                    staticClass: "mini-btn",
+                    on: {
+                      click: function($event) {
+                        return _vm.toClipboard()
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/img/cards-share-icon.png", alt: "" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "tooltip",
+                        rawName: "v-tooltip.bottom",
+                        value: "Защита выигрыша",
+                        expression: "'Защита выигрыша'",
+                        modifiers: { bottom: true }
+                      }
+                    ],
+                    staticClass: "mini-btn",
+                    on: {
+                      click: function($event) {
+                        return _vm.showModal("security")
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/img/cards-security-icon.png", alt: "" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "tooltip",
+                        rawName: "v-tooltip.bottom",
+                        value: "Информация по карточке",
+                        expression: "'Информация по карточке'",
+                        modifiers: { bottom: true }
+                      }
+                    ],
+                    staticClass: "mini-btn",
+                    on: {
+                      click: function($event) {
+                        return _vm.showModal("cardinfo")
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/img/cards-info-icon.png", alt: "" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "card",
+                domProps: { innerHTML: _vm._s(_vm.prepareUrl()) }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "buttons" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "random",
+                    on: {
+                      click: function($event) {
+                        return _vm.startAnim()
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "line", style: _vm.cssProps }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "text",
                         on: {
                           click: function($event) {
-                            return _vm.clickUserSlot(p)
+                            return _vm.pickRandom()
                           }
                         }
-                      })
-                    ])
-                  : _c("div", [
-                      _c(
-                        "p",
-                        {
-                          staticClass: "number",
-                          on: {
-                            click: function($event) {
-                              return _vm.clickFreeSlot(p - 1)
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(p))]
-                      )
-                    ])
+                      },
+                      [_vm._v("Случайное место")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("button", { staticClass: "buy" }, [_vm._v("Купить сразу")])
               ])
-            }),
-            0
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "vue-custom-scrollbar",
+            { staticClass: "right-side", attrs: { id: "right-side" } },
+            [
+              _c(
+                "ul",
+                { staticClass: "lotery " },
+                _vm._l(_vm.prepareSlots(), function(p) {
+                  return _c("li", { staticClass: "slot" }, [
+                    typeof p === "object"
+                      ? _c("div", [
+                          _c("img", {
+                            attrs: { src: _vm.getAvatar(p.avatar), alt: "" },
+                            on: {
+                              click: function($event) {
+                                return _vm.clickUserSlot(p)
+                              }
+                            }
+                          })
+                        ])
+                      : _c("div", [
+                          _c(
+                            "p",
+                            {
+                              staticClass: "number",
+                              on: {
+                                click: function($event) {
+                                  return _vm.pickSlot(p - 1)
+                                }
+                              }
+                            },
+                            [_vm._v(_vm._s(p))]
+                          )
+                        ])
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  directives: [
+                    {
+                      name: "scroll-to",
+                      rawName: "v-scroll-to",
+                      value: {
+                        el: "#right-side",
+                        container: "#pageContent",
+                        duration: 500,
+                        easing: "linear",
+                        offset: -200,
+                        force: true,
+                        cancelable: true,
+                        x: false,
+                        y: true
+                      },
+                      expression:
+                        "{\n             el: '#right-side',\n             container: '#pageContent',\n             duration: 500,\n             easing: 'linear',\n             offset: -200,\n             force: true,\n             cancelable: true,\n             x: false,\n             y: true\n }"
+                    }
+                  ],
+                  staticClass: "scrollTop"
+                },
+                [_vm._v("Top")]
+              )
+            ]
           ),
           _vm._v(" "),
           _c(
-            "a",
-            {
-              directives: [
-                {
-                  name: "scroll-to",
-                  rawName: "v-scroll-to",
-                  value: {
-                    el: "#right-side",
-                    container: "#pageContent",
-                    duration: 500,
-                    easing: "linear",
-                    offset: -200,
-                    force: true,
-                    cancelable: true,
-                    x: false,
-                    y: true
-                  },
-                  expression:
-                    "{\n       el: '#right-side',\n       container: '#pageContent',\n       duration: 500,\n       easing: 'linear',\n       offset: -200,\n       force: true,\n       cancelable: true,\n       x: false,\n       y: true\n   }"
+            "modal",
+            { attrs: { name: "security", height: "auto" } },
+            [
+              _c("a", {
+                staticClass: "close",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("security")
+                  }
                 }
-              ],
-              staticClass: "scrollTop"
-            },
-            [_vm._v("Top")]
+              }),
+              _vm._v(" "),
+              _c("security")
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "modal",
+            { attrs: { name: "cardinfo", height: "auto" } },
+            [
+              _c("a", {
+                staticClass: "close",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.hideModal("cardinfo")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("card-info")
+            ],
+            1
           )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "modal",
-        { attrs: { name: "security", height: "auto" } },
-        [
-          _c("a", {
-            staticClass: "close",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                return _vm.hideModal("security")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("security")
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "modal",
-        { attrs: { name: "cardinfo", height: "auto" } },
-        [
-          _c("a", {
-            staticClass: "close",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                return _vm.hideModal("cardinfo")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("card-info")
         ],
         1
       )
-    ],
-    1
-  )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54243,7 +54248,7 @@ var render = function() {
     [
       _c("h1", [_vm._v("Home")]),
       _vm._v(" "),
-      _c("vue-winwheel", { attrs: { segments: _vm.options } })
+      _c("wheel-of-fortune", { attrs: { segments: _vm.options } })
     ],
     1
   )
@@ -59885,2272 +59890,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 /***/ })
 /******/ ]);
 });
-
-/***/ }),
-
-/***/ "./node_modules/vue-winwheel/src/VueWinwheel.vue":
-/*!*******************************************************!*\
-  !*** ./node_modules/vue-winwheel/src/VueWinwheel.vue ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _VueWinwheel_vue_vue_type_template_id_b05d8190_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VueWinwheel.vue?vue&type=template&id=b05d8190&scoped=true& */ "./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=template&id=b05d8190&scoped=true&");
-/* harmony import */ var _VueWinwheel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VueWinwheel.vue?vue&type=script&lang=js& */ "./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _VueWinwheel_vue_vue_type_style_index_0_id_b05d8190_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css& */ "./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css&");
-/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _VueWinwheel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _VueWinwheel_vue_vue_type_template_id_b05d8190_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _VueWinwheel_vue_vue_type_template_id_b05d8190_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "b05d8190",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "node_modules/vue-winwheel/src/VueWinwheel.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib??vue-loader-options!./VueWinwheel.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css&":
-/*!****************************************************************************************************************!*\
-  !*** ./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css& ***!
-  \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_loader_index_js_css_loader_index_js_ref_6_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_6_2_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_style_index_0_id_b05d8190_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../style-loader!../../css-loader??ref--6-1!../../vue-loader/lib/loaders/stylePostLoader.js!../../postcss-loader/src??ref--6-2!../../vue-loader/lib??vue-loader-options!./VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=style&index=0&id=b05d8190&scoped=true&lang=css&");
-/* harmony import */ var _style_loader_index_js_css_loader_index_js_ref_6_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_6_2_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_style_index_0_id_b05d8190_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_index_js_css_loader_index_js_ref_6_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_6_2_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_style_index_0_id_b05d8190_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _style_loader_index_js_css_loader_index_js_ref_6_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_6_2_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_style_index_0_id_b05d8190_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _style_loader_index_js_css_loader_index_js_ref_6_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_6_2_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_style_index_0_id_b05d8190_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_style_loader_index_js_css_loader_index_js_ref_6_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_6_2_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_style_index_0_id_b05d8190_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=template&id=b05d8190&scoped=true&":
-/*!**************************************************************************************************!*\
-  !*** ./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=template&id=b05d8190&scoped=true& ***!
-  \**************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_template_id_b05d8190_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../vue-loader/lib??vue-loader-options!./VueWinwheel.vue?vue&type=template&id=b05d8190&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-winwheel/src/VueWinwheel.vue?vue&type=template&id=b05d8190&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_template_id_b05d8190_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_VueWinwheel_vue_vue_type_template_id_b05d8190_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-winwheel/src/Winwheel.js":
-/*!***************************************************!*\
-  !*** ./node_modules/vue-winwheel/src/Winwheel.js ***!
-  \***************************************************/
-/*! exports provided: Winwheel, Pin, Animation, Segment, PointerGuide */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Winwheel", function() { return Winwheel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pin", function() { return Pin; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Animation", function() { return Animation; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Segment", function() { return Segment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PointerGuide", function() { return PointerGuide; });
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-
-
-class Winwheel {
-	constructor(options, drawWheel) {
-		var defaultOptions = {
-			canvasId: 'canvas', // Id of the canvas which the wheel is to draw on to.
-			centerX: null, // X position of the center of the wheel. The default of these are null which means will be placed in center of the canvas.
-			centerY: null, // Y position of the wheel center. If left null at time of construct the center of the canvas is used.
-			outerRadius: null, // The radius of the outside of the wheel. If left null it will be set to the radius from the center of the canvas to its shortest side.
-			innerRadius: 0, // Normally 0. Allows the creation of rings / doughnuts if set to value > 0. Should not exceed outer radius.
-			numSegments: 1, // The number of segments. Need at least one to draw.
-			drawMode: 'code', // The draw mode. Possible values are 'code', 'image', 'segmentImage'. Default is code which means segments are drawn using canvas arc() function.
-			rotationAngle: 0, // The angle of rotation of the wheel - 0 is 12 o'clock position.
-			textFontFamily: 'sans-serif', // Segment text font, you should use web safe fonts.
-			textFontSize: 13, // Size of the segment text.
-			textFontWeight: 'bold', // Font weight.
-			textOrientation: 'horizontal', // Either horizontal, vertical, or curved.
-			textAlignment: 'center', // Either center, inner, or outer.
-			textDirection: 'normal', // Either normal or reversed. In normal mode for horizontal text in segment at 3 o'clock is correct way up, in reversed text at 9 o'clock segment is correct way up.
-			textMargin: null, // Margin between the inner or outer of the wheel (depends on textAlignment).
-			textFillStyle: 'black', // This is basically the text colour.
-			textStrokeStyle: null, // Basically the line colour for segment text, only looks good for large text so off by default.
-			textLineWidth: 1, // Width of the lines around the text. Even though this defaults to 1, a line is only drawn if textStrokeStyle specified.
-			fillStyle: 'silver', // The segment background colour.
-			strokeStyle: null, // Segment line colour. Again segment lines only drawn if this is specified.
-			lineWidth: 1, // Width of lines around segments.
-			clearTheCanvas: true, // When set to true the canvas will be cleared before the wheel is drawn.
-			imageOverlay: false, // If set to true in image drawing mode the outline of the segments will be displayed over the image. Does nothing in code drawMode.
-			drawText: true, // By default the text of the segments is rendered in code drawMode and not in image drawMode.
-			pointerAngle: 0, // Location of the pointer that indicates the prize when wheel has stopped. Default is 0 so the (corrected) 12 o'clock position.
-			wheelImage: null, // Must be set to image data in order to use image to draw the wheel - drawMode must also be 'image'.
-			imageDirection: 'N', // Used when drawMode is segmentImage. Default is north, can also be (E)ast, (S)outh, (W)est.
-		}
-
-		// -----------------------------------------
-		// Loop through the default options and create properties of this class set to the value for the option passed in
-		// or if not value for the option was passed in then to the default.
-		for (var key in defaultOptions) {
-			if (options != null && typeof options[key] !== 'undefined') {
-				this[key] = options[key]
-			} else {
-				this[key] = defaultOptions[key]
-			}
-		}
-
-		// Also loop though the passed in options and add anything specified not part of the class in to it as a property.
-		if (options != null) {
-			for (var key in options) {
-				if (typeof this[key] === 'undefined') {
-					this[key] = options[key]
-				}
-			}
-		}
-
-		// ------------------------------------------
-		// If the id of the canvas is set, try to get the canvas as we need it for drawing.
-		if (this.canvasId) {
-			this.canvas = document.getElementById(this.canvasId)
-
-			if (this.canvas) {
-				// If the centerX and centerY have not been specified in the options then default to center of the canvas
-				// and make the outerRadius half of the canvas width - this means the wheel will fill the canvas.
-				if (this.centerX == null) {
-					this.centerX = this.canvas.width / 2
-				}
-
-				if (this.centerY == null) {
-					this.centerY = this.canvas.height / 2
-				}
-
-				if (this.outerRadius == null) {
-					// Need to set to half the width of the shortest dimension of the canvas as the canvas may not be square.
-					// Minus the line segment line width otherwise the lines around the segments on the top,left,bottom,right
-					// side are chopped by the edge of the canvas.
-					if (this.canvas.width < this.canvas.height) {
-						this.outerRadius = this.canvas.width / 2 - this.lineWidth
-					} else {
-						this.outerRadius = this.canvas.height / 2 - this.lineWidth
-					}
-				}
-
-				// Also get a 2D context to the canvas as we need this to draw with.
-				this.ctx = this.canvas.getContext('2d')
-			} else {
-				this.canvas = null
-				this.ctx = null
-			}
-		} else {
-			this.cavnas = null
-			this.ctx = null
-		}
-
-		// ------------------------------------------
-		// Add array of segments to the wheel, then populate with segments if number of segments is specified for this object.
-		this.segments = new Array(null)
-
-		for (var x = 1; x <= this.numSegments; x++) {
-			// If options for the segments have been specified then create a segment sending these options so
-			// the specified values are used instead of the defaults.
-			if (options != null && options['segments'] && typeof options['segments'][x - 1] !== 'undefined') {
-				this.segments[x] = new Segment(options['segments'][x - 1])
-			} else {
-				this.segments[x] = new Segment()
-			}
-		}
-
-		// ------------------------------------------
-		// Call function to update the segment sizes setting the starting and ending angles.
-		this.updateSegmentSizes()
-
-		// If the text margin is null then set to same as font size as we want some by default.
-		if (this.textMargin === null) {
-			this.textMargin = this.textFontSize / 1.7
-		}
-
-		// ------------------------------------------
-		// If the animation options have been passed in then create animation object as a property of this class
-		// and pass the options to it so the animation is set. Otherwise create default animation object.
-		if (options != null && options['animation'] && typeof options['animation'] !== 'undefined') {
-			this.animation = new Animation(options['animation'])
-		} else {
-			this.animation = new Animation()
-		}
-
-		// ------------------------------------------
-		// If some pin options then create create a pin object and then pass them in.
-		if (options != null && options['pins'] && typeof options['pins'] !== 'undefined') {
-			this.pins = new Pin(options['pins'])
-		}
-
-		// ------------------------------------------
-		// On that note, if the drawMode is image change some defaults provided a value has not been specified.
-		if (this.drawMode == 'image' || this.drawMode == 'segmentImage') {
-			// Remove grey fillStyle.
-			if (typeof options['fillStyle'] === 'undefined') {
-				this.fillStyle = null
-			}
-
-			// Set strokeStyle to red.
-			if (typeof options['strokeStyle'] === 'undefined') {
-				this.strokeStyle = 'red'
-			}
-
-			// Set drawText to false as we will assume any text is part of the image.
-			if (typeof options['drawText'] === 'undefined') {
-				this.drawText = false
-			}
-
-			// Also set the lineWidth to 1 so that segment overlay will look correct.
-			if (typeof options['lineWidth'] === 'undefined') {
-				this.lineWidth = 1
-			}
-
-			// Set drawWheel to false as normally the image needs to be loaded first.
-			if (typeof drawWheel === 'undefined') {
-				drawWheel = false
-			}
-		} else {
-			// When in code drawMode the default is the wheel will draw.
-			if (typeof drawWheel === 'undefined') {
-				drawWheel = true
-			}
-		}
-
-		// Create pointer guide.
-		if (options != null && options['pointerGuide'] && typeof options['pointerGuide'] !== 'undefined') {
-			this.pointerGuide = new PointerGuide(options['pointerGuide'])
-		} else {
-			this.pointerGuide = new PointerGuide()
-		}
-
-		// Finally if drawWheel is true then call function to render the wheel, segment text, overlay etc.
-		if (drawWheel == true) {
-			this.draw(this.clearTheCanvas)
-		} else if (this.drawMode == 'segmentImage') {
-			// If segment image then loop though all the segments and load the images for them setting a callback
-			// which will call the draw function of the wheel once all the images have been loaded.
-			winwheelToDrawDuringAnimation = this
-			winhweelAlreadyDrawn = false
-
-			for (var y = 1; y <= this.numSegments; y++) {
-				if (this.segments[y].image !== null) {
-					this.segments[y].imgData = new Image()
-					this.segments[y].imgData.onload = winwheelLoadedImage
-					this.segments[y].imgData.src = this.segments[y].image
-				}
-			}
-		}
-	}
-
-	// ====================================================================================================================
-	// This function sorts out the segment sizes. Some segments may have set sizes, for the others what is left out of
-	// 360 degrees is shared evenly. What this function actually does is set the start and end angle of the arcs.
-	// ====================================================================================================================
-	updateSegmentSizes() {
-		// If this object actually contains some segments
-		if (this.segments) {
-			// First add up the arc used for the segments where the size has been set.
-			var arcUsed = 0
-			var numSet = 0
-
-			// Remember, to make it easy to access segments, the position of the segments in the array starts from 1 (not 0).
-			for (var x = 1; x <= this.numSegments; x++) {
-				if (this.segments[x].size !== null) {
-					arcUsed += this.segments[x].size
-					numSet++
-				}
-			}
-
-			var arcLeft = 360 - arcUsed
-
-			// Create variable to hold how much each segment with non-set size will get in terms of degrees.
-			var degreesEach = 0
-
-			if (arcLeft > 0) {
-				degreesEach = arcLeft / (this.numSegments - numSet)
-			}
-
-			// ------------------------------------------
-			// Now loop though and set the start and end angle of each segment.
-			var currentDegree = 0
-
-			for (var x = 1; x <= this.numSegments; x++) {
-				// Set start angle.
-				this.segments[x].startAngle = currentDegree
-
-				// If the size is set then add this to the current degree to get the end, else add the degreesEach to it.
-				if (this.segments[x].size) {
-					currentDegree += this.segments[x].size
-				} else {
-					currentDegree += degreesEach
-				}
-
-				// Set end angle.
-				this.segments[x].endAngle = currentDegree
-			}
-		}
-	}
-
-	// ====================================================================================================================
-	// This function clears the canvas. Will wipe anything else which happens to be drawn on it.
-	// ====================================================================================================================
-	clearCanvas() {
-		if (this.ctx) {
-			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-		}
-	}
-
-	// ====================================================================================================================
-	// This function draws / re-draws the wheel on the canvas therefore rendering any changes.
-	// ====================================================================================================================
-	draw(clearTheCanvas) {
-		// If have the canvas context.
-		if (this.ctx) {
-			// Clear the canvas, unless told not to.
-			if (typeof clearTheCanvas !== 'undefined') {
-				if (clearTheCanvas == true) {
-					this.clearCanvas()
-				}
-			} else {
-				this.clearCanvas()
-			}
-
-			// Call functions to draw the segments and then segment text.
-			if (this.drawMode == 'image') {
-				// Draw the wheel by loading and drawing an image such as a png on the canvas.
-				this.drawWheelImage()
-
-				// If we are to draw the text, do so before the overlay is drawn
-				// as this allows the overlay to be used to create some interesting effects.
-				if (this.drawText == true) {
-					this.drawSegmentText()
-				}
-
-				// If image overlay is true then call function to draw the segments over the top of the image.
-				// This is useful during development to check alignment between where the code thinks the segments are and where they appear on the image.
-				if (this.imageOverlay == true) {
-					this.drawSegments()
-				}
-			} else if (this.drawMode == 'segmentImage') {
-				// Draw the wheel by rendering the image for each segment.
-				this.drawSegmentImages()
-
-				// If we are to draw the text, do so before the overlay is drawn
-				// as this allows the overlay to be used to create some interesting effects.
-				if (this.drawText == true) {
-					this.drawSegmentText()
-				}
-
-				// If image overlay is true then call function to draw the segments over the top of the image.
-				// This is useful during development to check alignment between where the code thinks the segments are and where they appear on the image.
-				if (this.imageOverlay == true) {
-					this.drawSegments()
-				}
-			} else {
-				// The default operation is to draw the segments using code via the canvas arc() method.
-				this.drawSegments()
-
-				// The text is drawn on top.
-				if (this.drawText == true) {
-					this.drawSegmentText()
-				}
-			}
-
-			// If this class has pins.
-			if (typeof this.pins !== 'undefined') {
-				// If they are to be visible then draw them.
-				if (this.pins.visible == true) this.drawPins()
-			}
-
-			// If pointer guide is display property is set to true then call function to draw the pointer guide.
-			if (this.pointerGuide.display == true) {
-				this.drawPointerGuide()
-			}
-		}
-	}
-
-	// ====================================================================================================================
-	// Draws the pins around the outside of the wheel.
-	// ====================================================================================================================
-	drawPins() {
-		if (this.pins && this.pins.number) {
-			// Work out the angle to draw each pin a which is simply 360 / the number of pins as they space evenly around.
-			//++ There is a slight oddity with the pins in that there is a pin at 0 and also one at 360 and these will be drawn
-			//++ directly over the top of each other. Also pins are 0 indexed which could possibly cause some confusion
-			//++ with the getCurrentPin function - for now this is just used for audio so probably not a problem.
-			var pinSpacing = 360 / this.pins.number
-
-			for (var i = 1; i <= this.pins.number; i++) {
-				this.ctx.save()
-
-				// Set the stroke style and line width.
-				this.ctx.strokeStyle = this.pins.strokeStyle
-				this.ctx.lineWidth = this.pins.lineWidth
-				this.ctx.fillStyle = this.pins.fillStyle
-
-				// Move to the center.
-				this.ctx.translate(this.centerX, this.centerY)
-
-				// Rotate to to the pin location which is i * the pinSpacing.
-				this.ctx.rotate(this.degToRad(i * pinSpacing + this.rotationAngle))
-
-				// Move back out.
-				this.ctx.translate(-this.centerX, -this.centerY)
-
-				// Create a path for the pin circle.
-				this.ctx.beginPath()
-				// x, y, radius, startAngle, endAngle.
-				this.ctx.arc(
-					this.centerX,
-					this.centerY - this.outerRadius + this.pins.outerRadius + this.pins.margin,
-					this.pins.outerRadius,
-					0,
-					2 * Math.PI
-				)
-
-				if (this.pins.fillStyle) this.ctx.fill()
-
-				if (this.pins.strokeStyle) this.ctx.stroke()
-
-				this.ctx.restore()
-			}
-		}
-	}
-
-	// ====================================================================================================================
-	// Draws a line from the center of the wheel to the outside at the angle where the code thinks the pointer is.
-	// ====================================================================================================================
-	drawPointerGuide() {
-		// If have canvas context.
-		if (this.ctx) {
-			this.ctx.save()
-
-			// Rotate the canvas to the line goes towards the location of the pointer.
-			this.ctx.translate(this.centerX, this.centerY)
-			this.ctx.rotate(this.degToRad(this.pointerAngle))
-			this.ctx.translate(-this.centerX, -this.centerY)
-
-			// Set line colour and width.
-			this.ctx.strokeStyle = this.pointerGuide.strokeStyle
-			this.ctx.lineWidth = this.pointerGuide.lineWidth
-
-			// Draw from the center of the wheel outwards past the wheel outer radius.
-			this.ctx.beginPath()
-			this.ctx.moveTo(this.centerX, this.centerY)
-			this.ctx.lineTo(this.centerX, -(this.outerRadius / 4))
-
-			this.ctx.stroke()
-			this.ctx.restore()
-		}
-	}
-
-	// ====================================================================================================================
-	// This function takes an image such as PNG and draws it on the canvas making its center at the centerX and center for the wheel.
-	// ====================================================================================================================
-	drawWheelImage() {
-		// Double check the wheelImage property of this class is not null. This does not actually detect that an image
-		// source was set and actually loaded so might get error if this is not the case. This is why the initial call
-		// to draw() should be done from a wheelImage.onload callback as detailed in example documentation.
-		if (this.wheelImage != null) {
-			// Work out the correct X and Y to draw the image at. We need to get the center point of the image
-			// aligned over the center point of the wheel, we can't just place it at 0, 0.
-			var imageLeft = this.centerX - this.wheelImage.height / 2
-			var imageTop = this.centerY - this.wheelImage.width / 2
-
-			// Rotate and then draw the wheel.
-			// We must rotate by the rotationAngle before drawing to ensure that image wheels will spin.
-			this.ctx.save()
-			this.ctx.translate(this.centerX, this.centerY)
-			this.ctx.rotate(this.degToRad(this.rotationAngle))
-			this.ctx.translate(-this.centerX, -this.centerY)
-
-			this.ctx.drawImage(this.wheelImage, imageLeft, imageTop)
-
-			this.ctx.restore()
-		}
-	}
-
-	// ====================================================================================================================
-	// This function draws the wheel on the canvas by rendering the image for each segment.
-	// ====================================================================================================================
-	drawSegmentImages() {
-		// Again check have context in case this function was called directly and not via draw function.
-		if (this.ctx) {
-			// Draw the segments if there is at least one in the segments array.
-			if (this.segments) {
-				// Loop though and output all segments - position 0 of the array is not used, so start loop from index 1
-				// this is to avoid confusion when talking about the first segment.
-				for (var x = 1; x <= this.numSegments; x++) {
-					// Get the segment object as we need it to read options from.
-					var seg = this.segments[x]
-
-					// Check image has loaded so a property such as height has a value.
-					if (seg.imgData.height) {
-						// Work out the correct X and Y to draw the image at which depends on the direction of the image.
-						// Images can be created in 4 directions. North, South, East, West.
-						// North: Outside at top, inside at bottom. Sits evenly over the 0 degrees angle.
-						// South: Outside at bottom, inside at top. Sits evenly over the 180 degrees angle.
-						// East: Outside at right, inside at left. Sits evenly over the 90 degrees angle.
-						// West: Outside at left, inside at right. Sits evenly over the 270 degrees angle.
-						var imageLeft = 0
-						var imageTop = 0
-						var imageAngle = 0
-						var imageDirection = ''
-
-						if (seg.imageDirection !== null) imageDirection = seg.imageDirection
-						else imageDirection = this.imageDirection
-
-						if (imageDirection == 'S') {
-							// Left set so image sits half/half over the 180 degrees point.
-							imageLeft = this.centerX - seg.imgData.width / 2
-
-							// Top so image starts at the centerY.
-							imageTop = this.centerY
-
-							// Angle to draw the image is its starting angle + half its size.
-							// Here we add 180 to the angle to the segment is poistioned correctly.
-							imageAngle = seg.startAngle + 180 + (seg.endAngle - seg.startAngle) / 2
-						} else if (imageDirection == 'E') {
-							// Left set so image starts and the center point.
-							imageLeft = this.centerX
-
-							// Top is so that it sits half/half over the 90 degree point.
-							imageTop = this.centerY - seg.imgData.height / 2
-
-							// Again get the angle in the center of the segment and add it to the rotation angle.
-							// this time we need to add 270 to that to the segment is rendered the correct place.
-							imageAngle = seg.startAngle + 270 + (seg.endAngle - seg.startAngle) / 2
-						} else if (imageDirection == 'W') {
-							// Left is the centerX minus the width of the image.
-							imageLeft = this.centerX - seg.imgData.width
-
-							// Top is so that it sits half/half over the 270 degree point.
-							imageTop = this.centerY - seg.imgData.height / 2
-
-							// Again get the angle in the center of the segment and add it to the rotation angle.
-							// this time we need to add 90 to that to the segment is rendered the correct place.
-							imageAngle = seg.startAngle + 90 + (seg.endAngle - seg.startAngle) / 2
-						} // North is the default.
-						else {
-							// Left set so image sits half/half over the 0 degrees point.
-							imageLeft = this.centerX - seg.imgData.width / 2
-
-							// Top so image is its height out (above) the center point.
-							imageTop = this.centerY - seg.imgData.height
-
-							// Angle to draw the image is its starting angle + half its size.
-							// this sits it half/half over the center angle of the segment.
-							imageAngle = seg.startAngle + (seg.endAngle - seg.startAngle) / 2
-						}
-
-						// --------------------------------------------------
-						// Rotate to the position of the segment and then draw the image.
-						this.ctx.save()
-						this.ctx.translate(this.centerX, this.centerY)
-
-						// So math here is the rotation angle of the wheel plus half way between the start and end angle of the segment.
-						this.ctx.rotate(this.degToRad(this.rotationAngle + imageAngle))
-						this.ctx.translate(-this.centerX, -this.centerY)
-
-						// Draw the image.
-						this.ctx.drawImage(seg.imgData, imageLeft, imageTop)
-
-						this.ctx.restore()
-					} else {
-						console.log('Segment ' + x + ' imgData is not loaded')
-					}
-				}
-			}
-		}
-	}
-
-	// ====================================================================================================================
-	// This function draws the wheel on the page by rendering the segments on the canvas.
-	// ====================================================================================================================
-	drawSegments() {
-		// Again check have context in case this function was called directly and not via draw function.
-		if (this.ctx) {
-			// Draw the segments if there is at least one in the segments array.
-			if (this.segments) {
-				// Loop though and output all segments - position 0 of the array is not used, so start loop from index 1
-				// this is to avoid confusion when talking about the first segment.
-				for (var x = 1; x <= this.numSegments; x++) {
-					// Get the segment object as we need it to read options from.
-					var seg = this.segments[x]
-
-					var fillStyle
-					var lineWidth
-					var strokeStyle
-
-					// Set the variables that defined in the segment, or use the default options.
-					if (seg.fillStyle !== null) fillStyle = seg.fillStyle
-					else fillStyle = this.fillStyle
-
-					this.ctx.fillStyle = fillStyle
-
-					if (seg.lineWidth !== null) lineWidth = seg.lineWidth
-					else lineWidth = this.lineWidth
-
-					this.ctx.lineWidth = lineWidth
-
-					if (seg.strokeStyle !== null) strokeStyle = seg.strokeStyle
-					else strokeStyle = this.strokeStyle
-
-					this.ctx.strokeStyle = strokeStyle
-
-					// Check there is a strokeStyle or fillStyle, if either the the segment is invisible so should not
-					// try to draw it otherwise a path is began but not ended.
-					if (strokeStyle || fillStyle) {
-						// ----------------------------------
-						// Begin a path as the segment consists of an arc and 2 lines.
-						this.ctx.beginPath()
-
-						// If don't have an inner radius then move to the center of the wheel as we want a line out from the center
-						// to the start of the arc for the outside of the wheel when we arc. Canvas will draw the connecting line for us.
-						if (!this.innerRadius) {
-							this.ctx.moveTo(this.centerX, this.centerY)
-						} else {
-							//++ do need to draw the starting line in the correct x + y based on the start angle
-							//++ otherwise as seen when the wheel does not use up 360 the starting segment is missing the stroked side,
-						}
-
-						// Draw the outer arc of the segment clockwise in direction -->
-						this.ctx.arc(
-							this.centerX,
-							this.centerY,
-							this.outerRadius,
-							this.degToRad(seg.startAngle + this.rotationAngle - 90),
-							this.degToRad(seg.endAngle + this.rotationAngle - 90),
-							false
-						)
-
-						if (this.innerRadius) {
-							// Draw another arc, this time anticlockwise <-- at the innerRadius between the end angle and the start angle.
-							// Canvas will draw a connecting line from the end of the outer arc to the beginning of the inner arc completing the shape.
-
-							//++ Think the reason the lines are thinner for 2 of the segments is because the thing auto chops part of it
-							//++ when doing the next one. Again think that actually drawing the lines will help.
-
-							this.ctx.arc(
-								this.centerX,
-								this.centerY,
-								this.innerRadius,
-								this.degToRad(seg.endAngle + this.rotationAngle - 90),
-								this.degToRad(seg.startAngle + this.rotationAngle - 90),
-								true
-							)
-						} else {
-							// If no inner radius then we draw a line back to the center of the wheel.
-							this.ctx.lineTo(this.centerX, this.centerY)
-						}
-
-						// Fill and stroke the segment. Only do either if a style was specified, if the style is null then
-						// we assume the developer did not want that particular thing.
-						// For example no stroke style so no lines to be drawn.
-						if (fillStyle) this.ctx.fill()
-
-						if (strokeStyle) this.ctx.stroke()
-					}
-				}
-			}
-		}
-	}
-
-	// ====================================================================================================================
-	// This draws the text on the segments using the specified text options.
-	// ====================================================================================================================
-	drawSegmentText() {
-		// Again only draw the text if have a canvas context.
-		if (this.ctx) {
-			// Declare variables to hold the values. These are populated either with the value for the specific segment,
-			// or if not specified then the global default value.
-			var fontFamily
-			var fontSize
-			var fontWeight
-			var orientation
-			var alignment
-			var direction
-			var margin
-			var fillStyle
-			var strokeStyle
-			var lineWidth
-			var fontSetting
-
-			// Loop though all the segments.
-			for (var x = 1; x <= this.numSegments; x++) {
-				// Save the context so it is certain that each segment text option will not affect the other.
-				this.ctx.save()
-
-				// Get the segment object as we need it to read options from.
-				var seg = this.segments[x]
-
-				// Check is text as no point trying to draw if there is no text to render.
-				if (seg.text) {
-					// Set values to those for the specific segment or use global default if null.
-					if (seg.textFontFamily !== null) fontFamily = seg.textFontFamily
-					else fontFamily = this.textFontFamily
-					if (seg.textFontSize !== null) fontSize = seg.textFontSize
-					else fontSize = this.textFontSize
-					if (seg.textFontWeight !== null) fontWeight = seg.textFontWeight
-					else fontWeight = this.textFontWeight
-					if (seg.textOrientation !== null) orientation = seg.textOrientation
-					else orientation = this.textOrientation
-					if (seg.textAlignment !== null) alignment = seg.textAlignment
-					else alignment = this.textAlignment
-					if (seg.textDirection !== null) direction = seg.textDirection
-					else direction = this.textDirection
-					if (seg.textMargin !== null) margin = seg.textMargin
-					else margin = this.textMargin
-					if (seg.textFillStyle !== null) fillStyle = seg.textFillStyle
-					else fillStyle = this.textFillStyle
-					if (seg.textStrokeStyle !== null) strokeStyle = seg.textStrokeStyle
-					else strokeStyle = this.textStrokeStyle
-					if (seg.textLineWidth !== null) lineWidth = seg.textLineWidth
-					else lineWidth = this.textLineWidth
-
-					// ------------------------------
-					// We need to put the font bits together in to one string.
-					fontSetting = ''
-
-					if (fontWeight != null) fontSetting += fontWeight + ' '
-
-					if (fontSize != null) fontSetting += fontSize + 'px ' // Fonts on canvas are always a px value.
-
-					if (fontFamily != null) fontSetting += fontFamily
-
-					// Now set the canvas context to the decided values.
-					this.ctx.font = fontSetting
-					this.ctx.fillStyle = fillStyle
-					this.ctx.strokeStyle = strokeStyle
-					this.ctx.lineWidth = lineWidth
-
-					// Split the text in to multiple lines on the \n character.
-					var lines = seg.text.split('\n')
-
-					// Figure out the starting offset for the lines as when there are multiple lines need to center the text
-					// vertically in the segment (when thinking of normal horozontal text).
-					var lineOffset = 0 - fontSize * (lines.length / 2) + fontSize / 2
-
-					// The offset works great for horozontal and vertial text, also centered curved. But when the text is curved
-					// and the alignment is outer then the multiline text should not have some text outside the wheel. Same if inner curved.
-					if (orientation == 'curved' && (alignment == 'inner' || alignment == 'outer')) {
-						lineOffset = 0
-					}
-
-					for (var i = 0; i < lines.length; i++) {
-						// ---------------------------------
-						// If direction is reversed then do things differently than if normal (which is the default - see further down)
-						if (direction == 'reversed') {
-							// When drawing reversed or 'upside down' we need to do some trickery on our part.
-							// The canvas text rendering function still draws the text left to right and the correct way up,
-							// so we need to overcome this with rotating the opposite side of the wheel the correct way up then pulling the text
-							// through the center point to the correct segment it is supposed to be on.
-							if (orientation == 'horizontal') {
-								if (alignment == 'inner') this.ctx.textAlign = 'right'
-								else if (alignment == 'outer') this.ctx.textAlign = 'left'
-								else this.ctx.textAlign = 'center'
-
-								this.ctx.textBaseline = 'middle'
-
-								// Work out the angle to rotate the wheel, this is in the center of the segment but on the opposite side of the wheel which is why do -180.
-								var textAngle = this.degToRad(
-									seg.endAngle - (seg.endAngle - seg.startAngle) / 2 + this.rotationAngle - 90 - 180
-								)
-
-								this.ctx.save()
-								this.ctx.translate(this.centerX, this.centerY)
-								this.ctx.rotate(textAngle)
-								this.ctx.translate(-this.centerX, -this.centerY)
-
-								if (alignment == 'inner') {
-									// In reversed state the margin is subtracted from the innerX.
-									// When inner the inner radius also comes in to play.
-									if (fillStyle)
-										this.ctx.fillText(
-											lines[i],
-											this.centerX - this.innerRadius - margin,
-											this.centerY + lineOffset
-										)
-
-									if (strokeStyle)
-										this.ctx.strokeText(
-											lines[i],
-											this.centerX - this.innerRadius - margin,
-											this.centerY + lineOffset
-										)
-								} else if (alignment == 'outer') {
-									// In reversed state the position is the center minus the radius + the margin for outer aligned text.
-									if (fillStyle)
-										this.ctx.fillText(
-											lines[i],
-											this.centerX - this.outerRadius + margin,
-											this.centerY + lineOffset
-										)
-
-									if (strokeStyle)
-										this.ctx.strokeText(
-											lines[i],
-											this.centerX - this.outerRadius + margin,
-											this.centerY + lineOffset
-										)
-								} else {
-									// In reversed state the everything in minused.
-									if (fillStyle)
-										this.ctx.fillText(
-											lines[i],
-											this.centerX -
-												this.innerRadius -
-												(this.outerRadius - this.innerRadius) / 2 -
-												margin,
-											this.centerY + lineOffset
-										)
-
-									if (strokeStyle)
-										this.ctx.strokeText(
-											lines[i],
-											this.centerX -
-												this.innerRadius -
-												(this.outerRadius - this.innerRadius) / 2 -
-												margin,
-											this.centerY + lineOffset
-										)
-								}
-
-								this.ctx.restore()
-							} else if (orientation == 'vertical') {
-								// See normal code further down for comments on how it works, this is similar by plus/minus is reversed.
-								this.ctx.textAlign = 'center'
-
-								// In reversed mode this are reversed.
-								if (alignment == 'inner') this.ctx.textBaseline = 'top'
-								else if (alignment == 'outer') this.ctx.textBaseline = 'bottom'
-								else this.ctx.textBaseline = 'middle'
-
-								var textAngle = seg.endAngle - (seg.endAngle - seg.startAngle) / 2 - 180
-								textAngle += this.rotationAngle
-
-								this.ctx.save()
-								this.ctx.translate(this.centerX, this.centerY)
-								this.ctx.rotate(this.degToRad(textAngle))
-								this.ctx.translate(-this.centerX, -this.centerY)
-
-								if (alignment == 'outer') var yPos = this.centerY + this.outerRadius - margin
-								else if (alignment == 'inner') var yPos = this.centerY + this.innerRadius + margin
-
-								// I have found that the text looks best when a fraction of the font size is shaved off.
-								var yInc = fontSize - fontSize / 9
-
-								// Loop though and output the characters.
-								if (alignment == 'outer') {
-									// In reversed mode outer means text in 6 o'clock segment sits at bottom of the wheel and we draw up.
-									for (var c = lines[i].length - 1; c >= 0; c--) {
-										character = lines[i].charAt(c)
-
-										if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos)
-
-										if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos)
-
-										yPos -= yInc
-									}
-								} else if (alignment == 'inner') {
-									// In reversed mode inner text is drawn from top of segment at 6 o'clock position to bottom of the wheel.
-									for (var c = 0; c < lines[i].length; c++) {
-										character = lines[i].charAt(c)
-
-										if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos)
-
-										if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos)
-
-										yPos += yInc
-									}
-								} else if (alignment == 'center') {
-									// Again for reversed this is the opposite of before.
-									// If there is more than one character in the text then an adjustment to the position needs to be done.
-									// What we are aiming for is to position the center of the text at the center point between the inner and outer radius.
-									var centerAdjustment = 0
-
-									if (lines[i].length > 1) {
-										centerAdjustment = (yInc * (lines[i].length - 1)) / 2
-									}
-
-									var yPos =
-										this.centerY +
-										this.innerRadius +
-										(this.outerRadius - this.innerRadius) / 2 +
-										centerAdjustment +
-										margin
-
-									for (var c = lines[i].length - 1; c >= 0; c--) {
-										character = lines[i].charAt(c)
-
-										if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos)
-
-										if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos)
-
-										yPos -= yInc
-									}
-								}
-
-								this.ctx.restore()
-							} else if (orientation == 'curved') {
-								// There is no built in canvas function to draw text around an arc,
-								// so we need to do this ourselves.
-								var radius = 0
-
-								// Set the alignment of the text - inner, outer, or center by calculating
-								// how far out from the center point of the wheel the text is drawn.
-								if (alignment == 'inner') {
-									// When alignment is inner the radius is the innerRadius plus any margin.
-									radius = this.innerRadius + margin
-									this.ctx.textBaseline = 'top'
-								} else if (alignment == 'outer') {
-									// Outer it is the outerRadius minus any margin.
-									radius = this.outerRadius - margin
-									this.ctx.textBaseline = 'bottom'
-
-									// We need to adjust the radius in this case to take in to multiline text.
-									// In this case the radius needs to be further out, not at the inner radius.
-									radius -= fontSize * (lines.length - 1)
-								} else if (alignment == 'center') {
-									// When center we want the text halfway between the inner and outer radius.
-									radius = this.innerRadius + margin + (this.outerRadius - this.innerRadius) / 2
-									this.ctx.textBaseline = 'middle'
-								}
-
-								// Set the angle to increment by when looping though and outputting the characters in the text
-								// as we do this by rotating the wheel small amounts adding each character.
-								var anglePerChar = 0
-								var drawAngle = 0
-
-								// If more than one character in the text then...
-								if (lines[i].length > 1) {
-									// Text is drawn from the left.
-									this.ctx.textAlign = 'left'
-
-									// Work out how much angle the text rendering loop below needs to rotate by for each character to render them next to each other.
-									// I have discovered that 4 * the font size / 10 at 100px radius is the correct spacing for between the characters
-									// using a monospace font, non monospace may look a little odd as in there will appear to be extra spaces between chars.
-									anglePerChar = 4 * (fontSize / 10)
-
-									// Work out what percentage the radius the text will be drawn at is of 100px.
-									radiusPercent = 100 / radius
-
-									// Then use this to scale up or down the anglePerChar value.
-									// When the radius is less than 100px we need more angle between the letters, when radius is greater (so the text is further
-									// away from the center of the wheel) the angle needs to be less otherwise the characters will appear further apart.
-									anglePerChar = anglePerChar * radiusPercent
-
-									// Next we want the text to be drawn in the middle of the segment, without this it would start at the beginning of the segment.
-									// To do this we need to work out how much arc the text will take up in total then subtract half of this from the center
-									// of the segment so that it sits centred.
-									totalArc = anglePerChar * lines[i].length
-
-									// Now set initial draw angle to half way between the start and end of the segment.
-									drawAngle = seg.startAngle + ((seg.endAngle - seg.startAngle) / 2 - totalArc / 2)
-								} else {
-									// The initial draw angle is the center of the segment when only one character.
-									drawAngle = seg.startAngle + (seg.endAngle - seg.startAngle) / 2
-
-									// To ensure is dead-center the text alignment also needs to be centered.
-									this.ctx.textAlign = 'center'
-								}
-
-								// ----------------------
-								// Adjust the initial draw angle as needed to take in to account the rotationAngle of the wheel.
-								drawAngle += this.rotationAngle
-
-								// And as with other 'reverse' text direction functions we need to subtract 180 degrees from the angle
-								// because when it comes to draw the characters in the loop below we add the radius instead of subtract it.
-								drawAngle -= 180
-
-								// ----------------------
-								// Now the drawing itself.
-								// In reversed direction mode we loop through the characters in the text backwards in order for them to appear on screen correctly
-								for (c = lines[i].length; c >= 0; c--) {
-									this.ctx.save()
-
-									character = lines[i].charAt(c)
-
-									// Rotate the wheel to the draw angle as we need to add the character at this location.
-									this.ctx.translate(this.centerX, this.centerY)
-									this.ctx.rotate(this.degToRad(drawAngle))
-									this.ctx.translate(-this.centerX, -this.centerY)
-
-									// Now draw the character directly below the center point of the wheel at the appropriate radius.
-									// Note in the reversed mode we add the radius to the this.centerY instead of subtract.
-									if (strokeStyle)
-										this.ctx.strokeText(character, this.centerX, this.centerY + radius + lineOffset)
-
-									if (fillStyle)
-										this.ctx.fillText(character, this.centerX, this.centerY + radius + lineOffset)
-
-									// Increment the drawAngle by the angle per character so next loop we rotate
-									// to the next angle required to draw the character at.
-									drawAngle += anglePerChar
-
-									this.ctx.restore()
-								}
-							}
-						} else {
-							// Normal direction so do things normally.
-							// Check text orientation, of horizontal then reasonably straight forward, if vertical then a bit more work to do.
-							if (orientation == 'horizontal') {
-								// Based on the text alignment, set the correct value in the context.
-								if (alignment == 'inner') this.ctx.textAlign = 'left'
-								else if (alignment == 'outer') this.ctx.textAlign = 'right'
-								else this.ctx.textAlign = 'center'
-
-								// Set this too.
-								this.ctx.textBaseline = 'middle'
-
-								// Work out the angle around the wheel to draw the text at, which is simply in the middle of the segment the text is for.
-								// The rotation angle is added in to correct the annoyance with the canvas arc drawing functions which put the 0 degrees at the 3 oclock
-								var textAngle = this.degToRad(
-									seg.endAngle - (seg.endAngle - seg.startAngle) / 2 + this.rotationAngle - 90
-								)
-
-								// We need to rotate in order to draw the text because it is output horizontally, so to
-								// place correctly around the wheel for all but a segment at 3 o'clock we need to rotate.
-								this.ctx.save()
-								this.ctx.translate(this.centerX, this.centerY)
-								this.ctx.rotate(textAngle)
-								this.ctx.translate(-this.centerX, -this.centerY)
-
-								// --------------------------
-								// Draw the text based on its alignment adding margin if inner or outer.
-								if (alignment == 'inner') {
-									// Inner means that the text is aligned with the inner of the wheel. If looking at a segment in in the 3 o'clock position
-									// it would look like the text is left aligned within the segment.
-
-									// Because the segments are smaller towards the inner of the wheel, in order for the text to fit is is a good idea that
-									// a margin is added which pushes the text towards the outer a bit.
-
-									// The inner radius also needs to be taken in to account as when inner aligned.
-
-									// If fillstyle is set the draw the text filled in.
-									if (fillStyle)
-										this.ctx.fillText(
-											lines[i],
-											this.centerX + this.innerRadius + margin,
-											this.centerY + lineOffset
-										)
-
-									// If stroke style is set draw the text outline.
-									if (strokeStyle)
-										this.ctx.strokeText(
-											lines[i],
-											this.centerX + this.innerRadius + margin,
-											this.centerY + lineOffset
-										)
-								} else if (alignment == 'outer') {
-									// Outer means the text is aligned with the outside of the wheel, so if looking at a segment in the 3 o'clock position
-									// it would appear the text is right aligned. To position we add the radius of the wheel in to the equation
-									// and subtract the margin this time, rather than add it.
-
-									// I don't understand why, but in order of the text to render correctly with stroke and fill, the stroke needs to
-									// come first when drawing outer, rather than second when doing inner.
-									if (fillStyle)
-										this.ctx.fillText(
-											lines[i],
-											this.centerX + this.outerRadius - margin,
-											this.centerY + lineOffset
-										)
-
-									// If fillstyle the fill the text.
-									if (strokeStyle)
-										this.ctx.strokeText(
-											lines[i],
-											this.centerX + this.outerRadius - margin,
-											this.centerY + lineOffset
-										)
-								} else {
-									// In this case the text is to drawn centred in the segment.
-									// Typically no margin is required, however even though centred the text can look closer to the inner of the wheel
-									// due to the way the segments narrow in (is optical effect), so if a margin is specified it is placed on the inner
-									// side so the text is pushed towards the outer.
-
-									// If stoke style the stroke the text.
-									if (fillStyle)
-										this.ctx.fillText(
-											lines[i],
-											this.centerX +
-												this.innerRadius +
-												(this.outerRadius - this.innerRadius) / 2 +
-												margin,
-											this.centerY + lineOffset
-										)
-
-									// If fillstyle the fill the text.
-									if (strokeStyle)
-										this.ctx.strokeText(
-											lines[i],
-											this.centerX +
-												this.innerRadius +
-												(this.outerRadius - this.innerRadius) / 2 +
-												margin,
-											this.centerY + lineOffset
-										)
-								}
-
-								// Restore the context so that wheel is returned to original position.
-								this.ctx.restore()
-							} else if (orientation == 'vertical') {
-								// If vertical then we need to do this ourselves because as far as I am aware there is no option built in to html canvas
-								// which causes the text to draw downwards or upwards one character after another.
-
-								// In this case the textAlign is always center, but the baseline is either top or bottom
-								// depending on if inner or outer alignment has been specified.
-								this.ctx.textAlign = 'center'
-
-								if (alignment == 'inner') this.ctx.textBaseline = 'bottom'
-								else if (alignment == 'outer') this.ctx.textBaseline = 'top'
-								else this.ctx.textBaseline = 'middle'
-
-								// The angle to draw the text at is halfway between the end and the starting angle of the segment.
-								var textAngle = seg.endAngle - (seg.endAngle - seg.startAngle) / 2
-
-								// Ensure the rotation angle of the wheel is added in, otherwise the test placement won't match
-								// the segments they are supposed to be for.
-								textAngle += this.rotationAngle
-
-								// Rotate so can begin to place the text.
-								this.ctx.save()
-								this.ctx.translate(this.centerX, this.centerY)
-								this.ctx.rotate(this.degToRad(textAngle))
-								this.ctx.translate(-this.centerX, -this.centerY)
-
-								// Work out the position to start drawing in based on the alignment.
-								// If outer then when considering a segment at the 12 o'clock position want to start drawing down from the top of the wheel.
-								if (alignment == 'outer') var yPos = this.centerY - this.outerRadius + margin
-								else if (alignment == 'inner') var yPos = this.centerY - this.innerRadius - margin
-
-								// We need to know how much to move the y axis each time.
-								// This is not quite simply the font size as that puts a larger gap in between the letters
-								// than expected, especially with monospace fonts. I found that shaving a little off makes it look "right".
-								var yInc = fontSize - fontSize / 9
-
-								// Loop though and output the characters.
-								if (alignment == 'outer') {
-									// For this alignment we draw down from the top of a segment at the 12 o'clock position to simply
-									// loop though the characters in order.
-									for (var c = 0; c < lines[i].length; c++) {
-										character = lines[i].charAt(c)
-
-										if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos)
-
-										if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos)
-
-										yPos += yInc
-									}
-								} else if (alignment == 'inner') {
-									// Here we draw from the inner of the wheel up, but in order for the letters in the text text to
-									// remain in the correct order when reading, we actually need to loop though the text characters backwards.
-									for (var c = lines[i].length - 1; c >= 0; c--) {
-										character = lines[i].charAt(c)
-
-										if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos)
-
-										if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos)
-
-										yPos -= yInc
-									}
-								} else if (alignment == 'center') {
-									// This is the most complex of the three as we need to draw the text top down centred between the inner and outer of the wheel.
-									// So logically we have to put the middle character of the text in the center then put the others each side of it.
-									// In reality that is a really bad way to do it, we can achieve the same if not better positioning using a
-									// variation on the method used for the rendering of outer aligned text once we have figured out the height of the text.
-
-									// If there is more than one character in the text then an adjustment to the position needs to be done.
-									// What we are aiming for is to position the center of the text at the center point between the inner and outer radius.
-									var centerAdjustment = 0
-
-									if (lines[i].length > 1) {
-										centerAdjustment = (yInc * (lines[i].length - 1)) / 2
-									}
-
-									// Now work out where to start rendering the string. This is half way between the inner and outer of the wheel, with the
-									// centerAdjustment included to correctly position texts with more than one character over the center.
-									// If there is a margin it is used to push the text away from the center of the wheel.
-									var yPos =
-										this.centerY -
-										this.innerRadius -
-										(this.outerRadius - this.innerRadius) / 2 -
-										centerAdjustment -
-										margin
-
-									// Now loop and draw just like outer text rendering.
-									for (var c = 0; c < lines[i].length; c++) {
-										character = lines[i].charAt(c)
-
-										if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos)
-
-										if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos)
-
-										yPos += yInc
-									}
-								}
-
-								this.ctx.restore()
-							} else if (orientation == 'curved') {
-								// There is no built in canvas function to draw text around an arc, so
-								// we need to do this ourselves.
-								var radius = 0
-
-								// Set the alignment of the text - inner, outer, or center by calculating
-								// how far out from the center point of the wheel the text is drawn.
-								if (alignment == 'inner') {
-									// When alignment is inner the radius is the innerRadius plus any margin.
-									radius = this.innerRadius + margin
-									this.ctx.textBaseline = 'bottom'
-
-									// We need to adjust the radius in this case to take in to multiline text.
-									// In this case the radius needs to be further out, not at the inner radius.
-									radius += fontSize * (lines.length - 1)
-								} else if (alignment == 'outer') {
-									// Outer it is the outerRadius minus any margin.
-									radius = this.outerRadius - margin
-									this.ctx.textBaseline = 'top'
-								} else if (alignment == 'center') {
-									// When center we want the text halfway between the inner and outer radius.
-									radius = this.innerRadius + margin + (this.outerRadius - this.innerRadius) / 2
-									this.ctx.textBaseline = 'middle'
-								}
-
-								// Set the angle to increment by when looping though and outputting the characters in the text
-								// as we do this by rotating the wheel small amounts adding each character.
-								var anglePerChar = 0
-								var drawAngle = 0
-
-								// If more than one character in the text then...
-								if (lines[i].length > 1) {
-									// Text is drawn from the left.
-									this.ctx.textAlign = 'left'
-
-									// Work out how much angle the text rendering loop below needs to rotate by for each character to render them next to each other.
-									// I have discovered that 4 * the font size / 10 at 100px radius is the correct spacing for between the characters
-									// using a monospace font, non monospace may look a little odd as in there will appear to be extra spaces between chars.
-									anglePerChar = 4 * (fontSize / 10)
-
-									// Work out what percentage the radius the text will be drawn at is of 100px.
-									radiusPercent = 100 / radius
-
-									// Then use this to scale up or down the anglePerChar value.
-									// When the radius is less than 100px we need more angle between the letters, when radius is greater (so the text is further
-									// away from the center of the wheel) the angle needs to be less otherwise the characters will appear further apart.
-									anglePerChar = anglePerChar * radiusPercent
-
-									// Next we want the text to be drawn in the middle of the segment, without this it would start at the beginning of the segment.
-									// To do this we need to work out how much arc the text will take up in total then subtract half of this from the center
-									// of the segment so that it sits centred.
-									totalArc = anglePerChar * lines[i].length
-
-									// Now set initial draw angle to half way between the start and end of the segment.
-									drawAngle = seg.startAngle + ((seg.endAngle - seg.startAngle) / 2 - totalArc / 2)
-								} else {
-									// The initial draw angle is the center of the segment when only one character.
-									drawAngle = seg.startAngle + (seg.endAngle - seg.startAngle) / 2
-
-									// To ensure is dead-center the text alignment also needs to be centred.
-									this.ctx.textAlign = 'center'
-								}
-
-								// ----------------------
-								// Adjust the initial draw angle as needed to take in to account the rotationAngle of the wheel.
-								drawAngle += this.rotationAngle
-
-								// ----------------------
-								// Now the drawing itself.
-								// Loop for each character in the text.
-								for (c = 0; c < lines[i].length; c++) {
-									this.ctx.save()
-
-									character = lines[i].charAt(c)
-
-									// Rotate the wheel to the draw angle as we need to add the character at this location.
-									this.ctx.translate(this.centerX, this.centerY)
-									this.ctx.rotate(this.degToRad(drawAngle))
-									this.ctx.translate(-this.centerX, -this.centerY)
-
-									// Now draw the character directly above the center point of the wheel at the appropriate radius.
-									if (strokeStyle)
-										this.ctx.strokeText(character, this.centerX, this.centerY - radius + lineOffset)
-
-									if (fillStyle)
-										this.ctx.fillText(character, this.centerX, this.centerY - radius + lineOffset)
-
-									// Increment the drawAngle by the angle per character so next loop we rotate
-									// to the next angle required to draw the character at.
-									drawAngle += anglePerChar
-
-									this.ctx.restore()
-								}
-							}
-						}
-
-						// Increment this ready for the next time.
-						lineOffset += fontSize
-					}
-				}
-
-				// Restore so all text options are reset ready for the next text.
-				this.ctx.restore()
-			}
-		}
-	}
-
-	// ====================================================================================================================
-	// Converts degrees to radians which is what is used when specifying the angles on HTML5 canvas arcs.
-	// ====================================================================================================================
-	degToRad(d) {
-		return d * 0.0174532925199432957
-	}
-
-	// ====================================================================================================================
-	// This function sets the center location of the wheel, saves a function call to set x then y.
-	// ====================================================================================================================
-	setCenter(x, y) {
-		this.centerX = x
-		this.centerY = y
-	}
-
-	// ====================================================================================================================
-	// This function allows a segment to be added to the wheel. The position of the segment is optional,
-	// if not specified the new segment will be added to the end of the wheel.
-	// ====================================================================================================================
-	addSegment(options, position) {
-		// Create a new segment object passing the options in.
-		newSegment = new Segment(options)
-
-		// Increment the numSegments property of the class since new segment being added.
-		this.numSegments++
-		var segmentPos
-
-		// Work out where to place the segment, the default is simply as a new segment at the end of the wheel.
-		if (typeof position !== 'undefined') {
-			// Because we need to insert the segment at this position, not overwrite it, we need to move all segments after this
-			// location along one in the segments array, before finally adding this new segment at the specified location.
-			for (var x = this.numSegments; x > position; x--) {
-				this.segments[x] = this.segments[x - 1]
-			}
-
-			this.segments[position] = newSegment
-			segmentPos = position
-		} else {
-			this.segments[this.numSegments] = newSegment
-			segmentPos = this.numSegments
-		}
-
-		// Since a segment has been added the segment sizes need to be re-computed so call function to do this.
-		this.updateSegmentSizes()
-
-		// Return the segment object just created in the wheel (JavaScript will return it by reference), so that
-		// further things can be done with it by the calling code if desired.
-		return this.segments[segmentPos]
-	}
-
-	// ====================================================================================================================
-	// This function must be used if the canvasId is changed as we also need to get the context of the new canvas.
-	// ====================================================================================================================
-	setCanvasId(canvasId) {
-		if (canvasId) {
-			this.canvasId = canvasId
-			this.canvas = document.getElementById(this.canvasId)
-
-			if (this.canvas) {
-				this.ctx = this.canvas.getContext('2d')
-			}
-		} else {
-			this.canvasId = null
-			this.ctx = null
-			this.canvas = null
-		}
-	}
-
-	// ====================================================================================================================
-	// This function deletes the specified segment from the wheel by removing it from the segments array.
-	// It then sorts out the other bits such as update of the numSegments.
-	// ====================================================================================================================
-	deleteSegment(position) {
-		// There needs to be at least one segment in order for the wheel to draw, so only allow delete if there
-		// is more than one segment currently left in the wheel.
-
-		//++ check that specifying a position that does not exist - say 10 in a 6 segment wheel does not cause issues.
-		if (this.numSegments > 1) {
-			// If the position of the segment to remove has been specified.
-			if (typeof position !== 'undefined') {
-				// The array is to be shortened so we need to move all segments after the one
-				// to be removed down one so there is no gap.
-				for (var x = position; x < this.numSegments; x++) {
-					this.segments[x] = this.segments[x + 1]
-				}
-			}
-
-			// Unset the last item in the segments array since there is now one less.
-			this.segments[this.numSegments] = undefined
-
-			// Decrement the number of segments,
-			// then call function to update the segment sizes.
-			this.numSegments--
-			this.updateSegmentSizes()
-		}
-	}
-
-	// ====================================================================================================================
-	// This function takes the x an the y of a mouse event, such as click or move, and converts the x and the y in to
-	// co-ordinates on the canvas as the raw values are the x and the y from the top and left of the user's browser.
-	// ====================================================================================================================
-	windowToCanvas(x, y) {
-		var bbox = this.canvas.getBoundingClientRect()
-
-		return {
-			x: Math.floor(x - bbox.left * (this.canvas.width / bbox.width)),
-			y: Math.floor(y - bbox.top * (this.canvas.height / bbox.height)),
-		}
-	}
-
-	// ====================================================================================================================
-	// This function returns the segment object located at the specified x and y coordinates on the canvas.
-	// It is used to allow things to be done with a segment clicked by the user, such as highlight, display or change some values, etc.
-	// ====================================================================================================================
-	getSegmentAt(x, y) {
-		var foundSegment = null
-
-		// Call function to return segment number.
-		var segmentNumber = this.getSegmentNumberAt(x, y)
-
-		// If found one then set found segment to pointer to the segment object.
-		if (segmentNumber !== null) {
-			foundSegment = this.segments[segmentNumber]
-		}
-
-		return foundSegment
-	}
-
-	// ====================================================================================================================
-	// Returns the number of the segment clicked instead of the segment object.
-	// ====================================================================================================================
-	getSegmentNumberAt(x, y) {
-		// KNOWN ISSUE: this does not work correct if the canvas is scaled using css, or has padding, border.
-		// @TODO see if can find a solution at some point, check windowToCanvas working as needed, then below.
-
-		// Call function above to convert the raw x and y from the user's browser to canvas coordinates
-		// i.e. top and left is top and left of canvas, not top and left of the user's browser.
-		var loc = this.windowToCanvas(x, y)
-
-		// ------------------------------------------
-		// Now start the process of working out the segment clicked.
-		// First we need to figure out the angle of an imaginary line between the centerX and centerY of the wheel and
-		// the X and Y of the location (for example a mouse click).
-		var topBottom
-		var leftRight
-		var adjacentSideLength
-		var oppositeSideLength
-		var hypotenuseSideLength
-
-		// We will use right triangle maths with the TAN function.
-		// The start of the triangle is the wheel center, the adjacent side is along the x axis, and the opposite side is along the y axis.
-
-		// We only ever use positive numbers to work out the triangle and the center of the wheel needs to be considered as 0 for the numbers
-		// in the maths which is why there is the subtractions below. We also remember what quadrant of the wheel the location is in as we
-		// need this information later to add 90, 180, 270 degrees to the angle worked out from the triangle to get the position around a 360 degree wheel.
-		if (loc.x > this.centerX) {
-			adjacentSideLength = loc.x - this.centerX
-			leftRight = 'R' // Location is in the right half of the wheel.
-		} else {
-			adjacentSideLength = this.centerX - loc.x
-			leftRight = 'L' // Location is in the left half of the wheel.
-		}
-
-		if (loc.y > this.centerY) {
-			oppositeSideLength = loc.y - this.centerY
-			topBottom = 'B' // Bottom half of wheel.
-		} else {
-			oppositeSideLength = this.centerY - loc.y
-			topBottom = 'T' // Top Half of wheel.
-		}
-
-		// Now divide opposite by adjacent to get tan value.
-		var tanVal = oppositeSideLength / adjacentSideLength
-
-		// Use the tan function and convert results to degrees since that is what we work with.
-		var result = (Math.atan(tanVal) * 180) / Math.PI
-		var locationAngle = 0
-
-		// We also need the length of the hypotenuse as later on we need to compare this to the outerRadius of the segment / circle.
-		hypotenuseSideLength = Math.sqrt(
-			oppositeSideLength * oppositeSideLength + adjacentSideLength * adjacentSideLength
-		)
-
-		// ------------------------------------------
-		// Now to make sense around the wheel we need to alter the values based on if the location was in top or bottom half
-		// and also right or left half of the wheel, by adding 90, 180, 270 etc. Also for some the initial locationAngle needs to be inverted.
-		if (topBottom == 'T' && leftRight == 'R') {
-			locationAngle = Math.round(90 - result)
-		} else if (topBottom == 'B' && leftRight == 'R') {
-			locationAngle = Math.round(result + 90)
-		} else if (topBottom == 'B' && leftRight == 'L') {
-			locationAngle = Math.round(90 - result + 180)
-		} else if (topBottom == 'T' && leftRight == 'L') {
-			locationAngle = Math.round(result + 270)
-		}
-
-		// ------------------------------------------
-		// And now we have to adjust to make sense when the wheel is rotated from the 0 degrees either
-		// positive or negative and it can be many times past 360 degrees.
-		if (this.rotationAngle != 0) {
-			var rotatedPosition = this.getRotationPosition()
-
-			// So we have this, now we need to alter the locationAngle as a result of this.
-			locationAngle = locationAngle - rotatedPosition
-
-			// If negative then take the location away from 360.
-			if (locationAngle < 0) {
-				locationAngle = 360 - Math.abs(locationAngle)
-			}
-		}
-
-		// ------------------------------------------
-		// OK, so after all of that we have the angle of a line between the centerX and centerY of the wheel and
-		// the X and Y of the location on the canvas where the mouse was clicked. Now time to work out the segment
-		// this corresponds to. We can use the segment start and end angles for this.
-		var foundSegmentNumber = null
-
-		for (var x = 1; x <= this.numSegments; x++) {
-			// Due to segments sharing start and end angles, if line is clicked will pick earlier segment.
-			if (locationAngle >= this.segments[x].startAngle && locationAngle <= this.segments[x].endAngle) {
-				// To ensure that a click anywhere on the canvas in the segment direction will not cause a
-				// segment to be matched, as well as the angles, we need to ensure the click was within the radius
-				// of the segment (or circle if no segment radius).
-
-				// If the hypotenuseSideLength (length of location from the center of the wheel) is with the radius
-				// then we can assign the segment to the found segment and break out the loop.
-
-				// Have to take in to account hollow wheels (doughnuts) so check is greater than innerRadius as
-				// well as less than or equal to the outerRadius of the wheel.
-				if (hypotenuseSideLength >= this.innerRadius && hypotenuseSideLength <= this.outerRadius) {
-					foundSegmentNumber = x
-					break
-				}
-			}
-		}
-
-		// Finally return the number.
-		return foundSegmentNumber
-	}
-
-	// ====================================================================================================================
-	// Returns a reference to the segment that is at the location of the pointer on the wheel.
-	// ====================================================================================================================
-	getIndicatedSegment() {
-		// Call function below to work this out and return the prizeNumber.
-		var prizeNumber = this.getIndicatedSegmentNumber()
-
-		// Then simply return the segment in the segments array at that position.
-		return this.segments[prizeNumber]
-	}
-
-	// ====================================================================================================================
-	// Works out the segment currently pointed to by the pointer of the wheel. Normally called when the spinning has stopped
-	// to work out the prize the user has won. Returns the number of the segment in the segments array.
-	// ====================================================================================================================
-	getIndicatedSegmentNumber() {
-		var indicatedPrize = 0
-		var rawAngle = this.getRotationPosition()
-
-		// Now we have the angle of the wheel, but we need to take in to account where the pointer is because
-		// will not always be at the 12 o'clock 0 degrees location.
-		var relativeAngle = Math.floor(this.pointerAngle - rawAngle)
-
-		if (relativeAngle < 0) {
-			relativeAngle = 360 - Math.abs(relativeAngle)
-		}
-
-		// Now we can work out the prize won by seeing what prize segment startAngle and endAngle the relativeAngle is between.
-		for (var x = 1; x < this.segments.length; x++) {
-			if (relativeAngle >= this.segments[x]['startAngle'] && relativeAngle <= this.segments[x]['endAngle']) {
-				indicatedPrize = x
-				break
-			}
-		}
-
-		return indicatedPrize
-	}
-
-	// ====================================================================================================================
-	// Works out what Pin around the wheel is considered the current one which is the one which just passed the pointer.
-	// Used to work out if the pin has changed during the animation to tigger a sound.
-	// ====================================================================================================================
-	getCurrentPinNumber() {
-		var currentPin = 0
-
-		if (this.pins) {
-			var rawAngle = this.getRotationPosition()
-
-			// Now we have the angle of the wheel, but we need to take in to account where the pointer is because
-			// will not always be at the 12 o'clock 0 degrees location.
-			var relativeAngle = Math.floor(this.pointerAngle - rawAngle)
-
-			if (relativeAngle < 0) {
-				relativeAngle = 360 - Math.abs(relativeAngle)
-			}
-
-			// Work out the angle of the pins as this is simply 360 / the number of pins as they space evenly around.
-			var pinSpacing = 360 / this.pins.number
-			var totalPinAngle = 0
-
-			// Now we can work out the pin by seeing what pins relativeAngle is between.
-			for (var x = 0; x < this.pins.number; x++) {
-				if (relativeAngle >= totalPinAngle && relativeAngle <= totalPinAngle + pinSpacing) {
-					currentPin = x
-					break
-				}
-
-				totalPinAngle += pinSpacing
-			}
-
-			// Now if rotating clockwise we must add 1 to the current pin as we want the pin which has just passed
-			// the pointer to be returned as the current pin, not the start of the one we are between.
-			if (this.animation.direction == 'clockwise') {
-				currentPin++
-
-				if (currentPin > this.pins.number) {
-					currentPin = 0
-				}
-			}
-		}
-
-		return currentPin
-	}
-
-	// ==================================================================================================================================================
-	// Returns the rotation angle of the wheel corrected to 0-360 (i.e. removes all the multiples of 360).
-	// ==================================================================================================================================================
-	getRotationPosition() {
-		var rawAngle = this.rotationAngle // Get current rotation angle of wheel.
-
-		// If positive work out how many times past 360 this is and then take the floor of this off the rawAngle.
-		if (rawAngle >= 0) {
-			if (rawAngle > 360) {
-				// Get floor of the number of times past 360 degrees.
-				var timesPast360 = Math.floor(rawAngle / 360)
-
-				// Take all this extra off to get just the angle 0-360 degrees.
-				rawAngle = rawAngle - 360 * timesPast360
-			}
-		} else {
-			// Is negative, need to take off the extra then convert in to 0-360 degree value
-			// so if, for example, was -90 then final value will be (360 - 90) = 270 degrees.
-			if (rawAngle < -360) {
-				var timesPast360 = Math.ceil(rawAngle / 360) // Ceil when negative.
-
-				rawAngle = rawAngle - 360 * timesPast360 // Is minus because dealing with negative.
-			}
-
-			rawAngle = 360 + rawAngle // Make in the range 0-360. Is plus because raw is still negative.
-		}
-
-		return rawAngle
-	}
-
-	// ==================================================================================================================================================
-	// This function starts the wheel's animation by using the properties of the animation object of of the wheel to begin the a greensock tween.
-	// ==================================================================================================================================================
-	startAnimation() {
-		if (this.animation) {
-			// Call function to compute the animation properties.
-			this.computeAnimation()
-
-			// Set this global variable to this object as an external function is required to call the draw() function on the wheel
-			// each loop of the animation as Greensock cannot call the draw function directly on this class.
-			winwheelToDrawDuringAnimation = this
-
-			// Put together the properties of the greesock animation.
-			var properties = new Array(null)
-			properties[this.animation.propertyName] = this.animation.propertyValue // Here we set the property to be animated and its value.
-			properties['yoyo'] = this.animation.yoyo // Set others.
-			properties['repeat'] = this.animation.repeat
-			properties['ease'] = this.animation.easing
-			properties['onUpdate'] = winwheelAnimationLoop // Call function to re-draw the canvas.
-			properties['onComplete'] = winwheelStopAnimation // Call function to perform actions when animation has finished.
-
-			// Do the tween animation passing the properties from the animation object as an array of key => value pairs.
-			// Keep reference to the tween object in the wheel as that allows pausing, resuming, and stopping while the animation is still running.
-			this.tween = gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(this, this.animation.duration, properties)
-		}
-	}
-
-	// ==================================================================================================================================================
-	// Use same function function which needs to be outside the class for the callback when it stops because is finished.
-	// ==================================================================================================================================================
-	stopAnimation(canCallback) {
-		// @TODO as part of multiwheel, need to work out how to stop the tween for a single wheel but allow others to continue.
-
-		// We can kill the animation using our tween object.
-		if (winwheelToDrawDuringAnimation) {
-			winwheelToDrawDuringAnimation.tween.kill()
-
-			// Call the callback function.
-			winwheelStopAnimation(canCallback)
-		}
-
-		// Ensure the winwheelToDrawDuringAnimation is set to this class.
-		winwheelToDrawDuringAnimation = this
-	}
-
-	// ==================================================================================================================================================
-	// Pause animation by telling tween to pause.
-	// ==================================================================================================================================================
-	pauseAnimation() {
-		if (this.tween) {
-			this.tween.pause()
-		}
-	}
-
-	// ==================================================================================================================================================
-	// Resume the animation by telling tween to continue playing it.
-	// ==================================================================================================================================================
-	resumeAnimation() {
-		if (this.tween) {
-			this.tween.play()
-		}
-	}
-
-	// ====================================================================================================================
-	// Called at the beginning of the startAnimation function and computes the values needed to do the animation
-	// before it starts. This allows the developer to change the animation properties after the wheel has been created
-	// and have the animation use the new values of the animation properties.
-	// ====================================================================================================================
-	computeAnimation() {
-		if (this.animation) {
-			// Set the animation parameters for the specified animation type including some sensible defaults if values have not been specified.
-			if (this.animation.type == 'spinOngoing') {
-				// When spinning the rotationAngle is the wheel property which is animated.
-				this.animation.propertyName = 'rotationAngle'
-
-				if (this.animation.spins == null) {
-					this.animation.spins = 5
-				}
-
-				if (this.animation.repeat == null) {
-					this.animation.repeat = -1 // -1 means it will repeat forever.
-				}
-
-				if (this.animation.easing == null) {
-					this.animation.easing = 'Linear.easeNone'
-				}
-
-				if (this.animation.yoyo == null) {
-					this.animation.yoyo = false
-				}
-
-				// We need to calculate the propertyValue and this is the spins * 360 degrees.
-				this.animation.propertyValue = this.animation.spins * 360
-
-				// If the direction is anti-clockwise then make the property value negative.
-				if (this.animation.direction == 'anti-clockwise') {
-					this.animation.propertyValue = 0 - this.animation.propertyValue
-				}
-			} else if (this.animation.type == 'spinToStop') {
-				// Spin to stop the rotation angle is affected.
-				this.animation.propertyName = 'rotationAngle'
-
-				if (this.animation.spins == null) {
-					this.animation.spins = 5
-				}
-
-				if (this.animation.repeat == null) {
-					this.animation.repeat = 0 // As this is spin to stop we don't normally want it repeated.
-				}
-
-				if (this.animation.easing == null) {
-					this.animation.easing = 'Power3.easeOut' // This easing is fast start and slows over time.
-				}
-
-				if (this.animation.stopAngle == null) {
-					// If the stop angle has not been specified then pick random between 0 and 359.
-					this.animation._stopAngle = Math.floor(Math.random() * 359)
-				} else {
-					// We need to set the internal to 360 minus what the user entered because the wheel spins past 0 without
-					// this it would indicate the prize on the opposite side of the wheel. We aslo need to take in to account
-					// the pointerAngle as the stop angle needs to be relative to that.
-					this.animation._stopAngle = 360 - this.animation.stopAngle + this.pointerAngle
-				}
-
-				if (this.animation.yoyo == null) {
-					this.animation.yoyo = false
-				}
-
-				// The property value is the spins * 360 then plus or minus the stopAngle depending on if the rotation is clockwise or anti-clockwise.
-				this.animation.propertyValue = this.animation.spins * 360
-
-				if (this.animation.direction == 'anti-clockwise') {
-					this.animation.propertyValue = 0 - this.animation.propertyValue
-
-					// Also if the value is anti-clockwise we need subtract the stopAngle (but to get the wheel to stop in the correct
-					// place this is 360 minus the stop angle as the wheel is rotating backwards).
-					this.animation.propertyValue -= 360 - this.animation._stopAngle
-				} else {
-					// Add the stopAngle to the propertyValue as the wheel must rotate around to this place and stop there.
-					this.animation.propertyValue += this.animation._stopAngle
-				}
-			} else if (this.animation.type == 'spinAndBack') {
-				// This is basically is a spin for a number of times then the animation reverses and goes back to start.
-				// If a repeat is specified then this can be used to make the wheel "rock" left and right.
-
-				// Again this is a spin so the rotationAngle the property which is animated.
-				this.animation.propertyName = 'rotationAngle'
-
-				if (this.animation.spins == null) {
-					this.animation.spins = 5
-				}
-
-				if (this.animation.repeat == null) {
-					this.animation.repeat = 1 // This needs to be set to at least 1 in order for the animation to reverse.
-				}
-
-				if (this.animation.easing == null) {
-					this.animation.easing = 'Power2.easeInOut' // This is slow at the start and end and fast in the middle.
-				}
-
-				if (this.animation.yoyo == null) {
-					this.animation.yoyo = true // This needs to be set to true to have the animation reverse back like a yo-yo.
-				}
-
-				if (this.animation.stopAngle == null) {
-					this.animation._stopAngle = 0
-				} else {
-					// We need to set the internal to 360 minus what the user entered
-					// because the wheel spins past 0 without this it would indicate the
-					// prize on the opposite side of the wheel.
-					this.animation._stopAngle = 360 - this.animation.stopAngle
-				}
-
-				// The property value is the spins * 360 then plus or minus the stopAngle depending on if the rotation is clockwise or anti-clockwise.
-				this.animation.propertyValue = this.animation.spins * 360
-
-				if (this.animation.direction == 'anti-clockwise') {
-					this.animation.propertyValue = 0 - this.animation.propertyValue
-
-					// Also if the value is anti-clockwise we need subtract the stopAngle (but to get the wheel to stop in the correct
-					// place this is 360 minus the stop angle as the wheel is rotating backwards).
-					this.animation.propertyValue -= 360 - this.animation._stopAngle
-				} else {
-					// Add the stopAngle to the propertyValue as the wheel must rotate around to this place and stop there.
-					this.animation.propertyValue += this.animation._stopAngle
-				}
-			} else if (this.animation.type == 'custom') {
-				// Do nothing as all values must be set by the developer in the parameters
-				// especially the propertyName and propertyValue.
-			}
-		}
-	}
-
-	// ====================================================================================================================
-	// Calculates and returns a random stop angle inside the specified segment number. Value will always be 1 degree inside
-	// the start and end of the segment to avoid issue with the segment overlap.
-	// ====================================================================================================================
-	getRandomForSegment(segmentNumber) {
-		var stopAngle = 0
-
-		if (segmentNumber) {
-			if (typeof this.segments[segmentNumber] !== 'undefined') {
-				var startAngle = this.segments[segmentNumber].startAngle
-				var endAngle = this.segments[segmentNumber].endAngle
-				var range = endAngle - startAngle - 2
-
-				if (range > 0) {
-					stopAngle = startAngle + 1 + Math.floor(Math.random() * range)
-				} else {
-					console.log('Segment size is too small to safely get random angle inside it')
-				}
-			} else {
-				console.log('Segment ' + segmentNumber + ' undefined')
-			}
-		} else {
-			console.log('Segment number not specified')
-		}
-
-		return stopAngle
-	}
-}
-
-// ====================================================================================================================
-// Class for the wheel pins.
-// ====================================================================================================================
-class Pin {
-	constructor(options) {
-		var defaultOptions = {
-			visible: true, // In future there might be some functionality related to the pins even if they are not displayed.
-			number: 36, // The number of pins. These are evenly distributed around the wheel.
-			outerRadius: 3, // Radius of the pins which determines their size.
-			fillStyle: 'grey', // Fill colour of the pins.
-			strokeStyle: 'black', // Line colour of the pins.
-			lineWidth: 1, // Line width of the pins.
-			margin: 3, // The space between outside edge of the wheel and the pins.
-		}
-
-		// Now loop through the default options and create properties of this class set to the value for
-		// the option passed in if a value was, or if not then set the value of the default.
-		for (var key in defaultOptions) {
-			if (options != null && typeof options[key] !== 'undefined') this[key] = options[key]
-			else this[key] = defaultOptions[key]
-		}
-
-		// Also loop though the passed in options and add anything specified not part of the class in to it as a property.
-		if (options != null) {
-			for (var key in options) {
-				if (typeof this[key] === 'undefined') {
-					this[key] = options[key]
-				}
-			}
-		}
-	}
-}
-// ====================================================================================================================
-// Class for the wheel spinning animation which like a segment becomes a property of the wheel.
-// ====================================================================================================================
-class Animation {
-	constructor(options) {
-		// Most of these options are null because the defaults are different depending on the type of animation.
-		var defaultOptions = {
-			type: 'spinOngoing', // For now there are only supported types are spinOngoing (continuous), spinToStop, spinAndBack, custom.
-			direction: 'clockwise', // clockwise or anti-clockwise.
-			propertyName: null, // The name of the winning wheel property to be affected by the animation.
-			propertyValue: null, // The value the property is to be set to at the end of the animation.
-			duration: 10, // Duration of the animation.
-			yoyo: false, // If the animation is to reverse back again i.e. yo-yo.
-			repeat: null, // The number of times the animation is to repeat, -1 will cause it to repeat forever.
-			easing: null, // The easing to use for the animation, default is the best for spin to stop. Use Linear.easeNone for no easing.
-			stopAngle: null, // Used for spinning, the angle at which the wheel is to stop.
-			spins: null, // Used for spinning, the number of complete 360 degree rotations the wheel is to do.
-			clearTheCanvas: null, // If set to true the canvas will be cleared before the wheel is re-drawn, false it will not, null the animation will abide by the value of this property for the parent wheel object.
-			callbackFinished: null, // Function to callback when the animation has finished.
-			callbackBefore: null, // Function to callback before the wheel is drawn each animation loop.
-			callbackAfter: null, // Function to callback after the wheel is drawn each animation loop.
-			callbackSound: null, // Function to callback if a sound should be triggered on change of segment or pin.
-			soundTrigger: 'segment', // Sound trigger type. Default is segment which triggers when segment changes, can be pin if to trigger when pin passes the pointer.
-		}
-
-		// Now loop through the default options and create properties of this class set to the value for
-		// the option passed in if a value was, or if not then set the value of the default.
-		for (var key in defaultOptions) {
-			if (options != null && typeof options[key] !== 'undefined') this[key] = options[key]
-			else this[key] = defaultOptions[key]
-		}
-
-		// Also loop though the passed in options and add anything specified not part of the class in to it as a property.
-		if (options != null) {
-			for (var key in options) {
-				if (typeof this[key] === 'undefined') {
-					this[key] = options[key]
-				}
-			}
-		}
-	}
-}
-// ====================================================================================================================
-// Class for segments. When creating a json of options can be passed in.
-// ====================================================================================================================
-class Segment {
-	constructor(options) {
-		// Define default options for segments, most are null so that the global defaults for the wheel
-		// are used if the values for a particular segment are not specifically set.
-		var defaultOptions = {
-			size: null, // Leave null for automatic. Valid values are degrees 0-360. Use percentToDegrees function if needed to convert.
-			text: '', // Default is blank.
-			fillStyle: null, // If null for the rest the global default will be used.
-			strokeStyle: null,
-			lineWidth: null,
-			textFontFamily: null,
-			textFontSize: null,
-			textFontWeight: null,
-			textOrientation: null,
-			textAlignment: null,
-			textDirection: null,
-			textMargin: null,
-			textFillStyle: null,
-			textStrokeStyle: null,
-			textLineWidth: null,
-			image: null, // Name/path to the image
-			imageDirection: null, // Direction of the image, can be set globally for the whole wheel.
-			imgData: null, // Image object created here and loaded with image data.
-		}
-
-		// Now loop through the default options and create properties of this class set to the value for
-		// the option passed in if a value was, or if not then set the value of the default.
-		for (var key in defaultOptions) {
-			if (options != null && typeof options[key] !== 'undefined') this[key] = options[key]
-			else this[key] = defaultOptions[key]
-		}
-
-		// Also loop though the passed in options and add anything specified not part of the class in to it as a property.
-		// This allows the developer to easily add properties to segments at construction time.
-		if (options != null) {
-			for (var key in options) {
-				if (typeof this[key] === 'undefined') {
-					this[key] = options[key]
-				}
-			}
-		}
-
-		// There are 2 additional properties which are set by the code, so need to define them here.
-		// They are not in the default options because they are not something that should be set by the user,
-		// the values are updated every time the updateSegmentSizes() function is called.
-		this.startAngle = 0
-		this.endAngle = 0
-	}
-
-	// ====================================================================================================================
-	// Changes an image for a segment by setting a callback to render the wheel once the image has loaded.
-	// ====================================================================================================================
-	changeImage(image, imageDirection) {
-		// Change image name, blank image data.
-		this.image = image
-		this.imgData = null
-
-		// Set direction.
-		if (imageDirection) {
-			this.imageDirection = imageDirection
-		}
-
-		// Set imgData to a new image object, change set callback and change src (just like in wheel constructor).
-		winhweelAlreadyDrawn = false
-		this.imgData = new Image()
-		this.imgData.onload = winwheelLoadedImage
-		this.imgData.src = this.image
-	}
-}
-
-// ====================================================================================================================
-// Class that is created as property of the wheel. Draws line from center of the wheel out to edge of canvas to
-// indicate where the code thinks the pointer location is. Helpful to get alignment correct esp when using images.
-// ====================================================================================================================
-class PointerGuide {
-	constructor(options) {
-		var defaultOptions = {
-			display: false,
-			strokeStyle: 'red',
-			lineWidth: 3,
-		}
-
-		// Now loop through the default options and create properties of this class set to the value for
-		// the option passed in if a value was, or if not then set the value of the default.
-		for (var key in defaultOptions) {
-			if (options != null && typeof options[key] !== 'undefined') {
-				this[key] = options[key]
-			} else {
-				this[key] = defaultOptions[key]
-			}
-		}
-	}
-}
-
-// ====================================================================================================================
-// This function takes the percent 0-100 and returns the number of degrees 0-360 this equates to.
-// ====================================================================================================================
-function winwheelPercentToDegrees(percentValue) {
-	var degrees = 0
-
-	if (percentValue > 0 && percentValue <= 100) {
-		var divider = percentValue / 100
-		degrees = 360 * divider
-	}
-
-	return degrees
-}
-
-// ====================================================================================================================
-// In order for the wheel to be re-drawn during the spin animation the function greesock calls needs to be outside
-// of the class as for some reason it errors if try to call winwheel.draw() directly.
-// ====================================================================================================================
-function winwheelAnimationLoop() {
-	if (winwheelToDrawDuringAnimation) {
-		// Check if the clearTheCanvas is specified for this animation, if not or it is not false then clear the canvas.
-		if (winwheelToDrawDuringAnimation.animation.clearTheCanvas != false) {
-			winwheelToDrawDuringAnimation.ctx.clearRect(
-				0,
-				0,
-				winwheelToDrawDuringAnimation.canvas.width,
-				winwheelToDrawDuringAnimation.canvas.height
-			)
-		}
-
-		var callbackBefore = winwheelToDrawDuringAnimation.animation.callbackBefore
-		var callbackAfter = winwheelToDrawDuringAnimation.animation.callbackAfter
-
-		// If there is a callback function which is supposed to be called before the wheel is drawn then do that.
-		if (callbackBefore != null) {
-			// If the property is a function then call it, otherwise eval the proptery as javascript code.
-			if (typeof callbackBefore === 'function') {
-				callbackBefore()
-			} else {
-				eval(callbackBefore)
-			}
-		}
-
-		// Call code to draw the wheel, pass in false as we never want it to clear the canvas as that would wipe anything drawn in the callbackBefore.
-		winwheelToDrawDuringAnimation.draw(false)
-
-		// If there is a callback function which is supposed to be called after the wheel has been drawn then do that.
-		if (callbackAfter != null) {
-			// If the property is a function then call it, otherwise eval the proptery as javascript code.
-			if (typeof callbackAfter === 'function') {
-				callbackAfter()
-			} else {
-				eval(callbackAfter)
-			}
-		}
-
-		// If there is a sound callback then call a function which figures out if the sound should be triggered
-		// and if so then call the function specified by the developer.
-		if (winwheelToDrawDuringAnimation.animation.callbackSound) {
-			winwheelTriggerSound()
-		}
-	}
-}
-
-// ====================================================================================================================
-// This function figures out if the callbackSound function needs to be called by working out if the segment or pin
-// has changed since the last animation loop.
-// ====================================================================================================================
-function winwheelTriggerSound() {
-	// If this property does not exist then add it as a property of the winwheel.
-	if (winwheelToDrawDuringAnimation.hasOwnProperty('_lastSoundTriggerNumber') == false) {
-		winwheelToDrawDuringAnimation._lastSoundTriggerNumber = 0
-	}
-
-	var callbackSound = winwheelToDrawDuringAnimation.animation.callbackSound
-	var currentTriggerNumber = 0
-
-	// Now figure out if the sound callback should be called depending on the sound trigger type.
-	if (winwheelToDrawDuringAnimation.animation.soundTrigger == 'pin') {
-		// So for the pin type we need to work out which pin we are between.
-		currentTriggerNumber = winwheelToDrawDuringAnimation.getCurrentPinNumber()
-	} else {
-		// Check on the change of segment by working out which segment we are in.
-		// We can utilise the existing getIndiatedSegmentNumber function.
-		currentTriggerNumber = winwheelToDrawDuringAnimation.getIndicatedSegmentNumber()
-	}
-
-	// If the current number is not the same as last time then call the sound callback.
-	if (currentTriggerNumber != winwheelToDrawDuringAnimation._lastSoundTriggerNumber) {
-		// If the property is a function then call it, otherwise eval the proptery as javascript code.
-		if (typeof callbackSound === 'function') {
-			callbackSound()
-		} else {
-			eval(callbackSound)
-		}
-
-		// Also update the last sound trigger with the current number.
-		winwheelToDrawDuringAnimation._lastSoundTriggerNumber = currentTriggerNumber
-	}
-}
-
-// ====================================================================================================================
-// This function is called-back when the greensock animation has finished.
-// ====================================================================================================================
-var winwheelToDrawDuringAnimation = null // This global is set by the winwheel class to the wheel object to be re-drawn.
-
-function winwheelStopAnimation(canCallback) {
-	// When the animation is stopped if canCallback is not false then try to call the callback.
-	// false can be passed in to stop the after happening if the animation has been stopped before it ended normally.
-	if (canCallback != false) {
-		var callback = winwheelToDrawDuringAnimation.animation.callbackFinished
-
-		if (callback != null) {
-			// If the callback is a function then call it, otherwise evaluate the property as javascript code.
-			if (typeof callback === 'function') {
-				// Pass back the indicated segment as 99% of the time you will want to know this to inform the user of their prize.
-				callback(winwheelToDrawDuringAnimation.getIndicatedSegment())
-			} else {
-				eval(callback)
-			}
-		}
-	}
-}
-
-// ====================================================================================================================
-// Called after the image has loaded for each segment. Once all the images are loaded it then calls the draw function
-// on the wheel to render it. Used in constructor and also when a segment image is changed.
-// ====================================================================================================================
-var winhweelAlreadyDrawn = false
-
-function winwheelLoadedImage() {
-	// Prevent multiple drawings of the wheel which ocurrs without this check due to timing of function calls.
-	if (winhweelAlreadyDrawn == false) {
-		// Set to 0.
-		var winwheelImageLoadCount = 0
-
-		// Loop though all the segments of the wheel and check if image data loaded, if so increment counter.
-		for (var i = 1; i <= winwheelToDrawDuringAnimation.numSegments; i++) {
-			// Check the image data object is not null and also that the image has completed loading by checking
-			// that a property of it such as the height has some sort of true value.
-			if (
-				winwheelToDrawDuringAnimation.segments[i].imgData != null &&
-				winwheelToDrawDuringAnimation.segments[i].imgData.height
-			) {
-				winwheelImageLoadCount++
-			}
-		}
-
-		// If number of images loaded matches the segments then all the images for the wheel are loaded.
-		if (winwheelImageLoadCount == winwheelToDrawDuringAnimation.numSegments) {
-			// Call draw function to render the wheel.
-			winhweelAlreadyDrawn = true
-			winwheelToDrawDuringAnimation.draw()
-		}
-	}
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-winwheel/src/spinner-marker.svg":
-/*!**********************************************************!*\
-  !*** ./node_modules/vue-winwheel/src/spinner-marker.svg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/vendor/vue-winwheel/src/spinner-marker.svg?9bd27519af5056767a30dcdc386e0720";
 
 /***/ }),
 
@@ -74447,6 +72186,9 @@ var map = {
 	"./components/Toggle.vue": [
 		"./resources/js/components/Toggle.vue"
 	],
+	"./components/WheelOfFortune.vue": [
+		"./resources/js/components/WheelOfFortune.vue"
+	],
 	"./components/admin/AdminCardPanel.vue": [
 		"./resources/js/components/admin/AdminCardPanel.vue",
 		"layout-components-admin-AdminCardPanel-vue"
@@ -74529,10 +72271,6 @@ var map = {
 		"./resources/js/pages/History.vue",
 		"layout-pages-History-vue"
 	],
-	"./pages/Home.vue": [
-		"./resources/js/pages/Home.vue",
-		"layout-pages-Home-vue"
-	],
 	"./pages/Login.vue": [
 		"./resources/js/pages/Login.vue"
 	],
@@ -74544,10 +72282,6 @@ var map = {
 	],
 	"./pages/Market.vue": [
 		"./resources/js/pages/Market.vue"
-	],
-	"./pages/NHL.vue": [
-		"./resources/js/pages/NHL.vue",
-		"layout-pages-NHL-vue"
 	],
 	"./pages/PageNotFound.vue": [
 		"./resources/js/pages/PageNotFound.vue"
@@ -74817,8 +72551,19 @@ _routes__WEBPACK_IMPORTED_MODULE_5__["default"].beforeEach(function (to, from, n
 _routes__WEBPACK_IMPORTED_MODULE_5__["default"].afterEach(function (to, from) {
   setTimeout(function () {
     app.$loading(false);
-  }, 500);
+  }, 1000);
 });
+
+/***/ }),
+
+/***/ "./resources/js/assets/spinner-marker.svg":
+/*!************************************************!*\
+  !*** ./resources/js/assets/spinner-marker.svg ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/spinner-marker.svg?bd39f068fc3c13c1608e1b41beb97678";
 
 /***/ }),
 
@@ -75063,6 +72808,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_template_id_47b09f7f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_template_id_47b09f7f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/WheelOfFortune.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/WheelOfFortune.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WheelOfFortune_vue_vue_type_template_id_5be040fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WheelOfFortune.vue?vue&type=template&id=5be040fa&scoped=true& */ "./resources/js/components/WheelOfFortune.vue?vue&type=template&id=5be040fa&scoped=true&");
+/* harmony import */ var _WheelOfFortune_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WheelOfFortune.vue?vue&type=script&lang=js& */ "./resources/js/components/WheelOfFortune.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _WheelOfFortune_vue_vue_type_style_index_0_id_5be040fa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css& */ "./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _WheelOfFortune_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _WheelOfFortune_vue_vue_type_template_id_5be040fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _WheelOfFortune_vue_vue_type_template_id_5be040fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "5be040fa",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/WheelOfFortune.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/WheelOfFortune.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/WheelOfFortune.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WheelOfFortune.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WheelOfFortune.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css& ***!
+  \*************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_style_index_0_id_5be040fa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WheelOfFortune.vue?vue&type=style&index=0&id=5be040fa&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_style_index_0_id_5be040fa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_style_index_0_id_5be040fa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_style_index_0_id_5be040fa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_style_index_0_id_5be040fa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_style_index_0_id_5be040fa_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/WheelOfFortune.vue?vue&type=template&id=5be040fa&scoped=true&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/WheelOfFortune.vue?vue&type=template&id=5be040fa&scoped=true& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_template_id_5be040fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./WheelOfFortune.vue?vue&type=template&id=5be040fa&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WheelOfFortune.vue?vue&type=template&id=5be040fa&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_template_id_5be040fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WheelOfFortune_vue_vue_type_template_id_5be040fa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -76678,14 +74510,1959 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_localization__WEBPACK_IMPOR
     name: 'Games',
     component: _pages_Games__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
-    path: '/games/nhl/:id',
+    path: '/games/nhl/:gameId',
     name: 'Lottery',
-    component: _pages_Lottery__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _pages_Lottery__WEBPACK_IMPORTED_MODULE_11__["default"],
+    props: true
   }, {
     path: "*",
     component: _pages_PageNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]
   }]
 }));
+
+/***/ }),
+
+/***/ "./resources/js/winwheel.js":
+/*!**********************************!*\
+  !*** ./resources/js/winwheel.js ***!
+  \**********************************/
+/*! exports provided: Winwheel, Pin, Animation, Segment, PointerGuide */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Winwheel", function() { return Winwheel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pin", function() { return Pin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Animation", function() { return Animation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Segment", function() { return Segment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PointerGuide", function() { return PointerGuide; });
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+var Winwheel =
+/*#__PURE__*/
+function () {
+  function Winwheel(options, drawWheel) {
+    _classCallCheck(this, Winwheel);
+
+    var defaultOptions = {
+      canvasId: 'canvas',
+      // Id of the canvas which the wheel is to draw on to.
+      centerX: null,
+      // X position of the center of the wheel. The default of these are null which means will be placed in center of the canvas.
+      centerY: null,
+      // Y position of the wheel center. If left null at time of construct the center of the canvas is used.
+      outerRadius: null,
+      // The radius of the outside of the wheel. If left null it will be set to the radius from the center of the canvas to its shortest side.
+      innerRadius: 0,
+      // Normally 0. Allows the creation of rings / doughnuts if set to value > 0. Should not exceed outer radius.
+      numSegments: 1,
+      // The number of segments. Need at least one to draw.
+      drawMode: 'code',
+      // The draw mode. Possible values are 'code', 'image', 'segmentImage'. Default is code which means segments are drawn using canvas arc() function.
+      rotationAngle: 0,
+      // The angle of rotation of the wheel - 0 is 12 o'clock position.
+      textFontFamily: 'sans-serif',
+      // Segment text font, you should use web safe fonts.
+      textFontSize: 13,
+      // Size of the segment text.
+      textFontWeight: 'bold',
+      // Font weight.
+      textOrientation: 'horizontal',
+      // Either horizontal, vertical, or curved.
+      textAlignment: 'center',
+      // Either center, inner, or outer.
+      textDirection: 'normal',
+      // Either normal or reversed. In normal mode for horizontal text in segment at 3 o'clock is correct way up, in reversed text at 9 o'clock segment is correct way up.
+      textMargin: null,
+      // Margin between the inner or outer of the wheel (depends on textAlignment).
+      textFillStyle: 'black',
+      // This is basically the text colour.
+      textStrokeStyle: null,
+      // Basically the line colour for segment text, only looks good for large text so off by default.
+      textLineWidth: 1,
+      // Width of the lines around the text. Even though this defaults to 1, a line is only drawn if textStrokeStyle specified.
+      fillStyle: 'silver',
+      // The segment background colour.
+      strokeStyle: null,
+      // Segment line colour. Again segment lines only drawn if this is specified.
+      lineWidth: 1,
+      // Width of lines around segments.
+      clearTheCanvas: true,
+      // When set to true the canvas will be cleared before the wheel is drawn.
+      imageOverlay: false,
+      // If set to true in image drawing mode the outline of the segments will be displayed over the image. Does nothing in code drawMode.
+      drawText: true,
+      // By default the text of the segments is rendered in code drawMode and not in image drawMode.
+      pointerAngle: 0,
+      // Location of the pointer that indicates the prize when wheel has stopped. Default is 0 so the (corrected) 12 o'clock position.
+      wheelImage: null,
+      // Must be set to image data in order to use image to draw the wheel - drawMode must also be 'image'.
+      imageDirection: 'N' // Used when drawMode is segmentImage. Default is north, can also be (E)ast, (S)outh, (W)est.
+      // -----------------------------------------
+      // Loop through the default options and create properties of this class set to the value for the option passed in
+      // or if not value for the option was passed in then to the default.
+
+    };
+
+    for (var key in defaultOptions) {
+      if (options != null && typeof options[key] !== 'undefined') {
+        this[key] = options[key];
+      } else {
+        this[key] = defaultOptions[key];
+      }
+    } // Also loop though the passed in options and add anything specified not part of the class in to it as a property.
+
+
+    if (options != null) {
+      for (var key in options) {
+        if (typeof this[key] === 'undefined') {
+          this[key] = options[key];
+        }
+      }
+    } // ------------------------------------------
+    // If the id of the canvas is set, try to get the canvas as we need it for drawing.
+
+
+    if (this.canvasId) {
+      this.canvas = document.getElementById(this.canvasId);
+
+      if (this.canvas) {
+        // If the centerX and centerY have not been specified in the options then default to center of the canvas
+        // and make the outerRadius half of the canvas width - this means the wheel will fill the canvas.
+        if (this.centerX == null) {
+          this.centerX = this.canvas.width / 2;
+        }
+
+        if (this.centerY == null) {
+          this.centerY = this.canvas.height / 2;
+        }
+
+        if (this.outerRadius == null) {
+          // Need to set to half the width of the shortest dimension of the canvas as the canvas may not be square.
+          // Minus the line segment line width otherwise the lines around the segments on the top,left,bottom,right
+          // side are chopped by the edge of the canvas.
+          if (this.canvas.width < this.canvas.height) {
+            this.outerRadius = this.canvas.width / 2 - this.lineWidth;
+          } else {
+            this.outerRadius = this.canvas.height / 2 - this.lineWidth;
+          }
+        } // Also get a 2D context to the canvas as we need this to draw with.
+
+
+        this.ctx = this.canvas.getContext('2d');
+      } else {
+        this.canvas = null;
+        this.ctx = null;
+      }
+    } else {
+      this.cavnas = null;
+      this.ctx = null;
+    } // ------------------------------------------
+    // Add array of segments to the wheel, then populate with segments if number of segments is specified for this object.
+
+
+    this.segments = new Array(null);
+
+    for (var x = 1; x <= this.numSegments; x++) {
+      // If options for the segments have been specified then create a segment sending these options so
+      // the specified values are used instead of the defaults.
+      if (options != null && options['segments'] && typeof options['segments'][x - 1] !== 'undefined') {
+        this.segments[x] = new Segment(options['segments'][x - 1]);
+      } else {
+        this.segments[x] = new Segment();
+      }
+    } // ------------------------------------------
+    // Call function to update the segment sizes setting the starting and ending angles.
+
+
+    this.updateSegmentSizes(); // If the text margin is null then set to same as font size as we want some by default.
+
+    if (this.textMargin === null) {
+      this.textMargin = this.textFontSize / 1.7;
+    } // ------------------------------------------
+    // If the animation options have been passed in then create animation object as a property of this class
+    // and pass the options to it so the animation is set. Otherwise create default animation object.
+
+
+    if (options != null && options['animation'] && typeof options['animation'] !== 'undefined') {
+      this.animation = new Animation(options['animation']);
+    } else {
+      this.animation = new Animation();
+    } // ------------------------------------------
+    // If some pin options then create create a pin object and then pass them in.
+
+
+    if (options != null && options['pins'] && typeof options['pins'] !== 'undefined') {
+      this.pins = new Pin(options['pins']);
+    } // ------------------------------------------
+    // On that note, if the drawMode is image change some defaults provided a value has not been specified.
+
+
+    if (this.drawMode == 'image' || this.drawMode == 'segmentImage') {
+      // Remove grey fillStyle.
+      if (typeof options['fillStyle'] === 'undefined') {
+        this.fillStyle = null;
+      } // Set strokeStyle to red.
+
+
+      if (typeof options['strokeStyle'] === 'undefined') {
+        this.strokeStyle = 'red';
+      } // Set drawText to false as we will assume any text is part of the image.
+
+
+      if (typeof options['drawText'] === 'undefined') {
+        this.drawText = false;
+      } // Also set the lineWidth to 1 so that segment overlay will look correct.
+
+
+      if (typeof options['lineWidth'] === 'undefined') {
+        this.lineWidth = 1;
+      } // Set drawWheel to false as normally the image needs to be loaded first.
+
+
+      if (typeof drawWheel === 'undefined') {
+        drawWheel = false;
+      }
+    } else {
+      // When in code drawMode the default is the wheel will draw.
+      if (typeof drawWheel === 'undefined') {
+        drawWheel = true;
+      }
+    } // Create pointer guide.
+
+
+    if (options != null && options['pointerGuide'] && typeof options['pointerGuide'] !== 'undefined') {
+      this.pointerGuide = new PointerGuide(options['pointerGuide']);
+    } else {
+      this.pointerGuide = new PointerGuide();
+    } // Finally if drawWheel is true then call function to render the wheel, segment text, overlay etc.
+
+
+    if (drawWheel == true) {
+      this.draw(this.clearTheCanvas);
+    } else if (this.drawMode == 'segmentImage') {
+      // If segment image then loop though all the segments and load the images for them setting a callback
+      // which will call the draw function of the wheel once all the images have been loaded.
+      winwheelToDrawDuringAnimation = this;
+      winhweelAlreadyDrawn = false;
+
+      for (var y = 1; y <= this.numSegments; y++) {
+        if (this.segments[y].image !== null) {
+          this.segments[y].imgData = new Image();
+          this.segments[y].imgData.onload = winwheelLoadedImage;
+          this.segments[y].imgData.src = this.segments[y].image;
+        }
+      }
+    }
+  } // ====================================================================================================================
+  // This function sorts out the segment sizes. Some segments may have set sizes, for the others what is left out of
+  // 360 degrees is shared evenly. What this function actually does is set the start and end angle of the arcs.
+  // ====================================================================================================================
+
+
+  _createClass(Winwheel, [{
+    key: "updateSegmentSizes",
+    value: function updateSegmentSizes() {
+      // If this object actually contains some segments
+      if (this.segments) {
+        // First add up the arc used for the segments where the size has been set.
+        var arcUsed = 0;
+        var numSet = 0; // Remember, to make it easy to access segments, the position of the segments in the array starts from 1 (not 0).
+
+        for (var x = 1; x <= this.numSegments; x++) {
+          if (this.segments[x].size !== null) {
+            arcUsed += this.segments[x].size;
+            numSet++;
+          }
+        }
+
+        var arcLeft = 360 - arcUsed; // Create variable to hold how much each segment with non-set size will get in terms of degrees.
+
+        var degreesEach = 0;
+
+        if (arcLeft > 0) {
+          degreesEach = arcLeft / (this.numSegments - numSet);
+        } // ------------------------------------------
+        // Now loop though and set the start and end angle of each segment.
+
+
+        var currentDegree = 0;
+
+        for (var x = 1; x <= this.numSegments; x++) {
+          // Set start angle.
+          this.segments[x].startAngle = currentDegree; // If the size is set then add this to the current degree to get the end, else add the degreesEach to it.
+
+          if (this.segments[x].size) {
+            currentDegree += this.segments[x].size;
+          } else {
+            currentDegree += degreesEach;
+          } // Set end angle.
+
+
+          this.segments[x].endAngle = currentDegree;
+        }
+      }
+    } // ====================================================================================================================
+    // This function clears the canvas. Will wipe anything else which happens to be drawn on it.
+    // ====================================================================================================================
+
+  }, {
+    key: "clearCanvas",
+    value: function clearCanvas() {
+      if (this.ctx) {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      }
+    } // ====================================================================================================================
+    // This function draws / re-draws the wheel on the canvas therefore rendering any changes.
+    // ====================================================================================================================
+
+  }, {
+    key: "draw",
+    value: function draw(clearTheCanvas) {
+      // If have the canvas context.
+      if (this.ctx) {
+        // Clear the canvas, unless told not to.
+        if (typeof clearTheCanvas !== 'undefined') {
+          if (clearTheCanvas == true) {
+            this.clearCanvas();
+          }
+        } else {
+          this.clearCanvas();
+        } // Call functions to draw the segments and then segment text.
+
+
+        if (this.drawMode == 'image') {
+          // Draw the wheel by loading and drawing an image such as a png on the canvas.
+          this.drawWheelImage(); // If we are to draw the text, do so before the overlay is drawn
+          // as this allows the overlay to be used to create some interesting effects.
+
+          if (this.drawText == true) {
+            this.drawSegmentText();
+          } // If image overlay is true then call function to draw the segments over the top of the image.
+          // This is useful during development to check alignment between where the code thinks the segments are and where they appear on the image.
+
+
+          if (this.imageOverlay == true) {
+            this.drawSegments();
+          }
+        } else if (this.drawMode == 'segmentImage') {
+          // Draw the wheel by rendering the image for each segment.
+          this.drawSegmentImages(); // If we are to draw the text, do so before the overlay is drawn
+          // as this allows the overlay to be used to create some interesting effects.
+
+          if (this.drawText == true) {
+            this.drawSegmentText();
+          } // If image overlay is true then call function to draw the segments over the top of the image.
+          // This is useful during development to check alignment between where the code thinks the segments are and where they appear on the image.
+
+
+          if (this.imageOverlay == true) {
+            this.drawSegments();
+          }
+        } else {
+          // The default operation is to draw the segments using code via the canvas arc() method.
+          this.drawSegments(); // The text is drawn on top.
+
+          if (this.drawText == true) {
+            this.drawSegmentText();
+          }
+        } // If this class has pins.
+
+
+        if (typeof this.pins !== 'undefined') {
+          // If they are to be visible then draw them.
+          if (this.pins.visible == true) this.drawPins();
+        } // If pointer guide is display property is set to true then call function to draw the pointer guide.
+
+
+        if (this.pointerGuide.display == true) {
+          this.drawPointerGuide();
+        }
+      }
+    } // ====================================================================================================================
+    // Draws the pins around the outside of the wheel.
+    // ====================================================================================================================
+
+  }, {
+    key: "drawPins",
+    value: function drawPins() {
+      if (this.pins && this.pins.number) {
+        // Work out the angle to draw each pin a which is simply 360 / the number of pins as they space evenly around.
+        //++ There is a slight oddity with the pins in that there is a pin at 0 and also one at 360 and these will be drawn
+        //++ directly over the top of each other. Also pins are 0 indexed which could possibly cause some confusion
+        //++ with the getCurrentPin function - for now this is just used for audio so probably not a problem.
+        var pinSpacing = 360 / this.pins.number;
+
+        for (var i = 1; i <= this.pins.number; i++) {
+          this.ctx.save(); // Set the stroke style and line width.
+
+          this.ctx.strokeStyle = this.pins.strokeStyle;
+          this.ctx.lineWidth = this.pins.lineWidth;
+          this.ctx.fillStyle = this.pins.fillStyle; // Move to the center.
+
+          this.ctx.translate(this.centerX, this.centerY); // Rotate to to the pin location which is i * the pinSpacing.
+
+          this.ctx.rotate(this.degToRad(i * pinSpacing + this.rotationAngle)); // Move back out.
+
+          this.ctx.translate(-this.centerX, -this.centerY); // Create a path for the pin circle.
+
+          this.ctx.beginPath(); // x, y, radius, startAngle, endAngle.
+
+          this.ctx.arc(this.centerX, this.centerY - this.outerRadius + this.pins.outerRadius + this.pins.margin, this.pins.outerRadius, 0, 2 * Math.PI);
+          if (this.pins.fillStyle) this.ctx.fill();
+          if (this.pins.strokeStyle) this.ctx.stroke();
+          this.ctx.restore();
+        }
+      }
+    } // ====================================================================================================================
+    // Draws a line from the center of the wheel to the outside at the angle where the code thinks the pointer is.
+    // ====================================================================================================================
+
+  }, {
+    key: "drawPointerGuide",
+    value: function drawPointerGuide() {
+      // If have canvas context.
+      if (this.ctx) {
+        this.ctx.save(); // Rotate the canvas to the line goes towards the location of the pointer.
+
+        this.ctx.translate(this.centerX, this.centerY);
+        this.ctx.rotate(this.degToRad(this.pointerAngle));
+        this.ctx.translate(-this.centerX, -this.centerY); // Set line colour and width.
+
+        this.ctx.strokeStyle = this.pointerGuide.strokeStyle;
+        this.ctx.lineWidth = this.pointerGuide.lineWidth; // Draw from the center of the wheel outwards past the wheel outer radius.
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.centerX, this.centerY);
+        this.ctx.lineTo(this.centerX, -(this.outerRadius / 4));
+        this.ctx.stroke();
+        this.ctx.restore();
+      }
+    } // ====================================================================================================================
+    // This function takes an image such as PNG and draws it on the canvas making its center at the centerX and center for the wheel.
+    // ====================================================================================================================
+
+  }, {
+    key: "drawWheelImage",
+    value: function drawWheelImage() {
+      // Double check the wheelImage property of this class is not null. This does not actually detect that an image
+      // source was set and actually loaded so might get error if this is not the case. This is why the initial call
+      // to draw() should be done from a wheelImage.onload callback as detailed in example documentation.
+      if (this.wheelImage != null) {
+        // Work out the correct X and Y to draw the image at. We need to get the center point of the image
+        // aligned over the center point of the wheel, we can't just place it at 0, 0.
+        var imageLeft = this.centerX - this.wheelImage.height / 2;
+        var imageTop = this.centerY - this.wheelImage.width / 2; // Rotate and then draw the wheel.
+        // We must rotate by the rotationAngle before drawing to ensure that image wheels will spin.
+
+        this.ctx.save();
+        this.ctx.translate(this.centerX, this.centerY);
+        this.ctx.rotate(this.degToRad(this.rotationAngle));
+        this.ctx.translate(-this.centerX, -this.centerY);
+        this.ctx.drawImage(this.wheelImage, imageLeft, imageTop);
+        this.ctx.restore();
+      }
+    } // ====================================================================================================================
+    // This function draws the wheel on the canvas by rendering the image for each segment.
+    // ====================================================================================================================
+
+  }, {
+    key: "drawSegmentImages",
+    value: function drawSegmentImages() {
+      // Again check have context in case this function was called directly and not via draw function.
+      if (this.ctx) {
+        // Draw the segments if there is at least one in the segments array.
+        if (this.segments) {
+          // Loop though and output all segments - position 0 of the array is not used, so start loop from index 1
+          // this is to avoid confusion when talking about the first segment.
+          for (var x = 1; x <= this.numSegments; x++) {
+            // Get the segment object as we need it to read options from.
+            var seg = this.segments[x]; // Check image has loaded so a property such as height has a value.
+
+            if (seg.imgData.height) {
+              // Work out the correct X and Y to draw the image at which depends on the direction of the image.
+              // Images can be created in 4 directions. North, South, East, West.
+              // North: Outside at top, inside at bottom. Sits evenly over the 0 degrees angle.
+              // South: Outside at bottom, inside at top. Sits evenly over the 180 degrees angle.
+              // East: Outside at right, inside at left. Sits evenly over the 90 degrees angle.
+              // West: Outside at left, inside at right. Sits evenly over the 270 degrees angle.
+              var imageLeft = 0;
+              var imageTop = 0;
+              var imageAngle = 0;
+              var imageDirection = '';
+              if (seg.imageDirection !== null) imageDirection = seg.imageDirection;else imageDirection = this.imageDirection;
+
+              if (imageDirection == 'S') {
+                // Left set so image sits half/half over the 180 degrees point.
+                imageLeft = this.centerX - seg.imgData.width / 2; // Top so image starts at the centerY.
+
+                imageTop = this.centerY; // Angle to draw the image is its starting angle + half its size.
+                // Here we add 180 to the angle to the segment is poistioned correctly.
+
+                imageAngle = seg.startAngle + 180 + (seg.endAngle - seg.startAngle) / 2;
+              } else if (imageDirection == 'E') {
+                // Left set so image starts and the center point.
+                imageLeft = this.centerX; // Top is so that it sits half/half over the 90 degree point.
+
+                imageTop = this.centerY - seg.imgData.height / 2; // Again get the angle in the center of the segment and add it to the rotation angle.
+                // this time we need to add 270 to that to the segment is rendered the correct place.
+
+                imageAngle = seg.startAngle + 270 + (seg.endAngle - seg.startAngle) / 2;
+              } else if (imageDirection == 'W') {
+                // Left is the centerX minus the width of the image.
+                imageLeft = this.centerX - seg.imgData.width; // Top is so that it sits half/half over the 270 degree point.
+
+                imageTop = this.centerY - seg.imgData.height / 2; // Again get the angle in the center of the segment and add it to the rotation angle.
+                // this time we need to add 90 to that to the segment is rendered the correct place.
+
+                imageAngle = seg.startAngle + 90 + (seg.endAngle - seg.startAngle) / 2;
+              } // North is the default.
+              else {
+                  // Left set so image sits half/half over the 0 degrees point.
+                  imageLeft = this.centerX - seg.imgData.width / 2; // Top so image is its height out (above) the center point.
+
+                  imageTop = this.centerY - seg.imgData.height; // Angle to draw the image is its starting angle + half its size.
+                  // this sits it half/half over the center angle of the segment.
+
+                  imageAngle = seg.startAngle + (seg.endAngle - seg.startAngle) / 2;
+                } // --------------------------------------------------
+              // Rotate to the position of the segment and then draw the image.
+
+
+              this.ctx.save();
+              this.ctx.translate(this.centerX, this.centerY); // So math here is the rotation angle of the wheel plus half way between the start and end angle of the segment.
+
+              this.ctx.rotate(this.degToRad(this.rotationAngle + imageAngle));
+              this.ctx.translate(-this.centerX, -this.centerY); // Draw the image.
+
+              this.ctx.drawImage(seg.imgData, imageLeft, imageTop);
+              this.ctx.restore();
+            } else {
+              console.log('Segment ' + x + ' imgData is not loaded');
+            }
+          }
+        }
+      }
+    } // ====================================================================================================================
+    // This function draws the wheel on the page by rendering the segments on the canvas.
+    // ====================================================================================================================
+
+  }, {
+    key: "drawSegments",
+    value: function drawSegments() {
+      // Again check have context in case this function was called directly and not via draw function.
+      if (this.ctx) {
+        // Draw the segments if there is at least one in the segments array.
+        if (this.segments) {
+          // Loop though and output all segments - position 0 of the array is not used, so start loop from index 1
+          // this is to avoid confusion when talking about the first segment.
+          for (var x = 1; x <= this.numSegments; x++) {
+            // Get the segment object as we need it to read options from.
+            var seg = this.segments[x];
+            var fillStyle;
+            var lineWidth;
+            var strokeStyle; // Set the variables that defined in the segment, or use the default options.
+
+            if (seg.fillStyle !== null) fillStyle = seg.fillStyle;else fillStyle = this.fillStyle;
+            this.ctx.fillStyle = fillStyle;
+            if (seg.lineWidth !== null) lineWidth = seg.lineWidth;else lineWidth = this.lineWidth;
+            this.ctx.lineWidth = lineWidth;
+            if (seg.strokeStyle !== null) strokeStyle = seg.strokeStyle;else strokeStyle = this.strokeStyle;
+            this.ctx.strokeStyle = strokeStyle; // Check there is a strokeStyle or fillStyle, if either the the segment is invisible so should not
+            // try to draw it otherwise a path is began but not ended.
+
+            if (strokeStyle || fillStyle) {
+              // ----------------------------------
+              // Begin a path as the segment consists of an arc and 2 lines.
+              this.ctx.beginPath(); // If don't have an inner radius then move to the center of the wheel as we want a line out from the center
+              // to the start of the arc for the outside of the wheel when we arc. Canvas will draw the connecting line for us.
+
+              if (!this.innerRadius) {
+                this.ctx.moveTo(this.centerX, this.centerY);
+              } else {} //++ do need to draw the starting line in the correct x + y based on the start angle
+              //++ otherwise as seen when the wheel does not use up 360 the starting segment is missing the stroked side,
+              // Draw the outer arc of the segment clockwise in direction -->
+
+
+              this.ctx.arc(this.centerX, this.centerY, this.outerRadius, this.degToRad(seg.startAngle + this.rotationAngle - 90), this.degToRad(seg.endAngle + this.rotationAngle - 90), false);
+
+              if (this.innerRadius) {
+                // Draw another arc, this time anticlockwise <-- at the innerRadius between the end angle and the start angle.
+                // Canvas will draw a connecting line from the end of the outer arc to the beginning of the inner arc completing the shape.
+                //++ Think the reason the lines are thinner for 2 of the segments is because the thing auto chops part of it
+                //++ when doing the next one. Again think that actually drawing the lines will help.
+                this.ctx.arc(this.centerX, this.centerY, this.innerRadius, this.degToRad(seg.endAngle + this.rotationAngle - 90), this.degToRad(seg.startAngle + this.rotationAngle - 90), true);
+              } else {
+                // If no inner radius then we draw a line back to the center of the wheel.
+                this.ctx.lineTo(this.centerX, this.centerY);
+              } // Fill and stroke the segment. Only do either if a style was specified, if the style is null then
+              // we assume the developer did not want that particular thing.
+              // For example no stroke style so no lines to be drawn.
+
+
+              if (fillStyle) this.ctx.fill();
+              if (strokeStyle) this.ctx.stroke();
+            }
+          }
+        }
+      }
+    } // ====================================================================================================================
+    // This draws the text on the segments using the specified text options.
+    // ====================================================================================================================
+
+  }, {
+    key: "drawSegmentText",
+    value: function drawSegmentText() {
+      // Again only draw the text if have a canvas context.
+      if (this.ctx) {
+        // Declare variables to hold the values. These are populated either with the value for the specific segment,
+        // or if not specified then the global default value.
+        var fontFamily;
+        var fontSize;
+        var fontWeight;
+        var orientation;
+        var alignment;
+        var direction;
+        var margin;
+        var fillStyle;
+        var strokeStyle;
+        var lineWidth;
+        var fontSetting; // Loop though all the segments.
+
+        for (var x = 1; x <= this.numSegments; x++) {
+          // Save the context so it is certain that each segment text option will not affect the other.
+          this.ctx.save(); // Get the segment object as we need it to read options from.
+
+          var seg = this.segments[x]; // Check is text as no point trying to draw if there is no text to render.
+
+          if (seg.text) {
+            // Set values to those for the specific segment or use global default if null.
+            if (seg.textFontFamily !== null) fontFamily = seg.textFontFamily;else fontFamily = this.textFontFamily;
+            if (seg.textFontSize !== null) fontSize = seg.textFontSize;else fontSize = this.textFontSize;
+            if (seg.textFontWeight !== null) fontWeight = seg.textFontWeight;else fontWeight = this.textFontWeight;
+            if (seg.textOrientation !== null) orientation = seg.textOrientation;else orientation = this.textOrientation;
+            if (seg.textAlignment !== null) alignment = seg.textAlignment;else alignment = this.textAlignment;
+            if (seg.textDirection !== null) direction = seg.textDirection;else direction = this.textDirection;
+            if (seg.textMargin !== null) margin = seg.textMargin;else margin = this.textMargin;
+            if (seg.textFillStyle !== null) fillStyle = seg.textFillStyle;else fillStyle = this.textFillStyle;
+            if (seg.textStrokeStyle !== null) strokeStyle = seg.textStrokeStyle;else strokeStyle = this.textStrokeStyle;
+            if (seg.textLineWidth !== null) lineWidth = seg.textLineWidth;else lineWidth = this.textLineWidth; // ------------------------------
+            // We need to put the font bits together in to one string.
+
+            fontSetting = '';
+            if (fontWeight != null) fontSetting += fontWeight + ' ';
+            if (fontSize != null) fontSetting += fontSize + 'px '; // Fonts on canvas are always a px value.
+
+            if (fontFamily != null) fontSetting += fontFamily; // Now set the canvas context to the decided values.
+
+            this.ctx.font = fontSetting;
+            this.ctx.fillStyle = fillStyle;
+            this.ctx.strokeStyle = strokeStyle;
+            this.ctx.lineWidth = lineWidth; // Split the text in to multiple lines on the \n character.
+
+            var lines = seg.text.split('\n'); // Figure out the starting offset for the lines as when there are multiple lines need to center the text
+            // vertically in the segment (when thinking of normal horozontal text).
+
+            var lineOffset = 0 - fontSize * (lines.length / 2) + fontSize / 2; // The offset works great for horozontal and vertial text, also centered curved. But when the text is curved
+            // and the alignment is outer then the multiline text should not have some text outside the wheel. Same if inner curved.
+
+            if (orientation == 'curved' && (alignment == 'inner' || alignment == 'outer')) {
+              lineOffset = 0;
+            }
+
+            for (var i = 0; i < lines.length; i++) {
+              // ---------------------------------
+              // If direction is reversed then do things differently than if normal (which is the default - see further down)
+              if (direction == 'reversed') {
+                // When drawing reversed or 'upside down' we need to do some trickery on our part.
+                // The canvas text rendering function still draws the text left to right and the correct way up,
+                // so we need to overcome this with rotating the opposite side of the wheel the correct way up then pulling the text
+                // through the center point to the correct segment it is supposed to be on.
+                if (orientation == 'horizontal') {
+                  if (alignment == 'inner') this.ctx.textAlign = 'right';else if (alignment == 'outer') this.ctx.textAlign = 'left';else this.ctx.textAlign = 'center';
+                  this.ctx.textBaseline = 'middle'; // Work out the angle to rotate the wheel, this is in the center of the segment but on the opposite side of the wheel which is why do -180.
+
+                  var textAngle = this.degToRad(seg.endAngle - (seg.endAngle - seg.startAngle) / 2 + this.rotationAngle - 90 - 180);
+                  this.ctx.save();
+                  this.ctx.translate(this.centerX, this.centerY);
+                  this.ctx.rotate(textAngle);
+                  this.ctx.translate(-this.centerX, -this.centerY);
+
+                  if (alignment == 'inner') {
+                    // In reversed state the margin is subtracted from the innerX.
+                    // When inner the inner radius also comes in to play.
+                    if (fillStyle) this.ctx.fillText(lines[i], this.centerX - this.innerRadius - margin, this.centerY + lineOffset);
+                    if (strokeStyle) this.ctx.strokeText(lines[i], this.centerX - this.innerRadius - margin, this.centerY + lineOffset);
+                  } else if (alignment == 'outer') {
+                    // In reversed state the position is the center minus the radius + the margin for outer aligned text.
+                    if (fillStyle) this.ctx.fillText(lines[i], this.centerX - this.outerRadius + margin, this.centerY + lineOffset);
+                    if (strokeStyle) this.ctx.strokeText(lines[i], this.centerX - this.outerRadius + margin, this.centerY + lineOffset);
+                  } else {
+                    // In reversed state the everything in minused.
+                    if (fillStyle) this.ctx.fillText(lines[i], this.centerX - this.innerRadius - (this.outerRadius - this.innerRadius) / 2 - margin, this.centerY + lineOffset);
+                    if (strokeStyle) this.ctx.strokeText(lines[i], this.centerX - this.innerRadius - (this.outerRadius - this.innerRadius) / 2 - margin, this.centerY + lineOffset);
+                  }
+
+                  this.ctx.restore();
+                } else if (orientation == 'vertical') {
+                  // See normal code further down for comments on how it works, this is similar by plus/minus is reversed.
+                  this.ctx.textAlign = 'center'; // In reversed mode this are reversed.
+
+                  if (alignment == 'inner') this.ctx.textBaseline = 'top';else if (alignment == 'outer') this.ctx.textBaseline = 'bottom';else this.ctx.textBaseline = 'middle';
+                  var textAngle = seg.endAngle - (seg.endAngle - seg.startAngle) / 2 - 180;
+                  textAngle += this.rotationAngle;
+                  this.ctx.save();
+                  this.ctx.translate(this.centerX, this.centerY);
+                  this.ctx.rotate(this.degToRad(textAngle));
+                  this.ctx.translate(-this.centerX, -this.centerY);
+                  if (alignment == 'outer') var yPos = this.centerY + this.outerRadius - margin;else if (alignment == 'inner') var yPos = this.centerY + this.innerRadius + margin; // I have found that the text looks best when a fraction of the font size is shaved off.
+
+                  var yInc = fontSize - fontSize / 9; // Loop though and output the characters.
+
+                  if (alignment == 'outer') {
+                    // In reversed mode outer means text in 6 o'clock segment sits at bottom of the wheel and we draw up.
+                    for (var c = lines[i].length - 1; c >= 0; c--) {
+                      character = lines[i].charAt(c);
+                      if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos);
+                      if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos);
+                      yPos -= yInc;
+                    }
+                  } else if (alignment == 'inner') {
+                    // In reversed mode inner text is drawn from top of segment at 6 o'clock position to bottom of the wheel.
+                    for (var c = 0; c < lines[i].length; c++) {
+                      character = lines[i].charAt(c);
+                      if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos);
+                      if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos);
+                      yPos += yInc;
+                    }
+                  } else if (alignment == 'center') {
+                    // Again for reversed this is the opposite of before.
+                    // If there is more than one character in the text then an adjustment to the position needs to be done.
+                    // What we are aiming for is to position the center of the text at the center point between the inner and outer radius.
+                    var centerAdjustment = 0;
+
+                    if (lines[i].length > 1) {
+                      centerAdjustment = yInc * (lines[i].length - 1) / 2;
+                    }
+
+                    var yPos = this.centerY + this.innerRadius + (this.outerRadius - this.innerRadius) / 2 + centerAdjustment + margin;
+
+                    for (var c = lines[i].length - 1; c >= 0; c--) {
+                      character = lines[i].charAt(c);
+                      if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos);
+                      if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos);
+                      yPos -= yInc;
+                    }
+                  }
+
+                  this.ctx.restore();
+                } else if (orientation == 'curved') {
+                  // There is no built in canvas function to draw text around an arc,
+                  // so we need to do this ourselves.
+                  var radius = 0; // Set the alignment of the text - inner, outer, or center by calculating
+                  // how far out from the center point of the wheel the text is drawn.
+
+                  if (alignment == 'inner') {
+                    // When alignment is inner the radius is the innerRadius plus any margin.
+                    radius = this.innerRadius + margin;
+                    this.ctx.textBaseline = 'top';
+                  } else if (alignment == 'outer') {
+                    // Outer it is the outerRadius minus any margin.
+                    radius = this.outerRadius - margin;
+                    this.ctx.textBaseline = 'bottom'; // We need to adjust the radius in this case to take in to multiline text.
+                    // In this case the radius needs to be further out, not at the inner radius.
+
+                    radius -= fontSize * (lines.length - 1);
+                  } else if (alignment == 'center') {
+                    // When center we want the text halfway between the inner and outer radius.
+                    radius = this.innerRadius + margin + (this.outerRadius - this.innerRadius) / 2;
+                    this.ctx.textBaseline = 'middle';
+                  } // Set the angle to increment by when looping though and outputting the characters in the text
+                  // as we do this by rotating the wheel small amounts adding each character.
+
+
+                  var anglePerChar = 0;
+                  var drawAngle = 0; // If more than one character in the text then...
+
+                  if (lines[i].length > 1) {
+                    // Text is drawn from the left.
+                    this.ctx.textAlign = 'left'; // Work out how much angle the text rendering loop below needs to rotate by for each character to render them next to each other.
+                    // I have discovered that 4 * the font size / 10 at 100px radius is the correct spacing for between the characters
+                    // using a monospace font, non monospace may look a little odd as in there will appear to be extra spaces between chars.
+
+                    anglePerChar = 4 * (fontSize / 10); // Work out what percentage the radius the text will be drawn at is of 100px.
+
+                    radiusPercent = 100 / radius; // Then use this to scale up or down the anglePerChar value.
+                    // When the radius is less than 100px we need more angle between the letters, when radius is greater (so the text is further
+                    // away from the center of the wheel) the angle needs to be less otherwise the characters will appear further apart.
+
+                    anglePerChar = anglePerChar * radiusPercent; // Next we want the text to be drawn in the middle of the segment, without this it would start at the beginning of the segment.
+                    // To do this we need to work out how much arc the text will take up in total then subtract half of this from the center
+                    // of the segment so that it sits centred.
+
+                    totalArc = anglePerChar * lines[i].length; // Now set initial draw angle to half way between the start and end of the segment.
+
+                    drawAngle = seg.startAngle + ((seg.endAngle - seg.startAngle) / 2 - totalArc / 2);
+                  } else {
+                    // The initial draw angle is the center of the segment when only one character.
+                    drawAngle = seg.startAngle + (seg.endAngle - seg.startAngle) / 2; // To ensure is dead-center the text alignment also needs to be centered.
+
+                    this.ctx.textAlign = 'center';
+                  } // ----------------------
+                  // Adjust the initial draw angle as needed to take in to account the rotationAngle of the wheel.
+
+
+                  drawAngle += this.rotationAngle; // And as with other 'reverse' text direction functions we need to subtract 180 degrees from the angle
+                  // because when it comes to draw the characters in the loop below we add the radius instead of subtract it.
+
+                  drawAngle -= 180; // ----------------------
+                  // Now the drawing itself.
+                  // In reversed direction mode we loop through the characters in the text backwards in order for them to appear on screen correctly
+
+                  for (c = lines[i].length; c >= 0; c--) {
+                    this.ctx.save();
+                    character = lines[i].charAt(c); // Rotate the wheel to the draw angle as we need to add the character at this location.
+
+                    this.ctx.translate(this.centerX, this.centerY);
+                    this.ctx.rotate(this.degToRad(drawAngle));
+                    this.ctx.translate(-this.centerX, -this.centerY); // Now draw the character directly below the center point of the wheel at the appropriate radius.
+                    // Note in the reversed mode we add the radius to the this.centerY instead of subtract.
+
+                    if (strokeStyle) this.ctx.strokeText(character, this.centerX, this.centerY + radius + lineOffset);
+                    if (fillStyle) this.ctx.fillText(character, this.centerX, this.centerY + radius + lineOffset); // Increment the drawAngle by the angle per character so next loop we rotate
+                    // to the next angle required to draw the character at.
+
+                    drawAngle += anglePerChar;
+                    this.ctx.restore();
+                  }
+                }
+              } else {
+                // Normal direction so do things normally.
+                // Check text orientation, of horizontal then reasonably straight forward, if vertical then a bit more work to do.
+                if (orientation == 'horizontal') {
+                  // Based on the text alignment, set the correct value in the context.
+                  if (alignment == 'inner') this.ctx.textAlign = 'left';else if (alignment == 'outer') this.ctx.textAlign = 'right';else this.ctx.textAlign = 'center'; // Set this too.
+
+                  this.ctx.textBaseline = 'middle'; // Work out the angle around the wheel to draw the text at, which is simply in the middle of the segment the text is for.
+                  // The rotation angle is added in to correct the annoyance with the canvas arc drawing functions which put the 0 degrees at the 3 oclock
+
+                  var textAngle = this.degToRad(seg.endAngle - (seg.endAngle - seg.startAngle) / 2 + this.rotationAngle - 90); // We need to rotate in order to draw the text because it is output horizontally, so to
+                  // place correctly around the wheel for all but a segment at 3 o'clock we need to rotate.
+
+                  this.ctx.save();
+                  this.ctx.translate(this.centerX, this.centerY);
+                  this.ctx.rotate(textAngle);
+                  this.ctx.translate(-this.centerX, -this.centerY); // --------------------------
+                  // Draw the text based on its alignment adding margin if inner or outer.
+
+                  if (alignment == 'inner') {
+                    // Inner means that the text is aligned with the inner of the wheel. If looking at a segment in in the 3 o'clock position
+                    // it would look like the text is left aligned within the segment.
+                    // Because the segments are smaller towards the inner of the wheel, in order for the text to fit is is a good idea that
+                    // a margin is added which pushes the text towards the outer a bit.
+                    // The inner radius also needs to be taken in to account as when inner aligned.
+                    // If fillstyle is set the draw the text filled in.
+                    if (fillStyle) this.ctx.fillText(lines[i], this.centerX + this.innerRadius + margin, this.centerY + lineOffset); // If stroke style is set draw the text outline.
+
+                    if (strokeStyle) this.ctx.strokeText(lines[i], this.centerX + this.innerRadius + margin, this.centerY + lineOffset);
+                  } else if (alignment == 'outer') {
+                    // Outer means the text is aligned with the outside of the wheel, so if looking at a segment in the 3 o'clock position
+                    // it would appear the text is right aligned. To position we add the radius of the wheel in to the equation
+                    // and subtract the margin this time, rather than add it.
+                    // I don't understand why, but in order of the text to render correctly with stroke and fill, the stroke needs to
+                    // come first when drawing outer, rather than second when doing inner.
+                    if (fillStyle) this.ctx.fillText(lines[i], this.centerX + this.outerRadius - margin, this.centerY + lineOffset); // If fillstyle the fill the text.
+
+                    if (strokeStyle) this.ctx.strokeText(lines[i], this.centerX + this.outerRadius - margin, this.centerY + lineOffset);
+                  } else {
+                    // In this case the text is to drawn centred in the segment.
+                    // Typically no margin is required, however even though centred the text can look closer to the inner of the wheel
+                    // due to the way the segments narrow in (is optical effect), so if a margin is specified it is placed on the inner
+                    // side so the text is pushed towards the outer.
+                    // If stoke style the stroke the text.
+                    if (fillStyle) this.ctx.fillText(lines[i], this.centerX + this.innerRadius + (this.outerRadius - this.innerRadius) / 2 + margin, this.centerY + lineOffset); // If fillstyle the fill the text.
+
+                    if (strokeStyle) this.ctx.strokeText(lines[i], this.centerX + this.innerRadius + (this.outerRadius - this.innerRadius) / 2 + margin, this.centerY + lineOffset);
+                  } // Restore the context so that wheel is returned to original position.
+
+
+                  this.ctx.restore();
+                } else if (orientation == 'vertical') {
+                  // If vertical then we need to do this ourselves because as far as I am aware there is no option built in to html canvas
+                  // which causes the text to draw downwards or upwards one character after another.
+                  // In this case the textAlign is always center, but the baseline is either top or bottom
+                  // depending on if inner or outer alignment has been specified.
+                  this.ctx.textAlign = 'center';
+                  if (alignment == 'inner') this.ctx.textBaseline = 'bottom';else if (alignment == 'outer') this.ctx.textBaseline = 'top';else this.ctx.textBaseline = 'middle'; // The angle to draw the text at is halfway between the end and the starting angle of the segment.
+
+                  var textAngle = seg.endAngle - (seg.endAngle - seg.startAngle) / 2; // Ensure the rotation angle of the wheel is added in, otherwise the test placement won't match
+                  // the segments they are supposed to be for.
+
+                  textAngle += this.rotationAngle; // Rotate so can begin to place the text.
+
+                  this.ctx.save();
+                  this.ctx.translate(this.centerX, this.centerY);
+                  this.ctx.rotate(this.degToRad(textAngle));
+                  this.ctx.translate(-this.centerX, -this.centerY); // Work out the position to start drawing in based on the alignment.
+                  // If outer then when considering a segment at the 12 o'clock position want to start drawing down from the top of the wheel.
+
+                  if (alignment == 'outer') var yPos = this.centerY - this.outerRadius + margin;else if (alignment == 'inner') var yPos = this.centerY - this.innerRadius - margin; // We need to know how much to move the y axis each time.
+                  // This is not quite simply the font size as that puts a larger gap in between the letters
+                  // than expected, especially with monospace fonts. I found that shaving a little off makes it look "right".
+
+                  var yInc = fontSize - fontSize / 9; // Loop though and output the characters.
+
+                  if (alignment == 'outer') {
+                    // For this alignment we draw down from the top of a segment at the 12 o'clock position to simply
+                    // loop though the characters in order.
+                    for (var c = 0; c < lines[i].length; c++) {
+                      character = lines[i].charAt(c);
+                      if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos);
+                      if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos);
+                      yPos += yInc;
+                    }
+                  } else if (alignment == 'inner') {
+                    // Here we draw from the inner of the wheel up, but in order for the letters in the text text to
+                    // remain in the correct order when reading, we actually need to loop though the text characters backwards.
+                    for (var c = lines[i].length - 1; c >= 0; c--) {
+                      character = lines[i].charAt(c);
+                      if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos);
+                      if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos);
+                      yPos -= yInc;
+                    }
+                  } else if (alignment == 'center') {
+                    // This is the most complex of the three as we need to draw the text top down centred between the inner and outer of the wheel.
+                    // So logically we have to put the middle character of the text in the center then put the others each side of it.
+                    // In reality that is a really bad way to do it, we can achieve the same if not better positioning using a
+                    // variation on the method used for the rendering of outer aligned text once we have figured out the height of the text.
+                    // If there is more than one character in the text then an adjustment to the position needs to be done.
+                    // What we are aiming for is to position the center of the text at the center point between the inner and outer radius.
+                    var centerAdjustment = 0;
+
+                    if (lines[i].length > 1) {
+                      centerAdjustment = yInc * (lines[i].length - 1) / 2;
+                    } // Now work out where to start rendering the string. This is half way between the inner and outer of the wheel, with the
+                    // centerAdjustment included to correctly position texts with more than one character over the center.
+                    // If there is a margin it is used to push the text away from the center of the wheel.
+
+
+                    var yPos = this.centerY - this.innerRadius - (this.outerRadius - this.innerRadius) / 2 - centerAdjustment - margin; // Now loop and draw just like outer text rendering.
+
+                    for (var c = 0; c < lines[i].length; c++) {
+                      character = lines[i].charAt(c);
+                      if (fillStyle) this.ctx.fillText(character, this.centerX + lineOffset, yPos);
+                      if (strokeStyle) this.ctx.strokeText(character, this.centerX + lineOffset, yPos);
+                      yPos += yInc;
+                    }
+                  }
+
+                  this.ctx.restore();
+                } else if (orientation == 'curved') {
+                  // There is no built in canvas function to draw text around an arc, so
+                  // we need to do this ourselves.
+                  var radius = 0; // Set the alignment of the text - inner, outer, or center by calculating
+                  // how far out from the center point of the wheel the text is drawn.
+
+                  if (alignment == 'inner') {
+                    // When alignment is inner the radius is the innerRadius plus any margin.
+                    radius = this.innerRadius + margin;
+                    this.ctx.textBaseline = 'bottom'; // We need to adjust the radius in this case to take in to multiline text.
+                    // In this case the radius needs to be further out, not at the inner radius.
+
+                    radius += fontSize * (lines.length - 1);
+                  } else if (alignment == 'outer') {
+                    // Outer it is the outerRadius minus any margin.
+                    radius = this.outerRadius - margin;
+                    this.ctx.textBaseline = 'top';
+                  } else if (alignment == 'center') {
+                    // When center we want the text halfway between the inner and outer radius.
+                    radius = this.innerRadius + margin + (this.outerRadius - this.innerRadius) / 2;
+                    this.ctx.textBaseline = 'middle';
+                  } // Set the angle to increment by when looping though and outputting the characters in the text
+                  // as we do this by rotating the wheel small amounts adding each character.
+
+
+                  var anglePerChar = 0;
+                  var drawAngle = 0; // If more than one character in the text then...
+
+                  if (lines[i].length > 1) {
+                    // Text is drawn from the left.
+                    this.ctx.textAlign = 'left'; // Work out how much angle the text rendering loop below needs to rotate by for each character to render them next to each other.
+                    // I have discovered that 4 * the font size / 10 at 100px radius is the correct spacing for between the characters
+                    // using a monospace font, non monospace may look a little odd as in there will appear to be extra spaces between chars.
+
+                    anglePerChar = 4 * (fontSize / 10); // Work out what percentage the radius the text will be drawn at is of 100px.
+
+                    radiusPercent = 100 / radius; // Then use this to scale up or down the anglePerChar value.
+                    // When the radius is less than 100px we need more angle between the letters, when radius is greater (so the text is further
+                    // away from the center of the wheel) the angle needs to be less otherwise the characters will appear further apart.
+
+                    anglePerChar = anglePerChar * radiusPercent; // Next we want the text to be drawn in the middle of the segment, without this it would start at the beginning of the segment.
+                    // To do this we need to work out how much arc the text will take up in total then subtract half of this from the center
+                    // of the segment so that it sits centred.
+
+                    totalArc = anglePerChar * lines[i].length; // Now set initial draw angle to half way between the start and end of the segment.
+
+                    drawAngle = seg.startAngle + ((seg.endAngle - seg.startAngle) / 2 - totalArc / 2);
+                  } else {
+                    // The initial draw angle is the center of the segment when only one character.
+                    drawAngle = seg.startAngle + (seg.endAngle - seg.startAngle) / 2; // To ensure is dead-center the text alignment also needs to be centred.
+
+                    this.ctx.textAlign = 'center';
+                  } // ----------------------
+                  // Adjust the initial draw angle as needed to take in to account the rotationAngle of the wheel.
+
+
+                  drawAngle += this.rotationAngle; // ----------------------
+                  // Now the drawing itself.
+                  // Loop for each character in the text.
+
+                  for (c = 0; c < lines[i].length; c++) {
+                    this.ctx.save();
+                    character = lines[i].charAt(c); // Rotate the wheel to the draw angle as we need to add the character at this location.
+
+                    this.ctx.translate(this.centerX, this.centerY);
+                    this.ctx.rotate(this.degToRad(drawAngle));
+                    this.ctx.translate(-this.centerX, -this.centerY); // Now draw the character directly above the center point of the wheel at the appropriate radius.
+
+                    if (strokeStyle) this.ctx.strokeText(character, this.centerX, this.centerY - radius + lineOffset);
+                    if (fillStyle) this.ctx.fillText(character, this.centerX, this.centerY - radius + lineOffset); // Increment the drawAngle by the angle per character so next loop we rotate
+                    // to the next angle required to draw the character at.
+
+                    drawAngle += anglePerChar;
+                    this.ctx.restore();
+                  }
+                }
+              } // Increment this ready for the next time.
+
+
+              lineOffset += fontSize;
+            }
+          } // Restore so all text options are reset ready for the next text.
+
+
+          this.ctx.restore();
+        }
+      }
+    } // ====================================================================================================================
+    // Converts degrees to radians which is what is used when specifying the angles on HTML5 canvas arcs.
+    // ====================================================================================================================
+
+  }, {
+    key: "degToRad",
+    value: function degToRad(d) {
+      return d * 0.0174532925199432957;
+    } // ====================================================================================================================
+    // This function sets the center location of the wheel, saves a function call to set x then y.
+    // ====================================================================================================================
+
+  }, {
+    key: "setCenter",
+    value: function setCenter(x, y) {
+      this.centerX = x;
+      this.centerY = y;
+    } // ====================================================================================================================
+    // This function allows a segment to be added to the wheel. The position of the segment is optional,
+    // if not specified the new segment will be added to the end of the wheel.
+    // ====================================================================================================================
+
+  }, {
+    key: "addSegment",
+    value: function addSegment(options, position) {
+      // Create a new segment object passing the options in.
+      newSegment = new Segment(options); // Increment the numSegments property of the class since new segment being added.
+
+      this.numSegments++;
+      var segmentPos; // Work out where to place the segment, the default is simply as a new segment at the end of the wheel.
+
+      if (typeof position !== 'undefined') {
+        // Because we need to insert the segment at this position, not overwrite it, we need to move all segments after this
+        // location along one in the segments array, before finally adding this new segment at the specified location.
+        for (var x = this.numSegments; x > position; x--) {
+          this.segments[x] = this.segments[x - 1];
+        }
+
+        this.segments[position] = newSegment;
+        segmentPos = position;
+      } else {
+        this.segments[this.numSegments] = newSegment;
+        segmentPos = this.numSegments;
+      } // Since a segment has been added the segment sizes need to be re-computed so call function to do this.
+
+
+      this.updateSegmentSizes(); // Return the segment object just created in the wheel (JavaScript will return it by reference), so that
+      // further things can be done with it by the calling code if desired.
+
+      return this.segments[segmentPos];
+    } // ====================================================================================================================
+    // This function must be used if the canvasId is changed as we also need to get the context of the new canvas.
+    // ====================================================================================================================
+
+  }, {
+    key: "setCanvasId",
+    value: function setCanvasId(canvasId) {
+      if (canvasId) {
+        this.canvasId = canvasId;
+        this.canvas = document.getElementById(this.canvasId);
+
+        if (this.canvas) {
+          this.ctx = this.canvas.getContext('2d');
+        }
+      } else {
+        this.canvasId = null;
+        this.ctx = null;
+        this.canvas = null;
+      }
+    } // ====================================================================================================================
+    // This function deletes the specified segment from the wheel by removing it from the segments array.
+    // It then sorts out the other bits such as update of the numSegments.
+    // ====================================================================================================================
+
+  }, {
+    key: "deleteSegment",
+    value: function deleteSegment(position) {
+      // There needs to be at least one segment in order for the wheel to draw, so only allow delete if there
+      // is more than one segment currently left in the wheel.
+      //++ check that specifying a position that does not exist - say 10 in a 6 segment wheel does not cause issues.
+      if (this.numSegments > 1) {
+        // If the position of the segment to remove has been specified.
+        if (typeof position !== 'undefined') {
+          // The array is to be shortened so we need to move all segments after the one
+          // to be removed down one so there is no gap.
+          for (var x = position; x < this.numSegments; x++) {
+            this.segments[x] = this.segments[x + 1];
+          }
+        } // Unset the last item in the segments array since there is now one less.
+
+
+        this.segments[this.numSegments] = undefined; // Decrement the number of segments,
+        // then call function to update the segment sizes.
+
+        this.numSegments--;
+        this.updateSegmentSizes();
+      }
+    } // ====================================================================================================================
+    // This function takes the x an the y of a mouse event, such as click or move, and converts the x and the y in to
+    // co-ordinates on the canvas as the raw values are the x and the y from the top and left of the user's browser.
+    // ====================================================================================================================
+
+  }, {
+    key: "windowToCanvas",
+    value: function windowToCanvas(x, y) {
+      var bbox = this.canvas.getBoundingClientRect();
+      return {
+        x: Math.floor(x - bbox.left * (this.canvas.width / bbox.width)),
+        y: Math.floor(y - bbox.top * (this.canvas.height / bbox.height))
+      };
+    } // ====================================================================================================================
+    // This function returns the segment object located at the specified x and y coordinates on the canvas.
+    // It is used to allow things to be done with a segment clicked by the user, such as highlight, display or change some values, etc.
+    // ====================================================================================================================
+
+  }, {
+    key: "getSegmentAt",
+    value: function getSegmentAt(x, y) {
+      var foundSegment = null; // Call function to return segment number.
+
+      var segmentNumber = this.getSegmentNumberAt(x, y); // If found one then set found segment to pointer to the segment object.
+
+      if (segmentNumber !== null) {
+        foundSegment = this.segments[segmentNumber];
+      }
+
+      return foundSegment;
+    } // ====================================================================================================================
+    // Returns the number of the segment clicked instead of the segment object.
+    // ====================================================================================================================
+
+  }, {
+    key: "getSegmentNumberAt",
+    value: function getSegmentNumberAt(x, y) {
+      // KNOWN ISSUE: this does not work correct if the canvas is scaled using css, or has padding, border.
+      // @TODO see if can find a solution at some point, check windowToCanvas working as needed, then below.
+      // Call function above to convert the raw x and y from the user's browser to canvas coordinates
+      // i.e. top and left is top and left of canvas, not top and left of the user's browser.
+      var loc = this.windowToCanvas(x, y); // ------------------------------------------
+      // Now start the process of working out the segment clicked.
+      // First we need to figure out the angle of an imaginary line between the centerX and centerY of the wheel and
+      // the X and Y of the location (for example a mouse click).
+
+      var topBottom;
+      var leftRight;
+      var adjacentSideLength;
+      var oppositeSideLength;
+      var hypotenuseSideLength; // We will use right triangle maths with the TAN function.
+      // The start of the triangle is the wheel center, the adjacent side is along the x axis, and the opposite side is along the y axis.
+      // We only ever use positive numbers to work out the triangle and the center of the wheel needs to be considered as 0 for the numbers
+      // in the maths which is why there is the subtractions below. We also remember what quadrant of the wheel the location is in as we
+      // need this information later to add 90, 180, 270 degrees to the angle worked out from the triangle to get the position around a 360 degree wheel.
+
+      if (loc.x > this.centerX) {
+        adjacentSideLength = loc.x - this.centerX;
+        leftRight = 'R'; // Location is in the right half of the wheel.
+      } else {
+        adjacentSideLength = this.centerX - loc.x;
+        leftRight = 'L'; // Location is in the left half of the wheel.
+      }
+
+      if (loc.y > this.centerY) {
+        oppositeSideLength = loc.y - this.centerY;
+        topBottom = 'B'; // Bottom half of wheel.
+      } else {
+        oppositeSideLength = this.centerY - loc.y;
+        topBottom = 'T'; // Top Half of wheel.
+      } // Now divide opposite by adjacent to get tan value.
+
+
+      var tanVal = oppositeSideLength / adjacentSideLength; // Use the tan function and convert results to degrees since that is what we work with.
+
+      var result = Math.atan(tanVal) * 180 / Math.PI;
+      var locationAngle = 0; // We also need the length of the hypotenuse as later on we need to compare this to the outerRadius of the segment / circle.
+
+      hypotenuseSideLength = Math.sqrt(oppositeSideLength * oppositeSideLength + adjacentSideLength * adjacentSideLength); // ------------------------------------------
+      // Now to make sense around the wheel we need to alter the values based on if the location was in top or bottom half
+      // and also right or left half of the wheel, by adding 90, 180, 270 etc. Also for some the initial locationAngle needs to be inverted.
+
+      if (topBottom == 'T' && leftRight == 'R') {
+        locationAngle = Math.round(90 - result);
+      } else if (topBottom == 'B' && leftRight == 'R') {
+        locationAngle = Math.round(result + 90);
+      } else if (topBottom == 'B' && leftRight == 'L') {
+        locationAngle = Math.round(90 - result + 180);
+      } else if (topBottom == 'T' && leftRight == 'L') {
+        locationAngle = Math.round(result + 270);
+      } // ------------------------------------------
+      // And now we have to adjust to make sense when the wheel is rotated from the 0 degrees either
+      // positive or negative and it can be many times past 360 degrees.
+
+
+      if (this.rotationAngle != 0) {
+        var rotatedPosition = this.getRotationPosition(); // So we have this, now we need to alter the locationAngle as a result of this.
+
+        locationAngle = locationAngle - rotatedPosition; // If negative then take the location away from 360.
+
+        if (locationAngle < 0) {
+          locationAngle = 360 - Math.abs(locationAngle);
+        }
+      } // ------------------------------------------
+      // OK, so after all of that we have the angle of a line between the centerX and centerY of the wheel and
+      // the X and Y of the location on the canvas where the mouse was clicked. Now time to work out the segment
+      // this corresponds to. We can use the segment start and end angles for this.
+
+
+      var foundSegmentNumber = null;
+
+      for (var x = 1; x <= this.numSegments; x++) {
+        // Due to segments sharing start and end angles, if line is clicked will pick earlier segment.
+        if (locationAngle >= this.segments[x].startAngle && locationAngle <= this.segments[x].endAngle) {
+          // To ensure that a click anywhere on the canvas in the segment direction will not cause a
+          // segment to be matched, as well as the angles, we need to ensure the click was within the radius
+          // of the segment (or circle if no segment radius).
+          // If the hypotenuseSideLength (length of location from the center of the wheel) is with the radius
+          // then we can assign the segment to the found segment and break out the loop.
+          // Have to take in to account hollow wheels (doughnuts) so check is greater than innerRadius as
+          // well as less than or equal to the outerRadius of the wheel.
+          if (hypotenuseSideLength >= this.innerRadius && hypotenuseSideLength <= this.outerRadius) {
+            foundSegmentNumber = x;
+            break;
+          }
+        }
+      } // Finally return the number.
+
+
+      return foundSegmentNumber;
+    } // ====================================================================================================================
+    // Returns a reference to the segment that is at the location of the pointer on the wheel.
+    // ====================================================================================================================
+
+  }, {
+    key: "getIndicatedSegment",
+    value: function getIndicatedSegment() {
+      // Call function below to work this out and return the prizeNumber.
+      var prizeNumber = this.getIndicatedSegmentNumber(); // Then simply return the segment in the segments array at that position.
+
+      return this.segments[prizeNumber];
+    } // ====================================================================================================================
+    // Works out the segment currently pointed to by the pointer of the wheel. Normally called when the spinning has stopped
+    // to work out the prize the user has won. Returns the number of the segment in the segments array.
+    // ====================================================================================================================
+
+  }, {
+    key: "getIndicatedSegmentNumber",
+    value: function getIndicatedSegmentNumber() {
+      var indicatedPrize = 0;
+      var rawAngle = this.getRotationPosition(); // Now we have the angle of the wheel, but we need to take in to account where the pointer is because
+      // will not always be at the 12 o'clock 0 degrees location.
+
+      var relativeAngle = Math.floor(this.pointerAngle - rawAngle);
+
+      if (relativeAngle < 0) {
+        relativeAngle = 360 - Math.abs(relativeAngle);
+      } // Now we can work out the prize won by seeing what prize segment startAngle and endAngle the relativeAngle is between.
+
+
+      for (var x = 1; x < this.segments.length; x++) {
+        if (relativeAngle >= this.segments[x]['startAngle'] && relativeAngle <= this.segments[x]['endAngle']) {
+          indicatedPrize = x;
+          break;
+        }
+      }
+
+      return indicatedPrize;
+    } // ====================================================================================================================
+    // Works out what Pin around the wheel is considered the current one which is the one which just passed the pointer.
+    // Used to work out if the pin has changed during the animation to tigger a sound.
+    // ====================================================================================================================
+
+  }, {
+    key: "getCurrentPinNumber",
+    value: function getCurrentPinNumber() {
+      var currentPin = 0;
+
+      if (this.pins) {
+        var rawAngle = this.getRotationPosition(); // Now we have the angle of the wheel, but we need to take in to account where the pointer is because
+        // will not always be at the 12 o'clock 0 degrees location.
+
+        var relativeAngle = Math.floor(this.pointerAngle - rawAngle);
+
+        if (relativeAngle < 0) {
+          relativeAngle = 360 - Math.abs(relativeAngle);
+        } // Work out the angle of the pins as this is simply 360 / the number of pins as they space evenly around.
+
+
+        var pinSpacing = 360 / this.pins.number;
+        var totalPinAngle = 0; // Now we can work out the pin by seeing what pins relativeAngle is between.
+
+        for (var x = 0; x < this.pins.number; x++) {
+          if (relativeAngle >= totalPinAngle && relativeAngle <= totalPinAngle + pinSpacing) {
+            currentPin = x;
+            break;
+          }
+
+          totalPinAngle += pinSpacing;
+        } // Now if rotating clockwise we must add 1 to the current pin as we want the pin which has just passed
+        // the pointer to be returned as the current pin, not the start of the one we are between.
+
+
+        if (this.animation.direction == 'clockwise') {
+          currentPin++;
+
+          if (currentPin > this.pins.number) {
+            currentPin = 0;
+          }
+        }
+      }
+
+      return currentPin;
+    } // ==================================================================================================================================================
+    // Returns the rotation angle of the wheel corrected to 0-360 (i.e. removes all the multiples of 360).
+    // ==================================================================================================================================================
+
+  }, {
+    key: "getRotationPosition",
+    value: function getRotationPosition() {
+      var rawAngle = this.rotationAngle; // Get current rotation angle of wheel.
+      // If positive work out how many times past 360 this is and then take the floor of this off the rawAngle.
+
+      if (rawAngle >= 0) {
+        if (rawAngle > 360) {
+          // Get floor of the number of times past 360 degrees.
+          var timesPast360 = Math.floor(rawAngle / 360); // Take all this extra off to get just the angle 0-360 degrees.
+
+          rawAngle = rawAngle - 360 * timesPast360;
+        }
+      } else {
+        // Is negative, need to take off the extra then convert in to 0-360 degree value
+        // so if, for example, was -90 then final value will be (360 - 90) = 270 degrees.
+        if (rawAngle < -360) {
+          var timesPast360 = Math.ceil(rawAngle / 360); // Ceil when negative.
+
+          rawAngle = rawAngle - 360 * timesPast360; // Is minus because dealing with negative.
+        }
+
+        rawAngle = 360 + rawAngle; // Make in the range 0-360. Is plus because raw is still negative.
+      }
+
+      return rawAngle;
+    } // ==================================================================================================================================================
+    // This function starts the wheel's animation by using the properties of the animation object of of the wheel to begin the a greensock tween.
+    // ==================================================================================================================================================
+
+  }, {
+    key: "startAnimation",
+    value: function startAnimation() {
+      if (this.animation) {
+        // Call function to compute the animation properties.
+        this.computeAnimation(); // Set this global variable to this object as an external function is required to call the draw() function on the wheel
+        // each loop of the animation as Greensock cannot call the draw function directly on this class.
+
+        winwheelToDrawDuringAnimation = this; // Put together the properties of the greesock animation.
+
+        var properties = new Array(null);
+        properties[this.animation.propertyName] = this.animation.propertyValue; // Here we set the property to be animated and its value.
+
+        properties['yoyo'] = this.animation.yoyo; // Set others.
+
+        properties['repeat'] = this.animation.repeat;
+        properties['ease'] = this.animation.easing;
+        properties['onUpdate'] = winwheelAnimationLoop; // Call function to re-draw the canvas.
+
+        properties['onComplete'] = winwheelStopAnimation; // Call function to perform actions when animation has finished.
+        // Do the tween animation passing the properties from the animation object as an array of key => value pairs.
+        // Keep reference to the tween object in the wheel as that allows pausing, resuming, and stopping while the animation is still running.
+
+        this.tween = gsap__WEBPACK_IMPORTED_MODULE_0__["TweenMax"].to(this, this.animation.duration, properties);
+      }
+    } // ==================================================================================================================================================
+    // Use same function function which needs to be outside the class for the callback when it stops because is finished.
+    // ==================================================================================================================================================
+
+  }, {
+    key: "stopAnimation",
+    value: function stopAnimation(canCallback) {
+      // @TODO as part of multiwheel, need to work out how to stop the tween for a single wheel but allow others to continue.
+      // We can kill the animation using our tween object.
+      if (winwheelToDrawDuringAnimation) {
+        winwheelToDrawDuringAnimation.tween.kill(); // Call the callback function.
+
+        winwheelStopAnimation(canCallback);
+      } // Ensure the winwheelToDrawDuringAnimation is set to this class.
+
+
+      winwheelToDrawDuringAnimation = this;
+    } // ==================================================================================================================================================
+    // Pause animation by telling tween to pause.
+    // ==================================================================================================================================================
+
+  }, {
+    key: "pauseAnimation",
+    value: function pauseAnimation() {
+      if (this.tween) {
+        this.tween.pause();
+      }
+    } // ==================================================================================================================================================
+    // Resume the animation by telling tween to continue playing it.
+    // ==================================================================================================================================================
+
+  }, {
+    key: "resumeAnimation",
+    value: function resumeAnimation() {
+      if (this.tween) {
+        this.tween.play();
+      }
+    } // ====================================================================================================================
+    // Called at the beginning of the startAnimation function and computes the values needed to do the animation
+    // before it starts. This allows the developer to change the animation properties after the wheel has been created
+    // and have the animation use the new values of the animation properties.
+    // ====================================================================================================================
+
+  }, {
+    key: "computeAnimation",
+    value: function computeAnimation() {
+      if (this.animation) {
+        // Set the animation parameters for the specified animation type including some sensible defaults if values have not been specified.
+        if (this.animation.type == 'spinOngoing') {
+          // When spinning the rotationAngle is the wheel property which is animated.
+          this.animation.propertyName = 'rotationAngle';
+
+          if (this.animation.spins == null) {
+            this.animation.spins = 5;
+          }
+
+          if (this.animation.repeat == null) {
+            this.animation.repeat = -1; // -1 means it will repeat forever.
+          }
+
+          if (this.animation.easing == null) {
+            this.animation.easing = 'Linear.easeNone';
+          }
+
+          if (this.animation.yoyo == null) {
+            this.animation.yoyo = false;
+          } // We need to calculate the propertyValue and this is the spins * 360 degrees.
+
+
+          this.animation.propertyValue = this.animation.spins * 360; // If the direction is anti-clockwise then make the property value negative.
+
+          if (this.animation.direction == 'anti-clockwise') {
+            this.animation.propertyValue = 0 - this.animation.propertyValue;
+          }
+        } else if (this.animation.type == 'spinToStop') {
+          // Spin to stop the rotation angle is affected.
+          this.animation.propertyName = 'rotationAngle';
+
+          if (this.animation.spins == null) {
+            this.animation.spins = 5;
+          }
+
+          if (this.animation.repeat == null) {
+            this.animation.repeat = 0; // As this is spin to stop we don't normally want it repeated.
+          }
+
+          if (this.animation.easing == null) {
+            this.animation.easing = 'Power3.easeOut'; // This easing is fast start and slows over time.
+          }
+
+          if (this.animation.stopAngle == null) {
+            // If the stop angle has not been specified then pick random between 0 and 359.
+            this.animation._stopAngle = Math.floor(Math.random() * 359);
+          } else {
+            // We need to set the internal to 360 minus what the user entered because the wheel spins past 0 without
+            // this it would indicate the prize on the opposite side of the wheel. We aslo need to take in to account
+            // the pointerAngle as the stop angle needs to be relative to that.
+            this.animation._stopAngle = 360 - this.animation.stopAngle + this.pointerAngle;
+          }
+
+          if (this.animation.yoyo == null) {
+            this.animation.yoyo = false;
+          } // The property value is the spins * 360 then plus or minus the stopAngle depending on if the rotation is clockwise or anti-clockwise.
+
+
+          this.animation.propertyValue = this.animation.spins * 360;
+
+          if (this.animation.direction == 'anti-clockwise') {
+            this.animation.propertyValue = 0 - this.animation.propertyValue; // Also if the value is anti-clockwise we need subtract the stopAngle (but to get the wheel to stop in the correct
+            // place this is 360 minus the stop angle as the wheel is rotating backwards).
+
+            this.animation.propertyValue -= 360 - this.animation._stopAngle;
+          } else {
+            // Add the stopAngle to the propertyValue as the wheel must rotate around to this place and stop there.
+            this.animation.propertyValue += this.animation._stopAngle;
+          }
+        } else if (this.animation.type == 'spinAndBack') {
+          // This is basically is a spin for a number of times then the animation reverses and goes back to start.
+          // If a repeat is specified then this can be used to make the wheel "rock" left and right.
+          // Again this is a spin so the rotationAngle the property which is animated.
+          this.animation.propertyName = 'rotationAngle';
+
+          if (this.animation.spins == null) {
+            this.animation.spins = 5;
+          }
+
+          if (this.animation.repeat == null) {
+            this.animation.repeat = 1; // This needs to be set to at least 1 in order for the animation to reverse.
+          }
+
+          if (this.animation.easing == null) {
+            this.animation.easing = 'Power2.easeInOut'; // This is slow at the start and end and fast in the middle.
+          }
+
+          if (this.animation.yoyo == null) {
+            this.animation.yoyo = true; // This needs to be set to true to have the animation reverse back like a yo-yo.
+          }
+
+          if (this.animation.stopAngle == null) {
+            this.animation._stopAngle = 0;
+          } else {
+            // We need to set the internal to 360 minus what the user entered
+            // because the wheel spins past 0 without this it would indicate the
+            // prize on the opposite side of the wheel.
+            this.animation._stopAngle = 360 - this.animation.stopAngle;
+          } // The property value is the spins * 360 then plus or minus the stopAngle depending on if the rotation is clockwise or anti-clockwise.
+
+
+          this.animation.propertyValue = this.animation.spins * 360;
+
+          if (this.animation.direction == 'anti-clockwise') {
+            this.animation.propertyValue = 0 - this.animation.propertyValue; // Also if the value is anti-clockwise we need subtract the stopAngle (but to get the wheel to stop in the correct
+            // place this is 360 minus the stop angle as the wheel is rotating backwards).
+
+            this.animation.propertyValue -= 360 - this.animation._stopAngle;
+          } else {
+            // Add the stopAngle to the propertyValue as the wheel must rotate around to this place and stop there.
+            this.animation.propertyValue += this.animation._stopAngle;
+          }
+        } else if (this.animation.type == 'custom') {// Do nothing as all values must be set by the developer in the parameters
+          // especially the propertyName and propertyValue.
+        }
+      }
+    } // ====================================================================================================================
+    // Calculates and returns a random stop angle inside the specified segment number. Value will always be 1 degree inside
+    // the start and end of the segment to avoid issue with the segment overlap.
+    // ====================================================================================================================
+
+  }, {
+    key: "getRandomForSegment",
+    value: function getRandomForSegment(segmentNumber) {
+      var stopAngle = 0;
+
+      if (segmentNumber) {
+        if (typeof this.segments[segmentNumber] !== 'undefined') {
+          var startAngle = this.segments[segmentNumber].startAngle;
+          var endAngle = this.segments[segmentNumber].endAngle;
+          var range = endAngle - startAngle - 2;
+
+          if (range > 0) {
+            stopAngle = startAngle + 1 + Math.floor(Math.random() * range);
+          } else {
+            console.log('Segment size is too small to safely get random angle inside it');
+          }
+        } else {
+          console.log('Segment ' + segmentNumber + ' undefined');
+        }
+      } else {
+        console.log('Segment number not specified');
+      }
+
+      return stopAngle;
+    }
+  }]);
+
+  return Winwheel;
+}(); // ====================================================================================================================
+// Class for the wheel pins.
+// ====================================================================================================================
+
+var Pin = function Pin(options) {
+  _classCallCheck(this, Pin);
+
+  var defaultOptions = {
+    visible: true,
+    // In future there might be some functionality related to the pins even if they are not displayed.
+    number: 36,
+    // The number of pins. These are evenly distributed around the wheel.
+    outerRadius: 3,
+    // Radius of the pins which determines their size.
+    fillStyle: 'grey',
+    // Fill colour of the pins.
+    strokeStyle: 'black',
+    // Line colour of the pins.
+    lineWidth: 1,
+    // Line width of the pins.
+    margin: 3 // The space between outside edge of the wheel and the pins.
+    // Now loop through the default options and create properties of this class set to the value for
+    // the option passed in if a value was, or if not then set the value of the default.
+
+  };
+
+  for (var key in defaultOptions) {
+    if (options != null && typeof options[key] !== 'undefined') this[key] = options[key];else this[key] = defaultOptions[key];
+  } // Also loop though the passed in options and add anything specified not part of the class in to it as a property.
+
+
+  if (options != null) {
+    for (var key in options) {
+      if (typeof this[key] === 'undefined') {
+        this[key] = options[key];
+      }
+    }
+  }
+}; // ====================================================================================================================
+// Class for the wheel spinning animation which like a segment becomes a property of the wheel.
+// ====================================================================================================================
+
+var Animation = function Animation(options) {
+  _classCallCheck(this, Animation);
+
+  // Most of these options are null because the defaults are different depending on the type of animation.
+  var defaultOptions = {
+    type: 'spinOngoing',
+    // For now there are only supported types are spinOngoing (continuous), spinToStop, spinAndBack, custom.
+    direction: 'clockwise',
+    // clockwise or anti-clockwise.
+    propertyName: null,
+    // The name of the winning wheel property to be affected by the animation.
+    propertyValue: null,
+    // The value the property is to be set to at the end of the animation.
+    duration: 10,
+    // Duration of the animation.
+    yoyo: false,
+    // If the animation is to reverse back again i.e. yo-yo.
+    repeat: null,
+    // The number of times the animation is to repeat, -1 will cause it to repeat forever.
+    easing: null,
+    // The easing to use for the animation, default is the best for spin to stop. Use Linear.easeNone for no easing.
+    stopAngle: null,
+    // Used for spinning, the angle at which the wheel is to stop.
+    spins: null,
+    // Used for spinning, the number of complete 360 degree rotations the wheel is to do.
+    clearTheCanvas: null,
+    // If set to true the canvas will be cleared before the wheel is re-drawn, false it will not, null the animation will abide by the value of this property for the parent wheel object.
+    callbackFinished: null,
+    // Function to callback when the animation has finished.
+    callbackBefore: null,
+    // Function to callback before the wheel is drawn each animation loop.
+    callbackAfter: null,
+    // Function to callback after the wheel is drawn each animation loop.
+    callbackSound: null,
+    // Function to callback if a sound should be triggered on change of segment or pin.
+    soundTrigger: 'segment' // Sound trigger type. Default is segment which triggers when segment changes, can be pin if to trigger when pin passes the pointer.
+    // Now loop through the default options and create properties of this class set to the value for
+    // the option passed in if a value was, or if not then set the value of the default.
+
+  };
+
+  for (var key in defaultOptions) {
+    if (options != null && typeof options[key] !== 'undefined') this[key] = options[key];else this[key] = defaultOptions[key];
+  } // Also loop though the passed in options and add anything specified not part of the class in to it as a property.
+
+
+  if (options != null) {
+    for (var key in options) {
+      if (typeof this[key] === 'undefined') {
+        this[key] = options[key];
+      }
+    }
+  }
+}; // ====================================================================================================================
+// Class for segments. When creating a json of options can be passed in.
+// ====================================================================================================================
+
+var Segment =
+/*#__PURE__*/
+function () {
+  function Segment(options) {
+    _classCallCheck(this, Segment);
+
+    // Define default options for segments, most are null so that the global defaults for the wheel
+    // are used if the values for a particular segment are not specifically set.
+    var defaultOptions = {
+      size: null,
+      // Leave null for automatic. Valid values are degrees 0-360. Use percentToDegrees function if needed to convert.
+      text: '',
+      // Default is blank.
+      fillStyle: null,
+      // If null for the rest the global default will be used.
+      strokeStyle: null,
+      lineWidth: null,
+      textFontFamily: null,
+      textFontSize: null,
+      textFontWeight: null,
+      textOrientation: null,
+      textAlignment: null,
+      textDirection: null,
+      textMargin: null,
+      textFillStyle: null,
+      textStrokeStyle: null,
+      textLineWidth: null,
+      image: null,
+      // Name/path to the image
+      imageDirection: null,
+      // Direction of the image, can be set globally for the whole wheel.
+      imgData: null // Image object created here and loaded with image data.
+      // Now loop through the default options and create properties of this class set to the value for
+      // the option passed in if a value was, or if not then set the value of the default.
+
+    };
+
+    for (var key in defaultOptions) {
+      if (options != null && typeof options[key] !== 'undefined') this[key] = options[key];else this[key] = defaultOptions[key];
+    } // Also loop though the passed in options and add anything specified not part of the class in to it as a property.
+    // This allows the developer to easily add properties to segments at construction time.
+
+
+    if (options != null) {
+      for (var key in options) {
+        if (typeof this[key] === 'undefined') {
+          this[key] = options[key];
+        }
+      }
+    } // There are 2 additional properties which are set by the code, so need to define them here.
+    // They are not in the default options because they are not something that should be set by the user,
+    // the values are updated every time the updateSegmentSizes() function is called.
+
+
+    this.startAngle = 0;
+    this.endAngle = 0;
+  } // ====================================================================================================================
+  // Changes an image for a segment by setting a callback to render the wheel once the image has loaded.
+  // ====================================================================================================================
+
+
+  _createClass(Segment, [{
+    key: "changeImage",
+    value: function changeImage(image, imageDirection) {
+      // Change image name, blank image data.
+      this.image = image;
+      this.imgData = null; // Set direction.
+
+      if (imageDirection) {
+        this.imageDirection = imageDirection;
+      } // Set imgData to a new image object, change set callback and change src (just like in wheel constructor).
+
+
+      winhweelAlreadyDrawn = false;
+      this.imgData = new Image();
+      this.imgData.onload = winwheelLoadedImage;
+      this.imgData.src = this.image;
+    }
+  }]);
+
+  return Segment;
+}(); // ====================================================================================================================
+// Class that is created as property of the wheel. Draws line from center of the wheel out to edge of canvas to
+// indicate where the code thinks the pointer location is. Helpful to get alignment correct esp when using images.
+// ====================================================================================================================
+
+var PointerGuide = function PointerGuide(options) {
+  _classCallCheck(this, PointerGuide);
+
+  var defaultOptions = {
+    display: false,
+    strokeStyle: 'red',
+    lineWidth: 3 // Now loop through the default options and create properties of this class set to the value for
+    // the option passed in if a value was, or if not then set the value of the default.
+
+  };
+
+  for (var key in defaultOptions) {
+    if (options != null && typeof options[key] !== 'undefined') {
+      this[key] = options[key];
+    } else {
+      this[key] = defaultOptions[key];
+    }
+  }
+}; // ====================================================================================================================
+// This function takes the percent 0-100 and returns the number of degrees 0-360 this equates to.
+// ====================================================================================================================
+
+function winwheelPercentToDegrees(percentValue) {
+  var degrees = 0;
+
+  if (percentValue > 0 && percentValue <= 100) {
+    var divider = percentValue / 100;
+    degrees = 360 * divider;
+  }
+
+  return degrees;
+} // ====================================================================================================================
+// In order for the wheel to be re-drawn during the spin animation the function greesock calls needs to be outside
+// of the class as for some reason it errors if try to call winwheel.draw() directly.
+// ====================================================================================================================
+
+
+function winwheelAnimationLoop() {
+  if (winwheelToDrawDuringAnimation) {
+    // Check if the clearTheCanvas is specified for this animation, if not or it is not false then clear the canvas.
+    if (winwheelToDrawDuringAnimation.animation.clearTheCanvas != false) {
+      winwheelToDrawDuringAnimation.ctx.clearRect(0, 0, winwheelToDrawDuringAnimation.canvas.width, winwheelToDrawDuringAnimation.canvas.height);
+    }
+
+    var callbackBefore = winwheelToDrawDuringAnimation.animation.callbackBefore;
+    var callbackAfter = winwheelToDrawDuringAnimation.animation.callbackAfter; // If there is a callback function which is supposed to be called before the wheel is drawn then do that.
+
+    if (callbackBefore != null) {
+      // If the property is a function then call it, otherwise eval the proptery as javascript code.
+      if (typeof callbackBefore === 'function') {
+        callbackBefore();
+      } else {
+        eval(callbackBefore);
+      }
+    } // Call code to draw the wheel, pass in false as we never want it to clear the canvas as that would wipe anything drawn in the callbackBefore.
+
+
+    winwheelToDrawDuringAnimation.draw(false); // If there is a callback function which is supposed to be called after the wheel has been drawn then do that.
+
+    if (callbackAfter != null) {
+      // If the property is a function then call it, otherwise eval the proptery as javascript code.
+      if (typeof callbackAfter === 'function') {
+        callbackAfter();
+      } else {
+        eval(callbackAfter);
+      }
+    } // If there is a sound callback then call a function which figures out if the sound should be triggered
+    // and if so then call the function specified by the developer.
+
+
+    if (winwheelToDrawDuringAnimation.animation.callbackSound) {
+      winwheelTriggerSound();
+    }
+  }
+} // ====================================================================================================================
+// This function figures out if the callbackSound function needs to be called by working out if the segment or pin
+// has changed since the last animation loop.
+// ====================================================================================================================
+
+
+function winwheelTriggerSound() {
+  // If this property does not exist then add it as a property of the winwheel.
+  if (winwheelToDrawDuringAnimation.hasOwnProperty('_lastSoundTriggerNumber') == false) {
+    winwheelToDrawDuringAnimation._lastSoundTriggerNumber = 0;
+  }
+
+  var callbackSound = winwheelToDrawDuringAnimation.animation.callbackSound;
+  var currentTriggerNumber = 0; // Now figure out if the sound callback should be called depending on the sound trigger type.
+
+  if (winwheelToDrawDuringAnimation.animation.soundTrigger == 'pin') {
+    // So for the pin type we need to work out which pin we are between.
+    currentTriggerNumber = winwheelToDrawDuringAnimation.getCurrentPinNumber();
+  } else {
+    // Check on the change of segment by working out which segment we are in.
+    // We can utilise the existing getIndiatedSegmentNumber function.
+    currentTriggerNumber = winwheelToDrawDuringAnimation.getIndicatedSegmentNumber();
+  } // If the current number is not the same as last time then call the sound callback.
+
+
+  if (currentTriggerNumber != winwheelToDrawDuringAnimation._lastSoundTriggerNumber) {
+    // If the property is a function then call it, otherwise eval the proptery as javascript code.
+    if (typeof callbackSound === 'function') {
+      callbackSound();
+    } else {
+      eval(callbackSound);
+    } // Also update the last sound trigger with the current number.
+
+
+    winwheelToDrawDuringAnimation._lastSoundTriggerNumber = currentTriggerNumber;
+  }
+} // ====================================================================================================================
+// This function is called-back when the greensock animation has finished.
+// ====================================================================================================================
+
+
+var winwheelToDrawDuringAnimation = null; // This global is set by the winwheel class to the wheel object to be re-drawn.
+
+function winwheelStopAnimation(canCallback) {
+  // When the animation is stopped if canCallback is not false then try to call the callback.
+  // false can be passed in to stop the after happening if the animation has been stopped before it ended normally.
+  if (canCallback != false) {
+    var callback = winwheelToDrawDuringAnimation.animation.callbackFinished;
+
+    if (callback != null) {
+      // If the callback is a function then call it, otherwise evaluate the property as javascript code.
+      if (typeof callback === 'function') {
+        // Pass back the indicated segment as 99% of the time you will want to know this to inform the user of their prize.
+        callback(winwheelToDrawDuringAnimation.getIndicatedSegment());
+      } else {
+        eval(callback);
+      }
+    }
+  }
+} // ====================================================================================================================
+// Called after the image has loaded for each segment. Once all the images are loaded it then calls the draw function
+// on the wheel to render it. Used in constructor and also when a segment image is changed.
+// ====================================================================================================================
+
+
+var winhweelAlreadyDrawn = false;
+
+function winwheelLoadedImage() {
+  // Prevent multiple drawings of the wheel which ocurrs without this check due to timing of function calls.
+  if (winhweelAlreadyDrawn == false) {
+    // Set to 0.
+    var winwheelImageLoadCount = 0; // Loop though all the segments of the wheel and check if image data loaded, if so increment counter.
+
+    for (var i = 1; i <= winwheelToDrawDuringAnimation.numSegments; i++) {
+      // Check the image data object is not null and also that the image has completed loading by checking
+      // that a property of it such as the height has some sort of true value.
+      if (winwheelToDrawDuringAnimation.segments[i].imgData != null && winwheelToDrawDuringAnimation.segments[i].imgData.height) {
+        winwheelImageLoadCount++;
+      }
+    } // If number of images loaded matches the segments then all the images for the wheel are loaded.
+
+
+    if (winwheelImageLoadCount == winwheelToDrawDuringAnimation.numSegments) {
+      // Call draw function to render the wheel.
+      winhweelAlreadyDrawn = true;
+      winwheelToDrawDuringAnimation.draw();
+    }
+  }
+}
 
 /***/ }),
 

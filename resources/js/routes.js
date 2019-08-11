@@ -109,9 +109,10 @@ export default new Router({
             component: Games
         },
         {
-            path: '/games/nhl/:id',
+            path: '/games/nhl/:gameId',
             name: 'Lottery',
-            component: Lottery
+            component: Lottery,
+            props:true
         },
 
         {
