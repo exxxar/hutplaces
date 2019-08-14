@@ -48,17 +48,17 @@ class User extends Authenticatable
     ];
 
     public function lotteries() {
-        return $this->belongsToMany('App\Lottery')->using('App\UserLottery');
+        return $this->belongsToMany('App\Lottery','user_lotteries','user_id','lottery_id');
     }
 
     public function cards()
     {
-        return $this->belongsToMany('App\CardsStorage')->using('App\UserCard');
+        return $this->belongsToMany('App\CardsStorage','user_card','user_id','card_id');
     }
 
     public function achievements()
     {
-        return $this->belongsToMany('App\Achievement')->using('App\UserAchievement');
+        return $this->belongsToMany('App\Achievement','user_achievement','user_id','achievement_id');
     }
 
     public function level()

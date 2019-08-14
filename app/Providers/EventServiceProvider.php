@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\Achievement;
+use App\Listeners\ProcessAchievements;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -24,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
             'SocialiteProviders\\Twitter\\TwitterExtendSocialite@handle',
             'SocialiteProviders\\Facebook\\FacebookExtendSocialite@handle',
         ],
+        Achievement::class => [
+            ProcessAchievements::class
+        ]
     ];
 
     /**
@@ -36,5 +41,17 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         //
+    }
+
+    public function shouldDiscoverEvents()
+    {
+        return true;
+    }
+
+    protected function discoverEventsWithin()
+    {
+        return [
+            $this->app->path('Listeners'),
+        ];
     }
 }

@@ -7,7 +7,10 @@ use Maksa988\FreeKassa\Facades\FreeKassa;
 
 Broadcast::routes();
 
-
+Route::get("/event",function(){
+    event(new \App\Events\Achievement());
+    return "1";
+});
 
 
 Route::get('/brod',function(){

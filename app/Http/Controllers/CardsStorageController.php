@@ -234,6 +234,7 @@ class CardsStorageController extends Controller
 
         $lot = $lottery->lot()->create([
             'cards_id'=>$card->id,
+            'lottery_id'=>$lottery->id
         ]);
 
         $lottery->lot_id = $lot->id;

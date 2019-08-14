@@ -22,21 +22,21 @@
                         <p class="price"><strong>{{card.price}}</strong> Pucks</p>
                     </div>-->
                 <div class="buttons">
-                    <div class="random" @click="startAnim()">
+                    <div class="random" @click="pickRandom()" :disabled="randomDisabled">
                         <div class="line" :style="cssProps"></div>
-                        <div class="text" @click="pickRandom()">Случайное место</div>
+                        <div class="text" >Случайное место</div>
                     </div>
-                    <button class="buy">Купить сразу</button>
+                    <button class="buy" @click="pickCard()">Купить сразу</button>
                 </div>
             </div>
         </div>
         <vue-custom-scrollbar class="right-side" id="right-side">
-            <ul class="lotery ">
-                <li class="slot" v-for="p in prepareSlots()">
+            <ul class="lottery">
+                <li class="slot" v-for="(p, index) in prepareSlots()" :id="`slot-${index}`">
                     <div v-if="typeof(p) === 'object'">
-                        <img @click="clickUserSlot(p)" :src="getAvatar(p.avatar)" alt="">
+                        <img @click="clickUserSlot(p,index)" :src="getAvatar(p.avatar)" alt="">
                     </div>
-                    <div v-else><p @click="pickSlot(p-1)" class="number">{{p}}</p></div>
+                    <div v-else><p @click="pickSlot(index)" class="number">{{index+1}}</p></div>
 
                 </li>
 
@@ -62,7 +62,14 @@
 
         <modal name="cardinfo" height="auto">
             <a href="#" @click="hideModal('cardinfo')" class="close"></a>
-            <card-info></card-info>
+            <card-info :game="game"></card-info>
+        </modal>
+
+        <modal name="win" height="auto">
+            <a href="#" @click="hideModal('win')" class="close"></a>
+            <div class="modal-body">
+                <div class="winner" v-if="winner!=null"><img :src="winner.avatar" alt=""></div>
+            </div>
         </modal>
 
     </div>
@@ -80,8 +87,15 @@
             vueCustomScrollbar, CardInfo, Security
         },
         watch: {
-            'gameId': function (newVal, oldVal) {
-                this.loadGame();
+            'game.occupied_places':function (newVal, oldVal) {
+              if (this.game.occupied_places==this.game.places) {
+                  this.randomDisabled = true;
+              }
+              else{
+                  this.randomDisabled = false;
+              }
+
+
             }
         },
         mounted() {
@@ -89,9 +103,19 @@
             Event.$on("updatePlaces",()=>{
                 this.updatePlaces();
             });
+
+            Event.$on("startRaffle",(data)=>{
+                this.winner = data.winner;
+                var lottery = data.lottery;
+                var time = 9000;
+                this.startAnim(lottery.winner_id,time);
+                setTimeout(()=>this.showModal('win'),time+1000);
+            });
         },
         data() {
             return {
+                winner: null,
+                randomDisabled:false,
                 settings: {
                     maxScrollbarLength: 60
                 },
@@ -105,7 +129,12 @@
                 }
             },
         },
-
+        activated() {
+            this.loadGame();
+        },
+        deactivated(){
+            document.querySelectorAll(".scrollTop")[0].click();
+        },
         methods: {
             message(title, message, type) {
                 this.$notify({
@@ -120,12 +149,13 @@
                     .get(`/lottery/places/${this.gameId}`)
                     .then(response => {
                         this.game.place_list = response.data.place_list;
+                        this.game.occupied_places = response.data.occupied_places;
                     });
             },
             loadGame() {
                 this.$loading(true)
                 axios
-                    .get(`/lottery/get/${this.gameId}`)
+                    .get(`/lottery/show/${this.gameId}`)
                     .then(response => {
                         if (response.data.status == 404) {
                             this.$router.push({name: 'Games'})
@@ -133,13 +163,32 @@
                             return;
                         }
                         this.game = response.data.game;
+
+                        if(this.game.winner_id!=null) {
+                            axios
+                                .get(`/lottery/winner/${this.gameId}`)
+                                .then(response => {
+                                    this.winner = response.data.winner;
+                                    this.showModal('win');
+                                });
+                        }
+
                         setTimeout(() => this.$loading(false), 2000);
                     });
             },
+            startAnim(stopNumber,time) {
+               document.querySelectorAll(".lottery")[0]
+                    .classList.add("lottery-animation");
+               setTimeout(()=>{
+                   document.querySelectorAll(`.slot:nth-of-type(${stopNumber})`)[0]
+                       .classList.add("win-slot");
+                   this.message('ПОБЕДА!', `Победил игрок, занявший ${stopNumber} слот!`, "error")
+                },9000);
+                setTimeout(()=>{
+                    document.querySelectorAll(".lottery")[0]
+                        .classList.remove("lottery-animation");
+                },12000);
 
-            startAnim() {
-                var lotery = document.querySelectorAll(".lotery")[0];
-                lotery.classList.add("lottery-animation");
             },
             showModal(name) {
                 this.$modal.show(name)
@@ -167,37 +216,64 @@
                         return "/img/pc-icon.png";
                 }
             },
-            pickRandom(place) {
+            pickCard(){
+                this.message('Покупка карточки', `С Вашего счета будет списана полная стоимсть карточки!`, "error")
                 axios
-                    .post('/lottery/pick/random', {
+                    .post('/lottery/buy', {
                         id: this.gameId
                     }).then(response => {
-                    if (response.data.status != 200) {
-                        this.message('Участие в рандоме', `${response.data.message}`, "error")
-                        return;
-                    }
-                    this.message('Участие в рандоме', `${response.data.message} ${response.data.place}`, "error")
-                    Event.$emit("updateUserProfile");
+                    this.message('Покупка карточки', `Спасибо за покупку карточки! Купленная карточка находится в вашем личном кабинете`, "error")
                 });
-
             },
-            pickSlot(place) {
-                axios
-                    .post('/lottery/pick/', {
-                        id: this.gameId,
-                        place_number: place
-                    })
-                    .then(response => {
+            pickRandom(place) {
+                if (!this.randomDisabled) {
+                    this.randomDisabled = true;
+                    axios
+                        .post('/lottery/pick/random', {
+                            id: this.gameId
+                        }).then(response => {
                         if (response.data.status != 200) {
                             this.message('Участие в рандоме', `${response.data.message}`, "error")
                             return;
                         }
-                        this.message('Участи в рандоме', `${response.data.message} ${response.data.place}`, "error")
+                        this.message('Участие в рандоме', `${response.data.message} ${response.data.place}`, "error")
                         Event.$emit("updateUserProfile");
+                        this.randomDisabled=false;
                     });
+
+                }
+                else {
+                    this.message('Участие в рандоме', `Все места уже заняты`, "error")
+                }
+
+
+
             },
-            clickUserSlot() {
-                alert("EmptySlot")
+            pickSlot(place) {
+                var item = document.getElementById(`slot-${place}`);
+                if (item.getAttribute("disabled")==null) {
+                   item.setAttribute("disabled","");
+                    axios
+                        .post('/lottery/pick/', {
+                            id: this.gameId,
+                            place_number: place
+                        })
+                        .then(response => {
+                            item.removeAttribute("disabled");
+
+                            if (response.data.status != 200) {
+                                this.message('Участие в рандоме', `${response.data.message}`, "error")
+                                return;
+                            }
+                            this.message('Участие в рандоме', `${response.data.message} ${response.data.place}`, "error")
+                            Event.$emit("updateUserProfile");
+
+                        });
+                }
+            },
+            clickUserSlot(slot,index) {
+                this.startAnim(index+1);
+                setTimeout(()=>this.showModal('win'),10000);
             },
             prepareSlots() {
                 var tmp = [];
@@ -223,7 +299,6 @@
                     return JSON.parse(this.game.lot.card.Card_data).value;
                 return '/img/noavatar.png';
             },
-
         }
     }
 

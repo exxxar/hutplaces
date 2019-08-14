@@ -16,16 +16,18 @@ class RaffleNotification implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $lottery;
+    public $lottery;
+    public $winner;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($lottery)
+    public function __construct($lottery,$winner)
     {
         $this->lottery = $lottery;
+        $this->winner = $winner;
     }
 
     /**

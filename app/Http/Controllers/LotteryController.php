@@ -6,6 +6,7 @@ use App\Classes\CustomRandom;
 use App\Events\RaffleNotification;
 use App\Events\BroadcastMessage;
 use App\Events\PickPlace;
+use App\Lot;
 use App\Place;
 use App\User;
 use Illuminate\Http\Request;
@@ -24,6 +25,12 @@ class LotteryController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->ajax())
+            return response()->json([
+                'games' => Lottery::with(["placeList", "lot", "lot.card", "placeList.user"])->get(),
+                'status' => 200
+            ]);
+
         $lotteries = Lottery::orderBy('id', 'DESC')->paginate(15);
         return view('admin.lottery.index', compact('lotteries'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
@@ -69,10 +76,24 @@ class LotteryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $lottery = Lottery::find($id);
-        return view('admin.lottery.show', compact('lottery'));
+
+        $lottery = Lottery::with(["placeList", "lot", "lot.card", "placeList.user"])->find($id);
+
+        if (!$request->ajax())
+            return view('admin.lottery.show', compact('lottery'));
+
+        if ($lottery)
+            return response()->json([
+                'game' => $lottery,
+                'status' => 200
+            ]);
+
+        return response()->json([
+            'message' => "Лотерея не найдена",
+            'status' => 404
+        ]);
     }
 
     /**
@@ -127,36 +148,16 @@ class LotteryController extends Controller
             ->with('success', 'Lottery deleted successfully');
     }
 
-    public function all()
-    {
-        return response()->json([
-            'data' => Lottery::with(["lot", "lot.card"])->get(),
-            'status' => 200
-        ]);
-    }
-
-    public function lottery($lotteryId)
-    {
-        $lottery = Lottery::with(["placeList", "lot", "lot.card", "placeList.user"])->find($lotteryId);
-        if ($lottery)
-            return response()->json([
-                'game' => $lottery,
-                'status' => 200
-            ]);
-
-        return response()->json([
-            'message' => "Лотерея не найдена",
-            'status' => 404
-        ]);
-
-    }
 
     public function places($lotteryId)
     {
+        $occupied_places = (Lottery::find($lotteryId))->occupied_places;
+
         $places = Place::with(["user"])->where("lottery_id", $lotteryId)->get();
         if ($places)
             return response()->json([
                 'place_list' => $places,
+                'occupied_places' => $occupied_places,
                 'status' => 200
             ]);
 
@@ -169,6 +170,8 @@ class LotteryController extends Controller
 
     private function pickPlace($lotteryId, $place_number)
     {
+
+
         if (auth('api')->user() == null)
             return response()->json([
                 'message' => 'Вы не авторизировались! Войдие в систему',
@@ -227,16 +230,26 @@ class LotteryController extends Controller
         $lottery->occupied_places += 1;
         $lottery->save();
 
-        if ($lottery->occupied_place + 1 == $lottery->places) {
+        if ($lottery->occupied_places  == $lottery->places) {
             $lottery->completed = true;
             $lottery->active = false;
             $lottery->visible = false;
             $random = new CustomRandom();
-            $lottery->winner_id = $random->getIntegers(1, 1, $lottery->places, false);
+            $lottery->winner_id = $random->getIntegers(1, 1, $lottery->places, false)[0];
             $lottery->save();
 
+            $winUser_id = (Place::where("place_number",$lottery->winner_id)
+                ->where("lottery_id",$lottery->id)
+                ->first())->user_id;
+
+            $winner = User::find($winUser_id);
+
+            $winner->lotteries()->attach($lottery->id);
+            $winner->cards()->attach((Lot::where("lottery_id",$lottery->id)->first())->cards_id);
+
             //отправляем всем пользоватемя в выбранной лотерее запрос на обновление данных
-            broadcast(new RaffleNotification($lottery))->toOthers();
+            broadcast(new RaffleNotification($lottery,$winner));
+
         }
 
         //отправляем всем пользователям на сайте инфуормацию о том что какой-то пользователя в лотерее выбрал определенное место
@@ -245,6 +258,65 @@ class LotteryController extends Controller
         return response()->json([
             'message' => 'Вы успешно заняли место!',
             'place' => $place->place_number,
+            'status' => 200
+        ]);
+    }
+
+    public function buy(Request $request)
+    {
+        $lotteryId  = $request->get("id");
+
+        if (auth('api')->user() == null)
+            return response()->json([
+                'message' => 'Вы не авторизировались! Войдие в систему',
+                'status' => 401
+            ]);
+
+
+        $lottery = Lottery::with(["lot","lot.card"])
+            ->where("id",$lotteryId)->first();
+
+
+        if (!$lottery)
+            return response()->json([
+                'message' => 'Товар не найден',
+                'status' => 404
+            ]);
+
+
+
+        $user = User::find(auth('api')->user()->id);
+
+
+        //todo: добавить учет индивидуальной скидки пользователя
+        $price = ($lottery->base_price - $lottery->base_price * ($lottery->base_discount / 100));
+
+        if ($user->money <= $price) {
+            return response()->json([
+                'message' => 'У вас недостаточно средств!',
+                'status' => 400
+            ]);
+        }
+
+        $user->money -=$price;
+
+        $user->cards()->attach($lottery->lot->card->id);
+        $user->save();
+
+        return response()->json([
+            'message' => 'Вы успешно купили товар!',
+            'status' => 200
+        ]);
+
+    }
+
+    public function winner($id)
+    {
+
+        $lottery = Lottery::find($id);
+        return response()->json([
+            'message' => 'Лотерея уже выиграна пользователем!',
+            'winner' => $lottery->winner(),
             'status' => 200
         ]);
     }
@@ -266,8 +338,13 @@ class LotteryController extends Controller
 
         }
 
-        return $this->pickPlace($request->get("id"), $tmp[random_int(0, count($tmp))]);
-
+        if (!$lottery->isFull()&count($tmp)>0)
+            return $this->pickPlace($request->get("id"), $tmp[random_int(0, count($tmp)-1)]);
+        else
+            return response()->json([
+                'message' => 'Лотерея уже полная или закончилась',
+                'status' => 400
+            ]);
     }
 
     public function pick(Request $request)

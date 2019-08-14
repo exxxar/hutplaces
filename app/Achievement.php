@@ -23,6 +23,6 @@ class Achievement extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\Users')->using('App\UserAchievement');
+        return $this->belongsToMany('App\Users','user_achievement','achievement_id','user_id');
     }
 }

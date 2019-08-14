@@ -123,7 +123,7 @@ export default {
     }
   },
 
-    mounted(){
+    activated() {
       this.loadLotteries();
     },
   methods: {
@@ -148,8 +148,7 @@ export default {
     },
 
     prepareUrl: function (template) {
-        var cardData = JSON.parse(template.lot.card.Card_data);
-        return cardData.value
+        return (JSON.parse(template.lot.card.Card_data)).value;
     },
     lineWidth: function (c1, c2) {
       return {
@@ -157,11 +156,12 @@ export default {
       }
     },
      loadLotteries(){
-         api.call('get', '/lottery/all')
-             .then(({data}) => {
-                 this.lotteries = data.data;
-
-             });
+         this.$loading(true)
+         axios
+             .get('/lottery').then(response => {
+             this.lotteries = response.data.games;
+             this.$loading(false)
+         });
      },
     lotteryOpen: function (lotteryId) {
       this.$router.push({ name: 'Lottery', params: { gameId: lotteryId } })

@@ -128,6 +128,22 @@
             height: 100%;
             width: var(--line-width);
             background-color: $color8;
+            transition: 1s;
+          }
+
+          &[disabled] {
+            cursor:progress;
+            background-color: gray !important;
+            transition: 1s;
+            .line {
+              transition: 1s;
+              background-color: lightgray !important;
+            }
+
+            .text {
+              color:$color2 !important;
+              transition: 1s;
+            }
           }
 
           .text {
@@ -138,8 +154,9 @@
             justify-content: center;
             height: 100%;
             color: $color4;
-            font-weight: 100;
+            font-weight: 600;
             font-size: 18px;
+            transition: 1s;
           }
         }
 
@@ -148,7 +165,7 @@
           margin-top: 10px;
           border:none;
           @include flex(center,center);
-          font-weight: 100;
+          font-weight: 600;
           font-size: 18px;
           width: 100%;
           color: $color4;
@@ -167,7 +184,7 @@
     width:800px;
     height: auto;
     padding-bottom: 100px;
-    .lotery {
+    .lottery {
       @include flex(flex-start, flex-start);
       align-content: space-evenly;
 
@@ -182,6 +199,26 @@
         background-color:$color10;
         cursor: pointer;
 
+        &[disabled] {
+          cursor:progress;
+          &:after {
+            content: '\f023';
+            font-family: 'Font Awesome 5 Free';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 10;
+            background: #4d4d4dcf;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: yellow;
+            font-weight: 900;
+          }
+        }
 
 
         div {
@@ -274,7 +311,7 @@
       @include flex(space-around, center);
       width: 100%;
       padding-top:10px;
-      .lotery {
+      .lottery {
 
         .slot {
           width: 100px;
@@ -298,24 +335,42 @@
         height: 100%;
         position: absolute;
         z-index: 10;
-        background-color: $color3;
+        background-color: rgba(255, 255, 0, 0.81);
         animation-duration: .5s;
         animation-direction: alternate-reverse;
         animation-fill-mode: both;
         animation-timing-function: ease-in-out;
         animation-name: AnimSlot;
-        animation-iteration-count: 1;
-        animation-delay: 0.3s+$i*0.2;
+        animation-iteration-count: 20;
+        animation-delay: 0.3s+$i*0.1;
       }
     }
+
+
+  }
+
+  .win-slot {
+     &:before {
+       content: '';
+       top:0;
+       left:0;
+       width: 100%;
+       height: 100%;
+       position: absolute;
+       z-index: 11;
+       background-color:  rgba(255, 165, 0, 0.85);
+       animation: AnimSlot 2s ease-in-out infinite;
+       animation-fill-mode: both;
+       animation-direction: alternate-reverse;
+     }
   }
 
   @keyframes AnimSlot {
     from {
-      opacity: 0;
+      opacity: 1;
     }
     to {
-      opacity: 1;
+      opacity: 0;
     }
 
   }

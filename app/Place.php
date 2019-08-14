@@ -9,7 +9,8 @@ class Place extends Model
     protected $fillable = [
         'place_number',
         'lottery_id',
-        'user_id'
+        'user_id',
+        'created_at'
     ];
 
     public function lottery()

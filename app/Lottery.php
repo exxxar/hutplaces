@@ -28,6 +28,19 @@ class Lottery extends Model
 
     ];
 
+    public function winner(){
+        if ($this->winner_id!=null) {
+            $winUser_id = (Place::where("place_number",$this->winner_id)
+                ->where("lottery_id",$this->id)
+                ->first())->user_id;
+
+            return  User::find($winUser_id);
+        }
+
+        return null;
+
+    }
+
     public function isFull(){
         return $this->occupied_places==$this->places;
     }
@@ -40,7 +53,7 @@ class Lottery extends Model
 
 
     public function users(){
-        return $this->belongsToMany('App\User')->using('App\UserLottery');
+        return $this->belongsToMany('App\User','user_lotteries','lottery_id','user_id');
     }
 
     public function placeList()

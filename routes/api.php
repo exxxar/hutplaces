@@ -31,22 +31,26 @@ Route::post('/coinsrequest', 'CoinsController@coinsrequest');
 
 Route::get('/content/{type}/all','ContentController@all');
 
-Route::get('/lottery/all', 'LotteryController@all');
+Route::get('/lottery/', 'LotteryController@index');
 
-Route::post('/lottery/pick/', 'LotteryController@pick');
-Route::post('/lottery/pick/random', 'LotteryController@random');
+Route::get('/lottery/winner/{id}', 'LotteryController@winner');
 
-Route::get('/lottery/get/{lotteryId}', 'LotteryController@lottery');
-Route::get('/lottery/places/{lotteryId}', 'LotteryController@places');
+Route::get('/lottery/show/{id}', 'LotteryController@show');
+
 
 Route::get('/lot/get/{lotteryId}', 'LotsController@lot');
 
 Route::post('/search', 'CardsStorageController@search');
 
 Route::middleware('auth:api')->group(function () {
+    Route::post('/lottery/pick/', 'LotteryController@pick');
+    Route::post('/lottery/pick/random', 'LotteryController@random');
+    Route::post('/lottery/buy', 'LotteryController@buy');
+    Route::get('/lottery/places/{id}', 'LotteryController@places');
+
     Route::post('/logout', 'API\AuthController@logout');
     Route::get('/get-user', 'API\AuthController@getUser');
     Route::post('/lottery/pickplace', 'LotteryController@pickPlace');
-    Route::post('/payment/{paymentProvider}','UserController@payment');
+    Route::post('/payment/{paymentProvider}','UserController@payment')->middleware("levels");
 });
 

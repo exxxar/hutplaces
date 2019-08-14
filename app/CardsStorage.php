@@ -70,6 +70,6 @@ class CardsStorage extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User')->using('App\UserCard');
+        return $this->belongsToMany('App\User','user_card','id','user_id');
     }
 }

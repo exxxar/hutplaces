@@ -39,6 +39,7 @@ body {
   border: none;
   box-shadow: 2px 2px 2px 0px $color12;
   transition: .5s;
+  box-sizing:border-box;
 
   a {
     text-decoration: none;
@@ -303,16 +304,16 @@ header {
         z-index: 2;
         position: absolute;
         left: 0;
-        bottom: -75px;
+        bottom: -50px;
         width: 100%;
         @include flex(flex-end, flex-start);
 
-        ul {
-          li {
+        & > ul {
+          & > li {
             padding: 10px 25px;
             background-color: $color2;
 
-            a {
+            & > a {
               text-align: left;
               text-decoration: none;
               color: $color4;
@@ -347,12 +348,18 @@ header {
 
     }
     nav {
-      @include flex(space-around, center);
       position: relative;
       border: none;
-      li {
-        margin-left:10px;
+      ul {
+        @include flex(space-around, center);
+
+
+        li {
+          margin-left:10px;
+
+        }
       }
+
       @media (max-width: 1050px) {
         & {
           width: 25px;
@@ -373,9 +380,10 @@ header {
             height: 1px;
             background: $color4;
           }
-          li {
-            display: none !important;
+          ul {
+              display: none !important;
           }
+
         }
       }
 
@@ -444,7 +452,7 @@ aside {
 
   }
 
-  @media (max-width: 1400px) {
+  @media (min-width: 601px) and (max-width: 1400px) {
     & {
       left:0px;
       width: 50px;
@@ -486,61 +494,6 @@ aside {
     & {
       left:0px;
 
-
-      &:hover {
-        padding-top:50px;
-        width:100%;
-        top:80px;
-        background-color: $color2;
-        & > nav {
-          background: none;
-          box-shadow: none;
-          height: 100vh;
-          border-radius: initial;
-          width: 100%;
-
-          & > ul {
-            display: block;
-            width: 100%;
-
-            & > li {
-              font-size: 24px;
-              transition:.5s;
-
-              &.more-menu {
-                ul.more {
-                  li {
-                    a {
-                      font-size: 18px;
-                      line-height: 150%;
-                      transition: .5s;
-                    }
-                  }
-                }
-
-              }
-            }
-            .btn {
-              background-color: transparent;
-              box-shadow: none;
-              border:none;
-            }
-            .btn.btn-black-2 {
-              box-shadow: none;
-            }
-
-            .btn.btn-yellow {
-              color:$color3;
-              &:hover {
-                color:$color2;
-              }
-            }
-
-
-          }
-        }
-      }
-
       & > nav {
         width: 50px;
 
@@ -552,6 +505,7 @@ aside {
         box-shadow: 0px 0px 2px 0px $color12;
         height: 50px;
         border-radius: 0px 50% 50% 0px;
+        cursor: pointer;
 
 
         & > ul {
