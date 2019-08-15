@@ -30,236 +30,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'faq',
-  props: ['show'],
   data: function data() {
     return {
-      historyList: [{
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }, {
-        id: 1,
-        game: {
-          id: '1',
-          title: 'Test Game'
-        },
-        platform: 'XBOX',
-        year: '2019',
-        player: {
-          id: 1,
-          name: 'Tes player'
-        },
-        end: '23.04.2019 22:11'
-      }]
+      historyList: null
     };
   },
-  methods: {}
+  mounted: function mounted() {
+    this.loadHistory();
+  },
+  methods: {
+    selfHide: function selfHide() {
+      this.$emit("self-hide");
+    },
+    loadHistory: function loadHistory() {
+      var _this = this;
+
+      this.$loading(true);
+      axios.get('/lottery/history').then(function (response) {
+        _this.historyList = response.data.history;
+
+        _this.$loading(false);
+      })["catch"](function (err) {});
+    },
+    getPlatform: function getPlatform(id) {
+      switch (id) {
+        default:
+        case 1:
+          return "/img/xbox-icon.png";
+
+        case 2:
+          return "/img/ps4-icon.png";
+
+        case 3:
+          return "/img/pc-icon.png";
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -288,27 +103,80 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _vm._l(_vm.historyList, function(item, index) {
-        return _c("ul", { staticClass: "body" }, [
-          _c("li", [_vm._v(_vm._s(++index))]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: item.game.id } }, [
-              _vm._v(_vm._s(item.game.title))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [_vm._v(_vm._s(item.platform))]),
-          _vm._v(" "),
-          _c("li", [_vm._v(_vm._s(item.year))]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: item.player.id } }, [
-              _vm._v(_vm._s(item.player.name))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [_vm._v(_vm._s(item.end))])
-        ])
+        return _c(
+          "ul",
+          {
+            staticClass: "body",
+            on: {
+              click: function($event) {
+                return _vm.selfHide()
+              }
+            }
+          },
+          [
+            _c("li", [_vm._v(_vm._s(++index))]),
+            _vm._v(" "),
+            _c(
+              "li",
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      tag: "a",
+                      to: {
+                        name: "Lottery",
+                        params: { gameId: item.lottery_id }
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(item.lottery_title) +
+                        "\n            "
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("li", [
+              _c("img", {
+                attrs: { src: _vm.getPlatform(item.console_type), alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      tag: "a",
+                      to: {
+                        name: "PlayerInfo",
+                        params: { userId: item.user_id }
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(item.user_name) +
+                        "\n            "
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("li", [_vm._v(_vm._s(item.end))])
+          ]
+        )
       })
     ],
     2
@@ -325,8 +193,6 @@ var staticRenderFns = [
       _c("li", [_vm._v("Игра")]),
       _vm._v(" "),
       _c("li", [_vm._v("Платформа")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Год")]),
       _vm._v(" "),
       _c("li", [_vm._v("Победитель")]),
       _vm._v(" "),

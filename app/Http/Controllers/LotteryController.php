@@ -356,4 +356,30 @@ class LotteryController extends Controller
         );
 
     }
+
+    public function history(){
+
+        $tmp = [];
+        $winLotteries = DB::table("lotteries")
+            ->where("winner_id","!=","null")
+            ->orderBy('id', 'desc')
+            ->take(100)
+            ->get();
+
+        foreach ($winLotteries as $lottery){
+            array_push($tmp,[
+                "lottery_id"=>$lottery->id,
+                "lottery_title"=>empty($lottery->title)?"<no title>":$lottery->title,
+                "user_id"=>Place::where("place_number",$lottery->winner_id)->first()->user_id,
+                "user_name"=>User::find(Place::where("place_number",$lottery->winner_id)->first()->user_id)->name,
+                "end"=>$lottery->updated_at,
+                "console_type"=>$lottery->console_type
+            ]);
+        }
+        return response()->json([
+            'history' => $tmp,
+            'status' => 200
+        ]);
+    }
+
 }

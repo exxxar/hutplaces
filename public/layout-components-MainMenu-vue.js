@@ -85,7 +85,7 @@ __webpack_require__.r(__webpack_exports__);
       }, time);
     },
     openModal: function openModal(name) {
-      this.$emit("self-hide");
+      this.selfHide();
       this.$emit("modal", name);
     },
     logout: function logout() {
@@ -182,84 +182,97 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.authenticated && _vm.user
-      ? _c("li", { staticClass: "user" }, [
-          _c("div", { staticClass: "info" }, [
-            _c("p", { staticClass: "name" }, [_vm._v(_vm._s(_vm.user.name))]),
-            _vm._v(" "),
-            _c("p", { staticClass: "email" }, [_vm._v(_vm._s(_vm.user.email))]),
-            _vm._v(" "),
-            _c("p", { staticClass: "pucks" }, [
-              _c("strong", [_vm._v(_vm._s(Math.floor(_vm.user.money)))]),
-              _vm._v(" Pucks")
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "avatar",
-              on: {
-                mouseover: function($event) {
-                  return _vm.openMenu(2000)
-                }
+      ? _c(
+          "li",
+          {
+            staticClass: "user",
+            on: {
+              click: function($event) {
+                return _vm.selfHide()
               }
-            },
-            [
-              _c("img", {
-                attrs: { src: _vm.getAvatar(_vm.user.avatar), alt: "" }
-              })
-            ]
-          ),
-          _vm._v(" "),
-          _vm.menuShow
-            ? _c(
-                "div",
-                {
-                  staticClass: "dropdown",
-                  on: {
-                    mouseover: function($event) {
-                      return _vm.openMenu(2000)
-                    },
-                    mouseleave: function($event) {
-                      return _vm.closeMenu()
-                    }
+            }
+          },
+          [
+            _c("div", { staticClass: "info" }, [
+              _c("p", { staticClass: "name" }, [_vm._v(_vm._s(_vm.user.name))]),
+              _vm._v(" "),
+              _c("p", { staticClass: "email" }, [
+                _vm._v(_vm._s(_vm.user.email))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "pucks" }, [
+                _c("strong", [_vm._v(_vm._s(Math.floor(_vm.user.money)))]),
+                _vm._v(" Pucks")
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "avatar",
+                on: {
+                  mouseover: function($event) {
+                    return _vm.openMenu(2000)
                   }
-                },
-                [
-                  _c("ul", [
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "router-link",
-                          { attrs: { to: { name: "cabinet" }, tag: "a" } },
-                          [_vm._v("User cabinet")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _vm.authenticated && _vm.user
-                      ? _c("li", [
+                }
+              },
+              [
+                _c("img", {
+                  attrs: { src: _vm.getAvatar(_vm.user.avatar), alt: "" }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _vm.menuShow
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "dropdown",
+                    on: {
+                      mouseover: function($event) {
+                        return _vm.openMenu(2000)
+                      },
+                      mouseleave: function($event) {
+                        return _vm.closeMenu()
+                      }
+                    }
+                  },
+                  [
+                    _c("ul", [
+                      _c(
+                        "li",
+                        [
                           _c(
-                            "a",
-                            {
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.logout()
-                                }
-                              }
-                            },
-                            [_vm._v("Logout")]
+                            "router-link",
+                            { attrs: { to: { name: "cabinet" }, tag: "a" } },
+                            [_vm._v("User cabinet")]
                           )
-                        ])
-                      : _vm._e()
-                  ])
-                ]
-              )
-            : _vm._e()
-        ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.authenticated && _vm.user
+                        ? _c("li", [
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.logout()
+                                  }
+                                }
+                              },
+                              [_vm._v("Logout")]
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ]
+                )
+              : _vm._e()
+          ]
+        )
       : _c(
           "li",
           {

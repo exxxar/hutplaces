@@ -37,6 +37,8 @@ Route::get('/lottery/winner/{id}', 'LotteryController@winner');
 
 Route::get('/lottery/show/{id}', 'LotteryController@show');
 
+Route::get('/lottery/history', 'LotteryController@history');
+
 
 Route::get('/lot/get/{lotteryId}', 'LotsController@lot');
 

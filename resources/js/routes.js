@@ -14,6 +14,7 @@ import Lottery from '@/pages/Lottery'
 import Main from '@/pages/Main'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
+import PlayerInfo from '@/pages/PlayerInfo'
 import Notifications from 'vue-notification'
 import VModal from 'vue-js-modal'
 import Lang from 'vuejs-localization'
@@ -87,6 +88,12 @@ export default new Router({
             meta: { middlewareAuth: true }
         },
         {
+            path: '/cabinet/:userId',
+            name: 'PlayerInfo',
+            component: PlayerInfo,
+            props:true
+        },
+        {
             path: '/signin',
             name: 'Login',
             component: Login,
@@ -114,6 +121,7 @@ export default new Router({
             component: Lottery,
             props:true
         },
+
 
         {
             path: "*",

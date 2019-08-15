@@ -53,7 +53,7 @@
         <modal name="history" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('history')" class="close"></a>
-                <history></history>
+                <history v-on:self-hide="hide('history')"></history>
             </scroll>
         </modal>
         <modal name="help" height="auto">

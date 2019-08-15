@@ -8,7 +8,7 @@
         <li @click="openModal('payment')" class="btn btn-yellow">{{$lang.messages.recharge}}</li>
 
 
-        <li v-if="authenticated && user" class="user">
+        <li v-if="authenticated && user" class="user" @click="selfHide()" >
             <div class="info">
                 <p class="name">{{user.name}}</p>
                 <p class="email">{{user.email}}</p>
@@ -78,7 +78,7 @@
                 this.menuHideTimer = setTimeout(()=>this.menuShow = false,time);
             },
             openModal(name){
-                this.$emit("self-hide");
+                this.selfHide();
                 this.$emit("modal",name);
             },
             logout() {
