@@ -54,24 +54,27 @@ __webpack_require__.r(__webpack_exports__);
         text: _message
       });
     },
+    selfHide: function selfHide() {
+      this.$emit("self-hide");
+    },
     requestPayment: function requestPayment() {
-      var message = this.message;
+      var _this = this;
 
       if (!auth.check()) {
-        message("Ошибка", "\u0414\u043B\u044F \u043F\u043E\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F \u0441\u0447\u0435\u0442\u0430 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u0443\u0439\u0442\u0435\u0441\u044C!", "warn");
+        this.message("Ошибка", "\u0414\u043B\u044F \u043F\u043E\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F \u0441\u0447\u0435\u0442\u0430 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u0443\u0439\u0442\u0435\u0441\u044C!", "warn");
         this.$emit('hide', "payment");
         return;
       }
 
-      axios.post('/payment/testPaymanet', {
-        payment_system: this.selected,
+      axios.post("/payment/".concat(this.payment_system), {
         money: this.money
       }).then(function (response) {
+        Event.$emit("updateUserProfile");
         var tmp = response.data;
-        console.log(tmp);
-        message("Успех!", "\u0414\u0435\u043D\u044C\u0433\u0438 \u0432 \u0440\u0430\u0437\u043C\u0435\u0440\u0435 ".concat(tmp.money, " ").concat(tmp.currency, " \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B!"), "warn");
+
+        _this.message("Успех!", "\u0414\u0435\u043D\u044C\u0433\u0438 \u0432 \u0440\u0430\u0437\u043C\u0435\u0440\u0435 ".concat(tmp.money, " ").concat(tmp.currency, " \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B!"), "warn");
       })["catch"](function (error) {});
-      this.$emit('hide', "payment");
+      this.selfHide();
     }
   }
 });

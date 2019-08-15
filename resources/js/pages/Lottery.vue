@@ -222,6 +222,7 @@
                     .post('/lottery/buy', {
                         id: this.gameId
                     }).then(response => {
+                    Event.$emit("updateUserProfile");
                     this.message('Покупка карточки', `Спасибо за покупку карточки! Купленная карточка находится в вашем личном кабинете`, "error")
                 });
             },
@@ -236,8 +237,9 @@
                             this.message('Участие в рандоме', `${response.data.message}`, "error")
                             return;
                         }
-                        this.message('Участие в рандоме', `${response.data.message} ${response.data.place}`, "error")
                         Event.$emit("updateUserProfile");
+                        this.message('Участие в рандоме', `${response.data.message} ${response.data.place}`, "error")
+
                         this.randomDisabled=false;
                     });
 

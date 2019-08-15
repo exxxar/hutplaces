@@ -21,7 +21,7 @@
                  @mouseleave="closeMenu()">
                 <ul>
                     <li>
-                        <router-link :to="{ name: 'cabinet' }" tag="a">User cabinet</router-link>
+                        <router-link :to="{ name: 'Cabinet' }" tag="a">User cabinet</router-link>
                     </li>
                     <li v-if="authenticated && user">
                         <a href="#" @click="logout()">Logout</a>

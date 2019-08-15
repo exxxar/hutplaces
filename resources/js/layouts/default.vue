@@ -42,7 +42,7 @@
         </modal>
         <modal name="payment" height="auto">
             <a href="#" @click="hide('payment')" class="close"></a>
-            <payment v-on:hide="hide($event)"></payment>
+            <payment v-on:self-hide="hide('payment')"></payment>
         </modal>
         <modal name="howtostart" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">

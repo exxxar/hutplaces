@@ -12,13 +12,15 @@ class Achievement extends Model
         'title',
         'description',
         'discount',
+        'background',
         'exp',
         'coins',
         'money',
         'items_id',
         'cards_id',
-        'images_storage_id',
+        'image',
         'isActive',
+        'randomRewards'
     ];
 
     public function users()

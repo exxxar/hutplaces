@@ -5,19 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7300405c-d11a-49c5-8c8a-b5b92f5b0902" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-3.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Achievement.php" afterPath="$PROJECT_DIR$/app/Achievement.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_06_13_220030_create_achievements_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_06_13_220030_create_achievements_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ContentTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ContentTableSeeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-AsideMenu-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-AsideMenu-vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-MainMenu-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-MainMenu-vue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-History-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-History-vue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-FAQ-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-FAQ-vue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-Payment-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-Payment-vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-layouts-default-vue.js" afterPath="$PROJECT_DIR$/public/layout-layouts-default-vue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-pages-Achievement-vue.js" afterPath="$PROJECT_DIR$/public/layout-pages-Achievement-vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/mix-manifest.json" afterPath="$PROJECT_DIR$/public/mix-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" afterPath="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/MainMenu.vue" afterPath="$PROJECT_DIR$/resources/js/components/MainMenu.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/History.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/History.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/FAQ.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/FAQ.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/layouts/default.vue" afterPath="$PROJECT_DIR$/resources/js/layouts/default.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Achievement.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Achievement.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Lottery.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Lottery.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Main.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Main.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Market.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Market.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Playzone.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Playzone.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Start.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Start.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/routes.js" afterPath="$PROJECT_DIR$/resources/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/main.scss" afterPath="$PROJECT_DIR$/resources/sass/main.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/partials.scss" afterPath="$PROJECT_DIR$/resources/sass/partials.scss" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,106 +47,105 @@
     <favorites_list name="hut-randoms.com" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Lottery.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/pages/Lottery.vue">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Achievement.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/pages/Achievement.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1540">
-              <caret line="211" column="52" lean-forward="true" selection-start-line="211" selection-start-column="52" selection-end-line="211" selection-end-column="52" />
-              <folding>
-                <element signature="e#3526#3588#0" expanded="false" />
-                <element signature="e#4633#4823#0" expanded="false" />
-                <element signature="e#4658#4812#0" expanded="false" />
-                <element signature="e#5046#5246#0" expanded="false" />
-                <element signature="e#5275#5591#0" expanded="false" />
-                <element signature="e#6617#7221#0" expanded="false" />
-                <element signature="e#7251#7305#0" expanded="false" />
-                <element signature="e#7335#7389#0" expanded="false" />
-                <element signature="e#7417#7666#0" expanded="false" />
-                <element signature="e#7695#7807#0" expanded="false" />
-                <element signature="e#9619#10585#0" expanded="false" />
-                <element signature="e#10771#11384#0" expanded="false" />
-                <element signature="e#11422#11604#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LotteryController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotteryController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="373" column="26" lean-forward="false" selection-start-line="373" selection-start-column="26" selection-end-line="373" selection-end-column="26" />
-              <folding>
-                <element signature="e#4036#4563#0#PHP" expanded="false" />
-                <element signature="e#4569#7819#0#PHP" expanded="false" />
-                <element signature="e#7825#9037#0#PHP" expanded="false" />
-                <element signature="e#9043#9304#0#PHP" expanded="false" />
-                <element signature="e#9310#10141#0#PHP" expanded="false" />
-                <element signature="e#10147#10318#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="History.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/components/modals/History.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="41" column="28" lean-forward="true" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="37" />
+            <state relative-caret-position="17">
+              <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="5" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/js/layouts/default.vue">
+      <file leaf-file-name="Playzone.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/pages/Playzone.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="8" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="6" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Achievement.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Achievement.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2019_06_13_220030_create_achievements_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_13_220030_create_achievements_table.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="55" column="56" lean-forward="false" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
+              <caret line="28" column="56" lean-forward="false" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="achievements.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/sass/achievements.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utilits.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/sass/utilits.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1275">
+              <caret line="75" column="1" lean-forward="true" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/pages/Main.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Market.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/js/pages/Market.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/sass/main.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="539">
+              <caret line="164" column="1" lean-forward="false" selection-start-line="164" selection-start-column="1" selection-end-line="164" selection-end-column="1" />
               <folding>
-                <element signature="n#header#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#scroll#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#aside#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#footer#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#modal#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#modal#1;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#modal#2;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#modal#3;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#modal#5;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#modal#6;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="n#modal#7;n#div#0;n#template#0;n#!!top" expanded="false" />
-                <element signature="e#6134#8832#0" expanded="false" />
+                <element signature="e#7044#7851#0" expanded="false" />
+                <element signature="e#7924#8662#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainMenu.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/components/MainMenu.vue">
+      <file leaf-file-name="partials.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/sass/partials.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="63" column="14" lean-forward="true" selection-start-line="61" selection-start-column="10" selection-end-line="63" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerInfo.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/pages/PlayerInfo.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-787">
-              <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+            <state relative-caret-position="102">
+              <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -149,13 +165,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>prepareUrl</find>
-      <find>error</find>
-      <find>places</find>
-      <find>.backgro</find>
-      <find>Event.</find>
-      <find>auth</find>
-      <find>message</find>
       <find>Лоте</find>
       <find>lot</find>
       <find>Лотерея</find>
@@ -179,6 +188,13 @@
       <find>btn-black</find>
       <find>han</find>
       <find>histor</find>
+      <find>payment</find>
+      <find>url</find>
+      <find>'</find>
+      <find>cssProps</find>
+      <find>--</find>
+      <find>too</find>
+      <find>cssPro</find>
     </findStrings>
     <replaceStrings>
       <replace>../</replace>
@@ -196,16 +212,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/admin/content/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/content/edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/content/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Content.php" />
-        <option value="$PROJECT_DIR$/database/seeds/ContentTableSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/content/show.blade.php" />
-        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/resources/js/api.js" />
-        <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/webpack.mix.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
@@ -216,7 +222,6 @@
         <option value="$PROJECT_DIR$/config/randomorg.php" />
         <option value="$PROJECT_DIR$/app/Classes/CastomRandom.php" />
         <option value="$PROJECT_DIR$/app/Classes/CustomRandom.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/app/Events/PickPlace.php" />
         <option value="$PROJECT_DIR$/app/Place.php" />
         <option value="$PROJECT_DIR$/resources/js/components/modals/CardInfo.vue" />
@@ -226,27 +231,38 @@
         <option value="$PROJECT_DIR$/app/Events/Achievement.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/Achievement.php" />
         <option value="$PROJECT_DIR$/app/Listeners/ProcessAchievements.php" />
         <option value="$PROJECT_DIR$/app/Lottery.php" />
         <option value="$PROJECT_DIR$/app/Events/RaffleNotification.php" />
         <option value="$PROJECT_DIR$/resources/sass/lottery.scss" />
-        <option value="$PROJECT_DIR$/resources/js/pages/Lottery.vue" />
         <option value="$PROJECT_DIR$/app/Lot.php" />
         <option value="$PROJECT_DIR$/app/CardsStorage.php" />
-        <option value="$PROJECT_DIR$/resources/sass/main.scss" />
-        <option value="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" />
         <option value="$PROJECT_DIR$/resources/sass/modals.scss" />
         <option value="$PROJECT_DIR$/resources/js/pages/Games.vue" />
-        <option value="$PROJECT_DIR$/resources/js/pages/Start.vue" />
         <option value="$PROJECT_DIR$/resources/sass/start.scss" />
-        <option value="$PROJECT_DIR$/resources/js/components/MainMenu.vue" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" />
         <option value="$PROJECT_DIR$/resources/js/pages/PlayerInfo.vue" />
-        <option value="$PROJECT_DIR$/resources/js/routes.js" />
         <option value="$PROJECT_DIR$/resources/js/components/modals/History.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Lottery.vue" />
+        <option value="$PROJECT_DIR$/database/seeds/ContentTableSeeder.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/modals/FAQ.vue" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" />
         <option value="$PROJECT_DIR$/resources/js/layouts/default.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/MainMenu.vue" />
+        <option value="$PROJECT_DIR$/resources/js/routes.js" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Start.vue" />
+        <option value="$PROJECT_DIR$/app/Achievement.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_06_13_220030_create_achievements_table.php" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Achievement.vue" />
+        <option value="$PROJECT_DIR$/resources/sass/achievements.scss" />
+        <option value="$PROJECT_DIR$/resources/sass/main.scss" />
+        <option value="$PROJECT_DIR$/resources/sass/partials.scss" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Playzone.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Main.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Market.vue" />
       </list>
     </option>
   </component>
@@ -294,8 +310,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -311,8 +325,19 @@
             <path>
               <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="migrations" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="seeds" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
@@ -331,21 +356,6 @@
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modals" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="layouts" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
@@ -357,12 +367,20 @@
             <path>
               <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="sass" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -376,19 +394,19 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\views\admin\content" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\public" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\views\admin" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\domains\hut-randoms.com\public\img\achievements\bg" />
       <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js" />
       <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\views" />
       <recent name="D:\OpenServer\domains\hut-randoms.com\resources\sass" />
       <recent name="D:\OpenServer\domains\hut-randoms.com\public\img" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\views\admin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\domains\hut-randoms.com\public\img\achievements\element" />
+      <recent name="D:\OpenServer\domains\hut-randoms.com\public\img" />
+      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\views\admin\content" />
+      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js" />
+      <recent name="D:\OpenServer\domains\hut-randoms.com\public" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -483,12 +501,13 @@
       <workItem from="1565294828669" duration="26255000" />
       <workItem from="1565419940809" duration="9809000" />
       <workItem from="1565508994117" duration="82474000" />
-      <workItem from="1565808013436" duration="19197000" />
+      <workItem from="1565808013436" duration="24569000" />
+      <workItem from="1565881500186" duration="11817000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="718933000" />
+    <option name="totallyTimeSpent" value="736122000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -503,7 +522,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3494705" sideWeight="0.48072562" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3547655" sideWeight="0.48072562" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -522,6 +541,26 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32718894" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20045386" sideWeight="0.51927435" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21354167" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40860215" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3547655" sideWeight="0.48072562" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -544,147 +583,14 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/pages/Start.vue</url>
           <line>70</line>
-          <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SinglePageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CoinsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-147">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1354">
-          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TransactionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="45" column="24" lean-forward="false" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="878">
-          <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Events/PickPlace.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="199" column="26" lean-forward="false" selection-start-line="199" selection-start-column="26" selection-end-line="199" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/CardInfo.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="33" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/Main.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/BelongsToMany.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="297" column="20" lean-forward="false" selection-start-line="297" selection-start-column="20" selection-end-line="297" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CardsStorageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="236" column="38" lean-forward="false" selection-start-line="236" selection-start-column="38" selection-end-line="236" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Events/Registered.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-147">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Listeners/SendEmailVerificationNotification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/channels.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-08-13.log">
       <provider selected="true" editor-type-id="LogFileEditorProvider">
         <state relative-caret-position="236">
@@ -718,15 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-867">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Achievement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="25" column="92" lean-forward="false" selection-start-line="25" selection-start-column="92" selection-end-line="25" selection-end-column="92" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -748,14 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
           <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/lottery.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1888">
-          <caret line="341" column="43" lean-forward="false" selection-start-line="341" selection-start-column="43" selection-end-line="341" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -799,14 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/AsideMenu.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="30" column="41" lean-forward="false" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/modals.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
@@ -817,17 +698,6 @@
             <element signature="e#1853#3438#0" expanded="false" />
             <element signature="e#3456#3815#0" expanded="false" />
             <element signature="e#3836#5242#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-56">
-          <caret line="41" column="24" lean-forward="false" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
-          <folding>
-            <element signature="e#6718#7525#0" expanded="false" />
-            <element signature="e#7598#8336#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -848,34 +718,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/start.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/Start.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="245" column="21" lean-forward="true" selection-start-line="245" selection-start-column="21" selection-end-line="245" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Place.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/Coins.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="181" column="36" lean-forward="true" selection-start-line="178" selection-start-column="14" selection-end-line="184" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -896,71 +742,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="39" column="12" lean-forward="true" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/Lottery.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1540">
-          <caret line="211" column="52" lean-forward="true" selection-start-line="211" selection-start-column="52" selection-end-line="211" selection-end-column="52" />
-          <folding>
-            <element signature="e#3526#3588#0" expanded="false" />
-            <element signature="e#4633#4823#0" expanded="false" />
-            <element signature="e#4658#4812#0" expanded="false" />
-            <element signature="e#5046#5246#0" expanded="false" />
-            <element signature="e#5275#5591#0" expanded="false" />
-            <element signature="e#6617#7221#0" expanded="false" />
-            <element signature="e#7251#7305#0" expanded="false" />
-            <element signature="e#7335#7389#0" expanded="false" />
-            <element signature="e#7417#7666#0" expanded="false" />
-            <element signature="e#7695#7807#0" expanded="false" />
-            <element signature="e#9619#10585#0" expanded="false" />
-            <element signature="e#10771#11384#0" expanded="false" />
-            <element signature="e#11422#11604#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-787">
-          <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotteryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="373" column="26" lean-forward="false" selection-start-line="373" selection-start-column="26" selection-end-line="373" selection-end-column="26" />
-          <folding>
-            <element signature="e#4036#4563#0#PHP" expanded="false" />
-            <element signature="e#4569#7819#0#PHP" expanded="false" />
-            <element signature="e#7825#9037#0#PHP" expanded="false" />
-            <element signature="e#9043#9304#0#PHP" expanded="false" />
-            <element signature="e#9310#10141#0#PHP" expanded="false" />
-            <element signature="e#10147#10318#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/pages/PlayerInfo.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/MainMenu.vue">
+    <entry file="file://$PROJECT_DIR$/app/Promocode.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="63" column="14" lean-forward="true" selection-start-line="61" selection-start-column="10" selection-end-line="63" selection-end-column="14" />
+        <state relative-caret-position="-51">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -973,24 +765,274 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotteryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="256" column="0" lean-forward="true" selection-start-line="255" selection-start-column="70" selection-end-line="256" selection-end-column="0" />
+          <folding>
+            <element signature="e#4036#4563#0#PHP" expanded="false" />
+            <element signature="e#9043#9304#0#PHP" expanded="false" />
+            <element signature="e#9310#10141#0#PHP" expanded="false" />
+            <element signature="e#10147#10318#0#PHP" expanded="false" />
+            <element signature="e#10324#11196#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/MainMenu.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="23" column="52" lean-forward="false" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/AsideMenu.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="30" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/FAQ.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="155" column="24" lean-forward="false" selection-start-line="155" selection-start-column="24" selection-end-line="155" selection-end-column="24" />
+          <folding>
+            <element signature="n#ul#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#li#0;n#ul#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/Payment.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="62" column="39" lean-forward="false" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/layouts/default.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="55" column="56" lean-forward="false" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
+        <state relative-caret-position="17">
+          <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
           <folding>
-            <element signature="n#header#0;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#scroll#0;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#aside#0;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#footer#0;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#modal#0;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#modal#1;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#modal#2;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#modal#3;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#modal#5;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#modal#6;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#modal#7;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#6134#8832#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="153" column="42" lean-forward="false" selection-start-line="153" selection-start-column="42" selection-end-line="153" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/ContentTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+          <folding>
+            <marker date="1565876359525" expanded="true" signature="5082:5342" ph="..." />
+            <marker date="1565876359525" expanded="true" signature="5630:5916" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Coins.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="228" column="0" lean-forward="false" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/admin.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="209" column="5" lean-forward="false" selection-start-line="209" selection-start-column="3" selection-end-line="209" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/cardstyle.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2278">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/games.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="75" column="19" lean-forward="false" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1241">
+          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/lottery.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="128" column="25" lean-forward="false" selection-start-line="128" selection-start-column="23" selection-end-line="128" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Start.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="296" column="0" lean-forward="true" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
+          <folding>
+            <element signature="e#9559#9608#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/start.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Lottery.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="78" lean-forward="true" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="78" />
+          <folding>
+            <element signature="e#3526#3588#0" expanded="false" />
+            <element signature="e#5046#5246#0" expanded="false" />
+            <element signature="e#5275#5591#0" expanded="false" />
+            <element signature="e#6617#7221#0" expanded="false" />
+            <element signature="e#7251#7305#0" expanded="false" />
+            <element signature="e#7335#7389#0" expanded="false" />
+            <element signature="e#7417#7666#0" expanded="false" />
+            <element signature="e#7695#7807#0" expanded="false" />
+            <element signature="e#7835#8187#0" expanded="false" />
+            <element signature="e#10826#11439#0" expanded="false" />
+            <element signature="e#11477#11659#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Achievement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_06_13_220030_create_achievements_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="28" column="56" lean-forward="false" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Achievement.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/achievements.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/utilits.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="75" column="1" lean-forward="true" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="164" column="1" lean-forward="false" selection-start-line="164" selection-start-column="1" selection-end-line="164" selection-end-column="1" />
+          <folding>
+            <element signature="e#7044#7851#0" expanded="false" />
+            <element signature="e#7924#8662#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/partials.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Playzone.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="6" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Main.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Market.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>

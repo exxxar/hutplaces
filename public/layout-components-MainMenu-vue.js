@@ -244,7 +244,7 @@ var render = function() {
                         [
                           _c(
                             "router-link",
-                            { attrs: { to: { name: "cabinet" }, tag: "a" } },
+                            { attrs: { to: { name: "Cabinet" }, tag: "a" } },
                             [_vm._v("User cabinet")]
                           )
                         ],

@@ -26,8 +26,11 @@
     export default {
         name: 'defaultLayout',
         methods: {
-            openModal(name){
+            selfHide(){
                 this.$emit("self-hide");
+            },
+            openModal(name){
+                this.selfHide();
                 this.$emit("modal",name);
             }
         }

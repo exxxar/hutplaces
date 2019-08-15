@@ -145,6 +145,25 @@ body {
 
 }
 
+h1.main-title {
+  font-weight: 100;
+  color: white;
+  text-transform: uppercase;
+  font-size: 36px;
+  line-height: 150%;
+}
+
+p.description {
+  border-left: 1px yellow solid;
+  padding: 20px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 14px;
+  color: white;
+  line-height: 150%;
+}
+
 header, section, footer {
   width: 100%;
   @include flex(center, flex-start);

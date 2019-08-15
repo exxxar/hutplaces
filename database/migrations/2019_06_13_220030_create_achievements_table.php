@@ -24,16 +24,18 @@ class CreateAchievementsTable extends Migration
             $table->integer("exp" )->nullable();
             $table->integer("coins" )->nullable();
             $table->double("money" )->nullable();
+            $table->string("image" )->nullable();
+            $table->string("background" )->nullable();
+            $table->boolean("randomRewards" )->default(1);
 
             $table->unsignedInteger("items_id" )->nullable();
             $table->unsignedInteger("cards_storage_id" )->nullable();
-            $table->unsignedInteger("images_storage_id" )->nullable();//achivement logo
 
             $table->boolean("isActive" )->default(1);
 
             $table->foreign('items_id')->references('id')->on('items');
             $table->foreign('cards_storage_id')->references('id')->on('cards_storage');
-            $table->foreign('images_storage_id')->references('id')->on('images_storage');
+
 
 
 

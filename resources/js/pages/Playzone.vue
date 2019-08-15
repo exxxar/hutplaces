@@ -1,5 +1,11 @@
 <template>
   <div>
+
+    <h1 class="main-title">Игровая зона</h1>
+    <p class="description">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit.
+    </p>
+
     <ul>
       <router-link tag="li" class="btn randoms opened" to="/randoms">
         {{$lang.messages.randoms}}

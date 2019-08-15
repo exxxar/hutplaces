@@ -36,8 +36,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'defaultLayout',
   methods: {
-    openModal: function openModal(name) {
+    selfHide: function selfHide() {
       this.$emit("self-hide");
+    },
+    openModal: function openModal(name) {
+      this.selfHide();
       this.$emit("modal", name);
     }
   }

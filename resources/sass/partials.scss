@@ -4,7 +4,7 @@ ul {
  @include flex(center,flex-start);
   list-style: none;
   padding: 10px 10px 100px 10px;
-  width:1000px;
+  width:100%;
   @media (max-width: 1000px) {
     & {
       //flex-direction: column;

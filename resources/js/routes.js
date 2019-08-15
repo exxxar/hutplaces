@@ -15,6 +15,7 @@ import Main from '@/pages/Main'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import PlayerInfo from '@/pages/PlayerInfo'
+import Achievements from '@/pages/Achievement'
 import Notifications from 'vue-notification'
 import VModal from 'vue-js-modal'
 import Lang from 'vuejs-localization'
@@ -80,6 +81,11 @@ export default new Router({
             path: '/playzone',
             name: 'Playzone',
             component: Playzone
+        },
+        {
+            path: '/achievements',
+            name: 'Achievements',
+            component: Achievements
         },
         {
             path: '/cabinet',

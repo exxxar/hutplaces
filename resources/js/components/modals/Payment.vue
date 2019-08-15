@@ -1,82 +1,81 @@
 <template>
 
-  <div class="modal-body">
-    <div class="modal-logo"><img src="/img/money-card-icon-1.png" alt=""></div>
-    <h1>Введите сумму пополнения</h1>
-    <div class="input-group">
-      <label for="input-value">Сумма пополнения</label>
-      <input type="number" autocomplete="off" min="1" id="input-value" v-model="money">
+    <div class="modal-body">
+        <div class="modal-logo"><img src="/img/money-card-icon-1.png" alt=""></div>
+        <h1>Введите сумму пополнения</h1>
+        <div class="input-group">
+            <label for="input-value">Сумма пополнения</label>
+            <input type="number" autocomplete="off" min="1" id="input-value" v-model="money">
+        </div>
+
+        <div class="input-group">
+            <label for="select-payment">Платежная система</label>
+            <select id="select-payment" v-model="payment_system">
+                <option value="test">Test.Деньги</option>
+                <option value="yandex">Яндекс.Деньги</option>
+                <option value="webmoney">WebMoney</option>
+                <option value="paypal">PAYPAL</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+
+            <button class="btn btn-yellow full" @click="requestPayment()">Пополнить</button>
+
+        </div>
     </div>
-
-    <div class="input-group">
-      <label for="select-payment">Платежная система</label>
-      <select id="select-payment" v-model="payment_system">
-        <option value="test">Test.Деньги</option>
-        <option value="yandex">Яндекс.Деньги</option>
-        <option value="webmoney">WebMoney</option>
-        <option value="paypal">PAYPAL</option>
-      </select>
-    </div>
-
-    <div class="input-group">
-
-    <button class="btn btn-yellow full" @click="requestPayment()">Пополнить</button>
-
-    </div>
-  </div>
 
 </template>
 <script>
 
-  export default {
-    name: 'payment',
-      data(){
-        return {
-            payment_system:"test",
-            money:''
-        }
-      },
-    methods: {
-        message(title,message,type){
-            this.$notify({
-                group: 'main',
-                type: type,
-                title: title,
-                text: message
-            })
-        },
-        requestPayment(){
-
-            var message = this.message;
-
-
-            if (!auth.check()) {
-                message("Ошибка", `Для пополнения счета авторизуйтесь!`, "warn");
-                this.$emit('hide',"payment");
-                return
+    export default {
+        name: 'payment',
+        data() {
+            return {
+                payment_system: "test",
+                money: ''
             }
-            axios.post('/payment/testPaymanet', {
-                payment_system: this.selected,
-                money: this.money
-            })
-                .then(function (response) {
-                    var tmp = response.data;
-                    console.log(tmp);
-
-                  message("Успех!",`Деньги в размере ${tmp.money} ${tmp.currency} успешно добавлены!`,"warn");
-
-
-
+        },
+        methods: {
+            message(title, message, type) {
+                this.$notify({
+                    group: 'main',
+                    type: type,
+                    title: title,
+                    text: message
                 })
-                .catch(function (error) {
+            },
+            selfHide() {
+                this.$emit("self-hide");
+            },
+            requestPayment() {
 
-                });
+                if (!auth.check()) {
+                    this.message("Ошибка", `Для пополнения счета авторизуйтесь!`, "warn");
+                    this.$emit('hide', "payment");
+                    return
+                }
 
-            this.$emit('hide',"payment");
+                axios
+                    .post(`/payment/${this.payment_system}`, {
+                        money: this.money
+                    })
+                    .then((response) => {
+                        Event.$emit("updateUserProfile");
+                        var tmp = response.data;
+                        this.message("Успех!", `Деньги в размере ${tmp.money} ${tmp.currency} успешно добавлены!`, "warn");
+
+
+                    })
+                    .catch(function (error) {
+
+                    });
+
+                this.selfHide()
+            }
+
         }
-
     }
-  }
 </script>
 <style>
 

@@ -192,6 +192,8 @@ class UserController extends Controller
     }
 
     public function payment(Request $request, $paymentProvider){
+
+
             $user = User::find(auth()->user()->id);
 
             $money = $request->get("money");
@@ -206,7 +208,7 @@ class UserController extends Controller
                 'currency'=>'rub'
             ]);
 
-        broadcast(new UserUpdate($user->id));
+        //broadcast(new UserUpdate($user->id));
 
             return response()
                 ->json([
