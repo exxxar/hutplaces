@@ -171,6 +171,10 @@
 
             });
 
+            pusher.subscribe('achievement-gain-chanel').bind('achievement-gain-event', (data) => {
+                this.message("Получение достижения", `${data.message}`, 'warn');
+            });
+
             pusher.subscribe('raffle-chanel').bind('raffle-event', (data) => {
                 Event.$emit("startRaffle", data)
                 this.message("Сообщение от администрации", `${data.message}`, 'warn');

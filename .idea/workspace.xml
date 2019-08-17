@@ -5,54 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7300405c-d11a-49c5-8c8a-b5b92f5b0902" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Middleware/Levels.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2019_02_25_194549_create_jobs_table.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Achievement.php" afterPath="$PROJECT_DIR$/app/Achievement.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Content.php" afterPath="$PROJECT_DIR$/app/Content.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Events/Achievement.php" afterPath="$PROJECT_DIR$/app/Events/Achievement.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Listeners/ProcessAchievements.php" afterPath="$PROJECT_DIR$/app/Listeners/ProcessAchievements.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Lottery.php" afterPath="$PROJECT_DIR$/app/Lottery.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Promocode.php" afterPath="$PROJECT_DIR$/app/Promocode.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_03_24_203456_create_tickets_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_03_24_203456_create_tickets_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_06_13_220030_create_achievements_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_06_13_220030_create_achievements_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_06_13_220106_create_promocodes_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_06_13_220106_create_promocodes_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/LevelsTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/LevelsTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-AsideMenu-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-AsideMenu-vue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-History-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-History-vue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-Howtostart-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-Howtostart-vue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-Payment-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-Payment-vue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-Promo-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-Promo-vue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-layouts-default-vue.js" afterPath="$PROJECT_DIR$/public/layout-layouts-default-vue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/mix-manifest.json" afterPath="$PROJECT_DIR$/public/mix-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/app.js" afterPath="$PROJECT_DIR$/resources/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" afterPath="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/History.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/History.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/Howtostart.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/Howtostart.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/Promo.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/Promo.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Achievement.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Achievement.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Main.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Main.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Market.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Market.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Playzone.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Playzone.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Randoms.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Randoms.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Start.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Start.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/main.scss" afterPath="$PROJECT_DIR$/resources/sass/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/partials.scss" afterPath="$PROJECT_DIR$/resources/sass/partials.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/utilits.scss" afterPath="$PROJECT_DIR$/resources/sass/utilits.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/channels.php" afterPath="$PROJECT_DIR$/routes/channels.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/layouts/default.vue" afterPath="$PROJECT_DIR$/resources/js/layouts/default.vue" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -77,11 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Stats.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Stats.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ProcessAchievements.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Listeners/ProcessAchievements.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-244">
-              <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+            <state relative-caret-position="306">
+              <caret line="45" column="44" lean-forward="false" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -90,7 +55,7 @@
       <file leaf-file-name="GainAchievement.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Events/GainAchievement.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="430">
               <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
               <folding>
                 <element signature="e#30#50#0#PHP" expanded="true" />
@@ -99,10 +64,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Ticket.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Ticket.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ProcessLevel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Listeners/ProcessLevel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-40">
+            <state relative-caret-position="73">
               <caret line="34" column="45" lean-forward="true" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
               <folding />
             </state>
@@ -189,7 +164,6 @@
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/resources/sass/utilits.scss" />
         <option value="$PROJECT_DIR$/resources/js/pages/Playzone.vue" />
-        <option value="$PROJECT_DIR$/resources/js/layouts/default.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" />
         <option value="$PROJECT_DIR$/resources/js/pages/Achievement.vue" />
         <option value="$PROJECT_DIR$/resources/sass/achievements.scss" />
@@ -230,6 +204,7 @@
         <option value="$PROJECT_DIR$/app/Events/GainExpirience.php" />
         <option value="$PROJECT_DIR$/app/Listeners/ProcessLevel.php" />
         <option value="$PROJECT_DIR$/app/Events/GainAchievement.php" />
+        <option value="$PROJECT_DIR$/resources/js/layouts/default.vue" />
         <option value="$PROJECT_DIR$/app/Listeners/ProcessAchievements.php" />
       </list>
     </option>
@@ -329,6 +304,24 @@
               <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="seeds" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="layouts" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
@@ -466,12 +459,12 @@
       <workItem from="1565945172251" duration="1279000" />
       <workItem from="1565969125246" duration="1186000" />
       <workItem from="1566022809206" duration="4489000" />
-      <workItem from="1566054674003" duration="15497000" />
+      <workItem from="1566054674003" duration="16104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="765419000" />
+    <option name="totallyTimeSpent" value="766026000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -495,7 +488,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20045386" sideWeight="0.51927435" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21354167" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40860215" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40860215" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -550,22 +543,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Coin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CoinsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Content.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
@@ -588,14 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Stats.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -939,6 +908,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Stats.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Achievement.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -949,7 +926,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Listeners/ProcessLevel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
+        <state relative-caret-position="73">
           <caret line="34" column="45" lean-forward="true" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
           <folding />
         </state>
@@ -957,7 +934,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Events/GainAchievement.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="430">
           <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
           <folding>
             <element signature="e#30#50#0#PHP" expanded="true" />
@@ -965,10 +942,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Ticket.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/layouts/default.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="174" column="50" lean-forward="false" selection-start-line="174" selection-start-column="50" selection-end-line="174" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Listeners/ProcessAchievements.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-244">
-          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        <state relative-caret-position="306">
+          <caret line="45" column="44" lean-forward="false" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
           <folding />
         </state>
       </provider>
