@@ -8,7 +8,7 @@ class Promocode extends Model
 {
     protected $fillable = [
         'lifetime',
-        'isActive',
+        'is_active',
         'title',
         'description',
         'activation_count',
@@ -18,6 +18,6 @@ class Promocode extends Model
         'discount',
         'items_id',
         'cards_id',
-        'images_storage_id',
+        'images',
     ];
 }

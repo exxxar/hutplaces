@@ -1,9 +1,14 @@
 <template>
   <div class="random-games">
+
+      <h1 class="main-title">Выбери свою игру!</h1>
+      <p class="description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit.
+      </p>
     <ul class="games-list">
       <li class="game" v-for="game in games">
         <div class="row">
-          <img class="game-logo" :src="game.logo" alt="">
+          <img class="game-logo" v-lazy="game.logo" alt="">
         </div>
        <div class="row">
          <a :href="game.url" target="_blank">{{game.url}}</a>
@@ -73,31 +78,7 @@ export default {
             this.addSlide('/img/nhl-banner.jpg')
           ]
         },
-        {
-          route: 'nhl',
-          logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ea/EA_Sports.svg/220px-EA_Sports.svg.png',
-          url: 'http://www.easports.com/nhl',
-          banner: '/img/logo.png',
-          title: 'NHL 19',
-          platforms: [
-            {
-              platform_id: 1,
-              title: 'xbox one'
-            },
-            {
-              platform_id: 2,
-              title: 'play station 4'
-            }
 
-          ],
-          lottery_count: 78,
-          slides: [
-            this.addSlide('/img/nhl-banner.jpg'),
-            this.addSlide('/img/nhl-banner.jpg'),
-            this.addSlide('/img/nhl-banner.jpg'),
-            this.addSlide('/img/nhl-banner.jpg')
-          ]
-        }
 
 
       ]

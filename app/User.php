@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Level');
     }
+
+    public function stats()
+    {
+        return $this->hasMany('App\Stats');
+    }
 }

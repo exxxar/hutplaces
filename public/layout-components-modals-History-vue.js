@@ -144,7 +144,15 @@ var render = function() {
             _vm._v(" "),
             _c("li", [
               _c("img", {
-                attrs: { src: _vm.getPlatform(item.console_type), alt: "" }
+                directives: [
+                  {
+                    name: "lazy",
+                    rawName: "v-lazy",
+                    value: _vm.getPlatform(item.console_type),
+                    expression: "getPlatform(item.console_type)"
+                  }
+                ],
+                attrs: { alt: "" }
               })
             ]),
             _vm._v(" "),

@@ -97,7 +97,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "modal-body" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "modal-logo" }, [
+      _c("img", {
+        directives: [
+          {
+            name: "lazy",
+            rawName: "v-lazy",
+            value: "/img/money-card-icon-1.png",
+            expression: "'/img/money-card-icon-1.png'"
+          }
+        ],
+        attrs: { alt: "" }
+      })
+    ]),
     _vm._v(" "),
     _c("h1", [_vm._v("Введите сумму пополнения")]),
     _vm._v(" "),
@@ -196,16 +208,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-logo" }, [
-      _c("img", { attrs: { src: "/img/money-card-icon-1.png", alt: "" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

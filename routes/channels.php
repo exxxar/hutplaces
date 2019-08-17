@@ -31,3 +31,7 @@ Broadcast::channel('message-chanel', function(){
 Broadcast::channel('user-update-chanel', function () {
     return true;
 });
+
+Broadcast::channel('achievement-gain-chanel', function () {
+    return true;
+});

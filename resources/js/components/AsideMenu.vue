@@ -7,7 +7,10 @@
         </router-link>
 
         <li class="btn btn-black-2" @click="openModal('promo')">Промокоды</li>
-        <li class="btn btn-black-2"><a href="">Достижения</a></li>
+
+        <router-link :to="{ name: 'Achievements' }" tag="li" class="btn btn-black-2">Достижения
+        </router-link>
+
         <li class="more-menu">
             <div class="lang">
                 <a href=""><img src="/img/ru.jpg" alt=""></a>

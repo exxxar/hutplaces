@@ -65,80 +65,156 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "modal-body" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-logo" }, [
+      _c("img", {
+        directives: [
+          {
+            name: "lazy",
+            rawName: "v-lazy",
+            value: "/img/vk-login-icon.png",
+            expression: "'/img/vk-login-icon.png'"
+          }
+        ],
+        attrs: { alt: "" }
+      })
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-logo" }, [
+      _c("img", {
+        directives: [
+          {
+            name: "lazy",
+            rawName: "v-lazy",
+            value: "/img/money-icon-1.png",
+            expression: "'/img/money-icon-1.png'"
+          }
+        ],
+        attrs: { alt: "" }
+      })
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _vm._m(3),
+    _vm._v(" "),
+    _vm._m(4),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _vm._m(5),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-logo" }, [
+      _c("img", {
+        directives: [
+          {
+            name: "lazy",
+            rawName: "v-lazy",
+            value: "/img/security-icon-1.png",
+            expression: "'/img/security-icon-1.png'"
+          }
+        ],
+        attrs: { alt: "" }
+      })
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _vm._m(6),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-logo" }, [
+      _c("img", {
+        directives: [
+          {
+            name: "lazy",
+            rawName: "v-lazy",
+            value: "/img/time-icon-1.png",
+            expression: "'/img/time-icon-1.png'"
+          }
+        ],
+        attrs: { alt: "" }
+      })
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("p", [
-        _vm._v("Для принятия участия в розыгрыше,"),
-        _c("br"),
-        _vm._v("\n    необходимо авторизоваться через ВК")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "modal-logo" }, [
-        _c("img", { attrs: { src: "/img/vk-login-icon.png", alt: "" } })
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("Перед участием в игре незабудьте"),
-        _c("br"),
-        _vm._v("\n    пополнить свой счет!")
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(" В игре собственная валюта - "),
-        _c("span", [_vm._v("Pucks")]),
-        _vm._v(".")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "modal-logo" }, [
-        _c("img", { attrs: { src: "/img/money-icon-1.png", alt: "" } })
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("На балансе должно быть досаточное "),
-        _c("br"),
-        _vm._v("\n    количество средств.")
-      ]),
-      _vm._v(" "),
-      _c("h2", [
-        _vm._v("1 "),
-        _c("span", [_vm._v("Pucks")]),
-        _vm._v(" = 1 Руб")
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("Честность выбора победителя можно "),
-        _c("br"),
-        _vm._v("\n    проверить на сайте "),
-        _c("span", [_vm._v("random.org")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "modal-logo" }, [
-        _c("img", { attrs: { src: "/img/security-icon-1.png", alt: "" } })
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("Быстрая доставка выигрыша"),
-        _c("br"),
-        _vm._v("\n    в течении 24-х часов")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "modal-logo" }, [
-        _c("img", { attrs: { src: "/img/time-icon-1.png", alt: "" } })
-      ])
+    return _c("p", [
+      _vm._v("Для принятия участия в розыгрыше,"),
+      _c("br"),
+      _vm._v("\n    необходимо авторизоваться через ВК")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Перед участием в игре незабудьте"),
+      _c("br"),
+      _vm._v("\n    пополнить свой счет!")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v(" В игре собственная валюта - "),
+      _c("span", [_vm._v("Pucks")]),
+      _vm._v(".")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("На балансе должно быть досаточное "),
+      _c("br"),
+      _vm._v("\n    количество средств.")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", [
+      _vm._v("1 "),
+      _c("span", [_vm._v("Pucks")]),
+      _vm._v(" = 1 Руб")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Честность выбора победителя можно "),
+      _c("br"),
+      _vm._v("\n    проверить на сайте "),
+      _c("span", [_vm._v("random.org")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Быстрая доставка выигрыша"),
+      _c("br"),
+      _vm._v("\n    в течении 24-х часов")
     ])
   }
 ]

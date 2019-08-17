@@ -2,10 +2,25 @@
 
 namespace App;
 
+use App\Enums\ConsoleType;
+use App\Enums\GameType;
+use App\Enums\Lifetime;
+use App\Enums\LotType;
+use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
 
 class Lottery extends Model
 {
+    use CastsEnums;
+
+    protected $enumCasts = [
+        'console_type' => ConsoleType::class,
+        'lot_type' => LotType::class,
+        'game_type' => GameType::class,
+        'lifetime' => Lifetime::class,
+
+    ];
+
     protected $fillable = [
         'title',
         'console_type',

@@ -2,26 +2,44 @@
 
 namespace App;
 
+use App\Enums\TriggerType;
+use App\Enums\AchievementType;
+use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
 
 class Achievement extends Model
 {
+    use CastsEnums;
+
+    protected $enumCasts = [
+        'type' => AchievementType::class,
+        'trigger_type' => TriggerType::class,
+    ];
+
     protected $fillable = [
-        'category',
-        'type',
         'title',
         'description',
-        'discount',
         'background',
+        'image',
+
+        'type',
+
+        'discount',
         'exp',
         'coins',
         'money',
         'items_id',
         'cards_id',
-        'image',
-        'isActive',
-        'randomRewards'
+
+
+        'is_active',
+
+        'random_rewards',
+
+        'trigger_type',
+        'trigger_value'
     ];
+
 
     public function users()
     {

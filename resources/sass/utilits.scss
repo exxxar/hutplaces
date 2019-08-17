@@ -245,3 +245,13 @@ input {
   background-color: yellow;
   width: 7px;
 }
+
+img[lazy=loading] {
+  width:50px !important;
+  height:50px !important;
+
+}
+img[lazy=error] {
+  width:50px !important;
+  height:50px !important;
+}

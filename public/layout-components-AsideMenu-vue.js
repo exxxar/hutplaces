@@ -33,6 +33,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'defaultLayout',
   methods: {
@@ -97,10 +100,17 @@ var render = function() {
         [_vm._v("Промокоды")]
       ),
       _vm._v(" "),
-      _vm._m(0),
+      _c(
+        "router-link",
+        {
+          staticClass: "btn btn-black-2",
+          attrs: { to: { name: "Achievements" }, tag: "li" }
+        },
+        [_vm._v("Достижения\n    ")]
+      ),
       _vm._v(" "),
       _c("li", { staticClass: "more-menu" }, [
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("ul", { staticClass: "more" }, [
           _c(
@@ -173,14 +183,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "btn btn-black-2" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("Достижения")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

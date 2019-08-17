@@ -46,7 +46,7 @@
 
         <section class="section-2">
             <div class="center">
-                <div class="left"><img src="img/cards-block.png" alt=""></div>
+                <div class="left"><img v-lazy="'img/cards-block.png'" alt=""></div>
                 <div class="right">
                     <div class="text">
                         <p>
@@ -107,11 +107,11 @@
             <div class="center">
                 <h1>Работа с платежными системами</h1>
                 <ul>
-                    <li><a href=""><img src="img/WebMoney_logo_blue.svg" alt=""></a></li>
-                    <li><a href=""><img src="img/1280px-Qiwi_logo.svg.png" alt=""></a></li>
-                    <li><a href=""><img src="img/MasterCard_Logo.svg.png" alt=""></a></li>
-                    <li><a href=""><img src="img/Visa_Inc._logo.svg.png" alt=""></a></li>
-                    <li><a href=""><img src="img/1280px-Логотип_Яндекс.Денег.svg.png" alt=""></a></li>
+                    <li><a href=""><img v-lazy="'img/WebMoney_logo_blue.svg'" alt=""></a></li>
+                    <li><a href=""><img v-lazy="'img/1280px-Qiwi_logo.svg.png'" alt=""></a></li>
+                    <li><a href=""><img v-lazy="'img/MasterCard_Logo.svg.png'" alt=""></a></li>
+                    <li><a href=""><img v-lazy="'img/Visa_Inc._logo.svg.png'" alt=""></a></li>
+                    <li><a href=""><img v-lazy="'img/1280px-Логотип_Яндекс.Денег.svg.png'" alt=""></a></li>
                 </ul>
             </div>
         </section>
@@ -122,31 +122,31 @@
                     <carousel-3d :autoplay="true" :perspective="20" :width="270" :height="370" :display="10"
                                  :space="210">
                         <slide :index="0">
-                            <img src="img/card-example.jpg" alt="">
+                            <img v-lazy="'img/card-example.jpg'" alt="">
                             <div class="shadow"></div>
                         </slide>
                         <slide :index="1">
-                            <img src="img/card-example.jpg" alt="">
+                            <img v-lazy="'img/card-example.jpg'" alt="">
                             <div class="shadow"></div>
                         </slide>
                         <slide :index="2">
-                            <img src="img/card-example.jpg" alt="">
+                            <img v-lazy="'img/card-example.jpg'" alt="">
                             <div class="shadow"></div>
                         </slide>
                         <slide :index="3">
-                            <img src="img/card-example.jpg" alt="">
+                            <img v-lazy="'img/card-example.jpg'" alt="">
                             <div class="shadow"></div>
                         </slide>
                         <slide :index="4">
-                            <img src="img/card-example.jpg" alt="">
+                            <img v-lazy="'img/card-example.jpg'" alt="">
                             <div class="shadow"></div>
                         </slide>
                         <slide :index="5">
-                            <img src="img/card-example.jpg" alt="">
+                            <img v-lazy="'img/card-example.jpg'" alt="">
                             <div class="shadow"></div>
                         </slide>
                         <slide :index="6">
-                            <img src="img/card-example.jpg" alt="">
+                            <img v-lazy="'img/card-example.jpg'" alt="">
                             <div class="shadow"></div>
                         </slide>
                     </carousel-3d>
@@ -172,10 +172,10 @@
             <div class="center">
                 <h1>Реальные <span>соперники</span>,<br>честная борьба!</h1>
                 <div class="bonus">
-                    <img src="img/ach-3.png" v-tooltip.bottom="'Третье место в общем рейтинге<br> +50 000 Coins'"
+                    <img v-lazy="'img/ach-3.png'" v-tooltip.bottom="'Третье место в общем рейтинге<br> +50 000 Coins'"
                          alt="">
-                    <img src="img/ach-2.png" v-tooltip.bottom="'Второе место в общем рейтинге<br> +200 Exp'" alt="">
-                    <img src="img/ach-1.png" v-tooltip.bottom="'Первое место в общем рейтинге<br> +500 Pucks'" alt="">
+                    <img v-lazy="'img/ach-2.png'" v-tooltip.bottom="'Второе место в общем рейтинге<br> +200 Exp'" alt="">
+                    <img v-lazy="'img/ach-1.png'" v-tooltip.bottom="'Первое место в общем рейтинге<br> +500 Pucks'" alt="">
 
                 </div>
                 <div class="arrow">

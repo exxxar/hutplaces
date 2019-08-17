@@ -181,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         RandomOrg\RandomServiceProvider::class,
+        BenSampo\Enum\EnumServiceProvider::class,
     ],
 
     /*

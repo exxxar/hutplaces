@@ -1,7 +1,7 @@
 <template>
 
     <div class="modal-body promo-modal">
-      <div class="modal-logo"><img src="/img/promo-logo.png" alt=""></div>
+      <div class="modal-logo"><img v-lazy="'/img/promo-logo.png'" alt=""></div>
       <h1>Введите действительный промокод</h1>
       <div class="input-group">
         <label for="input-promo">Ваш промокод</label>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Enums\TriggerType;
 use App\Http\Requests\RegisterFormRequest;
 use App\Level;
+use App\Stats;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -16,13 +19,27 @@ class AuthController extends Controller
 
        public function register()
     {
-        User::create([
+        $user = User::create([
             'name' => request('name'),
             'email' => request('email'),
             'avatar' => '',
             'level_id'=>(Level::where("level","1")->first())->id,
             'password' => bcrypt(request('password'))
         ]);
+
+        foreach (TriggerType::toArray() as $key => $value) {
+            $stat = $user->has('stats', function (Builder $query) use ($value){
+                $query->where('stat_type', '=', $value);
+            })->get();
+
+            if (empty($stat))
+                $user->stats()->attach(Stats::create([
+                    'stat_type'=>$value,
+                    'stat_value'=>0,
+                    'user_id'=>$user->id
+                ]));
+            //todo: реализовать метод, который будет добавлять всем новый тип тригера для ачивок и статистики
+        }
 
         return response()->json(['status' => 201]);
     }

@@ -5,9 +5,9 @@
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit.
         </p>
         <ul class="achievements">
-            <li v-for="a in achievements":style="cssProps(a.background)">
+            <li v-for="a in achievements" :style="cssProps(a.background)">
                 <div class="image" v-tooltip.bottom="prepareRewards(a.rewards)">
-                    <img :src="prepareImage(a.image)" alt="">
+                    <img v-lazy="prepareImage(a.image)" alt="">
                 </div>
                 <div class="text">
                     <h4>{{a.title}}</h4>

@@ -3,6 +3,16 @@ import Auth from './auth';
 import Api from './api.js';
 
 import Vue from 'vue'
+
+import VueLazyload from "vue-lazyload";
+
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: 'img/error.png',
+    loading: 'img/loading.gif',
+    attempt: 1
+})
+
 import App from './Main'
 import router from './routes'
 import Lang from 'vuejs-localization';
@@ -13,9 +23,14 @@ import VueClipboard from 'vue-clipboard2'
 import VueScrollTo from 'vue-scrollto';
 import {Tabs, Tab} from 'vue-tabs-component';
 
+
+
 Lang.requireAll(require.context('./lang', true, /\.js$/));
 
 Vue.use(Lang);
+
+
+
 
 window.api = new Api();
 

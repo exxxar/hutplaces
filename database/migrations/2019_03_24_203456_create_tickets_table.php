@@ -17,8 +17,6 @@ class CreateTicketsTable extends Migration
             $table->increments('id');
             $table->string('email')->default('');
             $table->string('description',1000)->default('');
-            $table->string('directory',1000)->default('');
-
             $table->timestamps();
         });
     }

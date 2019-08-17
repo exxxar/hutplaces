@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GainExpirience;
 use App\Events\UserUpdate;
 use App\Level;
 use App\Transaction;
@@ -200,6 +201,8 @@ class UserController extends Controller
             $user->exp += $money;
             $user->money += $money;
             $user->save();
+
+            event(new GainExpirience($user->id));
 
             Transaction::create([
                 'user_id'=>$user->id,

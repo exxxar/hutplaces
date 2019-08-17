@@ -1,7 +1,7 @@
 <template>
 
     <div class="modal-body">
-        <div class="modal-logo"><img src="/img/money-card-icon-1.png" alt=""></div>
+        <div class="modal-logo"><img v-lazy="'/img/money-card-icon-1.png'" alt=""></div>
         <h1>Введите сумму пополнения</h1>
         <div class="input-group">
             <label for="input-value">Сумма пополнения</label>

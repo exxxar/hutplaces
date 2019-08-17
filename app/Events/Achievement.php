@@ -14,17 +14,20 @@ class Achievement
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $id;
+    public $trigger_type;
+    public $trigger_value;
+    public $user_id;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($id)
+    public function __construct($trigger_type,$trigger_value,$user_id)
     {
-        //
-
-        $this->id = $id;
+        $this->user_id = $user_id;
+        $this->trigger_type = $trigger_type;
+        $this->trigger_value = $trigger_value;
     }
 
 

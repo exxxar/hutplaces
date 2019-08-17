@@ -17,7 +17,7 @@ class CreateAchievementsTable extends Migration
         Schema::create('achievements', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("category")->default(0);//0 - basik
-            $table->integer("type")->default(0);//0 - частое, 1 - редкое, 2 - очень редко, 3 - легендарное
+            $table->integer("type")->default(0);
             $table->string("title")->default("");
             $table->string("description", 2000)->default("");
             $table->integer("discount" )->nullable();
@@ -26,12 +26,14 @@ class CreateAchievementsTable extends Migration
             $table->double("money" )->nullable();
             $table->string("image" )->nullable();
             $table->string("background" )->nullable();
-            $table->boolean("randomRewards" )->default(1);
+            $table->boolean("random_rewards" )->default(1);
+            $table->string("trigger_type" )->nullable();
+            $table->string("trigger_value" )->nullable();
 
             $table->unsignedInteger("items_id" )->nullable();
             $table->unsignedInteger("cards_storage_id" )->nullable();
 
-            $table->boolean("isActive" )->default(1);
+            $table->boolean("is_active" )->default(1);
 
             $table->foreign('items_id')->references('id')->on('items');
             $table->foreign('cards_storage_id')->references('id')->on('cards_storage');

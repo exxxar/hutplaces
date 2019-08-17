@@ -16,7 +16,7 @@
                     {{item.lottery_title}}
                 </router-link>
             </li>
-            <li><img :src="getPlatform(item.console_type)" alt=""></li>
+            <li><img v-lazy="getPlatform(item.console_type)" alt=""></li>
             <li>
                 <router-link tag="a" :to="{ name: 'PlayerInfo',params: {userId:item.user_id} }" >
                     {{item.user_name}}

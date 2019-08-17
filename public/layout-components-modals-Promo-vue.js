@@ -47,39 +47,53 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "modal-body promo-modal" }, [
+    _c("div", { staticClass: "modal-logo" }, [
+      _c("img", {
+        directives: [
+          {
+            name: "lazy",
+            rawName: "v-lazy",
+            value: "/img/promo-logo.png",
+            expression: "'/img/promo-logo.png'"
+          }
+        ],
+        attrs: { alt: "" }
+      })
+    ]),
+    _vm._v(" "),
+    _c("h1", [_vm._v("Введите действительный промокод")]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body promo-modal" }, [
-      _c("div", { staticClass: "modal-logo" }, [
-        _c("img", { attrs: { src: "/img/promo-logo.png", alt: "" } })
-      ]),
+    return _c("div", { staticClass: "input-group" }, [
+      _c("label", { attrs: { for: "input-promo" } }, [_vm._v("Ваш промокод")]),
       _vm._v(" "),
-      _c("h1", [_vm._v("Введите действительный промокод")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "input-promo" } }, [
-          _vm._v("Ваш промокод")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          attrs: {
-            type: "text",
-            autocomplete: "off",
-            id: "input-promo",
-            maxlength: "20"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("button", { staticClass: "btn btn-yellow full" }, [
-          _vm._v("Активировать")
-        ])
+      _c("input", {
+        attrs: {
+          type: "text",
+          autocomplete: "off",
+          id: "input-promo",
+          maxlength: "20"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group" }, [
+      _c("button", { staticClass: "btn btn-yellow full" }, [
+        _vm._v("Активировать")
       ])
     ])
   }

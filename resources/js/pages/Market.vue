@@ -6,18 +6,19 @@
         </p>
 
         <ul>
-            <li class="btn auction closed" @click="showError('Раздел Аукцион закрыт!')">
+            <li class="btn auction closed"  v-lazy:background-image="'/img/auction-bg.png'" @click="showError('Раздел Аукцион закрыт!')">
                 {{$lang.messages.auction}}
                 <span></span>
             </li>
 
-            <router-link tag="li" class="btn coins opened" to="/coins">
+            <router-link tag="li" class="btn coins opened" v-lazy:background-image="'/img/coins-bg.png'" to="/coins">
                 {{$lang.messages.coins}}
             </router-link>
 
-            <li class="btn packs closed" @click="showError('Раздел Аукцион закрыт!')">
+            <li class="btn packs closed" @click="showError('Раздел Аукцион закрыт!')" v-lazy:background-image="'/img/packs-bg.png'">
                 {{$lang.messages.players_packs}}
                 <span></span>
+            </li>
             </li>
 
         </ul>
