@@ -32,7 +32,7 @@ class ProcessAchievements
     public function handle(Achievement $event)
     {
 
-        $stats = Stats::where("trigger_type", $event->trigger_type)
+        $stats = Stats::where("stat_type", $event->trigger_type)
             ->where("user_id", $event->user_id)
             ->fisrt();
 

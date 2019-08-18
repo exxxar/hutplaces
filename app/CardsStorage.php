@@ -72,4 +72,8 @@ class CardsStorage extends Model
     {
         return $this->belongsToMany('App\User','user_card','id','user_id');
     }
+
+    public function achievements(){
+       return $this->hasMany('App\Achievement');
+    }
 }

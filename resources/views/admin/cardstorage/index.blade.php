@@ -9,7 +9,7 @@
             </div>
             <div class="pull-right">
                 @can('cardstorage-create')
-                    <a class="btn btn-success" href="{{ route('cardstorage.create') }}"> Create New Card</a>
+                    <a class="btn btn-success" href="{{ route('storage.create') }}"> Create New Card</a>
                 @endcan
             </div>
         </div>
@@ -41,12 +41,12 @@
                 <td>{{ $cardstorage->Player }}</td>
                 <td>{{ $cardstorage->Team }}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('cardstorage.show',$cardstorage->id) }}">Show</a>
+                    <a class="btn btn-info" href="{{ route('storage.show',$cardstorage->id) }}">Show</a>
                     @can('cardstorage-edit')
-                        <a class="btn btn-primary" href="{{ route('cardstorage.edit',$cardstorage->id) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('storage.edit',$cardstorage->id) }}">Edit</a>
                     @endcan
                     @can('cardstorage-delete')
-                        {!! Form::open(['method' => 'DELETE','route' => ['cardstorage.destroy', $cardstorage->id],'style'=>'display:inline']) !!}
+                        {!! Form::open(['method' => 'DELETE','route' => ['storage.destroy', $cardstorage->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     @endcan

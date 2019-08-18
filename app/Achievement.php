@@ -28,8 +28,8 @@ class Achievement extends Model
         'exp',
         'coins',
         'money',
-        'items_id',
-        'cards_id',
+        'item_id',
+        'card_id',
 
 
         'is_active',
@@ -43,6 +43,10 @@ class Achievement extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\Users','user_achievement','achievement_id','user_id');
+        return $this->belongsToMany('App\User','user_achievement','achievement_id','user_id');
+    }
+
+    public function card(){
+        return $this->belongsTo('App\CardsStorage');
     }
 }

@@ -34,7 +34,7 @@ Route::get("/pay",function (){
 
     $redirect = FreeKassa::redirectToPayUrl($amount, 1);
 
-    return redirect($redirect);
+    return redirect( $url);
 });
 
 Route::get('/content/{id}','ContentController@get')->name("content.get")->where('id', '[0-9]+');

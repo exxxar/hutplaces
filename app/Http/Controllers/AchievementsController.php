@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Achievement;
+use App\CardsStorage;
+use App\Enums\AchievementType;
+use App\Enums\TriggerType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -39,15 +42,26 @@ class AchievementsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category' => 'integer|min:0|max:2147483647',
             'type' => 'integer|min:0|max:2147483647',
+            'trigger_type' => 'integer|min:0|max:2147483647',
+            'trigger_value' => 'integer|min:0|max:2147483647',
             'discount' => 'integer|min:0|max:2147483647',
             'exp' => 'integer|min:0|max:2147483647',
             'coins' => 'integer|min:0|max:2147483647',
             'money' => 'numeric',
         ]);
 
-        $input = $request->all(); 
+        $input = $request->all();
+
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $file->move(public_path() . '/path','filename.img');
+        }
+
+        if($request->hasFile('background')) {
+            $file = $request->file('background');
+            $file->move(public_path() . '/path','filename.img');
+        }
 
         $achievement = Achievement::create($input); 
 
@@ -63,7 +77,7 @@ class AchievementsController extends Controller
      */
     public function show($id)
     {
-        $achievement = Achievement::find($id);
+        $achievement = Achievement::with(["card","users"])->find($id);
         return view('admin.achievements.show',compact('achievement'));
     }
 
@@ -76,8 +90,9 @@ class AchievementsController extends Controller
     public function edit($id)
     {
         $achievement = Achievement::find($id);
+        $cards = CardsStorage::all();
 
-        return view('admin.achievements.edit',compact('achievement'));
+        return view('admin.achievements.edit',compact('achievement','cards'));
     }
 
     /**
@@ -92,18 +107,52 @@ class AchievementsController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'category' => 'integer|min:0|max:2147483647',
-            'type' => 'integer|min:0|max:2147483647',
+            'type' => 'required',
+            'trigger_type' => 'required',
+            'trigger_value' => 'required',
             'discount' => 'integer|min:0|max:2147483647',
             'exp' => 'integer|min:0|max:2147483647',
             'coins' => 'integer|min:0|max:2147483647',
             'money' => 'numeric',
         ]);
         
-        $input = $request->all(); 
+        $input = $request->all();
+
+        $fileImage = null;
+        $fileBg = null;
+
+        if($request->hasFile('image')) {
+            $fileImage = $request->file('image');
+            $fileImage->move(public_path() . '/img/achievements/element/',$fileImage->getClientOriginalName());
+        }
+
+        if($request->hasFile('background')) {
+            $fileBg = $request->file('background');
+            $fileBg->move(public_path() . '/img/achievements/bg/',$fileBg->getClientOriginalName());
+        }
 
         $achievement = Achievement::find($id);
-        $achievement->update($input);
+        $achievement->type = AchievementType::getInstance(intval($request->get("type")));
+        $achievement->trigger_type = TriggerType::getInstance(intval($request->get("trigger_type")));
+        $achievement->trigger_value = $request->get("trigger_value");
+
+        $achievement->title = $request->get("title");
+        $achievement->description = $request->get("description");
+        $achievement->discount = $request->get("discount");
+        $achievement->exp = $request->get("exp");
+        $achievement->coins = $request->get("coins");
+        $achievement->money = $request->get("money");
+        $achievement->is_active = $request->get("is_active")=="on"?true:false;
+        $achievement->random_rewards = $request->get("random_rewards")=="on"?true:false;
+        $achievement->card_id = $request->get("card_id");
+        if (!empty($request->get("item_id")))
+            $achievement->item_id = $request->get("item_id");
+        if (!empty($fileImage))
+            $achievement->image = $fileImage->getClientOriginalName();
+        if (!empty($fileBg))
+            $achievement->background = $fileBg->getClientOriginalName();
+
+        $achievement->save();
 
         return redirect()->route('achievements.index')
             ->with('success','Achievement updated successfully');

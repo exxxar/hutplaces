@@ -28,8 +28,8 @@ class AchievementsTableSeeder extends Seeder
             'exp'=>0,
             'coins'=>0,
             'money'=>0,
-            'items_id'=>null,
-            'cards_id'=>null,
+            'item_id'=>null,
+            'card_id'=>null,
         ]);
 
         Achievement::create([
@@ -77,7 +77,7 @@ class AchievementsTableSeeder extends Seeder
             'is_active'=>true,
             'random_rewards'=>true,
             'trigger_type'=>TriggerType::SpentMoney,
-            'trigger_value'=>'0.01',
+            'trigger_value'=>'1',
         ]);
 
         Achievement::create([

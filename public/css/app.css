@@ -316,7 +316,7 @@ body {
 }
 
 .table td {
-  vertical-align: baseline;
+  vertical-align: middle;
 }
 
 #my-card-list {
@@ -583,6 +583,28 @@ body {
   width: 224px;
   left: 0px;
   box-sizing: border-box;
+}
+
+.achievement {
+  width: 275px;
+  height: 380px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.achievement img {
+  width: 185px;
+  height: 185px;
+  display: block;
+  margin: 33px;
+}
+
+input[type='file'] {
+  height: 45px;
 }
 
 .ncard,

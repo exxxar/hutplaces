@@ -1035,6 +1035,9 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.message("Лотерея", "".concat(data.user.name, " \u0437\u0430\u043D\u044F\u043B \u043C\u0435\u0441\u0442\u043E \u0432 \u043B\u043E\u0442\u0435\u0440\u0435\u0435 ").concat(data.lottery.title), 'warn');
     });
+    pusher.subscribe('achievement-gain-chanel').bind('achievement-gain-event', function (data) {
+      _this.message("Получение достижения", "".concat(data.message), 'warn');
+    });
     pusher.subscribe('raffle-chanel').bind('raffle-event', function (data) {
       Event.$emit("startRaffle", data);
 

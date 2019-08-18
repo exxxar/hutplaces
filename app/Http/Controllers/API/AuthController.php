@@ -28,16 +28,20 @@ class AuthController extends Controller
         ]);
 
         foreach (TriggerType::toArray() as $key => $value) {
-            $stat = $user->has('stats', function (Builder $query) use ($value){
-                $query->where('stat_type', '=', $value);
-            })->get();
+            $stat = Stats::where("stat_type", $value)
+                ->where("user_id", $user->uid)
+                ->fisrt();
 
             if (empty($stat))
-                $user->stats()->attach(Stats::create([
-                    'stat_type'=>$value,
-                    'stat_value'=>0,
-                    'user_id'=>$user->id
-                ]));
+            {
+                $stat = Stats::create([
+                    'stat_type' => $value,
+                    'stat_value' => 0,
+                    'user_id' => $user->id
+                ]);
+
+                $user->stats()->save($stat);
+            }
             //todo: реализовать метод, который будет добавлять всем новый тип тригера для ачивок и статистики
         }
 

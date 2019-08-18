@@ -24,67 +24,43 @@
     @endif
 
 
-    <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>title</th>
-            <th>type</th>
-            <th>category</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($achievements as $key => $achievement)
+    @isset($achievements)
+
+        <table class="table table-bordered">
             <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{ $achievement->title }}</td>
-                <td>
-                    @switch($achievement->type)
-                        @case(0)
-                            частое
-                            @break
-                    
-                        @case(1)
-                            редкое
-                            @break
-    
-                        @case(2)
-                            очень редкое
-                            @break
-                        
-                        @case(3)
-                            легендарное
-                            @break
-
-                        @default
-                            {{$achievement->type}}
-                    @endswitch
-                </td>
-                <td>
-                    @switch($achievement->category)
-                        @case(0)
-                            basic
-                            @break
-
-                        @default
-                            {{$achievement->category}}
-                    @endswitch
-                </td>
-                <td>
-                    <a class="btn btn-info" href="{{ route('achievements.show',$achievement->id) }}">Show</a>
-                    @can('achievement-edit')
+                <th>#</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Trigger type</th>
+                <th>Trigger value</th>
+                <th width="280px">Action</th>
+            </tr>
+            @foreach ($achievements as $key => $achievement)
+                <tr>
+                    <td>{{ ++$i }}</td>
+                    <td>{{ $achievement->title }}</td>
+                    <td>
+                        {{$achievement->type->key}}
+                    </td>
+                    <td>
+                        {{$achievement->trigger_type->key}}
+                    </td>
+                    <td>
+                        {{$achievement->trigger_value}}
+                    </td>
+                    <td>
+                        <a class="btn btn-info" href="{{ route('achievements.show',$achievement->id) }}">Show</a>
                         <a class="btn btn-primary" href="{{ route('achievements.edit',$achievement->id) }}">Edit</a>
-                    @endcan
-                    @can('achievement-delete')
                         {!! Form::open(['method' => 'DELETE','route' => ['achievements.destroy', $achievement->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
-                    @endcan
-                </td>
-            </tr>
-        @endforeach
-    </table>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
 
 
-    {!! $achievements->render() !!}
-
+        {!! $achievements->render() !!}
+    @endisset
 
 @endsection
