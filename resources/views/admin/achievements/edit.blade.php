@@ -73,7 +73,7 @@
         </tr>
         <tr>
             <td>Trigger value:</td>
-            <td><input type="text" class="form-control" name="trigger_value" value="{{ $achievement->trigger_value }}">
+            <td><input type="number" class="form-control" name="trigger_value" value="{{ $achievement->trigger_value }}">
             </td>
         </tr>
         <tr>

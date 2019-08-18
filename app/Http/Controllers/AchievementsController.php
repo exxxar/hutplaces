@@ -30,7 +30,8 @@ class AchievementsController extends Controller
      */
     public function create()
     {
-        return view('admin.achievements.create');
+        $cards = CardsStorage::all();
+        return view('admin.achievements.create', compact("cards"));
     }
 
     /**
@@ -53,17 +54,42 @@ class AchievementsController extends Controller
 
         $input = $request->all();
 
+        $fileImage = null;
+        $fileBg = null;
+
         if($request->hasFile('image')) {
-            $file = $request->file('image');
-            $file->move(public_path() . '/path','filename.img');
+            $fileImage = $request->file('image');
+            $fileImage->move(public_path() . '/img/achievements/element/',$fileImage->getClientOriginalName());
         }
 
         if($request->hasFile('background')) {
-            $file = $request->file('background');
-            $file->move(public_path() . '/path','filename.img');
+            $fileBg = $request->file('background');
+            $fileBg->move(public_path() . '/img/achievements/bg/',$fileBg->getClientOriginalName());
         }
 
-        $achievement = Achievement::create($input); 
+        $achievement = new Achievement();
+        $achievement->type = AchievementType::getInstance(intval($request->get("type")));
+        $achievement->trigger_type = TriggerType::getInstance(intval($request->get("trigger_type")));
+        $achievement->trigger_value = $request->get("trigger_value");
+
+        $achievement->title = $request->get("title");
+        $achievement->description = $request->get("description");
+        $achievement->discount = $request->get("discount");
+        $achievement->exp = $request->get("exp");
+        $achievement->coins = $request->get("coins");
+        $achievement->money = $request->get("money");
+        $achievement->is_active = $request->get("is_active")=="on"?true:false;
+        $achievement->random_rewards = $request->get("random_rewards")=="on"?true:false;
+        $achievement->card_id = $request->get("card_id");
+
+        if (!empty($request->get("item_id")))
+            $achievement->item_id = $request->get("item_id");
+        if (!empty($fileImage))
+            $achievement->image = $fileImage->getClientOriginalName();
+        if (!empty($fileBg))
+            $achievement->background = $fileBg->getClientOriginalName();
+
+        $achievement->save();
 
         return redirect()->route('achievements.index')
             ->with('success','Achievement created successfully');
