@@ -56,3 +56,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/payment/{paymentProvider}','UserController@payment')->middleware("levels");
 });
 
+// chat
+Route::post('authenticate','ChatkitController@authenticate');
+Route::get('users', 'ChatkitController@getUsers');
+Route::post('message','ChatkitController@sendMessage');

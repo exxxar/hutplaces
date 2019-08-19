@@ -27,6 +27,12 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind('ChatKit', function() {
+            return new \Chatkit\Chatkit([
+                'instance_locator' => config('services.chatkit.locator'),
+                'key' => config('services.chatkit.secret'),
+            ]);
+        });
 
     }
 }

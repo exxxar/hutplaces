@@ -18,6 +18,7 @@
             <div class="center">
                 <keep-alive>
                     <router-view></router-view>
+                    <!-- <chat-box-component user-id='{{ $userId }}' room-id='{{ $roomId }}' :initial-messages='@json($messages)'></chat-box-component> -->
                 </keep-alive>
             </div>
         </scroll>
@@ -119,6 +120,7 @@
     import Registration from '@/components/modals/Registration.vue'
     import AsideMenu from '@/components/AsideMenu.vue'
     import MainMenu from '@/components/MainMenu.vue'
+    import ChatBoxComponent from '@/components/ChatBoxComponent.vue'
     import Scroll from 'vue-custom-scrollbar'
 
     export default {
@@ -245,7 +247,7 @@
         },
 
         components: {
-            Payment, Help, HowToStart, History, FAQ, Promo, Report, Login, Registration, Scroll, AsideMenu, MainMenu
+            Payment, Help, HowToStart, History, FAQ, Promo, Report, Login, Registration, Scroll, AsideMenu, MainMenu, ChatBoxComponent
         }
     }
 </script>
