@@ -39,6 +39,7 @@ class Lottery extends Model
         'completed',
         'active',
         'lifetime',
+        'updated_at',
 
 
     ];

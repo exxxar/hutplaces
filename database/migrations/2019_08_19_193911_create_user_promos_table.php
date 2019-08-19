@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTicketsTable extends Migration
+class CreateUserPromosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,17 @@ class CreateTicketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::disableForeignKeyConstraints();
+        Schema::create('user_promos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->default('');
-            $table->string('email')->default('');
-            $table->string('description',2000)->default('');
-            $table->boolean('is_active')->default(true);
-            $table->integer('ticket_type')->default(0);
-
-            $table->unsignedInteger("user_id" )->nullable();
+            $table->unsignedInteger("user_id" );
             $table->foreign('user_id')->references('id')->on('users');
-
-
+            $table->unsignedInteger("promocodes_id" );
+            $table->foreign('promocodes_id')->references('id')->on('promocodes');
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
+
     }
 
     /**
@@ -36,6 +33,6 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('user_promos');
     }
 }

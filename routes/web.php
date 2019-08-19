@@ -12,12 +12,9 @@ Route::get("/event",function(){
     return "1";
 });
 
-
 Route::get('/brod',function(){
     return view("brod");
 });
-
-
 
 Route::get('/payment/{paymentProvider}/success',function($paymentProvider){
     return "success";
@@ -29,11 +26,8 @@ Route::get('/payment/{paymentProvider}/error',function($paymentProvider){
 
 Route::get("/pay",function (){
     $amount = 100; // Payment`s amount
-
     $url = FreeKassa::getPayUrl($amount, 1);
-
     $redirect = FreeKassa::redirectToPayUrl($amount, 1);
-
     return redirect( $url);
 });
 
@@ -63,6 +57,13 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
     Route::post('slider-upload', 'SettingsController@sliderImageUpload')->name('slider.image.upload');
     Route::post('slider-delete', 'SettingsController@sliderImageDelete')->name('slider.image.delete');
 
+    Route::get('/users/promo/{id}', 'UserController@promo')->name('users.promo');
+    Route::get('/users/achievements/{id}', 'UserController@achievements')->name('users.achievements');
+    Route::get('/users/tickets/{id}', 'UserController@tickets')->name('users.tickets');
+    Route::get('/users/stats/{id}', 'UserController@stats')->name('users.stats');
+    Route::get('/users/cards/{id}', 'UserController@cards')->name('users.cards');
+    Route::get('/users/transactions/{id}', 'UserController@transactions')->name('users.transactions');
+    Route::get('/users/wins/{id}', 'UserController@wins')->name('users.wins');
 
     Route::resources([
         'auction' => 'AuctionController',
@@ -84,7 +85,6 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
         'content' => 'ContentController',
     ]);
 
-    //Route::view('/', 'admin.main');
     Route::view('/coins', 'admin.coins');
     Route::view('/mails', 'admin.mails');
     Route::view('/packs', 'admin.packs');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TicketType;
+use App\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +16,7 @@ class TicketController extends Controller
      */
     public function index(Request $request)
     {
-        $tickets = DB::table('tickets')->paginate(15);
+        $tickets = Ticket::paginate(15);
 
         return view('admin.tickets.index',compact('tickets'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
@@ -38,15 +40,11 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email'
-        ]);
 
         DB::table('tickets')->insert(
             [
                 'email' => $request->input('email'), 
                 'description' => $request->input('description'),
-                'directory' => $request->input('directory')
             ]
         );
 
@@ -61,7 +59,7 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        $ticket = DB::table('tickets')->find($id);
+        $ticket = Ticket::find($id);
         return view('admin.tickets.show',compact('ticket'));
     }
 
@@ -85,7 +83,17 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'ticket_type' => 'integer|min:0|max:2147483647',
+        ]);
+
+        $ticket = Ticket::find($id);
+        $ticket->is_active = $request->input('is_active') == "on" ? true : false;
+        $ticket->ticket_type = TicketType::getInstance(intval($request->get("ticket_type")));
+        $ticket->save();
+
+        return redirect()->route("tickets.index")
+            ->with('success','Ticket modified successfully');
     }
 
     /**

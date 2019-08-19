@@ -10,6 +10,8 @@ class Transaction extends Model
         'user_id',
         'amount',
         'payment_system',
-        'currency'
+        'currency',
+        'created_at',
+
     ];
 }

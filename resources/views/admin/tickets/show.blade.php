@@ -7,60 +7,74 @@
             <div class="pull-left">
                 <h2> Show Ticket</h2>
             </div>
-            <div class="pull-right">  
-                <a class="btn btn-primary" href="#"> Close</a>
+            <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('tickets.index') }}"> Back</a>
             </div>
-        </div>
-    </div>
 
+            <form method="post" action="{{ route('tickets.update', $ticket->id) }}">
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>email:</strong>
-                {{ $ticket->email }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>directory:</strong>
-                {{ $ticket->directory }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>created_at:</strong>
-                {{ $ticket->created_at }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>description:</strong>
-                {{ $ticket->description }}
-            </div>
-        </div>
-    </div>
+                @method('PATCH')
+                @csrf
+                <table class="table mt-2">
+                    <thead class="thead-light">
+                    <th>Param</th>
+                    <th>Value</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Active</td>
+                        <td><input type="checkbox" name="is_active"
+                                   class="form-control" {{$ticket->is_active?"checked":""}}></td>
+                    </tr>
+                    <tr>
+                        <td>Ticket type</td>
+                        <td>
+                            <select name="ticket_type" class="form-control">
+                                @foreach ( \App\Enums\TicketType::getInstances() as $ticketType)
+                                    @if ($ticket->ticket_type->value==$ticketType->value)
+                                        <option value="{{$ticketType->value}}" selected>{{$ticketType->key}}</option>
+                                    @else
+                                        <option value="{{$ticketType->value}}">{{$ticketType->key}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Title</td>
+                        <td>{{$ticket->title}}</td>
+                    </tr>
+                    <tr>
+                        <td>Created at</td>
+                        <td>{{$ticket->created_at}}</td>
+                    </tr>
+                    <tr>
+                        <td>Updated at</td>
+                        <td>{{$ticket->updated_at}}</td>
+                    </tr>
+                    @if(!empty($ticket->email))
+                        <tr>
+                            <td>Email</td>
+                            <td>{{$ticket->email}}</td>
+                        </tr>
+                    @endif
+                    <tr>
+                        <td>Description</td>
+                        <td>{{$ticket->description}}</td>
+                    </tr>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <form>
-                <div class="form-group">
-                    <label for="emailForUser">User email</label>
-                    <input type="email" class="form-control" id="emailForUser" placeholder="name@example.com" value="{{ $ticket->email }}">
-                </div>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-primary" type="submit">Update</button>
+                        </td>
+                    </tr>
 
-                <div class="form-group">
-                    <label for="title">Message title</label>
-                    <input type="email" class="form-control" id="title">
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Response text</label>
-                    <textarea class="form-control" id="message" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send</button>
+                    </tbody>
+                </table>
             </form>
         </div>
     </div>
+
+
 @endsection

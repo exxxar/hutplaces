@@ -71,16 +71,15 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Achievements</a>
+                            <a class="dropdown-item" href="{{ route('users.achievements',$user->id) }}">Achievements</a>
                             <a class="dropdown-item" href="{{ route('users.edit',$user->id) }}">Edit</a>
-                            <a class="dropdown-item" href="#">Cards</a>
-                            <a class="dropdown-item" href="#">Promocodes</a>
-                            <a class="dropdown-item" href="#">Roles</a>
+                            <a class="dropdown-item" href="{{ route('users.cards',$user->id) }}">Cards</a>
+                            <a class="dropdown-item" href="{{ route('users.promo',$user->id) }}">Promocodes</a>
                             <a class="dropdown-item" href="{{ route('users.show',$user->id) }}">Show</a>
-                            <a class="dropdown-item" href="#">Stats</a>
-                            <a class="dropdown-item" href="#">Tickets</a>
-                            <a class="dropdown-item" href="#">Transactions</a>
-                            <a class="dropdown-item" href="#">Wins</a>
+                            <a class="dropdown-item" href="{{ route('users.stats',$user->id) }}">Stats</a>
+                            <a class="dropdown-item" href="{{ route('users.tickets',$user->id) }}">Tickets</a>
+                            <a class="dropdown-item" href="{{ route('users.transactions',$user->id) }}">Transactions</a>
+                            <a class="dropdown-item" href="{{ route('users.wins',$user->id) }}">Wins</a>
                         </div>
                     </div>
 
