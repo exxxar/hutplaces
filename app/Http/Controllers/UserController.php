@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TriggerType;
 use App\Events\GainExpirience;
 use App\Events\UserUpdate;
 use App\Level;
+use App\Stats;
+use App\Ticket;
 use App\Transaction;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
@@ -104,6 +106,23 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
         $user->save();
+
+        foreach (TriggerType::toArray() as $key => $value) {
+            $stat = Stats::where("stat_type", $value)
+                ->where("user_id", $user->uid)
+                ->fisrt();
+
+            if (empty($stat)) {
+                $stat = Stats::create([
+                    'stat_type' => $value,
+                    'stat_value' => 0,
+                    'user_id' => $user->id
+                ]);
+
+                $user->stats()->save($stat);
+            }
+        }
+
 
         return back()->with('success', 'Пользователь успешно добавлен');
     }
@@ -233,4 +252,158 @@ class UserController extends Controller
             ]);
 
     }
+
+    public function wins(Request $request, $id)
+    {
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "lotteries" => (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card"])->find($id))->lotteries
+                ]);
+
+        $itemsOnPage = 10;
+
+        $wins = (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card"])
+            ->find($id))
+            ->lotteries()
+            ->orderBy('id', 'DESC')
+            ->paginate($itemsOnPage);
+
+        return view("admin.users.wins", compact("wins"))
+            ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
+
+
+    }
+
+    public function cards(Request $request, $id)
+    {
+
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "cards" => (User::with(["cards"])->find($id))->cards
+                ]);
+
+        $itemsOnPage = 10;
+
+        $cards = (User::with(["cards"])->find($id))
+            ->cards()
+            ->orderBy('id', 'DESC')
+            ->paginate($itemsOnPage);
+
+        return view("admin.users.cards", compact("cards"))
+            ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
+
+    }
+
+
+    public function stats(Request $request, $id)
+    {
+
+        $stats = Stats::where("user_id", $id)->get();
+
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "stats" => $stats
+                ]);
+
+
+        return view("admin.users.stats", compact("stats"));
+    }
+
+    public function achievements(Request $request, $id)
+    {
+
+        $achievements = (User::with(["achievements"])->find($id))->achievements;
+
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "achievements" => (User::with(["achievements"])->find($id))->achievements
+                ]);
+
+        $itemsOnPage = 10;
+
+        $achievements = (User::with(["achievements"])
+            ->find($id))
+            ->achievements()
+            ->orderBy('id', 'DESC')
+            ->paginate($itemsOnPage);
+
+        return view("admin.users.achievements", compact("achievements"))
+            ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
+
+
+
+    }
+
+    public function promo(Request $request, $id)
+    {
+
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "promocodes" => (User::with(["promocodes"])->find($id))->promocodes
+                ]);
+
+        $itemsOnPage = 10;
+
+        $promocodes = (User::with(["promocodes"])
+            ->find($id))
+            ->promocodes()
+            ->orderBy('id', 'DESC')
+            ->paginate($itemsOnPage);
+
+        return view("admin.users.promo", compact("promocodes"))
+            ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
+
+
+    }
+
+    public function tickets(Request $request, $id)
+    {
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "tickets" => Ticket::where("user_id", $id)->get()
+                ]);
+
+        $itemsOnPage = 10;
+
+        $tickets = Ticket::where("user_id", $id)
+            ->orderBy('id', 'DESC')
+            ->paginate($itemsOnPage);
+
+        return view("admin.users.tickets", compact("tickets"))
+            ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
+    }
+
+    public function transactions(Request $request, $id)
+    {
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "transactions" => Transaction::where("user_id", $id)->get()
+                ]);
+
+        $itemsOnPage = 50;
+
+        $transactions = Transaction::where("user_id", $id)
+            ->orderBy('id', 'DESC')
+            ->paginate($itemsOnPage);
+
+        return view("admin.users.transactions", compact("transactions"))
+            ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
+
+
+    }
+
 }

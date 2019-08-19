@@ -51,6 +51,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Lottery','user_lotteries','user_id','lottery_id');
     }
 
+    public function promocodes() {
+        return $this->belongsToMany('App\Promocode','user_promos','user_id','promocodes_id');
+    }
+
     public function cards()
     {
         return $this->belongsToMany('App\CardsStorage','user_card','user_id','card_id');
@@ -69,5 +73,10 @@ class User extends Authenticatable
     public function stats()
     {
         return $this->hasMany('App\Stats');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket');
     }
 }

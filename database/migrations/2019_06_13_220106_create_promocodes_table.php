@@ -26,12 +26,13 @@ class CreatePromocodesTable extends Migration
             $table->double('money')->default(0);
             $table->integer('exp')->default(0);
             $table->integer('discount')->default(0);
+            $table->integer('coins')->default(0);
 
-            $table->unsignedInteger("items_id" )->nullable();
-            $table->unsignedInteger("cards_id" )->nullable();
+            $table->unsignedInteger("item_id" )->nullable();
+            $table->unsignedInteger("card_id" )->nullable();
 
-            $table->foreign('items_id')->references('id')->on('items');
-            $table->foreign('cards_id')->references('id')->on('cards_storage');
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('card_id')->references('id')->on('cards_storage');
 
             $table->timestamps();
         });

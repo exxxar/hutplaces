@@ -19,18 +19,18 @@ class AchievementsController extends Controller
      */
     public function index(Request $request)
     {
-        $achievements = Achievement::orderBy('id','DESC')->paginate(10);
-        return view('admin.achievements.index',compact('achievements'))
+        if ($request->ajax())
+            return response()
+                ->json([
+                    'status' => 200,
+                    'achievements' => Achievement::all()
+                ]);
+
+        $achievements = Achievement::orderBy('id', 'DESC')->paginate(10);
+        return view('admin.achievements.index', compact('achievements'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
-    public function users(Request $request,$id)
-    {
-        /*$achievements = Achievement::with(["users"])->first($id);
-
-        $achievements->paginate(10);
-        return $achievements;//view('admin.achievements.users',compact("achievements"));*/
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -46,7 +46,7 @@ class AchievementsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -66,14 +66,14 @@ class AchievementsController extends Controller
         $fileImage = null;
         $fileBg = null;
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $fileImage = $request->file('image');
-            $fileImage->move(public_path() . '/img/achievements/element/',$fileImage->getClientOriginalName());
+            $fileImage->move(public_path() . '/img/achievements/element/', $fileImage->getClientOriginalName());
         }
 
-        if($request->hasFile('background')) {
+        if ($request->hasFile('background')) {
             $fileBg = $request->file('background');
-            $fileBg->move(public_path() . '/img/achievements/bg/',$fileBg->getClientOriginalName());
+            $fileBg->move(public_path() . '/img/achievements/bg/', $fileBg->getClientOriginalName());
         }
 
         $achievement = new Achievement();
@@ -87,8 +87,8 @@ class AchievementsController extends Controller
         $achievement->exp = $request->get("exp");
         $achievement->coins = $request->get("coins");
         $achievement->money = $request->get("money");
-        $achievement->is_active = $request->get("is_active")=="on"?true:false;
-        $achievement->random_rewards = $request->get("random_rewards")=="on"?true:false;
+        $achievement->is_active = $request->get("is_active") == "on" ? true : false;
+        $achievement->random_rewards = $request->get("random_rewards") == "on" ? true : false;
         $achievement->card_id = $request->get("card_id");
 
         if (!empty($request->get("item_id")))
@@ -101,25 +101,25 @@ class AchievementsController extends Controller
         $achievement->save();
 
         return redirect()->route('achievements.index')
-            ->with('success','Achievement created successfully');
+            ->with('success', 'Achievement created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Achievement  $achievements
+     * @param  \App\Achievement $achievements
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $achievement = Achievement::with(["card","users"])->find($id);
-        return view('admin.achievements.show',compact('achievement'));
+        $achievement = Achievement::with(["card", "users"])->find($id);
+        return view('admin.achievements.show', compact('achievement'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Achievement  $achievements
+     * @param  \App\Achievement $achievements
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -127,14 +127,14 @@ class AchievementsController extends Controller
         $achievement = Achievement::find($id);
         $cards = CardsStorage::all();
 
-        return view('admin.achievements.edit',compact('achievement','cards'));
+        return view('admin.achievements.edit', compact('achievement', 'cards'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Achievement  $achievements
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Achievement $achievements
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -150,20 +150,20 @@ class AchievementsController extends Controller
             'coins' => 'integer|min:0|max:2147483647',
             'money' => 'numeric',
         ]);
-        
+
         $input = $request->all();
 
         $fileImage = null;
         $fileBg = null;
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $fileImage = $request->file('image');
-            $fileImage->move(public_path() . '/img/achievements/element/',$fileImage->getClientOriginalName());
+            $fileImage->move(public_path() . '/img/achievements/element/', $fileImage->getClientOriginalName());
         }
 
-        if($request->hasFile('background')) {
+        if ($request->hasFile('background')) {
             $fileBg = $request->file('background');
-            $fileBg->move(public_path() . '/img/achievements/bg/',$fileBg->getClientOriginalName());
+            $fileBg->move(public_path() . '/img/achievements/bg/', $fileBg->getClientOriginalName());
         }
 
         $achievement = Achievement::find($id);
@@ -177,8 +177,8 @@ class AchievementsController extends Controller
         $achievement->exp = $request->get("exp");
         $achievement->coins = $request->get("coins");
         $achievement->money = $request->get("money");
-        $achievement->is_active = $request->get("is_active")=="on"?true:false;
-        $achievement->random_rewards = $request->get("random_rewards")=="on"?true:false;
+        $achievement->is_active = $request->get("is_active") == "on" ? true : false;
+        $achievement->random_rewards = $request->get("random_rewards") == "on" ? true : false;
         $achievement->card_id = $request->get("card_id");
         if (!empty($request->get("item_id")))
             $achievement->item_id = $request->get("item_id");
@@ -190,19 +190,19 @@ class AchievementsController extends Controller
         $achievement->save();
 
         return redirect()->route('achievements.index')
-            ->with('success','Achievement updated successfully');
+            ->with('success', 'Achievement updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Achievement  $achievements
+     * @param  \App\Achievement $achievements
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        DB::table("achievements")->where('id',$id)->delete();
+        DB::table("achievements")->where('id', $id)->delete();
         return redirect()->route('achievements.index')
-            ->with('success','Achievement deleted successfully');
+            ->with('success', 'Achievement deleted successfully');
     }
 }

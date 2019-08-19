@@ -25,7 +25,7 @@
             @endif
 
             <table class="table mt-2">
-                <thead class="thead-lighter">
+                <thead class="thead-light">
                 <th>Param</th>
                 <th>Value</th>
                 </thead>
@@ -34,9 +34,13 @@
                     <td>Avatar</td>
                     <td>
                         @if(!empty($user->avatar))
-                            <img src="{{$user->avatar}}" alt="" style="width:150px;height:150px;">
+                            @if (strpos("http",$user->avatar)!=false)
+                                <img style="width:200px;height:200px;" src="{{$user->avatar}}" alt="">
+                            @else
+                                <img style="width:200px;height:200px;" src="{{ url('/img/avatars/'.$user->avatar)}}" alt="">
+                            @endif
                         @else
-                            <img src="/img/noavatar.png" alt="" style="width:150px;height:150px;">
+                            <img src="{{url('/img/noavatar.png')}}" alt="" style="width:150px;height:150px;">
                         @endif
                     </td>
                 </tr>
