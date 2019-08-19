@@ -6,6 +6,7 @@ use App\Achievement;
 use App\CardsStorage;
 use App\Enums\AchievementType;
 use App\Enums\TriggerType;
+use App\UserAchievements;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,17 @@ class AchievementsController extends Controller
      */
     public function index(Request $request)
     {
-        $achievements = Achievement::orderBy('id','DESC')->paginate(15);
+        $achievements = Achievement::orderBy('id','DESC')->paginate(10);
         return view('admin.achievements.index',compact('achievements'))
-            ->with('i', ($request->input('page', 1) - 1) * 15);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
+    }
+
+    public function users(Request $request,$id)
+    {
+        /*$achievements = Achievement::with(["users"])->first($id);
+
+        $achievements->paginate(10);
+        return $achievements;//view('admin.achievements.users',compact("achievements"));*/
     }
 
     /**

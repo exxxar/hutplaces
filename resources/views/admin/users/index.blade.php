@@ -18,43 +18,43 @@
         {{ $message }}
     </div>
 @endif
+<div class="row">
+    <div class="col-sm-4">
+        <a class="btn btn-primary" href="{{route("users.create")}}">New user</a>
+    </div>
+</div>
 
-<table class="table">
+<table class="table mt-2">
 
-    <thead>
+    <thead class="thead-light">
     <tr>
+        <th scope="col"></th>
         <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
-        <th scope="col">skype</th>
-        <th scope="col">vk</th>
-        <th scope="col">fb</th>
-        <th scope="col">tw</th>
-        <th scope="col">money</th>
-        <th scope="col">level</th>
-        <th scope="col">discount</th>
-        <th scope="col">exp</th>
-        <th scope="col">coins</th>
-        <th scope="col">active</th>
-        <th scope="col">avatar</th>
+        <th scope="col">Roles</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
     @foreach($users as $key => $user)
         <tr>
+            <td>
+                <form action="{{ route('users.destroy', $user->id)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <a class="btn btn-link" type="submit"><i class="fas fa-times"></i></a>
+                </form>
+            </td>
             <td>{{$key + 1}}</td>
-            <td><a href="{{ route('users.show',$user->id) }}">{{$user->name}}</a></td>
+            <td><a href="{{ route('users.show',$user->id) }}">{{$user->name}}</a>
+                @if($user->active == 1)
+                    <label class="badge badge-success">Active</label></td>
+                @else
+                    <label class="badge badge-danger">InActive</label></td>
+                @endif
+
             <td>{{$user->email}}</td>
-            <td>{{$user->skype}}</td>
-            <td>{{$user->vk}}</td>
-            <td>{{$user->fb}}</td>
-            <td>{{$user->tw}}</td>
-            <td>{{$user->money}}</td>
-            <td>{{$user->level->title}}</td>
-            <td>{{$user->discount}}</td>
-            <td>{{$user->exp}}</td>
-            <td>{{$user->coins}}</td>
             <td>
                 @if(!empty($user->getRoleNames()))
                     @foreach($user->getRoleNames() as $v)
@@ -62,30 +62,29 @@
                     @endforeach
                 @endif
             </td>
-            <td>
-                @if($user->active == 1)
-                    Активен
-                @else
-                    Не активен
-                @endif
-            </td>
-            <td><a href="" data-toggle="modal" data-target="#editUserAvatar">Avatar</a></td>
-            <td>
 
+            <td>
                 <div class="row">
-                    <div class="col-sm-4">
-                        <form action="{{ route('users.destroy', $user->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Удалить</button>
-                        </form>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Achievements</a>
+                            <a class="dropdown-item" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                            <a class="dropdown-item" href="#">Cards</a>
+                            <a class="dropdown-item" href="#">Promocodes</a>
+                            <a class="dropdown-item" href="#">Roles</a>
+                            <a class="dropdown-item" href="{{ route('users.show',$user->id) }}">Show</a>
+                            <a class="dropdown-item" href="#">Stats</a>
+                            <a class="dropdown-item" href="#">Tickets</a>
+                            <a class="dropdown-item" href="#">Transactions</a>
+                            <a class="dropdown-item" href="#">Wins</a>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-
-                        <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}">Редактировать</a>
 
 
-                    </div>
                 </div>
 
 

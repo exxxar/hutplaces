@@ -17,12 +17,6 @@ class UserController extends Controller
 {
 
 
-
-  public function __construct()
-  {
-      $this->middleware('levels');
-  }
-
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +54,7 @@ class UserController extends Controller
         });
 
 
-        return view('admin.users.create', compact('roles', 'images','levels'));
+        return view('admin.users.create', compact('roles', 'images', 'levels'));
     }
 
     /**
@@ -77,10 +71,17 @@ class UserController extends Controller
             'password' => 'required',
             'money' => 'numeric',
             'discount' => 'integer',
-            'base_discount' => 'integer',
             'exp' => 'integer',
-            'coins' => 'integer'
+            'coins' => 'integer',
+            'level' => 'integer'
         ]);
+
+        $avatar = null;
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatar->move(public_path() . '/img/avatars/', $avatar->getClientOriginalName());
+        }
 
         $user = new User([
             'name' => $request->input('name'),
@@ -90,9 +91,17 @@ class UserController extends Controller
             'vk' => $request->input('vk'),
             'fb' => $request->input('fb'),
             'tw' => $request->input('tw'),
-            'active' => $request->input('active'),
-            'avatar' => $request->input('avatar')
+            'active' => $request->input('active') == "on" ? true : false,
+            'coins' => $request->input('coins'),
+            'exp' => $request->input('exp'),
+            'discount' => $request->input('discount'),
+            'money' => $request->input('money'),
+            'level_id' => $request->input('level'),
         ]);
+
+        if (!empty($avatar))
+            $user->avatar = $avatar->getClientOriginalName();
+
         $user->assignRole($request->input('roles'));
         $user->save();
 
@@ -123,19 +132,7 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-
-        $files = Storage::files("/public/");
-
-        $images = array_filter($files, function ($str) {
-            return
-                strpos($str, ".jpg") != 0 ||
-                strpos($str, ".jpeg") != 0 ||
-                strpos($str, ".png") != 0;
-        });
-
-        broadcast(new UserUpdate($id));
-
-        return view('admin.users.edit', compact('user', 'roles', 'userRole', 'images','levels'));
+        return view('admin.users.edit', compact('user', 'roles', 'userRole', 'levels'));
     }
 
     /**
@@ -151,26 +148,41 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'money' => 'numeric',
-             'discount' => 'integer',
+            'discount' => 'integer',
             'exp' => 'integer',
             'coins' => 'integer',
 
         ]);
 
-        $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = array_except($input, array('password'));
+        $avatar = null;
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatar->move(public_path() . '/img/avatars/', $avatar->getClientOriginalName());
         }
 
-
         $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        if (!empty($request->input('password')))
+            $user->password = Hash::make($request->input('password'));
+        $user->skype = $request->input('skype');
+        $user->vk = $request->input('vk');
+        $user->fb = $request->input('fb');
+        $user->tw = $request->input('tw');
+        $user->active = $request->input('active') == "on" ? true : false;
+        $user->coins = $request->input('coins');
+        $user->exp = $request->input('exp');
+        $user->discount = $request->input('discount');
+        $user->money = $request->input('money');
+        $user->level_id = $request->input('level');
 
+
+        if (!empty($avatar))
+            $user->avatar = $avatar->getClientOriginalName();
 
         $user->assignRole($request->input('roles'));
+        $user->save();
 
         broadcast(new UserUpdate($id));
 
@@ -192,32 +204,33 @@ class UserController extends Controller
         return back()->with('success', 'Пользователь успешно удален');
     }
 
-    public function payment(Request $request, $paymentProvider){
+    public function payment(Request $request, $paymentProvider)
+    {
 
 
-            $user = User::find(auth()->user()->id);
+        $user = User::find(auth()->user()->id);
 
-            $money = $request->get("money");
-            $user->exp += $money;
-            $user->money += $money;
-            $user->save();
+        $money = $request->get("money");
+        $user->exp += $money;
+        $user->money += $money;
+        $user->save();
 
-            event(new GainExpirience($user->id));
+        event(new GainExpirience($user->id));
 
-            Transaction::create([
-                'user_id'=>$user->id,
-                'amount'=>$money,
-                'payment_system'=>$paymentProvider,
-                'currency'=>'rub'
-            ]);
+        Transaction::create([
+            'user_id' => $user->id,
+            'amount' => $money,
+            'payment_system' => $paymentProvider,
+            'currency' => 'rub'
+        ]);
 
         //broadcast(new UserUpdate($user->id));
 
-            return response()
-                ->json([
-                    'money' => $money,
-                    'currency' => 'rub'
-                ]);
+        return response()
+            ->json([
+                'money' => $money,
+                'currency' => 'rub'
+            ]);
 
     }
 }

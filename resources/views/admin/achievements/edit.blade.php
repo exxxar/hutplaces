@@ -124,6 +124,7 @@
                 </div>
                 <div class="form-group">
                     <select name="card_id" class="form-control">
+                        <option value="0">No card</option>
                         @isset($cards)
                             @foreach($cards as $card)
                                 @if ($card->id==$achievement->card_id)

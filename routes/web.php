@@ -57,6 +57,8 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
     Route::post('/addcard', 'CardsStorageController@add')->name('card.add');
     Route::get('/cards', 'CardsStorageController@cards')->name('card.index');
 
+    Route::get('/achievements/users/{achId}', 'AchievementsController@users')->name('achievement.users');
+
     // slider images
     Route::post('slider-upload', 'SettingsController@sliderImageUpload')->name('slider.image.upload');
     Route::post('slider-delete', 'SettingsController@sliderImageDelete')->name('slider.image.delete');

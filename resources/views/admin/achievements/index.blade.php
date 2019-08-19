@@ -6,7 +6,9 @@
                 <h2>Achievement Management</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('achievements.create') }}"> Create New achievement</a>
+                <div class="form-group">
+                    <a class="btn btn-success" href="{{ route('achievements.create') }}"> Create New achievement</a>
+                </div>
             </div>
         </div>
     </div>
@@ -20,7 +22,7 @@
         <table class="table table-bordered">
             <tr>
                 <th>#</th>
-                <th>Title</th>
+                <th>Acievement</th>
                 <th>Type</th>
                 <th>Trigger type</th>
                 <th>Trigger value</th>
@@ -29,7 +31,13 @@
             @foreach ($achievements as $key => $achievement)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $achievement->title }}</td>
+                    <td>
+                        <div class="achievement"
+                             style="background-image: url('{{url('img/achievements/bg/'.$achievement->background)}}')">
+                            <img src="{{url('img/achievements/element/'.$achievement->image)}}" alt="">
+
+                        </div>
+                    </td>
                     <td>
                         {{$achievement->type->key}}
                     </td>

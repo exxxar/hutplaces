@@ -116,6 +116,7 @@
                 </div>
                 <div class="form-group">
                     <select name="card_id" class="form-control">
+                        <option value="0">No card</option>
                         @isset($cards)
                             @foreach($cards as $card)
                                 <option value="{{$card->id}}"> {!! json_decode($card->Card_data)->value !!}</option>
