@@ -12,6 +12,7 @@ Route::get("/event", function () {
     event(new Achievement(TriggerType::CoinsCount, 10, 2));
     event(new Achievement(TriggerType::Experience, 1000, 2));
     event(new Achievement(TriggerType::Discount, 10, 2));
+    event(new Achievement(TriggerType::Level, 10, 2));
     return "1";
 });
 

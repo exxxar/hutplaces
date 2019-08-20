@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"layout-components-AsideMenu-vue":"layout-components-AsideMenu-vue","layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-MainMenu-vue":"layout-components-MainMenu-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-default-vue":"layout-layouts-default-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"layout-components-AsideMenu-vue":"layout-components-AsideMenu-vue","layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-MainMenu-vue":"layout-components-MainMenu-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue","vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue":"vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue","layout-components-ChatBoxComponent-vue":"layout-components-ChatBoxComponent-vue","layout-layouts-default-vue":"layout-layouts-default-vue"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -74662,6 +74662,11 @@ var map = {
 		"./resources/js/components/Breadcrumbs.vue",
 		"layout-components-Breadcrumbs-vue"
 	],
+	"./components/ChatBoxComponent.vue": [
+		"./resources/js/components/ChatBoxComponent.vue",
+		"vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue",
+		"layout-components-ChatBoxComponent-vue"
+	],
 	"./components/MainMenu.vue": [
 		"./resources/js/components/MainMenu.vue",
 		"layout-components-MainMenu-vue"
@@ -74727,6 +74732,8 @@ var map = {
 	],
 	"./layouts/default.vue": [
 		"./resources/js/layouts/default.vue",
+		"vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue",
+		"layout-components-ChatBoxComponent-vue",
 		"layout-layouts-default-vue"
 	],
 	"./layouts/start.vue": [

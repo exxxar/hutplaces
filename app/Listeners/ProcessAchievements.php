@@ -49,9 +49,15 @@ class ProcessAchievements
             ]);
         }
 
+
+        Log::info("stats value  ".$stats->stat_value);
+        Log::info("trigger type  ".$event->trigger_type);
+
         $achList = Achievement::where("trigger_type", $event->trigger_type)
-            ->where("trigger_value", "=<", $stats->trigger_value)
+            ->where("trigger_value", "<=", $stats->stat_value)
             ->get();
+
+        Log::info("ach list  ".$achList);
 
         $user = User::find($event->user_id);
 
@@ -59,6 +65,9 @@ class ProcessAchievements
             ->achievements()
             ->where("trigger_type", $event->trigger_type)
             ->get();
+
+        Log::info("user ach list count ".count($userAchList));
+
 
         foreach ($achList as $ach) {
             $find = false;
