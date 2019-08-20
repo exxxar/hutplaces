@@ -17,6 +17,13 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
+    private $chatkit;
+    private $roomId;
+    public function __construct()
+    {
+        $this->chatkit = app('ChatKit');
+        $this->roomId = env('CHATKIT_GENERAL_ROOM_ID');
+    }
 
        public function register()
     {
@@ -45,6 +52,16 @@ class AuthController extends Controller
             }
             //todo: реализовать метод, который будет добавлять всем новый тип тригера для ачивок и статистики
         }
+
+        // создание пользователя в чате пушер
+        $this->chatkit->createUser([
+            'id' =>  $user->id,
+            'name' => $user->name,
+        ]);
+        $this->chatkit->addUsersToRoom([
+            'room_id' => $this->roomId,
+            'user_ids' => [$user->id],
+        ]);
 
         return response()->json(['status' => 201]);
     }
@@ -106,6 +123,21 @@ class AuthController extends Controller
 
         // Вытаскиваем данные из ответа
         $data = json_decode($response->getContent());
+
+        // Get messages via Chatkit
+        $fetchMessages = $this->chatkit->getRoomMessages([
+            'room_id' => $this->roomId,
+            'direction' => 'newer',
+            'limit' => 100
+        ]);
+        $messages = collect($fetchMessages['body'])->map(function ($message) {
+            return [
+                'id' => $message['id'],
+                'senderId' => $message['user_id'],
+                'text' => $message['text'],
+                'timestamp' => $message['created_at']
+            ];
+        });
 
         // Формируем окончательный ответ в нужном формате
         return response()->json([

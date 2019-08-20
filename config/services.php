@@ -55,4 +55,8 @@ return [
         'client_secret' => env('TWITTER_SECRET'),
         'redirect' => env('TWITTER_REDIRECT_URI')
     ],
+    'chatkit' => [
+        'secret' => env('CHATKIT_SECRET_KEY'),
+        'locator' => env('CHATKIT_INSTANCE_LOCATOR'),
+    ],
 ];

@@ -20,6 +20,7 @@
         "laravelcollective/html": "~5.0",
         "maksa988/laravel-freekassa": "^1.0",
         "nao-pon/flysystem-google-drive": "~1.1",
+        "pusher/pusher-chatkit-server": "^1.6",
         "pusher/pusher-php-server": "~3.0",
         "socialiteproviders/facebook": "dev-master",
         "socialiteproviders/twitter": "^3.0",

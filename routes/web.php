@@ -96,3 +96,9 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
 });
 
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*')->name("front");
+
+// chat
+Route::get('/chatindex', 'ChatkitController@index');
+Route::post('/chatjoin', 'ChatkitController@join');
+Route::get('chat', 'ChatkitController@chat')->name('chat');
+Route::post('logout', 'ChatkitController@logout')->name('logout');
