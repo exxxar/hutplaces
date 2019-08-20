@@ -27,7 +27,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'promo',
-  methods: {}
+  data: function data() {
+    return {
+      promo: ""
+    };
+  },
+  mounted: function mounted() {
+    this.doRequest();
+  },
+  methods: {
+    message: function message(title, _message, type) {
+      this.$notify({
+        group: 'main',
+        type: type,
+        title: title,
+        text: _message
+      });
+    },
+    doRequest: function doRequest() {
+      var _this = this;
+
+      if (this.promo.length != 8) {
+        this.message("Ввод промокода", "А где промокод?", "warn");
+        return;
+      }
+
+      axios.post('/promo/activate', {
+        code: this.promo
+      }).then(function (response) {
+        console.log(response);
+
+        _this.message("Ввод промокода", response.data.message, "warn");
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -64,40 +97,48 @@ var render = function() {
     _vm._v(" "),
     _c("h1", [_vm._v("Введите действительный промокод")]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group" }, [
-      _c("label", { attrs: { for: "input-promo" } }, [_vm._v("Ваш промокод")]),
+    _c("div", { staticClass: "input-group" }, [
+      _c("label", [_vm._v("Ваш промокод")]),
       _vm._v(" "),
       _c("input", {
-        attrs: {
-          type: "text",
-          autocomplete: "off",
-          id: "input-promo",
-          maxlength: "20"
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.promo,
+            expression: "promo"
+          }
+        ],
+        attrs: { type: "text", autocomplete: "off", maxlength: "8" },
+        domProps: { value: _vm.promo },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.promo = $event.target.value
+          }
         }
       })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-yellow full",
+          on: {
+            click: function($event) {
+              return _vm.doRequest()
+            }
+          }
+        },
+        [_vm._v("Активировать")]
+      )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group" }, [
-      _c("button", { staticClass: "btn btn-yellow full" }, [
-        _vm._v("Активировать")
-      ])
-    ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

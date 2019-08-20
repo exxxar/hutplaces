@@ -1,38 +1,41 @@
 <?php
 
-use App\Events\BroadcastMessage;
+use App\Enums\TriggerType;
+use App\Events\Achievement;
 use Illuminate\Support\Facades\Broadcast;
-use Illuminate\Support\Facades\Request;
 use Maksa988\FreeKassa\Facades\FreeKassa;
 
 Broadcast::routes();
 
-Route::get("/event",function(){
-    event(new \App\Events\Achievement());
+Route::get("/event", function () {
+    event(new Achievement(TriggerType::CardsCount, 1, 2));
+    event(new Achievement(TriggerType::CoinsCount, 10, 2));
+    event(new Achievement(TriggerType::Experience, 1000, 2));
+    event(new Achievement(TriggerType::Discount, 10, 2));
     return "1";
 });
 
-Route::get('/brod',function(){
+Route::get('/brod', function () {
     return view("brod");
 });
 
-Route::get('/payment/{paymentProvider}/success',function($paymentProvider){
+Route::get('/payment/{paymentProvider}/success', function ($paymentProvider) {
     return "success";
 });
 
-Route::get('/payment/{paymentProvider}/error',function($paymentProvider){
+Route::get('/payment/{paymentProvider}/error', function ($paymentProvider) {
     return "error";
 });
 
-Route::get("/pay",function (){
+Route::get("/pay", function () {
     $amount = 100; // Payment`s amount
     $url = FreeKassa::getPayUrl($amount, 1);
     $redirect = FreeKassa::redirectToPayUrl($amount, 1);
-    return redirect( $url);
+    return redirect($url);
 });
 
-Route::get('/content/{id}','ContentController@get')->name("content.get")->where('id', '[0-9]+');
-Route::get('/content/{type}/all','ContentController@all')->name("content.all");
+Route::get('/content/{id}', 'ContentController@get')->name("content.get")->where('id', '[0-9]+');
+Route::get('/content/{type}/all', 'ContentController@all')->name("content.all");
 
 
 Route::get('/social-auth/{provider}', 'Auth\SocialController@redirectToProvider')->name('auth.social');
@@ -64,6 +67,7 @@ Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
     Route::get('/users/cards/{id}', 'UserController@cards')->name('users.cards');
     Route::get('/users/transactions/{id}', 'UserController@transactions')->name('users.transactions');
     Route::get('/users/wins/{id}', 'UserController@wins')->name('users.wins');
+
 
     Route::resources([
         'auction' => 'AuctionController',

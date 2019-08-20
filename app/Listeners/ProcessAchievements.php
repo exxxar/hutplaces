@@ -2,7 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Events\Achievement;
+
+use App\Achievement;
+use App\Events\Achievement as Ach;
 use App\Events\GainAchievement;
 use App\Events\GainExpirience;
 use App\Stats;
@@ -29,26 +31,26 @@ class ProcessAchievements
      * @param  object $event
      * @return void
      */
-    public function handle(Achievement $event)
+    public function handle(Ach $event)
     {
 
         $stats = Stats::where("stat_type", $event->trigger_type)
             ->where("user_id", $event->user_id)
-            ->fisrt();
+            ->first();
 
         if (!empty($stats)) {
-            $stats->trigger_value += $event->trigger_value;
+            $stats->stat_value += $event->trigger_value;
             $stats->save();
         } else {
             $stats = Stats::create([
-                'trigger_type' => $event->trigger_type,
-                'trigger_value' => $event->trigger_value,
+                'stat_type' => $event->trigger_type,
+                'stat_value' => $event->trigger_value,
                 'user_id' => $event->user_id
             ]);
         }
 
         $achList = Achievement::where("trigger_type", $event->trigger_type)
-            ->where("trigger_value", "<=", $stats->trigger_value)
+            ->where("trigger_value", "=<", $stats->trigger_value)
             ->get();
 
         $user = User::find($event->user_id);

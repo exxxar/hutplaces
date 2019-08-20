@@ -45,6 +45,8 @@ Route::post('/search', 'CardsStorageController@search');
 
 Route::middleware('auth:api')->group(function () {
 
+    Route::post('/promo/activate', 'PromocodesController@activate');
+
     Route::get('/users/promo/{id}', 'UserController@promo');
     Route::get('/users/achievements/{id}', 'UserController@achievements');
     Route::get('/users/tickets/{id}', 'UserController@tickets');

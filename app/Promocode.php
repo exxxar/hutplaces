@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\Lifetime;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +28,9 @@ class Promocode extends Model
         'coins',
         'item_id',
         'card_id',
+        'created_at',
+        'updated_at',
+        'code',
 
     ];
 

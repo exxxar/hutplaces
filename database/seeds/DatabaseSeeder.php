@@ -11,8 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(StatisticTableSeeder::class);
-        $this->call(AchievementsTableSeeder::class);
+        $this->call(PromocodesTableSeeder::class);
+        //$this->call(StatisticTableSeeder::class);
+       // $this->call(AchievementsTableSeeder::class);
 
         /* $this->call(SettingsTableSeeder::class);
          $this->call(LevelsTableSeeder::class);

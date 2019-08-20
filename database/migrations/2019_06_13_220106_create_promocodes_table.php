@@ -20,6 +20,7 @@ class CreatePromocodesTable extends Migration
             $table->integer('lifetime')->default(0);// 0 - 12, 1 - 24, 2 - 36, 3 - 48, 4 - 96, 5 - 128
             $table->boolean('is_active')->default(0);
             $table->string('title')->default("");
+            $table->string('code')->unique();
             $table->string('description',2000)->nullable()->default("");
             $table->integer('activation_count')->default(0);
             $table->integer('count')->default(0);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Level;
 use App\SocialAccount;
 use App\User;
 use Illuminate\Http\Request;
@@ -79,6 +80,7 @@ class SocialController extends Controller
             'email' => $email,
             'avatar' => $socialiteUser->getAvatar(),
             'password' => bcrypt($socialiteUser->getId()),
+            'level_id'=>(Level::where("level","1")->first())->id
         ]);
 
         $this->addSocialAccount($provider, $user, $socialiteUser);
