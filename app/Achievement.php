@@ -43,7 +43,8 @@ class Achievement extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User','user_achievement','achievement_id','user_id');
+        return $this->belongsToMany('App\User','user_achievement','achievement_id','user_id')
+            ->withTimestamps();
     }
 
     public function card(){

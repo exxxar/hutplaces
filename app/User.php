@@ -48,21 +48,25 @@ class User extends Authenticatable
     ];
 
     public function lotteries() {
-        return $this->belongsToMany('App\Lottery','user_lotteries','user_id','lottery_id');
+        return $this->belongsToMany('App\Lottery','user_lotteries','user_id','lottery_id')
+            ->withTimestamps();
     }
 
     public function promocodes() {
-        return $this->belongsToMany('App\Promocode','user_promos','user_id','promocodes_id');
+        return $this->belongsToMany('App\Promocode','user_promos','user_id','promocodes_id')
+            ->withTimestamps();
     }
 
     public function cards()
     {
-        return $this->belongsToMany('App\CardsStorage','user_card','user_id','card_id');
+        return $this->belongsToMany('App\CardsStorage','user_card','user_id','card_id')
+            ->withTimestamps();
     }
 
     public function achievements()
     {
-        return $this->belongsToMany('App\Achievement','user_achievement','user_id','achievement_id');
+        return $this->belongsToMany('App\Achievement','user_achievement','user_id','achievement_id')
+            ->withTimestamps();
     }
 
     public function level()
@@ -78,5 +82,10 @@ class User extends Authenticatable
     public function tickets()
     {
         return $this->hasMany('App\Ticket');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
     }
 }

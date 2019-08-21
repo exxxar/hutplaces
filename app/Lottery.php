@@ -69,7 +69,8 @@ class Lottery extends Model
 
 
     public function users(){
-        return $this->belongsToMany('App\User','user_lotteries','lottery_id','user_id');
+        return $this->belongsToMany('App\User','user_lotteries','lottery_id','user_id')
+            ->withTimestamps();
     }
 
     public function placeList()

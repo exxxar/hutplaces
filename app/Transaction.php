@@ -14,4 +14,8 @@ class Transaction extends Model
         'created_at',
 
     ];
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

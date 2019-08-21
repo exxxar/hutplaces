@@ -70,7 +70,8 @@ class CardsStorage extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User','user_card','id','user_id');
+        return $this->belongsToMany('App\User','user_card','id','user_id')
+            ->withTimestamps();
     }
 
     public function achievements(){
