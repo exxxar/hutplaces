@@ -10,7 +10,9 @@
 
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
-                <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}"> Edit</a>
+                @can("user-edit")
+                    <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}"> Edit</a>
+                @endcan
             </div>
 
             @if (count($errors) > 0)
@@ -37,7 +39,8 @@
                             @if (strpos("http",$user->avatar)!=false)
                                 <img style="width:200px;height:200px;" src="{{$user->avatar}}" alt="">
                             @else
-                                <img style="width:200px;height:200px;" src="{{ url('/img/avatars/'.$user->avatar)}}" alt="">
+                                <img style="width:200px;height:200px;" src="{{ url('/img/avatars/'.$user->avatar)}}"
+                                     alt="">
                             @endif
                         @else
                             <img src="{{url('/img/noavatar.png')}}" alt="" style="width:150px;height:150px;">

@@ -8,7 +8,9 @@
                 <h2>Content Management</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('content.create') }}">Create New Content</a>
+                @can("content-create")
+                    <a class="btn btn-success" href="{{ route('content.create') }}">Create New Content</a>
+                @endcan
             </div>
         </div>
     </div>
@@ -21,36 +23,39 @@
     @endif
 
 
-    <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>Title</th>
-            <th>lang</th>
-            <th>Type</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($content as $key => $c)
+    @isset($content)
+        <table class="table table-bordered">
             <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{ $c->title }}</td>
-                <td>{{ $c->lang }}</td>
-                <td><a class="btn btn-primary" href="{{route("content.all",["type"=>$c->type])}}">{{ $c->type }}</a></td>
-                <td>
-                    <a class="btn btn-info" href="{{ route('content.show',$c->id) }}">Show</a>
-
-                    <a class="btn btn-primary" href="{{ route('content.edit',$c->id) }}">Edit</a>
-
-                    {!! Form::open(['method' => 'DELETE','route' => ['content.destroy', $c->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-
-                </td>
+                <th>No</th>
+                <th>Title</th>
+                <th>lang</th>
+                <th>Type</th>
+                <th width="280px">Action</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach ($content as $key => $c)
+                <tr>
+                    <td>{{ ++$i }}</td>
+                    <td>{{ $c->title }}</td>
+                    <td>{{ $c->lang }}</td>
+                    <td><a class="btn btn-primary" href="{{route("content.all",["type"=>$c->type])}}">{{ $c->type }}</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info" href="{{ route('content.show',$c->id) }}">Show</a>
 
+                        @can("content-edit")
+                            <a class="btn btn-primary" href="{{ route('content.edit',$c->id) }}">Edit</a>
+                        @endcan
 
-    {!! $content->render() !!}
-
+                        @can("content-delete")
+                            {!! Form::open(['method' => 'DELETE','route' => ['content.destroy', $c->id],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                        @endcan
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+        {!! $content->render() !!}
+    @endisset
 
 @endsection

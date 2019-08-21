@@ -8,7 +8,7 @@
                 <h2>Role Management</h2>
             </div>
             <div class="pull-right">
-                @can('role-create')
+                @can('card-create')
                     <a class="btn btn-success" href="{{ route('settings.create') }}"> Create New Role</a>
                 @endcan
             </div>

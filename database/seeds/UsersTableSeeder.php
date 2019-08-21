@@ -1,10 +1,12 @@
 <?php
 
 use App\Enums\TriggerType;
+use App\Stats;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,8 +18,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
        $user =  User::create([
-            'name'=>'admin',
-            'email'=>'admin@hutplaces.com',
+            'name'=>'superadmin',
+            'email'=>'superadmin@hutplaces.com',
             'password'=>Hash::make('admin'),
             'skype'=>'skype',
             'vk'=>'',
@@ -46,6 +48,9 @@ class UsersTableSeeder extends Seeder
                 ]));
             //todo: реализовать метод, который будет добавлять всем новый тип тригера для ачивок и статистики
         }
+
+        $role = Role::where("name","superadmin")->first();
+        $user->assignRole([$role->id]);
 
 
     }

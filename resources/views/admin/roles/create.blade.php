@@ -37,12 +37,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Permission:</strong>
-                <br/>
+               <div class="form-group permission">
                 @foreach($permission as $value)
                     <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
                         {{ $value->name }}</label>
-                    <br/>
+
                 @endforeach
+               </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

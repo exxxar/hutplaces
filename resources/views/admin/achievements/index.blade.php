@@ -5,11 +5,13 @@
             <div class="pull-left">
                 <h2>Achievement Management</h2>
             </div>
+
             <div class="pull-right">
-                <div class="form-group">
+                @can("achievement-create")
                     <a class="btn btn-success" href="{{ route('achievements.create') }}"> Create New achievement</a>
-                </div>
+                @endcan
             </div>
+
         </div>
     </div>
     @if ($message = Session::get('success'))
@@ -18,6 +20,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+
     @isset($achievements)
         <table class="table table-bordered">
             <tr>
@@ -48,15 +51,23 @@
                         {{$achievement->trigger_value}}
                     </td>
                     <td>
+
                         <a class="btn btn-info" href="{{ route('achievements.show',$achievement->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('achievements.edit',$achievement->id) }}">Edit</a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['achievements.destroy', $achievement->id],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                        {!! Form::close() !!}
+                        @can("achievement-edit")
+                            <a class="btn btn-primary" href="{{ route('achievements.edit',$achievement->id) }}">Edit</a>
+                        @endcan
+
+                        @can("achievement-delete")
+                            {!! Form::open(['method' => 'DELETE','route' => ['achievements.destroy', $achievement->id],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                        @endcan
                     </td>
                 </tr>
             @endforeach
         </table>
         {!! $achievements->render() !!}
     @endisset
+
+
 @endsection

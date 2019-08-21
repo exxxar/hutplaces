@@ -159,6 +159,8 @@ class AuthController extends Controller
 
         $accessToken->revoke();
 
+        Auth::logout();
+
         return response()->json(['status' => 200]);
     }
 

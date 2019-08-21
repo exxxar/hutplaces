@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Chatkit\Chatkit;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
         //
         Schema::defaultStringLength(191);
        // Schema::enableForeignKeyConstraints();
+
+        Blade::if('dev', function ($conidtion = true) {
+            return config("app.debug")==$conidtion;
+        });
+
     }
 
     /**
@@ -28,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind('ChatKit', function() {
-            return new \Chatkit\Chatkit([
+            return new Chatkit([
                 'instance_locator' => config('services.chatkit.locator'),
                 'key' => config('services.chatkit.secret'),
             ]);

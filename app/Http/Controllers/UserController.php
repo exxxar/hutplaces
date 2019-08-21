@@ -45,18 +45,7 @@ class UserController extends Controller
     {
         $levels = Level::all();
         $roles = Role::pluck('name', 'name')->all();
-
-        $files = Storage::files("/public/");
-
-        $images = array_filter($files, function ($str) {
-            return
-                strpos($str, ".jpg") != 0 ||
-                strpos($str, ".jpeg") != 0 ||
-                strpos($str, ".png") != 0;
-        });
-
-
-        return view('admin.users.create', compact('roles', 'images', 'levels'));
+        return view('admin.users.create', compact('roles', 'levels'));
     }
 
     /**

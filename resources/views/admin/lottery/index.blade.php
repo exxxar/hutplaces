@@ -7,6 +7,7 @@
             <div class="pull-left">
                 <h2>Lottery Management</h2>
             </div>
+
             <div class="pull-right">
                 @can('lottery-create')
                     <a class="btn btn-success" href="{{ route('lottery.create') }}"> Create New lottery</a>

@@ -6,6 +6,7 @@ use BenSampo\Enum\Enum;
 
 final class GameType extends Enum
 {
-    const Randoms = 0;
-    const WinWheel = 1;
+    const NHL = 0;
+    const NBA = 1;
+    const FIFA = 2;
 }

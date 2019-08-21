@@ -8,7 +8,7 @@
                 <h2>Cards Management</h2>
             </div>
             <div class="pull-right">
-                @can('cardstorage-create')
+                @can('cards-storage-create')
                     <a class="btn btn-success" href="{{ route('storage.create') }}"> Create New Card</a>
                 @endcan
             </div>
@@ -42,10 +42,10 @@
                 <td>{{ $cardstorage->Team }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ route('storage.show',$cardstorage->id) }}">Show</a>
-                    @can('cardstorage-edit')
+                    @can('cards-storage-edit')
                         <a class="btn btn-primary" href="{{ route('storage.edit',$cardstorage->id) }}">Edit</a>
                     @endcan
-                    @can('cardstorage-delete')
+                    @can('cards-storage-delete')
                         {!! Form::open(['method' => 'DELETE','route' => ['storage.destroy', $cardstorage->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
@@ -54,9 +54,5 @@
             </tr>
         @endforeach
     </table>
-
-
     {!! $cardstorages->render() !!}
-
-
 @endsection

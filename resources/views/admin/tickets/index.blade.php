@@ -46,10 +46,11 @@
                     <td>
                         <a class="btn btn-info" href="{{ route('tickets.show',$ticket->id) }}">Show</a>
 
+                        @can("ticket-delete")
                         {!! Form::open(['method' => 'DELETE','route' => ['tickets.destroy', $ticket->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
-
+                        @endcan
                     </td>
                 </tr>
             @endforeach

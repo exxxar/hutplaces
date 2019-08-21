@@ -2,17 +2,20 @@
 
 use App\Enums\TriggerType;
 use App\Events\Achievement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
 use Maksa988\FreeKassa\Facades\FreeKassa;
 
 Broadcast::routes();
 
 Route::get("/event", function () {
+
+    event(new \App\Events\GainExpirience(4));
     //event(new Achievement(TriggerType::CardsCount, 1, 2));
     //event(new Achievement(TriggerType::CoinsCount, 10, 2));
     //event(new Achievement(TriggerType::Experience, 1000, 2));
     //event(new Achievement(TriggerType::Discount, 10, 2));
-    event(new Achievement(TriggerType::Level, 10, 4));
+   // event(new Achievement(TriggerType::Level, 10, 4));
     return "1";
 });
 
@@ -45,7 +48,7 @@ Route::get('/social-auth/{provider}/callback', 'Auth\SocialController@handleProv
 // slider image get
 Route::get('/storage/slider/{filename}', 'SettingsController@sliderImageGet')->name('slider.image.get');
 
-Route::group(['prefix' => 'admin',/*'middleware' => ['auth']*/], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
 
     // main page with images for slider
     Route::get('/', 'SettingsController@main')->name('main');

@@ -8,7 +8,7 @@
                 <h2>Levels Management</h2>
             </div>
             <div class="pull-right">
-                @can('levels-create')
+                @can('level-create')
                     <a class="btn btn-success" href="{{ route('levels.create') }}"> Create New Level</a>
                 @endcan
             </div>
@@ -41,10 +41,10 @@
                 <td>{{ $level->discount }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ route('levels.show',$level->id) }}">Show</a>
-                    @can('levels-edit')
+                    @can('level-edit')
                         <a class="btn btn-primary" href="{{ route('levels.edit',$level->id) }}">Edit</a>
                     @endcan
-                    @can('levels-delete')
+                    @can('level-delete')
                         {!! Form::open(['method' => 'DELETE','route' => ['levels.destroy', $level->id],'style'=>'display:inline']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}

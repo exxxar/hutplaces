@@ -607,6 +607,14 @@ input[type='file'] {
   height: 45px;
 }
 
+.permission label {
+  padding: 20px;
+}
+
+.in-developed {
+  border: 1px red solid;
+}
+
 .ncard,
 .ncard .backplate {
   margin: auto;
