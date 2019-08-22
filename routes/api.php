@@ -24,6 +24,12 @@ Route::group(['prefix' => 'payment'], function(){
 
 */
 
+// chat
+Route::post('authenticate','ChatkitController@authenticate');
+Route::get('users', 'ChatkitController@getUsers');
+Route::post('message','ChatkitController@sendMessage');
+Route::get('messages','ChatkitController@getMessages');
+
 Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
@@ -65,8 +71,3 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/lottery/pickplace', 'LotteryController@pickPlace');
     Route::post('/payment/{paymentProvider}', 'UserController@payment')->middleware("levels");
 });
-
-// chat
-Route::post('authenticate','ChatkitController@authenticate');
-Route::get('users', 'ChatkitController@getUsers');
-Route::post('message','ChatkitController@sendMessage');

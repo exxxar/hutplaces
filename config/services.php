@@ -56,7 +56,7 @@ return [
         'redirect' => env('TWITTER_REDIRECT_URI')
     ],
     'chatkit' => [
-        'secret' => env('CHATKIT_SECRET_KEY'),
-        'locator' => env('CHATKIT_INSTANCE_LOCATOR'),
+        'secret' => '1d267974-02a8-4ba4-ad6c-1727d7710b14:/t8p8etiCLRkDGICq4Ed0m8Vbh8/C1NK3VinTFAIHkc=',
+        'locator' => 'v1:us1:a885adfd-b99c-43f6-a989-0f619c9cb12e',
     ],
 ];

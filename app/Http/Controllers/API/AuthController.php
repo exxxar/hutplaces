@@ -124,21 +124,6 @@ class AuthController extends Controller
         // Вытаскиваем данные из ответа
         $data = json_decode($response->getContent());
 
-        // Get messages via Chatkit
-        $fetchMessages = $this->chatkit->getRoomMessages([
-            'room_id' => $this->roomId,
-            'direction' => 'newer',
-            'limit' => 100
-        ]);
-        $messages = collect($fetchMessages['body'])->map(function ($message) {
-            return [
-                'id' => $message['id'],
-                'senderId' => $message['user_id'],
-                'text' => $message['text'],
-                'timestamp' => $message['created_at']
-            ];
-        });
-
         // Формируем окончательный ответ в нужном формате
         return response()->json([
             'token' => $data->access_token,

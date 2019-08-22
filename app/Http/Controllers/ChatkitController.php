@@ -8,7 +8,7 @@ class ChatkitController extends Controller
     public function __construct()
     {
         $this->chatkit = app('ChatKit');
-        $this->roomId = env('CHATKIT_GENERAL_ROOM_ID');
+        $this->roomId = 'b73d2cc6-738a-4a15-8f71-45e16d9a61cd';
     }
     /**
      * Show the welcome page.
@@ -75,6 +75,28 @@ class ChatkitController extends Controller
             ];
         });
         return view('chat')->with(compact('messages', 'roomId', 'userId'));
+    }
+
+    public function getMessages()
+    {
+        $roomId = $this->roomId;
+
+        // Get messages via Chatkit
+        $fetchMessages = $this->chatkit->getRoomMessages([
+            'room_id' => $roomId,
+            'direction' => 'newer',
+            'limit' => 100
+        ]);
+        $messages = collect($fetchMessages['body'])->map(function ($message) {
+            return [
+                'id' => $message['id'],
+                'senderId' => $message['user_id'],
+                'text' => $message['text'],
+                'timestamp' => $message['created_at']
+            ];
+        });
+
+        return response($messages);
     }
     /**
      * Receives a client request and provides a new token.

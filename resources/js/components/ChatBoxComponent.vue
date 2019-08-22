@@ -24,20 +24,27 @@
         props: {
             roomId: String,
             userId: String,
-            initialMessages: Array,
+            initial: Array,
         },
         data () {
             return {
                 currentUser: null,
                 message: '',
-                messages: this.initialMessages,
+                messages: this.initial,
                 users: null,
+            }
+        },
+        watch: {
+            initial: {
+                handler(newVal, oldVal) {
+                    this.messages = this.initial;
+                }
             }
         },
         methods: {
             connectToChatkit() {
                 const tokenProvider = new Chatkit.TokenProvider({
-                    url: `${process.env.MIX_APP_URL}/api/authenticate`,
+                    url: `http://localhost:8000/api/authenticate`,
                 });
                 const chatManager = new Chatkit.ChatManager({
                     instanceLocator: "v1:us1:a885adfd-b99c-43f6-a989-0f619c9cb12e",
@@ -77,14 +84,14 @@
                 })
             },
             getUsers() {
-                axios.get(`${process.env.MIX_APP_URL}/api/users`)
+                axios.get(`http://localhost:8000/api/users`)
                     .then(res => {
                         this.users = res['data']['body']
                     });
             },
             sendMessage() {
                 if (this.message.trim() === '') return;
-                axios.post( `${process.env.MIX_APP_URL}/api/message`, {
+                axios.post( `http://localhost:8000/api/message`, {
                     user: this.userId,
                     message: this.message
                 })
@@ -109,7 +116,7 @@
 <style>
     #chatbox {
         text-align: left;
-        max-height: 400px;
+        height: 200px;
         overflow-y: scroll;
     }
 </style>

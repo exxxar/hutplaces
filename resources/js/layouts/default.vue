@@ -20,6 +20,10 @@
                     <router-view></router-view>
                     <!-- <chat-box-component user-id='{{ $userId }}' room-id='{{ $roomId }}' :initial-messages='@json($messages)'></chat-box-component> -->
                 </keep-alive>
+
+                <div class="chatbox">
+                    <chat-box-component user-id='dhypu' room-id='b73d2cc6-738a-4a15-8f71-45e16d9a61cd' :initial='messages'></chat-box-component>
+                </div>
             </div>
         </scroll>
         <aside>
@@ -129,6 +133,7 @@
             return {
                 authenticated: auth.check(),
                 user: auth.user,
+                messages: [],
                 settings: {
                     maxScrollbarLength: 60
                 }
@@ -163,6 +168,11 @@
             }
         },
         mounted: function () {
+            axios
+                .get('messages').then(response => {
+                this.messages = response.data;
+            });
+
             pusher.subscribe('pick-place-chanel').bind('pick-place-event', (data) => {
                 Event.$emit("updatePlaces")
                 if (this.user != null)
@@ -255,4 +265,12 @@
 <style lang="scss">
     @import '~/reset.scss';
     @import '~/main.scss';
+    .chatbox{
+        height: 300px;
+        width: 300px;
+        position: fixed;
+        right: 100px;
+        bottom: 20px;
+        background-color: blue;
+    }
 </style>
