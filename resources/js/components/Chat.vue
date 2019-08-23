@@ -3,6 +3,10 @@
         <div class="chat-btn" @click="openChat()">Chat</div>
 
         <div class="chat" v-draggable v-if="open">
+            <div class="title">
+                Чат
+                <a class="close" @click="open=false"></a>
+            </div>
             <div class="channels">
                 <a v-for="room in rooms" @click="changeChatRoom(room.id)" :id="prepareId(room.id)" :title="room.id" v-html="room.title"></a>
             </div>
@@ -120,10 +124,38 @@
         }
     }
 
+    .title {
+        min-height: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: yellow;
+        margin: 0px 0px 5px 0px;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 900;
+        position: relative;
+        .close {
+            position: absolute;
+            top:5px;
+            right:12px;
+            width:20px;
+            height:20px;
+            cursor: pointer;
+            &:before,
+            &:after {
+                height:18px;
+                width: 1px;
+                background-color: #2c3e50;
+            }
+        }
+    }
     .channels {
         display: flex;
-        justify-content: flex-start;
-        height:50px;
+        justify-content: center;
+        height: 50px;
+        padding: 5px;
         a {
             width: 50px;
             height: 50px;
@@ -132,8 +164,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right:5px ;
-            cursor:pointer;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 5px;
             &.active {
                 background-color: yellow;
             }
@@ -142,7 +175,7 @@
 
     .chat {
 
-        height: 360px;
+        height: 405px;
         width: 300px;
         position: fixed;
         left: 20px;

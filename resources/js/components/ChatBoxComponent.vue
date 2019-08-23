@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <div id="chatbox">
             <div id="chat-loader" v-if="chatLoading">
                 <h1>Loading...</h1>
@@ -11,23 +10,18 @@
 
                         <p>{{ message.text }}</p>
                         <div class="message-footer">
-
                             <i> ({{ formatTime(message.timestamp) }}) </i>
                             : <strong>{{ findSender(message.senderId).name }}</strong>
-
                         </div>
 
                     </li>
                 </ul>
-
             </scroll>
         </div>
-
 
         <div class="input-group">
             <input type="text" v-model="message" @keyup.enter="sendMessage" class="form-control"
                    placeholder="Type your message..." autofocus>
-
             <button @click="sendMessage" class="btn btn-yellow">Send</button>
 
         </div>
