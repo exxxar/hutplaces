@@ -182,6 +182,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         RandomOrg\RandomServiceProvider::class,
         BenSampo\Enum\EnumServiceProvider::class,
+
     ],
 
     /*
@@ -236,6 +237,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'RandomOrg' => RandomOrg\Facades\Random::class,
         'FreeKassa' => Maksa988\FreeKassa\Facades\FreeKassa::class,
+
     ],
 
 ];

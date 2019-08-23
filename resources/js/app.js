@@ -2,6 +2,8 @@ import './bootstrap';
 import Auth from './auth';
 import Api from './api.js';
 
+
+
 import Vue from 'vue'
 
 import VueLazyload from "vue-lazyload";
@@ -29,9 +31,6 @@ Lang.requireAll(require.context('./lang', true, /\.js$/));
 
 Vue.use(Lang);
 
-
-
-
 window.api = new Api();
 
 window.auth = new Auth();
@@ -43,6 +42,8 @@ Vue.component('tab', Tab);
 Vue.use(VueScrollTo)
 Vue.use(VueClipboard)
 Vue.use(VTooltip)
+
+
 Vue.use(VueLoading,{
     text: 'HUTPLACES',
     background: 'rgba(0,0,0,0.97)',

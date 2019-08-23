@@ -19,10 +19,6 @@ Route::get("/event", function () {
     return "1";
 });
 
-Route::get('/brod', function () {
-    return view("brod");
-});
-
 Route::get('/payment/{paymentProvider}/success', function ($paymentProvider) {
     return "success";
 });
@@ -99,10 +95,13 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     Route::get('/lang/{locale}', 'SettingsController@setlang');
 });
 
-Route::get('/{any}', 'SinglePageController@index')->where('any', '.*')->name("front");
-
-// chat
-Route::get('/chatindex', 'ChatkitController@index');
+Route::get('/chat/index', 'ChatkitController@createRoom');
+Route::get('/chat/rooms', 'ChatkitController@getRooms');
 Route::post('/chatjoin', 'ChatkitController@join');
 Route::get('chat', 'ChatkitController@chat')->name('chat');
 Route::post('logout', 'ChatkitController@logout')->name('logout');
+
+
+Route::get('/{any}', 'SinglePageController@index')->where('any', '.*')->name("front");
+
+// chat

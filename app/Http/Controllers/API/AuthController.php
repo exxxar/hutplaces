@@ -2,46 +2,44 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Classes\CustomChatKit;
 use App\Enums\TriggerType;
-use App\Http\Requests\RegisterFormRequest;
+use App\Http\Controllers\Controller;
 use App\Level;
+use App\Setting;
 use App\Stats;
 use App\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    private $chatkit;
-    private $roomId;
+    use CustomChatKit;
+
+
     public function __construct()
     {
-        $this->chatkit = app('ChatKit');
-        $this->roomId = env('CHATKIT_GENERAL_ROOM_ID');
+        $this->chatkit_init();
     }
 
-       public function register()
+    public function register()
     {
         $user = User::create([
             'name' => request('name'),
             'email' => request('email'),
             'avatar' => '',
-            'level_id'=>(Level::where("level","1")->first())->id,
+            'level_id' => (Level::where("level", "1")->first())->id,
             'password' => bcrypt(request('password'))
         ]);
 
         foreach (TriggerType::toArray() as $key => $value) {
             $stat = Stats::where("stat_type", $value)
                 ->where("user_id", $user->uid)
-                ->fisrt();
+                ->first();
 
-            if (empty($stat))
-            {
+            if (empty($stat)) {
                 $stat = Stats::create([
                     'stat_type' => $value,
                     'stat_value' => 0,
@@ -53,15 +51,9 @@ class AuthController extends Controller
             //todo: реализовать метод, который будет добавлять всем новый тип тригера для ачивок и статистики
         }
 
-        // создание пользователя в чате пушер
-        $this->chatkit->createUser([
-            'id' =>  $user->id,
-            'name' => $user->name,
-        ]);
-        $this->chatkit->addUsersToRoom([
-            'room_id' => $this->roomId,
-            'user_ids' => [$user->id],
-        ]);
+         $this->chatkit_createUser($user);
+
+
 
         return response()->json(['status' => 201]);
     }
@@ -124,6 +116,11 @@ class AuthController extends Controller
         // Вытаскиваем данные из ответа
         $data = json_decode($response->getContent());
 
+        $chats = Setting::where("title", "like", "chatkit.channel.%")->get();
+
+        foreach ($chats as $chat) {
+            $this->chatkit_addUserToRoom($chat->value, [$this->prepareUserId($user->id)]);
+        }
         // Формируем окончательный ответ в нужном формате
         return response()->json([
             'token' => $data->access_token,
@@ -135,6 +132,7 @@ class AuthController extends Controller
     public function logout()
     {
         $accessToken = auth()->user()->token();
+        $userId =  auth("api")->user()->id;
 
         $refreshToken = DB::table('oauth_refresh_tokens')
             ->where('access_token_id', $accessToken->id)
@@ -143,6 +141,13 @@ class AuthController extends Controller
             ]);
 
         $accessToken->revoke();
+
+
+        $chats = Setting::where("title", "like", "chatkit.channel.%")->get();
+
+        foreach ($chats as $chat) {
+            $this->chatkit_removeUserFromRoom($chat->value, [$this->prepareUserId($userId)]);
+        }
 
         Auth::logout();
 

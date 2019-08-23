@@ -901,10 +901,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_modals_Registration_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/modals/Registration.vue */ "./resources/js/components/modals/Registration.vue");
 /* harmony import */ var _components_AsideMenu_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/components/AsideMenu.vue */ "./resources/js/components/AsideMenu.vue");
 /* harmony import */ var _components_MainMenu_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/components/MainMenu.vue */ "./resources/js/components/MainMenu.vue");
-/* harmony import */ var _components_ChatBoxComponent_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/components/ChatBoxComponent.vue */ "./resources/js/components/ChatBoxComponent.vue");
+/* harmony import */ var _components_Chat_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/components/Chat.vue */ "./resources/js/components/Chat.vue");
 /* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-custom-scrollbar */ "./node_modules/vue-custom-scrollbar/dist/vueScrollbar.umd.min.js");
 /* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_12__);
-//
 //
 //
 //
@@ -1139,6 +1138,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   components: {
+    Chat: _components_Chat_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
     Payment: _components_modals_Payment_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Help: _components_modals_Help_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     HowToStart: _components_modals_Howtostart_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -1150,8 +1150,7 @@ __webpack_require__.r(__webpack_exports__);
     Registration: _components_modals_Registration_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
     Scroll: vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_12___default.a,
     AsideMenu: _components_AsideMenu_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    MainMenu: _components_MainMenu_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    ChatBoxComponent: _components_ChatBoxComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    MainMenu: _components_MainMenu_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 });
 
@@ -3035,7 +3034,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("footer", { attrs: { id: "pageFooter" } }),
+      _c("footer", { attrs: { id: "pageFooter" } }, [_c("chat")], 1),
       _vm._v(" "),
       _c("notifications", { attrs: { group: "main" } }),
       _vm._v(" "),

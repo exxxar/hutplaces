@@ -18,12 +18,7 @@
             <div class="center">
                 <keep-alive>
                     <router-view></router-view>
-                    <!-- <chat-box-component user-id='{{ $userId }}' room-id='{{ $roomId }}' :initial-messages='@json($messages)'></chat-box-component> -->
                 </keep-alive>
-
-                <div class="chatbox">
-                    <chat-box-component user-id='dhypu' room-id='b73d2cc6-738a-4a15-8f71-45e16d9a61cd' :initial='messages'></chat-box-component>
-                </div>
             </div>
         </scroll>
         <aside>
@@ -32,7 +27,7 @@
             </nav>
         </aside>
         <footer id="pageFooter">
-
+           <chat></chat>
         </footer>
         <notifications group="main"/>
         <modal name="report" :adaptive="true" width="100%" height="100%">
@@ -85,27 +80,27 @@
         </modal>
         <modal name="aside-menu" :adaptive="true" width="100%" height="100%">
             <a href="#" @click="hide('aside-menu')" class="close"></a>
-                <div class="modal-body aside-menu-modal">
-                    <nav>
-                        <aside-menu v-on:modal="show($event)"
-                                    v-on:self-hide="hide('aside-menu')">
-                        </aside-menu>
-                    </nav>
-                </div>
+            <div class="modal-body aside-menu-modal">
+                <nav>
+                    <aside-menu v-on:modal="show($event)"
+                                v-on:self-hide="hide('aside-menu')">
+                    </aside-menu>
+                </nav>
+            </div>
         </modal>
         <modal name="main-menu" :adaptive="true" width="100%" height="100%">
 
-                <a href="#" @click="hide('main-menu')" class="close"></a>
-                <div class="modal-body main-menu-modal">
-                    <nav>
-                        <main-menu v-on:modal="show($event)"
-                                   :authenticated="authenticated"
-                                   :user="user"
-                                   :alwaysShow="true"
-                                   v-on:self-hide="hide('main-menu')">
-                        </main-menu>
-                    </nav>
-                </div>
+            <a href="#" @click="hide('main-menu')" class="close"></a>
+            <div class="modal-body main-menu-modal">
+                <nav>
+                    <main-menu v-on:modal="show($event)"
+                               :authenticated="authenticated"
+                               :user="user"
+                               :alwaysShow="true"
+                               v-on:self-hide="hide('main-menu')">
+                    </main-menu>
+                </nav>
+            </div>
 
         </modal>
     </div>
@@ -124,8 +119,10 @@
     import Registration from '@/components/modals/Registration.vue'
     import AsideMenu from '@/components/AsideMenu.vue'
     import MainMenu from '@/components/MainMenu.vue'
-    import ChatBoxComponent from '@/components/ChatBoxComponent.vue'
+    import Chat from '@/components/Chat.vue'
+
     import Scroll from 'vue-custom-scrollbar'
+
 
     export default {
         name: 'defaultLayout',
@@ -133,7 +130,6 @@
             return {
                 authenticated: auth.check(),
                 user: auth.user,
-                messages: [],
                 settings: {
                     maxScrollbarLength: 60
                 }
@@ -168,10 +164,6 @@
             }
         },
         mounted: function () {
-            axios
-                .get('messages').then(response => {
-                this.messages = response.data;
-            });
 
             pusher.subscribe('pick-place-chanel').bind('pick-place-event', (data) => {
                 Event.$emit("updatePlaces")
@@ -255,9 +247,20 @@
                 this.user = null;
             });
         },
-
         components: {
-            Payment, Help, HowToStart, History, FAQ, Promo, Report, Login, Registration, Scroll, AsideMenu, MainMenu, ChatBoxComponent
+            Chat,
+            Payment,
+            Help,
+            HowToStart,
+            History,
+            FAQ,
+            Promo,
+            Report,
+            Login,
+            Registration,
+            Scroll,
+            AsideMenu,
+            MainMenu,
         }
     }
 </script>
@@ -265,12 +268,5 @@
 <style lang="scss">
     @import '~/reset.scss';
     @import '~/main.scss';
-    .chatbox{
-        height: 300px;
-        width: 300px;
-        position: fixed;
-        right: 100px;
-        bottom: 20px;
-        background-color: blue;
-    }
+
 </style>

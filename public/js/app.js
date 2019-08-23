@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"layout-components-AsideMenu-vue":"layout-components-AsideMenu-vue","layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-MainMenu-vue":"layout-components-MainMenu-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue","vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue":"vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue","layout-components-ChatBoxComponent-vue":"layout-components-ChatBoxComponent-vue","layout-layouts-default-vue":"layout-layouts-default-vue"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"layout-components-AsideMenu-vue":"layout-components-AsideMenu-vue","layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-MainMenu-vue":"layout-components-MainMenu-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue","vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue":"vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue","layout-components-ChatBoxComponent-vue":"layout-components-ChatBoxComponent-vue","layout-components-Chat-vue":"layout-components-Chat-vue","layout-layouts-default-vue":"layout-layouts-default-vue"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -74662,9 +74662,15 @@ var map = {
 		"./resources/js/components/Breadcrumbs.vue",
 		"layout-components-Breadcrumbs-vue"
 	],
+	"./components/Chat.vue": [
+		"./resources/js/components/Chat.vue",
+		"vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue",
+		"layout-components-ChatBoxComponent-vue",
+		"layout-components-Chat-vue"
+	],
 	"./components/ChatBoxComponent.vue": [
 		"./resources/js/components/ChatBoxComponent.vue",
-		"vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue",
+		"vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue",
 		"layout-components-ChatBoxComponent-vue"
 	],
 	"./components/MainMenu.vue": [
@@ -74732,8 +74738,9 @@ var map = {
 	],
 	"./layouts/default.vue": [
 		"./resources/js/layouts/default.vue",
-		"vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue",
+		"vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue",
 		"layout-components-ChatBoxComponent-vue",
+		"layout-components-Chat-vue",
 		"layout-layouts-default-vue"
 	],
 	"./layouts/start.vue": [
@@ -75176,6 +75183,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+window.instanceLocator = "v1:us1:a885adfd-b99c-43f6-a989-0f619c9cb12e";
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
@@ -75633,6 +75641,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./en/chatkit.js": "./resources/js/lang/en/chatkit.js",
 	"./en/messages.js": "./resources/js/lang/en/messages.js",
 	"./ru/messages.js": "./resources/js/lang/ru/messages.js"
 };
@@ -75656,6 +75665,20 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = "./resources/js/lang sync recursive \\.js$";
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/chatkit.js":
+/*!*****************************************!*\
+  !*** ./resources/js/lang/en/chatkit.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  'channel.chat1': 'buy',
+  'channel.chat2': 'buy2'
+};
 
 /***/ }),
 
