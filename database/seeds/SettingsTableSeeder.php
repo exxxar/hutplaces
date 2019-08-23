@@ -21,125 +21,102 @@ class SettingsTableSeeder extends Seeder
 
         $this->chatkit_init();
 
-        //очищаем старые комнаты
-        foreach ($this->chatkit_getRooms() as $room) {
+        $rooms = $this->chatkit_getRooms();
+        /*//очищаем старые комнаты
+        foreach ($rooms as $room) {
             $this->chatkit_removeRoom($room["id"]);
-        }
-
-        //очищаем пользователей
-
-        foreach ($this->chatkit_getUsers() as $user) {
-            $this->chatkit_removeUser($user["id"]);
-        }
+        }*/
 
         try {
             $this->chatkit_createUser(User::where("email", "superadmin@hutplaces.com")->first());
+
         } catch (\Chatkit\Exceptions\ChatkitException $e) {
         }
+        if (count($rooms)==0) {
+            $chat1 = ($this->chatkit_createRoom(User::where("email", "superadmin@hutplaces.com")->first(), "Main Room"))["id"];
+            $chat2 = ($this->chatkit_createRoom(User::where("email", "superadmin@hutplaces.com")->first(), "Help"))["id"];
 
-        $chat1 = ($this->chatkit_createRoom(User::where("email", "superadmin@hutplaces.com")->first(), "Main Room"))["id"];
-        $chat2 = ($this->chatkit_createRoom(User::where("email", "superadmin@hutplaces.com")->first(), "Help"))["id"];
-        //
-        try {
+            try {
 
-            Setting::create([
-                'title' => 'chatkit.channel.chat1',
-                'value' => $chat1
-            ]);
+                Setting::create([
+                    'title' => 'chatkit.channel.chat1',
+                    'value' => $chat1
+                ]);
 
-        } catch (\Illuminate\Database\QueryException $e) {
+            } catch (\Illuminate\Database\QueryException $e) {
 
-        }
+            }
 
-        try {
+            try {
 
-            Setting::create([
-                'title' => $chat1,
-                'value' => `<i class="fas fa-align-justify"></i>`
-            ]);
+                Setting::create([
+                    'title' => $chat1,
+                    'value' => `<i class="fas fa-align-justify"></i>`
+                ]);
 
-        } catch (\Illuminate\Database\QueryException $e) {
+            } catch (\Illuminate\Database\QueryException $e) {
 
-        }
+            }
 
-        try {
+            try {
 
-            Setting::create([
-                'title' => $chat2,
-                'value' => `<i class="fas fa-question"></i>`
-            ]);
+                Setting::create([
+                    'title' => $chat2,
+                    'value' => `<i class="fas fa-question"></i>`
+                ]);
 
-        } catch (\Illuminate\Database\QueryException $e) {
+            } catch (\Illuminate\Database\QueryException $e) {
 
-        }
+            }
 
-        try {
-            Setting::create([
-                'title' => 'chatkit.channel.chat2',
-                'value' => $chat2
-            ]);
-        } catch (\Illuminate\Database\QueryException $e) {
+            try {
+                Setting::create([
+                    'title' => 'chatkit.channel.chat2',
+                    'value' => $chat2
+                ]);
+            } catch (\Illuminate\Database\QueryException $e) {
 
-        }
-
-        try {
-
-            Setting::create([
-                'title' => 'tax',
-                'value' => '5'
-            ]);
-        } catch (\Illuminate\Database\QueryException $e) {
+            }
 
         }
+        else {
+            $index = 0;
+            foreach ($rooms as $room) {
+                try {
+                    Setting::create([
+                        'title' => 'chatkit.channel.chat'.(++$index),
+                        'value' => $room["id"]
+                    ]);
 
-        try {
+                } catch (\Illuminate\Database\QueryException $e) {
 
-            Setting::create([
-                'title' => 'tax',
-                'value' => '5'
-            ]);
+                }
 
-        } catch (\Illuminate\Database\QueryException $e) {
+                try {
+                    Setting::create([
+                        'title' => $room["id"],
+                        'value' => `<i class="fas fa-align-justify"></i>`
+                    ]);
 
+                } catch (\Illuminate\Database\QueryException $e) {
+
+                }
+            }
         }
 
-        try {
-            Setting::create([
-                'title' => 'coins_exchange',
-                'value' => '5'
-            ]);
+        $config = ["tax"=>"5","coins_exchange"=>"5","money_exchange"=>"1","coins_title"=>"pucks","years"=>'{"2018","2019","220"}'];
 
-        } catch (\Illuminate\Database\QueryException $e) {
+        foreach ($config as $key=>$value){
+            try {
 
-        }
+                Setting::create([
+                    'title' => $key,
+                    'value' => $value
+                ]);
 
-        try {
-            Setting::create([
-                'title' => 'money_exchange',
-                'value' => '1'
-            ]);
-        } catch (\Illuminate\Database\QueryException $e) {
+            } catch (\Illuminate\Database\QueryException $e) {
 
-        }
-
-        try {
-
-            Setting::create([
-                'title' => 'coins_title',
-                'value' => 'pucks'
-            ]);
-        } catch (\Illuminate\Database\QueryException $e) {
-
-        }
-
-
-        try {
-            Setting::create([
-                'title' => 'years',
-                'value' => '{"2018","2019","220"}'
-            ]);
-        } catch (\Illuminate\Database\QueryException $e) {
-
+            }
         }
 
     }
