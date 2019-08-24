@@ -136,7 +136,10 @@ class ContentController extends Controller
 
         if ($request->ajax())
             return response()
-                ->json(Content::where("type",$type)->get());
+                ->json([
+                    "status"=>200,
+                    "content"=>Content::where("type",$type)->get()
+                ]);
 
         $content = Content::where("type",$type)
             ->orderBy('id','DESC')

@@ -13,8 +13,8 @@
 
         <li class="more-menu">
             <div class="lang">
-                <a href=""><img src="/img/ru.jpg" alt=""></a>
-                <a href=""><img src="/img/en.jpg" alt=""></a>
+                <a @click="changeLang('ru')"><img src="/img/ru.jpg" alt=""></a>
+                <a @click="changeLang('en')"><img src="/img/en.jpg" alt=""></a>
             </div>
             <ul class="more">
                 <li @click="openModal('terms')"><a href="#terms">Пользовательское соглашение</a></li>
@@ -31,6 +31,9 @@
         methods: {
             selfHide(){
                 this.$emit("self-hide");
+            },
+            changeLang(lang){
+                this.$lang.setLang(lang)
             },
             openModal(name){
                 this.selfHide();

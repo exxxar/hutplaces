@@ -27,7 +27,7 @@
             </nav>
         </aside>
         <footer id="pageFooter">
-           <chat></chat>
+           <chat :show="user!=null"></chat>
         </footer>
         <notifications group="main"/>
         <modal name="report" :adaptive="true" width="100%" height="100%">
@@ -164,6 +164,12 @@
             }
         },
         mounted: function () {
+
+            window.addEventListener("resize", function(){
+                document.querySelector(".ps-container").scrollTop = 0;
+            });
+
+
 
             pusher.subscribe('pick-place-chanel').bind('pick-place-event', (data) => {
                 Event.$emit("updatePlaces")

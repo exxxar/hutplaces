@@ -51,8 +51,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -107,11 +105,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         _this.subscribeToRoom();
 
-        console.log('Connected Successfully');
         _this.chatLoading = false;
-      })["catch"](function (error) {
-        console.log('Error on connection', error);
-      });
+      })["catch"](function (error) {});
     },
     subscribeToRoom: function subscribeToRoom() {
       var _this2 = this;
@@ -224,7 +219,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#chatbox {\n  height: 250px;\n  padding: 5px;\n  box-sizing: border-box;\n}\n#chatbox .scroll-area {\n  padding: 0px;\n  width: 100%;\n}\n#chatbox ul {\n  width: 100%;\n}\n#chatbox ul li {\n  border-radius: 5px;\n  width: 100%;\n  /* min-height: 50px; */\n  padding: 10px;\n  box-sizing: border-box;\n  color: #2c3e50;\n  text-align: left;\n  background: #f7f7ae;\n  margin-bottom: 25px;\n  position: relative;\n  line-height: 150%;\n  word-break: break-all;\n}\n#chatbox ul li .message-footer {\n  color: #2c3e50;\n  position: absolute;\n  width: 270px;\n  left: 0;\n  bottom: -15px;\n  background: #f7f7ae;\n  padding: 0px 10px 0px 10px;\n  border-radius: 0px 0px 5px 5px;\n  font-size: 12px;\n  font-style: italic;\n}\n#chatbox ul li span {\n  word-break: break-all;\n}", ""]);
+exports.push([module.i, "#chatbox {\n  height: 251px;\n  padding: 5px;\n  box-sizing: border-box;\n}\n#chatbox .scroll-area {\n  padding: 0px;\n  width: 100%;\n}\n#chatbox ul {\n  width: 100%;\n}\n#chatbox ul li {\n  border-radius: 5px;\n  width: 100%;\n  /* min-height: 50px; */\n  padding: 10px;\n  box-sizing: border-box;\n  color: #2c3e50;\n  text-align: left;\n  background: #f7f7ae;\n  margin-bottom: 25px;\n  position: relative;\n  line-height: 150%;\n  word-break: break-all;\n}\n#chatbox ul li .message-footer {\n  color: #2c3e50;\n  position: absolute;\n  width: 270px;\n  left: 0;\n  bottom: -15px;\n  background: #f7f7ae;\n  padding: 0px 10px 0px 10px;\n  border-radius: 0px 0px 5px 5px;\n  font-size: 12px;\n  font-style: italic;\n}\n#chatbox ul li span {\n  word-break: break-all;\n}", ""]);
 
 // exports
 
@@ -569,7 +564,7 @@ var render = function() {
       [
         _vm.chatLoading
           ? _c("div", { attrs: { id: "chat-loader" } }, [
-              _c("h1", [_vm._v("Loading...")])
+              _c("h1", [_vm._v(_vm._s(_vm.$lang.chat.loading))])
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -625,7 +620,7 @@ var render = function() {
         staticClass: "form-control",
         attrs: {
           type: "text",
-          placeholder: "Type your message...",
+          placeholder: _vm.$lang.chat.placeholder,
           autofocus: ""
         },
         domProps: { value: _vm.message },
@@ -651,7 +646,7 @@ var render = function() {
       _c(
         "button",
         { staticClass: "btn btn-yellow", on: { click: _vm.sendMessage } },
-        [_vm._v("Send")]
+        [_vm._v(_vm._s(_vm.$lang.chat.send))]
       )
     ])
   ])

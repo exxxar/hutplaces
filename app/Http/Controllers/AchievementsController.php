@@ -6,9 +6,9 @@ use App\Achievement;
 use App\CardsStorage;
 use App\Enums\AchievementType;
 use App\Enums\TriggerType;
-use App\UserAchievements;
-use Illuminate\Support\Facades\DB;
+use App\Stats;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AchievementsController extends Controller
 {
@@ -204,5 +204,56 @@ class AchievementsController extends Controller
         DB::table("achievements")->where('id', $id)->delete();
         return redirect()->route('achievements.index')
             ->with('success', 'Achievement deleted successfully');
+    }
+
+    public function types(Request $request)
+    {
+
+        $tmp = [];
+        foreach (Achievement::all() as $ach) {
+            if (TriggerType::getInstance($ach->trigger_type->value) != null)
+                $find = false;
+            foreach ($tmp as $t)
+                if ($t->value == $ach->trigger_type->value)
+                    $find = true;
+
+            if (!$find)
+                array_push($tmp, TriggerType::getInstance($ach->trigger_type->value));
+
+        }
+
+
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "trigger_types" => $tmp
+                ]);
+
+        return TriggerType::getInstances();
+    }
+    public function progress(Request $request,$achId){
+        $user = auth("api")->user();
+        if ($user==null)
+            return response()
+                ->json([
+                    "status" => 200,
+                    "current" =>0,
+                    "needed" =>0,
+                    "trigger_title"=>"empty"
+                ]);
+
+        $ach = Achievement::find($achId);
+        $stat = Stats::where("user_id",$user->id)
+            ->where("stat_type",$ach->trigger_type->value)
+            ->first();
+
+        return response()
+            ->json([
+                "status" => 200,
+                "current" =>$stat==null?0:$stat->stat_value,
+                "needed" =>$ach->trigger_value,
+                "trigger_title"=>$ach->trigger_type->key
+            ]);
     }
 }

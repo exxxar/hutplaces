@@ -4,6 +4,7 @@
     "/css/app.css": "/css/app.css",
     "/layout-components-AsideMenu-vue.js": "/layout-components-AsideMenu-vue.js",
     "/layout-components-Breadcrumbs-vue.js": "/layout-components-Breadcrumbs-vue.js",
+    "/layout-components-Chat-vue.js": "/layout-components-Chat-vue.js",
     "/layout-components-ChatBoxComponent-vue.js": "/layout-components-ChatBoxComponent-vue.js",
     "/layout-components-MainMenu-vue.js": "/layout-components-MainMenu-vue.js",
     "/layout-components-admin-AdminCardPanel-vue.js": "/layout-components-admin-AdminCardPanel-vue.js",
@@ -23,9 +24,5 @@
     "/layout-pages-History-vue.js": "/layout-pages-History-vue.js",
     "/layout-pages-Promo-vue.js": "/layout-pages-Promo-vue.js",
     "/layout-pages-Reports-vue.js": "/layout-pages-Reports-vue.js",
-    "/vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js",
-    "/vendors~layout-layouts-default-vue.js": "/vendors~layout-layouts-default-vue.js",
-    "/layout-components-Chat-vue.js": "/layout-components-Chat-vue.js",
-    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue.js",
     "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js"
 }

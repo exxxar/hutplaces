@@ -2,12 +2,11 @@
     <div>
         <div id="chatbox">
             <div id="chat-loader" v-if="chatLoading">
-                <h1>Loading...</h1>
+                <h1>{{$lang.chat.loading}}</h1>
             </div>
             <scroll class="scroll-area" :settings="settings" v-if="users&&!chatLoading">
                 <ul>
                     <li v-for="message in messages" :key="message.id" v-if="message.id">
-
                         <p>{{ message.text }}</p>
                         <div class="message-footer">
                             <i> ({{ formatTime(message.timestamp) }}) </i>
@@ -18,11 +17,10 @@
                 </ul>
             </scroll>
         </div>
-
         <div class="input-group">
             <input type="text" v-model="message" @keyup.enter="sendMessage" class="form-control"
-                   placeholder="Type your message..." autofocus>
-            <button @click="sendMessage" class="btn btn-yellow">Send</button>
+                   :placeholder="$lang.chat.placeholder" autofocus>
+            <button @click="sendMessage" class="btn btn-yellow">{{$lang.chat.send}}</button>
 
         </div>
     </div>
@@ -84,11 +82,9 @@
                     .then(user => {
                         this.currentUser = user;
                         this.subscribeToRoom();
-                        console.log('Connected Successfully')
                         this.chatLoading = false;
                     })
                     .catch(error => {
-                        console.log('Error on connection', error)
                     })
             },
             subscribeToRoom() {
@@ -107,8 +103,8 @@
                                     timestamp: message.createdAt
                                 })
 
-
                             document.querySelector('#chatbox .scroll-area').scrollTop =document.querySelector('#chatbox .scroll-area').scrollHeight;
+
                         },
                         onUserJoined: async user => {
                             await this.getUsers()
@@ -162,7 +158,7 @@
 </script>
 <style lang="scss">
     #chatbox {
-        height: 250px;
+        height: 251px;
         padding: 5px;
         box-sizing: border-box;
 

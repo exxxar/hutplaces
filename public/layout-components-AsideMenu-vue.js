@@ -42,6 +42,9 @@ __webpack_require__.r(__webpack_exports__);
     selfHide: function selfHide() {
       this.$emit("self-hide");
     },
+    changeLang: function changeLang(lang) {
+      this.$lang.setLang(lang);
+    },
     openModal: function openModal(name) {
       this.selfHide();
       this.$emit("modal", name);
@@ -110,7 +113,31 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("li", { staticClass: "more-menu" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "lang" }, [
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.changeLang("ru")
+                }
+              }
+            },
+            [_c("img", { attrs: { src: "/img/ru.jpg", alt: "" } })]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.changeLang("en")
+                }
+              }
+            },
+            [_c("img", { attrs: { src: "/img/en.jpg", alt: "" } })]
+          )
+        ]),
         _vm._v(" "),
         _c("ul", { staticClass: "more" }, [
           _c(
@@ -182,22 +209,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "lang" }, [
-      _c("a", { attrs: { href: "" } }, [
-        _c("img", { attrs: { src: "/img/ru.jpg", alt: "" } })
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "" } }, [
-        _c("img", { attrs: { src: "/img/en.jpg", alt: "" } })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

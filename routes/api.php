@@ -31,6 +31,8 @@ Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
 Route::get('/achievements', 'AchievementsController@index');
+Route::get('/achievements/types', 'AchievementsController@types');
+Route::get('/achievements/progress/{id}', 'AchievementsController@progress');
 
 Route::post('/coinsrequest', 'CoinsController@coinsrequest');
 

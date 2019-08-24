@@ -35,5 +35,6 @@ module.exports = {
   initial_price: 'The initial price of your card',
   buyout_price: 'The buyout price of your card',
   team_hut: 'Name of your team in HUT',
-  buy: 'buy'
+  buy: 'buy',
+
 }

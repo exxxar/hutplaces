@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="chat-btn" @click="openChat()">Chat</div>
+        <div class="chat-btn" @click="openChat()" v-if="show">{{$lang.chat.chat}}</div>
 
         <div class="chat" v-draggable v-if="open">
             <div class="title">
-                Чат
+                {{$lang.chat.chat}}
                 <a class="close" @click="open=false"></a>
             </div>
             <div class="channels">
@@ -21,6 +21,7 @@
 
     export default {
         name: 'chat',
+        props:["show"],
         data() {
             return {
                 open: false,
@@ -31,6 +32,11 @@
             }
         },
         watch: {
+            show: {
+                handler(newVal, oldVal) {
+                    this.getCurrentUser();
+                }
+            },
             user_id: {
                 handler(newVal, oldVal) {
                     this.getChatRooms();
@@ -181,6 +187,7 @@
         left: 20px;
         bottom: 20px;
         background-color: #2c3e50;
+        border: 1px solid yellow;
         z-index: 15;
         box-shadow: 0px 0px 5px 0px black;
 
@@ -189,7 +196,7 @@
             input {
                 width: 224px;
                 height: 59px;
-                border: 1px solid yellow;
+                border: none;
                 padding: 10px;
                 box-sizing: border-box;
                 background: #2c3e50;
@@ -198,6 +205,7 @@
 
             .btn {
                 box-shadow: none;
+                border-radius: 5px 0px 0px 0px;
             }
         }
     }

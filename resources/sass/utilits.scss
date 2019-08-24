@@ -208,7 +208,7 @@ input {
 
 /* modal window*/
 .v--modal-overlay {
-  background: rgba(0, 0, 0, 0.97);
+  background: rgba(0, 0, 0, 0.999);
 
   .v--modal-background-click {
     @include flex(center, center);
