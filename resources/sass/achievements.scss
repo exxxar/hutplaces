@@ -1,6 +1,43 @@
 @import 'utilits.scss';
 @import "tooltip.scss";
 
+.filters {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  li {
+    position: relative;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: white;
+    font-weight: 100;
+
+    &:after {
+      content: attr(count);
+      position: absolute;
+      margin-top: -5px;
+      font-weight: 900;
+      font-size: 10px;
+      color: yellow;
+    }
+
+    &:hover {
+      color:yellow;
+    }
+
+    &.active {
+      font-weight: 400;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
 
 .achievements {
   @include flex(center,flex-start);
@@ -56,6 +93,14 @@
   }
 }
 
+h3  {
+  font-weight: 100;
+  color: white;
+  text-transform: uppercase;
+  font-size: 36px;
+  line-height: 150%;
+}
+
 .selected-achievement {
   width:300px;
   padding: 10px;
@@ -79,7 +124,7 @@
     background-repeat: no-repeat;
 
     @include flex(center,flex-start);
-    padding-top: 10px;
+
 
     .image {
       width: 100%;

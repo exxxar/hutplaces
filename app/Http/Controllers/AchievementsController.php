@@ -7,6 +7,7 @@ use App\CardsStorage;
 use App\Enums\AchievementType;
 use App\Enums\TriggerType;
 use App\Stats;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -206,19 +207,32 @@ class AchievementsController extends Controller
             ->with('success', 'Achievement deleted successfully');
     }
 
-    public function types(Request $request)
+    public function types(Request $request,$id=null)
     {
 
+
+        $achievements = $id!=null? User::with(["achievements"])->find($id)->achievements:
+                Achievement::all();
+
+
         $tmp = [];
-        foreach (Achievement::all() as $ach) {
+        foreach ($achievements as $ach) {
             if (TriggerType::getInstance($ach->trigger_type->value) != null)
                 $find = false;
-            foreach ($tmp as $t)
-                if ($t->value == $ach->trigger_type->value)
-                    $find = true;
 
-            if (!$find)
-                array_push($tmp, TriggerType::getInstance($ach->trigger_type->value));
+            if (count($tmp) > 0)
+                foreach ($tmp as $t)
+                    if ($t["trigger"]->value == $ach->trigger_type->value)
+                        $find = true;
+
+            if (!$find) {
+                $count = Achievement::where("trigger_type", ($ach->trigger_type->value))->count();
+                array_push($tmp, [
+                    "count" => $count,
+                    "trigger" => TriggerType::getInstance($ach->trigger_type->value)
+                ]);
+
+            }
 
         }
 
@@ -232,28 +246,31 @@ class AchievementsController extends Controller
 
         return TriggerType::getInstances();
     }
-    public function progress(Request $request,$achId){
+
+    public function progress(Request $request, $achId)
+    {
+
         $user = auth("api")->user();
-        if ($user==null)
+        if ($user == null)
             return response()
                 ->json([
                     "status" => 200,
-                    "current" =>0,
-                    "needed" =>0,
-                    "trigger_title"=>"empty"
+                    "current" => 0,
+                    "needed" => 0,
+                    "trigger_title" => "empty"
                 ]);
 
         $ach = Achievement::find($achId);
-        $stat = Stats::where("user_id",$user->id)
-            ->where("stat_type",$ach->trigger_type->value)
+        $stat = Stats::where("user_id", $user->id)
+            ->where("stat_type", $ach->trigger_type->value)
             ->first();
 
         return response()
             ->json([
                 "status" => 200,
-                "current" =>$stat==null?0:$stat->stat_value,
-                "needed" =>$ach->trigger_value,
-                "trigger_title"=>$ach->trigger_type->key
+                "current" => $stat == null ? 0 : $stat->stat_value,
+                "needed" => $ach->trigger_value,
+                "trigger_title" => $ach->trigger_type->key
             ]);
     }
 }

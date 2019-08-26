@@ -2,11 +2,11 @@
     <div>
         <ul class="filters" v-if="types">
             <li @click="filter(null)">#{{prepareTypeText('all')}}</li>
-            <li  v-for="t in types" :count="t.count" @click="filter(t.trigger.value)">#{{prepareTypeText(t.trigger.key)}}</li>
+            <li v-for="t in types" @click="filter(t.value)">#{{prepareTypeText(t.key)}}</li>
         </ul>
         <h1 class="main-title" v-html="content.title"></h1>
         <p class="description" v-html="content.content"></p>
-        <ul class="achievements" v-if="achievements!=null&&achievements!=[]">
+        <ul class="achievements" v-if="achievements!=null">
             <li v-for="a in prepareAchievements()" :style="cssProps(a.background)" v-if="a.is_active">
                 <div class="image" v-tooltip.bottom="prepareRewards(a)" @click="show('ach',a)">
                     <img v-lazy="prepareImage(a.image)" alt="">
@@ -15,11 +15,8 @@
                     <h4>{{prepareText(a.title)}}</h4>
                 </div>
             </li>
-            <h3 v-if="prepareAchievements().length==0">{{$lang.achievements.no_ach}}</h3>
-
         </ul>
-        <h3 v-if="achievements==null||achievements.length==0">{{$lang.achievements.no_ach}}</h3>
-
+        <h3 v-else>{{$lang.achievements.no_ach}}</h3>
 
         <modal name="ach" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
@@ -54,7 +51,6 @@
     import Scroll from 'vue-custom-scrollbar'
 
     export default {
-        props:["userId"],
         activated() {
             this.loadTypes()
             this.loadAchievements()
@@ -69,27 +65,13 @@
             },
             show(name, ach) {
                 this.selected.ach = ach;
-               if (this.userId==null) {
-                   axios
-                       .get(`/achievements/progress/${ach.id}`)
-                       .then(response => {
-                           this.selected.current = response.data.current;
-                           this.selected.needed = response.data.needed;
-                           this.selected.trigger_title = response.data.trigger_title;
-                       });
-               }
-               else {
-                   axios
-                       .post(`/users/achievements/progress`, {
-                           user_id: this.userId,
-                           ach_id: ach.id
-                       })
-                       .then(response => {
-                           this.selected.current = response.data.current;
-                           this.selected.needed = response.data.needed;
-                           this.selected.trigger_title = response.data.trigger_title;
-                       });
-               }
+                axios
+                    .get(`/achievements/progress/${ach.id}`)
+                    .then(response => {
+                        this.selected.current = response.data.current;
+                        this.selected.needed = response.data.needed;
+                        this.selected.trigger_title = response.data.trigger_title;
+                    });
                 this.$modal.show(name)
             },
             hide(name) {
@@ -160,24 +142,15 @@
             },
 
             loadTypes() {
-                let url = this.userId == null?
-                    '/achievements/types':
-                    `/users/achievements/types/${this.userId}`;
-
                 axios
-                    .get(url)
+                    .get('/achievements/types')
                     .then(response => {
                         this.types = response.data.trigger_types;
                     });
             },
             loadAchievements() {
-
-                let url = this.userId == null?
-                    '/achievements':
-                    `/users/achievements/${this.userId}`;
-
                 axios
-                    .get(url)
+                    .get('/achievements')
                     .then(response => {
                         this.achievements = response.data.achievements;
                     });
@@ -224,5 +197,28 @@
 </script>
 <style lang="scss" scoped>
     @import "~/achievements.scss";
-</style>
 
+    .filters {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        li {
+            padding: 5px;
+            box-sizing: border-box;
+            cursor: pointer;
+            color: white;
+            font-weight: 100;
+            &.active {
+                font-weight: 400;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+</style>

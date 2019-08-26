@@ -34,6 +34,7 @@ Route::get('/achievements', 'AchievementsController@index');
 Route::get('/achievements/types', 'AchievementsController@types');
 Route::get('/achievements/progress/{id}', 'AchievementsController@progress');
 
+
 Route::post('/coinsrequest', 'CoinsController@coinsrequest');
 
 Route::get('/content/{type}/all', 'ContentController@all');
@@ -63,6 +64,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/promo/activate', 'PromocodesController@activate');
 
     Route::get('/users/promo/{id}', 'UserController@promo');
+    Route::post('/users/achievements/progress', 'UserController@progress');
+    Route::get('/users/achievements/types/{id}', 'AchievementsController@types');
     Route::get('/users/achievements/{id}', 'UserController@achievements');
     Route::get('/users/tickets/{id}', 'UserController@tickets');
     Route::get('/users/stats/{id}', 'UserController@stats');

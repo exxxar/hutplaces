@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Achievement;
 use App\Enums\TriggerType;
 use App\Events\GainExpirience;
 use App\Events\UserUpdate;
@@ -307,8 +308,6 @@ class UserController extends Controller
     public function achievements(Request $request, $id)
     {
 
-        $achievements = (User::with(["achievements"])->find($id))->achievements;
-
         if ($request->ajax())
             return response()
                 ->json([
@@ -329,6 +328,32 @@ class UserController extends Controller
 
 
 
+    }
+
+    public function progress(Request $request){
+        $achId = $request->get("ach_id");
+        $user = User::find($request->get("user_id"));
+        if ($user==null)
+            return response()
+                ->json([
+                    "status" => 200,
+                    "current" =>0,
+                    "needed" =>0,
+                    "trigger_title"=>"empty"
+                ]);
+
+        $ach = Achievement::find($achId);
+        $stat = Stats::where("user_id",$user->id)
+            ->where("stat_type",$ach->trigger_type->value)
+            ->first();
+
+        return response()
+            ->json([
+                "status" => 200,
+                "current" =>$stat==null?0:$stat->stat_value,
+                "needed" =>$ach->trigger_value,
+                "trigger_title"=>$ach->trigger_type->key
+            ]);
     }
 
     public function promo(Request $request, $id)
