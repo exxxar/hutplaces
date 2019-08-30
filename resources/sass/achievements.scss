@@ -43,8 +43,9 @@
   @include flex(center,flex-start);
   padding-bottom: 50px;
   li {
-    width: 293px;
-    height: 413px;
+
+    width: 210px;
+    height: 300px;
     margin-bottom: 30px;
     padding: 10px;
     position: relative;
@@ -56,12 +57,12 @@
     background-repeat: no-repeat;
 
     @include flex(center,flex-start);
-    padding-top: 41px;
+    padding-top: 31px;
     cursor: pointer;
 
     .image {
       width: 100%;
-      height: 190px;
+      height: 135px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -183,6 +184,7 @@ h3  {
       left:0;
       z-index: 1;
       width: var(--line-width);
+      transition:1s;
     }
 
     .info {

@@ -89,7 +89,7 @@
                 if (img == '' || img == null || img == undefined)
                     return "/img/noavatar.png";
                 else
-                    return img;
+                    return `/img/avatars/${img}`;
             },
         }
     }

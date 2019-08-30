@@ -7,6 +7,7 @@ use App\Achievement;
 use App\Events\Achievement as Ach;
 use App\Events\GainAchievement;
 use App\Events\GainExpirience;
+use App\Events\UserUpdate;
 use App\Stats;
 use App\User;
 use Illuminate\Support\Facades\Log;
@@ -47,6 +48,7 @@ class ProcessAchievements
             ]);
         }
 
+        broadcast(new UserUpdate($event->user_id));
 
         Log::info("stats value  " . $stats->stat_value);
         Log::info("trigger type  " . $event->trigger_type);

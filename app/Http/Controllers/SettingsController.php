@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Events\BroadcastMessage;
 use App\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
@@ -15,10 +17,11 @@ class SettingsController extends Controller
     function __construct()
     {
         $this->middleware('permission:settings-list');
-        $this->middleware('permission:settings-create', ['only' => ['create','store']]);
-        $this->middleware('permission:settings-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:settings-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:settings-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:settings-delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,8 +31,8 @@ class SettingsController extends Controller
     {
         //
 
-        $settings = Setting::orderBy('id','DESC')->paginate(15);
-        return view('admin.settings.index',compact('settings'))
+        $settings = Setting::orderBy('id', 'DESC')->paginate(15);
+        return view('admin.settings.index', compact('settings'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
@@ -41,13 +44,13 @@ class SettingsController extends Controller
     public function create()
     {
         //
-         return view('admin.settings.create');
+        return view('admin.settings.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -65,13 +68,13 @@ class SettingsController extends Controller
 
 
         return redirect()->route('admin.settings.index')
-            ->with('success','Setting created successfully');
+            ->with('success', 'Setting created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -79,27 +82,27 @@ class SettingsController extends Controller
         $setting = Setting::find($id);
 
 
-        return view('admin.settings.show',compact('setting'));
+        return view('admin.settings.show', compact('setting'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $setting = Setting::find($id);
 
-        return view('admin.settings.edit',compact('setting'));
+        return view('admin.settings.edit', compact('setting'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -121,28 +124,27 @@ class SettingsController extends Controller
         $setting->save();
 
 
-
         return redirect()->route('admin.settings.index')
-            ->with('success','Setting updated successfully');
+            ->with('success', 'Setting updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        DB::table("settings")->where('id',$id)->delete();
+        DB::table("settings")->where('id', $id)->delete();
         return redirect()->route('admin.settings.index')
-            ->with('success','Setting deleted successfully');
+            ->with('success', 'Setting deleted successfully');
     }
 
     public function broadcast(Request $request)
     {
 
-       broadcast(new BroadcastMessage($request->get("title"), $request->get("message")));
+        broadcast(new BroadcastMessage($request->get("title"), $request->get("message")));
 
         return redirect()
             ->back();
@@ -152,40 +154,40 @@ class SettingsController extends Controller
     {
         $images = Storage::files('public/slider');
 
-        return view('admin.main',compact('images'));
+        return view('admin.main', compact('images'));
     }
 
     public function sliderImageUpload(Request $request)
     {
         if (($request->has('images'))) {
 
-        $destinationPath = storage_path() . '/app/public/slider/';
-        $fullDestinations = [];
-        $resultArray = [];
+            $destinationPath = storage_path() . '/app/public/slider/';
+            $fullDestinations = [];
+            $resultArray = [];
 
-        foreach ($request->file('images') as $file) {
-           $storeName =  $file->getClientOriginalName();
-           // Store the file in the disk
-           $file->move($destinationPath, $storeName);
-           array_push($fullDestinations, $destinationPath . $storeName);
+            foreach ($request->file('images') as $file) {
+                $storeName = $file->getClientOriginalName();
+                // Store the file in the disk
+                $file->move($destinationPath, $storeName);
+                array_push($fullDestinations, $destinationPath . $storeName);
+            }
+
+            $allFiles = Storage::files('public/slider');
+
+            foreach ($allFiles as $file) {
+                array_push($resultArray, basename($file));
+            }
+
+            $result = json_encode($resultArray);
+
+            $setting = Setting::updateOrCreate(
+                ['title' => 'slider_images'],
+                ['value' => $result]
+            );
         }
 
-        $allFiles = Storage::files('public/slider');
-
-        foreach ($allFiles as $file) {
-            array_push($resultArray, basename($file));
-        }
-
-        $result = json_encode($resultArray);
-
-        $setting = Setting::updateOrCreate(
-            ['title' => 'slider_images'],
-            ['value' => $result]
-        );
-       }
-
-       return redirect()
-           ->back();
+        return redirect()
+            ->back();
     }
 
     public function sliderImageGet($filename)
@@ -201,9 +203,14 @@ class SettingsController extends Controller
         return back();
     }
 
-    public function setlang($locale){
+
+    public function setlang($locale)
+    {
         App::setLocale($locale);
         //session(['my_locale' => $locale]);
         return redirect()->back();
     }
+
+
+
 }

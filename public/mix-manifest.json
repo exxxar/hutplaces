@@ -8,12 +8,6 @@
     "/layout-components-ChatBoxComponent-vue.js": "/layout-components-ChatBoxComponent-vue.js",
     "/layout-components-MainMenu-vue.js": "/layout-components-MainMenu-vue.js",
     "/layout-components-admin-AdminCardPanel-vue.js": "/layout-components-admin-AdminCardPanel-vue.js",
-    "/layout-components-cabinet-info-vue.js": "/layout-components-cabinet-info-vue.js",
-    "/layout-components-cabinet-lottery-vue.js": "/layout-components-cabinet-lottery-vue.js",
-    "/layout-components-cabinet-promocodes-vue.js": "/layout-components-cabinet-promocodes-vue.js",
-    "/layout-components-cabinet-stats-vue.js": "/layout-components-cabinet-stats-vue.js",
-    "/layout-components-cabinet-transactions-vue.js": "/layout-components-cabinet-transactions-vue.js",
-    "/layout-components-cabinet-wins-vue.js": "/layout-components-cabinet-wins-vue.js",
     "/layout-components-modals-FAQ-vue.js": "/layout-components-modals-FAQ-vue.js",
     "/layout-components-modals-Help-vue.js": "/layout-components-modals-Help-vue.js",
     "/layout-components-modals-History-vue.js": "/layout-components-modals-History-vue.js",
@@ -30,13 +24,5 @@
     "/layout-pages-History-vue.js": "/layout-pages-History-vue.js",
     "/layout-pages-Promo-vue.js": "/layout-pages-Promo-vue.js",
     "/layout-pages-Reports-vue.js": "/layout-pages-Reports-vue.js",
-    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js",
-    "/layout-components-cabinet-achievements-vue.js": "/layout-components-cabinet-achievements-vue.js",
-    "/layout-components-cabinet-Info-vue.js": "/layout-components-cabinet-Info-vue.js",
-    "/layout-components-cabinet-Lottery-vue.js": "/layout-components-cabinet-Lottery-vue.js",
-    "/layout-components-cabinet-Promocodes-vue.js": "/layout-components-cabinet-Promocodes-vue.js",
-    "/layout-components-cabinet-Stats-vue.js": "/layout-components-cabinet-Stats-vue.js",
-    "/layout-components-cabinet-Transactions-vue.js": "/layout-components-cabinet-Transactions-vue.js",
-    "/layout-components-cabinet-Wins-vue.js": "/layout-components-cabinet-Wins-vue.js",
-    "/layout-components-cabinet-Achievements-vue.js": "/layout-components-cabinet-Achievements-vue.js"
+    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js"
 }

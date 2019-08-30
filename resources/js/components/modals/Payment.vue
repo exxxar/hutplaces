@@ -62,6 +62,8 @@
                     })
                     .then((response) => {
                         Event.$emit("updateUserProfile");
+                        Event.$emit("updateTransactions");
+
                         var tmp = response.data;
                         this.message("Успех!", `Деньги в размере ${tmp.money} ${tmp.currency} успешно добавлены!`, "warn");
 

@@ -156,6 +156,7 @@ class AuthController extends Controller
 
     public function getUser()
     {
-        return auth()->user();
+        $user = User::with(["level"])->find(auth()->user()->id);
+        return $user;
     }
 }

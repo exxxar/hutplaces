@@ -4,15 +4,19 @@ use App\Enums\TriggerType;
 use App\Events\Achievement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\File;
 use Maksa988\FreeKassa\Facades\FreeKassa;
 
 Broadcast::routes();
 
+Route::get("/load", "SettingsController@images");
 Route::get("/event", function () {
 
+
+
    // event(new \App\Events\GainExpirience(4));
-    event(new Achievement(TriggerType::Level, 10, 11));
-    //event(new Achievement(TriggerType::CoinsCount, 10, 2));
+    //event(new Achievement(TriggerType::Level, 10, 11));
+   // event(new Achievement(TriggerType::Coins_Count, 10, 11));
     //event(new Achievement(TriggerType::Experience, 1000, 2));
     //event(new Achievement(TriggerType::Discount, 10, 2));
    // event(new Achievement(TriggerType::Level, 10, 4));

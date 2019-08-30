@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Achievement;
+use \App\Events\Achievement as AchievementEvent;
 use App\Enums\TriggerType;
 use App\Events\GainExpirience;
 use App\Events\UserUpdate;
 use App\Level;
+use App\Lottery;
+use App\Place;
 use App\Stats;
 use App\Ticket;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
@@ -226,6 +230,10 @@ class UserController extends Controller
 
         event(new GainExpirience($user->id));
 
+
+        event(new AchievementEvent(TriggerType::Experience, $money, $user->id));
+        event(new AchievementEvent(TriggerType::Spent_Money, $money, $user->id));
+
         Transaction::create([
             'user_id' => $user->id,
             'amount' => $money,
@@ -235,11 +243,34 @@ class UserController extends Controller
 
         //broadcast(new UserUpdate($user->id));
 
+        broadcast(new UserUpdate($user->id));
+
         return response()
             ->json([
                 'money' => $money,
                 'currency' => 'rub'
             ]);
+
+    }
+
+    public function lotteries(Request $request, $id)
+    {
+        $lotteries = Place::with(["lottery","lottery.lot","lottery.lot.card"])
+            ->where("user_id",$id)->get();
+
+        $tmp = [];
+
+        foreach($lotteries as $lottery)
+            array_push($tmp,$lottery->lottery);
+
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "lotteries" => $tmp
+                ]);
+
+       return $tmp;
 
     }
 
@@ -380,6 +411,41 @@ class UserController extends Controller
 
     }
 
+    public function avatarRefresh(Request $request){
+
+        $user = User::find(auth("api")->user()->id);
+        $filesInFolder = File::files(public_path().'/img/avatars');
+        $file = pathinfo($filesInFolder[random_int(0,count($filesInFolder)-1)]);
+        $user->avatar = $file['filename'].".".$file['extension'];
+        $user->save();
+
+       // broadcast(new UserUpdate($user->id));
+
+        return response()
+            ->json([
+                "status"=>200,
+                'avatar'=>$user->avatar,
+                "message"=>"Success!"
+            ]);
+
+    }
+
+    public function avatarSet(Request $request){
+
+        $user = User::find(auth("api")->user()->id);
+        $user->avatar = $request->get("image");
+        $user->save();
+
+        return response()
+            ->json([
+                "status"=>200,
+                'avatar'=>$user->avatar,
+                "message"=>"Success!"
+            ]);
+
+    }
+
+
     public function tickets(Request $request, $id)
     {
         if ($request->ajax())
@@ -416,6 +482,25 @@ class UserController extends Controller
 
         return view("admin.users.transactions", compact("transactions"))
             ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
+
+
+    }
+
+    public function images(Request $request)
+    {
+
+        $tmp = [];
+        $filesInFolder = File::files(public_path() . '/img/avatars');
+        foreach ($filesInFolder as $f) {
+            $file = pathinfo($f);
+            array_push($tmp, $file['filename'] . "." . $file['extension']);
+        }
+
+        return response()
+            ->json([
+                "status" => 200,
+                'images' => $tmp,
+            ]);
 
 
     }

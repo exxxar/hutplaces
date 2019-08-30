@@ -93,7 +93,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push('signin');
     },
     getAvatar: function getAvatar(img) {
-      if (img == '' || img == null || img == undefined) return "/img/noavatar.png";else return img;
+      if (img == '' || img == null || img == undefined) return "/img/noavatar.png";else return "/img/avatars/".concat(img);
     }
   }
 });

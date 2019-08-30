@@ -70,6 +70,7 @@ __webpack_require__.r(__webpack_exports__);
         money: this.money
       }).then(function (response) {
         Event.$emit("updateUserProfile");
+        Event.$emit("updateTransactions");
         var tmp = response.data;
 
         _this.message("Успех!", "\u0414\u0435\u043D\u044C\u0433\u0438 \u0432 \u0440\u0430\u0437\u043C\u0435\u0440\u0435 ".concat(tmp.money, " ").concat(tmp.currency, " \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B!"), "warn");

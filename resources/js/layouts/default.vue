@@ -195,11 +195,20 @@
             });
 
             pusher.subscribe(`user-update-chanel`).bind('user-update-event', (data) => {
-                if (window.auth.user.id == data.userId)
+                if (window.auth.user.id == data.userId) {
+
+                    Event.$emit("updateStats");
+                    Event.$emit("updateAchievements");
+                    Event.$emit("updateTransactions");
+                    Event.$emit("updatePromocodes");
+                    Event.$emit("updateLotteries");
+                    Event.$emit("updateTickets");
+
                     api.call('get', '/get-user')
                         .then(({resposne}) => {
                             this.user = resposne;
                         });
+                }
             });
 
             if (this.$route.query.token) {

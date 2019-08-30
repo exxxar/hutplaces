@@ -8,7 +8,7 @@ module.exports = {
     coins_count: 'Coins count',
     cards_count: 'Cards count',
     packs_opened_count: 'Packs opened count',
-    randoms_played_count: 'randoms_played_count',
+    randoms_played_count: 'Randoms played count',
     win_wheel_played_count: 'Win wheel played count',
     auction_bid_count: 'Auction bid count',
     auction_buy_count: 'Auction buy count',

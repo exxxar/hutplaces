@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\TriggerType;
 use App\Events\Achievement;
+use App\Events\UserUpdate;
 use App\Promocode;
 use App\User;
 use DateTime;
@@ -200,6 +201,8 @@ class PromocodesController extends Controller
 
         $user = User::find(auth("api")->user()->id);
         $user->promocodes()->attach($promocode->id);
+
+        broadcast(new UserUpdate($user->id));
 
         if (!empty($promocode->card_id)) {
             $user->cards()->attach($promocode->card_id);

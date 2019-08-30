@@ -29,7 +29,8 @@ class CreateUsersTable extends Migration
             $table->integer('discount')->default(0);
             $table->bigInteger('exp')->default(0);
             $table->bigInteger('coins')->default(0);
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(true);//todo: change to is_active
+            $table->boolean('is_trader')->default(false);//todo: add to admin
             $table->string('avatar',500)->default('')->nullable();
 
             $table->unsignedInteger("level_id" );

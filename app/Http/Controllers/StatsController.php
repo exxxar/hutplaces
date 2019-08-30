@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TriggerType;
 use App\Stats;
 use Illuminate\Http\Request;
 
@@ -81,5 +82,21 @@ class StatsController extends Controller
     public function destroy(Stats $stats)
     {
         //
+    }
+
+    public function types(Request $request)
+    {
+        $tmp = [];
+        foreach (TriggerType::getInstances() as $trigger)
+                array_push($tmp, $trigger);
+
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "trigger_types" => $tmp
+                ]);
+
+        return TriggerType::getInstances();
     }
 }

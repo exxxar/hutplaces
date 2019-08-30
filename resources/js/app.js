@@ -12,7 +12,8 @@ Vue.use(VueLazyload, {
     preLoad: 1.3,
     error: 'img/error.png',
     loading: 'img/loading.gif',
-    attempt: 1
+    attempt:5,
+    lazyComponent:true
 })
 
 import App from './Main'
