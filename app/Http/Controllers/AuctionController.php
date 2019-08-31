@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Auction;
+use App\Lot;
 
 class AuctionController extends Controller
 {
@@ -13,7 +16,15 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        //
+        if ($request->ajax())
+            return response()->json([
+                'games' => Auction::with(["lot", "lot.card"])->get(),
+                'status' => 200
+            ]);
+
+        $auctions = Auction::orderBy('id', 'DESC')->paginate(15);
+        return view('admin.auction.index', compact('auctions'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
     /**
@@ -23,7 +34,7 @@ class AuctionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.auction.create');
     }
 
     /**
@@ -34,7 +45,12 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $auction = Auction::create($input);
+
+        return redirect()->route('auction.index')
+            ->with('success', 'Auction created successfully');
     }
 
     /**
@@ -45,7 +61,21 @@ class AuctionController extends Controller
      */
     public function show($id)
     {
-        //
+        $auction = Auction::with(["lot", "lot.card"])->find($id);
+
+        if (!$request->ajax())
+            return view('admin.auction.show', compact('auction'));
+
+        if ($auction)
+            return response()->json([
+                'game' => $auction,
+                'status' => 200
+            ]);
+
+        return response()->json([
+            'message' => "Аукцион не найден",
+            'status' => 404
+        ]);
     }
 
     /**
@@ -56,7 +86,9 @@ class AuctionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $auction = Auction::find($id);
+
+        return view('admin.auction.edit', compact('auction'));
     }
 
     /**
@@ -68,7 +100,13 @@ class AuctionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $auction = Auction::find($id);
+        $auction->update($input);
+
+        return redirect()->route('auction.index')
+            ->with('success', 'Auction updated successfully');
     }
 
     /**
@@ -79,6 +117,8 @@ class AuctionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table("auctions")->where('id', $id)->delete();
+        return redirect()->route('auction.index')
+            ->with('success', 'Auction deleted successfully');
     }
 }
