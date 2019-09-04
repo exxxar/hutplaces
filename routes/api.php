@@ -82,6 +82,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/users/avatar/refresh', 'UserController@avatarRefresh');
     Route::post('/users/avatar/set', 'UserController@avatarSet');
 
+    Route::post('/user/update/info', 'UserController@updateInfo');
+    Route::post('/user/update/pass', 'UserController@updatePass');
+
     Route::post('/lottery/pick/', 'LotteryController@pick');
     Route::post('/lottery/pick/random', 'LotteryController@random');
     Route::post('/lottery/buy', 'LotteryController@buy');

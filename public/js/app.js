@@ -4756,11 +4756,37 @@ __webpack_require__.r(__webpack_exports__);
     checkCurrent: function checkCurrent() {
       return this.currentUser == null ? false : this.user.id == this.currentUser.id;
     },
+    changeInfo: function changeInfo() {
+      var _this = this;
+
+      if (!this.checkCurrent()) return;
+      this.$store.dispatch('updateUser', {
+        name: this.user.name,
+        skype: this.user.skype,
+        vk: this.user.vk,
+        fb: this.user.fb,
+        tw: this.user.tw
+      }).then(function (response) {
+        _this.message("Update user's info", response.data.message, "warn");
+
+        Event.$emit("updateUserProfile");
+      });
+    },
     changePassword: function changePassword() {
+      var _this2 = this;
+
+      if (!this.checkCurrent()) return;
+
       if (this.new1 != this.new2) {
         this.message("Change password", "new password are not same", "warn");
         return;
       }
+
+      this.$store.dispatch('updatePassword', this.password).then(function (response) {
+        _this2.message("Update password", response.data.message, "warn");
+
+        Event.$emit("updateUserProfile");
+      });
     },
     prepareContent: function prepareContent() {
       this.content.title = this.$lang.cabinet.info.main_title;
@@ -56172,7 +56198,7 @@ var render = function() {
     _c("h4", [_vm._v(_vm._s(_vm.$lang.cabinet.info.title_1))]),
     _vm._v(" "),
     _vm.user != null
-      ? _c("form", { attrs: { action: "" } }, [
+      ? _c("div", [
           _c("table", [
             _c("tr", [
               _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.email))]),
@@ -56368,9 +56394,18 @@ var render = function() {
               _vm._v(" "),
               _vm.checkCurrent()
                 ? _c("td", [
-                    _c("button", { staticClass: "btn btn-yellow" }, [
-                      _vm._v(_vm._s(_vm.$lang.cabinet.info.save))
-                    ])
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-yellow",
+                        on: {
+                          click: function($event) {
+                            return _vm.changeInfo()
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.$lang.cabinet.info.save))]
+                    )
                   ])
                 : _c("td")
             ])
@@ -56379,7 +56414,7 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.user != null
-      ? _c("form", { attrs: { action: "" } }, [
+      ? _c("div", [
           _vm.checkCurrent()
             ? _c("div", [
                 _c("h4", [_vm._v(_vm._s(_vm.$lang.cabinet.info.title_2))]),
@@ -56387,7 +56422,7 @@ var render = function() {
                 _c("table", [
                   _c("tr", [
                     _c("td", [
-                      _vm._v(_vm._s(_vm.$lang.cabinet.info.cuurent_password))
+                      _vm._v(_vm._s(_vm.$lang.cabinet.info.current_password))
                     ]),
                     _vm._v(" "),
                     _c("td", [
@@ -56476,9 +56511,18 @@ var render = function() {
                     _c("td"),
                     _vm._v(" "),
                     _c("td", [
-                      _c("button", { staticClass: "btn btn-yellow" }, [
-                        _vm._v(_vm._s(_vm.$lang.cabinet.info.save))
-                      ])
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-yellow",
+                          on: {
+                            click: function($event) {
+                              return _vm.changePassword()
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.$lang.cabinet.info.save))]
+                      )
                     ])
                   ])
                 ])
@@ -83975,21 +84019,30 @@ var actions = {
     var _updateUser = _asyncToGenerator(
     /*#__PURE__*/
     _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(context, payload) {
-      var _ref3, data;
-
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.next = 2;
-              return axios.post('http://yourwebsite.com/api/todo');
+              return axios.post('/user/update/info', {
+                name: payload.name,
+                skype: payload.skype,
+                vk: payload.vk,
+                fb: payload.fb,
+                tw: payload.tw
+              }).then(function (res) {
+                return res;
+              });
 
             case 2:
-              _ref3 = _context7.sent;
-              data = _ref3.data;
-              context.commit('ADD_TODO', payload);
+              response = _context7.sent;
+              return _context7.abrupt("return", new Promise(function (resolve, reject) {
+                if (response.status == 200) resolve(response);
+                reject();
+              }));
 
-            case 5:
+            case 4:
             case "end":
               return _context7.stop();
           }
@@ -84002,6 +84055,44 @@ var actions = {
     }
 
     return updateUser;
+  }(),
+  updatePassword: function () {
+    var _updatePassword = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(context, payload) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.next = 2;
+              return axios.post('/user/update/pass', {
+                "new": payload.new1,
+                old: payload.old
+              }).then(function (res) {
+                return res;
+              });
+
+            case 2:
+              response = _context8.sent;
+              return _context8.abrupt("return", new Promise(function (resolve, reject) {
+                if (response.status == 200) resolve(response);
+                reject();
+              }));
+
+            case 4:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }));
+
+    function updatePassword(_x15, _x16) {
+      return _updatePassword.apply(this, arguments);
+    }
+
+    return updatePassword;
   }()
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

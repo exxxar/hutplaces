@@ -3,7 +3,7 @@
         <h1 class="main-title" v-html="content.title"></h1>
         <p class="description" v-html="content.content"></p>
         <h4>{{$lang.cabinet.info.title_1}}</h4>
-        <form action="" v-if="user!=null">
+        <div v-if="user!=null">
             <table>
                 <tr>
                     <td>{{$lang.cabinet.info.email}}</td>
@@ -70,19 +70,19 @@
                 <tr>
                     <td></td>
                     <td v-if="checkCurrent()">
-                        <button class="btn btn-yellow">{{$lang.cabinet.info.save}}</button>
+                        <button class="btn btn-yellow" @click="changeInfo()">{{$lang.cabinet.info.save}}</button>
                     </td>
                     <td v-else></td>
                 </tr>
             </table>
-        </form>
-        <form action="" v-if="user!=null">
+        </div>
+        <div v-if="user!=null">
             <div v-if="checkCurrent()">
                 <h4>{{$lang.cabinet.info.title_2}}</h4>
 
                 <table>
                     <tr>
-                        <td>{{$lang.cabinet.info.cuurent_password}}</td>
+                        <td>{{$lang.cabinet.info.current_password}}</td>
                         <td><input type="password" v-model="password.old"></td>
                     </tr>
                     <tr>
@@ -96,12 +96,12 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button class="btn btn-yellow">{{$lang.cabinet.info.save}}</button>
+                            <button class="btn btn-yellow" @click="changePassword()">{{$lang.cabinet.info.save}}</button>
                         </td>
                     </tr>
                 </table>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 
@@ -128,11 +128,36 @@
                 return this.currentUser == null ? false :
                     this.user.id == this.currentUser.id;
             },
+            changeInfo(){
+                if (!this.checkCurrent())
+                    return;
+
+                this.$store.dispatch('updateUser', {
+                    name: this.user.name,
+                    skype: this.user.skype,
+                    vk: this.user.vk,
+                    fb: this.user.fb,
+                    tw: this.user.tw,
+                }).then((response) => {
+                    this.message("Update user's info",response.data.message,"warn")
+                    Event.$emit("updateUserProfile")
+                });
+            },
             changePassword() {
+                if (!this.checkCurrent())
+                    return;
+
                 if (this.new1 != this.new2) {
                     this.message("Change password", "new password are not same", "warn")
                     return
                 }
+
+                this.$store.dispatch('updatePassword', this.password).then((response) => {
+                    this.message("Update password",response.data.message,"warn")
+                    Event.$emit("updateUserProfile")
+                });
+
+
             },
             prepareContent() {
                 this.content.title = this.$lang.cabinet.info.main_title

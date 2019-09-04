@@ -255,13 +255,13 @@ class UserController extends Controller
 
     public function lotteries(Request $request, $id)
     {
-        $lotteries = Place::with(["lottery","lottery.lot","lottery.lot.card"])
-            ->where("user_id",$id)->get();
+        $lotteries = Place::with(["lottery", "lottery.lot", "lottery.lot.card"])
+            ->where("user_id", $id)->get();
 
         $tmp = [];
 
-        foreach($lotteries as $lottery)
-            array_push($tmp,$lottery->lottery);
+        foreach ($lotteries as $lottery)
+            array_push($tmp, $lottery->lottery);
 
         if ($request->ajax())
             return response()
@@ -270,7 +270,7 @@ class UserController extends Controller
                     "lotteries" => $tmp
                 ]);
 
-       return $tmp;
+        return $tmp;
 
     }
 
@@ -358,32 +358,32 @@ class UserController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
 
 
-
     }
 
-    public function progress(Request $request){
+    public function progress(Request $request)
+    {
         $achId = $request->get("ach_id");
         $user = User::find($request->get("user_id"));
-        if ($user==null)
+        if ($user == null)
             return response()
                 ->json([
                     "status" => 200,
-                    "current" =>0,
-                    "needed" =>0,
-                    "trigger_title"=>"empty"
+                    "current" => 0,
+                    "needed" => 0,
+                    "trigger_title" => "empty"
                 ]);
 
         $ach = Achievement::find($achId);
-        $stat = Stats::where("user_id",$user->id)
-            ->where("stat_type",$ach->trigger_type->value)
+        $stat = Stats::where("user_id", $user->id)
+            ->where("stat_type", $ach->trigger_type->value)
             ->first();
 
         return response()
             ->json([
                 "status" => 200,
-                "current" =>$stat==null?0:$stat->stat_value,
-                "needed" =>$ach->trigger_value,
-                "trigger_title"=>$ach->trigger_type->key
+                "current" => $stat == null ? 0 : $stat->stat_value,
+                "needed" => $ach->trigger_value,
+                "trigger_title" => $ach->trigger_type->key
             ]);
     }
 
@@ -411,26 +411,28 @@ class UserController extends Controller
 
     }
 
-    public function avatarRefresh(Request $request){
+    public function avatarRefresh(Request $request)
+    {
 
         $user = User::find(auth("api")->user()->id);
-        $filesInFolder = File::files(public_path().'/img/avatars');
-        $file = pathinfo($filesInFolder[random_int(0,count($filesInFolder)-1)]);
-        $user->avatar = $file['filename'].".".$file['extension'];
+        $filesInFolder = File::files(public_path() . '/img/avatars');
+        $file = pathinfo($filesInFolder[random_int(0, count($filesInFolder) - 1)]);
+        $user->avatar = $file['filename'] . "." . $file['extension'];
         $user->save();
 
-       // broadcast(new UserUpdate($user->id));
+        // broadcast(new UserUpdate($user->id));
 
         return response()
             ->json([
-                "status"=>200,
-                'avatar'=>$user->avatar,
-                "message"=>"Success!"
+                "status" => 200,
+                'avatar' => $user->avatar,
+                "message" => "Success!"
             ]);
 
     }
 
-    public function avatarSet(Request $request){
+    public function avatarSet(Request $request)
+    {
 
         $user = User::find(auth("api")->user()->id);
         $user->avatar = $request->get("image");
@@ -438,9 +440,9 @@ class UserController extends Controller
 
         return response()
             ->json([
-                "status"=>200,
-                'avatar'=>$user->avatar,
-                "message"=>"Success!"
+                "status" => 200,
+                'avatar' => $user->avatar,
+                "message" => "Success!"
             ]);
 
     }
@@ -505,4 +507,52 @@ class UserController extends Controller
 
     }
 
+    public function updatePass(Request $request)
+    {
+        $user = User::find(auth("api")->user()->id);
+
+        if ($user->password != Hash::make($request->input('old')))
+            return response()
+                ->json([
+                    "status" => 200,
+                    "message" => "Old password is not correct!"
+                ]);
+
+        if (count($request->input('new')) < 5)
+            return response()
+                ->json([
+                    "status" => 200,
+                    "message" => "Bad password length! Must be at least 5 char"
+                ]);
+
+
+        $user->password = Hash::make($request->input('new'));
+        $user->save();
+
+        return response()
+            ->json([
+                "status" => 200,
+                "message" => "Success password change"
+            ]);
+    }
+
+    public function updateInfo(Request $request)
+    {
+
+        $user = User::find(auth("api")->user()->id);
+
+        $user->name = $request->get("name");
+        $user->skype = $request->get("skype");
+        $user->vk = $request->get("vk");
+        $user->fb = $request->get("fb");
+        $user->tw = $request->get("tw");
+
+        $user->save();
+
+        return response()
+            ->json([
+                "status" => 200,
+                "message" => "Success info update"
+            ]);
+    }
 }

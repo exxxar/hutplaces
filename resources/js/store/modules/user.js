@@ -159,8 +159,38 @@ let actions = {
     },
 
     updateUser: async (context, payload) => {
-        let {data} = await axios.post('http://yourwebsite.com/api/todo');
-        context.commit('ADD_TODO', payload);
+
+        var response = await axios.post('/user/update/info',{
+            name: payload.name,
+            skype: payload.skype,
+            vk: payload.vk,
+            fb: payload.fb,
+            tw: payload.tw,
+        }).then(res => {
+            return res;
+        })
+
+        return new Promise(function (resolve, reject) {
+            if (response.status == 200)
+                resolve(response);
+            reject();
+        });
+    },
+
+    updatePassword: async (context, payload) => {
+
+        var response = await axios.post('/user/update/pass',{
+            new: payload.new1,
+            old: payload.old,
+        }).then(res => {
+            return res;
+        })
+
+        return new Promise(function (resolve, reject) {
+            if (response.status == 200)
+                resolve(response);
+            reject();
+        });
     },
 };
 
