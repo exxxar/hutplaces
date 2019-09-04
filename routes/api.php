@@ -43,6 +43,7 @@ Route::get('/content/{type}/all', 'ContentController@all');
 Route::get('/content/{type}/first', 'ContentController@first');
 
 Route::get('/levels', 'LevelsController@index');
+Route::get('/levels/next/{id}', 'LevelsController@next');
 
 Route::get('/lottery/', 'LotteryController@index');
 Route::get('/lottery/winner/{id}', 'LotteryController@winner');

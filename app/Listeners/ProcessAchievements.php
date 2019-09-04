@@ -86,10 +86,6 @@ class ProcessAchievements
                 $exp = $ach->exp==null?0:$ach->exp;
                 $coins = $ach->coins ==null?0:$ach->coins;
 
-                Log::info("money $money");
-                Log::info("exp $exp");
-                Log::info("coins $coins");
-                Log::info("discount $discount");
 
                 if ($ach->random_rewards) {
 

@@ -61,7 +61,6 @@ let actions = {
 
         let {response} = await axios.get('/get-user')
             .then(res => {
-                console.log("getuser", res);
                 return res;
             })
 
@@ -147,7 +146,6 @@ let actions = {
             return res;
         })
 
-        console.log("current_user", response.data)
         context.commit('SET_USER', response.data);
 
         return new Promise(function (resolve, reject) {

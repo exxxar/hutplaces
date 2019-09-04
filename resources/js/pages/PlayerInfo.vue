@@ -8,7 +8,7 @@
 
                 <div class="level" @click="show('levels')">
                     <div class="text">{{user.level.title}}  </div>
-                    <div class="line"></div>
+                    <div class="line" :style="cssProps()"></div>
                 </div>
             </div>
 
@@ -57,17 +57,21 @@
         props: ["userId"],
         data() {
             return {
-                user: null
+                user: null,
+                next:null
+
             }
         },
         computed: {
             currentUser: function () {
                 return this.$store.getters.USER;
             },
+
         },
         watch: {
             'currentUser': function (newVal, oldVal) {
                 this.checkSelf();
+                this.nextLevel()
             }
         },
         activated() {
@@ -78,8 +82,14 @@
         mounted() {
             this.getUser();
 
+
         },
         methods: {
+            cssProps() {
+                return {
+                    '--line-width': this.user==null||this.next==null?"0%":(this.user.exp/ this.next.experience) * 100 + "%",
+                }
+            },
             checkSelf() {
                 if (this.user != null && this.currentUser != null)
                     if (this.user.id == this.currentUser.id)
@@ -120,6 +130,17 @@
             hide(name) {
                 this.$modal.hide(name)
             },
+
+            nextLevel(){
+               axios.
+                    get(`/levels/next/${this.user.level.level}`,{
+                }).then(res => {
+                   this.next =  res.data.next
+                })
+
+
+            }
+
         },
 
         components: {

@@ -86,9 +86,10 @@
       box-sizing: border-box;
       margin-bottom: 10px;
       box-shadow: 0px 0px 5px 3px yellow inset;
+      overflow: hidden;
 
       .line {
-        width: 40%;
+        width: var(--line-width);
         height: 100%;
         position: absolute;
         top: 0;
@@ -96,6 +97,7 @@
         z-index: 0;
         box-sizing: border-box;
         background: yellow;
+        transition: 1s;
       }
 
       .text {

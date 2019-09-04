@@ -122,4 +122,17 @@ class LevelsController extends Controller
         return redirect()->route('levels.index')
             ->with('success','Level deleted successfully');
     }
+
+    public function next($id){
+        $level = Level::where("level",$id+1)->first();
+
+        if ($level==null)
+            $level =  Level::where("level",$id)->first();
+
+        return response()
+            ->json([
+               "status"=>200,
+               "next"=>$level
+            ]);
+    }
 }

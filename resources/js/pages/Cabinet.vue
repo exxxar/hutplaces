@@ -19,7 +19,7 @@
 
                 <div class="level" @click="show('levels')">
                     <div class="text">{{user.level.title}}  </div>
-                    <div class="line"></div>
+                    <div class="line" :style="cssProps()"></div>
                 </div>
             </div>
 
@@ -111,7 +111,8 @@
         data() {
             return {
                 process_avatar:false,
-                user: this.getUser
+                user: this.getUser,
+                next:null
             }
 
         },
@@ -124,6 +125,20 @@
             },
         },
         methods: {
+            cssProps() {
+                return {
+                    '--line-width': this.user==null||this.next==null?"0%":(this.user.exp/ this.next.experience) * 100 + "%",
+                }
+            },
+            nextLevel(){
+                axios.
+                    get(`/levels/next/${this.user.level.level}`,{
+                    }).then(res => {
+                        this.next =  res.data.next
+                    })
+
+
+            },
             setImage(img){
                 this.process_avatar = true;
                 this.user.avatar = img;
