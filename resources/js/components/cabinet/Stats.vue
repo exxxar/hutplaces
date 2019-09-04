@@ -1,44 +1,48 @@
 <template>
-    <div>
+    <div  class="info-block">
         <h1 class="main-title" v-html="content.title"></h1>
         <p class="description" v-html="content.content"></p>
         <table v-if="stats!=null&&trigger_types!=null">
             <tr>
-                <th>Param</th>
-                <th>Value</th>
+                <th>{{$lang.cabinet.stats.param}}</th>
+                <th>{{$lang.cabinet.stats.value}}</th>
             </tr>
             <tr  v-for="stat in stats">
                 <td>{{prepareTypeText(stat.stat_type)}}</td>
                 <td>{{ stat.stat_value }}</td>
             </tr>
         </table>
-        <h3 v-if="trigger_types==null||trigger_types.length==0">Не удалось получитть типы тригеров</h3>
-        <h3 v-if="stats==null||stats.lenght==0">У вас нет Статистки:(</h3>
+        <h3 v-if="trigger_types==null||trigger_types.length==0">{{$lang.cabinet.stats.error_1}}</h3>
+        <h3 v-if="stats==null||stats.lenght==0">{{$lang.cabinet.stats.error_2}}</h3>
     </div>
 </template>
 <script>
     export default {
         name: "Stats",
+        props:["user"],
         data() {
             return {
                 stats: null,
                 trigger_types: null,
                 content: {
-                    title: "Пользовательская статистика",
-                    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+                    title:  '',
+                    content: ''
                 },
             }
         },
-
         activated() {
             this.loadTypes()
             this.loadStats()
+            this.prepareContent()
         },
         mounted() {
             Event.$on("updateStats", () => {
                 this.loadTypes()
                 this.loadStats()
             });
+            this.loadTypes()
+            this.loadStats()
+            this.prepareContent();
         },
         methods: {
             prepareTypeText(type) {
@@ -56,32 +60,18 @@
             },
             loadStats() {
                 axios
-                    .get(`/users/stats/${auth.user.id}`)
+                    .get(`/users/stats/${this.user.id}`)
                     .then(response => {
                         this.stats = response.data.stats;
                     });
             },
-            loadContent() {
-                axios
-                    .get('/content/stats/all')
-                    .then(response => {
-                        this.content = response.data.content;
-                    });
+            prepareContent() {
+                this.content.title = this.$lang.cabinet.stats.main_title
+                this.content.content = this.$lang.cabinet.stats.main_description
             },
         }
     }
 </script>
 <style lang="scss" scoped>
-    table {
-        width: 100%;
-        tr {
-            color: white;
-            line-height: 150%;
-            border: 1px white solid;
-            th,
-            td {
-                padding: 10px;
-            }
-        }
-    }
+    @import "~/cabinet.scss";
 </style>

@@ -1,4 +1,6 @@
 module.exports = {
+    main_title:'Achievements',
+    main_description:'Description',
     discount:"Сидка",
     exp:"Опыт",
     coins:"Монеты",
@@ -8,10 +10,13 @@ module.exports = {
     r_one:"Одна из наград:",
     r_many:"Все награды:",
     empty:"Нет доступных наград",
+    completed:"Достижение получено!",
+    no_ach:"Нет доступных достижений",
+
    description: {
        ach1: "description ach1",
        ach2: "description ach2",
-       ach3: "description ach3",
+       ach3: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi aut consequuntur eaque facilis impedit in libero, magnam odit perspiciatis possimus praesentium quam quibusdam, quo repudiandae suscipit tempora ut veritatis.",
        ach4: "description ach4",
        ach5: "description ach5",
        ach6: "description ach6",

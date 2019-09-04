@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div  class="info-block">
         <h1 class="main-title" v-html="content.title"></h1>
         <p class="description" v-html="content.content"></p>
         <ul class="cards" v-if="lotteries!=null&&lotteries.length>0">
@@ -15,27 +15,29 @@
                 </div>
             </li>
         </ul>
-        <h3 v-if="lotteries==null||lotteries.length==0">Вы еще ничего не выиграли:(</h3>
+        <h3 v-if="lotteries==null||lotteries.length==0">{{$lang.cabinet.lottery.error_1}}</h3>
     </div>
 </template>
 
 <script>
 
     export default {
-        props:["win"],
+        props: ["win", "user"],
         activated() {
             this.loadLotteries()
-            //this.loadContent()
+            this.prepareContent();
         },
         mounted() {
             Event.$on('updateLotteries', () => {
                 this.loadLotteries()
             });
+            this.loadLotteries()
+            this.prepareContent();
         },
         methods: {
             loadContent() {
-                var url = this.win?
-                    '/content/wins/all':
+                var url = this.win ?
+                    '/content/wins/all' :
                     '/content/lotteries/all';
 
                 axios
@@ -45,9 +47,9 @@
                     });
             },
             loadLotteries() {
-                var url = this.win?
-                    `/users/wins/${auth.user.id}`:
-                    `/users/lotteries/${auth.user.id}`;
+                var url = this.win ?
+                    `/users/wins/${this.user.id}` :
+                    `/users/lotteries/${this.user.id}`;
 
                 axios
                     .get(url)
@@ -64,7 +66,15 @@
                 }
             },
             lotteryOpen: function (lotteryId) {
-                this.$router.push({ name: 'Lottery', params: { gameId: lotteryId } })
+                this.$router.push({name: 'Lottery', params: {gameId: lotteryId}})
+            },
+            prepareContent() {
+                this.content.title = this.win ?
+                    this.$lang.cabinet.win.main_title :
+                    this.$lang.cabinet.lottery.main_title
+                this.content.content = this.win ?
+                    this.$lang.cabinet.win.main_description :
+                    this.$lang.cabinet.lottery.main_description
             }
 
 
@@ -72,8 +82,8 @@
         data() {
             return {
                 content: {
-                    title: "Выигранные рандомы",
-                    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+                    title: '',
+                    content: ''
                 },
                 lotteries: null,
             }
@@ -82,17 +92,8 @@
     }
 </script>
 <style lang="scss" scoped>
-
     @import "~/games.scss";
-
-    h3 {
-        font-weight: 100;
-        font-size: 36px;
-        color: white;
-        text-transform: uppercase;
-    }
-
-
+    @import "~/cabinet.scss";
 </style>
 
 

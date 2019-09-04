@@ -157,48 +157,5 @@
     };
 </script>
 <style lang="scss">
-    #chatbox {
-        height: 251px;
-        padding: 5px;
-        box-sizing: border-box;
-
-        .scroll-area {
-            padding: 0px;
-            width: 100%;
-        }
-        ul {
-            width: 100%;
-            li {
-                border-radius: 5px;
-                width: 100%;
-                /* min-height: 50px; */
-                padding: 10px;
-                box-sizing: border-box;
-                color: #2c3e50;
-                text-align: left;
-                background: #f7f7ae;
-                margin-bottom: 25px;
-                position: relative;
-                line-height: 150%;
-                word-break: break-all;
-
-                .message-footer {
-                    color: #2c3e50;
-                    position: absolute;
-                    width: 270px;
-                    left: 0;
-                    bottom: -15px;
-                    background: #f7f7ae;
-                    padding: 0px 10px 0px 10px;
-                    border-radius: 0px 0px 5px 5px;
-                    font-size: 12px;
-                    font-style: italic;
-                }
-                span {
-                    word-break: break-all;
-                }
-            }
-        }
-
-    }
+    @import "~/chat.scss";
 </style>

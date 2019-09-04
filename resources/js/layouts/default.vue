@@ -128,8 +128,8 @@
         name: 'defaultLayout',
         data() {
             return {
-                authenticated: auth.check(),
-                user: auth.user,
+                authenticated: this.check,
+                user: this.getUser,
                 settings: {
                     maxScrollbarLength: 60
                 }
@@ -163,7 +163,21 @@
                 this.show("main-menu");
             }
         },
+        computed: {
+            check() {
+                console.log("check",this.$store.getters.CHECK)
+                return this.$store.getters.CHECK;
+            },
+            getUser() {
+                return this.$store.getters.USER;
+            },
+        },
         mounted: function () {
+
+            this.$store.dispatch('getCurrentUser').then(()=>{
+                this.authenticated = this.check
+                this.user = this.getUser
+            });
 
             window.addEventListener("resize", function(){
                 document.querySelector(".ps-container").scrollTop = 0;
@@ -195,7 +209,7 @@
             });
 
             pusher.subscribe(`user-update-chanel`).bind('user-update-event', (data) => {
-                if (window.auth.user.id == data.userId) {
+                if (this.user.id == data.userId) {
 
                     Event.$emit("updateStats");
                     Event.$emit("updateAchievements");
@@ -204,15 +218,13 @@
                     Event.$emit("updateLotteries");
                     Event.$emit("updateTickets");
 
-                    api.call('get', '/get-user')
-                        .then(({resposne}) => {
-                            this.user = resposne;
-                        });
+                    this.$store.dispatch('getCurrentUser');
+
                 }
             });
 
             if (this.$route.query.token) {
-                auth.retriveUser(this.$route.query.token);
+                this.$store.dispatch('retriveUser',this.$route.query.token);
                 this.$router.replace({query: ''});
             }
 
@@ -234,7 +246,7 @@
                 })
             }
 
-            Event.$on('userLoggedIn', () => {
+         /*   Event.$on('userLoggedIn', () => {
                 this.authenticated = true;
                 this.user = auth.user;
 
@@ -245,22 +257,24 @@
                     text: `Пользователь ${this.user.name} успешно вошел в систему!`
                 })
 
-            });
+            });*/
 
             Event.$on('updateUserProfile', () => {
-
-                axios
-                    .get('/get-user').then(response => {
-                    this.user = response.data;
+                this.$store.dispatch('getCurrentUser').then(()=>{
+                    this.authenticated = this.check
+                    this.user = this.getUser
                 });
-
-
             });
 
-            Event.$on('userLoggedOut', () => {
+            Event.$on("userLogout",()=>{
+                this.authenticated = false
+                this.user = null
+            });
+
+         /*   Event.$on('userLoggedOut', () => {
                 this.authenticated = false;
                 this.user = null;
-            });
+            });*/
         },
         components: {
             Chat,

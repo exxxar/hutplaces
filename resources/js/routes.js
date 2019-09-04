@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import Router from 'vue-router'
 import Coins from '@/pages/Coins'
@@ -23,14 +22,8 @@ import Lang from 'vuejs-localization'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-
-
-
 Vue.use(VueAxios, axios);
-
 axios.defaults.baseURL = 'http://localhost:8000/api';
-
-
 
 Lang.requireAll(require.context('../lang', true, /\.js$/))
 
@@ -91,25 +84,23 @@ export default new Router({
             path: '/cabinet',
             name: 'Cabinet',
             component: Cabinet,
-            meta: { middlewareAuth: true }
+            meta: {middlewareAuth: true}
         },
         {
-            path: '/cabinet/:userId',
+            path: '/user/:userId',
             name: 'PlayerInfo',
             component: PlayerInfo,
-            props:true
+            props: true
         },
         {
             path: '/signin',
             name: 'Login',
             component: Login,
-            meta: { middlewareAuth: false }
         },
         {
             path: '/signup',
             name: 'Register',
             component: Register,
-            meta: { middlewareAuth: false }
         },
         {
             path: '/randoms',
@@ -125,7 +116,7 @@ export default new Router({
             path: '/games/nhl/:gameId',
             name: 'Lottery',
             component: Lottery,
-            props:true
+            props: true
         },
 
 

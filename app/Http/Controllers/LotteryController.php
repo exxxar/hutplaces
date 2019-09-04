@@ -168,6 +168,90 @@ class LotteryController extends Controller
 
     }
 
+    public function buy(Request $request)
+    {
+        $lotteryId = $request->get("id");
+
+        if (auth('api')->user() == null)
+            return response()->json([
+                'message' => 'Вы не авторизировались! Войдие в систему',
+                'status' => 401
+            ]);
+
+
+        $lottery = Lottery::with(["lot", "lot.card"])
+            ->where("id", $lotteryId)->first();
+
+
+        if (!$lottery)
+            return response()->json([
+                'message' => 'Товар не найден',
+                'status' => 404
+            ]);
+
+
+        $user = User::find(auth('api')->user()->id);
+
+
+        //todo: добавить учет индивидуальной скидки пользователя
+        $price = ($lottery->base_price - $lottery->base_price * ($lottery->base_discount / 100));
+
+        if ($user->money <= $price) {
+            return response()->json([
+                'message' => 'У вас недостаточно средств!',
+                'status' => 400
+            ]);
+        }
+
+        $user->money -= $price;
+
+        $user->cards()->attach($lottery->lot->card->id);
+        $user->save();
+
+        return response()->json([
+            'message' => 'Вы успешно купили товар!',
+            'status' => 200
+        ]);
+
+    }
+
+    public function winner($id)
+    {
+
+        $lottery = Lottery::find($id);
+        return response()->json([
+            'message' => 'Лотерея уже выиграна пользователем!',
+            'winner' => $lottery->winner(),
+            'status' => 200
+        ]);
+    }
+
+    public function random(Request $request)
+    {
+
+        $lottery = Lottery::find($request->get("id"));
+        $places = [];
+        $occupied_places = Place::where("lottery_id", $request->get("id"))->get();
+        if (count($occupied_places) > 0)
+            foreach ($occupied_places as $place)
+                array_push($places, $place->place_number);
+
+        $tmp = [];
+        for ($i = 0; $i < $lottery->places; $i++) {
+            if (!in_array($i, $places))
+                array_push($tmp, $i);
+
+        }
+
+        if (!$lottery->isFull() & count($tmp) > 0)
+            return $this->pickPlace($request->get("id"), $tmp[random_int(0, count($tmp) - 1)]);
+        else
+            return response()->json([
+                'message' => 'Лотерея уже полная или закончилась',
+                'status' => 400
+            ]);
+    }
+
     private function pickPlace($lotteryId, $place_number)
     {
 
@@ -230,7 +314,7 @@ class LotteryController extends Controller
         $lottery->occupied_places += 1;
         $lottery->save();
 
-        if ($lottery->occupied_places  == $lottery->places) {
+        if ($lottery->occupied_places == $lottery->places) {
             $lottery->completed = true;
             $lottery->active = false;
             $lottery->visible = false;
@@ -238,17 +322,17 @@ class LotteryController extends Controller
             $lottery->winner_id = $random->getIntegers(1, 1, $lottery->places, false)[0];
             $lottery->save();
 
-            $winUser_id = (Place::where("place_number",$lottery->winner_id)
-                ->where("lottery_id",$lottery->id)
+            $winUser_id = (Place::where("place_number", $lottery->winner_id)
+                ->where("lottery_id", $lottery->id)
                 ->first())->user_id;
 
             $winner = User::find($winUser_id);
 
             $winner->lotteries()->attach($lottery->id);
-            $winner->cards()->attach((Lot::where("lottery_id",$lottery->id)->first())->cards_id);
+            $winner->cards()->attach((Lot::where("lottery_id", $lottery->id)->first())->cards_id);
 
             //отправляем всем пользоватемя в выбранной лотерее запрос на обновление данных
-            broadcast(new RaffleNotification($lottery,$winner));
+            broadcast(new RaffleNotification($lottery, $winner));
 
         }
 
@@ -262,91 +346,6 @@ class LotteryController extends Controller
         ]);
     }
 
-    public function buy(Request $request)
-    {
-        $lotteryId  = $request->get("id");
-
-        if (auth('api')->user() == null)
-            return response()->json([
-                'message' => 'Вы не авторизировались! Войдие в систему',
-                'status' => 401
-            ]);
-
-
-        $lottery = Lottery::with(["lot","lot.card"])
-            ->where("id",$lotteryId)->first();
-
-
-        if (!$lottery)
-            return response()->json([
-                'message' => 'Товар не найден',
-                'status' => 404
-            ]);
-
-
-
-        $user = User::find(auth('api')->user()->id);
-
-
-        //todo: добавить учет индивидуальной скидки пользователя
-        $price = ($lottery->base_price - $lottery->base_price * ($lottery->base_discount / 100));
-
-        if ($user->money <= $price) {
-            return response()->json([
-                'message' => 'У вас недостаточно средств!',
-                'status' => 400
-            ]);
-        }
-
-        $user->money -=$price;
-
-        $user->cards()->attach($lottery->lot->card->id);
-        $user->save();
-
-        return response()->json([
-            'message' => 'Вы успешно купили товар!',
-            'status' => 200
-        ]);
-
-    }
-
-    public function winner($id)
-    {
-
-        $lottery = Lottery::find($id);
-        return response()->json([
-            'message' => 'Лотерея уже выиграна пользователем!',
-            'winner' => $lottery->winner(),
-            'status' => 200
-        ]);
-    }
-
-    public function random(Request $request)
-    {
-
-        $lottery = Lottery::find($request->get("id"));
-        $places = [];
-        $occupied_places = Place::where("lottery_id", $request->get("id"))->get();
-        if (count($occupied_places) > 0)
-            foreach ($occupied_places as $place)
-                array_push($places, $place->place_number);
-
-        $tmp = [];
-        for ($i = 0; $i < $lottery->places; $i++) {
-            if (!in_array($i, $places))
-                array_push($tmp, $i);
-
-        }
-
-        if (!$lottery->isFull()&count($tmp)>0)
-            return $this->pickPlace($request->get("id"), $tmp[random_int(0, count($tmp)-1)]);
-        else
-            return response()->json([
-                'message' => 'Лотерея уже полная или закончилась',
-                'status' => 400
-            ]);
-    }
-
     public function pick(Request $request)
     {
 
@@ -357,25 +356,31 @@ class LotteryController extends Controller
 
     }
 
-    public function history(){
+    public function history()
+    {
 
         $tmp = [];
         $winLotteries = DB::table("lotteries")
-            ->where("winner_id","!=","null")
+            ->where("winner_id", "!=", "null")
             ->orderBy('id', 'desc')
             ->take(100)
             ->get();
 
-        foreach ($winLotteries as $lottery){
-            array_push($tmp,[
-                "lottery_id"=>$lottery->id,
-                "lottery_title"=>empty($lottery->title)?"<no title>":$lottery->title,
-                "user_id"=>Place::where("place_number",$lottery->winner_id)->first()->user_id,
-                "user_name"=>User::find(Place::where("place_number",$lottery->winner_id)->first()->user_id)->name,
-                "end"=>$lottery->updated_at,
-                "console_type"=>$lottery->console_type
-            ]);
+        try {
+            foreach ($winLotteries as $lottery) {
+                array_push($tmp, [
+                    "lottery_id" => $lottery->id,
+                    "lottery_title" => empty($lottery->title) ? "<no title>" : $lottery->title,
+                    "user_id" => Place::where("place_number", $lottery->winner_id)->first()->user_id,
+                    "user_name" => User::find(Place::where("place_number", $lottery->winner_id)->first()->user_id)->name,
+                    "end" => $lottery->updated_at,
+                    "console_type" => $lottery->console_type
+                ]);
+            }
+        } catch (\ErrorException $e) {
+            $tmp = null;
         }
+
         return response()->json([
             'history' => $tmp,
             'status' => 200

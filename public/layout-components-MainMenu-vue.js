@@ -43,13 +43,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'defaultLayout',
   props: {
@@ -89,8 +82,15 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit("modal", name);
     },
     logout: function logout() {
-      auth.logout();
-      this.$router.push('signin');
+      var _this2 = this;
+
+      this.$store.dispatch('logoutUser').then(function () {
+        Event.$emit("userLogout");
+
+        _this2.$router.push({
+          path: "/signin"
+        });
+      });
     },
     getAvatar: function getAvatar(img) {
       if (img == '' || img == null || img == undefined) return "/img/noavatar.png";else return "/img/avatars/".concat(img);
@@ -126,7 +126,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v(_vm._s(_vm.$lang.messages.how_to_start))]
+      [_vm._v(_vm._s(_vm.$lang.menu.how_to_start))]
     ),
     _vm._v(" "),
     _c(
@@ -139,7 +139,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v(_vm._s(_vm.$lang.messages.history))]
+      [_vm._v(_vm._s(_vm.$lang.menu.history))]
     ),
     _vm._v(" "),
     _c(
@@ -152,7 +152,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v(_vm._s(_vm.$lang.messages.help))]
+      [_vm._v(_vm._s(_vm.$lang.menu.help))]
     ),
     _vm._v(" "),
     _c(
@@ -165,7 +165,7 @@ var render = function() {
           }
         }
       },
-      [_vm._v(_vm._s(_vm.$lang.messages.f_a_q))]
+      [_vm._v(_vm._s(_vm.$lang.menu.f_a_q))]
     ),
     _vm._v(" "),
     _c(
@@ -178,10 +178,10 @@ var render = function() {
           }
         }
       },
-      [_vm._v(_vm._s(_vm.$lang.messages.recharge))]
+      [_vm._v(_vm._s(_vm.$lang.menu.recharge))]
     ),
     _vm._v(" "),
-    _vm.authenticated && _vm.user
+    _vm.authenticated && _vm.user != null
       ? _c(
           "li",
           {
@@ -202,7 +202,7 @@ var render = function() {
               _vm._v(" "),
               _c("p", { staticClass: "pucks" }, [
                 _c("strong", [_vm._v(_vm._s(Math.floor(_vm.user.money)))]),
-                _vm._v(" Pucks")
+                _vm._v(" " + _vm._s(_vm.$lang.menu.money))
               ])
             ]),
             _vm._v(" "),
@@ -245,7 +245,7 @@ var render = function() {
                           _c(
                             "router-link",
                             { attrs: { to: { name: "Cabinet" }, tag: "a" } },
-                            [_vm._v("User cabinet")]
+                            [_vm._v(_vm._s(_vm.$lang.menu.user_cabinet))]
                           )
                         ],
                         1
@@ -263,7 +263,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Logout")]
+                              [_vm._v(_vm._s(_vm.$lang.menu.logout))]
                             )
                           ])
                         : _vm._e()
@@ -290,7 +290,7 @@ var render = function() {
                 staticClass: "btn btn-info ",
                 attrs: { to: "/signin", tag: "button" }
               },
-              [_vm._v("Sign In")]
+              [_vm._v(_vm._s(_vm.$lang.menu.sign_in))]
             ),
             _vm._v(" "),
             _c(
@@ -299,7 +299,7 @@ var render = function() {
                 staticClass: "btn btn-primary ",
                 attrs: { to: "/signup", tag: "button" }
               },
-              [_vm._v("Sign Up")]
+              [_vm._v(_vm._s(_vm.$lang.menu.sign_up))]
             )
           ],
           1

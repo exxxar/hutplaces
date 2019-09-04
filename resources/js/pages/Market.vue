@@ -19,7 +19,7 @@
                 {{$lang.messages.players_packs}}
                 <span></span>
             </li>
-            </li>
+
 
         </ul>
 

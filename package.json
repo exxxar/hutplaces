@@ -27,7 +27,6 @@
         "@chenfengyuan/vue-carousel": "^1.0.1",
         "@vue/cli": "^3.9.3",
         "@websanova/vue-auth": "^2.21.14-beta",
-        "draggable-vue-directive": "^2.0.6",
         "fs": "0.0.1-security",
         "laravel-echo": "^1.5.4",
         "laravel-mix-alias": "^1.0.2",
@@ -35,17 +34,12 @@
         "npm-font-open-sans": "^1.1.0",
         "pusher": "^2.2.2",
         "pusher-js": "^5.0.0",
-        "redis": "^2.8.0",
-        "redis-server": "^1.2.2",
         "tls": "0.0.1",
         "vue": "^2.6.8",
-        "vue-2-breadcrumbs": "^0.5.0",
         "vue-axios": "^2.1.4",
-        "vue-beautiful-chat": "^2.2.0",
         "vue-carousel-3d": "^0.2.0",
         "vue-cli": "^2.9.6",
         "vue-clipboard2": "^0.3.0",
-        "vue-cookies": "^1.5.12",
         "vue-custom-scrollbar": "^1.0.0",
         "vue-dialog-drag": "^0.1.29",
         "vue-extend-layout": "^2.0.6",
@@ -59,8 +53,8 @@
         "vue-router": "^3.0.2",
         "vue-scrollto": "^2.15.0",
         "vue-tabs-component": "^1.5.0",
-        "vue-winwheel": "^0.1.2",
         "vuejs-loading-plugin": "^1.0.5",
-        "vuejs-localization": "^1.0.3"
+        "vuejs-localization": "^1.0.3",
+        "vuex": "^3.1.1"
     }
 }

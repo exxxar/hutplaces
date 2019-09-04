@@ -1,4 +1,6 @@
 module.exports = {
+    main_title:'Achievements',
+    main_description:'Description',
     discount:"Сидка",
     exp:"Опыт",
     coins:"Монеты",

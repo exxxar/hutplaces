@@ -2,32 +2,32 @@
     <div>
 
         <div class="form">
-            <h1>Sign Up</h1>
+            <h1>{{$lang.auth.sign_up}}</h1>
             <div class="input-group">
-                <label for="name">Name</label>
-                <input type="text" autocomplete="off" placeholder="Введите вашу почту" v-model="name">
+                <label>{{$lang.auth.name}}</label>
+                <input type="text" autocomplete="off" :placeholder="$lang.auth.enter_name" v-model="name">
             </div>
 
             <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" autocomplete="off"  placeholder="Введите вашу почту" v-model="email">
+                <label>{{$lang.auth.email}}</label>
+                <input type="email" autocomplete="off" :placeholder="$lang.auth.enter_email" v-model="email">
             </div>
 
             <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" autocomplete="off" placeholder="Введите пароль" v-model="password">
+                <label>{{$lang.auth.password}}</label>
+                <input type="password" autocomplete="off" :placeholder="$lang.auth.enter_password" v-model="password">
 
             </div>
 
             <div class="input-group">
-                <label for="confirm_password">Confirm password</label>
-                <input type="password" autocomplete="off" placeholder="Введите пароль" v-model="confirm_password">
+                <label>{{$lang.auth.confirm_password}}</label>
+                <input type="password" autocomplete="off" :placeholder="$lang.auth.confirm_password" v-model="confirm_password">
 
             </div>
 
             <div class="input-group buttons">
-                <button @click="register()" class="btn btn-yellow">Sign Up</button>
-                <router-link tag="button" :to="{ name: 'Login' }" class="btn btn-other">Sign In</router-link>
+                <button @click="register()" class="btn btn-yellow">{{$lang.auth.sign_up}}</button>
+                <router-link tag="button" :to="{ name: 'Login' }" class="btn btn-other">{{$lang.auth.sign_in}}</router-link>
 
             </div>
             <hr>
@@ -36,7 +36,7 @@
                 <li><a href="/social-auth/facebook"><i class="fab fa-facebook-f"></i></a></li>
                 <li><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
             </ul>
-            <a href="" class="rules">Правила использования продукта</a>
+            <a href="" class="rules">{{$lang.auth.product_terms_of_use}}</a>
         </div>
 
 
@@ -56,7 +56,7 @@
 
         methods: {
             register() {
-                if (this.password!=this.confirm_password) {
+                if (this.password != this.confirm_password) {
                     this.$notify({
                         group: 'main',
                         type: 'warn',
@@ -66,24 +66,23 @@
 
                     return;
                 }
-                let data = {
+
+                this.$store.dispatch('registerUser', {
                     email: this.email,
                     password: this.password,
                     name: this.name,
-                    _token:axios.defaults.headers.common['X-CSRF-TOKEN']
-                };
+                }).then(() => {
 
-
-
-                axios.post('/registration', data)
-                    .then(({data}) => {
-                        auth.login(data.token, data.user);
-
-                        this.$router.push('/cabinet');
-                    })
-                    .catch(({response}) => {
-                        alert(response.data.message);
+                    this.$store.dispatch('loginUser', {
+                        username: this.email,
+                        password: this.password,
+                    }).then(() => {
+                        this.$router.push({path: '/cabinet'})
+                        Event.$emit("updateUserProfile")
                     });
+
+                });
+
             }
         }
     }
@@ -94,6 +93,6 @@
     @import "~/auth.scss";
 
     .form {
-        padding-bottom:150px;
+        padding-bottom: 150px;
     }
 </style>

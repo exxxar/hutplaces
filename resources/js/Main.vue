@@ -2,7 +2,6 @@
   <div id="app">
     <vue-extend-layouts path="layouts"/>
   </div>
-
 </template>
 
 <script>

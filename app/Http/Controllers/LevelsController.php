@@ -15,6 +15,13 @@ class LevelsController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->ajax())
+            return response()
+                ->json([
+                   "status"=>200,
+                   "levels"=> Level::all()
+                ]);
+
         $levels = Level::orderBy('id','DESC')->paginate(15);
         return view('admin.levels.index',compact('levels'))
             ->with('i', ($request->input('page', 1) - 1) * 15);

@@ -1,11 +1,13 @@
 <template>
     <div class="modal-body" v-if="game">
-        <h1>ИНФОРМАЦИЯ О КАРТОЧКЕ</h1>
+        <h1>{{$lang.modals.card_info.title}}</h1>
         <p>X-BOX</p>
-        <p>Цена карточки: {{game.base_price}} Pucks</p>
-        <p>Цена ставки: {{getPlacePrice()}} Pucks</p>
+        <p>{{$lang.modals.card_info.base_price}} {{game.base_price}} {{$lang.modals.card_info.money}}</p>
+        <p>{{$lang.modals.card_info.place_price}}{{getPlacePrice()}} {{$lang.modals.card_info.money}}</p>
         <ul class="history">
-            <li v-for="place in game.place_list">{{place.user.name}} занял место {{place.place_number}} в {{place.created_at}}</li>
+            <li v-for="place in game.place_list">
+                {{place.user.name}} {{$lang.modals.card_info.pick_place}} {{place.place_number}} [ {{place.created_at}} ]
+            </li>
         </ul>
     </div>
 </template>

@@ -42,6 +42,8 @@ Route::post('/coinsrequest', 'CoinsController@coinsrequest');
 Route::get('/content/{type}/all', 'ContentController@all');
 Route::get('/content/{type}/first', 'ContentController@first');
 
+Route::get('/levels', 'LevelsController@index');
+
 Route::get('/lottery/', 'LotteryController@index');
 Route::get('/lottery/winner/{id}', 'LotteryController@winner');
 Route::get('/lottery/show/{id}', 'LotteryController@show');
@@ -86,7 +88,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/lottery/places/{id}', 'LotteryController@places');
 
     Route::post('/logout', 'API\AuthController@logout');
-    Route::get('/get-user', 'API\AuthController@getUser');
+    Route::get('/get-user/{id?}', 'API\AuthController@getUser');
     Route::post('/lottery/pickplace', 'LotteryController@pickPlace');
     Route::post('/payment/{paymentProvider}', 'UserController@payment');
 });

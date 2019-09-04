@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"layout-components-AsideMenu-vue":"layout-components-AsideMenu-vue","layout-components-Breadcrumbs-vue":"layout-components-Breadcrumbs-vue","layout-components-MainMenu-vue":"layout-components-MainMenu-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Help-vue":"layout-pages-Help-vue","layout-pages-History-vue":"layout-pages-History-vue","layout-pages-Promo-vue":"layout-pages-Promo-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue","vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue":"vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue","layout-components-ChatBoxComponent-vue":"layout-components-ChatBoxComponent-vue","layout-components-Chat-vue":"layout-components-Chat-vue","layout-layouts-default-vue":"layout-layouts-default-vue"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"layout-components-AsideMenu-vue":"layout-components-AsideMenu-vue","layout-components-MainMenu-vue":"layout-components-MainMenu-vue","layout-components-admin-AdminCardPanel-vue":"layout-components-admin-AdminCardPanel-vue","layout-components-modals-FAQ-vue":"layout-components-modals-FAQ-vue","layout-components-modals-Help-vue":"layout-components-modals-Help-vue","layout-components-modals-History-vue":"layout-components-modals-History-vue","layout-components-modals-Howtostart-vue":"layout-components-modals-Howtostart-vue","layout-components-modals-Login-vue":"layout-components-modals-Login-vue","layout-components-modals-Payment-vue":"layout-components-modals-Payment-vue","layout-components-modals-Promo-vue":"layout-components-modals-Promo-vue","layout-components-modals-Registration-vue":"layout-components-modals-Registration-vue","layout-components-modals-Report-vue":"layout-components-modals-Report-vue","layout-layouts-auth-vue":"layout-layouts-auth-vue","layout-layouts-start-vue":"layout-layouts-start-vue","layout-pages-Reports-vue":"layout-pages-Reports-vue","vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue":"vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue","layout-components-ChatBoxComponent-vue":"layout-components-ChatBoxComponent-vue","layout-components-Chat-vue":"layout-components-Chat-vue","layout-layouts-default-vue":"layout-layouts-default-vue"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -200,6 +200,755 @@
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
 
 /***/ "./node_modules/@chenfengyuan/vue-carousel/dist/vue-carousel.js":
 /*!**********************************************************************!*\
@@ -2674,7 +3423,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -2694,6 +3442,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -3828,14 +4577,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["user"],
   activated: function activated() {
-    this.loadCards(); //this.loadContent()
+    this.loadCards();
+    this.prepareContent();
   },
   mounted: function mounted() {
     var _this = this;
 
+    this.prepareContent();
     Event.$on('updateCards', function () {
       _this.loadCards();
     });
@@ -3844,19 +4595,23 @@ __webpack_require__.r(__webpack_exports__);
     loadCards: function loadCards() {
       var _this2 = this;
 
-      axios.get("/users/cards/".concat(auth.user.id)).then(function (response) {
+      axios.get("/users/cards/".concat(this.user.id)).then(function (response) {
         _this2.cards = response.data.cards;
       });
     },
     prepareCard: function prepareCard(card) {
       return JSON.parse(card.Card_data).value;
+    },
+    prepareContent: function prepareContent() {
+      this.content.title = this.$lang.cabinet.cards.main_title;
+      this.content.content = this.$lang.cabinet.cards.main_description;
     }
   },
   data: function data() {
     return {
       content: {
-        title: "Карточки пользователей",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+        title: '',
+        content: ''
       },
       cards: null
     };
@@ -3974,8 +4729,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["user"],
+  mounted: function mounted() {
+    this.prepareContent();
+  },
+  activated: function activated() {
+    this.prepareContent();
+  },
   methods: {
     message: function message(title, _message, type) {
       this.$notify({
@@ -3985,25 +4753,30 @@ __webpack_require__.r(__webpack_exports__);
         text: _message
       });
     },
+    checkCurrent: function checkCurrent() {
+      return this.currentUser == null ? false : this.user.id == this.currentUser.id;
+    },
     changePassword: function changePassword() {
       if (this.new1 != this.new2) {
         this.message("Change password", "new password are not same", "warn");
         return;
       }
     },
-    loadContent: function loadContent() {
-      var _this = this;
-
-      axios.get('/content/info/all').then(function (response) {
-        _this.content = response.data.content;
-      });
+    prepareContent: function prepareContent() {
+      this.content.title = this.$lang.cabinet.info.main_title;
+      this.content.content = this.$lang.cabinet.info.main_description;
+    }
+  },
+  computed: {
+    currentUser: function currentUser() {
+      return this.$store.getters.USER;
     }
   },
   data: function data() {
     return {
       content: {
-        title: "Информация о пользователе",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+        title: '',
+        content: ''
       },
       password: {
         old: '',
@@ -4047,9 +4820,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["win"],
+  props: ["win", "user"],
   activated: function activated() {
-    this.loadLotteries(); //this.loadContent()
+    this.loadLotteries();
+    this.prepareContent();
   },
   mounted: function mounted() {
     var _this = this;
@@ -4057,6 +4831,8 @@ __webpack_require__.r(__webpack_exports__);
     Event.$on('updateLotteries', function () {
       _this.loadLotteries();
     });
+    this.loadLotteries();
+    this.prepareContent();
   },
   methods: {
     loadContent: function loadContent() {
@@ -4070,7 +4846,7 @@ __webpack_require__.r(__webpack_exports__);
     loadLotteries: function loadLotteries() {
       var _this3 = this;
 
-      var url = this.win ? "/users/wins/".concat(auth.user.id) : "/users/lotteries/".concat(auth.user.id);
+      var url = this.win ? "/users/wins/".concat(this.user.id) : "/users/lotteries/".concat(this.user.id);
       axios.get(url).then(function (response) {
         _this3.lotteries = response.data.lotteries;
       });
@@ -4090,13 +4866,17 @@ __webpack_require__.r(__webpack_exports__);
           gameId: lotteryId
         }
       });
+    },
+    prepareContent: function prepareContent() {
+      this.content.title = this.win ? this.$lang.cabinet.win.main_title : this.$lang.cabinet.lottery.main_title;
+      this.content.content = this.win ? this.$lang.cabinet.win.main_description : this.$lang.cabinet.lottery.main_description;
     }
   },
   data: function data() {
     return {
       content: {
-        title: "Выигранные рандомы",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+        title: '',
+        content: ''
       },
       lotteries: null
     };
@@ -4139,17 +4919,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Promocodes",
+  props: ["user"],
   data: function data() {
     return {
       promocodes: null,
       content: {
-        title: "Введенные промокоды",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+        title: '',
+        content: ''
       }
     };
   },
   activated: function activated() {
     this.loadPromocodes();
+    this.prepareContent();
   },
   mounted: function mounted() {
     var _this = this;
@@ -4157,12 +4939,18 @@ __webpack_require__.r(__webpack_exports__);
     Event.$on('updatePromocodes', function () {
       _this.loadPromocodes();
     });
+    this.loadPromocodes();
+    this.prepareContent();
   },
   methods: {
+    prepareContent: function prepareContent() {
+      this.content.title = this.$lang.cabinet.promocodes.main_title;
+      this.content.content = this.$lang.cabinet.promocodes.main_description;
+    },
     loadPromocodes: function loadPromocodes() {
       var _this2 = this;
 
-      axios.get("/users/promo/".concat(auth.user.id)).then(function (response) {
+      axios.get("/users/promo/".concat(this.user.id)).then(function (response) {
         _this2.promocodes = response.data.promocodes;
       });
     },
@@ -4244,19 +5032,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Stats",
+  props: ["user"],
   data: function data() {
     return {
       stats: null,
       trigger_types: null,
       content: {
-        title: "Пользовательская статистика",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+        title: '',
+        content: ''
       }
     };
   },
   activated: function activated() {
     this.loadTypes();
     this.loadStats();
+    this.prepareContent();
   },
   mounted: function mounted() {
     var _this = this;
@@ -4266,6 +5056,9 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.loadStats();
     });
+    this.loadTypes();
+    this.loadStats();
+    this.prepareContent();
   },
   methods: {
     prepareTypeText: function prepareTypeText(type) {
@@ -4285,16 +5078,13 @@ __webpack_require__.r(__webpack_exports__);
     loadStats: function loadStats() {
       var _this3 = this;
 
-      axios.get("/users/stats/".concat(auth.user.id)).then(function (response) {
+      axios.get("/users/stats/".concat(this.user.id)).then(function (response) {
         _this3.stats = response.data.stats;
       });
     },
-    loadContent: function loadContent() {
-      var _this4 = this;
-
-      axios.get('/content/stats/all').then(function (response) {
-        _this4.content = response.data.content;
-      });
+    prepareContent: function prepareContent() {
+      this.content.title = this.$lang.cabinet.stats.main_title;
+      this.content.content = this.$lang.cabinet.stats.main_description;
     }
   }
 });
@@ -4348,8 +5138,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["user"],
   activated: function activated() {
-    this.loadTickets(); //this.loadContent()
+    this.loadTickets();
+    this.prepareContent();
   },
   mounted: function mounted() {
     var _this = this;
@@ -4357,28 +5149,27 @@ __webpack_require__.r(__webpack_exports__);
     Event.$on('updateTickets', function () {
       _this.loadTickets();
     });
+    this.loadTickets();
+    this.prepareContent();
   },
   methods: {
-    loadContent: function loadContent() {
+    loadTickets: function loadTickets() {
       var _this2 = this;
 
-      axios.get('/content/tickets/all').then(function (response) {
-        _this2.content = response.data.content;
+      axios.get("/users/tickets/".concat(this.user.id)).then(function (response) {
+        _this2.tickets = response.data.tickets;
       });
     },
-    loadTickets: function loadTickets() {
-      var _this3 = this;
-
-      axios.get("/users/tickets/".concat(auth.user.id)).then(function (response) {
-        _this3.tickets = response.data.tickets;
-      });
+    prepareContent: function prepareContent() {
+      this.content.title = this.$lang.cabinet.stats.main_title;
+      this.content.content = this.$lang.cabinet.stats.main_description;
     }
   },
   data: function data() {
     return {
       content: {
-        title: "Баг-репорты пользователя",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+        title: '',
+        content: ''
       },
       tickets: null
     };
@@ -4419,17 +5210,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Transactions",
+  props: ["user"],
   data: function data() {
     return {
       transactions: null,
       content: {
-        title: "Пользовательские транзакции",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+        title: '',
+        content: ''
       }
     };
   },
   activated: function activated() {
     this.loadTransactions();
+    this.prepareContent();
   },
   mounted: function mounted() {
     var _this = this;
@@ -4437,21 +5230,20 @@ __webpack_require__.r(__webpack_exports__);
     Event.$on('updateTransactions', function () {
       _this.loadTransactions();
     });
+    this.loadTransactions();
+    this.prepareContent();
   },
   methods: {
     loadTransactions: function loadTransactions() {
       var _this2 = this;
 
-      axios.get("/users/transactions/".concat(auth.user.id)).then(function (response) {
+      axios.get("/users/transactions/".concat(this.user.id)).then(function (response) {
         _this2.transactions = response.data.transactions;
       });
     },
-    loadContent: function loadContent() {
-      var _this3 = this;
-
-      axios.get('/content/transactions/all').then(function (response) {
-        _this3.content = response.data.content;
-      });
+    prepareContent: function prepareContent() {
+      this.content.title = this.$lang.cabinet.transactions.main_title;
+      this.content.content = this.$lang.cabinet.transactions.main_description;
     }
   }
 });
@@ -4467,6 +5259,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -4546,6 +5340,63 @@ __webpack_require__.r(__webpack_exports__);
     selectImage: function selectImage(img) {
       this.$emit('image', img);
       this.selfHide();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Levels.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Levels.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["user"],
+  data: function data() {
+    return {
+      levels: null
+    };
+  },
+  mounted: function mounted() {
+    this.loadLevels();
+  },
+  methods: {
+    loadLevels: function loadLevels() {
+      var _this = this;
+
+      axios.get("/levels").then(function (response) {
+        _this.levels = response.data.levels;
+      });
     }
   }
 });
@@ -4638,13 +5489,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["userId"],
   activated: function activated() {
     this.loadTypes();
-    this.loadAchievements(); //this.loadContent()
+    this.loadAchievements();
+  },
+  mounted: function mounted() {
+    this.loadTypes();
+    this.loadAchievements();
   },
   methods: {
     lineWidth: function lineWidth(c1, c2) {
@@ -4751,26 +5605,19 @@ __webpack_require__.r(__webpack_exports__);
         _this3.achievements = response.data.achievements;
       });
     },
-    loadContent: function loadContent() {
+    prepareAchievements: function prepareAchievements() {
       var _this4 = this;
 
-      axios.get('/content/achievements/all').then(function (response) {
-        _this4.content = response.data.content;
-      });
-    },
-    prepareAchievements: function prepareAchievements() {
-      var _this5 = this;
-
       return this.trigger_type != null ? this.achievements.filter(function (ach) {
-        return ach.trigger_type == _this5.trigger_type;
+        return ach.trigger_type == _this4.trigger_type;
       }) : this.achievements;
     }
   },
   data: function data() {
     return {
       content: {
-        title: "Достижения пользователей",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+        title: this.$lang.achievements.main_title,
+        content: this.$lang.achievements.main_description
       },
       achievements: null,
       trigger_type: null,
@@ -4810,6 +5657,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cabinet_Tickets_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/cabinet/Tickets.vue */ "./resources/js/components/cabinet/Tickets.vue");
 /* harmony import */ var _components_cabinet_Info_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/cabinet/Info.vue */ "./resources/js/components/cabinet/Info.vue");
 /* harmony import */ var _components_modals_ImageSelector_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/components/modals/ImageSelector.vue */ "./resources/js/components/modals/ImageSelector.vue");
+/* harmony import */ var _components_modals_Levels_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/components/modals/Levels.vue */ "./resources/js/components/modals/Levels.vue");
 //
 //
 //
@@ -4896,6 +5744,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -4910,8 +5767,16 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       process_avatar: false,
-      user: auth.user
+      user: this.getUser
     };
+  },
+  computed: {
+    check: function check() {
+      return this.$store.getters.CHECK;
+    },
+    getUser: function getUser() {
+      return this.$store.getters.USER;
+    }
   },
   methods: {
     setImage: function setImage(img) {
@@ -4922,6 +5787,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/users/avatar/set', {
         image: img
       }).then(function (response) {
+        Event.$emit("updateUserProfile");
+
         _this.message("System", response.data.message, "warn");
 
         _this.process_avatar = false;
@@ -4933,8 +5800,8 @@ __webpack_require__.r(__webpack_exports__);
     loadCurrentUser: function loadCurrentUser() {
       var _this2 = this;
 
-      axios.get('/get-user').then(function (response) {
-        _this2.user = response.data;
+      this.$store.dispatch('getCurrentUser').then(function () {
+        _this2.user = _this2.$store.getters.USER;
       });
     },
     message: function message(title, _message, type) {
@@ -4954,6 +5821,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.message("System", response.data.message, "warn");
 
+        Event.$emit("updateUserProfile");
         _this3.process_avatar = false;
       });
     },
@@ -4963,6 +5831,9 @@ __webpack_require__.r(__webpack_exports__);
     hide: function hide(name) {
       this.$modal.hide(name);
     }
+  },
+  mounter: function mounter() {
+    this.loadCurrentUser();
   },
   activated: function activated() {
     this.loadCurrentUser();
@@ -4977,7 +5848,8 @@ __webpack_require__.r(__webpack_exports__);
     UsersTickets: _components_cabinet_Tickets_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     UsersInfo: _components_cabinet_Info_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
     Scroll: vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_0___default.a,
-    ImageSelector: _components_modals_ImageSelector_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    ImageSelector: _components_modals_ImageSelector_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    Levels: _components_modals_Levels_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 });
 
@@ -4996,12 +5868,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_CardSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/admin/CardSearch.vue */ "./resources/js/components/admin/CardSearch.vue");
 /* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-custom-scrollbar */ "./node_modules/vue-custom-scrollbar/dist/vueScrollbar.umd.min.js");
 /* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5133,23 +5999,31 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
+  computed: {
+    check: function check() {
+      return this.$store.getters.CHECK;
+    },
+    user: function user() {
+      return this.$store.getters.USER;
+    }
+  },
   methods: {
     reset: function reset() {
       Object.assign(this.$data, this.$options.data.call(this));
     },
     doInvoice: function doInvoice() {
       if (this.info.sum == 0) {
-        this.message("Отправка монет", "Укажите желаемую сумму", "error");
+        this.message(this.$lang.messages.send_coins, $lang.messages.error_coins_3, "error");
         return;
       }
 
       if (this.info.player.trim() == '' || this.info.team.trim() == '' || this.info.rating.trim() == '' || this.info.initial_price.trim() == '' || this.info.buyout_price.trim() == '' || this.info.team_hut.trim() == '') {
-        this.message("Отправка монет", "Не все поля заполнены", "error");
+        this.message(this.$lang.messages.send_coins, this.$lang.messages.error_coins_2, "error");
         return;
       }
 
-      if (!auth.check() && this.info.currency) {
-        this.message("Отправка монет", "Авторизируйтесь в системе для оплаты в Pucks", "error");
+      if (!this.check && this.info.currency) {
+        this.message(this.$lang.messages.send_coins, this.$lang.messages.error_coins_1, "error");
         return;
       }
 
@@ -5169,11 +6043,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('coinsrequest', {
         info: this.info
       }).then(function (res) {
-        _this.message("Отправка монет", "Запрос успешно отправлен", "error");
+        _this.message(_this.$lang.messages.send_coins, _this.$lang.messages.send_coins_success_1, "error");
 
         _this.reset();
       })["catch"](function (err) {
-        _this.message("Отправка монет", "Ошибка запроса(", "error");
+        _this.message(_this.$lang.messages.send_coins, _this.$lang.messages.error_coins_4, "error");
       });
       this.hide('coins-invoice');
     },
@@ -5228,29 +6102,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5502,13 +6353,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5520,21 +6364,15 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      var data = {
+      this.$store.dispatch('loginUser', {
         username: this.username,
-        password: this.password,
-        _token: axios.defaults.headers.common['X-CSRF-TOKEN']
-      };
-      console.log(data);
-      console.log(axios.defaults.headers.common['X-CSRF-TOKEN']);
-      axios.post('/login', data).then(function (_ref) {
-        var data = _ref.data;
-        auth.login(data.token, data.user);
+        password: this.password
+      }).then(function () {
+        _this.$router.push({
+          path: '/cabinet'
+        });
 
-        _this.$router.push('/cabinet');
-      })["catch"](function (_ref2) {
-        var response = _ref2.response;
-        alert(response.data.message);
+        Event.$emit("updateUserProfile");
       });
     }
   }
@@ -5555,14 +6393,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_modals_CardInfo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/modals/CardInfo */ "./resources/js/components/modals/CardInfo.vue");
 /* harmony import */ var _components_modals_Security__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/modals/Security */ "./resources/js/components/modals/Security.vue");
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -5747,7 +6577,7 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         document.querySelectorAll(".slot:nth-of-type(".concat(stopNumber, ")"))[0].classList.add("win-slot");
 
-        _this4.message('ПОБЕДА!', "\u041F\u043E\u0431\u0435\u0434\u0438\u043B \u0438\u0433\u0440\u043E\u043A, \u0437\u0430\u043D\u044F\u0432\u0448\u0438\u0439 ".concat(stopNumber, " \u0441\u043B\u043E\u0442!"), "error");
+        _this4.message(_this4.$lang.messages.lottery_success_title, "".concat(stopNumber, " ").concat(_this4.$lang.messages.lottery_success_2), "error");
       }, 9000);
       setTimeout(function () {
         document.querySelectorAll(".lottery")[0].classList.remove("lottery-animation");
@@ -5762,7 +6592,7 @@ __webpack_require__.r(__webpack_exports__);
     toClipboard: function toClipboard() {
       var currentUrl = window.location.host + window.location.pathname;
       this.$copyText(currentUrl);
-      this.message('Копирование ссылки', "\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u0438\u0433\u0440\u0443 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u0430!", "error");
+      this.message(this.$lang.messages.copy_link, this.$lang.messages.lottery_success_3, "error");
     },
     getAvatar: function getAvatar(img) {
       return img == '' || img == null || img == undefined ? "/img/noavatar.png" : img;
@@ -5783,13 +6613,13 @@ __webpack_require__.r(__webpack_exports__);
     pickCard: function pickCard() {
       var _this5 = this;
 
-      this.message('Покупка карточки', "\u0421 \u0412\u0430\u0448\u0435\u0433\u043E \u0441\u0447\u0435\u0442\u0430 \u0431\u0443\u0434\u0435\u0442 \u0441\u043F\u0438\u0441\u0430\u043D\u0430 \u043F\u043E\u043B\u043D\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u0441\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438!", "error");
+      this.message(this.$lang.messages.card_purchase, this.$lang.messages.lottery_warning_1, "error");
       axios.post('/lottery/buy', {
         id: this.gameId
       }).then(function (response) {
         Event.$emit("updateUserProfile");
 
-        _this5.message('Покупка карточки', "\u0421\u043F\u0430\u0441\u0438\u0431\u043E \u0437\u0430 \u043F\u043E\u043A\u0443\u043F\u043A\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438! \u041A\u0443\u043F\u043B\u0435\u043D\u043D\u0430\u044F \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0430 \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u0432 \u0432\u0430\u0448\u0435\u043C \u043B\u0438\u0447\u043D\u043E\u043C \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0435", "error");
+        _this5.message(_this5.$lang.messages.card_purchas, _this5.$lang.messages.lottery_success_4, "error");
       });
     },
     pickRandom: function pickRandom(place) {
@@ -5801,19 +6631,19 @@ __webpack_require__.r(__webpack_exports__);
           id: this.gameId
         }).then(function (response) {
           if (response.data.status != 200) {
-            _this6.message('Участие в рандоме', "".concat(response.data.message), "error");
+            _this6.message(_this6.$lang.messages.lottery_warning_2, "".concat(response.data.message), "error");
 
             return;
           }
 
           Event.$emit("updateUserProfile");
 
-          _this6.message('Участие в рандоме', "".concat(response.data.message, " ").concat(response.data.place), "error");
+          _this6.message(_this6.$lang.messages.lottery_warning_2, "".concat(response.data.message, " ").concat(response.data.place), "error");
 
           _this6.randomDisabled = false;
         });
       } else {
-        this.message('Участие в рандоме', "\u0412\u0441\u0435 \u043C\u0435\u0441\u0442\u0430 \u0443\u0436\u0435 \u0437\u0430\u043D\u044F\u0442\u044B", "error");
+        this.message(this.$lang.messages.lottery_warning_2, this.$lang.messages.lottery_error_1, "error");
       }
     },
     pickSlot: function pickSlot(place) {
@@ -5830,12 +6660,12 @@ __webpack_require__.r(__webpack_exports__);
           item.removeAttribute("disabled");
 
           if (response.data.status != 200) {
-            _this7.message('Участие в рандоме', "".concat(response.data.message), "error");
+            _this7.message(_this7.$lang.messages.lottery_warning_2, "".concat(response.data.message), "error");
 
             return;
           }
 
-          _this7.message('Участие в рандоме', "".concat(response.data.message, " ").concat(response.data.place), "error");
+          _this7.message(_this7.$lang.messages.lottery_warning_2, "".concat(response.data.message, " ").concat(response.data.place), "error");
 
           Event.$emit("updateUserProfile");
         });
@@ -5924,20 +6754,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      content: {
+        title: this.contentTitle,
+        content: this.contentDescription
+      }
+    };
+  },
+  computed: {
+    contentTitle: function contentTitle() {
+      return this.$lang.main.main_title;
+    },
+    contentDescription: function contentDescription() {
+      return this.$lang.main.main_description;
+    }
+  },
   methods: {
-    showError: function showError(message) {
+    message: function message(_message) {
       this.$notify({
         group: 'main',
-        type: 'error',
-        title: 'Important message',
-        text: message
+        type: 'warn',
+        title: this.$lang.messages.main_error_title,
+        text: _message
       });
     }
   }
@@ -6029,15 +6869,131 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-custom-scrollbar */ "./node_modules/vue-custom-scrollbar/dist/vueScrollbar.umd.min.js");
+/* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _pages_Achievement_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/pages/Achievement.vue */ "./resources/js/pages/Achievement.vue");
+/* harmony import */ var _components_cabinet_Lottery_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/cabinet/Lottery.vue */ "./resources/js/components/cabinet/Lottery.vue");
+/* harmony import */ var _components_cabinet_Info_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/cabinet/Info.vue */ "./resources/js/components/cabinet/Info.vue");
+/* harmony import */ var _components_modals_Levels_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/modals/Levels.vue */ "./resources/js/components/modals/Levels.vue");
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'faq',
-  props: ['userId'],
-  data: function data() {}
+  props: ["userId"],
+  data: function data() {
+    return {
+      user: null
+    };
+  },
+  computed: {
+    currentUser: function currentUser() {
+      return this.$store.getters.USER;
+    }
+  },
+  watch: {
+    'currentUser': function currentUser(newVal, oldVal) {
+      this.checkSelf();
+    }
+  },
+  activated: function activated() {
+    this.getUser();
+  },
+  mounted: function mounted() {
+    this.getUser();
+  },
+  methods: {
+    checkSelf: function checkSelf() {
+      if (this.user != null && this.currentUser != null) if (this.user.id == this.currentUser.id) this.$router.push({
+        name: 'Cabinet'
+      });
+    },
+    getUser: function getUser() {
+      var _this = this;
+
+      this.$store.dispatch('getAnyUser', {
+        user_id: this.userId
+      }).then(function (response) {
+        _this.user = response.data;
+      })["catch"](function () {
+        _this.$router.push({
+          name: 'PageNotFound'
+        });
+      });
+    },
+    prepareAvatar: function prepareAvatar() {
+      if (this.user == null || this.user.avatar == null || this.user.avatar == "") return "/img/noavatar.png";
+      if (this.user.avatar.indexOf("http") == 0) return this.user.avatar;
+      return "/img/avatars/".concat(this.user.avatar);
+    },
+    message: function message(title, _message, type) {
+      this.$notify({
+        group: 'main',
+        type: type,
+        title: title,
+        text: _message
+      });
+    },
+    show: function show(name) {
+      this.$modal.show(name);
+    },
+    hide: function hide(name) {
+      this.$modal.hide(name);
+    }
+  },
+  components: {
+    UsersAchievements: _pages_Achievement_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    UsersLotteries: _components_cabinet_Lottery_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    UsersInfo: _components_cabinet_Info_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Scroll: vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_0___default.a,
+    Levels: _components_modals_Levels_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }
 });
 
 /***/ }),
@@ -6251,20 +7207,21 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      var data = {
+      this.$store.dispatch('registerUser', {
         email: this.email,
         password: this.password,
-        name: this.name,
-        _token: axios.defaults.headers.common['X-CSRF-TOKEN']
-      };
-      axios.post('/registration', data).then(function (_ref) {
-        var data = _ref.data;
-        auth.login(data.token, data.user);
+        name: this.name
+      }).then(function () {
+        _this.$store.dispatch('loginUser', {
+          username: _this.email,
+          password: _this.password
+        }).then(function () {
+          _this.$router.push({
+            path: '/cabinet'
+          });
 
-        _this.$router.push('/cabinet');
-      })["catch"](function (_ref2) {
-        var response = _ref2.response;
-        alert(response.data.message);
+          Event.$emit("updateUserProfile");
+        });
       });
     }
   }
@@ -6286,10 +7243,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_CardSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/admin/CardSearch.vue */ "./resources/js/components/admin/CardSearch.vue");
 /* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-custom-scrollbar */ "./node_modules/vue-custom-scrollbar/dist/vueScrollbar.umd.min.js");
 /* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2__);
-//
-//
-//
-//
 //
 //
 //
@@ -6668,7 +7621,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "h3[data-v-0b96dade] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n}\n.cards-list[data-v-0b96dade] {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.cards-list .card[data-v-0b96dade] {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-0b96dade] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-0b96dade]:focus,\ntextarea[data-v-0b96dade]:focus,\nselect[data-v-0b96dade]:focus,\ninput[data-v-0b96dade]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-0b96dade] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-0b96dade]:hover {\n  opacity: 1;\n}\n.close[data-v-0b96dade]:before, .close[data-v-0b96dade]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-0b96dade]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-0b96dade]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-0b96dade] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-0b96dade]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-0b96dade] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-0b96dade] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-0b96dade] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-0b96dade] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-0b96dade] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-0b96dade] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-0b96dade] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-0b96dade] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-0b96dade] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-0b96dade] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-0b96dade]:hover,\n.ps .ps__rail-y[data-v-0b96dade]:hover,\n.ps .ps__rail-x[data-v-0b96dade]:focus,\n.ps .ps__rail-y[data-v-0b96dade]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-0b96dade],\n.ps .ps__rail-y.ps--clicking[data-v-0b96dade] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-0b96dade],\n.ps__rail-y:focus > .ps__thumb-y[data-v-0b96dade],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-0b96dade] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-0b96dade] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-0b96dade] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-0b96dade],\n.ncard .backplate[data-v-0b96dade] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-0b96dade],\n.card-19-empty[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-0b96dade] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-0b96dade],\n.ncard .silver[data-v-0b96dade],\n.ncard .bronze[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-0b96dade] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-0b96dade],\n#my-card-list .ncard .backplate[data-v-0b96dade],\n#my-card-list .ncard[data-v-0b96dade] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-0b96dade],\n.ncard[data-v-0b96dade],\n.ncard .backplate[data-v-0b96dade],\n.card-wrap[data-v-0b96dade] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-0b96dade],\n.scale .ncard[data-v-0b96dade],\n.scale .ncard .backplate[data-v-0b96dade] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-0b96dade],\n.scale .ncard[data-v-0b96dade],\n.scale .ncard .backplate[data-v-0b96dade] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-0b96dade],\n.scale .ncard[data-v-0b96dade],\n.scale .ncard .backplate[data-v-0b96dade] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-0b96dade],\n.scale .ncard[data-v-0b96dade],\n.scale .ncard .backplate[data-v-0b96dade] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-0b96dade],\n.scale .ncard[data-v-0b96dade],\n.scale .ncard .backplate[data-v-0b96dade] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-0b96dade],\n.scale .ncard[data-v-0b96dade],\n.scale .ncard .backplate[data-v-0b96dade] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-0b96dade] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-0b96dade] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-0b96dade] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-0b96dade] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-0b96dade] {\n  position: absolute;\n}\n.ncard .overall[data-v-0b96dade],\n.ncard .overall2[data-v-0b96dade] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-0b96dade] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-0b96dade] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-0b96dade],\n.ncard .team-right[data-v-0b96dade] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-0b96dade] {\n  left: 8%;\n}\n.ncard .team-right[data-v-0b96dade] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-0b96dade] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-0b96dade] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-0b96dade] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-0b96dade] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-0b96dade] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-0b96dade] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-0b96dade] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-0b96dade] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-0b96dade] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-0b96dade],\n.ncard .info2[data-v-0b96dade] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-0b96dade],\n.ncard .info2 div[data-v-0b96dade] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-0b96dade],\n.ncard .info2 .bullet[data-v-0b96dade] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-0b96dade] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-0b96dade] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-0b96dade] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-0b96dade] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-0b96dade] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-0b96dade] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-0b96dade] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-0b96dade] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-0b96dade] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-0b96dade] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-0b96dade] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-0b96dade] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-0b96dade] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-0b96dade] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-0b96dade] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-0b96dade] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-0b96dade] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-0b96dade] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-0b96dade] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-0b96dade] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-0b96dade] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-0b96dade],\n.ncard .alm .alm-name .lastname[data-v-0b96dade] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-0b96dade] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-0b96dade] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-0b96dade] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-0b96dade] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-0b96dade] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-0b96dade] {\n  opacity: 1;\n}\n.hc-logo[data-v-0b96dade] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-0b96dade] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-0b96dade] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-0b96dade],\n.ncard .hc .attributes .attr-value[data-v-0b96dade],\n.ncard .hc .team-right[data-v-0b96dade],\n.ncard .hc .cardtype[data-v-0b96dade] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-0b96dade],\n.ncard .cs .attributes[data-v-0b96dade],\n.ncard .pt .attributes[data-v-0b96dade] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-0b96dade] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-0b96dade],\n.ncard .cs .attributes .attr-value[data-v-0b96dade],\n.ncard .cs .team-right[data-v-0b96dade],\n.ncard .cs .name[data-v-0b96dade],\n.ncard .cs .info[data-v-0b96dade],\n.ncard .cs .cardtype[data-v-0b96dade] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-0b96dade] {\n  color: #000;\n}\n.cs-team[data-v-0b96dade] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-0b96dade] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-0b96dade] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-0b96dade],\n.ncard .pt .attributes .attr-value[data-v-0b96dade],\n.ncard .pt .team-right[data-v-0b96dade],\n.ncard .pt .name[data-v-0b96dade],\n.ncard .pt .info[data-v-0b96dade],\n.ncard .pt .cardtype[data-v-0b96dade] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-0b96dade] {\n  color: #000;\n}\n.pt-team[data-v-0b96dade] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-0b96dade] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-0b96dade],\n.ncard .evo-headshot[data-v-0b96dade] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-0b96dade] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-0b96dade],\n.evo-team[data-v-0b96dade],\n.hwn-team[data-v-0b96dade] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-0b96dade] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-0b96dade],\n.ncard.evo-wrap .attributes .attr-name[data-v-0b96dade],\n.ncard.hwn-wrap .attributes .attr-name[data-v-0b96dade] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-0b96dade],\n.ncard.gat-wrap .name[data-v-0b96dade],\n.ncard.gat-wrap .info .bullet[data-v-0b96dade] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-0b96dade] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-0b96dade] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-0b96dade],\n.ncard.evo-wrap .logo-backdrop[data-v-0b96dade] {\n  z-index: 2;\n}\n.gsc-texture[data-v-0b96dade] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-0b96dade] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-0b96dade] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-0b96dade] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-0b96dade],\n.ncard.ms-ol .attributes .attr-value[data-v-0b96dade],\n.ncard.ms-ol .team-right[data-v-0b96dade],\n.ncard.ms-ol .name[data-v-0b96dade],\n.ncard.ms-ol .cardtype[data-v-0b96dade] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-0b96dade] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-0b96dade] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-0b96dade] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-0b96dade] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-0b96dade] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-0b96dade] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-0b96dade] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-0b96dade] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-0b96dade] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-0b96dade] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-0b96dade] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-0b96dade] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-0b96dade] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-0b96dade] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-0b96dade] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-0b96dade],\n.ncard.gscsi-wrap .cardtype[data-v-0b96dade],\n.ncard.gscsi-wrap .info[data-v-0b96dade] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-0b96dade] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-0b96dade],\n.ncard.gscsi-wrap .team-right[data-v-0b96dade],\n.ncard.gscsi-wrap .name[data-v-0b96dade],\n.ncard.gscsi-wrap .overall[data-v-0b96dade] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-0b96dade],\n.ncard.gscfi-wrap .cardtype[data-v-0b96dade],\n.ncard.gscfi-wrap .info[data-v-0b96dade] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-0b96dade] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-0b96dade],\n.ncard.gscfi-wrap .team-right[data-v-0b96dade],\n.ncard.gscfi-wrap .name[data-v-0b96dade],\n.ncard.gscfi-wrap .overall[data-v-0b96dade] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-0b96dade],\n.ncard.gscse-wrap .cardtype[data-v-0b96dade],\n.ncard.gscse-wrap .info[data-v-0b96dade] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-0b96dade] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-0b96dade],\n.ncard.gscse-wrap .team-right[data-v-0b96dade],\n.ncard.gscse-wrap .name[data-v-0b96dade],\n.ncard.gscse-wrap .overall[data-v-0b96dade] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-0b96dade],\n.ncard.gscge-wrap .cardtype[data-v-0b96dade],\n.ncard.gscge-wrap .info[data-v-0b96dade] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-0b96dade] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-0b96dade],\n.ncard.gscge-wrap .team-right[data-v-0b96dade],\n.ncard.gscge-wrap .name[data-v-0b96dade],\n.ncard.gscge-wrap .overall[data-v-0b96dade] {\n  color: #facd01;\n}\n.tg-texture[data-v-0b96dade] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-0b96dade] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-0b96dade] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-0b96dade] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-0b96dade] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-0b96dade] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-0b96dade] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-0b96dade] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-0b96dade] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-0b96dade] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-0b96dade] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-0b96dade] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-0b96dade] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-0b96dade] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-0b96dade] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-0b96dade] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-0b96dade] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-0b96dade],\n.ncard.xmas-wrap .team-right[data-v-0b96dade],\n.ncard.xmas-wrap .name[data-v-0b96dade],\n.ncard .attributes .attr-name[data-v-0b96dade],\n.ncard.xmas-wrap .overall[data-v-0b96dade] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-0b96dade] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-0b96dade] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-0b96dade] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-0b96dade] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-0b96dade] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-0b96dade] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-0b96dade] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-0b96dade] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-0b96dade] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-0b96dade] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-0b96dade] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-0b96dade] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-0b96dade] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-0b96dade] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-0b96dade],\n.evo2-wrap.ncard .logo-backdrop[data-v-0b96dade] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-0b96dade] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-0b96dade] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-0b96dade],\n.evo2-wrap.ncard .overall[data-v-0b96dade],\n.evo2-wrap.ncard .attributes .attr-value[data-v-0b96dade],\n.evo2-wrap.ncard .info[data-v-0b96dade],\n.evo2-wrap.ncard .name[data-v-0b96dade] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-0b96dade] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-0b96dade] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet[data-v-0b96dade] {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side[data-v-0b96dade] {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side[data-v-0b96dade] {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile[data-v-0b96dade] {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar[data-v-0b96dade] {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img[data-v-0b96dade] {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls[data-v-0b96dade] {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-0b96dade] {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-0b96dade]:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money[data-v-0b96dade] {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p[data-v-0b96dade] {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span[data-v-0b96dade] {\n  color: yellow;\n}\n#personal-cabinet .left-side .level[data-v-0b96dade] {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line[data-v-0b96dade] {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text[data-v-0b96dade] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side[data-v-0b96dade] {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side[data-v-0b96dade] {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side[data-v-0b96dade] {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component[data-v-0b96dade] {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-0b96dade] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-0b96dade] {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab[data-v-0b96dade] {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active[data-v-0b96dade] {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a[data-v-0b96dade] {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a[data-v-0b96dade] {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area[data-v-0b96dade] {\n  padding: 20px 0px 100px 0px;\n}\n.info-block[data-v-0b96dade] {\n  width: 100%;\n}\n.info-block h3[data-v-0b96dade] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list[data-v-0b96dade] {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card[data-v-0b96dade] {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table[data-v-0b96dade] {\n  width: 100%;\n}\n.info-block table tr[data-v-0b96dade] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th[data-v-0b96dade],\n.info-block table tr td[data-v-0b96dade] {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -6687,7 +7640,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "h3[data-v-34151370] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n}\nh4[data-v-34151370] {\n  font-weight: 100;\n  text-align: left;\n  font-size: 24px;\n  line-height: 150%;\n  color: white;\n  text-transform: uppercase;\n  margin-top: 20px;\n}\ntable[data-v-34151370] {\n  width: 100%;\n}\ntable tr[data-v-34151370] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\ntable tr[data-v-34151370]:nth-last-child(1) {\n  border: 1px white solid;\n  border-bottom: 0px;\n  border-left: 0px;\n  border-right: 0px;\n}\ntable tr:nth-last-child(1) td[data-v-34151370]:nth-last-child(1) {\n  border: 1px white solid;\n}\ntable tr th[data-v-34151370],\ntable tr td[data-v-34151370] {\n  padding: 10px;\n  word-break: break-all;\n  width: 20%;\n}\ntable tr th input[data-v-34151370],\ntable tr td input[data-v-34151370] {\n  color: #ffff00;\n  border: 1px solid #dcdcdc;\n  border-radius: 5px;\n  width: 300px;\n  height: 40px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 16px;\n  background-color: #2c3e50;\n}\ntable tr th .btn[data-v-34151370],\ntable tr td .btn[data-v-34151370] {\n  width: 300px;\n}", ""]);
+exports.push([module.i, "h4[data-v-34151370] {\n  font-weight: 100;\n  text-align: left;\n  font-size: 24px;\n  line-height: 150%;\n  color: white;\n  text-transform: uppercase;\n  margin-top: 20px;\n}\ntable[data-v-34151370] {\n  width: 100%;\n}\ntable tr[data-v-34151370] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\ntable tr[data-v-34151370]:nth-last-child(1) {\n  border: 1px white solid;\n  border-bottom: 0px;\n  border-left: 0px;\n  border-right: 0px;\n}\ntable tr:nth-last-child(1) td[data-v-34151370]:nth-last-child(1) {\n  border: 1px white solid;\n}\ntable tr th[data-v-34151370],\ntable tr td[data-v-34151370] {\n  padding: 10px;\n  word-break: break-all;\n  width: 20%;\n}\ntable tr th input[data-v-34151370],\ntable tr td input[data-v-34151370] {\n  color: #ffff00;\n  border: 1px solid #dcdcdc;\n  border-radius: 5px;\n  width: 300px;\n  height: 40px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 16px;\n  background-color: #2c3e50;\n}\ntable tr th .btn[data-v-34151370],\ntable tr td .btn[data-v-34151370] {\n  width: 300px;\n}\nh3[data-v-34151370] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n}", ""]);
 
 // exports
 
@@ -6706,7 +7659,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-0d80f1f7] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-0d80f1f7]:focus,\ntextarea[data-v-0d80f1f7]:focus,\nselect[data-v-0d80f1f7]:focus,\ninput[data-v-0d80f1f7]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-0d80f1f7] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-0d80f1f7]:hover {\n  opacity: 1;\n}\n.close[data-v-0d80f1f7]:before, .close[data-v-0d80f1f7]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-0d80f1f7]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-0d80f1f7]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-0d80f1f7] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-0d80f1f7]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-0d80f1f7] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-0d80f1f7] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-0d80f1f7] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-0d80f1f7] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-0d80f1f7] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-0d80f1f7] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-0d80f1f7] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-0d80f1f7] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-0d80f1f7] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-0d80f1f7]:hover,\n.ps .ps__rail-y[data-v-0d80f1f7]:hover,\n.ps .ps__rail-x[data-v-0d80f1f7]:focus,\n.ps .ps__rail-y[data-v-0d80f1f7]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-0d80f1f7],\n.ps .ps__rail-y.ps--clicking[data-v-0d80f1f7] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-0d80f1f7],\n.ps__rail-y:focus > .ps__thumb-y[data-v-0d80f1f7],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-0d80f1f7] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-0d80f1f7] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-0d80f1f7] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-0d80f1f7],\n.ncard .backplate[data-v-0d80f1f7] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-0d80f1f7],\n.card-19-empty[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-0d80f1f7] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-0d80f1f7],\n.ncard .silver[data-v-0d80f1f7],\n.ncard .bronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-0d80f1f7] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-0d80f1f7],\n#my-card-list .ncard .backplate[data-v-0d80f1f7],\n#my-card-list .ncard[data-v-0d80f1f7] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-0d80f1f7],\n.ncard[data-v-0d80f1f7],\n.ncard .backplate[data-v-0d80f1f7],\n.card-wrap[data-v-0d80f1f7] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-0d80f1f7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-0d80f1f7] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-0d80f1f7] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-0d80f1f7] {\n  position: absolute;\n}\n.ncard .overall[data-v-0d80f1f7],\n.ncard .overall2[data-v-0d80f1f7] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-0d80f1f7] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-0d80f1f7] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-0d80f1f7],\n.ncard .team-right[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-0d80f1f7] {\n  left: 8%;\n}\n.ncard .team-right[data-v-0d80f1f7] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-0d80f1f7] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-0d80f1f7] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-0d80f1f7] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-0d80f1f7] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-0d80f1f7] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-0d80f1f7] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-0d80f1f7] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-0d80f1f7],\n.ncard .info2[data-v-0d80f1f7] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-0d80f1f7],\n.ncard .info2 div[data-v-0d80f1f7] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-0d80f1f7],\n.ncard .info2 .bullet[data-v-0d80f1f7] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-0d80f1f7] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-0d80f1f7] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-0d80f1f7] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-0d80f1f7] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-0d80f1f7] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-0d80f1f7] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-0d80f1f7] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-0d80f1f7] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-0d80f1f7] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-0d80f1f7] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-0d80f1f7] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-0d80f1f7] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-0d80f1f7] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-0d80f1f7] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-0d80f1f7] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-0d80f1f7] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-0d80f1f7],\n.ncard .alm .alm-name .lastname[data-v-0d80f1f7] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-0d80f1f7] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-0d80f1f7] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-0d80f1f7] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-0d80f1f7] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-0d80f1f7] {\n  opacity: 1;\n}\n.hc-logo[data-v-0d80f1f7] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-0d80f1f7] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-0d80f1f7],\n.ncard .hc .attributes .attr-value[data-v-0d80f1f7],\n.ncard .hc .team-right[data-v-0d80f1f7],\n.ncard .hc .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-0d80f1f7],\n.ncard .cs .attributes[data-v-0d80f1f7],\n.ncard .pt .attributes[data-v-0d80f1f7] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-0d80f1f7] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-0d80f1f7],\n.ncard .cs .attributes .attr-value[data-v-0d80f1f7],\n.ncard .cs .team-right[data-v-0d80f1f7],\n.ncard .cs .name[data-v-0d80f1f7],\n.ncard .cs .info[data-v-0d80f1f7],\n.ncard .cs .cardtype[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.cs-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-0d80f1f7] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-0d80f1f7] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-0d80f1f7],\n.ncard .pt .attributes .attr-value[data-v-0d80f1f7],\n.ncard .pt .team-right[data-v-0d80f1f7],\n.ncard .pt .name[data-v-0d80f1f7],\n.ncard .pt .info[data-v-0d80f1f7],\n.ncard .pt .cardtype[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.pt-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-0d80f1f7] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-0d80f1f7],\n.ncard .evo-headshot[data-v-0d80f1f7] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-0d80f1f7] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-0d80f1f7],\n.evo-team[data-v-0d80f1f7],\n.hwn-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-0d80f1f7] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.evo-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.hwn-wrap .attributes .attr-name[data-v-0d80f1f7] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gat-wrap .name[data-v-0d80f1f7],\n.ncard.gat-wrap .info .bullet[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-0d80f1f7] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-0d80f1f7] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-0d80f1f7],\n.ncard.evo-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.gsc-texture[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-0d80f1f7] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-0d80f1f7] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-0d80f1f7],\n.ncard.ms-ol .attributes .attr-value[data-v-0d80f1f7],\n.ncard.ms-ol .team-right[data-v-0d80f1f7],\n.ncard.ms-ol .name[data-v-0d80f1f7],\n.ncard.ms-ol .cardtype[data-v-0d80f1f7] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-0d80f1f7] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-0d80f1f7] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-0d80f1f7] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-0d80f1f7] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-0d80f1f7] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-0d80f1f7] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-0d80f1f7] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-0d80f1f7] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-0d80f1f7] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-0d80f1f7] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-0d80f1f7] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-0d80f1f7] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-0d80f1f7] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-0d80f1f7] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-0d80f1f7] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscsi-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscsi-wrap .info[data-v-0d80f1f7] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-0d80f1f7] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscsi-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscsi-wrap .name[data-v-0d80f1f7],\n.ncard.gscsi-wrap .overall[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscfi-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscfi-wrap .info[data-v-0d80f1f7] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-0d80f1f7] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscfi-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscfi-wrap .name[data-v-0d80f1f7],\n.ncard.gscfi-wrap .overall[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscse-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscse-wrap .info[data-v-0d80f1f7] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-0d80f1f7] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscse-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscse-wrap .name[data-v-0d80f1f7],\n.ncard.gscse-wrap .overall[data-v-0d80f1f7] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscge-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscge-wrap .info[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-0d80f1f7] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscge-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscge-wrap .name[data-v-0d80f1f7],\n.ncard.gscge-wrap .overall[data-v-0d80f1f7] {\n  color: #facd01;\n}\n.tg-texture[data-v-0d80f1f7] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-0d80f1f7] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-0d80f1f7] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-0d80f1f7] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-0d80f1f7] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-0d80f1f7] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-0d80f1f7] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-0d80f1f7] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-0d80f1f7] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-0d80f1f7] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-0d80f1f7] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-0d80f1f7] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-0d80f1f7] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-0d80f1f7] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-0d80f1f7] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.xmas-wrap .team-right[data-v-0d80f1f7],\n.ncard.xmas-wrap .name[data-v-0d80f1f7],\n.ncard .attributes .attr-name[data-v-0d80f1f7],\n.ncard.xmas-wrap .overall[data-v-0d80f1f7] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-0d80f1f7] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-0d80f1f7] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-0d80f1f7] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-0d80f1f7] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-0d80f1f7] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-0d80f1f7] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-0d80f1f7] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-0d80f1f7] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-0d80f1f7] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-0d80f1f7] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-0d80f1f7] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-0d80f1f7] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-0d80f1f7],\n.evo2-wrap.ncard .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-0d80f1f7] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-0d80f1f7] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-0d80f1f7],\n.evo2-wrap.ncard .overall[data-v-0d80f1f7],\n.evo2-wrap.ncard .attributes .attr-value[data-v-0d80f1f7],\n.evo2-wrap.ncard .info[data-v-0d80f1f7],\n.evo2-wrap.ncard .name[data-v-0d80f1f7] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-0d80f1f7] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-0d80f1f7] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n.card-list[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  padding-top: 10px;\n  padding-bottom: 100px;\n  box-sizing: border-box;\n}\n.card-list h4[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: center;\n  font-weight: 900;\n  font-size: 12px;\n  color: white;\n}\n.card-list .filters[data-v-0d80f1f7] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.card-list .filters .input-group[data-v-0d80f1f7] {\n  width: 400px;\n  box-sizing: border-box;\n  padding: 10px;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n  /* Stuff after this is only to make things more pretty */\n}\n.card-list .filters .input-group .input-hidden[data-v-0d80f1f7] {\n  position: absolute;\n  left: -9999px;\n}\n.card-list .filters .input-group input[type=radio]:checked + label > img[data-v-0d80f1f7] {\n  box-shadow: 0px 0px 2px 2px yellow inset, 0px 0px 2px 0px black;\n}\n.card-list .filters .input-group input[type=radio] + label > img[data-v-0d80f1f7] {\n  width: 70px;\n  height: 70px;\n  padding: 10px;\n  box-sizing: border-box;\n  transition: 500ms all;\n  background-color: #2c3e50;\n  box-shadow: 0px 0px 2px 0px black;\n  cursor: pointer;\n}\n.card-list .filters .input-group input[type=radio]:checked + label > img[data-v-0d80f1f7] {\n  transform: rotateZ(0deg) rotateX(0deg);\n}\n.card-list .category[data-v-0d80f1f7] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.card-list .category h1.category[data-v-0d80f1f7] {\n  font-size: 36px;\n  color: white;\n  font-weight: 100;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.card-list .category h1.category span[data-v-0d80f1f7] {\n  min-width: 400px;\n  padding: 10px 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  position: relative;\n}\n.card-list .category h1.category span[data-v-0d80f1f7]:after {\n  content: \"\";\n  width: 100px;\n  height: 2px;\n  background: white;\n  position: absolute;\n  top: 30px;\n  left: 0px;\n}\n.card-list .category h1.category span[data-v-0d80f1f7]:before {\n  content: \"\";\n  width: 100px;\n  height: 2px;\n  background: white;\n  position: absolute;\n  top: 30px;\n  right: 0px;\n}\n.card-list .category .radio[data-v-0d80f1f7] {\n  position: relative;\n  cursor: pointer;\n  line-height: 20px;\n  font-size: 14px;\n  margin: 15px;\n}\n.card-list .category .radio .label[data-v-0d80f1f7] {\n  position: relative;\n  display: block;\n  float: left;\n  margin-right: 10px;\n  width: 20px;\n  height: 20px;\n  border: 2px solid gray;\n  border-radius: 100%;\n  -webkit-tap-highlight-color: transparent;\n}\n.card-list .category .radio .label[data-v-0d80f1f7]:after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 10px;\n  height: 10px;\n  border-radius: 100%;\n  background: yellow;\n  transform: scale(0);\n  transition: all 0.2s ease;\n  opacity: 0.08;\n  pointer-events: none;\n}\n.card-list .category .radio:hover .label[data-v-0d80f1f7]:after {\n  transform: scale(3.6);\n}\n.card-list .category input[type=radio]:checked + .label[data-v-0d80f1f7] {\n  border-color: yellow;\n}\n.card-list .category input[type=radio]:checked + .label[data-v-0d80f1f7]:after {\n  transform: scale(1);\n  transition: all 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9);\n  opacity: 1;\n}\n.card-list .category .hidden[data-v-0d80f1f7] {\n  display: none;\n}\n.cards[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  padding: 20px;\n  flex-wrap: wrap;\n}\n.cards .card[data-v-0d80f1f7] {\n  color: white;\n  margin: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 255px;\n}\n.cards .card .card-wrapper[data-v-0d80f1f7] {\n  padding: 5px;\n  box-sizing: border-box;\n  border: 1px white solid;\n  box-shadow: 0px 0px 8px 1px white inset, 0px 0px 3px 0px black;\n  position: relative;\n}\n.cards .card .card-wrapper .card-data[data-v-0d80f1f7] {\n  z-index: 0;\n}\n.cards .card .card-wrapper .price[data-v-0d80f1f7] {\n  position: absolute;\n  right: 0;\n  bottom: 0;\n  padding: 10px 20px;\n  background: white;\n  color: #2c3e50;\n  z-index: 11;\n  font-weight: 800;\n  font-size: 14px;\n}\n.cards .card .card-wrapper .places[data-v-0d80f1f7] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  padding: 10px 20px;\n  background: white;\n  color: #2c3e50;\n  z-index: 11;\n  font-weight: 800;\n  font-size: 14px;\n}\n.cards .card .progress[data-v-0d80f1f7] {\n  width: 100%;\n  height: 35px;\n  /* padding: 0px; */\n  margin-top: 5px;\n  box-shadow: 0px 0px 3px 0px black;\n  background-color: #2c3e50;\n  position: relative;\n  overflow: hidden;\n}\n.cards .card .progress .line[data-v-0d80f1f7] {\n  height: 100%;\n  background-color: #a0cd00;\n  width: var(--line-width);\n  top: 0;\n  left: 0;\n  position: absolute;\n  z-index: 1;\n}\n.cards .card .progress .info[data-v-0d80f1f7] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  font-size: 12px;\n  font-weight: 600;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: 12;\n  position: relative;\n}\nh3[data-v-0d80f1f7] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-0d80f1f7] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-0d80f1f7]:focus,\ntextarea[data-v-0d80f1f7]:focus,\nselect[data-v-0d80f1f7]:focus,\ninput[data-v-0d80f1f7]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-0d80f1f7] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-0d80f1f7]:hover {\n  opacity: 1;\n}\n.close[data-v-0d80f1f7]:before, .close[data-v-0d80f1f7]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-0d80f1f7]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-0d80f1f7]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-0d80f1f7] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-0d80f1f7]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-0d80f1f7] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-0d80f1f7] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-0d80f1f7] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-0d80f1f7] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-0d80f1f7] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-0d80f1f7] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-0d80f1f7] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-0d80f1f7] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-0d80f1f7] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-0d80f1f7]:hover,\n.ps .ps__rail-y[data-v-0d80f1f7]:hover,\n.ps .ps__rail-x[data-v-0d80f1f7]:focus,\n.ps .ps__rail-y[data-v-0d80f1f7]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-0d80f1f7],\n.ps .ps__rail-y.ps--clicking[data-v-0d80f1f7] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-0d80f1f7],\n.ps__rail-y:focus > .ps__thumb-y[data-v-0d80f1f7],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-0d80f1f7] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-0d80f1f7] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-0d80f1f7] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-0d80f1f7],\n.ncard .backplate[data-v-0d80f1f7] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-0d80f1f7],\n.card-19-empty[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-0d80f1f7] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-0d80f1f7],\n.ncard .silver[data-v-0d80f1f7],\n.ncard .bronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-0d80f1f7] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-0d80f1f7],\n#my-card-list .ncard .backplate[data-v-0d80f1f7],\n#my-card-list .ncard[data-v-0d80f1f7] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-0d80f1f7],\n.ncard[data-v-0d80f1f7],\n.ncard .backplate[data-v-0d80f1f7],\n.card-wrap[data-v-0d80f1f7] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-0d80f1f7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-0d80f1f7] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-0d80f1f7] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-0d80f1f7] {\n  position: absolute;\n}\n.ncard .overall[data-v-0d80f1f7],\n.ncard .overall2[data-v-0d80f1f7] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-0d80f1f7] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-0d80f1f7] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-0d80f1f7],\n.ncard .team-right[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-0d80f1f7] {\n  left: 8%;\n}\n.ncard .team-right[data-v-0d80f1f7] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-0d80f1f7] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-0d80f1f7] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-0d80f1f7] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-0d80f1f7] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-0d80f1f7] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-0d80f1f7] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-0d80f1f7] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-0d80f1f7],\n.ncard .info2[data-v-0d80f1f7] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-0d80f1f7],\n.ncard .info2 div[data-v-0d80f1f7] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-0d80f1f7],\n.ncard .info2 .bullet[data-v-0d80f1f7] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-0d80f1f7] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-0d80f1f7] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-0d80f1f7] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-0d80f1f7] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-0d80f1f7] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-0d80f1f7] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-0d80f1f7] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-0d80f1f7] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-0d80f1f7] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-0d80f1f7] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-0d80f1f7] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-0d80f1f7] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-0d80f1f7] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-0d80f1f7] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-0d80f1f7] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-0d80f1f7] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-0d80f1f7],\n.ncard .alm .alm-name .lastname[data-v-0d80f1f7] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-0d80f1f7] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-0d80f1f7] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-0d80f1f7] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-0d80f1f7] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-0d80f1f7] {\n  opacity: 1;\n}\n.hc-logo[data-v-0d80f1f7] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-0d80f1f7] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-0d80f1f7],\n.ncard .hc .attributes .attr-value[data-v-0d80f1f7],\n.ncard .hc .team-right[data-v-0d80f1f7],\n.ncard .hc .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-0d80f1f7],\n.ncard .cs .attributes[data-v-0d80f1f7],\n.ncard .pt .attributes[data-v-0d80f1f7] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-0d80f1f7] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-0d80f1f7],\n.ncard .cs .attributes .attr-value[data-v-0d80f1f7],\n.ncard .cs .team-right[data-v-0d80f1f7],\n.ncard .cs .name[data-v-0d80f1f7],\n.ncard .cs .info[data-v-0d80f1f7],\n.ncard .cs .cardtype[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.cs-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-0d80f1f7] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-0d80f1f7] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-0d80f1f7],\n.ncard .pt .attributes .attr-value[data-v-0d80f1f7],\n.ncard .pt .team-right[data-v-0d80f1f7],\n.ncard .pt .name[data-v-0d80f1f7],\n.ncard .pt .info[data-v-0d80f1f7],\n.ncard .pt .cardtype[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.pt-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-0d80f1f7] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-0d80f1f7],\n.ncard .evo-headshot[data-v-0d80f1f7] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-0d80f1f7] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-0d80f1f7],\n.evo-team[data-v-0d80f1f7],\n.hwn-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-0d80f1f7] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.evo-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.hwn-wrap .attributes .attr-name[data-v-0d80f1f7] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gat-wrap .name[data-v-0d80f1f7],\n.ncard.gat-wrap .info .bullet[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-0d80f1f7] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-0d80f1f7] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-0d80f1f7],\n.ncard.evo-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.gsc-texture[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-0d80f1f7] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-0d80f1f7] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-0d80f1f7],\n.ncard.ms-ol .attributes .attr-value[data-v-0d80f1f7],\n.ncard.ms-ol .team-right[data-v-0d80f1f7],\n.ncard.ms-ol .name[data-v-0d80f1f7],\n.ncard.ms-ol .cardtype[data-v-0d80f1f7] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-0d80f1f7] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-0d80f1f7] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-0d80f1f7] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-0d80f1f7] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-0d80f1f7] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-0d80f1f7] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-0d80f1f7] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-0d80f1f7] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-0d80f1f7] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-0d80f1f7] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-0d80f1f7] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-0d80f1f7] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-0d80f1f7] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-0d80f1f7] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-0d80f1f7] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscsi-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscsi-wrap .info[data-v-0d80f1f7] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-0d80f1f7] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscsi-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscsi-wrap .name[data-v-0d80f1f7],\n.ncard.gscsi-wrap .overall[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscfi-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscfi-wrap .info[data-v-0d80f1f7] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-0d80f1f7] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscfi-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscfi-wrap .name[data-v-0d80f1f7],\n.ncard.gscfi-wrap .overall[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscse-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscse-wrap .info[data-v-0d80f1f7] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-0d80f1f7] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscse-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscse-wrap .name[data-v-0d80f1f7],\n.ncard.gscse-wrap .overall[data-v-0d80f1f7] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscge-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscge-wrap .info[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-0d80f1f7] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscge-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscge-wrap .name[data-v-0d80f1f7],\n.ncard.gscge-wrap .overall[data-v-0d80f1f7] {\n  color: #facd01;\n}\n.tg-texture[data-v-0d80f1f7] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-0d80f1f7] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-0d80f1f7] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-0d80f1f7] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-0d80f1f7] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-0d80f1f7] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-0d80f1f7] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-0d80f1f7] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-0d80f1f7] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-0d80f1f7] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-0d80f1f7] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-0d80f1f7] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-0d80f1f7] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-0d80f1f7] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-0d80f1f7] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.xmas-wrap .team-right[data-v-0d80f1f7],\n.ncard.xmas-wrap .name[data-v-0d80f1f7],\n.ncard .attributes .attr-name[data-v-0d80f1f7],\n.ncard.xmas-wrap .overall[data-v-0d80f1f7] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-0d80f1f7] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-0d80f1f7] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-0d80f1f7] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-0d80f1f7] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-0d80f1f7] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-0d80f1f7] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-0d80f1f7] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-0d80f1f7] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-0d80f1f7] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-0d80f1f7] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-0d80f1f7] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-0d80f1f7] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-0d80f1f7],\n.evo2-wrap.ncard .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-0d80f1f7] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-0d80f1f7] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-0d80f1f7],\n.evo2-wrap.ncard .overall[data-v-0d80f1f7],\n.evo2-wrap.ncard .attributes .attr-value[data-v-0d80f1f7],\n.evo2-wrap.ncard .info[data-v-0d80f1f7],\n.evo2-wrap.ncard .name[data-v-0d80f1f7] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-0d80f1f7] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-0d80f1f7] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n.card-list[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  padding-top: 10px;\n  padding-bottom: 100px;\n  box-sizing: border-box;\n}\n.card-list h4[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: center;\n  font-weight: 900;\n  font-size: 12px;\n  color: white;\n}\n.card-list .filters[data-v-0d80f1f7] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.card-list .filters .input-group[data-v-0d80f1f7] {\n  width: 400px;\n  box-sizing: border-box;\n  padding: 10px;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n  /* Stuff after this is only to make things more pretty */\n}\n.card-list .filters .input-group .input-hidden[data-v-0d80f1f7] {\n  position: absolute;\n  left: -9999px;\n}\n.card-list .filters .input-group input[type=radio]:checked + label > img[data-v-0d80f1f7] {\n  box-shadow: 0px 0px 2px 2px yellow inset, 0px 0px 2px 0px black;\n}\n.card-list .filters .input-group input[type=radio] + label > img[data-v-0d80f1f7] {\n  width: 70px;\n  height: 70px;\n  padding: 10px;\n  box-sizing: border-box;\n  transition: 500ms all;\n  background-color: #2c3e50;\n  box-shadow: 0px 0px 2px 0px black;\n  cursor: pointer;\n}\n.card-list .filters .input-group input[type=radio]:checked + label > img[data-v-0d80f1f7] {\n  transform: rotateZ(0deg) rotateX(0deg);\n}\n.card-list .category[data-v-0d80f1f7] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.card-list .category h1.category[data-v-0d80f1f7] {\n  font-size: 36px;\n  color: white;\n  font-weight: 100;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.card-list .category h1.category span[data-v-0d80f1f7] {\n  min-width: 400px;\n  padding: 10px 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  position: relative;\n}\n.card-list .category h1.category span[data-v-0d80f1f7]:after {\n  content: \"\";\n  width: 100px;\n  height: 2px;\n  background: white;\n  position: absolute;\n  top: 30px;\n  left: 0px;\n}\n.card-list .category h1.category span[data-v-0d80f1f7]:before {\n  content: \"\";\n  width: 100px;\n  height: 2px;\n  background: white;\n  position: absolute;\n  top: 30px;\n  right: 0px;\n}\n.card-list .category .radio[data-v-0d80f1f7] {\n  position: relative;\n  cursor: pointer;\n  line-height: 20px;\n  font-size: 14px;\n  margin: 15px;\n}\n.card-list .category .radio .label[data-v-0d80f1f7] {\n  position: relative;\n  display: block;\n  float: left;\n  margin-right: 10px;\n  width: 20px;\n  height: 20px;\n  border: 2px solid gray;\n  border-radius: 100%;\n  -webkit-tap-highlight-color: transparent;\n}\n.card-list .category .radio .label[data-v-0d80f1f7]:after {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 10px;\n  height: 10px;\n  border-radius: 100%;\n  background: yellow;\n  transform: scale(0);\n  transition: all 0.2s ease;\n  opacity: 0.08;\n  pointer-events: none;\n}\n.card-list .category .radio:hover .label[data-v-0d80f1f7]:after {\n  transform: scale(3.6);\n}\n.card-list .category input[type=radio]:checked + .label[data-v-0d80f1f7] {\n  border-color: yellow;\n}\n.card-list .category input[type=radio]:checked + .label[data-v-0d80f1f7]:after {\n  transform: scale(1);\n  transition: all 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9);\n  opacity: 1;\n}\n.card-list .category .hidden[data-v-0d80f1f7] {\n  display: none;\n}\n.cards[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  padding: 20px;\n  flex-wrap: wrap;\n}\n.cards .card[data-v-0d80f1f7] {\n  color: white;\n  margin: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 255px;\n}\n.cards .card .card-wrapper[data-v-0d80f1f7] {\n  padding: 5px;\n  box-sizing: border-box;\n  border: 1px white solid;\n  box-shadow: 0px 0px 8px 1px white inset, 0px 0px 3px 0px black;\n  position: relative;\n}\n.cards .card .card-wrapper .card-data[data-v-0d80f1f7] {\n  z-index: 0;\n}\n.cards .card .card-wrapper .price[data-v-0d80f1f7] {\n  position: absolute;\n  right: 0;\n  bottom: 0;\n  padding: 10px 20px;\n  background: white;\n  color: #2c3e50;\n  z-index: 11;\n  font-weight: 800;\n  font-size: 14px;\n}\n.cards .card .card-wrapper .places[data-v-0d80f1f7] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  padding: 10px 20px;\n  background: white;\n  color: #2c3e50;\n  z-index: 11;\n  font-weight: 800;\n  font-size: 14px;\n}\n.cards .card .progress[data-v-0d80f1f7] {\n  width: 100%;\n  height: 35px;\n  /* padding: 0px; */\n  margin-top: 5px;\n  box-shadow: 0px 0px 3px 0px black;\n  background-color: #2c3e50;\n  position: relative;\n  overflow: hidden;\n}\n.cards .card .progress .line[data-v-0d80f1f7] {\n  height: 100%;\n  background-color: #a0cd00;\n  width: var(--line-width);\n  top: 0;\n  left: 0;\n  position: absolute;\n  z-index: 1;\n}\n.cards .card .progress .info[data-v-0d80f1f7] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  font-size: 12px;\n  font-weight: 600;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  z-index: 12;\n  position: relative;\n}\n*[data-v-0d80f1f7] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-0d80f1f7]:focus,\ntextarea[data-v-0d80f1f7]:focus,\nselect[data-v-0d80f1f7]:focus,\ninput[data-v-0d80f1f7]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-0d80f1f7] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-0d80f1f7]:hover {\n  opacity: 1;\n}\n.close[data-v-0d80f1f7]:before, .close[data-v-0d80f1f7]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-0d80f1f7]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-0d80f1f7]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-0d80f1f7] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-0d80f1f7]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-0d80f1f7] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-0d80f1f7] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-0d80f1f7] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-0d80f1f7] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-0d80f1f7] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-0d80f1f7] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-0d80f1f7] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-0d80f1f7] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-0d80f1f7] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-0d80f1f7]:hover,\n.ps .ps__rail-y[data-v-0d80f1f7]:hover,\n.ps .ps__rail-x[data-v-0d80f1f7]:focus,\n.ps .ps__rail-y[data-v-0d80f1f7]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-0d80f1f7],\n.ps .ps__rail-y.ps--clicking[data-v-0d80f1f7] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-0d80f1f7],\n.ps__rail-y:focus > .ps__thumb-y[data-v-0d80f1f7],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-0d80f1f7] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-0d80f1f7] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-0d80f1f7] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-0d80f1f7],\n.ncard .backplate[data-v-0d80f1f7] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-0d80f1f7],\n.card-19-empty[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-0d80f1f7] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-0d80f1f7],\n.ncard .silver[data-v-0d80f1f7],\n.ncard .bronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-0d80f1f7] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-0d80f1f7],\n#my-card-list .ncard .backplate[data-v-0d80f1f7],\n#my-card-list .ncard[data-v-0d80f1f7] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-0d80f1f7],\n.ncard[data-v-0d80f1f7],\n.ncard .backplate[data-v-0d80f1f7],\n.card-wrap[data-v-0d80f1f7] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-0d80f1f7],\n.scale .ncard[data-v-0d80f1f7],\n.scale .ncard .backplate[data-v-0d80f1f7] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-0d80f1f7] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-0d80f1f7] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-0d80f1f7] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-0d80f1f7] {\n  position: absolute;\n}\n.ncard .overall[data-v-0d80f1f7],\n.ncard .overall2[data-v-0d80f1f7] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-0d80f1f7] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-0d80f1f7] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-0d80f1f7],\n.ncard .team-right[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-0d80f1f7] {\n  left: 8%;\n}\n.ncard .team-right[data-v-0d80f1f7] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-0d80f1f7] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-0d80f1f7] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-0d80f1f7] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-0d80f1f7] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-0d80f1f7] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-0d80f1f7] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-0d80f1f7] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-0d80f1f7],\n.ncard .info2[data-v-0d80f1f7] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-0d80f1f7],\n.ncard .info2 div[data-v-0d80f1f7] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-0d80f1f7],\n.ncard .info2 .bullet[data-v-0d80f1f7] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-0d80f1f7] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-0d80f1f7] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-0d80f1f7] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-0d80f1f7] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-0d80f1f7] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-0d80f1f7] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-0d80f1f7] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-0d80f1f7] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-0d80f1f7] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-0d80f1f7] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-0d80f1f7] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-0d80f1f7] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-0d80f1f7] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-0d80f1f7] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-0d80f1f7] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-0d80f1f7] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-0d80f1f7] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-0d80f1f7],\n.ncard .alm .alm-name .lastname[data-v-0d80f1f7] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-0d80f1f7] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-0d80f1f7] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-0d80f1f7] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-0d80f1f7] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-0d80f1f7] {\n  opacity: 1;\n}\n.hc-logo[data-v-0d80f1f7] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-0d80f1f7] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-0d80f1f7],\n.ncard .hc .attributes .attr-value[data-v-0d80f1f7],\n.ncard .hc .team-right[data-v-0d80f1f7],\n.ncard .hc .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-0d80f1f7],\n.ncard .cs .attributes[data-v-0d80f1f7],\n.ncard .pt .attributes[data-v-0d80f1f7] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-0d80f1f7] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-0d80f1f7],\n.ncard .cs .attributes .attr-value[data-v-0d80f1f7],\n.ncard .cs .team-right[data-v-0d80f1f7],\n.ncard .cs .name[data-v-0d80f1f7],\n.ncard .cs .info[data-v-0d80f1f7],\n.ncard .cs .cardtype[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.cs-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-0d80f1f7] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-0d80f1f7] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-0d80f1f7],\n.ncard .pt .attributes .attr-value[data-v-0d80f1f7],\n.ncard .pt .team-right[data-v-0d80f1f7],\n.ncard .pt .name[data-v-0d80f1f7],\n.ncard .pt .info[data-v-0d80f1f7],\n.ncard .pt .cardtype[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-0d80f1f7] {\n  color: #000;\n}\n.pt-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-0d80f1f7] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-0d80f1f7],\n.ncard .evo-headshot[data-v-0d80f1f7] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-0d80f1f7] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-0d80f1f7],\n.evo-team[data-v-0d80f1f7],\n.hwn-team[data-v-0d80f1f7] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-0d80f1f7] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.evo-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.hwn-wrap .attributes .attr-name[data-v-0d80f1f7] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gat-wrap .name[data-v-0d80f1f7],\n.ncard.gat-wrap .info .bullet[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-0d80f1f7] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-0d80f1f7] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-0d80f1f7],\n.ncard.evo-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.gsc-texture[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-0d80f1f7] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-0d80f1f7] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-0d80f1f7] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-0d80f1f7],\n.ncard.ms-ol .attributes .attr-value[data-v-0d80f1f7],\n.ncard.ms-ol .team-right[data-v-0d80f1f7],\n.ncard.ms-ol .name[data-v-0d80f1f7],\n.ncard.ms-ol .cardtype[data-v-0d80f1f7] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-0d80f1f7] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-0d80f1f7] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-0d80f1f7] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-0d80f1f7] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-0d80f1f7] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-0d80f1f7] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-0d80f1f7] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-0d80f1f7] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-0d80f1f7] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-0d80f1f7] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-0d80f1f7] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-0d80f1f7] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-0d80f1f7] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-0d80f1f7] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-0d80f1f7] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscsi-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscsi-wrap .info[data-v-0d80f1f7] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-0d80f1f7] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscsi-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscsi-wrap .name[data-v-0d80f1f7],\n.ncard.gscsi-wrap .overall[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscfi-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscfi-wrap .info[data-v-0d80f1f7] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-0d80f1f7] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscfi-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscfi-wrap .name[data-v-0d80f1f7],\n.ncard.gscfi-wrap .overall[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscse-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscse-wrap .info[data-v-0d80f1f7] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-0d80f1f7] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscse-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscse-wrap .name[data-v-0d80f1f7],\n.ncard.gscse-wrap .overall[data-v-0d80f1f7] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-0d80f1f7],\n.ncard.gscge-wrap .cardtype[data-v-0d80f1f7],\n.ncard.gscge-wrap .info[data-v-0d80f1f7] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-0d80f1f7] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.gscge-wrap .team-right[data-v-0d80f1f7],\n.ncard.gscge-wrap .name[data-v-0d80f1f7],\n.ncard.gscge-wrap .overall[data-v-0d80f1f7] {\n  color: #facd01;\n}\n.tg-texture[data-v-0d80f1f7] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-0d80f1f7] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-0d80f1f7] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-0d80f1f7] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-0d80f1f7] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-0d80f1f7] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-0d80f1f7] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-0d80f1f7] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-0d80f1f7] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-0d80f1f7] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-0d80f1f7] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-0d80f1f7] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-0d80f1f7] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-0d80f1f7] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-0d80f1f7] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-0d80f1f7],\n.ncard.xmas-wrap .team-right[data-v-0d80f1f7],\n.ncard.xmas-wrap .name[data-v-0d80f1f7],\n.ncard .attributes .attr-name[data-v-0d80f1f7],\n.ncard.xmas-wrap .overall[data-v-0d80f1f7] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-0d80f1f7] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-0d80f1f7] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-0d80f1f7] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-0d80f1f7] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-0d80f1f7] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-0d80f1f7] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-0d80f1f7] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-0d80f1f7] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-0d80f1f7] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-0d80f1f7] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-0d80f1f7] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-0d80f1f7] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-0d80f1f7] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-0d80f1f7],\n.evo2-wrap.ncard .logo-backdrop[data-v-0d80f1f7] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-0d80f1f7] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-0d80f1f7] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-0d80f1f7],\n.evo2-wrap.ncard .overall[data-v-0d80f1f7],\n.evo2-wrap.ncard .attributes .attr-value[data-v-0d80f1f7],\n.evo2-wrap.ncard .info[data-v-0d80f1f7],\n.evo2-wrap.ncard .name[data-v-0d80f1f7] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-0d80f1f7] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-0d80f1f7] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side[data-v-0d80f1f7] {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side[data-v-0d80f1f7] {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile[data-v-0d80f1f7] {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar[data-v-0d80f1f7] {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img[data-v-0d80f1f7] {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls[data-v-0d80f1f7] {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-0d80f1f7] {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-0d80f1f7]:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money[data-v-0d80f1f7] {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p[data-v-0d80f1f7] {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span[data-v-0d80f1f7] {\n  color: yellow;\n}\n#personal-cabinet .left-side .level[data-v-0d80f1f7] {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line[data-v-0d80f1f7] {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text[data-v-0d80f1f7] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side[data-v-0d80f1f7] {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side[data-v-0d80f1f7] {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side[data-v-0d80f1f7] {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component[data-v-0d80f1f7] {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-0d80f1f7] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-0d80f1f7] {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab[data-v-0d80f1f7] {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active[data-v-0d80f1f7] {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a[data-v-0d80f1f7] {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a[data-v-0d80f1f7] {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area[data-v-0d80f1f7] {\n  padding: 20px 0px 100px 0px;\n}\n.info-block[data-v-0d80f1f7] {\n  width: 100%;\n}\n.info-block h3[data-v-0d80f1f7] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list[data-v-0d80f1f7] {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card[data-v-0d80f1f7] {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table[data-v-0d80f1f7] {\n  width: 100%;\n}\n.info-block table tr[data-v-0d80f1f7] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th[data-v-0d80f1f7],\n.info-block table tr td[data-v-0d80f1f7] {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -6725,7 +7678,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "table[data-v-622fb339] {\n  width: 100%;\n}\ntable tr[data-v-622fb339] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\ntable tr th[data-v-622fb339],\ntable tr td[data-v-622fb339] {\n  padding: 10px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-622fb339] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-622fb339]:focus,\ntextarea[data-v-622fb339]:focus,\nselect[data-v-622fb339]:focus,\ninput[data-v-622fb339]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-622fb339] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-622fb339]:hover {\n  opacity: 1;\n}\n.close[data-v-622fb339]:before, .close[data-v-622fb339]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-622fb339]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-622fb339]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-622fb339] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-622fb339]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-622fb339] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-622fb339] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-622fb339] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-622fb339] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-622fb339] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-622fb339] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-622fb339] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-622fb339] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-622fb339] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-622fb339] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-622fb339]:hover,\n.ps .ps__rail-y[data-v-622fb339]:hover,\n.ps .ps__rail-x[data-v-622fb339]:focus,\n.ps .ps__rail-y[data-v-622fb339]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-622fb339],\n.ps .ps__rail-y.ps--clicking[data-v-622fb339] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-622fb339],\n.ps__rail-y:focus > .ps__thumb-y[data-v-622fb339],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-622fb339] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-622fb339] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-622fb339] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-622fb339],\n.ncard .backplate[data-v-622fb339] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-622fb339],\n.card-19-empty[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-622fb339] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-622fb339],\n.ncard .silver[data-v-622fb339],\n.ncard .bronze[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-622fb339] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-622fb339],\n#my-card-list .ncard .backplate[data-v-622fb339],\n#my-card-list .ncard[data-v-622fb339] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-622fb339],\n.ncard[data-v-622fb339],\n.ncard .backplate[data-v-622fb339],\n.card-wrap[data-v-622fb339] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-622fb339],\n.scale .ncard[data-v-622fb339],\n.scale .ncard .backplate[data-v-622fb339] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-622fb339],\n.scale .ncard[data-v-622fb339],\n.scale .ncard .backplate[data-v-622fb339] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-622fb339],\n.scale .ncard[data-v-622fb339],\n.scale .ncard .backplate[data-v-622fb339] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-622fb339],\n.scale .ncard[data-v-622fb339],\n.scale .ncard .backplate[data-v-622fb339] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-622fb339],\n.scale .ncard[data-v-622fb339],\n.scale .ncard .backplate[data-v-622fb339] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-622fb339],\n.scale .ncard[data-v-622fb339],\n.scale .ncard .backplate[data-v-622fb339] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-622fb339] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-622fb339] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-622fb339] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-622fb339] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-622fb339] {\n  position: absolute;\n}\n.ncard .overall[data-v-622fb339],\n.ncard .overall2[data-v-622fb339] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-622fb339] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-622fb339] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-622fb339],\n.ncard .team-right[data-v-622fb339] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-622fb339] {\n  left: 8%;\n}\n.ncard .team-right[data-v-622fb339] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-622fb339] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-622fb339] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-622fb339] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-622fb339] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-622fb339] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-622fb339] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-622fb339] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-622fb339] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-622fb339] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-622fb339],\n.ncard .info2[data-v-622fb339] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-622fb339],\n.ncard .info2 div[data-v-622fb339] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-622fb339],\n.ncard .info2 .bullet[data-v-622fb339] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-622fb339] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-622fb339] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-622fb339] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-622fb339] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-622fb339] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-622fb339] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-622fb339] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-622fb339] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-622fb339] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-622fb339] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-622fb339] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-622fb339] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-622fb339] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-622fb339] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-622fb339] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-622fb339] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-622fb339] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-622fb339] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-622fb339] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-622fb339] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-622fb339] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-622fb339],\n.ncard .alm .alm-name .lastname[data-v-622fb339] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-622fb339] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-622fb339] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-622fb339] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-622fb339] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-622fb339] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-622fb339] {\n  opacity: 1;\n}\n.hc-logo[data-v-622fb339] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-622fb339] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-622fb339] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-622fb339],\n.ncard .hc .attributes .attr-value[data-v-622fb339],\n.ncard .hc .team-right[data-v-622fb339],\n.ncard .hc .cardtype[data-v-622fb339] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-622fb339],\n.ncard .cs .attributes[data-v-622fb339],\n.ncard .pt .attributes[data-v-622fb339] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-622fb339] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-622fb339],\n.ncard .cs .attributes .attr-value[data-v-622fb339],\n.ncard .cs .team-right[data-v-622fb339],\n.ncard .cs .name[data-v-622fb339],\n.ncard .cs .info[data-v-622fb339],\n.ncard .cs .cardtype[data-v-622fb339] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-622fb339] {\n  color: #000;\n}\n.cs-team[data-v-622fb339] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-622fb339] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-622fb339] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-622fb339],\n.ncard .pt .attributes .attr-value[data-v-622fb339],\n.ncard .pt .team-right[data-v-622fb339],\n.ncard .pt .name[data-v-622fb339],\n.ncard .pt .info[data-v-622fb339],\n.ncard .pt .cardtype[data-v-622fb339] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-622fb339] {\n  color: #000;\n}\n.pt-team[data-v-622fb339] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-622fb339] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-622fb339],\n.ncard .evo-headshot[data-v-622fb339] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-622fb339] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-622fb339],\n.evo-team[data-v-622fb339],\n.hwn-team[data-v-622fb339] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-622fb339] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-622fb339],\n.ncard.evo-wrap .attributes .attr-name[data-v-622fb339],\n.ncard.hwn-wrap .attributes .attr-name[data-v-622fb339] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-622fb339],\n.ncard.gat-wrap .name[data-v-622fb339],\n.ncard.gat-wrap .info .bullet[data-v-622fb339] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-622fb339] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-622fb339] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-622fb339],\n.ncard.evo-wrap .logo-backdrop[data-v-622fb339] {\n  z-index: 2;\n}\n.gsc-texture[data-v-622fb339] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-622fb339] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-622fb339] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-622fb339] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-622fb339],\n.ncard.ms-ol .attributes .attr-value[data-v-622fb339],\n.ncard.ms-ol .team-right[data-v-622fb339],\n.ncard.ms-ol .name[data-v-622fb339],\n.ncard.ms-ol .cardtype[data-v-622fb339] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-622fb339] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-622fb339] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-622fb339] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-622fb339] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-622fb339] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-622fb339] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-622fb339] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-622fb339] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-622fb339] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-622fb339] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-622fb339] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-622fb339] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-622fb339] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-622fb339] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-622fb339] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-622fb339],\n.ncard.gscsi-wrap .cardtype[data-v-622fb339],\n.ncard.gscsi-wrap .info[data-v-622fb339] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-622fb339] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-622fb339],\n.ncard.gscsi-wrap .team-right[data-v-622fb339],\n.ncard.gscsi-wrap .name[data-v-622fb339],\n.ncard.gscsi-wrap .overall[data-v-622fb339] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-622fb339],\n.ncard.gscfi-wrap .cardtype[data-v-622fb339],\n.ncard.gscfi-wrap .info[data-v-622fb339] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-622fb339] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-622fb339],\n.ncard.gscfi-wrap .team-right[data-v-622fb339],\n.ncard.gscfi-wrap .name[data-v-622fb339],\n.ncard.gscfi-wrap .overall[data-v-622fb339] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-622fb339],\n.ncard.gscse-wrap .cardtype[data-v-622fb339],\n.ncard.gscse-wrap .info[data-v-622fb339] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-622fb339] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-622fb339],\n.ncard.gscse-wrap .team-right[data-v-622fb339],\n.ncard.gscse-wrap .name[data-v-622fb339],\n.ncard.gscse-wrap .overall[data-v-622fb339] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-622fb339],\n.ncard.gscge-wrap .cardtype[data-v-622fb339],\n.ncard.gscge-wrap .info[data-v-622fb339] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-622fb339] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-622fb339],\n.ncard.gscge-wrap .team-right[data-v-622fb339],\n.ncard.gscge-wrap .name[data-v-622fb339],\n.ncard.gscge-wrap .overall[data-v-622fb339] {\n  color: #facd01;\n}\n.tg-texture[data-v-622fb339] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-622fb339] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-622fb339] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-622fb339] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-622fb339] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-622fb339] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-622fb339] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-622fb339] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-622fb339] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-622fb339] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-622fb339] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-622fb339] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-622fb339] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-622fb339] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-622fb339] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-622fb339] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-622fb339] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-622fb339],\n.ncard.xmas-wrap .team-right[data-v-622fb339],\n.ncard.xmas-wrap .name[data-v-622fb339],\n.ncard .attributes .attr-name[data-v-622fb339],\n.ncard.xmas-wrap .overall[data-v-622fb339] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-622fb339] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-622fb339] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-622fb339] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-622fb339] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-622fb339] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-622fb339] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-622fb339] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-622fb339] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-622fb339] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-622fb339] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-622fb339] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-622fb339] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-622fb339] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-622fb339] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-622fb339],\n.evo2-wrap.ncard .logo-backdrop[data-v-622fb339] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-622fb339] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-622fb339] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-622fb339],\n.evo2-wrap.ncard .overall[data-v-622fb339],\n.evo2-wrap.ncard .attributes .attr-value[data-v-622fb339],\n.evo2-wrap.ncard .info[data-v-622fb339],\n.evo2-wrap.ncard .name[data-v-622fb339] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-622fb339] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-622fb339] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet[data-v-622fb339] {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side[data-v-622fb339] {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side[data-v-622fb339] {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile[data-v-622fb339] {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar[data-v-622fb339] {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img[data-v-622fb339] {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls[data-v-622fb339] {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-622fb339] {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-622fb339]:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money[data-v-622fb339] {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p[data-v-622fb339] {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span[data-v-622fb339] {\n  color: yellow;\n}\n#personal-cabinet .left-side .level[data-v-622fb339] {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line[data-v-622fb339] {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text[data-v-622fb339] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side[data-v-622fb339] {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side[data-v-622fb339] {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side[data-v-622fb339] {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component[data-v-622fb339] {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-622fb339] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-622fb339] {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab[data-v-622fb339] {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active[data-v-622fb339] {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a[data-v-622fb339] {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a[data-v-622fb339] {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area[data-v-622fb339] {\n  padding: 20px 0px 100px 0px;\n}\n.info-block[data-v-622fb339] {\n  width: 100%;\n}\n.info-block h3[data-v-622fb339] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list[data-v-622fb339] {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card[data-v-622fb339] {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table[data-v-622fb339] {\n  width: 100%;\n}\n.info-block table tr[data-v-622fb339] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th[data-v-622fb339],\n.info-block table tr td[data-v-622fb339] {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -6744,7 +7697,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "table[data-v-e7951c66] {\n  width: 100%;\n}\ntable tr[data-v-e7951c66] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\ntable tr th[data-v-e7951c66],\ntable tr td[data-v-e7951c66] {\n  padding: 10px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-e7951c66] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-e7951c66]:focus,\ntextarea[data-v-e7951c66]:focus,\nselect[data-v-e7951c66]:focus,\ninput[data-v-e7951c66]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-e7951c66] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-e7951c66]:hover {\n  opacity: 1;\n}\n.close[data-v-e7951c66]:before, .close[data-v-e7951c66]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-e7951c66]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-e7951c66]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-e7951c66] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-e7951c66]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-e7951c66] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-e7951c66] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-e7951c66] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-e7951c66] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-e7951c66] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-e7951c66] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-e7951c66] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-e7951c66] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-e7951c66] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-e7951c66] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-e7951c66]:hover,\n.ps .ps__rail-y[data-v-e7951c66]:hover,\n.ps .ps__rail-x[data-v-e7951c66]:focus,\n.ps .ps__rail-y[data-v-e7951c66]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-e7951c66],\n.ps .ps__rail-y.ps--clicking[data-v-e7951c66] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-e7951c66],\n.ps__rail-y:focus > .ps__thumb-y[data-v-e7951c66],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-e7951c66] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-e7951c66] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-e7951c66] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-e7951c66],\n.ncard .backplate[data-v-e7951c66] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-e7951c66],\n.card-19-empty[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-e7951c66] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-e7951c66],\n.ncard .silver[data-v-e7951c66],\n.ncard .bronze[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-e7951c66] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-e7951c66],\n#my-card-list .ncard .backplate[data-v-e7951c66],\n#my-card-list .ncard[data-v-e7951c66] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-e7951c66],\n.ncard[data-v-e7951c66],\n.ncard .backplate[data-v-e7951c66],\n.card-wrap[data-v-e7951c66] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-e7951c66],\n.scale .ncard[data-v-e7951c66],\n.scale .ncard .backplate[data-v-e7951c66] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-e7951c66],\n.scale .ncard[data-v-e7951c66],\n.scale .ncard .backplate[data-v-e7951c66] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-e7951c66],\n.scale .ncard[data-v-e7951c66],\n.scale .ncard .backplate[data-v-e7951c66] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-e7951c66],\n.scale .ncard[data-v-e7951c66],\n.scale .ncard .backplate[data-v-e7951c66] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-e7951c66],\n.scale .ncard[data-v-e7951c66],\n.scale .ncard .backplate[data-v-e7951c66] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-e7951c66],\n.scale .ncard[data-v-e7951c66],\n.scale .ncard .backplate[data-v-e7951c66] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-e7951c66] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-e7951c66] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-e7951c66] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-e7951c66] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-e7951c66] {\n  position: absolute;\n}\n.ncard .overall[data-v-e7951c66],\n.ncard .overall2[data-v-e7951c66] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-e7951c66] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-e7951c66] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-e7951c66],\n.ncard .team-right[data-v-e7951c66] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-e7951c66] {\n  left: 8%;\n}\n.ncard .team-right[data-v-e7951c66] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-e7951c66] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-e7951c66] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-e7951c66] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-e7951c66] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-e7951c66] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-e7951c66] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-e7951c66] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-e7951c66] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-e7951c66] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-e7951c66],\n.ncard .info2[data-v-e7951c66] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-e7951c66],\n.ncard .info2 div[data-v-e7951c66] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-e7951c66],\n.ncard .info2 .bullet[data-v-e7951c66] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-e7951c66] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-e7951c66] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-e7951c66] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-e7951c66] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-e7951c66] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-e7951c66] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-e7951c66] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-e7951c66] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-e7951c66] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-e7951c66] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-e7951c66] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-e7951c66] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-e7951c66] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-e7951c66] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-e7951c66] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-e7951c66] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-e7951c66] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-e7951c66] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-e7951c66] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-e7951c66] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-e7951c66] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-e7951c66],\n.ncard .alm .alm-name .lastname[data-v-e7951c66] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-e7951c66] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-e7951c66] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-e7951c66] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-e7951c66] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-e7951c66] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-e7951c66] {\n  opacity: 1;\n}\n.hc-logo[data-v-e7951c66] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-e7951c66] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-e7951c66] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-e7951c66],\n.ncard .hc .attributes .attr-value[data-v-e7951c66],\n.ncard .hc .team-right[data-v-e7951c66],\n.ncard .hc .cardtype[data-v-e7951c66] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-e7951c66],\n.ncard .cs .attributes[data-v-e7951c66],\n.ncard .pt .attributes[data-v-e7951c66] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-e7951c66] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-e7951c66],\n.ncard .cs .attributes .attr-value[data-v-e7951c66],\n.ncard .cs .team-right[data-v-e7951c66],\n.ncard .cs .name[data-v-e7951c66],\n.ncard .cs .info[data-v-e7951c66],\n.ncard .cs .cardtype[data-v-e7951c66] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-e7951c66] {\n  color: #000;\n}\n.cs-team[data-v-e7951c66] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-e7951c66] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-e7951c66] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-e7951c66],\n.ncard .pt .attributes .attr-value[data-v-e7951c66],\n.ncard .pt .team-right[data-v-e7951c66],\n.ncard .pt .name[data-v-e7951c66],\n.ncard .pt .info[data-v-e7951c66],\n.ncard .pt .cardtype[data-v-e7951c66] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-e7951c66] {\n  color: #000;\n}\n.pt-team[data-v-e7951c66] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-e7951c66] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-e7951c66],\n.ncard .evo-headshot[data-v-e7951c66] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-e7951c66] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-e7951c66],\n.evo-team[data-v-e7951c66],\n.hwn-team[data-v-e7951c66] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-e7951c66] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-e7951c66],\n.ncard.evo-wrap .attributes .attr-name[data-v-e7951c66],\n.ncard.hwn-wrap .attributes .attr-name[data-v-e7951c66] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-e7951c66],\n.ncard.gat-wrap .name[data-v-e7951c66],\n.ncard.gat-wrap .info .bullet[data-v-e7951c66] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-e7951c66] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-e7951c66] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-e7951c66],\n.ncard.evo-wrap .logo-backdrop[data-v-e7951c66] {\n  z-index: 2;\n}\n.gsc-texture[data-v-e7951c66] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-e7951c66] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-e7951c66] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-e7951c66] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-e7951c66],\n.ncard.ms-ol .attributes .attr-value[data-v-e7951c66],\n.ncard.ms-ol .team-right[data-v-e7951c66],\n.ncard.ms-ol .name[data-v-e7951c66],\n.ncard.ms-ol .cardtype[data-v-e7951c66] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-e7951c66] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-e7951c66] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-e7951c66] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-e7951c66] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-e7951c66] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-e7951c66] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-e7951c66] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-e7951c66] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-e7951c66] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-e7951c66] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-e7951c66] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-e7951c66] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-e7951c66] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-e7951c66] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-e7951c66] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-e7951c66],\n.ncard.gscsi-wrap .cardtype[data-v-e7951c66],\n.ncard.gscsi-wrap .info[data-v-e7951c66] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-e7951c66] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-e7951c66],\n.ncard.gscsi-wrap .team-right[data-v-e7951c66],\n.ncard.gscsi-wrap .name[data-v-e7951c66],\n.ncard.gscsi-wrap .overall[data-v-e7951c66] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-e7951c66],\n.ncard.gscfi-wrap .cardtype[data-v-e7951c66],\n.ncard.gscfi-wrap .info[data-v-e7951c66] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-e7951c66] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-e7951c66],\n.ncard.gscfi-wrap .team-right[data-v-e7951c66],\n.ncard.gscfi-wrap .name[data-v-e7951c66],\n.ncard.gscfi-wrap .overall[data-v-e7951c66] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-e7951c66],\n.ncard.gscse-wrap .cardtype[data-v-e7951c66],\n.ncard.gscse-wrap .info[data-v-e7951c66] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-e7951c66] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-e7951c66],\n.ncard.gscse-wrap .team-right[data-v-e7951c66],\n.ncard.gscse-wrap .name[data-v-e7951c66],\n.ncard.gscse-wrap .overall[data-v-e7951c66] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-e7951c66],\n.ncard.gscge-wrap .cardtype[data-v-e7951c66],\n.ncard.gscge-wrap .info[data-v-e7951c66] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-e7951c66] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-e7951c66],\n.ncard.gscge-wrap .team-right[data-v-e7951c66],\n.ncard.gscge-wrap .name[data-v-e7951c66],\n.ncard.gscge-wrap .overall[data-v-e7951c66] {\n  color: #facd01;\n}\n.tg-texture[data-v-e7951c66] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-e7951c66] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-e7951c66] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-e7951c66] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-e7951c66] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-e7951c66] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-e7951c66] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-e7951c66] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-e7951c66] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-e7951c66] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-e7951c66] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-e7951c66] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-e7951c66] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-e7951c66] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-e7951c66] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-e7951c66] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-e7951c66] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-e7951c66],\n.ncard.xmas-wrap .team-right[data-v-e7951c66],\n.ncard.xmas-wrap .name[data-v-e7951c66],\n.ncard .attributes .attr-name[data-v-e7951c66],\n.ncard.xmas-wrap .overall[data-v-e7951c66] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-e7951c66] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-e7951c66] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-e7951c66] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-e7951c66] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-e7951c66] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-e7951c66] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-e7951c66] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-e7951c66] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-e7951c66] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-e7951c66] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-e7951c66] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-e7951c66] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-e7951c66] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-e7951c66] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-e7951c66],\n.evo2-wrap.ncard .logo-backdrop[data-v-e7951c66] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-e7951c66] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-e7951c66] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-e7951c66],\n.evo2-wrap.ncard .overall[data-v-e7951c66],\n.evo2-wrap.ncard .attributes .attr-value[data-v-e7951c66],\n.evo2-wrap.ncard .info[data-v-e7951c66],\n.evo2-wrap.ncard .name[data-v-e7951c66] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-e7951c66] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-e7951c66] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet[data-v-e7951c66] {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side[data-v-e7951c66] {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side[data-v-e7951c66] {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile[data-v-e7951c66] {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar[data-v-e7951c66] {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img[data-v-e7951c66] {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls[data-v-e7951c66] {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-e7951c66] {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-e7951c66]:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money[data-v-e7951c66] {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p[data-v-e7951c66] {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span[data-v-e7951c66] {\n  color: yellow;\n}\n#personal-cabinet .left-side .level[data-v-e7951c66] {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line[data-v-e7951c66] {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text[data-v-e7951c66] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side[data-v-e7951c66] {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side[data-v-e7951c66] {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side[data-v-e7951c66] {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component[data-v-e7951c66] {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-e7951c66] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-e7951c66] {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab[data-v-e7951c66] {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active[data-v-e7951c66] {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a[data-v-e7951c66] {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a[data-v-e7951c66] {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area[data-v-e7951c66] {\n  padding: 20px 0px 100px 0px;\n}\n.info-block[data-v-e7951c66] {\n  width: 100%;\n}\n.info-block h3[data-v-e7951c66] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list[data-v-e7951c66] {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card[data-v-e7951c66] {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table[data-v-e7951c66] {\n  width: 100%;\n}\n.info-block table tr[data-v-e7951c66] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th[data-v-e7951c66],\n.info-block table tr td[data-v-e7951c66] {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -6763,7 +7716,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "h3[data-v-7e8d1295] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n}\ntable[data-v-7e8d1295] {\n  width: 100%;\n}\ntable tr[data-v-7e8d1295] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\ntable tr th[data-v-7e8d1295],\ntable tr td[data-v-7e8d1295] {\n  padding: 10px;\n  word-break: break-all;\n  width: 20%;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-7e8d1295] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-7e8d1295]:focus,\ntextarea[data-v-7e8d1295]:focus,\nselect[data-v-7e8d1295]:focus,\ninput[data-v-7e8d1295]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-7e8d1295] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-7e8d1295]:hover {\n  opacity: 1;\n}\n.close[data-v-7e8d1295]:before, .close[data-v-7e8d1295]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-7e8d1295]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-7e8d1295]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-7e8d1295] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-7e8d1295]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-7e8d1295] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-7e8d1295] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-7e8d1295] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-7e8d1295] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-7e8d1295] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-7e8d1295] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-7e8d1295] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-7e8d1295] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-7e8d1295] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-7e8d1295] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-7e8d1295]:hover,\n.ps .ps__rail-y[data-v-7e8d1295]:hover,\n.ps .ps__rail-x[data-v-7e8d1295]:focus,\n.ps .ps__rail-y[data-v-7e8d1295]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-7e8d1295],\n.ps .ps__rail-y.ps--clicking[data-v-7e8d1295] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-7e8d1295],\n.ps__rail-y:focus > .ps__thumb-y[data-v-7e8d1295],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-7e8d1295] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-7e8d1295] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-7e8d1295] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-7e8d1295],\n.ncard .backplate[data-v-7e8d1295] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-7e8d1295],\n.card-19-empty[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-7e8d1295] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-7e8d1295],\n.ncard .silver[data-v-7e8d1295],\n.ncard .bronze[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-7e8d1295] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-7e8d1295],\n#my-card-list .ncard .backplate[data-v-7e8d1295],\n#my-card-list .ncard[data-v-7e8d1295] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-7e8d1295],\n.ncard[data-v-7e8d1295],\n.ncard .backplate[data-v-7e8d1295],\n.card-wrap[data-v-7e8d1295] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-7e8d1295],\n.scale .ncard[data-v-7e8d1295],\n.scale .ncard .backplate[data-v-7e8d1295] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-7e8d1295],\n.scale .ncard[data-v-7e8d1295],\n.scale .ncard .backplate[data-v-7e8d1295] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-7e8d1295],\n.scale .ncard[data-v-7e8d1295],\n.scale .ncard .backplate[data-v-7e8d1295] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-7e8d1295],\n.scale .ncard[data-v-7e8d1295],\n.scale .ncard .backplate[data-v-7e8d1295] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-7e8d1295],\n.scale .ncard[data-v-7e8d1295],\n.scale .ncard .backplate[data-v-7e8d1295] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-7e8d1295],\n.scale .ncard[data-v-7e8d1295],\n.scale .ncard .backplate[data-v-7e8d1295] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-7e8d1295] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-7e8d1295] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-7e8d1295] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-7e8d1295] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-7e8d1295] {\n  position: absolute;\n}\n.ncard .overall[data-v-7e8d1295],\n.ncard .overall2[data-v-7e8d1295] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-7e8d1295] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-7e8d1295] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-7e8d1295],\n.ncard .team-right[data-v-7e8d1295] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-7e8d1295] {\n  left: 8%;\n}\n.ncard .team-right[data-v-7e8d1295] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-7e8d1295] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-7e8d1295] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-7e8d1295] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-7e8d1295] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-7e8d1295] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-7e8d1295] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-7e8d1295] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-7e8d1295] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-7e8d1295] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-7e8d1295],\n.ncard .info2[data-v-7e8d1295] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-7e8d1295],\n.ncard .info2 div[data-v-7e8d1295] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-7e8d1295],\n.ncard .info2 .bullet[data-v-7e8d1295] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-7e8d1295] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-7e8d1295] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-7e8d1295] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-7e8d1295] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-7e8d1295] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-7e8d1295] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-7e8d1295] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-7e8d1295] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-7e8d1295] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-7e8d1295] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-7e8d1295] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-7e8d1295] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-7e8d1295] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-7e8d1295] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-7e8d1295] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-7e8d1295] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-7e8d1295] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-7e8d1295] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-7e8d1295] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-7e8d1295] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-7e8d1295] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-7e8d1295],\n.ncard .alm .alm-name .lastname[data-v-7e8d1295] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-7e8d1295] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-7e8d1295] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-7e8d1295] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-7e8d1295] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-7e8d1295] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-7e8d1295] {\n  opacity: 1;\n}\n.hc-logo[data-v-7e8d1295] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-7e8d1295] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-7e8d1295] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-7e8d1295],\n.ncard .hc .attributes .attr-value[data-v-7e8d1295],\n.ncard .hc .team-right[data-v-7e8d1295],\n.ncard .hc .cardtype[data-v-7e8d1295] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-7e8d1295],\n.ncard .cs .attributes[data-v-7e8d1295],\n.ncard .pt .attributes[data-v-7e8d1295] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-7e8d1295] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-7e8d1295],\n.ncard .cs .attributes .attr-value[data-v-7e8d1295],\n.ncard .cs .team-right[data-v-7e8d1295],\n.ncard .cs .name[data-v-7e8d1295],\n.ncard .cs .info[data-v-7e8d1295],\n.ncard .cs .cardtype[data-v-7e8d1295] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-7e8d1295] {\n  color: #000;\n}\n.cs-team[data-v-7e8d1295] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-7e8d1295] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-7e8d1295] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-7e8d1295],\n.ncard .pt .attributes .attr-value[data-v-7e8d1295],\n.ncard .pt .team-right[data-v-7e8d1295],\n.ncard .pt .name[data-v-7e8d1295],\n.ncard .pt .info[data-v-7e8d1295],\n.ncard .pt .cardtype[data-v-7e8d1295] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-7e8d1295] {\n  color: #000;\n}\n.pt-team[data-v-7e8d1295] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-7e8d1295] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-7e8d1295],\n.ncard .evo-headshot[data-v-7e8d1295] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-7e8d1295] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-7e8d1295],\n.evo-team[data-v-7e8d1295],\n.hwn-team[data-v-7e8d1295] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-7e8d1295] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-7e8d1295],\n.ncard.evo-wrap .attributes .attr-name[data-v-7e8d1295],\n.ncard.hwn-wrap .attributes .attr-name[data-v-7e8d1295] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-7e8d1295],\n.ncard.gat-wrap .name[data-v-7e8d1295],\n.ncard.gat-wrap .info .bullet[data-v-7e8d1295] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-7e8d1295] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-7e8d1295] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-7e8d1295],\n.ncard.evo-wrap .logo-backdrop[data-v-7e8d1295] {\n  z-index: 2;\n}\n.gsc-texture[data-v-7e8d1295] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-7e8d1295] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-7e8d1295] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-7e8d1295] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-7e8d1295],\n.ncard.ms-ol .attributes .attr-value[data-v-7e8d1295],\n.ncard.ms-ol .team-right[data-v-7e8d1295],\n.ncard.ms-ol .name[data-v-7e8d1295],\n.ncard.ms-ol .cardtype[data-v-7e8d1295] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-7e8d1295] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-7e8d1295] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-7e8d1295] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-7e8d1295] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-7e8d1295] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-7e8d1295] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-7e8d1295] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-7e8d1295] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-7e8d1295] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-7e8d1295] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-7e8d1295] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-7e8d1295] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-7e8d1295] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-7e8d1295] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-7e8d1295] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-7e8d1295],\n.ncard.gscsi-wrap .cardtype[data-v-7e8d1295],\n.ncard.gscsi-wrap .info[data-v-7e8d1295] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-7e8d1295] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-7e8d1295],\n.ncard.gscsi-wrap .team-right[data-v-7e8d1295],\n.ncard.gscsi-wrap .name[data-v-7e8d1295],\n.ncard.gscsi-wrap .overall[data-v-7e8d1295] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-7e8d1295],\n.ncard.gscfi-wrap .cardtype[data-v-7e8d1295],\n.ncard.gscfi-wrap .info[data-v-7e8d1295] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-7e8d1295] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-7e8d1295],\n.ncard.gscfi-wrap .team-right[data-v-7e8d1295],\n.ncard.gscfi-wrap .name[data-v-7e8d1295],\n.ncard.gscfi-wrap .overall[data-v-7e8d1295] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-7e8d1295],\n.ncard.gscse-wrap .cardtype[data-v-7e8d1295],\n.ncard.gscse-wrap .info[data-v-7e8d1295] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-7e8d1295] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-7e8d1295],\n.ncard.gscse-wrap .team-right[data-v-7e8d1295],\n.ncard.gscse-wrap .name[data-v-7e8d1295],\n.ncard.gscse-wrap .overall[data-v-7e8d1295] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-7e8d1295],\n.ncard.gscge-wrap .cardtype[data-v-7e8d1295],\n.ncard.gscge-wrap .info[data-v-7e8d1295] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-7e8d1295] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-7e8d1295],\n.ncard.gscge-wrap .team-right[data-v-7e8d1295],\n.ncard.gscge-wrap .name[data-v-7e8d1295],\n.ncard.gscge-wrap .overall[data-v-7e8d1295] {\n  color: #facd01;\n}\n.tg-texture[data-v-7e8d1295] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-7e8d1295] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-7e8d1295] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-7e8d1295] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-7e8d1295] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-7e8d1295] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-7e8d1295] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-7e8d1295] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-7e8d1295] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-7e8d1295] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-7e8d1295] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-7e8d1295] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-7e8d1295] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-7e8d1295] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-7e8d1295] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-7e8d1295] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-7e8d1295] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-7e8d1295],\n.ncard.xmas-wrap .team-right[data-v-7e8d1295],\n.ncard.xmas-wrap .name[data-v-7e8d1295],\n.ncard .attributes .attr-name[data-v-7e8d1295],\n.ncard.xmas-wrap .overall[data-v-7e8d1295] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-7e8d1295] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-7e8d1295] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-7e8d1295] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-7e8d1295] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-7e8d1295] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-7e8d1295] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-7e8d1295] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-7e8d1295] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-7e8d1295] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-7e8d1295] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-7e8d1295] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-7e8d1295] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-7e8d1295] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-7e8d1295] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-7e8d1295],\n.evo2-wrap.ncard .logo-backdrop[data-v-7e8d1295] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-7e8d1295] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-7e8d1295] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-7e8d1295],\n.evo2-wrap.ncard .overall[data-v-7e8d1295],\n.evo2-wrap.ncard .attributes .attr-value[data-v-7e8d1295],\n.evo2-wrap.ncard .info[data-v-7e8d1295],\n.evo2-wrap.ncard .name[data-v-7e8d1295] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-7e8d1295] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-7e8d1295] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet[data-v-7e8d1295] {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side[data-v-7e8d1295] {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side[data-v-7e8d1295] {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile[data-v-7e8d1295] {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar[data-v-7e8d1295] {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img[data-v-7e8d1295] {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls[data-v-7e8d1295] {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-7e8d1295] {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-7e8d1295]:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money[data-v-7e8d1295] {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p[data-v-7e8d1295] {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span[data-v-7e8d1295] {\n  color: yellow;\n}\n#personal-cabinet .left-side .level[data-v-7e8d1295] {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line[data-v-7e8d1295] {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text[data-v-7e8d1295] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side[data-v-7e8d1295] {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side[data-v-7e8d1295] {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side[data-v-7e8d1295] {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component[data-v-7e8d1295] {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-7e8d1295] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-7e8d1295] {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab[data-v-7e8d1295] {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active[data-v-7e8d1295] {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a[data-v-7e8d1295] {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a[data-v-7e8d1295] {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area[data-v-7e8d1295] {\n  padding: 20px 0px 100px 0px;\n}\n.info-block[data-v-7e8d1295] {\n  width: 100%;\n}\n.info-block h3[data-v-7e8d1295] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list[data-v-7e8d1295] {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card[data-v-7e8d1295] {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table[data-v-7e8d1295] {\n  width: 100%;\n}\n.info-block table tr[data-v-7e8d1295] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th[data-v-7e8d1295],\n.info-block table tr td[data-v-7e8d1295] {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -6782,7 +7735,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "table[data-v-a3387ad2] {\n  width: 100%;\n}\ntable tr[data-v-a3387ad2] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\ntable tr th[data-v-a3387ad2],\ntable tr td[data-v-a3387ad2] {\n  padding: 10px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-a3387ad2] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-a3387ad2]:focus,\ntextarea[data-v-a3387ad2]:focus,\nselect[data-v-a3387ad2]:focus,\ninput[data-v-a3387ad2]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-a3387ad2] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-a3387ad2]:hover {\n  opacity: 1;\n}\n.close[data-v-a3387ad2]:before, .close[data-v-a3387ad2]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-a3387ad2]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-a3387ad2]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-a3387ad2] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-a3387ad2]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-a3387ad2] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-a3387ad2] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-a3387ad2] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-a3387ad2] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-a3387ad2] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-a3387ad2] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-a3387ad2] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-a3387ad2] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-a3387ad2] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-a3387ad2] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-a3387ad2]:hover,\n.ps .ps__rail-y[data-v-a3387ad2]:hover,\n.ps .ps__rail-x[data-v-a3387ad2]:focus,\n.ps .ps__rail-y[data-v-a3387ad2]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-a3387ad2],\n.ps .ps__rail-y.ps--clicking[data-v-a3387ad2] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-a3387ad2],\n.ps__rail-y:focus > .ps__thumb-y[data-v-a3387ad2],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-a3387ad2] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-a3387ad2] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-a3387ad2] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-a3387ad2],\n.ncard .backplate[data-v-a3387ad2] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-a3387ad2],\n.card-19-empty[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-a3387ad2] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-a3387ad2],\n.ncard .silver[data-v-a3387ad2],\n.ncard .bronze[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-a3387ad2] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-a3387ad2],\n#my-card-list .ncard .backplate[data-v-a3387ad2],\n#my-card-list .ncard[data-v-a3387ad2] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-a3387ad2],\n.ncard[data-v-a3387ad2],\n.ncard .backplate[data-v-a3387ad2],\n.card-wrap[data-v-a3387ad2] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-a3387ad2],\n.scale .ncard[data-v-a3387ad2],\n.scale .ncard .backplate[data-v-a3387ad2] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-a3387ad2],\n.scale .ncard[data-v-a3387ad2],\n.scale .ncard .backplate[data-v-a3387ad2] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-a3387ad2],\n.scale .ncard[data-v-a3387ad2],\n.scale .ncard .backplate[data-v-a3387ad2] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-a3387ad2],\n.scale .ncard[data-v-a3387ad2],\n.scale .ncard .backplate[data-v-a3387ad2] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-a3387ad2],\n.scale .ncard[data-v-a3387ad2],\n.scale .ncard .backplate[data-v-a3387ad2] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-a3387ad2],\n.scale .ncard[data-v-a3387ad2],\n.scale .ncard .backplate[data-v-a3387ad2] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-a3387ad2] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-a3387ad2] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-a3387ad2] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-a3387ad2] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-a3387ad2] {\n  position: absolute;\n}\n.ncard .overall[data-v-a3387ad2],\n.ncard .overall2[data-v-a3387ad2] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-a3387ad2] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-a3387ad2] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-a3387ad2],\n.ncard .team-right[data-v-a3387ad2] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-a3387ad2] {\n  left: 8%;\n}\n.ncard .team-right[data-v-a3387ad2] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-a3387ad2] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-a3387ad2] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-a3387ad2] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-a3387ad2] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-a3387ad2] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-a3387ad2] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-a3387ad2] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-a3387ad2] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-a3387ad2] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-a3387ad2],\n.ncard .info2[data-v-a3387ad2] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-a3387ad2],\n.ncard .info2 div[data-v-a3387ad2] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-a3387ad2],\n.ncard .info2 .bullet[data-v-a3387ad2] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-a3387ad2] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-a3387ad2] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-a3387ad2] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-a3387ad2] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-a3387ad2] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-a3387ad2] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-a3387ad2] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-a3387ad2] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-a3387ad2] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-a3387ad2] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-a3387ad2] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-a3387ad2] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-a3387ad2] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-a3387ad2] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-a3387ad2] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-a3387ad2] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-a3387ad2] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-a3387ad2] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-a3387ad2] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-a3387ad2] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-a3387ad2] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-a3387ad2],\n.ncard .alm .alm-name .lastname[data-v-a3387ad2] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-a3387ad2] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-a3387ad2] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-a3387ad2] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-a3387ad2] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-a3387ad2] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-a3387ad2] {\n  opacity: 1;\n}\n.hc-logo[data-v-a3387ad2] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-a3387ad2] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-a3387ad2] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-a3387ad2],\n.ncard .hc .attributes .attr-value[data-v-a3387ad2],\n.ncard .hc .team-right[data-v-a3387ad2],\n.ncard .hc .cardtype[data-v-a3387ad2] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-a3387ad2],\n.ncard .cs .attributes[data-v-a3387ad2],\n.ncard .pt .attributes[data-v-a3387ad2] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-a3387ad2] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-a3387ad2],\n.ncard .cs .attributes .attr-value[data-v-a3387ad2],\n.ncard .cs .team-right[data-v-a3387ad2],\n.ncard .cs .name[data-v-a3387ad2],\n.ncard .cs .info[data-v-a3387ad2],\n.ncard .cs .cardtype[data-v-a3387ad2] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-a3387ad2] {\n  color: #000;\n}\n.cs-team[data-v-a3387ad2] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-a3387ad2] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-a3387ad2] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-a3387ad2],\n.ncard .pt .attributes .attr-value[data-v-a3387ad2],\n.ncard .pt .team-right[data-v-a3387ad2],\n.ncard .pt .name[data-v-a3387ad2],\n.ncard .pt .info[data-v-a3387ad2],\n.ncard .pt .cardtype[data-v-a3387ad2] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-a3387ad2] {\n  color: #000;\n}\n.pt-team[data-v-a3387ad2] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-a3387ad2] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-a3387ad2],\n.ncard .evo-headshot[data-v-a3387ad2] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-a3387ad2] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-a3387ad2],\n.evo-team[data-v-a3387ad2],\n.hwn-team[data-v-a3387ad2] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-a3387ad2] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-a3387ad2],\n.ncard.evo-wrap .attributes .attr-name[data-v-a3387ad2],\n.ncard.hwn-wrap .attributes .attr-name[data-v-a3387ad2] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-a3387ad2],\n.ncard.gat-wrap .name[data-v-a3387ad2],\n.ncard.gat-wrap .info .bullet[data-v-a3387ad2] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-a3387ad2] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-a3387ad2] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-a3387ad2],\n.ncard.evo-wrap .logo-backdrop[data-v-a3387ad2] {\n  z-index: 2;\n}\n.gsc-texture[data-v-a3387ad2] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-a3387ad2] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-a3387ad2] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-a3387ad2] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-a3387ad2],\n.ncard.ms-ol .attributes .attr-value[data-v-a3387ad2],\n.ncard.ms-ol .team-right[data-v-a3387ad2],\n.ncard.ms-ol .name[data-v-a3387ad2],\n.ncard.ms-ol .cardtype[data-v-a3387ad2] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-a3387ad2] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-a3387ad2] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-a3387ad2] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-a3387ad2] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-a3387ad2] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-a3387ad2] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-a3387ad2] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-a3387ad2] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-a3387ad2] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-a3387ad2] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-a3387ad2] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-a3387ad2] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-a3387ad2] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-a3387ad2] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-a3387ad2] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-a3387ad2],\n.ncard.gscsi-wrap .cardtype[data-v-a3387ad2],\n.ncard.gscsi-wrap .info[data-v-a3387ad2] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-a3387ad2] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-a3387ad2],\n.ncard.gscsi-wrap .team-right[data-v-a3387ad2],\n.ncard.gscsi-wrap .name[data-v-a3387ad2],\n.ncard.gscsi-wrap .overall[data-v-a3387ad2] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-a3387ad2],\n.ncard.gscfi-wrap .cardtype[data-v-a3387ad2],\n.ncard.gscfi-wrap .info[data-v-a3387ad2] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-a3387ad2] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-a3387ad2],\n.ncard.gscfi-wrap .team-right[data-v-a3387ad2],\n.ncard.gscfi-wrap .name[data-v-a3387ad2],\n.ncard.gscfi-wrap .overall[data-v-a3387ad2] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-a3387ad2],\n.ncard.gscse-wrap .cardtype[data-v-a3387ad2],\n.ncard.gscse-wrap .info[data-v-a3387ad2] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-a3387ad2] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-a3387ad2],\n.ncard.gscse-wrap .team-right[data-v-a3387ad2],\n.ncard.gscse-wrap .name[data-v-a3387ad2],\n.ncard.gscse-wrap .overall[data-v-a3387ad2] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-a3387ad2],\n.ncard.gscge-wrap .cardtype[data-v-a3387ad2],\n.ncard.gscge-wrap .info[data-v-a3387ad2] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-a3387ad2] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-a3387ad2],\n.ncard.gscge-wrap .team-right[data-v-a3387ad2],\n.ncard.gscge-wrap .name[data-v-a3387ad2],\n.ncard.gscge-wrap .overall[data-v-a3387ad2] {\n  color: #facd01;\n}\n.tg-texture[data-v-a3387ad2] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-a3387ad2] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-a3387ad2] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-a3387ad2] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-a3387ad2] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-a3387ad2] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-a3387ad2] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-a3387ad2] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-a3387ad2] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-a3387ad2] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-a3387ad2] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-a3387ad2] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-a3387ad2] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-a3387ad2] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-a3387ad2] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-a3387ad2] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-a3387ad2] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-a3387ad2],\n.ncard.xmas-wrap .team-right[data-v-a3387ad2],\n.ncard.xmas-wrap .name[data-v-a3387ad2],\n.ncard .attributes .attr-name[data-v-a3387ad2],\n.ncard.xmas-wrap .overall[data-v-a3387ad2] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-a3387ad2] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-a3387ad2] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-a3387ad2] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-a3387ad2] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-a3387ad2] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-a3387ad2] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-a3387ad2] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-a3387ad2] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-a3387ad2] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-a3387ad2] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-a3387ad2] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-a3387ad2] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-a3387ad2] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-a3387ad2] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-a3387ad2],\n.evo2-wrap.ncard .logo-backdrop[data-v-a3387ad2] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-a3387ad2] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-a3387ad2] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-a3387ad2],\n.evo2-wrap.ncard .overall[data-v-a3387ad2],\n.evo2-wrap.ncard .attributes .attr-value[data-v-a3387ad2],\n.evo2-wrap.ncard .info[data-v-a3387ad2],\n.evo2-wrap.ncard .name[data-v-a3387ad2] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-a3387ad2] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-a3387ad2] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet[data-v-a3387ad2] {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side[data-v-a3387ad2] {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side[data-v-a3387ad2] {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile[data-v-a3387ad2] {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar[data-v-a3387ad2] {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img[data-v-a3387ad2] {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls[data-v-a3387ad2] {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-a3387ad2] {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-a3387ad2]:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money[data-v-a3387ad2] {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p[data-v-a3387ad2] {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span[data-v-a3387ad2] {\n  color: yellow;\n}\n#personal-cabinet .left-side .level[data-v-a3387ad2] {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line[data-v-a3387ad2] {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text[data-v-a3387ad2] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side[data-v-a3387ad2] {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side[data-v-a3387ad2] {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side[data-v-a3387ad2] {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component[data-v-a3387ad2] {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-a3387ad2] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-a3387ad2] {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab[data-v-a3387ad2] {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active[data-v-a3387ad2] {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a[data-v-a3387ad2] {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a[data-v-a3387ad2] {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area[data-v-a3387ad2] {\n  padding: 20px 0px 100px 0px;\n}\n.info-block[data-v-a3387ad2] {\n  width: 100%;\n}\n.info-block h3[data-v-a3387ad2] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list[data-v-a3387ad2] {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card[data-v-a3387ad2] {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table[data-v-a3387ad2] {\n  width: 100%;\n}\n.info-block table tr[data-v-a3387ad2] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th[data-v-a3387ad2],\n.info-block table tr td[data-v-a3387ad2] {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -6827,6 +7780,25 @@ exports.push([module.i, ".modal-images[data-v-8b0550c8] {\n  width: 1000px;\n}\n
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".modal-levels[data-v-6d048fc6] {\n  width: 1000px;\n}\n@media (max-width: 1000px) {\n.modal-levels[data-v-6d048fc6] {\n    width: 100%;\n}\n}\nh3[data-v-6d048fc6] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n}\ntable[data-v-6d048fc6] {\n  width: 100%;\n  margin-top: 15px;\n}\ntable tr[data-v-6d048fc6] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\ntable tr th[data-v-6d048fc6],\ntable tr td[data-v-6d048fc6] {\n  padding: 10px;\n}\ntable tr th .current[data-v-6d048fc6],\ntable tr td .current[data-v-6d048fc6] {\n  font-weight: 900;\n  color: yellow;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Achievement.vue?vue&type=style&index=0&id=02ace8b6&lang=scss&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Achievement.vue?vue&type=style&index=0&id=02ace8b6&lang=scss&scoped=true& ***!
@@ -6839,7 +7811,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-02ace8b6] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-02ace8b6]:focus,\ntextarea[data-v-02ace8b6]:focus,\nselect[data-v-02ace8b6]:focus,\ninput[data-v-02ace8b6]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-02ace8b6] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-02ace8b6]:hover {\n  opacity: 1;\n}\n.close[data-v-02ace8b6]:before, .close[data-v-02ace8b6]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-02ace8b6]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-02ace8b6]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-02ace8b6] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-02ace8b6]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-02ace8b6] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-02ace8b6] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-02ace8b6] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-02ace8b6] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-02ace8b6] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-02ace8b6] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-02ace8b6] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-02ace8b6] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-02ace8b6] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-02ace8b6] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-02ace8b6]:hover,\n.ps .ps__rail-y[data-v-02ace8b6]:hover,\n.ps .ps__rail-x[data-v-02ace8b6]:focus,\n.ps .ps__rail-y[data-v-02ace8b6]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-02ace8b6],\n.ps .ps__rail-y.ps--clicking[data-v-02ace8b6] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y:focus > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-02ace8b6] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\n*[data-v-02ace8b6] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-02ace8b6]:focus,\ntextarea[data-v-02ace8b6]:focus,\nselect[data-v-02ace8b6]:focus,\ninput[data-v-02ace8b6]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-02ace8b6] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-02ace8b6]:hover {\n  opacity: 1;\n}\n.close[data-v-02ace8b6]:before, .close[data-v-02ace8b6]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-02ace8b6]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-02ace8b6]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-02ace8b6] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-02ace8b6]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-02ace8b6] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-02ace8b6] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-02ace8b6] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-02ace8b6] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-02ace8b6] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-02ace8b6] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-02ace8b6] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-02ace8b6] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-02ace8b6] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-02ace8b6] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-02ace8b6]:hover,\n.ps .ps__rail-y[data-v-02ace8b6]:hover,\n.ps .ps__rail-x[data-v-02ace8b6]:focus,\n.ps .ps__rail-y[data-v-02ace8b6]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-02ace8b6],\n.ps .ps__rail-y.ps--clicking[data-v-02ace8b6] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y:focus > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-02ace8b6] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tooltip[data-v-02ace8b6] {\n  display: block !important;\n  z-index: 10000;\n}\n.tooltip .tooltip-inner[data-v-02ace8b6] {\n  background: #2c3e50;\n  box-shadow: 0px 0px 2px 0px black;\n  color: yellow;\n  font-family: \"Open Sans\";\n  font-weight: 900;\n  padding: 10px 20px;\n  font-size: 14px;\n  text-align: center;\n  line-height: 150%;\n}\n.tooltip .tooltip-arrow[data-v-02ace8b6] {\n  width: 0;\n  height: 0;\n  border-style: solid;\n  position: absolute;\n  margin: 5px;\n  border-color: #2c3e50;\n  z-index: 1;\n}\n.tooltip[x-placement^=top][data-v-02ace8b6] {\n  margin-bottom: 5px;\n}\n.tooltip[x-placement^=top] .tooltip-arrow[data-v-02ace8b6] {\n  border-width: 5px 5px 0 5px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  bottom: -5px;\n  left: calc(50% - 5px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=bottom][data-v-02ace8b6] {\n  margin-top: 10px;\n}\n.tooltip[x-placement^=bottom] .tooltip-arrow[data-v-02ace8b6] {\n  border-width: 0 10px 10px 10px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-top-color: transparent !important;\n  top: -10px;\n  left: calc(50% - 10px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=right][data-v-02ace8b6] {\n  margin-left: 5px;\n}\n.tooltip[x-placement^=right] .tooltip-arrow[data-v-02ace8b6] {\n  border-width: 5px 5px 5px 0;\n  border-left-color: transparent !important;\n  border-top-color: transparent !important;\n  border-bottom-color: transparent !important;\n  left: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip[x-placement^=left][data-v-02ace8b6] {\n  margin-right: 5px;\n}\n.tooltip[x-placement^=left] .tooltip-arrow[data-v-02ace8b6] {\n  border-width: 5px 0 5px 5px;\n  border-top-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  right: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip.popover[data-v-02ace8b6] {\n  color: white;\n}\n.tooltip.popover .popover-inner[data-v-02ace8b6] {\n  background: white;\n  color: black;\n  padding: 24px;\n  border-radius: 5px;\n  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);\n}\n.tooltip.popover .popover-arrow[data-v-02ace8b6] {\n  border-color: white;\n}\n.tooltip[aria-hidden=true][data-v-02ace8b6] {\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity 0.15s, visibility 0.15s;\n}\n.tooltip[aria-hidden=false][data-v-02ace8b6] {\n  visibility: visible;\n  opacity: 1;\n  transition: opacity 0.15s;\n}\n.filters[data-v-02ace8b6] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.filters li[data-v-02ace8b6] {\n  position: relative;\n  padding: 5px;\n  box-sizing: border-box;\n  cursor: pointer;\n  color: white;\n  font-weight: 100;\n}\n.filters li[data-v-02ace8b6]:after {\n  content: attr(count);\n  position: absolute;\n  margin-top: -5px;\n  font-weight: 900;\n  font-size: 10px;\n  color: yellow;\n}\n.filters li[data-v-02ace8b6]:hover {\n  color: yellow;\n}\n.filters li.active[data-v-02ace8b6] {\n  font-weight: 400;\n}\n.filters li img[data-v-02ace8b6] {\n  width: 100%;\n  height: 100%;\n}\n.achievements[data-v-02ace8b6] {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  padding-bottom: 50px;\n}\n.achievements li[data-v-02ace8b6] {\n  width: 210px;\n  height: 300px;\n  margin-bottom: 30px;\n  padding: 10px;\n  position: relative;\n  box-sizing: border-box;\n  background: transparent var(--background-achievements);\n  background-size: cover;\n  background-position: center center;\n  background-repeat: no-repeat;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  padding-top: 31px;\n  cursor: pointer;\n}\n.achievements li .image[data-v-02ace8b6] {\n  width: 100%;\n  height: 135px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.achievements li .image img[data-v-02ace8b6] {\n  height: 100%;\n  box-sizing: border-box;\n  border-radius: 50%;\n}\n.achievements li .image img[data-v-02ace8b6]:hover {\n  box-shadow: 0px 0px 10px 8px #ff6600;\n}\n.achievements li .text[data-v-02ace8b6] {\n  width: 100%;\n  padding: 35px 40px 10px 40px;\n  box-sizing: border-box;\n}\n.achievements li .text h4[data-v-02ace8b6] {\n  text-transform: uppercase;\n  font-weight: 900;\n  color: white;\n  font-size: 16px;\n  word-break: break-all;\n}\nh3[data-v-02ace8b6] {\n  font-weight: 100;\n  color: white;\n  text-transform: uppercase;\n  font-size: 36px;\n  line-height: 150%;\n}\n.selected-achievement[data-v-02ace8b6] {\n  width: 300px;\n  padding: 10px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.selected-achievement .achievement[data-v-02ace8b6] {\n  width: 293px;\n  height: 413px;\n  margin-bottom: 30px;\n  padding: 10px;\n  position: relative;\n  box-sizing: border-box;\n  background: transparent var(--background-achievements);\n  background-size: cover;\n  background-position: center center;\n  background-repeat: no-repeat;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n.selected-achievement .achievement .image[data-v-02ace8b6] {\n  width: 100%;\n  height: 190px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.selected-achievement .achievement .image img[data-v-02ace8b6] {\n  height: 100%;\n}\n.selected-achievement h1[data-v-02ace8b6] {\n  color: white;\n  font-size: 18px;\n  font-weight: 900;\n  line-height: 150%;\n  margin-top: 10px;\n}\n.selected-achievement p[data-v-02ace8b6] {\n  margin-top: 10px;\n  font-weight: 100;\n  font-style: italic;\n  line-height: 150%;\n  color: white;\n  width: 100%;\n  text-align: justify;\n  word-break: break-all;\n  padding: 10px 0px 10px 0px;\n}\n.selected-achievement p strong[data-v-02ace8b6] {\n  font-weight: 900;\n  font-size: 12px;\n}\n.selected-achievement hr[data-v-02ace8b6] {\n  width: 100%;\n  height: 1px;\n  background-color: white;\n}\n.selected-achievement .progress[data-v-02ace8b6] {\n  position: relative;\n  background-color: #2c3e5070;\n  width: 100%;\n  height: 50px;\n  box-shadow: 0px 0px 5px 0px white inset;\n}\n.selected-achievement .progress .line[data-v-02ace8b6] {\n  height: 100%;\n  background: #ff6600;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: var(--line-width);\n  transition: 1s;\n}\n.selected-achievement .progress .info[data-v-02ace8b6] {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 2;\n  color: white;\n  font-weight: 900;\n  font-size: 12px;\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.selected-achievement .progress .info h3[data-v-02ace8b6] {\n  color: yellow;\n  font-size: 12px;\n  font-weight: 900;\n  line-height: 150%;\n  width: 100%;\n  text-align: center;\n}\n.selected-achievement .progress .info span[data-v-02ace8b6] {\n  width: 100%;\n  margin-top: -15px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n*[data-v-02ace8b6] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-02ace8b6]:focus,\ntextarea[data-v-02ace8b6]:focus,\nselect[data-v-02ace8b6]:focus,\ninput[data-v-02ace8b6]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-02ace8b6] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-02ace8b6]:hover {\n  opacity: 1;\n}\n.close[data-v-02ace8b6]:before, .close[data-v-02ace8b6]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-02ace8b6]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-02ace8b6]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-02ace8b6] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-02ace8b6]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-02ace8b6] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-02ace8b6] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-02ace8b6] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-02ace8b6] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-02ace8b6] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-02ace8b6] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-02ace8b6] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-02ace8b6] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-02ace8b6] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-02ace8b6] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-02ace8b6]:hover,\n.ps .ps__rail-y[data-v-02ace8b6]:hover,\n.ps .ps__rail-x[data-v-02ace8b6]:focus,\n.ps .ps__rail-y[data-v-02ace8b6]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-02ace8b6],\n.ps .ps__rail-y.ps--clicking[data-v-02ace8b6] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y:focus > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-02ace8b6] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\n*[data-v-02ace8b6] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-02ace8b6]:focus,\ntextarea[data-v-02ace8b6]:focus,\nselect[data-v-02ace8b6]:focus,\ninput[data-v-02ace8b6]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-02ace8b6] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-02ace8b6]:hover {\n  opacity: 1;\n}\n.close[data-v-02ace8b6]:before, .close[data-v-02ace8b6]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-02ace8b6]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-02ace8b6]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-02ace8b6] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-02ace8b6]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-02ace8b6] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-02ace8b6] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-02ace8b6] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-02ace8b6] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-02ace8b6] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-02ace8b6] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-02ace8b6] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-02ace8b6] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-02ace8b6] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-02ace8b6] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-02ace8b6]:hover,\n.ps .ps__rail-y[data-v-02ace8b6]:hover,\n.ps .ps__rail-x[data-v-02ace8b6]:focus,\n.ps .ps__rail-y[data-v-02ace8b6]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-02ace8b6],\n.ps .ps__rail-y.ps--clicking[data-v-02ace8b6] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y:focus > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-02ace8b6] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tooltip[data-v-02ace8b6] {\n  display: block !important;\n  z-index: 10000;\n}\n.tooltip .tooltip-inner[data-v-02ace8b6] {\n  background: #2c3e50;\n  box-shadow: 0px 0px 2px 0px black;\n  color: yellow;\n  font-family: \"Open Sans\";\n  font-weight: 900;\n  padding: 10px 20px;\n  font-size: 14px;\n  text-align: center;\n  line-height: 150%;\n}\n.tooltip .tooltip-arrow[data-v-02ace8b6] {\n  width: 0;\n  height: 0;\n  border-style: solid;\n  position: absolute;\n  margin: 5px;\n  border-color: #2c3e50;\n  z-index: 1;\n}\n.tooltip[x-placement^=top][data-v-02ace8b6] {\n  margin-bottom: 5px;\n}\n.tooltip[x-placement^=top] .tooltip-arrow[data-v-02ace8b6] {\n  border-width: 5px 5px 0 5px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  bottom: -5px;\n  left: calc(50% - 5px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=bottom][data-v-02ace8b6] {\n  margin-top: 10px;\n}\n.tooltip[x-placement^=bottom] .tooltip-arrow[data-v-02ace8b6] {\n  border-width: 0 10px 10px 10px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-top-color: transparent !important;\n  top: -10px;\n  left: calc(50% - 10px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=right][data-v-02ace8b6] {\n  margin-left: 5px;\n}\n.tooltip[x-placement^=right] .tooltip-arrow[data-v-02ace8b6] {\n  border-width: 5px 5px 5px 0;\n  border-left-color: transparent !important;\n  border-top-color: transparent !important;\n  border-bottom-color: transparent !important;\n  left: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip[x-placement^=left][data-v-02ace8b6] {\n  margin-right: 5px;\n}\n.tooltip[x-placement^=left] .tooltip-arrow[data-v-02ace8b6] {\n  border-width: 5px 0 5px 5px;\n  border-top-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  right: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip.popover[data-v-02ace8b6] {\n  color: white;\n}\n.tooltip.popover .popover-inner[data-v-02ace8b6] {\n  background: white;\n  color: black;\n  padding: 24px;\n  border-radius: 5px;\n  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);\n}\n.tooltip.popover .popover-arrow[data-v-02ace8b6] {\n  border-color: white;\n}\n.tooltip[aria-hidden=true][data-v-02ace8b6] {\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity 0.15s, visibility 0.15s;\n}\n.tooltip[aria-hidden=false][data-v-02ace8b6] {\n  visibility: visible;\n  opacity: 1;\n  transition: opacity 0.15s;\n}\n.filters[data-v-02ace8b6] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.filters li[data-v-02ace8b6] {\n  position: relative;\n  padding: 5px;\n  box-sizing: border-box;\n  cursor: pointer;\n  color: white;\n  font-weight: 100;\n}\n.filters li[data-v-02ace8b6]:after {\n  content: attr(count);\n  position: absolute;\n  top: 0;\n  right: 0;\n  font-weight: 900;\n  font-size: 10px;\n  color: yellow;\n}\n.filters li[data-v-02ace8b6]:hover {\n  color: yellow;\n}\n.filters li.active[data-v-02ace8b6] {\n  font-weight: 400;\n}\n.filters li img[data-v-02ace8b6] {\n  width: 100%;\n  height: 100%;\n}\n.achievements[data-v-02ace8b6] {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  padding-bottom: 50px;\n}\n.achievements li[data-v-02ace8b6] {\n  width: 210px;\n  height: 300px;\n  margin-bottom: 30px;\n  padding: 10px;\n  position: relative;\n  box-sizing: border-box;\n  background: transparent var(--background-achievements);\n  background-size: cover;\n  background-position: center center;\n  background-repeat: no-repeat;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  padding-top: 31px;\n  cursor: pointer;\n}\n.achievements li .image[data-v-02ace8b6] {\n  width: 100%;\n  height: 135px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.achievements li .image img[data-v-02ace8b6] {\n  height: 100%;\n  box-sizing: border-box;\n  border-radius: 50%;\n}\n.achievements li .image img[data-v-02ace8b6]:hover {\n  box-shadow: 0px 0px 10px 8px #ff6600;\n}\n.achievements li .text[data-v-02ace8b6] {\n  width: 100%;\n  padding: 35px 40px 10px 40px;\n  box-sizing: border-box;\n}\n.achievements li .text h4[data-v-02ace8b6] {\n  text-transform: uppercase;\n  font-weight: 900;\n  color: white;\n  font-size: 16px;\n  word-break: break-all;\n}\nh3[data-v-02ace8b6] {\n  font-weight: 100;\n  color: white;\n  text-transform: uppercase;\n  font-size: 36px;\n  line-height: 150%;\n}\n.selected-achievement[data-v-02ace8b6] {\n  width: 300px;\n  padding: 10px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.selected-achievement .achievement[data-v-02ace8b6] {\n  width: 293px;\n  height: 413px;\n  margin-bottom: 30px;\n  padding: 10px;\n  position: relative;\n  box-sizing: border-box;\n  background: transparent var(--background-achievements);\n  background-size: cover;\n  background-position: center center;\n  background-repeat: no-repeat;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n.selected-achievement .achievement .image[data-v-02ace8b6] {\n  width: 100%;\n  height: 190px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.selected-achievement .achievement .image img[data-v-02ace8b6] {\n  height: 100%;\n}\n.selected-achievement h1[data-v-02ace8b6] {\n  color: white;\n  font-size: 18px;\n  font-weight: 900;\n  line-height: 150%;\n  margin-top: 10px;\n}\n.selected-achievement p[data-v-02ace8b6] {\n  margin-top: 10px;\n  font-weight: 100;\n  font-style: italic;\n  line-height: 150%;\n  color: white;\n  width: 100%;\n  text-align: justify;\n  word-break: break-all;\n  padding: 10px 0px 10px 0px;\n}\n.selected-achievement p strong[data-v-02ace8b6] {\n  font-weight: 900;\n  font-size: 12px;\n}\n.selected-achievement hr[data-v-02ace8b6] {\n  width: 100%;\n  height: 1px;\n  background-color: white;\n}\n.selected-achievement .progress[data-v-02ace8b6] {\n  position: relative;\n  background-color: #2c3e5070;\n  width: 100%;\n  height: 50px;\n  box-shadow: 0px 0px 5px 0px white inset;\n}\n.selected-achievement .progress .line[data-v-02ace8b6] {\n  height: 100%;\n  background: #ff6600;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: var(--line-width);\n  transition: 1s;\n}\n.selected-achievement .progress .info[data-v-02ace8b6] {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 2;\n  color: white;\n  font-weight: 900;\n  font-size: 12px;\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.selected-achievement .progress .info h3[data-v-02ace8b6] {\n  color: yellow;\n  font-size: 12px;\n  font-weight: 900;\n  line-height: 150%;\n  width: 100%;\n  text-align: center;\n}\n.selected-achievement .progress .info span[data-v-02ace8b6] {\n  width: 100%;\n  margin-top: -15px;\n}\n*[data-v-02ace8b6] {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton[data-v-02ace8b6]:focus,\ntextarea[data-v-02ace8b6]:focus,\nselect[data-v-02ace8b6]:focus,\ninput[data-v-02ace8b6]:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close[data-v-02ace8b6] {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close[data-v-02ace8b6]:hover {\n  opacity: 1;\n}\n.close[data-v-02ace8b6]:before, .close[data-v-02ace8b6]:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close[data-v-02ace8b6]:before {\n  transform: rotate(45deg);\n}\n.close[data-v-02ace8b6]:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop[data-v-02ace8b6] {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop[data-v-02ace8b6]:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area[data-v-02ace8b6] {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge[data-v-02ace8b6] {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification[data-v-02ace8b6] {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn[data-v-02ace8b6] {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error[data-v-02ace8b6] {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success[data-v-02ace8b6] {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay[data-v-02ace8b6] {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click[data-v-02ace8b6] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal[data-v-02ace8b6] {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable[data-v-02ace8b6] {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x[data-v-02ace8b6]:hover,\n.ps .ps__rail-y[data-v-02ace8b6]:hover,\n.ps .ps__rail-x[data-v-02ace8b6]:focus,\n.ps .ps__rail-y[data-v-02ace8b6]:focus,\n.ps .ps__rail-x.ps--clicking[data-v-02ace8b6],\n.ps .ps__rail-y.ps--clicking[data-v-02ace8b6] {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y:focus > .ps__thumb-y[data-v-02ace8b6],\n.ps__rail-y.ps--clicking .ps__thumb-y[data-v-02ace8b6] {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error][data-v-02ace8b6] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard[data-v-02ace8b6],\n.ncard .backplate[data-v-02ace8b6] {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty[data-v-02ace8b6],\n.card-19-empty[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty[data-v-02ace8b6] {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold[data-v-02ace8b6],\n.ncard .silver[data-v-02ace8b6],\n.ncard .bronze[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list[data-v-02ace8b6] {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap[data-v-02ace8b6],\n#my-card-list .ncard .backplate[data-v-02ace8b6],\n#my-card-list .ncard[data-v-02ace8b6] {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search[data-v-02ace8b6],\n.ncard[data-v-02ace8b6],\n.ncard .backplate[data-v-02ace8b6],\n.card-wrap[data-v-02ace8b6] {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search[data-v-02ace8b6],\n.scale .ncard[data-v-02ace8b6],\n.scale .ncard .backplate[data-v-02ace8b6] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search[data-v-02ace8b6],\n.scale .ncard[data-v-02ace8b6],\n.scale .ncard .backplate[data-v-02ace8b6] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search[data-v-02ace8b6],\n.scale .ncard[data-v-02ace8b6],\n.scale .ncard .backplate[data-v-02ace8b6] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search[data-v-02ace8b6],\n.scale .ncard[data-v-02ace8b6],\n.scale .ncard .backplate[data-v-02ace8b6] {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search[data-v-02ace8b6],\n.scale .ncard[data-v-02ace8b6],\n.scale .ncard .backplate[data-v-02ace8b6] {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search[data-v-02ace8b6],\n.scale .ncard[data-v-02ace8b6],\n.scale .ncard .backplate[data-v-02ace8b6] {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag[data-v-02ace8b6] {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top[data-v-02ace8b6] {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype[data-v-02ace8b6] {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background[data-v-02ace8b6] {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate[data-v-02ace8b6] {\n  position: absolute;\n}\n.ncard .overall[data-v-02ace8b6],\n.ncard .overall2[data-v-02ace8b6] {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2[data-v-02ace8b6] {\n  left: 8.5% !important;\n}\n.ncard .name[data-v-02ace8b6] {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team[data-v-02ace8b6],\n.ncard .team-right[data-v-02ace8b6] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team[data-v-02ace8b6] {\n  left: 8%;\n}\n.ncard .team-right[data-v-02ace8b6] {\n  right: 1.3em;\n}\n.ncard .firstname[data-v-02ace8b6] {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname[data-v-02ace8b6] {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot[data-v-02ace8b6] {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop[data-v-02ace8b6] {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes[data-v-02ace8b6] {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right[data-v-02ace8b6] {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name[data-v-02ace8b6] {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value[data-v-02ace8b6] {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo[data-v-02ace8b6] {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info[data-v-02ace8b6],\n.ncard .info2[data-v-02ace8b6] {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div[data-v-02ace8b6],\n.ncard .info2 div[data-v-02ace8b6] {\n  display: inline-block;\n}\n.ncard .info .bullet[data-v-02ace8b6],\n.ncard .info2 .bullet[data-v-02ace8b6] {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom[data-v-02ace8b6] {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer[data-v-02ace8b6] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes[data-v-02ace8b6] {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team[data-v-02ace8b6] {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name[data-v-02ace8b6] {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo[data-v-02ace8b6] {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text[data-v-02ace8b6] {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line[data-v-02ace8b6] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer[data-v-02ace8b6] {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info[data-v-02ace8b6] {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall[data-v-02ace8b6] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype[data-v-02ace8b6] {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color[data-v-02ace8b6] {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color[data-v-02ace8b6] {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color[data-v-02ace8b6] {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info[data-v-02ace8b6] {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop[data-v-02ace8b6] {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag[data-v-02ace8b6] {\n  z-index: 8;\n}\n.ncard .alm .alm-overall[data-v-02ace8b6] {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo[data-v-02ace8b6] {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name[data-v-02ace8b6] {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname[data-v-02ace8b6],\n.ncard .alm .alm-name .lastname[data-v-02ace8b6] {\n  text-align: center;\n}\n.ncard .alm .alm-headshot[data-v-02ace8b6] {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team[data-v-02ace8b6] {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes[data-v-02ace8b6] {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value[data-v-02ace8b6] {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name[data-v-02ace8b6] {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity[data-v-02ace8b6] {\n  opacity: 1;\n}\n.hc-logo[data-v-02ace8b6] {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team[data-v-02ace8b6] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr[data-v-02ace8b6] {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name[data-v-02ace8b6],\n.ncard .hc .attributes .attr-value[data-v-02ace8b6],\n.ncard .hc .team-right[data-v-02ace8b6],\n.ncard .hc .cardtype[data-v-02ace8b6] {\n  color: #000;\n}\n.ncard .hc .attributes[data-v-02ace8b6],\n.ncard .cs .attributes[data-v-02ace8b6],\n.ncard .pt .attributes[data-v-02ace8b6] {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop[data-v-02ace8b6] {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name[data-v-02ace8b6],\n.ncard .cs .attributes .attr-value[data-v-02ace8b6],\n.ncard .cs .team-right[data-v-02ace8b6],\n.ncard .cs .name[data-v-02ace8b6],\n.ncard .cs .info[data-v-02ace8b6],\n.ncard .cs .cardtype[data-v-02ace8b6] {\n  color: #fff;\n}\n.ncard .cs .cardtype[data-v-02ace8b6] {\n  color: #000;\n}\n.cs-team[data-v-02ace8b6] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr[data-v-02ace8b6] {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop[data-v-02ace8b6] {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name[data-v-02ace8b6],\n.ncard .pt .attributes .attr-value[data-v-02ace8b6],\n.ncard .pt .team-right[data-v-02ace8b6],\n.ncard .pt .name[data-v-02ace8b6],\n.ncard .pt .info[data-v-02ace8b6],\n.ncard .pt .cardtype[data-v-02ace8b6] {\n  color: #fff;\n}\n.ncard .pt .cardtype[data-v-02ace8b6] {\n  color: #000;\n}\n.pt-team[data-v-02ace8b6] {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr[data-v-02ace8b6] {\n  top: 17% !important;\n}\n.ncard .gat-headshot[data-v-02ace8b6],\n.ncard .evo-headshot[data-v-02ace8b6] {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot[data-v-02ace8b6] {\n  z-index: 3 !important;\n}\n.gat-team[data-v-02ace8b6],\n.evo-team[data-v-02ace8b6],\n.hwn-team[data-v-02ace8b6] {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr[data-v-02ace8b6] {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name[data-v-02ace8b6],\n.ncard.evo-wrap .attributes .attr-name[data-v-02ace8b6],\n.ncard.hwn-wrap .attributes .attr-name[data-v-02ace8b6] {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value[data-v-02ace8b6],\n.ncard.gat-wrap .name[data-v-02ace8b6],\n.ncard.gat-wrap .info .bullet[data-v-02ace8b6] {\n  color: #fff;\n}\n.ncard.gat-wrap .overall[data-v-02ace8b6] {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info[data-v-02ace8b6] {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop[data-v-02ace8b6],\n.ncard.evo-wrap .logo-backdrop[data-v-02ace8b6] {\n  z-index: 2;\n}\n.gsc-texture[data-v-02ace8b6] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes[data-v-02ace8b6] {\n  bottom: 7% !important;\n}\n.ms-texture[data-v-02ace8b6] {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot[data-v-02ace8b6] {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name[data-v-02ace8b6],\n.ncard.ms-ol .attributes .attr-value[data-v-02ace8b6],\n.ncard.ms-ol .team-right[data-v-02ace8b6],\n.ncard.ms-ol .name[data-v-02ace8b6],\n.ncard.ms-ol .cardtype[data-v-02ace8b6] {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname[data-v-02ace8b6] {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name[data-v-02ace8b6] {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team[data-v-02ace8b6] {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill[data-v-02ace8b6] {\n  background: red;\n}\n.ncard.ms-ol .ms-logo[data-v-02ace8b6] {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes[data-v-02ace8b6] {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name[data-v-02ace8b6] {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall[data-v-02ace8b6] {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info[data-v-02ace8b6] {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype[data-v-02ace8b6] {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct[data-v-02ace8b6] {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text[data-v-02ace8b6] {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att[data-v-02ace8b6] {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name[data-v-02ace8b6] {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr[data-v-02ace8b6] {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name[data-v-02ace8b6],\n.ncard.gscsi-wrap .cardtype[data-v-02ace8b6],\n.ncard.gscsi-wrap .info[data-v-02ace8b6] {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet[data-v-02ace8b6] {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value[data-v-02ace8b6],\n.ncard.gscsi-wrap .team-right[data-v-02ace8b6],\n.ncard.gscsi-wrap .name[data-v-02ace8b6],\n.ncard.gscsi-wrap .overall[data-v-02ace8b6] {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name[data-v-02ace8b6],\n.ncard.gscfi-wrap .cardtype[data-v-02ace8b6],\n.ncard.gscfi-wrap .info[data-v-02ace8b6] {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet[data-v-02ace8b6] {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value[data-v-02ace8b6],\n.ncard.gscfi-wrap .team-right[data-v-02ace8b6],\n.ncard.gscfi-wrap .name[data-v-02ace8b6],\n.ncard.gscfi-wrap .overall[data-v-02ace8b6] {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name[data-v-02ace8b6],\n.ncard.gscse-wrap .cardtype[data-v-02ace8b6],\n.ncard.gscse-wrap .info[data-v-02ace8b6] {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet[data-v-02ace8b6] {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value[data-v-02ace8b6],\n.ncard.gscse-wrap .team-right[data-v-02ace8b6],\n.ncard.gscse-wrap .name[data-v-02ace8b6],\n.ncard.gscse-wrap .overall[data-v-02ace8b6] {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name[data-v-02ace8b6],\n.ncard.gscge-wrap .cardtype[data-v-02ace8b6],\n.ncard.gscge-wrap .info[data-v-02ace8b6] {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet[data-v-02ace8b6] {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value[data-v-02ace8b6],\n.ncard.gscge-wrap .team-right[data-v-02ace8b6],\n.ncard.gscge-wrap .name[data-v-02ace8b6],\n.ncard.gscge-wrap .overall[data-v-02ace8b6] {\n  color: #facd01;\n}\n.tg-texture[data-v-02ace8b6] {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot[data-v-02ace8b6] {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop[data-v-02ace8b6] {\n  background-position: center top;\n}\n.ncard.tg_main .attributes[data-v-02ace8b6] {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall[data-v-02ace8b6] {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team[data-v-02ace8b6] {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info[data-v-02ace8b6] {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name[data-v-02ace8b6] {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom[data-v-02ace8b6] {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name[data-v-02ace8b6] {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot[data-v-02ace8b6] {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop[data-v-02ace8b6] {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall[data-v-02ace8b6] {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name[data-v-02ace8b6] {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top[data-v-02ace8b6] {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet[data-v-02ace8b6] {\n  background: #717171;\n}\n.ncard.xmas-wrap .info[data-v-02ace8b6] {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value[data-v-02ace8b6],\n.ncard.xmas-wrap .team-right[data-v-02ace8b6],\n.ncard.xmas-wrap .name[data-v-02ace8b6],\n.ncard .attributes .attr-name[data-v-02ace8b6],\n.ncard.xmas-wrap .overall[data-v-02ace8b6] {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo[data-v-02ace8b6] {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team[data-v-02ace8b6] {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype[data-v-02ace8b6] {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background[data-v-02ace8b6] {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot[data-v-02ace8b6] {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix[data-v-02ace8b6] {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall[data-v-02ace8b6] {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype[data-v-02ace8b6] {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right[data-v-02ace8b6] {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name[data-v-02ace8b6] {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team[data-v-02ace8b6] {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom[data-v-02ace8b6] {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name[data-v-02ace8b6] {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop[data-v-02ace8b6] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot[data-v-02ace8b6],\n.evo2-wrap.ncard .logo-backdrop[data-v-02ace8b6] {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype[data-v-02ace8b6] {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall[data-v-02ace8b6] {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype[data-v-02ace8b6],\n.evo2-wrap.ncard .overall[data-v-02ace8b6],\n.evo2-wrap.ncard .attributes .attr-value[data-v-02ace8b6],\n.evo2-wrap.ncard .info[data-v-02ace8b6],\n.evo2-wrap.ncard .name[data-v-02ace8b6] {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet[data-v-02ace8b6] {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes[data-v-02ace8b6] {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet[data-v-02ace8b6] {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side[data-v-02ace8b6] {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side[data-v-02ace8b6] {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile[data-v-02ace8b6] {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar[data-v-02ace8b6] {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img[data-v-02ace8b6] {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls[data-v-02ace8b6] {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-02ace8b6] {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li[data-v-02ace8b6]:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money[data-v-02ace8b6] {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p[data-v-02ace8b6] {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span[data-v-02ace8b6] {\n  color: yellow;\n}\n#personal-cabinet .left-side .level[data-v-02ace8b6] {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line[data-v-02ace8b6] {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text[data-v-02ace8b6] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side[data-v-02ace8b6] {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side[data-v-02ace8b6] {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side[data-v-02ace8b6] {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component[data-v-02ace8b6] {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-02ace8b6] {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs[data-v-02ace8b6] {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab[data-v-02ace8b6] {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active[data-v-02ace8b6] {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a[data-v-02ace8b6] {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a[data-v-02ace8b6] {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area[data-v-02ace8b6] {\n  padding: 20px 0px 100px 0px;\n}\n.info-block[data-v-02ace8b6] {\n  width: 100%;\n}\n.info-block h3[data-v-02ace8b6] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list[data-v-02ace8b6] {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card[data-v-02ace8b6] {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table[data-v-02ace8b6] {\n  width: 100%;\n}\n.info-block table tr[data-v-02ace8b6] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th[data-v-02ace8b6],\n.info-block table tr td[data-v-02ace8b6] {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -6858,7 +7830,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard,\n.ncard .backplate {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty,\n.card-19-empty {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold,\n.ncard .silver,\n.ncard .bronze {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2 {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap,\n#my-card-list .ncard .backplate,\n#my-card-list .ncard {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search,\n.ncard,\n.ncard .backplate,\n.card-wrap {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate {\n  position: absolute;\n}\n.ncard .overall,\n.ncard .overall2 {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2 {\n  left: 8.5% !important;\n}\n.ncard .name {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team,\n.ncard .team-right {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team {\n  left: 8%;\n}\n.ncard .team-right {\n  right: 1.3em;\n}\n.ncard .firstname {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info,\n.ncard .info2 {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div,\n.ncard .info2 div {\n  display: inline-block;\n}\n.ncard .info .bullet,\n.ncard .info2 .bullet {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag {\n  z-index: 8;\n}\n.ncard .alm .alm-overall {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname,\n.ncard .alm .alm-name .lastname {\n  text-align: center;\n}\n.ncard .alm .alm-headshot {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity {\n  opacity: 1;\n}\n.hc-logo {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name,\n.ncard .hc .attributes .attr-value,\n.ncard .hc .team-right,\n.ncard .hc .cardtype {\n  color: #000;\n}\n.ncard .hc .attributes,\n.ncard .cs .attributes,\n.ncard .pt .attributes {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name,\n.ncard .cs .attributes .attr-value,\n.ncard .cs .team-right,\n.ncard .cs .name,\n.ncard .cs .info,\n.ncard .cs .cardtype {\n  color: #fff;\n}\n.ncard .cs .cardtype {\n  color: #000;\n}\n.cs-team {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name,\n.ncard .pt .attributes .attr-value,\n.ncard .pt .team-right,\n.ncard .pt .name,\n.ncard .pt .info,\n.ncard .pt .cardtype {\n  color: #fff;\n}\n.ncard .pt .cardtype {\n  color: #000;\n}\n.pt-team {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr {\n  top: 17% !important;\n}\n.ncard .gat-headshot,\n.ncard .evo-headshot {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot {\n  z-index: 3 !important;\n}\n.gat-team,\n.evo-team,\n.hwn-team {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name,\n.ncard.evo-wrap .attributes .attr-name,\n.ncard.hwn-wrap .attributes .attr-name {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value,\n.ncard.gat-wrap .name,\n.ncard.gat-wrap .info .bullet {\n  color: #fff;\n}\n.ncard.gat-wrap .overall {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop,\n.ncard.evo-wrap .logo-backdrop {\n  z-index: 2;\n}\n.gsc-texture {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes {\n  bottom: 7% !important;\n}\n.ms-texture {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name,\n.ncard.ms-ol .attributes .attr-value,\n.ncard.ms-ol .team-right,\n.ncard.ms-ol .name,\n.ncard.ms-ol .cardtype {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill {\n  background: red;\n}\n.ncard.ms-ol .ms-logo {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name,\n.ncard.gscsi-wrap .cardtype,\n.ncard.gscsi-wrap .info {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value,\n.ncard.gscsi-wrap .team-right,\n.ncard.gscsi-wrap .name,\n.ncard.gscsi-wrap .overall {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name,\n.ncard.gscfi-wrap .cardtype,\n.ncard.gscfi-wrap .info {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value,\n.ncard.gscfi-wrap .team-right,\n.ncard.gscfi-wrap .name,\n.ncard.gscfi-wrap .overall {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name,\n.ncard.gscse-wrap .cardtype,\n.ncard.gscse-wrap .info {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value,\n.ncard.gscse-wrap .team-right,\n.ncard.gscse-wrap .name,\n.ncard.gscse-wrap .overall {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name,\n.ncard.gscge-wrap .cardtype,\n.ncard.gscge-wrap .info {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value,\n.ncard.gscge-wrap .team-right,\n.ncard.gscge-wrap .name,\n.ncard.gscge-wrap .overall {\n  color: #facd01;\n}\n.tg-texture {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop {\n  background-position: center top;\n}\n.ncard.tg_main .attributes {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet {\n  background: #717171;\n}\n.ncard.xmas-wrap .info {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value,\n.ncard.xmas-wrap .team-right,\n.ncard.xmas-wrap .name,\n.ncard .attributes .attr-name,\n.ncard.xmas-wrap .overall {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot,\n.evo2-wrap.ncard .logo-backdrop {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype,\n.evo2-wrap.ncard .overall,\n.evo2-wrap.ncard .attributes .attr-value,\n.evo2-wrap.ncard .info,\n.evo2-wrap.ncard .name {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span {\n  color: yellow;\n}\n#personal-cabinet .left-side .level {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px #0e9c14 inset;\n}\n#personal-cabinet .left-side .level .line {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: #109618;\n}\n#personal-cabinet .left-side .level .text {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: default;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n#personal-cabinet .right-side {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard,\n.ncard .backplate {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty,\n.card-19-empty {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold,\n.ncard .silver,\n.ncard .bronze {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2 {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap,\n#my-card-list .ncard .backplate,\n#my-card-list .ncard {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search,\n.ncard,\n.ncard .backplate,\n.card-wrap {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate {\n  position: absolute;\n}\n.ncard .overall,\n.ncard .overall2 {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2 {\n  left: 8.5% !important;\n}\n.ncard .name {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team,\n.ncard .team-right {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team {\n  left: 8%;\n}\n.ncard .team-right {\n  right: 1.3em;\n}\n.ncard .firstname {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info,\n.ncard .info2 {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div,\n.ncard .info2 div {\n  display: inline-block;\n}\n.ncard .info .bullet,\n.ncard .info2 .bullet {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag {\n  z-index: 8;\n}\n.ncard .alm .alm-overall {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname,\n.ncard .alm .alm-name .lastname {\n  text-align: center;\n}\n.ncard .alm .alm-headshot {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity {\n  opacity: 1;\n}\n.hc-logo {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name,\n.ncard .hc .attributes .attr-value,\n.ncard .hc .team-right,\n.ncard .hc .cardtype {\n  color: #000;\n}\n.ncard .hc .attributes,\n.ncard .cs .attributes,\n.ncard .pt .attributes {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name,\n.ncard .cs .attributes .attr-value,\n.ncard .cs .team-right,\n.ncard .cs .name,\n.ncard .cs .info,\n.ncard .cs .cardtype {\n  color: #fff;\n}\n.ncard .cs .cardtype {\n  color: #000;\n}\n.cs-team {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name,\n.ncard .pt .attributes .attr-value,\n.ncard .pt .team-right,\n.ncard .pt .name,\n.ncard .pt .info,\n.ncard .pt .cardtype {\n  color: #fff;\n}\n.ncard .pt .cardtype {\n  color: #000;\n}\n.pt-team {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr {\n  top: 17% !important;\n}\n.ncard .gat-headshot,\n.ncard .evo-headshot {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot {\n  z-index: 3 !important;\n}\n.gat-team,\n.evo-team,\n.hwn-team {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name,\n.ncard.evo-wrap .attributes .attr-name,\n.ncard.hwn-wrap .attributes .attr-name {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value,\n.ncard.gat-wrap .name,\n.ncard.gat-wrap .info .bullet {\n  color: #fff;\n}\n.ncard.gat-wrap .overall {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop,\n.ncard.evo-wrap .logo-backdrop {\n  z-index: 2;\n}\n.gsc-texture {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes {\n  bottom: 7% !important;\n}\n.ms-texture {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name,\n.ncard.ms-ol .attributes .attr-value,\n.ncard.ms-ol .team-right,\n.ncard.ms-ol .name,\n.ncard.ms-ol .cardtype {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill {\n  background: red;\n}\n.ncard.ms-ol .ms-logo {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name,\n.ncard.gscsi-wrap .cardtype,\n.ncard.gscsi-wrap .info {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value,\n.ncard.gscsi-wrap .team-right,\n.ncard.gscsi-wrap .name,\n.ncard.gscsi-wrap .overall {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name,\n.ncard.gscfi-wrap .cardtype,\n.ncard.gscfi-wrap .info {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value,\n.ncard.gscfi-wrap .team-right,\n.ncard.gscfi-wrap .name,\n.ncard.gscfi-wrap .overall {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name,\n.ncard.gscse-wrap .cardtype,\n.ncard.gscse-wrap .info {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value,\n.ncard.gscse-wrap .team-right,\n.ncard.gscse-wrap .name,\n.ncard.gscse-wrap .overall {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name,\n.ncard.gscge-wrap .cardtype,\n.ncard.gscge-wrap .info {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value,\n.ncard.gscge-wrap .team-right,\n.ncard.gscge-wrap .name,\n.ncard.gscge-wrap .overall {\n  color: #facd01;\n}\n.tg-texture {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop {\n  background-position: center top;\n}\n.ncard.tg_main .attributes {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet {\n  background: #717171;\n}\n.ncard.xmas-wrap .info {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value,\n.ncard.xmas-wrap .team-right,\n.ncard.xmas-wrap .name,\n.ncard .attributes .attr-name,\n.ncard.xmas-wrap .overall {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot,\n.evo2-wrap.ncard .logo-backdrop {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype,\n.evo2-wrap.ncard .overall,\n.evo2-wrap.ncard .attributes .attr-value,\n.evo2-wrap.ncard .info,\n.evo2-wrap.ncard .name {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span {\n  color: yellow;\n}\n#personal-cabinet .left-side .level {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n.info-block {\n  width: 100%;\n}\n.info-block h3 {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table {\n  width: 100%;\n}\n.info-block table tr {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th,\n.info-block table tr td {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -7011,6 +7983,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "h1[data-v-a99009b2] {\n  width: 100%;\n  text-align: left;\n  line-height: 150%;\n  font-size: 200px;\n  color: yellow;\n  font-weight: 100;\n}\nh2[data-v-a99009b2] {\n  width: 100%;\n  font-weight: 100;\n  font-size: 36px;\n  text-align: center;\n  color: white;\n  padding-bottom: 20px;\n}\nbutton[data-v-a99009b2] {\n  width: 200px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.ncard,\n.ncard .backplate {\n  margin: auto;\n  z-index: 10;\n  cursor: pointer;\n  overflow: hidden;\n  background-size: contain;\n}\n.ncard .card-empty,\n.card-19-empty {\n  background: url(https://hutdb.net/assets/img/cards/19/xempty-19.png.pagespeed.ic.aMWM7AwyAx.webp);\n}\n.card-19-empty {\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n}\n.ncard .sgold {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold.png.pagespeed.ic.tufKkK0v4G.webp);\n}\n.ncard .sgold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_tag.png.pagespeed.ic.YleI5BHsyy.webp);\n}\n.ncard .ssilver {\n  background: url(https://hutdb.net/assets/img/cards/19/ssilver.png.pagespeed.ce.Sh4c_i51Te.png);\n}\n.ncard .ssilver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xssilver_tag.png.pagespeed.ic.m9SbJkSgf_.webp);\n}\n.ncard .sbronze {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze.png.pagespeed.ic.50Mj3Z9mZ5.webp);\n}\n.ncard .sbronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsbronze_tag.png.pagespeed.ic.Cm_pDlUERt.webp);\n}\n.ncard .gold,\n.ncard .silver,\n.ncard .bronze {\n  background: url(https://hutdb.net/assets/img/cards/19/common.png.pagespeed.ce.w6gVJnZfVD.png);\n}\n.ncard .gold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_tag.png.pagespeed.ic.EcyAEWTD29.webp);\n}\n.ncard .silver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_tag.png.pagespeed.ic.8-mUkkH55R.webp);\n}\n.ncard .bronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_tag.png.pagespeed.ic.TZFQ5vav2s.webp);\n}\n.ncard .gold_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xgold_footer.png.pagespeed.ic.u0Hsy6rzEZ.webp);\n}\n.ncard .silver_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xsilver_footer.png.pagespeed.ic.JicugInsOL.webp);\n}\n.ncard .bronze_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/xbronze_footer.png.pagespeed.ic.son4mSaWYf.webp);\n}\n.ncard .alumni {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-bg.png.pagespeed.ic.YL2zihnXhx.webp);\n}\n.ncard .totw_gold {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_gold.png.pagespeed.ce.-U-XX7Hz1O.png);\n}\n.ncard .totw_gold_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_gold_tag.png.pagespeed.ic.Ie1_aLEAuR.webp);\n}\n.ncard .totw_gold_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_footer.png);\n}\n.ncard .totw_gold_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_gold_line.png);\n}\n.ncard .totw_silver {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_silver.png.pagespeed.ce.P60tprdykv.png);\n}\n.ncard .totw_silver_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_silver_tag.png.pagespeed.ic.jD9Nr4zps9.webp);\n}\n.ncard .totw_silver_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_footer.png);\n}\n.ncard .totw_silver_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_silver_line.png);\n}\n.ncard .totw_bronze {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/totw_bronze.png.pagespeed.ce.L2JZH9sSVk.png);\n}\n.ncard .totw_bronze_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/totw/xtotw_bronze_tag.png.pagespeed.ic.i7RwgHOuNB.webp);\n}\n.ncard .totw_bronze_footer {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_footer.png);\n}\n.ncard .totw_bronze_line {\n  background: url(https://hutdb.net/assets/img/cards/19/totw_bronze_line.png);\n}\n.ncard .gat {\n  background: url(https://hutdb.net/assets/img/cards/19/gat.png.pagespeed.ce.fz5jPOCIrU.png);\n}\n.ncard .hwn {\n  background: url(https://hutdb.net/assets/img/cards/19/hwn.png.pagespeed.ce.K0K6xTXDYe.png);\n}\n.ncard .evo {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/evo.png.pagespeed.ce.N_SFhLLX7j.png);\n}\n.ncard .evo_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xtag.png.pagespeed.ic.vcXKFhtKVF.webp);\n}\n.ncard .evo2 {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xevo2.png.pagespeed.ic.aQa-SY0pjx.webp);\n}\n.ncard .evo2_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/evo2/xtag.png.pagespeed.ic.HrJWlHJAe-.webp);\n}\n.ncard .cs {\n  background: url(https://hutdb.net/assets/img/cards/19/cs.png.pagespeed.ce.TlE6be1KEU.png);\n  background-size: cover;\n}\n.ncard .cs_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xcs_tag.png.pagespeed.ic.T13q6iqGwV.webp);\n}\n.ncard .pt {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt.png.pagespeed.ic.9HSMhQLxwg.webp);\n}\n.ncard .pt_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xpt_tag.png.pagespeed.ic.c4BkE9Zf_b.webp);\n}\n.ncard .ms {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xms.png.pagespeed.ic.EvzPj-OpmW.webp);\n}\n.ncard .ms_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/ms/xtag.png.pagespeed.ic.1F67LnKutr.webp);\n}\n.ncard .tg {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtg.png.pagespeed.ic.WgdhVCpnGi.webp);\n}\n.ncard .tg_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/tg/xtag.png.pagespeed.ic.nDdqED5RjM.webp);\n}\n.ncard .xmas {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xmas.png);\n}\n.ncard .xmas_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/xmas/xtag.png.pagespeed.ic.paF-MP0saM.webp);\n}\n.ncard .gscsi {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi.png.pagespeed.ic.4enTelZeac.webp);\n}\n.ncard .gscse {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse.png.pagespeed.ic.D4rpZ4Hjhd.webp);\n}\n.ncard .gscfi {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi.png.pagespeed.ic.MUUVfflGEv.webp);\n}\n.ncard .gscge {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge.png.pagespeed.ic.bybpQgNfvN.webp);\n}\n.ncard .gscsi_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscsi_swipe.png.pagespeed.ic.69llzCf3CM.webp);\n}\n.ncard .gscse_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscse_swipe.png.pagespeed.ic.aKOPw0JtaS.webp);\n}\n.ncard .gscfi_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscfi_swipe.png.pagespeed.ic.MF1UVMWzNE.webp);\n}\n.ncard .gscge_swipe {\n  background: url(https://hutdb.net/assets/img/cards/19/global/xgscge_swipe.png.pagespeed.ic.MLFzxSKciR.webp);\n}\n#my-card-list {\n  height: 500px;\n  overflow-y: scroll;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n#my-card-list .card-wrap,\n#my-card-list .ncard .backplate,\n#my-card-list .ncard {\n  width: 136px;\n  height: 190px;\n  font-size: 10px;\n}\n.quick-search,\n.ncard,\n.ncard .backplate,\n.card-wrap {\n  width: 240px;\n  height: 340px;\n  font-size: 20px;\n}\n@media (min-width: 1550px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1400px) and (max-width: 1550px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1250px) and (max-width: 1399px) {\n.tb2 .quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 1025px) and (max-width: 1249px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 156px;\n    height: 220px;\n    font-size: 12.5px;\n}\n}\n@media (min-width: 768px) and (max-width: 1024px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 113px;\n    height: 160px;\n    font-size: 10.5px;\n}\n}\n@media (min-width: 320px) and (max-width: 767px) {\n.quick-search,\n.scale .ncard,\n.scale .ncard .backplate {\n    width: 99px;\n    height: 140px;\n    font-size: 8px;\n}\n}\n.ncard .tag {\n  background-size: cover;\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .top {\n  position: absolute;\n  left: 0;\n  top: 0;\n  background-color: transparent !important;\n}\n.ncard .cardtype {\n  position: absolute;\n  left: 1em;\n  font-size: 0.9em;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  top: 0.3em;\n  letter-spacing: 0.04em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  opacity: 0.7;\n  width: 3em;\n  z-index: 3;\n  text-align: center;\n}\n.ncard .texture {\n  background: url(https://hutdb.net/assets/img/cards/19/xsgold_texture.png.pagespeed.ic._ouLXX8XYR.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ncard .background {\n  position: absolute;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 3;\n}\n.ncard .backplate {\n  position: absolute;\n}\n.ncard .overall,\n.ncard .overall2 {\n  position: absolute;\n  font-family: \"steelfish\";\n  font-size: 3.3em;\n  line-height: 1;\n  color: white;\n  font-weight: normal;\n  z-index: 5;\n  top: 0.58em;\n  left: 0.35em;\n  transform: scale(1, 1.1);\n}\n.ncard .overall2 {\n  left: 8.5% !important;\n}\n.ncard .name {\n  position: absolute;\n  font-size: 1.4em;\n  color: white;\n  text-align: center;\n  width: 100%;\n  z-index: 4;\n  top: 56%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  left: 4%;\n}\n.ncard .team,\n.ncard .team-right {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.4em;\n  bottom: 23.5%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  LINE-HEIGHT: 100%;\n}\n.ncard .team {\n  left: 8%;\n}\n.ncard .team-right {\n  right: 1.3em;\n}\n.ncard .firstname {\n  width: 100%;\n  text-align: left;\n  line-height: 0.5em;\n  font-weight: 600;\n  letter-spacing: -0.01em;\n  margin-left: 4%;\n  font-weight: normal;\n}\n.ncard .lastname {\n  width: 100%;\n  text-align: left;\n  font-weight: bold;\n  font-size: 1.3em;\n  transform: translate(0.15em, 0.3em);\n}\n.ncard .headshot {\n  height: 50%;\n  width: 100%;\n  z-index: 5;\n  -webkit-filter: brightness(1.15);\n          filter: brightness(1.15);\n  background-size: cover;\n  background-position: -90%;\n  background-repeat: no-repeat;\n}\n.ncard .logo-backdrop {\n  width: 100%;\n  height: 60%;\n  background-repeat: no-repeat;\n  background-position: center 20%;\n  background-size: 100%;\n  z-index: 3;\n  opacity: 0.2;\n  mix-blend-mode: overlay;\n}\n.ncard .attributes {\n  display: flex;\n  position: absolute;\n  bottom: 1.75em;\n  width: 72%;\n  color: white;\n  z-index: 3;\n  padding: 0 1em;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.ncard .attributes-right {\n  right: 0.4em;\n}\n.ncard .attributes .attr-name {\n  width: 17%;\n  font-size: 0.55em;\n  font-weight: 600;\n  letter-spacing: 0.01em;\n  margin-left: 0%;\n  text-align: right;\n  color: #797979;\n}\n.ncard .attributes .attr-value {\n  width: 17%;\n  font-size: 1.2em;\n  font-weight: bold;\n  letter-spacing: 0.01em;\n  left: -0.2em;\n  position: relative;\n  line-height: 0.9em;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n}\n.ncard .logo {\n  width: 48%;\n  height: 40%;\n  position: absolute;\n  z-index: 6;\n  right: -17%;\n  top: 55%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.ncard .info,\n.ncard .info2 {\n  position: absolute;\n  top: 51%;\n  font-size: 0.6em;\n  z-index: 5;\n  letter-spacing: 0;\n  font-weight: bold;\n  color: #000;\n  text-align: right;\n  right: 1.4em;\n}\n.ncard .info div,\n.ncard .info2 div {\n  display: inline-block;\n}\n.ncard .info .bullet,\n.ncard .info2 .bullet {\n  margin: 0;\n  width: 3px;\n  height: 2px;\n  border-radius: 0;\n  transform: translateY(-3px);\n  background: #000;\n}\n.ncard .logo-bottom {\n  background-size: contain;\n  position: absolute;\n  bottom: 0.8em;\n  left: 0.65em;\n  height: 2.3em;\n  width: 2.3em;\n  z-index: 7;\n}\n.ncard .footer {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0.25em;\n  background-position: bottom;\n  background-repeat: no-repeat;\n  z-index: 4;\n  background-size: 100%;\n}\n.totw-attributes {\n  transform: rotate(-16deg);\n  bottom: 15% !important;\n  right: -0.5em;\n}\n.totw-team {\n  transform: rotate(-16deg);\n  bottom: 31% !important;\n  right: 1.5em !important;\n}\n.totw-name {\n  transform: rotate(-16deg);\n  top: 63.5% !important;\n  left: -0.5em !important;\n  text-align: right !important;\n  font-size: 1.2em !important;\n}\n.totw-logo {\n  bottom: 1em !important;\n  left: 1.5em !important;\n}\n.totw_text {\n  opacity: 1 !important;\n  mix-blend-mode: unset !important;\n  background-position: top !important;\n}\n.totw_line {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  background-position-x: 2em;\n}\n.totw_footer {\n  position: absolute;\n  z-index: 3;\n  height: 100%;\n  width: 100%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  bottom: 0;\n  right: -0.5em;\n}\n.totw_info {\n  right: unset !important;\n  transform: rotate(-16deg) !important;\n  top: 61% !important;\n  left: 5.5em !important;\n  color: #e1c885 !important;\n}\n.totw_overall {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  left: 0.25em !important;\n  top: 0.6em !important;\n}\n.totw_cardtype {\n  transform: rotate(-14deg) !important;\n  font-style: italic !important;\n  font-size: 0.75em !important;\n  left: 1.3em !important;\n}\n.totw_gold_color {\n  color: #d8bf7c !important;\n}\n.totw_bronze_color {\n  color: #ecc5a4 !important;\n}\n.totw_silver_color {\n  color: #e1e1e1 !important;\n}\n.ncard .alm .info {\n  top: 5px;\n  color: #fff;\n}\n.ncard .alm .logo-backdrop {\n  mix-blend-mode: normal;\n  opacity: 0.3 !important;\n}\n.alumni-overlay {\n  background: url(https://hutdb.net/assets/img/cards/19/xalumni-overlay.png.pagespeed.ic.2a_3M6NXyg.webp) no-repeat;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  z-index: 7;\n  background-size: contain;\n}\n.ncard .alm .alm-tag {\n  z-index: 8;\n}\n.ncard .alm .alm-overall {\n  left: 8%;\n  top: 7%;\n  color: #fff;\n  font-size: 4em;\n}\n.alm-logo {\n  width: 16%;\n  height: 15%;\n  position: absolute;\n  z-index: 9;\n  right: 6%;\n  top: 44%;\n  background-size: 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n  -webkit-filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n          filter: brightness(1.2) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));\n}\n.ncard .alm .alm-name {\n  top: 60.5%;\n  left: -3%;\n  color: #fff;\n}\n.ncard .alm .alm-name .firstname,\n.ncard .alm .alm-name .lastname {\n  text-align: center;\n}\n.ncard .alm .alm-headshot {\n  height: 43%;\n  width: 80%;\n  left: 1.8em;\n  top: 1em;\n  background-position: center;\n}\n.ncard .alm .alm-team {\n  position: absolute;\n  z-index: 5;\n  font-family: \"Open Sans\", sans-serif;\n  text-transform: uppercase;\n  color: white;\n  font-size: 0.48em;\n  bottom: 46%;\n  font-weight: 800;\n  color: #fff;\n  font-style: italic;\n  width: 100%;\n  left: 0%;\n  text-align: center;\n}\n.ncard .alm.backplate .alm-attributes {\n  display: flex;\n  position: absolute;\n  bottom: 6.15%;\n  width: 100%;\n  color: #fff;\n  z-index: 3;\n  padding: 0 10%;\n  text-align: center;\n  flex-direction: row;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  font-style: italic;\n}\n.alm .alm-attributes.attributes .attr-value {\n  line-height: 1.8em;\n}\n.ncard .alm .alm-attributes.attributes .attr-name {\n  text-align: left;\n  padding-left: 3%;\n  color: #fff;\n}\n.no-opacity {\n  opacity: 1;\n}\n.hc-logo {\n  bottom: -2% !important;\n  height: 23% !important;\n  width: 23% !important;\n  background-repeat: no-repeat !important;\n}\n.hc-team {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n}\n.hc-ovr {\n  top: 7% !important;\n}\n.ncard .hc .attributes .attr-name,\n.ncard .hc .attributes .attr-value,\n.ncard .hc .team-right,\n.ncard .hc .cardtype {\n  color: #000;\n}\n.ncard .hc .attributes,\n.ncard .cs .attributes,\n.ncard .pt .attributes {\n  bottom: 8%;\n}\n.ncard .cs .logo-backdrop {\n  opacity: 0.5;\n}\n.ncard .cs .attributes .attr-name,\n.ncard .cs .attributes .attr-value,\n.ncard .cs .team-right,\n.ncard .cs .name,\n.ncard .cs .info,\n.ncard .cs .cardtype {\n  color: #fff;\n}\n.ncard .cs .cardtype {\n  color: #000;\n}\n.cs-team {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #000 !important;\n}\n.cs-ovr {\n  top: 17% !important;\n}\n.ncard .pt .logo-backdrop {\n  opacity: 0.5;\n}\n.ncard .pt .attributes .attr-name,\n.ncard .pt .attributes .attr-value,\n.ncard .pt .team-right,\n.ncard .pt .name,\n.ncard .pt .info,\n.ncard .pt .cardtype {\n  color: #fff;\n}\n.ncard .pt .cardtype {\n  color: #000;\n}\n.pt-team {\n  font-size: 0.6em !important;\n  bottom: 21.5% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.pt-ovr {\n  top: 17% !important;\n}\n.ncard .gat-headshot,\n.ncard .evo-headshot {\n  z-index: 2 !important;\n}\n.ncard .hwn-headshot {\n  z-index: 3 !important;\n}\n.gat-team,\n.evo-team,\n.hwn-team {\n  font-size: 0.6em !important;\n  bottom: 22% !important;\n  right: 10% !important;\n  color: #fff !important;\n}\n.ncard .hwn-attr {\n  color: #fff !important;\n}\n.ncard.gat-wrap .attributes .attr-name,\n.ncard.evo-wrap .attributes .attr-name,\n.ncard.hwn-wrap .attributes .attr-name {\n  color: #000;\n}\n.ncard.gat-wrap .attributes .attr-value,\n.ncard.gat-wrap .name,\n.ncard.gat-wrap .info .bullet {\n  color: #fff;\n}\n.ncard.gat-wrap .overall {\n  font-weight: 800;\n  font-style: italic;\n  color: #fff;\n  top: 7%;\n  left: 3%;\n}\n.ncard.gat-wrap .info {\n  left: 5%;\n  top: 23%;\n  font-size: 0.4em;\n  color: #fff;\n  right: inherit;\n}\n.ncard.gat-wrap .logo-backdrop,\n.ncard.evo-wrap .logo-backdrop {\n  z-index: 2;\n}\n.gsc-texture {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 4;\n}\n.gat-texture {\n  background: url(https://hutdb.net/assets/img/cards/19/xgat_ol.png.pagespeed.ic.kbJ8EBqWSc.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n  mix-blend-mode: color-dodge;\n}\n.evo-texture {\n  background: url(https://hutdb.net/assets/img/cards/19/evo/xoverlay.png.pagespeed.ic.hML-DUqUjC.webp);\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 1;\n}\n.ncard.evo-wrap .attributes {\n  bottom: 7% !important;\n}\n.ms-texture {\n  background-size: cover;\n  height: 100%;\n  width: 100%;\n  z-index: 5;\n}\n.ms-headshot {\n  background-position: 30% !important;\n  top: 3.5% !important;\n}\n.ncard.ms-ol .attributes .attr-name,\n.ncard.ms-ol .attributes .attr-value,\n.ncard.ms-ol .team-right,\n.ncard.ms-ol .name,\n.ncard.ms-ol .cardtype {\n  color: #c6ac66 !important;\n}\n.ncard.ms-ol .name .lastname {\n  font-size: 1em;\n  margin-left: 3.5%;\n  transform: unset;\n}\n.ncard.ms-ol .name {\n  top: 58%;\n}\n.ncard.ms-ol .ms-team {\n  color: #c6ac66;\n  font-size: 0.6em;\n  bottom: 21.5%;\n}\n.ncard.ms-ol .ms-fill {\n  background: red;\n}\n.ncard.ms-ol .ms-logo {\n  right: 5%;\n  top: 59%;\n  height: 20%;\n  width: 30%;\n}\n.ncard.ms-ol .attributes {\n  width: 100%;\n  height: 12%;\n  transform: translateX(4%);\n}\n.ncard.ms-ol .attributes .attr-name {\n  transform: translateX(-150%) translateY(72%);\n  font-size: 0.5em;\n}\n.ncard.ms-ol .overall {\n  left: 6%;\n  font-size: 3em;\n}\n.ncard.ms-ol .info {\n  top: 3%;\n  color: #000;\n}\n.ncard.ms-ol .cardtype {\n  left: 4%;\n  top: 10%;\n  color: #000 !important;\n  font-size: 0.8em;\n}\n.hwn-ct {\n  top: 13% !important;\n  left: 8% !important;\n  font-size: 0.75em !important;\n  color: #000 !important;\n}\n.hwn-team-text {\n  position: absolute;\n  bottom: 15%;\n  right: 2%;\n  font-family: \"Bebas\", \"Bebas Neue\", \"Roboto Condensed\", sans-serif;\n  font-style: italic;\n  font-size: 2em;\n  opacity: 0.3;\n  letter-spacing: 0.05em;\n}\n.gsc-att {\n  bottom: 7% !important;\n  width: 75% !important;\n  padding-right: 0 !important;\n}\n.gsc-att .attr-name {\n  padding-right: 2% !important;\n  padding-bottom: 3% !important;\n}\n.gsc-ovr {\n  top: 18% !important;\n  left: 10% !important;\n}\n.ncard.gscsi-wrap .attributes .attr-name,\n.ncard.gscsi-wrap .cardtype,\n.ncard.gscsi-wrap .info {\n  color: #ccc;\n}\n.ncard.gscsi-wrap .bullet {\n  background: #ccc;\n}\n.ncard.gscsi-wrap .attributes .attr-value,\n.ncard.gscsi-wrap .team-right,\n.ncard.gscsi-wrap .name,\n.ncard.gscsi-wrap .overall {\n  color: #fff;\n}\n.ncard.gscfi-wrap .attributes .attr-name,\n.ncard.gscfi-wrap .cardtype,\n.ncard.gscfi-wrap .info {\n  color: #43c7e7;\n}\n.ncard.gscfi-wrap .bullet {\n  background: #43c7e7;\n}\n.ncard.gscfi-wrap .attributes .attr-value,\n.ncard.gscfi-wrap .team-right,\n.ncard.gscfi-wrap .name,\n.ncard.gscfi-wrap .overall {\n  color: #fff;\n}\n.ncard.gscse-wrap .attributes .attr-name,\n.ncard.gscse-wrap .cardtype,\n.ncard.gscse-wrap .info {\n  color: #004998;\n}\n.ncard.gscse-wrap .bullet {\n  background: #004998;\n}\n.ncard.gscse-wrap .attributes .attr-value,\n.ncard.gscse-wrap .team-right,\n.ncard.gscse-wrap .name,\n.ncard.gscse-wrap .overall {\n  color: #011e41;\n}\n.ncard.gscge-wrap .attributes .attr-name,\n.ncard.gscge-wrap .cardtype,\n.ncard.gscge-wrap .info {\n  color: #fff;\n}\n.ncard.gscge-wrap .bullet {\n  background: #fff;\n}\n.ncard.gscge-wrap .attributes .attr-value,\n.ncard.gscge-wrap .team-right,\n.ncard.gscge-wrap .name,\n.ncard.gscge-wrap .overall {\n  color: #facd01;\n}\n.tg-texture {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  background-image: url(https://hutdb.net/assets/img/cards/19/tg/xoverlay.png.pagespeed.ic.o_dh5pQgX6.webp);\n  z-index: 4;\n  left: 0;\n  height: 100%;\n}\n.ncard.tg_main .headshot {\n  background-position: -20%;\n  top: 5%;\n}\n.ncard.tg_main .logo-backdrop {\n  background-position: center top;\n}\n.ncard.tg_main .attributes {\n  width: 90%;\n  left: 5%;\n  bottom: 8%;\n}\n.ncard.tg_main .overall {\n  color: #fff;\n  left: 11.5%;\n  top: 32%;\n  font-size: 3.1em;\n}\n.ncard.tg_main .team {\n  left: 8%;\n  text-align: left;\n  width: 50%;\n  bottom: 21.5%;\n  color: #000;\n  font-size: 0.45em;\n}\n.ncard.tg_main .info {\n  font-size: 0.45em;\n  bottom: 21.5%;\n  top: inherit;\n  right: 8%;\n}\n.ncard.tg_main .name {\n  color: #000;\n  left: 5%;\n  top: 59%;\n}\n.ncard.tg_main .logo-bottom {\n  width: 3.5em;\n  height: 3.5em;\n  right: 5%;\n  left: inherit;\n  bottom: 25%;\n}\n.ncard.tg_main .attributes .attr-name {\n  color: #000;\n  text-align: left;\n  transform: translateX(0.3em);\n  margin-bottom: 1%;\n}\n.ncard.xmas-wrap .headshot {\n  z-index: 2;\n}\n.ncard.xmas-wrap .logo-backdrop {\n  z-index: 1;\n}\n.ncard.xmas-wrap .overall {\n  left: 12%;\n  font-size: 3em;\n  top: 25%;\n}\n.ncard.xmas-wrap .name {\n  top: 54%;\n  font-size: 1.25em;\n}\n.xmas-top {\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n}\n.ncard.xmas-wrap .info .bullet {\n  background: #717171;\n}\n.ncard.xmas-wrap .info {\n  color: #717171;\n}\n.ncard.xmas-wrap .attributes .attr-value,\n.ncard.xmas-wrap .team-right,\n.ncard.xmas-wrap .name,\n.ncard .attributes .attr-name,\n.ncard.xmas-wrap .overall {\n  color: #e9e9e9;\n}\n.ncard.xmas-wrap .logo {\n  right: 1%;\n  height: 25%;\n  width: 25%;\n  top: 60%;\n}\n.ncard.xmas-wrap .team {\n  font-size: 0.65em;\n  bottom: 24.75%;\n}\n.ncard.xmas-wrap .cardtype {\n  top: 15%;\n  font-size: 0.75em;\n  left: 11%;\n  color: #fff;\n}\n.ncard .ipotg {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/background.png.pagespeed.ce.PmEXPQUxA_.png);\n}\n.ncard .ipotg_tag {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xtag.png.pagespeed.ic.FGuh0IQT6M.webp);\n  background-size: cover;\n}\n.ncard .ipotg .black-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xblack.png.pagespeed.ic.7nqBLXI06W.webp);\n  background-size: cover;\n  top: 0;\n}\n.ncard .ipotg .silver-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/xsilver.png.pagespeed.ic.QR0TQn3_Pa.webp);\n  background-size: cover;\n  z-index: 4;\n  top: 0;\n}\n.ncard .ipotg .ice-background {\n  background: url(https://hutdb.net/assets/img/cards/19/ipotg/ice.png.pagespeed.ce.SS0jb_qb_Q.png);\n}\n.ncard.ipotg-wrap .headshot {\n  top: 0;\n  height: 50%;\n  background-position: center;\n  left: 8%;\n  z-index: 3;\n}\n.ncard.ipotg-wrap .logo-fix {\n  top: 0;\n  left: 0;\n}\n.ncard.ipotg-wrap .overall {\n  left: 8%;\n}\n.ncard.ipotg-wrap .cardtype {\n  left: 6%;\n  top: 10%;\n}\n.ncard.ipotg-wrap .attributes-right {\n  z-index: 5;\n}\n.ncard.ipotg-wrap .attributes .attr-name {\n  color: #545454;\n}\n.ncard.ipotg-wrap .ipotg-team {\n  color: #545454;\n  font-size: 0.5em;\n  bottom: 21.5%;\n}\n.ncard.ipotg-wrap .logo-bottom {\n  left: 6%;\n  bottom: 8%;\n}\n.ncard.ipotg-wrap .name {\n  top: 59%;\n}\n.ncard.ipotg-wrap .logo-backdrop {\n  z-index: 2;\n}\n.evo2-wrap.ncard .headshot,\n.evo2-wrap.ncard .logo-backdrop {\n  z-index: 2;\n}\n.evo2-wrap.ncard .cardtype {\n  top: 5%;\n  left: 5.5%;\n}\n.evo2-wrap.ncard .overall {\n  left: 7.5%;\n}\n.evo2-wrap.ncard .cardtype,\n.evo2-wrap.ncard .overall,\n.evo2-wrap.ncard .attributes .attr-value,\n.evo2-wrap.ncard .info,\n.evo2-wrap.ncard .name {\n  color: #fff;\n}\n.evo2-wrap.ncard .info .bullet {\n  background: #fff;\n}\n.evo2-wrap.ncard .attributes {\n  bottom: 7.5%;\n  width: 80%;\n  right: 0%;\n}\n#personal-cabinet {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  width: 100%;\n}\n#personal-cabinet .left-side {\n  width: 200px;\n  padding-top: 40px;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .left-side {\n    width: 100%;\n    position: relative;\n    padding-top: 0px;\n}\n}\n#personal-cabinet .left-side .profile {\n  width: 200px;\n}\n#personal-cabinet .left-side .profile .avatar {\n  width: 100%;\n  height: 200px;\n  margin-bottom: 10px;\n  padding: 0;\n  box-sizing: border-box;\n  box-shadow: 0 0 11px 5px white inset;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar img {\n  width: 100%;\n}\n#personal-cabinet .left-side .profile .avatar .controls {\n  position: absolute;\n  z-index: 10;\n  top: 15px;\n  width: 100%;\n  left: 0;\n  padding: 0px 15px;\n  box-sizing: border-box;\n  height: 30px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li {\n  width: 30px;\n  height: 30px;\n  margin-left: 5px;\n  color: white;\n  cursor: pointer;\n  font-size: 20px;\n  opacity: 0.5;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n#personal-cabinet .left-side .profile .avatar .controls li:hover {\n  color: yellow;\n  opacity: 1;\n}\n#personal-cabinet .left-side .money {\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n}\n#personal-cabinet .left-side .money p {\n  width: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: white;\n  cursor: default;\n}\n#personal-cabinet .left-side .money p span {\n  color: yellow;\n}\n#personal-cabinet .left-side .level {\n  position: relative;\n  width: 100%;\n  background-color: #2c3e50;\n  padding: 20px;\n  box-sizing: border-box;\n  margin-bottom: 10px;\n  box-shadow: 0px 0px 5px 3px yellow inset;\n}\n#personal-cabinet .left-side .level .line {\n  width: 40%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 0;\n  box-sizing: border-box;\n  background: yellow;\n}\n#personal-cabinet .left-side .level .text {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  font-weight: 800;\n  color: #ffffff;\n  cursor: pointer;\n  font-size: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-shadow: 0px 0px 5px black;\n}\n#personal-cabinet .right-side {\n  width: 800px;\n  margin-left: 300px;\n}\n@media (max-width: 1050px) {\n#personal-cabinet .right-side {\n    width: 650px;\n}\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side {\n    width: 100%;\n    margin-left: 0px;\n}\n}\n#personal-cabinet .right-side .tabs-component {\n  width: 100%;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  font-color: gray;\n}\n#personal-cabinet .right-side .tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n.info-block {\n  width: 100%;\n}\n.info-block h3 {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n  width: 100%;\n}\n.info-block .cards-list {\n  width: 100%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.info-block .cards-list .card {\n  padding: 5px;\n  border: 1px white solid;\n  margin-bottom: 15px;\n}\n.info-block table {\n  width: 100%;\n}\n.info-block table tr {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\n.info-block table tr th,\n.info-block table tr td {\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -45416,6 +46407,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Achievement.vue?vue&type=style&index=0&id=02ace8b6&lang=scss&scoped=true&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Achievement.vue?vue&type=style&index=0&id=02ace8b6&lang=scss&scoped=true& ***!
@@ -45695,6 +46716,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PageNotFound.vue?vue&type=style&index=0&id=a99009b2&scoped=true&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PageNotFound.vue?vue&type=style&index=0&id=a99009b2&scoped=true&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PlayerInfo.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -55055,7 +56106,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "info-block" }, [
     _c("h1", {
       staticClass: "main-title",
       domProps: { innerHTML: _vm._s(_vm.content.title) }
@@ -55081,7 +56132,7 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.cards == null || _vm.cards.length == 0
-      ? _c("h3", [_vm._v("Карточки не найдены")])
+      ? _c("h3", [_vm._v(_vm._s(_vm.$lang.cabinet.cards.error_1))])
       : _vm._e()
   ])
 }
@@ -55107,7 +56158,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "info-block" }, [
     _c("h1", {
       staticClass: "main-title",
       domProps: { innerHTML: _vm._s(_vm.content.title) }
@@ -55118,305 +56169,326 @@ var render = function() {
       domProps: { innerHTML: _vm._s(_vm.content.content) }
     }),
     _vm._v(" "),
-    _c("h4", [_vm._v("Основная информация")]),
+    _c("h4", [_vm._v(_vm._s(_vm.$lang.cabinet.info.title_1))]),
     _vm._v(" "),
     _vm.user != null
       ? _c("form", { attrs: { action: "" } }, [
           _c("table", [
             _c("tr", [
-              _c("td", [_vm._v("Email")]),
+              _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.email))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(_vm.user.email))])
             ]),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v("Name")]),
+              _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.name))]),
               _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.name,
-                      expression: "user.name"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.user.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _vm.checkCurrent()
+                ? _c("td", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.user.name,
+                          expression: "user.name"
+                        }
+                      ],
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.user.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.user, "name", $event.target.value)
+                        }
                       }
-                      _vm.$set(_vm.user, "name", $event.target.value)
-                    }
-                  }
-                })
-              ])
+                    })
+                  ])
+                : _c("td", [_vm._v(_vm._s(_vm.user.name))])
             ]),
             _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Skype")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.skype,
-                      expression: "user.skype"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.user.skype },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.user, "skype", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
+            _vm.user.skype != null && _vm.checkCurrent()
+              ? _c("tr", [
+                  _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.skype))]),
+                  _vm._v(" "),
+                  _vm.checkCurrent()
+                    ? _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.user.skype,
+                              expression: "user.skype"
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.user.skype },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.user, "skype", $event.target.value)
+                            }
+                          }
+                        })
+                      ])
+                    : _c("td", [_vm._v(_vm._s(_vm.user.skype))])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.user.vk != null && _vm.checkCurrent()
+              ? _c("tr", [
+                  _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.vk))]),
+                  _vm._v(" "),
+                  _vm.checkCurrent()
+                    ? _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.user.vk,
+                              expression: "user.vk"
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.user.vk },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.user, "vk", $event.target.value)
+                            }
+                          }
+                        })
+                      ])
+                    : _c("td", [_vm._v(_vm._s(_vm.user.vk))])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.user.fb != null && _vm.checkCurrent()
+              ? _c("tr", [
+                  _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.fb))]),
+                  _vm._v(" "),
+                  _vm.checkCurrent()
+                    ? _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.user.fb,
+                              expression: "user.fb"
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.user.fb },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.user, "fb", $event.target.value)
+                            }
+                          }
+                        })
+                      ])
+                    : _c("td", [_vm._v(_vm._s(_vm.user.fb))])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.user.tw != null && _vm.checkCurrent()
+              ? _c("tr", [
+                  _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.tw))]),
+                  _vm._v(" "),
+                  _vm.checkCurrent()
+                    ? _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.user.tw,
+                              expression: "user.tw"
+                            }
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.user.tw },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.user, "tw", $event.target.value)
+                            }
+                          }
+                        })
+                      ])
+                    : _c("td", [_vm._v(_vm._s(_vm.user.tw))])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v("Vkontakte")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.vk,
-                      expression: "user.vk"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.user.vk },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.user, "vk", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Facebook")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.vk,
-                      expression: "user.vk"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.user.vk },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.user, "vk", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Twitter")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.tw,
-                      expression: "user.tw"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.user.tw },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.user, "tw", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Money")]),
+              _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.money))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(_vm.user.money))])
             ]),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v("Level")]),
+              _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.level))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(_vm.user.level.title))])
             ]),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v("Discount")]),
+              _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.discount))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(_vm.user.discount) + "%")])
             ]),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v("Exp")]),
+              _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.exp))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(_vm.user.exp))])
             ]),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v("Coins")]),
+              _c("td", [_vm._v(_vm._s(_vm.$lang.cabinet.info.coins))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(_vm.user.coins))])
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c("tr", [
+              _c("td"),
+              _vm._v(" "),
+              _vm.checkCurrent()
+                ? _c("td", [
+                    _c("button", { staticClass: "btn btn-yellow" }, [
+                      _vm._v(_vm._s(_vm.$lang.cabinet.info.save))
+                    ])
+                  ])
+                : _c("td")
+            ])
           ])
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("h4", [_vm._v("Изменение пароля")]),
-    _vm._v(" "),
     _vm.user != null
       ? _c("form", { attrs: { action: "" } }, [
-          _c("table", [
-            _c("tr", [
-              _c("td", [_vm._v("Current password")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password.old,
-                      expression: "password.old"
-                    }
-                  ],
-                  attrs: { type: "password" },
-                  domProps: { value: _vm.password.old },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.password, "old", $event.target.value)
-                    }
-                  }
-                })
+          _vm.checkCurrent()
+            ? _c("div", [
+                _c("h4", [_vm._v(_vm._s(_vm.$lang.cabinet.info.title_2))]),
+                _vm._v(" "),
+                _c("table", [
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.$lang.cabinet.info.cuurent_password))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password.old,
+                            expression: "password.old"
+                          }
+                        ],
+                        attrs: { type: "password" },
+                        domProps: { value: _vm.password.old },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.password, "old", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.$lang.cabinet.info.new_password))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password.new1,
+                            expression: "password.new1"
+                          }
+                        ],
+                        attrs: { type: "password" },
+                        domProps: { value: _vm.password.new1 },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.password, "new1", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.$lang.cabinet.info.confirm_password))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password.new2,
+                            expression: "password.new2"
+                          }
+                        ],
+                        attrs: { type: "password" },
+                        domProps: { value: _vm.password.new2 },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.password, "new2", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td"),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("button", { staticClass: "btn btn-yellow" }, [
+                        _vm._v(_vm._s(_vm.$lang.cabinet.info.save))
+                      ])
+                    ])
+                  ])
+                ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("New password")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password.new1,
-                      expression: "password.new1"
-                    }
-                  ],
-                  attrs: { type: "password" },
-                  domProps: { value: _vm.password.new1 },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.password, "new1", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Confirm password")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password.new2,
-                      expression: "password.new2"
-                    }
-                  ],
-                  attrs: { type: "password" },
-                  domProps: { value: _vm.password.new2 },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.password, "new2", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(1)
-          ])
+            : _vm._e()
         ])
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td"),
-      _vm._v(" "),
-      _c("td", [
-        _c("button", { staticClass: "btn btn-yellow" }, [_vm._v("Сохранить")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td"),
-      _vm._v(" "),
-      _c("td", [
-        _c("button", { staticClass: "btn btn-yellow" }, [_vm._v("Сохранить")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55438,7 +56510,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "info-block" }, [
     _c("h1", {
       staticClass: "main-title",
       domProps: { innerHTML: _vm._s(_vm.content.title) }
@@ -55496,7 +56568,7 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.lotteries == null || _vm.lotteries.length == 0
-      ? _c("h3", [_vm._v("Вы еще ничего не выиграли:(")])
+      ? _c("h3", [_vm._v(_vm._s(_vm.$lang.cabinet.lottery.error_1))])
       : _vm._e()
   ])
 }
@@ -55522,7 +56594,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "info-block" }, [
     _c("h1", {
       staticClass: "main-title",
       domProps: { innerHTML: _vm._s(_vm.content.title) }
@@ -55537,7 +56609,19 @@ var render = function() {
       ? _c(
           "table",
           [
-            _vm._m(0),
+            _c("tr", [
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.promocodes.title))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(_vm._s(_vm.$lang.cabinet.promocodes.description))
+              ]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.promocodes.code))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.promocodes.prize))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.promocodes.date))])
+            ]),
             _vm._v(" "),
             _vm._l(_vm.promocodes, function(promo) {
               return _c("tr", [
@@ -55558,28 +56642,11 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.promocodes == null || _vm.promocodes.length == 0
-      ? _c("h3", [_vm._v("У вас нет Баг-репортов:(")])
+      ? _c("h3", [_vm._v(_vm._s(_vm.$lang.cabinet.promocodes.error_1))])
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Title")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Description")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Code")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Prize")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Date")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55601,7 +56668,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "info-block" }, [
     _c("h1", {
       staticClass: "main-title",
       domProps: { innerHTML: _vm._s(_vm.content.title) }
@@ -55616,7 +56683,11 @@ var render = function() {
       ? _c(
           "table",
           [
-            _vm._m(0),
+            _c("tr", [
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.stats.param))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.stats.value))])
+            ]),
             _vm._v(" "),
             _vm._l(_vm.stats, function(stat) {
               return _c("tr", [
@@ -55631,26 +56702,15 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.trigger_types == null || _vm.trigger_types.length == 0
-      ? _c("h3", [_vm._v("Не удалось получитть типы тригеров")])
+      ? _c("h3", [_vm._v(_vm._s(_vm.$lang.cabinet.stats.error_1))])
       : _vm._e(),
     _vm._v(" "),
     _vm.stats == null || _vm.stats.lenght == 0
-      ? _c("h3", [_vm._v("У вас нет Статистки:(")])
+      ? _c("h3", [_vm._v(_vm._s(_vm.$lang.cabinet.stats.error_2))])
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Param")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Value")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55672,7 +56732,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "info-block" }, [
     _c("h1", {
       staticClass: "main-title",
       domProps: { innerHTML: _vm._s(_vm.content.title) }
@@ -55687,7 +56747,17 @@ var render = function() {
       ? _c(
           "table",
           [
-            _vm._m(0),
+            _c("tr", [
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.tickets.status))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.tickets.title))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.tickets.description))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.tickets.ticket_type))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.tickets.created_at))])
+            ]),
             _vm._v(" "),
             _vm._l(_vm.tickets, function(ticket) {
               return _c("tr", [
@@ -55695,10 +56765,14 @@ var render = function() {
                   ticket.is_active
                     ? _c("h4", [
                         _vm._v(
-                          "\n                   In process\n                "
+                          "\n                    " +
+                            _vm._s(_vm.$lang.cabinet.tickets.in_progress) +
+                            "\n                "
                         )
                       ])
-                    : _c("h4", [_vm._v("Completed")])
+                    : _c("h4", [
+                        _vm._v(_vm._s(_vm.$lang.cabinet.tickets.complete))
+                      ])
                 ]),
                 _vm._v(" "),
                 _c("td", [
@@ -55740,28 +56814,11 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.tickets == null || _vm.tickets.length == 0
-      ? _c("h3", [_vm._v("У вас нет Баг-репортов:(")])
+      ? _c("h3", [_vm._v(_vm._s(_vm.$lang.cabinet.tickets.error_1))])
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Status")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Title")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Description")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("ticket_type")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("created_at")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55783,7 +56840,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "info-block" }, [
     _c("h1", {
       staticClass: "main-title",
       domProps: { innerHTML: _vm._s(_vm.content.title) }
@@ -55798,7 +56855,19 @@ var render = function() {
       ? _c(
           "table",
           [
-            _vm._m(0),
+            _c("tr", [
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.transactions.amount))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(_vm._s(_vm.$lang.cabinet.transactions.payment_system))
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(_vm._s(_vm.$lang.cabinet.transactions.currency))
+              ]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$lang.cabinet.transactions.date))])
+            ]),
             _vm._v(" "),
             _vm._l(_vm.transactions, function(transaction) {
               return _c("tr", [
@@ -55817,26 +56886,11 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.transactions == null || _vm.transactions.length == 0
-      ? _c("h3", [_vm._v("У вас нет Транзакций:(")])
+      ? _c("h3", [_vm._v(_vm._s(_vm.$lang.cabinet.transactions.error_1))])
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Amount")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Payment system")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Currency")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Date")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55860,16 +56914,27 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.game
     ? _c("div", { staticClass: "modal-body" }, [
-        _c("h1", [_vm._v("ИНФОРМАЦИЯ О КАРТОЧКЕ")]),
+        _c("h1", [_vm._v(_vm._s(_vm.$lang.modals.card_info.title))]),
         _vm._v(" "),
         _c("p", [_vm._v("X-BOX")]),
         _vm._v(" "),
         _c("p", [
-          _vm._v("Цена карточки: " + _vm._s(_vm.game.base_price) + " Pucks")
+          _vm._v(
+            _vm._s(_vm.$lang.modals.card_info.base_price) +
+              " " +
+              _vm._s(_vm.game.base_price) +
+              " " +
+              _vm._s(_vm.$lang.modals.card_info.money)
+          )
         ]),
         _vm._v(" "),
         _c("p", [
-          _vm._v("Цена ставки: " + _vm._s(_vm.getPlacePrice()) + " Pucks")
+          _vm._v(
+            _vm._s(_vm.$lang.modals.card_info.place_price) +
+              _vm._s(_vm.getPlacePrice()) +
+              " " +
+              _vm._s(_vm.$lang.modals.card_info.money)
+          )
         ]),
         _vm._v(" "),
         _c(
@@ -55878,11 +56943,15 @@ var render = function() {
           _vm._l(_vm.game.place_list, function(place) {
             return _c("li", [
               _vm._v(
-                _vm._s(place.user.name) +
-                  " занял место " +
+                "\n            " +
+                  _vm._s(place.user.name) +
+                  " " +
+                  _vm._s(_vm.$lang.modals.card_info.pick_place) +
+                  " " +
                   _vm._s(place.place_number) +
-                  " в " +
-                  _vm._s(place.created_at)
+                  " [ " +
+                  _vm._s(place.created_at) +
+                  " ]\n        "
               )
             ])
           }),
@@ -55954,6 +57023,75 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Levels.vue?vue&type=template&id=6d048fc6&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Levels.vue?vue&type=template&id=6d048fc6&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "modal-levels" }, [
+    _c("h3", [_vm._v("Таблица уровней")]),
+    _vm._v(" "),
+    _vm.levels != null && _vm.levels.length > 0
+      ? _c(
+          "table",
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.levels, function(level) {
+              return _c("tr", [
+                _c("td", [
+                  level.level == _vm.user.level.level
+                    ? _c("p", { staticClass: "current" }, [
+                        _vm._v(_vm._s(level.title))
+                      ])
+                    : _c("p", [_vm._v(_vm._s(level.title))])
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(level.experience))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(level.level))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(level.discount))])
+              ])
+            })
+          ],
+          2
+        )
+      : _c("h3", [_vm._v("Уровни не найдены!(:")])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [_vm._v("title")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("experience")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("level")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("discount")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Security.vue?vue&type=template&id=e1350824&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Security.vue?vue&type=template&id=e1350824& ***!
@@ -56004,23 +57142,26 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "info-block" },
     [
       _vm.types
         ? _c(
             "ul",
             { staticClass: "filters" },
             [
-              _c(
-                "li",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.filter(null)
-                    }
-                  }
-                },
-                [_vm._v("#" + _vm._s(_vm.prepareTypeText("all")))]
-              ),
+              _vm.types.length > 0
+                ? _c(
+                    "li",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.filter(null)
+                        }
+                      }
+                    },
+                    [_vm._v("#" + _vm._s(_vm.prepareTypeText("all")))]
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _vm._l(_vm.types, function(t) {
                 return _c(
@@ -56033,7 +57174,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("#" + _vm._s(_vm.prepareTypeText(t.trigger.key)))]
+                  [
+                    _vm._v(
+                      "\n            #" +
+                        _vm._s(_vm.prepareTypeText(t.trigger.key)) +
+                        "\n        "
+                    )
+                  ]
                 )
               })
             ],
@@ -56041,70 +57188,62 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("h1", {
-        staticClass: "main-title",
-        domProps: { innerHTML: _vm._s(_vm.content.title) }
-      }),
+      _c("h1", { staticClass: "main-title" }, [
+        _vm._v(_vm._s(_vm.content.title))
+      ]),
       _vm._v(" "),
-      _c("p", {
-        staticClass: "description",
-        domProps: { innerHTML: _vm._s(_vm.content.content) }
-      }),
+      _c("p", { staticClass: "description" }, [
+        _vm._v(_vm._s(_vm.content.content))
+      ]),
       _vm._v(" "),
-      _vm.achievements != null && _vm.achievements != []
+      _vm.achievements != null && _vm.achievements.length > 0
         ? _c(
             "ul",
             { staticClass: "achievements" },
-            [
-              _vm._l(_vm.prepareAchievements(), function(a) {
-                return a.is_active
-                  ? _c("li", { style: _vm.cssProps(a.background) }, [
-                      _c(
-                        "div",
-                        {
+            _vm._l(_vm.prepareAchievements(), function(a) {
+              return a.is_active
+                ? _c("li", { style: _vm.cssProps(a.background) }, [
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "tooltip",
+                            rawName: "v-tooltip.bottom",
+                            value: _vm.prepareRewards(a),
+                            expression: "prepareRewards(a)",
+                            modifiers: { bottom: true }
+                          }
+                        ],
+                        staticClass: "image",
+                        on: {
+                          click: function($event) {
+                            return _vm.show("ach", a)
+                          }
+                        }
+                      },
+                      [
+                        _c("img", {
                           directives: [
                             {
-                              name: "tooltip",
-                              rawName: "v-tooltip.bottom",
-                              value: _vm.prepareRewards(a),
-                              expression: "prepareRewards(a)",
-                              modifiers: { bottom: true }
+                              name: "lazy",
+                              rawName: "v-lazy",
+                              value: _vm.prepareImage(a.image),
+                              expression: "prepareImage(a.image)"
                             }
                           ],
-                          staticClass: "image",
-                          on: {
-                            click: function($event) {
-                              return _vm.show("ach", a)
-                            }
-                          }
-                        },
-                        [
-                          _c("img", {
-                            directives: [
-                              {
-                                name: "lazy",
-                                rawName: "v-lazy",
-                                value: _vm.prepareImage(a.image),
-                                expression: "prepareImage(a.image)"
-                              }
-                            ],
-                            attrs: { alt: "" }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "text" }, [
-                        _c("h4", [_vm._v(_vm._s(_vm.prepareText(a.title)))])
-                      ])
+                          attrs: { alt: "" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text" }, [
+                      _c("h4", [_vm._v(_vm._s(_vm.prepareText(a.title)))])
                     ])
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _vm.prepareAchievements().length == 0
-                ? _c("h3", [_vm._v(_vm._s(_vm.$lang.achievements.no_ach))])
+                  ])
                 : _vm._e()
-            ],
-            2
+            }),
+            0
           )
         : _vm._e(),
       _vm._v(" "),
@@ -56237,225 +57376,258 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "personal-cabinet" } },
-    [
-      _c("div", { staticClass: "left-side" }, [
-        _c("div", { staticClass: "profile" }, [
-          _c("div", { staticClass: "avatar" }, [
-            !_vm.process_avatar
-              ? _c("img", {
-                  directives: [
+  return _vm.user != null
+    ? _c(
+        "div",
+        { attrs: { id: "personal-cabinet" } },
+        [
+          _c("div", { staticClass: "left-side" }, [
+            _c("div", { staticClass: "profile" }, [
+              _c("div", { staticClass: "avatar" }, [
+                !_vm.process_avatar
+                  ? _c("img", {
+                      directives: [
+                        {
+                          name: "lazy",
+                          rawName: "v-lazy",
+                          value: _vm.prepareAvatar(),
+                          expression: "prepareAvatar()"
+                        }
+                      ],
+                      attrs: { alt: "" }
+                    })
+                  : _c("img", {
+                      directives: [
+                        {
+                          name: "lazy",
+                          rawName: "v-lazy",
+                          value: "/img/loading.gif",
+                          expression: "'/img/loading.gif'"
+                        }
+                      ],
+                      attrs: { alt: "" }
+                    }),
+                _vm._v(" "),
+                _c("ul", { staticClass: "controls" }, [
+                  _c(
+                    "li",
                     {
-                      name: "lazy",
-                      rawName: "v-lazy",
-                      value: _vm.prepareAvatar(),
-                      expression: "prepareAvatar()"
-                    }
-                  ],
-                  attrs: { alt: "" }
-                })
-              : _c("img", {
-                  directives: [
+                      directives: [
+                        {
+                          name: "tooltip",
+                          rawName: "v-tooltip.bottom",
+                          value: _vm.$lang.cabinet.change_profile_photo,
+                          expression: "$lang.cabinet.change_profile_photo",
+                          modifiers: { bottom: true }
+                        }
+                      ],
+                      on: {
+                        click: function($event) {
+                          return _vm.show("image-selector")
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-camera" })]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
                     {
-                      name: "lazy",
-                      rawName: "v-lazy",
-                      value: "/img/loading.gif",
-                      expression: "'/img/loading.gif'"
-                    }
-                  ],
-                  attrs: { alt: "" }
-                }),
-            _vm._v(" "),
-            _c("ul", { staticClass: "controls" }, [
-              _c(
-                "li",
-                {
-                  directives: [
-                    {
-                      name: "tooltip",
-                      rawName: "v-tooltip.bottom",
-                      value: "Сменить фотографию профиля",
-                      expression: "'Сменить фотографию профиля'",
-                      modifiers: { bottom: true }
-                    }
-                  ],
-                  on: {
-                    click: function($event) {
-                      return _vm.show("image-selector")
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-camera" })]
-              ),
+                      directives: [
+                        {
+                          name: "tooltip",
+                          rawName: "v-tooltip.bottom",
+                          value: _vm.$lang.cabinet.random_profile_photo,
+                          expression: "$lang.cabinet.random_profile_photo",
+                          modifiers: { bottom: true }
+                        }
+                      ],
+                      on: {
+                        click: function($event) {
+                          return _vm.randomAvatar()
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-sync" })]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "money" }, [
+                _c("p", [
+                  _vm._v(_vm._s(_vm.user.coins) + " "),
+                  _c("span", [_vm._v(_vm._s(_vm.$lang.cabinet.money))])
+                ])
+              ]),
               _vm._v(" "),
               _c(
-                "li",
+                "div",
                 {
-                  directives: [
-                    {
-                      name: "tooltip",
-                      rawName: "v-tooltip.bottom",
-                      value: "Случайная фотография профиля",
-                      expression: "'Случайная фотография профиля'",
-                      modifiers: { bottom: true }
-                    }
-                  ],
+                  staticClass: "level",
                   on: {
                     click: function($event) {
-                      return _vm.randomAvatar()
+                      return _vm.show("levels")
                     }
                   }
                 },
-                [_c("i", { staticClass: "fas fa-sync" })]
+                [
+                  _c("div", { staticClass: "text" }, [
+                    _vm._v(_vm._s(_vm.user.level.title) + "  ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "line" })
+                ]
               )
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "money" }, [
-            _c("p", [
-              _vm._v(_vm._s(_vm.user.coins) + " "),
-              _c("span", [_vm._v("Pucks")])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "right-side" },
-        [
           _c(
-            "tabs",
-            { attrs: { options: { useUrlFragment: false } } },
+            "div",
+            { staticClass: "right-side" },
             [
               _c(
-                "tab",
-                { attrs: { name: "Информация" } },
+                "tabs",
+                { attrs: { options: { useUrlFragment: false } } },
                 [
                   _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
-                    [_c("users-info", { attrs: { user: _vm.user } })],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab",
-                { attrs: { name: "Достижения" } },
-                [
-                  _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.information_title } },
                     [
-                      _c("users-achievements", {
-                        attrs: { userId: _vm.user.id }
-                      })
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [_c("users-info", { attrs: { user: _vm.user } })],
+                        1
+                      )
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab",
-                { attrs: { name: "Транзакции" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
-                    [_c("users-transactions")],
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.achievements_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [
+                          _c("users-achievements", {
+                            attrs: { userId: _vm.user.id }
+                          })
+                        ],
+                        1
+                      )
+                    ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab",
-                { attrs: { name: "Статистика" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
-                    [_c("users-stats")],
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.transactions_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [
+                          _c("users-transactions", {
+                            attrs: { user: _vm.user }
+                          })
+                        ],
+                        1
+                      )
+                    ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab",
-                { attrs: { name: "Промокоды" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
-                    [_c("users-promocodes")],
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.stats_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [_c("users-stats", { attrs: { user: _vm.user } })],
+                        1
+                      )
+                    ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab",
-                { attrs: { name: "Карточки" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
-                    [_c("users-cards")],
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.promocodes_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [_c("users-promocodes", { attrs: { user: _vm.user } })],
+                        1
+                      )
+                    ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab",
-                { attrs: { name: "Розыгрыши" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
-                    [_c("users-lotteries", { attrs: { win: false } })],
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.cards_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [_c("users-cards", { attrs: { user: _vm.user } })],
+                        1
+                      )
+                    ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab",
-                { attrs: { name: "Победы" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
-                    [_c("users-lotteries", { attrs: { win: true } })],
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.lotteries_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [
+                          _c("users-lotteries", {
+                            attrs: { win: false, user: _vm.user }
+                          })
+                        ],
+                        1
+                      )
+                    ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab",
-                { attrs: { name: "Баг-репорты" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "scroll",
-                    { staticClass: "scroll-area" },
-                    [_c("users-tickets")],
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.wins_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [
+                          _c("users-lotteries", {
+                            attrs: { win: true, user: _vm.user }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.tickets_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [_c("users-tickets", { attrs: { user: _vm.user } })],
+                        1
+                      )
+                    ],
                     1
                   )
                 ],
@@ -56463,68 +57635,88 @@ var render = function() {
               )
             ],
             1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "modal",
-        {
-          attrs: {
-            name: "image-selector",
-            adaptive: true,
-            width: "100%",
-            height: "100%"
-          }
-        },
-        [
+          ),
+          _vm._v(" "),
           _c(
-            "scroll",
-            { staticClass: "scroll-area" },
+            "modal",
+            {
+              attrs: {
+                name: "image-selector",
+                adaptive: true,
+                width: "100%",
+                height: "100%"
+              }
+            },
             [
-              _c("a", {
-                staticClass: "close",
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    return _vm.hide("image-selector")
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("image-selector", {
-                on: {
-                  "self-hide": function($event) {
-                    return _vm.hide("image-selector")
-                  },
-                  image: function($event) {
-                    return _vm.setImage($event)
-                  }
-                }
-              })
+              _c(
+                "scroll",
+                { staticClass: "scroll-area" },
+                [
+                  _c("a", {
+                    staticClass: "close",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.hide("image-selector")
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("image-selector", {
+                    on: {
+                      "self-hide": function($event) {
+                        return _vm.hide("image-selector")
+                      },
+                      image: function($event) {
+                        return _vm.setImage($event)
+                      }
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "modal",
+            {
+              attrs: {
+                name: "levels",
+                adaptive: true,
+                width: "100%",
+                height: "100%"
+              }
+            },
+            [
+              _c(
+                "scroll",
+                { staticClass: "scroll-area" },
+                [
+                  _c("a", {
+                    staticClass: "close",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.hide("levels")
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("levels", { attrs: { user: _vm.user } })
+                ],
+                1
+              )
             ],
             1
           )
         ],
         1
       )
-    ],
-    1
-  )
+    : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "level" }, [
-      _c("div", { staticClass: "text" }, [_vm._v("Брозовый уровень")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "line" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -56550,7 +57742,7 @@ var render = function() {
     "div",
     { staticClass: "coins-section" },
     [
-      _c("h1", [_vm._v("ПОКУПА \\ ПРОДАЖА МОНЕТ")]),
+      _c("h1", [_vm._v(_vm._s(_vm.$lang.coins.purchase_sale_coins))]),
       _vm._v(" "),
       _c(
         "div",
@@ -56710,12 +57902,12 @@ var render = function() {
           _c("div", { staticClass: "price-amount" }, [
             _c("div", [
               _c("span", [_vm._v(_vm._s(_vm.final_price_pucks))]),
-              _vm._v(" Pucks")
+              _vm._v(" " + _vm._s(_vm.$lang.coins.money))
             ]),
             _vm._v(" "),
             _c("div", [
               _c("span", [_vm._v(_vm._s(_vm.final_price_money))]),
-              _vm._v(" " + _vm._s(_vm.$lang.messages.rubles))
+              _vm._v(" " + _vm._s(_vm.$lang.messages.rub))
             ])
           ])
         ]),
@@ -56746,9 +57938,9 @@ var render = function() {
               }
             }
           },
-          [_vm._v("Найдите карточку")]
+          [_vm._v(_vm._s(_vm.$lang.coins.find_card))]
         ),
-        _vm._v(" или, впишите вручную")
+        _vm._v(" " + _vm._s(_vm.$lang.coins.enter_manually))
       ]),
       _vm._v(" "),
       _c("form", { staticClass: "player" }, [
@@ -56761,7 +57953,7 @@ var render = function() {
               expression: "info.player"
             }
           ],
-          attrs: { placeholder: _vm.$lang.messages.player, type: "text" },
+          attrs: { placeholder: _vm.$lang.coins.player, type: "text" },
           domProps: { value: _vm.info.player },
           on: {
             input: function($event) {
@@ -56782,7 +57974,7 @@ var render = function() {
               expression: "info.team"
             }
           ],
-          attrs: { placeholder: _vm.$lang.messages.team, type: "text" },
+          attrs: { placeholder: _vm.$lang.coins.team, type: "text" },
           domProps: { value: _vm.info.team },
           on: {
             input: function($event) {
@@ -56803,7 +57995,7 @@ var render = function() {
               expression: "info.rating"
             }
           ],
-          attrs: { type: "number", placeholder: _vm.$lang.messages.rating },
+          attrs: { type: "number", placeholder: _vm.$lang.coins.rating },
           domProps: { value: _vm.info.rating },
           on: {
             input: function($event) {
@@ -56824,10 +58016,7 @@ var render = function() {
               expression: "info.initial_price"
             }
           ],
-          attrs: {
-            type: "number",
-            placeholder: _vm.$lang.messages.initial_price
-          },
+          attrs: { type: "number", placeholder: _vm.$lang.coins.initial_price },
           domProps: { value: _vm.info.initial_price },
           on: {
             input: function($event) {
@@ -56848,10 +58037,7 @@ var render = function() {
               expression: "info.buyout_price"
             }
           ],
-          attrs: {
-            type: "number",
-            placeholder: _vm.$lang.messages.buyout_price
-          },
+          attrs: { type: "number", placeholder: _vm.$lang.coins.buyout_price },
           domProps: { value: _vm.info.buyout_price },
           on: {
             input: function($event) {
@@ -56872,7 +58058,7 @@ var render = function() {
               expression: "info.team_hut"
             }
           ],
-          attrs: { placeholder: _vm.$lang.messages.team_hut, type: "text" },
+          attrs: { placeholder: _vm.$lang.coins.team_hut, type: "text" },
           domProps: { value: _vm.info.team_hut },
           on: {
             input: function($event) {
@@ -56896,7 +58082,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.$lang.messages.buy))]
+            [_vm._v(_vm._s(_vm.$lang.coins.buy))]
           ),
           _vm._v(" "),
           _c(
@@ -56910,7 +58096,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.$lang.messages.sell_to_us))]
+            [_vm._v(_vm._s(_vm.$lang.coins.sell_to_us))]
           )
         ])
       ]),
@@ -56940,7 +58126,7 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("h1", [_vm._v("Поиск карточек игроков")]),
+              _c("h1", [_vm._v(_vm._s(_vm.$lang.coins.search_player_cards))]),
               _vm._v(" "),
               _c("card-search", {
                 on: {
@@ -56978,7 +58164,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("h1", [_vm._v("Продать нам")])
+            _c("h1", [_vm._v(_vm._s(_vm.$lang.coins.sell_to_us))])
           ])
         ],
         1
@@ -57006,7 +58192,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("h1", [_vm._v("Как купить")])
+            _c("h1", [_vm._v(_vm._s(_vm.$lang.coins.how_to_buy))])
           ])
         ],
         1
@@ -57034,19 +58220,19 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("h1", [_vm._v("Запрос оплаты")]),
+            _c("h1", [_vm._v(_vm._s(_vm.$lang.coins.payment_request))]),
             _vm._v(" "),
             _vm.info.currency
               ? _c("p", [
                   _vm._v(_vm._s(_vm.final_price_pucks)),
-                  _c("span", [_vm._v("Pucks")])
+                  _c("span", [_vm._v(_vm._s(_vm.$lang.coins.money))])
                 ])
               : _c("p", [
                   _vm._v(_vm._s(_vm.final_price_money)),
-                  _c("span", [_vm._v("Руб.")])
+                  _c("span", [_vm._v(_vm._s(_vm.$lang.coins.rub))])
                 ]),
             _vm._v(" "),
-            _c("h1", [_vm._v("Заказано монет")]),
+            _c("h1", [_vm._v(_vm._s(_vm.$lang.coins.coins_ordered))]),
             _vm._v(" "),
             _c("p", [_c("span", [_vm._v(_vm._s(_vm.info.sum))])]),
             _vm._v(" "),
@@ -57061,7 +58247,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v(_vm._s(_vm.$lang.messages.buy))]
+              [_vm._v(_vm._s(_vm.$lang.messages.buy) + "\n            ")]
             )
           ])
         ]
@@ -57112,8 +58298,8 @@ var render = function() {
                 {
                   name: "tooltip",
                   rawName: "v-tooltip.bottom",
-                  value: "По числу мест",
-                  expression: "'По числу мест'",
+                  value: _vm.$lang.games.sort_1,
+                  expression: "$lang.games.sort_1",
                   modifiers: { bottom: true }
                 }
               ],
@@ -57126,7 +58312,15 @@ var render = function() {
             },
             [
               _c("img", {
-                attrs: { src: "/img/cards-count-icon.png", alt: "sort-3" }
+                directives: [
+                  {
+                    name: "lazy",
+                    rawName: "v-lazy",
+                    value: "/img/cards-count-icon.png",
+                    expression: "'/img/cards-count-icon.png'"
+                  }
+                ],
+                attrs: { alt: "sort-3" }
               })
             ]
           ),
@@ -57143,8 +58337,8 @@ var render = function() {
                 {
                   name: "tooltip",
                   rawName: "v-tooltip.bottom",
-                  value: "По цене места",
-                  expression: "'По цене места'",
+                  value: _vm.$lang.games.sort_2,
+                  expression: "$lang.games.sort_2",
                   modifiers: { bottom: true }
                 }
               ],
@@ -57157,7 +58351,15 @@ var render = function() {
             },
             [
               _c("img", {
-                attrs: { src: "/img/cards-price-icon.png", alt: "sort-2" }
+                directives: [
+                  {
+                    name: "lazy",
+                    rawName: "v-lazy",
+                    value: "/img/cards-price-icon.png",
+                    expression: "'/img/cards-price-icon.png'"
+                  }
+                ],
+                attrs: { alt: "sort-2" }
               })
             ]
           ),
@@ -57174,8 +58376,8 @@ var render = function() {
                 {
                   name: "tooltip",
                   rawName: "v-tooltip.bottom",
-                  value: "По количеству занятых мест",
-                  expression: "'По количеству занятых мест'",
+                  value: _vm.$lang.games.sort_3,
+                  expression: "$lang.games.sort_3",
                   modifiers: { bottom: true }
                 }
               ],
@@ -57188,7 +58390,15 @@ var render = function() {
             },
             [
               _c("img", {
-                attrs: { src: "/img/cards-occupied-icon.png", alt: "sort-3" }
+                directives: [
+                  {
+                    name: "lazy",
+                    rawName: "v-lazy",
+                    value: "/img/cards-occupied-icon.png",
+                    expression: "'/img/cards-occupied-icon.png'"
+                  }
+                ],
+                attrs: { alt: "sort-3" }
               })
             ]
           ),
@@ -57205,8 +58415,8 @@ var render = function() {
                 {
                   name: "tooltip",
                   rawName: "v-tooltip.bottom",
-                  value: "По OVR",
-                  expression: "'По OVR'",
+                  value: _vm.$lang.games.sort_4,
+                  expression: "$lang.games.sort_4",
                   modifiers: { bottom: true }
                 }
               ],
@@ -57219,7 +58429,15 @@ var render = function() {
             },
             [
               _c("img", {
-                attrs: { src: "/img/cards-ovr-icon.png", alt: "sort-4" }
+                directives: [
+                  {
+                    name: "lazy",
+                    rawName: "v-lazy",
+                    value: "/img/cards-ovr-icon.png",
+                    expression: "'/img/cards-ovr-icon.png'"
+                  }
+                ],
+                attrs: { alt: "sort-4" }
               })
             ]
           )
@@ -57252,7 +58470,11 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("div", { staticClass: "price" }, [
-                          _vm._v(_vm._s(c.base_price) + " Pucks")
+                          _vm._v(
+                            _vm._s(c.base_price) +
+                              " " +
+                              _vm._s(_vm.$lang.games.money)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "places" }, [
@@ -57300,7 +58522,7 @@ var render = function() {
                 y: true
               },
               expression:
-                "{\n    el: '#filters',\n    container: '#pageContent',\n    duration: 500,\n    easing: 'linear',\n    offset: -200,\n    force: true,\n    cancelable: true,\n    x: false,\n    y: true\n}"
+                "{\n     el: '#filters',\n     container: '#pageContent',\n     duration: 500,\n     easing: 'linear',\n     offset: -200,\n     force: true,\n     cancelable: true,\n     x: false,\n     y: true\n    }"
             }
           ],
           staticClass: "scrollTop"
@@ -57335,10 +58557,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "form" }, [
-      _c("h1", [_vm._v("Sign In")]),
+      _c("h1", [_vm._v(_vm._s(_vm.$lang.auth.sign_in))]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "username" } }, [_vm._v("Email")]),
+        _c("label", [_vm._v(_vm._s(_vm.$lang.auth.email))]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -57353,7 +58575,7 @@ var render = function() {
             type: "text",
             name: "username",
             autocomplete: "off",
-            placeholder: "Введите вашу почту"
+            placeholder: _vm.$lang.auth.enter_your_mail
           },
           domProps: { value: _vm.username },
           on: {
@@ -57368,7 +58590,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
+        _c("label", [_vm._v(_vm._s(_vm.$lang.auth.password))]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -57383,7 +58605,7 @@ var render = function() {
             type: "password",
             name: "password",
             autocomplete: "off",
-            placeholder: "Введите пароль"
+            placeholder: _vm.$lang.auth.enter_password
           },
           domProps: { value: _vm.password },
           on: {
@@ -57411,7 +58633,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Sign In")]
+            [_vm._v(_vm._s(_vm.$lang.auth.sign_in))]
           ),
           _vm._v(" "),
           _c(
@@ -57420,7 +58642,7 @@ var render = function() {
               staticClass: "btn btn-other",
               attrs: { tag: "button", to: { name: "Register" } }
             },
-            [_vm._v("Sign Up")]
+            [_vm._v(_vm._s(_vm.$lang.auth.sign_up) + "\n            ")]
           )
         ],
         1
@@ -57431,7 +58653,7 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("a", { staticClass: "rules", attrs: { href: "" } }, [
-        _vm._v("Правила использования продукта")
+        _vm._v(_vm._s(_vm.$lang.auth.product_terms_of_use))
       ])
     ])
   ])
@@ -57498,8 +58720,8 @@ var render = function() {
                       {
                         name: "tooltip",
                         rawName: "v-tooltip.bottom",
-                        value: "Поделиться игрой",
-                        expression: "'Поделиться игрой'",
+                        value: _vm.$lang.lottery.share_game,
+                        expression: "$lang.lottery.share_game",
                         modifiers: { bottom: true }
                       }
                     ],
@@ -57524,8 +58746,8 @@ var render = function() {
                       {
                         name: "tooltip",
                         rawName: "v-tooltip.bottom",
-                        value: "Защита выигрыша",
-                        expression: "'Защита выигрыша'",
+                        value: _vm.$lang.lottery.win_protection,
+                        expression: "$lang.lottery.win_protection",
                         modifiers: { bottom: true }
                       }
                     ],
@@ -57550,8 +58772,8 @@ var render = function() {
                       {
                         name: "tooltip",
                         rawName: "v-tooltip.bottom",
-                        value: "Информация по карточке",
-                        expression: "'Информация по карточке'",
+                        value: _vm.$lang.lottery.card_information,
+                        expression: "$lang.lottery.card_information",
                         modifiers: { bottom: true }
                       }
                     ],
@@ -57591,7 +58813,7 @@ var render = function() {
                     _c("div", { staticClass: "line", style: _vm.cssProps }),
                     _vm._v(" "),
                     _c("div", { staticClass: "text" }, [
-                      _vm._v("Случайное место")
+                      _vm._v(_vm._s(_vm.$lang.lottery.random_place))
                     ])
                   ]
                 ),
@@ -57606,7 +58828,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Купить сразу")]
+                  [_vm._v(_vm._s(_vm.$lang.lottery.buy_immediately))]
                 )
               ])
             ])
@@ -57769,12 +58991,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", { staticClass: "main-title" }, [_vm._v("Игровые возможности")]),
+    _c("h1", { staticClass: "main-title" }, [
+      _vm._v(_vm._s(_vm.content.title))
+    ]),
     _vm._v(" "),
     _c("p", { staticClass: "description" }, [
-      _vm._v(
-        "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit.\n  "
-      )
+      _vm._v(_vm._s(_vm.content.content))
     ]),
     _vm._v(" "),
     _c(
@@ -57795,13 +59017,15 @@ var render = function() {
             staticClass: "btn auction closed",
             on: {
               click: function($event) {
-                return _vm.showError("Раздел Аукцион закрыт!")
+                return _vm.message(_vm.$lang.messages.main_error_1)
               }
             }
           },
           [
             _vm._v(
-              "\n      " + _vm._s(_vm.$lang.messages.auction) + "\n      "
+              "\n            " +
+                _vm._s(_vm.$lang.main.auction) +
+                "\n            "
             ),
             _c("span")
           ]
@@ -57822,7 +59046,11 @@ var render = function() {
             staticClass: "btn coins opened",
             attrs: { tag: "li", to: "/coins" }
           },
-          [_vm._v("\n      " + _vm._s(_vm.$lang.messages.coins) + "\n    ")]
+          [
+            _vm._v(
+              "\n            " + _vm._s(_vm.$lang.main.coins) + "\n        "
+            )
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -57840,13 +59068,15 @@ var render = function() {
             staticClass: "btn packs closed",
             on: {
               click: function($event) {
-                return _vm.showError("Раздел Аукцион закрыт!")
+                return _vm.message(_vm.$lang.messages.main_error_2)
               }
             }
           },
           [
             _vm._v(
-              "\n      " + _vm._s(_vm.$lang.messages.players_packs) + "\n      "
+              "\n            " +
+                _vm._s(_vm.$lang.main.players_packs) +
+                "\n            "
             ),
             _c("span")
           ]
@@ -57867,7 +59097,11 @@ var render = function() {
             staticClass: "btn randoms opened",
             attrs: { tag: "li", to: "/randoms" }
           },
-          [_vm._v("\n      " + _vm._s(_vm.$lang.messages.randoms) + "\n    ")]
+          [
+            _vm._v(
+              "\n            " + _vm._s(_vm.$lang.main.randoms) + "\n        "
+            )
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -57885,15 +59119,15 @@ var render = function() {
             staticClass: "btn fortune closed",
             on: {
               click: function($event) {
-                return _vm.showError("Раздел Колесо фортуны не доступен")
+                return _vm.message(_vm.$lang.messages.main_error_3)
               }
             }
           },
           [
             _vm._v(
-              "\n      " +
-                _vm._s(_vm.$lang.messages.wheel_of_fortune) +
-                "\n      "
+              "\n            " +
+                _vm._s(_vm.$lang.main.wheel_of_fortune) +
+                "\n            "
             ),
             _c("span")
           ]
@@ -57914,13 +59148,15 @@ var render = function() {
             staticClass: "btn wager closed",
             on: {
               click: function($event) {
-                return _vm.showError("Раздел Вагер-матчей не доступен")
+                return _vm.message(_vm.$lang.messages.main_error_4)
               }
             }
           },
           [
             _vm._v(
-              "\n      " + _vm._s(_vm.$lang.messages.wager_matches) + "\n      "
+              "\n            " +
+                _vm._s(_vm.$lang.main.wager_matches) +
+                "\n            "
             ),
             _c("span")
           ]
@@ -58107,9 +59343,148 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("ВЫБРАННЫЙ ПОЛЬЗОВАТЕЛЬ " + _vm._s(_vm.userId))])
-  ])
+  return _vm.user != null
+    ? _c(
+        "div",
+        { attrs: { id: "personal-cabinet" } },
+        [
+          _c("div", { staticClass: "left-side" }, [
+            _c("div", { staticClass: "profile" }, [
+              _c("div", { staticClass: "avatar" }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "lazy",
+                      rawName: "v-lazy",
+                      value: _vm.prepareAvatar(),
+                      expression: "prepareAvatar()"
+                    }
+                  ],
+                  attrs: { alt: "" }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "level",
+                  on: {
+                    click: function($event) {
+                      return _vm.show("levels")
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "text" }, [
+                    _vm._v(_vm._s(_vm.user.level.title) + "  ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "line" })
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "right-side" },
+            [
+              _c(
+                "tabs",
+                { attrs: { options: { useUrlFragment: false } } },
+                [
+                  _c(
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.information_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [_c("users-info", { attrs: { user: _vm.user } })],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.achievements_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [
+                          _c("users-achievements", {
+                            attrs: { userId: _vm.user.id }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tab",
+                    { attrs: { name: _vm.$lang.cabinet.wins_title } },
+                    [
+                      _c(
+                        "scroll",
+                        { staticClass: "scroll-area" },
+                        [
+                          _c("users-lotteries", {
+                            attrs: { win: true, user: _vm.user }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "modal",
+            {
+              attrs: {
+                name: "levels",
+                adaptive: true,
+                width: "100%",
+                height: "100%"
+              }
+            },
+            [
+              _c(
+                "scroll",
+                { staticClass: "scroll-area" },
+                [
+                  _c("a", {
+                    staticClass: "close",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.hide("levels")
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("levels", { attrs: { user: _vm.user } })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -58354,10 +59729,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "form" }, [
-      _c("h1", [_vm._v("Sign Up")]),
+      _c("h1", [_vm._v(_vm._s(_vm.$lang.auth.sign_up))]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+        _c("label", [_vm._v(_vm._s(_vm.$lang.auth.name))]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -58371,7 +59746,7 @@ var render = function() {
           attrs: {
             type: "text",
             autocomplete: "off",
-            placeholder: "Введите вашу почту"
+            placeholder: _vm.$lang.auth.enter_name
           },
           domProps: { value: _vm.name },
           on: {
@@ -58386,7 +59761,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+        _c("label", [_vm._v(_vm._s(_vm.$lang.auth.email))]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -58400,7 +59775,7 @@ var render = function() {
           attrs: {
             type: "email",
             autocomplete: "off",
-            placeholder: "Введите вашу почту"
+            placeholder: _vm.$lang.auth.enter_email
           },
           domProps: { value: _vm.email },
           on: {
@@ -58415,7 +59790,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
+        _c("label", [_vm._v(_vm._s(_vm.$lang.auth.password))]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -58429,7 +59804,7 @@ var render = function() {
           attrs: {
             type: "password",
             autocomplete: "off",
-            placeholder: "Введите пароль"
+            placeholder: _vm.$lang.auth.enter_password
           },
           domProps: { value: _vm.password },
           on: {
@@ -58444,9 +59819,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group" }, [
-        _c("label", { attrs: { for: "confirm_password" } }, [
-          _vm._v("Confirm password")
-        ]),
+        _c("label", [_vm._v(_vm._s(_vm.$lang.auth.confirm_password))]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -58460,7 +59833,7 @@ var render = function() {
           attrs: {
             type: "password",
             autocomplete: "off",
-            placeholder: "Введите пароль"
+            placeholder: _vm.$lang.auth.confirm_password
           },
           domProps: { value: _vm.confirm_password },
           on: {
@@ -58488,7 +59861,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Sign Up")]
+            [_vm._v(_vm._s(_vm.$lang.auth.sign_up))]
           ),
           _vm._v(" "),
           _c(
@@ -58497,7 +59870,7 @@ var render = function() {
               staticClass: "btn btn-other",
               attrs: { tag: "button", to: { name: "Login" } }
             },
-            [_vm._v("Sign In")]
+            [_vm._v(_vm._s(_vm.$lang.auth.sign_in))]
           )
         ],
         1
@@ -58508,7 +59881,7 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("a", { staticClass: "rules", attrs: { href: "" } }, [
-        _vm._v("Правила использования продукта")
+        _vm._v(_vm._s(_vm.$lang.auth.product_terms_of_use))
       ])
     ])
   ])
@@ -58561,9 +59934,46 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("header", [
+      _c("div", { staticClass: "center" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(_vm._s(_vm.$lang.start.p1) + " "),
+          _c("i", { staticClass: "fas fa-arrow-right" })
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
+    ]),
     _vm._v(" "),
-    _vm._m(1),
+    _c("section", { staticClass: "section-1" }, [
+      _c("div", { staticClass: "center" }, [
+        _c("h1", { domProps: { innerHTML: _vm._s(_vm.$lang.start.p2) } }),
+        _vm._v(" "),
+        _c("h3", [_vm._v(_vm._s(_vm.$lang.start.p3))]),
+        _vm._v(" "),
+        _c("nav", [
+          _c("ul", [
+            _c("li", [
+              _c("h5", [_vm._v(_vm._s(_vm.$lang.start.p4))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.$lang.start.p5))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.$lang.start.p6))])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("h5", [_vm._v(_vm._s(_vm.$lang.start.p7))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.$lang.start.p8))])
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("section", { staticClass: "section-2" }, [
       _c("div", { staticClass: "center" }, [
@@ -58581,11 +59991,11 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _vm._m(2)
+        _vm._m(3)
       ])
     ]),
     _vm._v(" "),
-    _vm._m(3),
+    _vm._m(4),
     _vm._v(" "),
     _c("section", { staticClass: "section-4" }, [
       _c("div", { staticClass: "center" }, [
@@ -58813,12 +60223,12 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(4)
+      _vm._m(5)
     ]),
     _vm._v(" "),
     _c("section", { staticClass: "section-6" }, [
       _c("div", { staticClass: "center" }, [
-        _vm._m(5),
+        _vm._m(6),
         _vm._v(" "),
         _c("div", { staticClass: "bonus" }, [
           _c("img", {
@@ -58879,17 +60289,17 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _vm._m(6),
+        _vm._m(7),
         _vm._v(" "),
-        _vm._m(7)
+        _vm._m(8)
       ])
     ]),
     _vm._v(" "),
-    _vm._m(8),
-    _vm._v(" "),
     _vm._m(9),
     _vm._v(" "),
-    _vm._m(10)
+    _vm._m(10),
+    _vm._v(" "),
+    _vm._m(11)
   ])
 }
 var staticRenderFns = [
@@ -58897,39 +60307,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", [
-      _c("div", { staticClass: "center" }, [
-        _c("div", { staticClass: "logo-wrapper" }, [
-          _c("div", { staticClass: "logo" }, [
-            _c("a", { attrs: { href: "/index" } }, [
-              _c("img", { attrs: { src: "img/logo.png", alt: "" } })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Начни с этого момента "),
-          _c("i", { staticClass: "fas fa-arrow-right" })
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "social" }, [
-          _c("li", [
-            _c("a", { attrs: { href: "/social-auth/vkontakte" } }, [
-              _c("i", { staticClass: "fab fa-vk" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "/social-auth/facebook" } }, [
-              _c("i", { staticClass: "fab fa-facebook-f" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fab fa-telegram-plane" })
-            ])
-          ])
+    return _c("div", { staticClass: "logo-wrapper" }, [
+      _c("div", { staticClass: "logo" }, [
+        _c("a", { attrs: { href: "/index" } }, [
+          _c("img", { attrs: { src: "img/logo.png", alt: "" } })
         ])
       ])
     ])
@@ -58938,52 +60319,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "section-1" }, [
-      _c("div", { staticClass: "center" }, [
-        _c("h1", [
-          _c("span", [_vm._v("Дешелве, чем")]),
-          _vm._v(" когда-"),
-          _c("br"),
-          _vm._v("либо!")
-        ]),
-        _vm._v(" "),
-        _c("h3", [_vm._v("Успей купить карточки любых игроков!")]),
-        _vm._v(" "),
-        _c("nav", [
-          _c("ul", [
-            _c("li", [
-              _c("h5", [_vm._v("Быстрая доставка")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Отправка выигрыша осуществляется оператором в течнии 15 минут после розыгрыша"
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v("Получение карточек осуществляется в течении 24х часов.")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("h5", [_vm._v("Приз практически бесплатно")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v("У нас Вы можете получить вещь в 100 раз дешевле!")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("h5", [_vm._v("Уникальный рандом алгоритм")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Мы используем систему Random.org для определения случайного победителя!"
-                )
-              ])
-            ])
-          ])
+    return _c("ul", { staticClass: "social" }, [
+      _c("li", [
+        _c("a", { attrs: { href: "/social-auth/vkontakte" } }, [
+          _c("i", { staticClass: "fab fa-vk" })
         ])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "/social-auth/facebook" } }, [
+          _c("i", { staticClass: "fab fa-facebook-f" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "#" } }, [
+          _c("i", { staticClass: "fab fa-telegram-plane" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("h5", [_vm._v("Уникальный рандом алгоритм")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Мы используем систему Random.org для определения случайного победителя!"
+        )
       ])
     ])
   },
@@ -77074,6 +78440,1037 @@ module.exports = Plugin;
 
 /***/ }),
 
+/***/ "./node_modules/vuex/dist/vuex.esm.js":
+/*!********************************************!*\
+  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
+  \********************************************/
+/*! exports provided: default, Store, install, mapState, mapMutations, mapGetters, mapActions, createNamespacedHelpers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
+/**
+ * vuex v3.1.1
+ * (c) 2019 Evan You
+ * @license MIT
+ */
+function applyMixin (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+}
+
+var target = typeof window !== 'undefined'
+  ? window
+  : typeof global !== 'undefined'
+    ? global
+    : {};
+var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+function partial (fn, arg) {
+  return function () {
+    return fn(arg)
+  }
+}
+
+// Base data struct for store's module, package with some attribute and method
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  // Store some children item
+  this._children = Object.create(null);
+  // Store the origin module object which passed by programmer
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+
+  // Store the origin module's state
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors = { namespaced: { configurable: true } };
+
+prototypeAccessors.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if (true) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+function update (path, targetModule, newModule) {
+  if (true) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if (true) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if (true) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  var state = this._modules.root.state;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
+  if (useDevtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors$1 = { state: { configurable: true } };
+
+prototypeAccessors$1.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors$1.state.set = function (v) {
+  if (true) {
+    assert(false, "use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+     true &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  try {
+    this._actionSubscribers
+      .filter(function (sub) { return sub.before; })
+      .forEach(function (sub) { return sub.before(action, this$1.state); });
+  } catch (e) {
+    if (true) {
+      console.warn("[vuex] error in before action subscribers: ");
+      console.error(e);
+    }
+  }
+
+  var result = entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload);
+
+  return result.then(function (res) {
+    try {
+      this$1._actionSubscribers
+        .filter(function (sub) { return sub.after; })
+        .forEach(function (sub) { return sub.after(action, this$1.state); });
+    } catch (e) {
+      if (true) {
+        console.warn("[vuex] error in after action subscribers: ");
+        console.error(e);
+      }
+    }
+    return res
+  })
+};
+
+Store.prototype.subscribe = function subscribe (fn) {
+  return genericSubscribe(fn, this._subscribers)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn) {
+  var subs = typeof fn === 'function' ? { before: fn } : fn;
+  return genericSubscribe(subs, this._actionSubscribers)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if (true) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors$1 );
+
+function genericSubscribe (fn, subs) {
+  if (subs.indexOf(fn) < 0) {
+    subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure enviroment.
+    computed[key] = partial(fn, store);
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  var gettersProxy = {};
+
+  var splitPos = namespace.length;
+  Object.keys(store.getters).forEach(function (type) {
+    // skip if the target getter is not match this namespace
+    if (type.slice(0, splitPos) !== namespace) { return }
+
+    // extract local getter type
+    var localType = type.slice(splitPos);
+
+    // Add a port to the getters proxy.
+    // Define as getter property because
+    // we do not want to evaluate the getters in this time.
+    Object.defineProperty(gettersProxy, localType, {
+      get: function () { return store.getters[type]; },
+      enumerable: true
+    });
+  });
+
+  return gettersProxy
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload, cb) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload, cb);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if (true) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if (true) {
+      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if (true) {
+    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+/**
+ * Reduce the code which written in Vue.js for getting the state.
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
+ * @param {Object}
+ */
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for committing the mutation
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // Get the commit method from store
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for getting the getters
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} getters
+ * @return {Object}
+ */
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    // The namespace has been mutated by normalizeNamespace
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if ( true && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for dispatch the action
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // get dispatch function from store
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
+ * @param {String} namespace
+ * @return {Object}
+ */
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+/**
+ * Normalize the map
+ * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
+ * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
+ * @param {Array|Object} map
+ * @return {Object}
+ */
+function normalizeMap (map) {
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+/**
+ * Search a special module from store by namespace. if module not exist, print error message.
+ * @param {Object} store
+ * @param {String} helper
+ * @param {String} namespace
+ * @return {Object}
+ */
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if ( true && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '3.1.1',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index_esm);
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -77185,10 +79582,6 @@ var map = {
 		"./resources/js/components/AsideMenu.vue",
 		"layout-components-AsideMenu-vue"
 	],
-	"./components/Breadcrumbs.vue": [
-		"./resources/js/components/Breadcrumbs.vue",
-		"layout-components-Breadcrumbs-vue"
-	],
 	"./components/Chat.vue": [
 		"./resources/js/components/Chat.vue",
 		"vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue",
@@ -77260,6 +79653,9 @@ var map = {
 	"./components/modals/ImageSelector.vue": [
 		"./resources/js/components/modals/ImageSelector.vue"
 	],
+	"./components/modals/Levels.vue": [
+		"./resources/js/components/modals/Levels.vue"
+	],
 	"./components/modals/Login.vue": [
 		"./resources/js/components/modals/Login.vue",
 		"layout-components-modals-Login-vue"
@@ -77310,14 +79706,6 @@ var map = {
 	"./pages/Games.vue": [
 		"./resources/js/pages/Games.vue"
 	],
-	"./pages/Help.vue": [
-		"./resources/js/pages/Help.vue",
-		"layout-pages-Help-vue"
-	],
-	"./pages/History.vue": [
-		"./resources/js/pages/History.vue",
-		"layout-pages-History-vue"
-	],
 	"./pages/Login.vue": [
 		"./resources/js/pages/Login.vue"
 	],
@@ -77338,10 +79726,6 @@ var map = {
 	],
 	"./pages/Playzone.vue": [
 		"./resources/js/pages/Playzone.vue"
-	],
-	"./pages/Promo.vue": [
-		"./resources/js/pages/Promo.vue",
-		"layout-pages-Promo-vue"
 	],
 	"./pages/Randoms.vue": [
 		"./resources/js/pages/Randoms.vue"
@@ -77451,55 +79835,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/api.js":
-/*!*****************************!*\
-  !*** ./resources/js/api.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Api =
-/*#__PURE__*/
-function () {
-  function Api() {
-    _classCallCheck(this, Api);
-  }
-
-  _createClass(Api, [{
-    key: "call",
-    value: function call(requestType, url) {
-      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      return new Promise(function (resolve, reject) {
-        axios[requestType](url, data).then(function (response) {
-          resolve(response);
-        })["catch"](function (_ref) {
-          var response = _ref.response;
-
-          if (response.status === 401) {
-            auth.logout();
-          }
-
-          reject(response);
-        });
-      });
-    }
-  }]);
-
-  return Api;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (Api);
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -77511,31 +79846,29 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./resources/js/auth.js");
-/* harmony import */ var _api_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./api.js */ "./resources/js/api.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_lazyload__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-lazyload */ "./node_modules/vue-lazyload/vue-lazyload.esm.js");
-/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Main */ "./resources/js/Main.vue");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
-/* harmony import */ var vuejs_localization__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuejs-localization */ "./node_modules/vuejs-localization/index.js");
-/* harmony import */ var vuejs_localization__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vuejs_localization__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-recaptcha-v3 */ "./node_modules/vue-recaptcha-v3/dist/ReCaptchaVuePlugin.js");
-/* harmony import */ var vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var v_tooltip__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! v-tooltip */ "./node_modules/v-tooltip/dist/v-tooltip.esm.js");
-/* harmony import */ var vuejs_loading_plugin__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuejs-loading-plugin */ "./node_modules/vuejs-loading-plugin/index.js");
-/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-clipboard2 */ "./node_modules/vue-clipboard2/vue-clipboard.js");
-/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue_clipboard2__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-scrollto */ "./node_modules/vue-scrollto/vue-scrollto.js");
-/* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue_scrollto__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var vue_tabs_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-tabs-component */ "./node_modules/vue-tabs-component/dist/index.js");
-/* harmony import */ var vue_tabs_component__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(vue_tabs_component__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_lazyload__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-lazyload */ "./node_modules/vue-lazyload/vue-lazyload.esm.js");
+/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Main */ "./resources/js/Main.vue");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var vuejs_localization__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuejs-localization */ "./node_modules/vuejs-localization/index.js");
+/* harmony import */ var vuejs_localization__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuejs_localization__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-recaptcha-v3 */ "./node_modules/vue-recaptcha-v3/dist/ReCaptchaVuePlugin.js");
+/* harmony import */ var vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var v_tooltip__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! v-tooltip */ "./node_modules/v-tooltip/dist/v-tooltip.esm.js");
+/* harmony import */ var vuejs_loading_plugin__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuejs-loading-plugin */ "./node_modules/vuejs-loading-plugin/index.js");
+/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-clipboard2 */ "./node_modules/vue-clipboard2/vue-clipboard.js");
+/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_clipboard2__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-scrollto */ "./node_modules/vue-scrollto/vue-scrollto.js");
+/* harmony import */ var vue_scrollto__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue_scrollto__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var vue_tabs_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-tabs-component */ "./node_modules/vue-tabs-component/dist/index.js");
+/* harmony import */ var vue_tabs_component__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue_tabs_component__WEBPACK_IMPORTED_MODULE_12__);
 
 
 
 
-
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_lazyload__WEBPACK_IMPORTED_MODULE_4__["default"], {
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_lazyload__WEBPACK_IMPORTED_MODULE_3__["default"], {
   preLoad: 1.3,
   error: 'img/error.png',
   loading: 'img/loading.gif',
@@ -77551,50 +79884,48 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_lazyload__WEBPACK_IMPORTED_MO
 
 
 
-vuejs_localization__WEBPACK_IMPORTED_MODULE_7___default.a.requireAll(__webpack_require__("./resources/js/lang sync recursive \\.js$"));
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuejs_localization__WEBPACK_IMPORTED_MODULE_7___default.a);
-window.api = new _api_js__WEBPACK_IMPORTED_MODULE_2__["default"]();
-window.auth = new _auth__WEBPACK_IMPORTED_MODULE_1__["default"]();
-window.Event = new vue__WEBPACK_IMPORTED_MODULE_3___default.a();
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('tabs', vue_tabs_component__WEBPACK_IMPORTED_MODULE_13__["Tabs"]);
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('tab', vue_tabs_component__WEBPACK_IMPORTED_MODULE_13__["Tab"]);
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_scrollto__WEBPACK_IMPORTED_MODULE_12___default.a);
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_clipboard2__WEBPACK_IMPORTED_MODULE_11___default.a);
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(v_tooltip__WEBPACK_IMPORTED_MODULE_9__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuejs_loading_plugin__WEBPACK_IMPORTED_MODULE_10__["default"], {
+vuejs_localization__WEBPACK_IMPORTED_MODULE_6___default.a.requireAll(__webpack_require__("./resources/js/lang sync recursive \\.js$"));
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuejs_localization__WEBPACK_IMPORTED_MODULE_6___default.a);
+window.Event = new vue__WEBPACK_IMPORTED_MODULE_2___default.a();
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('tabs', vue_tabs_component__WEBPACK_IMPORTED_MODULE_12__["Tabs"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('tab', vue_tabs_component__WEBPACK_IMPORTED_MODULE_12__["Tab"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_scrollto__WEBPACK_IMPORTED_MODULE_11___default.a);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_clipboard2__WEBPACK_IMPORTED_MODULE_10___default.a);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(v_tooltip__WEBPACK_IMPORTED_MODULE_8__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vuejs_loading_plugin__WEBPACK_IMPORTED_MODULE_9__["default"], {
   text: 'HUTPLACES',
   background: 'rgba(0,0,0,0.97)',
-  classes: ['hutplace-preloader'] // array, object or string
-
+  classes: ['hutplace-preloader']
 });
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_8__["VueReCaptcha"], {
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_7__["VueReCaptcha"], {
   siteKey: '6LfQrq4UAAAAAF1gdoj9RN6F1ALNPX7sVp5ZFlER',
   loaderOptions: {
     useRecaptchaNet: true
   }
 });
-vue__WEBPACK_IMPORTED_MODULE_3___default.a.config.productionTip = false; // eslint-disable-next-line no-new
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.config.productionTip = false; // eslint-disable-next-line no-new
 
-var app = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
+var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   el: '#app',
-  router: _routes__WEBPACK_IMPORTED_MODULE_6__["default"],
+  store: _store__WEBPACK_IMPORTED_MODULE_1__["store"],
+  router: _routes__WEBPACK_IMPORTED_MODULE_5__["default"],
   components: {
-    App: _Main__WEBPACK_IMPORTED_MODULE_5__["default"]
+    App: _Main__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   template: '<App/>'
 });
-_routes__WEBPACK_IMPORTED_MODULE_6__["default"].beforeResolve(function (to, from, next) {
+_routes__WEBPACK_IMPORTED_MODULE_5__["default"].beforeResolve(function (to, from, next) {
   if (to.name) {
     app.$loading(true);
   }
 
   next();
 });
-_routes__WEBPACK_IMPORTED_MODULE_6__["default"].beforeEach(function (to, from, next) {
+_routes__WEBPACK_IMPORTED_MODULE_5__["default"].beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.middlewareAuth;
   })) {
-    if (!auth.check()) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_1__["store"].getters.CHECK) {
       next({
         path: '/signin',
         query: {
@@ -77607,7 +79938,7 @@ _routes__WEBPACK_IMPORTED_MODULE_6__["default"].beforeEach(function (to, from, n
 
   next();
 });
-_routes__WEBPACK_IMPORTED_MODULE_6__["default"].afterEach(function (to, from) {
+_routes__WEBPACK_IMPORTED_MODULE_5__["default"].afterEach(function (to, from) {
   setTimeout(function () {
     app.$loading(false);
   }, 1000);
@@ -77623,101 +79954,6 @@ _routes__WEBPACK_IMPORTED_MODULE_6__["default"].afterEach(function (to, from) {
 /***/ (function(module, exports) {
 
 module.exports = "/images/spinner-marker.svg?bd39f068fc3c13c1608e1b41beb97678";
-
-/***/ }),
-
-/***/ "./resources/js/auth.js":
-/*!******************************!*\
-  !*** ./resources/js/auth.js ***!
-  \******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Auth =
-/*#__PURE__*/
-function () {
-  function Auth() {
-    _classCallCheck(this, Auth);
-
-    this.token = window.localStorage.getItem('token');
-    var userData = window.localStorage.getItem('user');
-    this.user = userData && userData != 'undefined' ? JSON.parse(userData) : null;
-
-    if (this.token && this.token != undefined) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.token;
-      this.getUser();
-    }
-  }
-
-  _createClass(Auth, [{
-    key: "login",
-    value: function login(token, user) {
-      window.localStorage.setItem('token', token);
-      window.localStorage.setItem('user', JSON.stringify(user));
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-      this.token = token;
-      this.user = user;
-      Event.$emit('userLoggedIn');
-    }
-  }, {
-    key: "retriveUser",
-    value: function retriveUser(token) {
-      var _this = this;
-
-      this.token = token;
-      window.localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-      api.call('get', '/get-user').then(function (_ref) {
-        var data = _ref.data;
-        _this.user = data;
-        window.localStorage.setItem('user', JSON.stringify(_this.user));
-        Event.$emit('userLoggedIn');
-      });
-    }
-  }, {
-    key: "getUser",
-    value: function getUser() {
-      var _this2 = this;
-
-      api.call('get', '/get-user').then(function (_ref2) {
-        var data = _ref2.data;
-        _this2.user = data;
-      });
-    }
-  }, {
-    key: "check",
-    value: function check() {
-      return !!this.token;
-    }
-  }, {
-    key: "logout",
-    value: function logout() {
-      var _this3 = this;
-
-      api.call('get', 'logout').then(function (_ref3) {
-        var data = _ref3.data;
-        window.localStorage.removeItem('token');
-        window.localStorage.removeItem('user');
-        axios.defaults.headers.common['Authorization'] = null;
-        _this3.token = null;
-        _this3.user = null;
-        Event.$emit('userLoggedOut');
-      });
-    }
-  }]);
-
-  return Auth;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (Auth);
 
 /***/ }),
 
@@ -78812,6 +81048,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/modals/Levels.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/modals/Levels.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Levels_vue_vue_type_template_id_6d048fc6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Levels.vue?vue&type=template&id=6d048fc6&scoped=true& */ "./resources/js/components/modals/Levels.vue?vue&type=template&id=6d048fc6&scoped=true&");
+/* harmony import */ var _Levels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Levels.vue?vue&type=script&lang=js& */ "./resources/js/components/modals/Levels.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Levels_vue_vue_type_style_index_0_id_6d048fc6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true& */ "./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Levels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Levels_vue_vue_type_template_id_6d048fc6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Levels_vue_vue_type_template_id_6d048fc6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "6d048fc6",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/modals/Levels.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/Levels.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/modals/Levels.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Levels.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Levels.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true& ***!
+  \*************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_style_index_0_id_6d048fc6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Levels.vue?vue&type=style&index=0&id=6d048fc6&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_style_index_0_id_6d048fc6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_style_index_0_id_6d048fc6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_style_index_0_id_6d048fc6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_style_index_0_id_6d048fc6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_style_index_0_id_6d048fc6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/Levels.vue?vue&type=template&id=6d048fc6&scoped=true&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/modals/Levels.vue?vue&type=template&id=6d048fc6&scoped=true& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_template_id_6d048fc6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Levels.vue?vue&type=template&id=6d048fc6&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Levels.vue?vue&type=template&id=6d048fc6&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_template_id_6d048fc6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Levels_vue_vue_type_template_id_6d048fc6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/modals/Security.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/modals/Security.vue ***!
@@ -78890,11 +81213,32 @@ __webpack_require__.r(__webpack_exports__);
 
 var map = {
 	"./en/achievements.js": "./resources/js/lang/en/achievements.js",
+	"./en/auth.js": "./resources/js/lang/en/auth.js",
+	"./en/cabinet.js": "./resources/js/lang/en/cabinet.js",
+	"./en/cards.js": "./resources/js/lang/en/cards.js",
 	"./en/chat.js": "./resources/js/lang/en/chat.js",
+	"./en/coins.js": "./resources/js/lang/en/coins.js",
+	"./en/games.js": "./resources/js/lang/en/games.js",
+	"./en/lottery.js": "./resources/js/lang/en/lottery.js",
+	"./en/main.js": "./resources/js/lang/en/main.js",
+	"./en/menu.js": "./resources/js/lang/en/menu.js",
 	"./en/messages.js": "./resources/js/lang/en/messages.js",
+	"./en/modals.js": "./resources/js/lang/en/modals.js",
+	"./en/start.js": "./resources/js/lang/en/start.js",
 	"./en/triggertypes.js": "./resources/js/lang/en/triggertypes.js",
 	"./ru/achievements.js": "./resources/js/lang/ru/achievements.js",
+	"./ru/auth.js": "./resources/js/lang/ru/auth.js",
+	"./ru/cabinet.js": "./resources/js/lang/ru/cabinet.js",
+	"./ru/cards.js": "./resources/js/lang/ru/cards.js",
+	"./ru/chat.js": "./resources/js/lang/ru/chat.js",
+	"./ru/coins.js": "./resources/js/lang/ru/coins.js",
+	"./ru/games.js": "./resources/js/lang/ru/games.js",
+	"./ru/lottery.js": "./resources/js/lang/ru/lottery.js",
+	"./ru/main.js": "./resources/js/lang/ru/main.js",
+	"./ru/menu.js": "./resources/js/lang/ru/menu.js",
 	"./ru/messages.js": "./resources/js/lang/ru/messages.js",
+	"./ru/modals.js": "./resources/js/lang/ru/modals.js",
+	"./ru/start.js": "./resources/js/lang/ru/start.js",
 	"./ru/triggertypes.js": "./resources/js/lang/ru/triggertypes.js"
 };
 
@@ -78928,6 +81272,8 @@ webpackContext.id = "./resources/js/lang sync recursive \\.js$";
 /***/ (function(module, exports) {
 
 module.exports = {
+  main_title: 'Achievements',
+  main_description: 'Description',
   discount: "Сидка",
   exp: "Опыт",
   coins: "Монеты",
@@ -78993,6 +81339,142 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/lang/en/auth.js":
+/*!**************************************!*\
+  !*** ./resources/js/lang/en/auth.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  enter_your_mail: 'Enter your mail',
+  email: 'Email',
+  sign_in: 'Sign In',
+  sign_up: 'Sign Up',
+  password: 'Password',
+  confirm_password: 'Confirm password',
+  name: 'Name',
+  enter_password: 'Enter your password',
+  enter_email: 'Enter your email',
+  enter_name: 'Enter your name',
+  product_terms_of_use: 'Product Terms of Use'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/cabinet.js":
+/*!*****************************************!*\
+  !*** ./resources/js/lang/en/cabinet.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  change_profile_photo: "Change profile photo",
+  random_profile_photo: "Random profile photo",
+  money: "Pucks",
+  information_title: "Information",
+  achievements_title: "Achievements",
+  transactions_title: "Transactions",
+  stats_title: "Stats",
+  promocodes_title: "Promocodes",
+  cards_title: "Cards",
+  lotteries_title: "Lottery",
+  wins_title: "Wins",
+  tickets_title: "Tickets",
+  transactions: {
+    main_title: "User's transactions",
+    main_description: "User's transactions description",
+    amount: "Amount",
+    payment_system: "Payment system",
+    currency: "Currency",
+    date: "Date",
+    error_1: "You have no Transactions :("
+  },
+  cards: {
+    main_title: "User's cards",
+    main_description: "User's cards description",
+    error_1: 'No cards found'
+  },
+  info: {
+    main_title: 'Info section',
+    main_description: 'Description',
+    email: 'Email',
+    name: 'Name',
+    skype: 'Skype',
+    vk: 'Vkontakte',
+    fb: 'Facebook',
+    tw: 'Twitter',
+    money: 'Money',
+    level: 'Level',
+    discount: 'Discount',
+    exp: 'Experience',
+    coins: 'Coins',
+    save: 'Save',
+    current_password: 'Current password',
+    new_password: 'New password',
+    confirm_password: 'Confirm password',
+    title_1: 'Basic information',
+    title_2: 'Change password'
+  },
+  win: {
+    main_title: 'Win lottery section',
+    main_description: 'Description',
+    error_1: 'You have not won anything yet :('
+  },
+  lottery: {
+    main_title: 'Lottery section',
+    main_description: 'Description',
+    error_1: 'You have not won anything yet :('
+  },
+  promocodes: {
+    main_title: 'Promocodes section',
+    main_description: 'Description',
+    title: 'Title',
+    description: 'Description',
+    code: 'Code',
+    prize: 'Prize',
+    date: 'Date',
+    error_1: 'You do not have bug reports :('
+  },
+  stats: {
+    main_title: 'Sats section',
+    main_description: 'Description',
+    param: 'Param',
+    value: 'Value',
+    error_1: 'Failed to get trigger types',
+    error_2: 'You do not have Statistics :('
+  },
+  tickets: {
+    main_title: 'Tickets section',
+    main_description: 'Description',
+    status: 'Status',
+    title: 'Title',
+    description: 'Description',
+    ticket_type: 'Type',
+    created_at: 'Date',
+    complete: 'Complete',
+    in_progress: 'In progress',
+    error_1: 'You have no tickets'
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/cards.js":
+/*!***************************************!*\
+  !*** ./resources/js/lang/en/cards.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  main_title: 'Cards',
+  main_description: 'Description'
+};
+
+/***/ }),
+
 /***/ "./resources/js/lang/en/chat.js":
 /*!**************************************!*\
   !*** ./resources/js/lang/en/chat.js ***!
@@ -79009,10 +81491,93 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/lang/en/messages.js":
-/*!******************************************!*\
-  !*** ./resources/js/lang/en/messages.js ***!
-  \******************************************/
+/***/ "./resources/js/lang/en/coins.js":
+/*!***************************************!*\
+  !*** ./resources/js/lang/en/coins.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  money: "Pucks",
+  rub: 'RUB',
+  search_player_cards: 'Search for player cards',
+  coins_ordered: 'Coins ordered',
+  payment_request: 'Payment request',
+  how_to_buy: 'How to buy',
+  sell_to_us: 'Sell ​​to us',
+  find_card: 'Find a card',
+  enter_manually: ', or enter manually',
+  purchase_sale_coins: 'PURCHASE \\ SALE OF COINS',
+  player: 'Player\'s second name',
+  team: 'Player\'s league and team',
+  rating: 'Player\'s rating',
+  initial_price: 'The initial price of your card',
+  buyout_price: 'The buyout price of your card',
+  team_hut: 'Name of your team in HUT',
+  buy: 'buy'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/games.js":
+/*!***************************************!*\
+  !*** ./resources/js/lang/en/games.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  sort_1: 'By the number of places',
+  sort_2: 'For the price of a place',
+  sort_3: 'By the number of occupied places',
+  sort_4: 'By OVR',
+  money: 'Pucks'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/lottery.js":
+/*!*****************************************!*\
+  !*** ./resources/js/lang/en/lottery.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  share_game: 'Share game',
+  win_protection: 'Win protection',
+  card_information: 'Card Information',
+  random_place: 'Random place',
+  buy_immediately: 'Buy immediately'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/main.js":
+/*!**************************************!*\
+  !*** ./resources/js/lang/en/main.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  main_title: 'Gaming features',
+  main_description: '',
+  auction: 'Auction',
+  lottery: 'Lottery',
+  randoms: 'Randoms',
+  coins: 'Coins',
+  players_packs: 'Players packs',
+  wheel_of_fortune: 'Wheel of fortune'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/menu.js":
+/*!**************************************!*\
+  !*** ./resources/js/lang/en/menu.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -79040,20 +81605,91 @@ module.exports = {
   achievement: 'Achievement',
   report: 'Bug reports',
   my_reports: 'My reports',
+  user_cabinet: 'User cabinet',
+  money: 'Pucks',
+  logout: 'Logout',
+  sign_in: 'Sign In',
+  sign_up: 'Sign Up'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/messages.js":
+/*!******************************************!*\
+  !*** ./resources/js/lang/en/messages.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  send_coins: "Send coins",
+  errors_coins_1: "Log in to the system for payment in Pucks",
+  errors_coins_2: "Not all fields are filled",
+  errors_coins_3: "Indicate the desired amount",
+  errors_coins_4: "The request failed",
+  send_coins_success_1: "Request sent successfully",
+  lottery_success_title: "Victory!",
+  lottery_success_1: "win!",
+  lottery_success_2: "win!",
+  lottery_success_3: "Link to the current game successfully copied!",
+  lottery_success_4: "Thank you for purchasing the card! The purchased card is in your personal account.",
+  lottery_warning_1: "The full cost of the card will be debited from your account!",
+  lottery_warning_2: "Participation in random",
+  lottery_error_1: "All slots are already taken!",
+  main_error_title: "Access to the section",
+  main_error_1: "Auction section is closed!",
+  main_error_2: "The Packs section is closed!",
+  main_error_3: "Section Wheel of Fortune is closed!",
+  main_error_4: "Section Wager matches closed!",
+  copy_link: "Copy lottery link",
+  card_purchase: "Card purchase",
   // coins
   rub: 'RUB',
   coins_h2: 'PLEASE SHOW YOUR PLAYER\'S CARD AT 24 HOURS AUCTION',
   how_to_buy: 'How to buy?',
   sell_to_us: 'Sell coins to us',
-  price: 'price',
-  rubles: 'rubles',
-  player: 'Player\'s second name',
-  team: 'Player\'s league and team',
-  rating: 'Player\'s rating',
-  initial_price: 'The initial price of your card',
-  buyout_price: 'The buyout price of your card',
-  team_hut: 'Name of your team in HUT',
-  buy: 'buy'
+  price: 'price'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/modals.js":
+/*!****************************************!*\
+  !*** ./resources/js/lang/en/modals.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  card_info: {
+    title: 'Card information',
+    console_1: 'XBOX',
+    console_2: 'PS4',
+    base_price: 'Full price',
+    place_price: 'Bid price',
+    money: 'Pucks',
+    pick_place: 'pick place'
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/en/start.js":
+/*!***************************************!*\
+  !*** ./resources/js/lang/en/start.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  p1: 'Start from now on',
+  p2: '<span> Cheaper than </span> ever- <br> either!',
+  p3: 'Hurry up to buy cards of any players!',
+  p4: 'Fast shipping',
+  p5: 'Sending a win is carried out by the operator within 15 minutes after the drawing',
+  p6: 'Receiving cards is carried out within 24 hours.',
+  p7: 'The prize is almost free.',
+  p8: 'With us you can get a thing 100 times cheaper!'
 };
 
 /***/ }),
@@ -79097,6 +81733,8 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = {
+  main_title: 'Achievements',
+  main_description: 'Description',
   discount: "Сидка",
   exp: "Опыт",
   coins: "Монеты",
@@ -79106,10 +81744,12 @@ module.exports = {
   r_one: "Одна из наград:",
   r_many: "Все награды:",
   empty: "Нет доступных наград",
+  completed: "Достижение получено!",
+  no_ach: "Нет доступных достижений",
   description: {
     ach1: "description ach1",
     ach2: "description ach2",
-    ach3: "description ach3",
+    ach3: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi aut consequuntur eaque facilis impedit in libero, magnam odit perspiciatis possimus praesentium quam quibusdam, quo repudiandae suscipit tempora ut veritatis.",
     ach4: "description ach4",
     ach5: "description ach5",
     ach6: "description ach6",
@@ -79160,6 +81800,276 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/lang/ru/auth.js":
+/*!**************************************!*\
+  !*** ./resources/js/lang/ru/auth.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  enter_your_mail: 'Enter your mail',
+  email: 'Email',
+  sign_in: 'Sign In',
+  sign_up: 'Sign Up',
+  password: 'Password',
+  confirm_password: 'Confirm password',
+  name: 'Name',
+  enter_password: 'Enter your password',
+  enter_email: 'Enter your email',
+  enter_name: 'Enter your name',
+  product_terms_of_use: 'Product Terms of Use'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/cabinet.js":
+/*!*****************************************!*\
+  !*** ./resources/js/lang/ru/cabinet.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  change_profile_photo: "Change profile photo",
+  random_profile_photo: "Random profile photo",
+  money: "Pucks",
+  information_title: "Information",
+  achievements_title: "Achievements",
+  transactions_title: "Transactions",
+  stats_title: "Stats",
+  promocodes_title: "Promocodes",
+  cards_title: "Cards",
+  lotteries_title: "Lottery",
+  wins_title: "Wins",
+  tickets_title: "Tickets",
+  transactions: {
+    main_title: "User's transactions",
+    main_description: "User's transactions description",
+    amount: "Amount",
+    payment_system: "Payment system",
+    currency: "Currency",
+    date: "Date",
+    error_1: "You have no Transactions :("
+  },
+  cards: {
+    main_title: "User's cards",
+    main_description: "User's cards description",
+    error_1: 'No cards found'
+  },
+  info: {
+    main_title: 'Info section',
+    main_description: 'Description',
+    email: 'Email',
+    name: 'Name',
+    skype: 'Skype',
+    vk: 'Vkontakte',
+    fb: 'Facebook',
+    tw: 'Twitter',
+    money: 'Money',
+    level: 'Level',
+    discount: 'Discount',
+    exp: 'Experience',
+    coins: 'Coins',
+    save: 'Save',
+    current_password: 'Current password',
+    new_password: 'New password',
+    confirm_password: 'Confirm password',
+    title_1: 'Basic information',
+    title_2: 'Change password'
+  },
+  lottery: {
+    main_title: 'Lottery section',
+    main_description: 'Description',
+    error_1: 'You have not won anything yet :('
+  },
+  promocodes: {
+    main_title: 'Promocodes section',
+    main_description: 'Description',
+    title: 'Title',
+    description: 'Description',
+    code: 'Code',
+    prize: 'Prize',
+    date: 'Date',
+    error_1: 'You do not have bug reports :('
+  },
+  stats: {
+    main_title: 'Sats section',
+    main_description: 'Description',
+    param: 'Param',
+    value: 'Value',
+    error_1: 'Failed to get trigger types',
+    error_2: 'You do not have Statistics :('
+  },
+  tickets: {
+    main_title: 'Tickets section',
+    main_description: 'Description',
+    status: 'Status',
+    title: 'Title',
+    description: 'Description',
+    ticket_type: 'Type',
+    created_at: 'Date',
+    complete: 'Complete',
+    in_progress: 'In progress',
+    error_1: 'You have no tickets'
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/cards.js":
+/*!***************************************!*\
+  !*** ./resources/js/lang/ru/cards.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  main_title: 'Cards',
+  main_description: 'Description'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/chat.js":
+/*!**************************************!*\
+  !*** ./resources/js/lang/ru/chat.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  chat: "Chat",
+  loading: "Loading...",
+  send: "Send",
+  placeholder: "Type your message..."
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/coins.js":
+/*!***************************************!*\
+  !*** ./resources/js/lang/ru/coins.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  money: "Pucks",
+  rub: 'RUB',
+  search_player_cards: 'Search for player cards',
+  coins_ordered: 'Coins ordered',
+  payment_request: 'Payment request',
+  how_to_buy: 'How to buy',
+  sell_to_us: 'Sell ​​to us',
+  find_card: 'Find a card',
+  enter_manually: ', or enter manually',
+  purchase_sale_coins: 'PURCHASE \\ SALE OF COINS',
+  player: 'Player\'s second name',
+  team: 'Player\'s league and team',
+  rating: 'Player\'s rating',
+  initial_price: 'The initial price of your card',
+  buyout_price: 'The buyout price of your card',
+  team_hut: 'Name of your team in HUT',
+  buy: 'buy'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/games.js":
+/*!***************************************!*\
+  !*** ./resources/js/lang/ru/games.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  sort_1: 'By the number of places',
+  sort_2: 'For the price of a place',
+  sort_3: 'By the number of occupied places',
+  sort_4: 'By OVR',
+  money: 'Pucks'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/lottery.js":
+/*!*****************************************!*\
+  !*** ./resources/js/lang/ru/lottery.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  share_game: 'Share game',
+  win_protection: 'Win protection',
+  card_information: 'Card Information',
+  random_place: 'Random place',
+  buy_immediately: 'Buy immediately'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/main.js":
+/*!**************************************!*\
+  !*** ./resources/js/lang/ru/main.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  main_title: 'Gaming features',
+  main_description: '',
+  auction: 'Auction',
+  lottery: 'Lottery',
+  randoms: 'Randoms',
+  coins: 'Coins',
+  players_packs: 'Players packs',
+  wheel_of_fortune: 'Wheel of fortune'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/menu.js":
+/*!**************************************!*\
+  !*** ./resources/js/lang/ru/menu.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  how_to_start: 'How to start?',
+  history: 'History',
+  help: 'Help',
+  f_a_q: 'F.A.Q.',
+  recharge: 'Recharge',
+  auction: 'Auction',
+  lottery: 'Lottery',
+  randoms: 'Randoms',
+  coins: 'Coins',
+  players_packs: 'Players packs',
+  wheel_of_fortune: 'Wheel of fortune',
+  promocodes: 'Promocodes',
+  wager_matches: 'Wager matches',
+  games_h1: 'the best lottery gaming products!',
+  terms_of_use: 'Terms of use',
+  become_a_supplier: 'Become a supplier',
+  become_a_partner: 'Become a partner',
+  playzone: 'Playzone',
+  market: 'Market',
+  promo: 'Promo',
+  achievement: 'Achievement',
+  report: 'Bug reports',
+  my_reports: 'My reports',
+  user_cabinet: 'User cabinet',
+  money: 'Pucks',
+  logout: 'Logout',
+  sign_in: 'Sign In',
+  sign_up: 'Sign Up'
+};
+
+/***/ }),
+
 /***/ "./resources/js/lang/ru/messages.js":
 /*!******************************************!*\
   !*** ./resources/js/lang/ru/messages.js ***!
@@ -79168,43 +82078,74 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = {
-  how_to_start: 'Как начать?',
-  history: 'История',
-  help: 'Помощь',
-  f_a_q: 'F.A.Q.',
-  recharge: 'Пополнение',
-  auction: 'Аукцион',
-  lottery: 'Лотереи',
-  randoms: 'Рандомы',
-  coins: 'Монеты',
-  players_packs: 'Паки игроков',
-  wheel_of_fortune: 'Колесо фортуны',
-  promocodes: 'Промокоды',
-  wager_matches: 'Пари-матчи',
-  games_h1: 'лучшая лотерея игровых товаров!',
-  terms_of_use: 'Пользовательское соглашение',
-  become_a_supplier: 'Стать поставщиком',
-  become_a_partner: 'Стать партнером',
-  playzone: 'Игровая зона',
-  market: 'Маркет',
-  promo: 'промокоды',
-  achievement: 'Достижения',
-  report: 'Баг репорты',
-  my_reports: 'Мои отчеты',
-  // монеты
-  rub: 'РУБЛИ',
-  coins_h2: 'ПОЖАЛУЙСТА, ВЫСТАВЛЯЙТЕ КАРТОЧКУ ВАШЕГО ИГРОКА НА АУКЦИОН НА 24 ЧАСА',
-  how_to_buy: 'Как купить?',
-  sell_to_us: 'Продать монеты нам',
-  price: 'цена',
-  rubles: 'рублей',
-  player: 'Фамилия игрока',
-  team: 'Лига и команда игрока',
-  rating: 'Рейтинг игрока',
-  initial_price: 'Начальная цена вашей карточки',
-  buyout_price: 'Цена выкупа вашей карточки',
-  team_hut: 'Название вашей команды в HUT',
-  buy: 'купить'
+  send_coins: "Send coins",
+  errors_coins_1: "Log in to the system for payment in Pucks",
+  errors_coins_2: "Not all fields are filled",
+  errors_coins_3: "Indicate the desired amount",
+  errors_coins_4: "The request failed",
+  send_coins_success_1: "Request sent successfully",
+  lottery_success_title: "Victory!",
+  lottery_success_1: "win!",
+  lottery_success_2: "win!",
+  lottery_success_3: "Link to the current game successfully copied!",
+  lottery_success_4: "Thank you for purchasing the card! The purchased card is in your personal account.",
+  lottery_warning_1: "The full cost of the card will be debited from your account!",
+  lottery_warning_2: "Participation in random",
+  lottery_error_1: "All slots are already taken!",
+  main_error_title: "Access to the section",
+  main_error_1: "Auction section is closed!",
+  main_error_2: "The Packs section is closed!",
+  main_error_3: "Section Wheel of Fortune is closed!",
+  main_error_4: "Section Wager matches closed!",
+  copy_link: "Copy lottery link",
+  card_purchase: "Card purchase",
+  // coins
+  rub: 'RUB',
+  coins_h2: 'PLEASE SHOW YOUR PLAYER\'S CARD AT 24 HOURS AUCTION',
+  how_to_buy: 'How to buy?',
+  sell_to_us: 'Sell coins to us',
+  price: 'price'
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/modals.js":
+/*!****************************************!*\
+  !*** ./resources/js/lang/ru/modals.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  card_info: {
+    title: 'Card information',
+    console_1: 'XBOX',
+    console_2: 'PS4',
+    base_price: 'Full price',
+    place_price: 'Bid price',
+    money: 'Pucks',
+    pick_place: 'pick place'
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/lang/ru/start.js":
+/*!***************************************!*\
+  !*** ./resources/js/lang/ru/start.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  p1: 'Start from now on',
+  p2: '<span> Cheaper than </span> ever- <br> either!',
+  p3: 'Hurry up to buy cards of any players!',
+  p4: 'Fast shipping',
+  p5: 'Sending a win is carried out by the operator within 15 minutes after the drawing',
+  p6: 'Receiving cards is carried out within 24 hours.',
+  p7: 'The prize is almost free.',
+  p8: 'With us you can get a thing 100 times cheaper!'
 };
 
 /***/ }),
@@ -79217,23 +82158,25 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = {
-  level: 'level',
-  experience: 'level',
-  discount: 'level',
-  pucks_count: 'level',
-  coins_count: 'level',
-  cards_count: 'level',
-  packs_opened_count: 'level',
-  randoms_played_count: 'level',
-  win_wheel_played_count: 'level',
-  auction_bid_count: 'level',
-  auction_buy_count: 'level',
-  bug_report_count: 'level',
-  lose_sequence_count: 'level',
-  win_sequence_count: 'level',
-  achievements_count: 'level',
-  spent_money: 'level',
-  promocodes_count: 'level'
+  empty: "Not defined",
+  all: 'All',
+  level: 'Level',
+  experience: 'Experience',
+  discount: 'Discount',
+  pucks_count: 'Pucks count',
+  coins_count: 'Coins count',
+  cards_count: 'Cards count',
+  packs_opened_count: 'Packs opened count',
+  randoms_played_count: 'Randoms played count',
+  win_wheel_played_count: 'Win wheel played count',
+  auction_bid_count: 'Auction bid count',
+  auction_buy_count: 'Auction buy count',
+  bug_report_count: 'Bug report count',
+  lose_sequence_count: 'Lose sequence count',
+  win_sequence_count: 'Win sequence count',
+  achievements_count: 'Achievements count',
+  spent_money: 'Spent money',
+  promocodes_count: 'Promocodes count'
 };
 
 /***/ }),
@@ -80050,7 +82993,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PlayerInfo_vue_vue_type_template_id_58bdbdf8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlayerInfo.vue?vue&type=template&id=58bdbdf8& */ "./resources/js/pages/PlayerInfo.vue?vue&type=template&id=58bdbdf8&");
 /* harmony import */ var _PlayerInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlayerInfo.vue?vue&type=script&lang=js& */ "./resources/js/pages/PlayerInfo.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _PlayerInfo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PlayerInfo.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -80058,7 +83003,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _PlayerInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _PlayerInfo_vue_vue_type_template_id_58bdbdf8___WEBPACK_IMPORTED_MODULE_0__["render"],
   _PlayerInfo_vue_vue_type_template_id_58bdbdf8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -80087,6 +83032,22 @@ component.options.__file = "resources/js/pages/PlayerInfo.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayerInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PlayerInfo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PlayerInfo.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayerInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss& ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayerInfo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./PlayerInfo.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PlayerInfo.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayerInfo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayerInfo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayerInfo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayerInfo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_PlayerInfo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -80633,24 +83594,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_localization__WEBPACK_IMPOR
       middlewareAuth: true
     }
   }, {
-    path: '/cabinet/:userId',
+    path: '/user/:userId',
     name: 'PlayerInfo',
     component: _pages_PlayerInfo__WEBPACK_IMPORTED_MODULE_15__["default"],
     props: true
   }, {
     path: '/signin',
     name: 'Login',
-    component: _pages_Login__WEBPACK_IMPORTED_MODULE_13__["default"],
-    meta: {
-      middlewareAuth: false
-    }
+    component: _pages_Login__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, {
     path: '/signup',
     name: 'Register',
-    component: _pages_Register__WEBPACK_IMPORTED_MODULE_14__["default"],
-    meta: {
-      middlewareAuth: false
-    }
+    component: _pages_Register__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, {
     path: '/randoms',
     name: 'Randoms',
@@ -80670,6 +83625,391 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_localization__WEBPACK_IMPOR
     component: _pages_PageNotFound__WEBPACK_IMPORTED_MODULE_3__["default"]
   }]
 }));
+
+/***/ }),
+
+/***/ "./resources/js/store/index.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/index.js ***!
+  \*************************************/
+/*! exports provided: store */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/user */ "./resources/js/store/modules/user.js");
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {},
+  modules: {
+    user: _modules_user__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/user.js":
+/*!********************************************!*\
+  !*** ./resources/js/store/modules/user.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var state = {
+  user: null,
+  token: localStorage.getItem('token')
+};
+var getters = {
+  USER: function USER(state) {
+    return state.user;
+  },
+  TOKEN: function TOKEN(state) {
+    return state.token;
+  },
+  CHECK: function CHECK(state) {
+    return !!state.token;
+  }
+};
+var mutations = {
+  SET_USER: function SET_USER(state, payload) {
+    state.user = payload;
+  },
+  SET_TOKEN: function SET_TOKEN(state, payload) {
+    state.token = payload;
+  }
+};
+var actions = {
+  loginUser: function () {
+    var _loginUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(context, payload) {
+      var data, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              data = {
+                username: payload.username,
+                password: payload.password,
+                _token: axios.defaults.headers.common['X-CSRF-TOKEN']
+              };
+              _context.next = 3;
+              return axios.post('/login', data).then(function (res) {
+                return res;
+              });
+
+            case 3:
+              response = _context.sent;
+              axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
+              localStorage.setItem('token', response.data.token);
+              context.commit('SET_USER', response.data.token);
+              context.commit('SET_TOKEN', response.data.user);
+              return _context.abrupt("return", new Promise(function (resolve, reject) {
+                if (response == null) reject();
+                resolve();
+              }));
+
+            case 9:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    function loginUser(_x, _x2) {
+      return _loginUser.apply(this, arguments);
+    }
+
+    return loginUser;
+  }(),
+  retriveUser: function () {
+    var _retriveUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(context, payload) {
+      var _ref, response;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              context.commit('SET_TOKEN', payload);
+              axios.defaults.headers.common['Authorization'] = 'Bearer ' + payload;
+              _context2.next = 4;
+              return axios.get('/get-user').then(function (res) {
+                console.log("getuser", res);
+                return res;
+              });
+
+            case 4:
+              _ref = _context2.sent;
+              response = _ref.response;
+              context.commit('SET_USER', response);
+              return _context2.abrupt("return", new Promise(function (resolve, reject) {
+                if (response == null) reject();
+                resolve();
+              }));
+
+            case 8:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    function retriveUser(_x3, _x4) {
+      return _retriveUser.apply(this, arguments);
+    }
+
+    return retriveUser;
+  }(),
+  registerUser: function () {
+    var _registerUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(context, payload) {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              data = {
+                email: payload.email,
+                password: payload.password,
+                name: payload.name,
+                _token: axios.defaults.headers.common['X-CSRF-TOKEN']
+              };
+              _context3.next = 3;
+              return axios.post('/registration', data);
+
+            case 3:
+              return _context3.abrupt("return", new Promise(function (resolve, reject) {
+                resolve();
+              }));
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    function registerUser(_x5, _x6) {
+      return _registerUser.apply(this, arguments);
+    }
+
+    return registerUser;
+  }(),
+  logoutUser: function () {
+    var _logoutUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(context, payload) {
+      var _ref2, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              context.commit('SET_USER', null);
+              context.commit('SET_TOKEN', null);
+              localStorage.removeItem('token');
+              _context4.next = 5;
+              return axios.get('/logout');
+
+            case 5:
+              _ref2 = _context4.sent;
+              data = _ref2.data;
+              return _context4.abrupt("return", new Promise(function (resolve, reject) {
+                resolve();
+              }));
+
+            case 8:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    function logoutUser(_x7, _x8) {
+      return _logoutUser.apply(this, arguments);
+    }
+
+    return logoutUser;
+  }(),
+  getAnyUser: function () {
+    var _getAnyUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(context, payload) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              if (!(context.getters.TOKEN == null && localStorage.getItem('token') == null)) {
+                _context5.next = 2;
+                break;
+              }
+
+              return _context5.abrupt("return", new Promise(function (resolve, reject) {
+                reject();
+              }));
+
+            case 2:
+              if (!(context.getters.TOKEN == null && localStorage.getItem('token') != null)) {
+                _context5.next = 5;
+                break;
+              }
+
+              _context5.next = 5;
+              return context.dispatch("retriveUser", localStorage.getItem('token'));
+
+            case 5:
+              if (axios.defaults.headers.common['Authorization'] == undefined) axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.getters.TOKEN;
+              _context5.next = 8;
+              return axios.get("/get-user/".concat(payload.user_id)).then(function (res) {
+                return res;
+              });
+
+            case 8:
+              response = _context5.sent;
+              return _context5.abrupt("return", new Promise(function (resolve, reject) {
+                if (response.data == null || response.data.length == 0) reject();
+                if (response.status == 200) resolve(response);
+                reject();
+              }));
+
+            case 10:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }));
+
+    function getAnyUser(_x9, _x10) {
+      return _getAnyUser.apply(this, arguments);
+    }
+
+    return getAnyUser;
+  }(),
+  getCurrentUser: function () {
+    var _getCurrentUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(context, payload) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              if (!(context.getters.TOKEN == null && localStorage.getItem('token') == null)) {
+                _context6.next = 2;
+                break;
+              }
+
+              return _context6.abrupt("return", new Promise(function (resolve, reject) {
+                reject();
+              }));
+
+            case 2:
+              if (!(context.getters.TOKEN == null && localStorage.getItem('token') != null)) {
+                _context6.next = 5;
+                break;
+              }
+
+              _context6.next = 5;
+              return context.dispatch("retriveUser", localStorage.getItem('token'));
+
+            case 5:
+              if (axios.defaults.headers.common['Authorization'] == undefined) axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.getters.TOKEN;
+              _context6.next = 8;
+              return axios.get('/get-user').then(function (res) {
+                return res;
+              });
+
+            case 8:
+              response = _context6.sent;
+              console.log("current_user", response.data);
+              context.commit('SET_USER', response.data);
+              return _context6.abrupt("return", new Promise(function (resolve, reject) {
+                if (response.status == 200) resolve();
+                reject();
+              }));
+
+            case 12:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }));
+
+    function getCurrentUser(_x11, _x12) {
+      return _getCurrentUser.apply(this, arguments);
+    }
+
+    return getCurrentUser;
+  }(),
+  updateUser: function () {
+    var _updateUser = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(context, payload) {
+      var _ref3, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.next = 2;
+              return axios.post('http://yourwebsite.com/api/todo');
+
+            case 2:
+              _ref3 = _context7.sent;
+              data = _ref3.data;
+              context.commit('ADD_TODO', payload);
+
+            case 5:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }));
+
+    function updateUser(_x13, _x14) {
+      return _updateUser.apply(this, arguments);
+    }
+
+    return updateUser;
+  }()
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  mutations: mutations,
+  actions: actions
+});
 
 /***/ }),
 

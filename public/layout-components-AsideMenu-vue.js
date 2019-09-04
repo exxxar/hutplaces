@@ -34,8 +34,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'defaultLayout',
   methods: {
@@ -78,7 +76,7 @@ var render = function() {
           staticClass: "btn btn-black-2",
           attrs: { to: { name: "Playzone" }, tag: "li" }
         },
-        [_vm._v("Игровая зона\n    ")]
+        [_vm._v(_vm._s(_vm.$lang.menu.playzone) + "\n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -87,7 +85,7 @@ var render = function() {
           staticClass: "btn btn-black-2",
           attrs: { to: { name: "Market" }, tag: "li" }
         },
-        [_vm._v("Маркет\n    ")]
+        [_vm._v(_vm._s(_vm.$lang.menu.market) + "\n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -100,7 +98,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("Промокоды")]
+        [_vm._v(_vm._s(_vm.$lang.menu.promocodes))]
       ),
       _vm._v(" "),
       _c(
@@ -109,7 +107,7 @@ var render = function() {
           staticClass: "btn btn-black-2",
           attrs: { to: { name: "Achievements" }, tag: "li" }
         },
-        [_vm._v("Достижения\n    ")]
+        [_vm._v(_vm._s(_vm.$lang.menu.achievement) + "\n    ")]
       ),
       _vm._v(" "),
       _c("li", { staticClass: "more-menu" }, [
@@ -151,7 +149,7 @@ var render = function() {
             },
             [
               _c("a", { attrs: { href: "#terms" } }, [
-                _vm._v("Пользовательское соглашение")
+                _vm._v(_vm._s(_vm.$lang.menu.terms_of_use))
               ])
             ]
           ),
@@ -167,7 +165,7 @@ var render = function() {
             },
             [
               _c("a", { attrs: { href: "#supplier" } }, [
-                _vm._v("Стать поставщиком")
+                _vm._v(_vm._s(_vm.$lang.menu.become_a_supplier))
               ])
             ]
           ),
@@ -183,7 +181,7 @@ var render = function() {
             },
             [
               _c("a", { attrs: { href: "#partner" } }, [
-                _vm._v("Стать партнером")
+                _vm._v(_vm._s(_vm.$lang.menu.become_a_partner))
               ])
             ]
           ),
@@ -199,7 +197,7 @@ var render = function() {
             },
             [
               _c("a", { staticClass: "report", attrs: { href: "#report" } }, [
-                _vm._v("Баг-репорты")
+                _vm._v(_vm._s(_vm.$lang.menu.report))
               ])
             ]
           )

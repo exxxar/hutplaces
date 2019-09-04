@@ -1,12 +1,14 @@
 <template>
-    <div>
+    <div class="info-block">
         <ul class="filters" v-if="types">
-            <li @click="filter(null)">#{{prepareTypeText('all')}}</li>
-            <li  v-for="t in types" :count="t.count" @click="filter(t.trigger.value)">#{{prepareTypeText(t.trigger.key)}}</li>
+            <li @click="filter(null)" v-if="types.length>0">#{{prepareTypeText('all')}}</li>
+            <li v-for="t in types" :count="t.count" @click="filter(t.trigger.value)">
+                #{{prepareTypeText(t.trigger.key)}}
+            </li>
         </ul>
-        <h1 class="main-title" v-html="content.title"></h1>
-        <p class="description" v-html="content.content"></p>
-        <ul class="achievements" v-if="achievements!=null&&achievements!=[]">
+        <h1 class="main-title">{{content.title}}</h1>
+        <p class="description">{{content.content}}</p>
+        <ul class="achievements" v-if="achievements!=null&&achievements.length>0">
             <li v-for="a in prepareAchievements()" :style="cssProps(a.background)" v-if="a.is_active">
                 <div class="image" v-tooltip.bottom="prepareRewards(a)" @click="show('ach',a)">
                     <img v-lazy="prepareImage(a.image)" alt="">
@@ -15,11 +17,8 @@
                     <h4>{{prepareText(a.title)}}</h4>
                 </div>
             </li>
-            <h3 v-if="prepareAchievements().length==0">{{$lang.achievements.no_ach}}</h3>
-
         </ul>
         <h3 v-if="achievements==null||achievements.length==0">{{$lang.achievements.no_ach}}</h3>
-
 
         <modal name="ach" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
@@ -54,11 +53,14 @@
     import Scroll from 'vue-custom-scrollbar'
 
     export default {
-        props:["userId"],
+        props: ["userId"],
         activated() {
             this.loadTypes()
             this.loadAchievements()
-            //this.loadContent()
+        },
+        mounted() {
+            this.loadTypes()
+            this.loadAchievements()
         },
         methods: {
             lineWidth: function (c1, c2) {
@@ -69,27 +71,27 @@
             },
             show(name, ach) {
                 this.selected.ach = ach;
-               if (this.userId==null) {
-                   axios
-                       .get(`/achievements/progress/${ach.id}`)
-                       .then(response => {
-                           this.selected.current = response.data.current;
-                           this.selected.needed = response.data.needed;
-                           this.selected.trigger_title = response.data.trigger_title;
-                       });
-               }
-               else {
-                   axios
-                       .post(`/users/achievements/progress`, {
-                           user_id: this.userId,
-                           ach_id: ach.id
-                       })
-                       .then(response => {
-                           this.selected.current = response.data.current;
-                           this.selected.needed = response.data.needed;
-                           this.selected.trigger_title = response.data.trigger_title;
-                       });
-               }
+                if (this.userId == null) {
+                    axios
+                        .get(`/achievements/progress/${ach.id}`)
+                        .then(response => {
+                            this.selected.current = response.data.current;
+                            this.selected.needed = response.data.needed;
+                            this.selected.trigger_title = response.data.trigger_title;
+                        });
+                }
+                else {
+                    axios
+                        .post(`/users/achievements/progress`, {
+                            user_id: this.userId,
+                            ach_id: ach.id
+                        })
+                        .then(response => {
+                            this.selected.current = response.data.current;
+                            this.selected.needed = response.data.needed;
+                            this.selected.trigger_title = response.data.trigger_title;
+                        });
+                }
                 this.$modal.show(name)
             },
             hide(name) {
@@ -160,8 +162,8 @@
             },
 
             loadTypes() {
-                let url = this.userId == null?
-                    '/achievements/types':
+                let url = this.userId == null ?
+                    '/achievements/types' :
                     `/users/achievements/types/${this.userId}`;
 
                 axios
@@ -172,21 +174,14 @@
             },
             loadAchievements() {
 
-                let url = this.userId == null?
-                    '/achievements':
+                let url = this.userId == null ?
+                    '/achievements' :
                     `/users/achievements/${this.userId}`;
 
                 axios
                     .get(url)
                     .then(response => {
                         this.achievements = response.data.achievements;
-                    });
-            },
-            loadContent() {
-                axios
-                    .get('/content/achievements/all')
-                    .then(response => {
-                        this.content = response.data.content;
                     });
             },
             prepareAchievements() {
@@ -196,13 +191,12 @@
                     this.achievements;
             }
 
-
         },
         data() {
             return {
                 content: {
-                    title: "Достижения пользователей",
-                    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+                    title: this.$lang.achievements.main_title,
+                    content: this.$lang.achievements.main_description
                 },
                 achievements: null,
                 trigger_type: null,
@@ -213,7 +207,6 @@
                     trigger_title: "empty",
                     ach: null
                 }
-
             }
         },
         components: {
@@ -224,5 +217,6 @@
 </script>
 <style lang="scss" scoped>
     @import "~/achievements.scss";
+    @import "~/cabinet.scss";
 </style>
 

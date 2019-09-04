@@ -1,5 +1,5 @@
 <template>
-    <div id="personal-cabinet">
+    <div id="personal-cabinet" v-if="user!=null">
         <div class="left-side">
             <div class="profile">
                 <div class="avatar">
@@ -7,18 +7,18 @@
                     <img v-else v-lazy="'/img/loading.gif'" alt="">
 
                     <ul class="controls">
-                        <li v-tooltip.bottom="'Сменить фотографию профиля'" @click="show('image-selector')"><i class="fas fa-camera"></i></li>
-                        <li v-tooltip.bottom="'Случайная фотография профиля'" @click="randomAvatar()"><i
+                        <li v-tooltip.bottom="$lang.cabinet.change_profile_photo" @click="show('image-selector')"><i class="fas fa-camera"></i></li>
+                        <li v-tooltip.bottom="$lang.cabinet.random_profile_photo" @click="randomAvatar()"><i
                                 class="fas fa-sync"></i></li>
                     </ul>
                 </div>
 
                 <div class="money">
-                    <p>{{user.coins}} <span>Pucks</span></p>
+                    <p>{{user.coins}} <span>{{$lang.cabinet.money}}</span></p>
                 </div>
 
-                <div class="level">
-                    <div class="text">Брозовый уровень</div>
+                <div class="level" @click="show('levels')">
+                    <div class="text">{{user.level.title}}  </div>
                     <div class="line"></div>
                 </div>
             </div>
@@ -26,49 +26,49 @@
         </div>
         <div class="right-side">
             <tabs :options="{ useUrlFragment: false }">
-                <tab name="Информация">
+                <tab :name="$lang.cabinet.information_title">
                     <scroll class="scroll-area">
                         <users-info :user="user"></users-info>
                     </scroll>
                 </tab>
-                <tab name="Достижения">
+                <tab :name="$lang.cabinet.achievements_title">
                     <scroll class="scroll-area">
                         <users-achievements :userId="user.id"></users-achievements>
                     </scroll>
                 </tab>
-                <tab name="Транзакции">
+                <tab :name="$lang.cabinet.transactions_title">
                     <scroll class="scroll-area">
-                        <users-transactions></users-transactions>
+                        <users-transactions :user="user"></users-transactions>
                     </scroll>
                 </tab>
-                <tab name="Статистика">
+                <tab :name="$lang.cabinet.stats_title">
                     <scroll class="scroll-area">
-                        <users-stats></users-stats>
+                        <users-stats :user="user"></users-stats>
                     </scroll>
                 </tab>
-                <tab name="Промокоды">
+                <tab :name="$lang.cabinet.promocodes_title">
                     <scroll class="scroll-area">
-                        <users-promocodes></users-promocodes>
+                        <users-promocodes :user="user"></users-promocodes>
                     </scroll>
                 </tab>
-                <tab name="Карточки">
+                <tab :name="$lang.cabinet.cards_title">
                     <scroll class="scroll-area">
-                        <users-cards></users-cards>
+                        <users-cards :user="user"></users-cards>
                     </scroll>
                 </tab>
-                <tab name="Розыгрыши">
+                <tab :name="$lang.cabinet.lotteries_title">
                     <scroll class="scroll-area">
-                        <users-lotteries :win="false"></users-lotteries>
+                        <users-lotteries :win="false" :user="user"></users-lotteries>
                     </scroll>
                 </tab>
-                <tab name="Победы">
+                <tab :name="$lang.cabinet.wins_title">
                     <scroll class="scroll-area">
-                        <users-lotteries :win="true"></users-lotteries>
+                        <users-lotteries :win="true" :user="user"></users-lotteries>
                     </scroll>
                 </tab>
-                <tab name="Баг-репорты">
+                <tab :name="$lang.cabinet.tickets_title">
                     <scroll class="scroll-area">
-                        <users-tickets></users-tickets>
+                        <users-tickets :user="user"></users-tickets>
                     </scroll>
                 </tab>
 
@@ -79,6 +79,14 @@
             <scroll class="scroll-area">
                 <a href="#" @click="hide('image-selector')" class="close"></a>
                 <image-selector v-on:self-hide="hide('image-selector')" v-on:image="setImage($event)"></image-selector>
+            </scroll>
+        </modal>
+
+
+        <modal name="levels" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('levels')" class="close"></a>
+                <levels :user="user"></levels>
             </scroll>
         </modal>
     </div>
@@ -96,15 +104,24 @@
     import UsersTickets from '@/components/cabinet/Tickets.vue'
     import UsersInfo from '@/components/cabinet/Info.vue'
     import ImageSelector from '@/components/modals/ImageSelector.vue'
+    import Levels from '@/components/modals/Levels.vue'
 
 
     export default {
         data() {
             return {
                 process_avatar:false,
-                user: auth.user
+                user: this.getUser
             }
 
+        },
+        computed: {
+            check() {
+                return this.$store.getters.CHECK;
+            },
+            getUser() {
+                return this.$store.getters.USER;
+            },
         },
         methods: {
             setImage(img){
@@ -115,6 +132,7 @@
                         image:img
                     })
                     .then(response => {
+                        Event.$emit("updateUserProfile");
                         this.message("System", response.data.message, "warn");
                         this.process_avatar = false;
                     });
@@ -127,11 +145,12 @@
 
             },
             loadCurrentUser() {
-                axios
-                    .get('/get-user')
-                    .then(response => {
-                        this.user = response.data;
+                this.$store.dispatch('getCurrentUser')
+                    .then(()=>{
+                        this.user = this.$store.getters.USER
                     });
+
+
             },
             message(title, message, type) {
                 this.$notify({
@@ -148,7 +167,10 @@
                     .then(response => {
                         this.user.avatar = response.data.avatar;
                         this.message("System", response.data.message, "warn");
+                        Event.$emit("updateUserProfile");
                         this.process_avatar = false;
+
+
                     });
             },
             show(name) {
@@ -157,6 +179,9 @@
             hide(name) {
                 this.$modal.hide(name)
             },
+        },
+        mounter() {
+            this.loadCurrentUser();
         },
         activated() {
             this.loadCurrentUser();
@@ -171,7 +196,8 @@
             UsersTickets,
             UsersInfo,
             Scroll,
-            ImageSelector
+            ImageSelector,
+            Levels
         }
     }
 </script>

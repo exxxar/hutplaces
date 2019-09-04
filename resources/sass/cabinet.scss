@@ -85,7 +85,8 @@
       padding: 20px;
       box-sizing: border-box;
       margin-bottom: 10px;
-      box-shadow: 0px 0px 5px 3px #0e9c14 inset;
+      box-shadow: 0px 0px 5px 3px yellow inset;
+
       .line {
         width: 40%;
         height: 100%;
@@ -94,7 +95,7 @@
         left: 0;
         z-index: 0;
         box-sizing: border-box;
-        background: #109618;
+        background: yellow;
       }
 
       .text {
@@ -107,11 +108,12 @@
         text-align: center;
         font-weight: 800;
         color: #ffffff;
-        cursor: default;
+        cursor:pointer;
         font-size: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
+        text-shadow:0px 0px 5px black;
       }
 
     }
@@ -181,6 +183,45 @@
           }
 
         }
+      }
+    }
+  }
+
+}
+
+.info-block {
+  width: 100%;
+
+  h3 {
+    font-weight: 100;
+    font-size: 36px;
+    color: white;
+    text-transform: uppercase;
+    width:100%;
+  }
+
+  .cards-list {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    .card {
+      padding: 5px;
+      border: 1px white solid;
+      margin-bottom: 15px;
+    }
+  }
+
+  table {
+    width: 100%;
+    tr {
+      color: white;
+      line-height: 150%;
+      border: 1px white solid;
+      th,
+      td {
+        padding: 10px;
       }
     }
   }

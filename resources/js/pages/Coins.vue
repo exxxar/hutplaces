@@ -1,7 +1,6 @@
 <template>
     <div class="coins-section">
-
-        <h1>ПОКУПА \ ПРОДАЖА МОНЕТ</h1>
+        <h1>{{$lang.coins.purchase_sale_coins}}</h1>
         <div class="switchers">
             <toggle :check="info.console"
                     :id="'sw-console'"
@@ -22,9 +21,7 @@
                     :labeloff="$lang.messages.rub"
                     :width="160"></toggle>
         </div>
-
         <h2>{{$lang.messages.coins_h2}}</h2>
-
         <div class="calc">
             <div class="row">
                 <button v-on:click="decrease">-</button>
@@ -39,36 +36,33 @@
                 <button v-on:click="info.sum = 1000000">1M</button>
             </div>
         </div>
-
         <div class="price">
             <div class="main-price">
                 <div class="price-text">{{$lang.messages.price}}:</div>
                 <div class="price-amount">
-                    <div><span>{{final_price_pucks}}</span> Pucks</div>
-                    <div><span>{{final_price_money}}</span> {{$lang.messages.rubles}}</div>
+                    <div><span>{{final_price_pucks}}</span> {{$lang.coins.money}}</div>
+                    <div><span>{{final_price_money}}</span> {{$lang.messages.rub}}</div>
                 </div>
             </div>
             <a class="link-yellow" href="#" @click="show('how-to-buy')">{{$lang.messages.how_to_buy}}</a>
         </div>
-
-        <p><a href="#" @click="show('card-search')">Найдите карточку</a> или, впишите вручную</p>
+        <p><a href="#" @click="show('card-search')">{{$lang.coins.find_card}}</a> {{$lang.coins.enter_manually}}</p>
         <form class="player">
-            <input :placeholder="$lang.messages.player" type="text" v-model="info.player">
-            <input :placeholder="$lang.messages.team" type="text" v-model="info.team">
-            <input type="number" :placeholder="$lang.messages.rating"  v-model="info.rating">
-            <input type="number" :placeholder="$lang.messages.initial_price"  v-model="info.initial_price">
-            <input type="number" :placeholder="$lang.messages.buyout_price" v-model="info.buyout_price">
-            <input :placeholder="$lang.messages.team_hut" type="text" v-model="info.team_hut">
+            <input :placeholder="$lang.coins.player" type="text" v-model="info.player">
+            <input :placeholder="$lang.coins.team" type="text" v-model="info.team">
+            <input type="number" :placeholder="$lang.coins.rating" v-model="info.rating">
+            <input type="number" :placeholder="$lang.coins.initial_price" v-model="info.initial_price">
+            <input type="number" :placeholder="$lang.coins.buyout_price" v-model="info.buyout_price">
+            <input :placeholder="$lang.coins.team_hut" type="text" v-model="info.team_hut">
             <div class="buy-row">
-                <button class="btn btn-yellow" type="button" @click="doInvoice()">{{$lang.messages.buy}}</button>
-                <a class="link-light" href="#" @click="show('sell-to-us')">{{$lang.messages.sell_to_us}}</a>
+                <button class="btn btn-yellow" type="button" @click="doInvoice()">{{$lang.coins.buy}}</button>
+                <a class="link-light" href="#" @click="show('sell-to-us')">{{$lang.coins.sell_to_us}}</a>
             </div>
         </form>
-
         <modal name="card-search" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('card-search')" class="close"></a>
-                <h1>Поиск карточек игроков</h1>
+                <h1>{{$lang.coins.search_player_cards}}</h1>
                 <card-search v-on:card="getCard($event)"></card-search>
             </scroll>
         </modal>
@@ -76,27 +70,27 @@
         <modal name="sell-to-us" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('sell-to-us')" class="close"></a>
-                <h1>Продать нам</h1>
-
+                <h1>{{$lang.coins.sell_to_us}}</h1>
             </scroll>
         </modal>
 
         <modal name="how-to-buy" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('how-to-buy')" class="close"></a>
-                <h1>Как купить</h1>
+                <h1>{{$lang.coins.how_to_buy}}</h1>
             </scroll>
         </modal>
 
         <modal name="coins-invoice" :adaptive="true" width="100%" height="100%">
             <div class="modal-content">
                 <a href="#" @click="hide('coins-invoice')" class="close"></a>
-                <h1>Запрос оплаты</h1>
-                <p v-if="info.currency">{{final_price_pucks}}<span>Pucks</span></p>
-                <p v-else>{{final_price_money}}<span>Руб.</span></p>
-                <h1>Заказано монет</h1>
+                <h1>{{$lang.coins.payment_request}}</h1>
+                <p v-if="info.currency">{{final_price_pucks}}<span>{{$lang.coins.money}}</span></p>
+                <p v-else>{{final_price_money}}<span>{{$lang.coins.rub}}</span></p>
+                <h1>{{$lang.coins.coins_ordered}}</h1>
                 <p><span>{{info.sum}}</span></p>
-                <button class="btn btn-yellow full" type="button" @click="requestCoins()">{{$lang.messages.buy}}</button>
+                <button class="btn btn-yellow full" type="button" @click="requestCoins()">{{$lang.messages.buy}}
+                </button>
 
             </div>
         </modal>
@@ -138,35 +132,43 @@
                 }
             }
         },
+        computed: {
+            check() {
+                return this.$store.getters.CHECK;
+            },
+            user() {
+                return this.$store.getters.USER;
+            },
+        },
         methods: {
             reset() {
                 Object.assign(this.$data, this.$options.data.call(this));
             },
-            doInvoice(){
-                if (this.info.sum==0) {
-                    this.message("Отправка монет", "Укажите желаемую сумму", "error");
+            doInvoice() {
+                if (this.info.sum == 0) {
+                    this.message(this.$lang.messages.send_coins, $lang.messages.error_coins_3, "error");
                     return
                 }
 
-                if (this.info.player.trim()==''||
-                    this.info.team.trim()==''||
-                    this.info.rating.trim()==''||
-                    this.info.initial_price.trim()==''||
-                    this.info.buyout_price.trim()==''||
-                    this.info.team_hut.trim()==''
+                if (this.info.player.trim() == '' ||
+                    this.info.team.trim() == '' ||
+                    this.info.rating.trim() == '' ||
+                    this.info.initial_price.trim() == '' ||
+                    this.info.buyout_price.trim() == '' ||
+                    this.info.team_hut.trim() == ''
                 ) {
-                    this.message("Отправка монет","Не все поля заполнены","error");
+                    this.message(this.$lang.messages.send_coins, this.$lang.messages.error_coins_2, "error");
                     return
                 }
 
-                if (!auth.check()&&this.info.currency){
-                    this.message("Отправка монет","Авторизируйтесь в системе для оплаты в Pucks","error");
+                if (!this.check && this.info.currency) {
+                    this.message(this.$lang.messages.send_coins, this.$lang.messages.error_coins_1, "error");
                     return
                 }
 
                 this.show('coins-invoice');
             },
-            message(title,message,type){
+            message(title, message, type) {
                 this.$notify({
                     group: 'main',
                     type: type,
@@ -174,14 +176,14 @@
                     text: message
                 })
             },
-            requestCoins(){
+            requestCoins() {
 
                 axios.post('coinsrequest', {info: this.info})
                     .then(res => {
-                        this.message("Отправка монет","Запрос успешно отправлен","error");
+                        this.message(this.$lang.messages.send_coins, this.$lang.messages.send_coins_success_1, "error");
                         this.reset()
                     }).catch(err => {
-                    this.message("Отправка монет","Ошибка запроса(","error");
+                    this.message(this.$lang.messages.send_coins, this.$lang.messages.error_coins_4, "error");
                 })
 
                 this.hide('coins-invoice');
@@ -253,7 +255,7 @@
     }
 
     .modal-content {
-        width:400px;
+        width: 400px;
         p {
             line-height: 150%;
             font-weight: 900;
@@ -263,7 +265,7 @@
             margin-top: 0px;
 
             span {
-                color:yellow;
+                color: yellow;
             }
         }
     }

@@ -37,6 +37,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'faq',
   data: function data() {
@@ -103,88 +104,90 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _vm._l(_vm.historyList, function(item, index) {
-        return _c(
-          "ul",
-          {
-            staticClass: "body",
-            on: {
-              click: function($event) {
-                return _vm.selfHide()
-              }
-            }
-          },
-          [
-            _c("li", [_vm._v(_vm._s(++index))]),
-            _vm._v(" "),
-            _c(
-              "li",
-              [
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      tag: "a",
-                      to: {
-                        name: "Lottery",
-                        params: { gameId: item.lottery_id }
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(item.lottery_title) +
-                        "\n            "
-                    )
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("li", [
-              _c("img", {
-                directives: [
-                  {
-                    name: "lazy",
-                    rawName: "v-lazy",
-                    value: _vm.getPlatform(item.console_type),
-                    expression: "getPlatform(item.console_type)"
+        return _vm.historyList != null && _vm.historyList.length > 0
+          ? _c(
+              "ul",
+              {
+                staticClass: "body",
+                on: {
+                  click: function($event) {
+                    return _vm.selfHide()
                   }
-                ],
-                attrs: { alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "li",
+                }
+              },
               [
+                _c("li", [_vm._v(_vm._s(++index))]),
+                _vm._v(" "),
                 _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      tag: "a",
-                      to: {
-                        name: "PlayerInfo",
-                        params: { userId: item.user_id }
-                      }
-                    }
-                  },
+                  "li",
                   [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(item.user_name) +
-                        "\n            "
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "a",
+                          to: {
+                            name: "Lottery",
+                            params: { gameId: item.lottery_id }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.lottery_title) +
+                            "\n            "
+                        )
+                      ]
                     )
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("li", [_vm._v(_vm._s(item.end))])
-          ]
-        )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("li", [
+                  _c("img", {
+                    directives: [
+                      {
+                        name: "lazy",
+                        rawName: "v-lazy",
+                        value: _vm.getPlatform(item.console_type),
+                        expression: "getPlatform(item.console_type)"
+                      }
+                    ],
+                    attrs: { alt: "" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          tag: "a",
+                          to: {
+                            name: "PlayerInfo",
+                            params: { userId: item.user_id }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.user_name) +
+                            "\n            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("li", [_vm._v(_vm._s(item.end))])
+              ]
+            )
+          : _c("h3", [_vm._v("Не найдено ни одного победителя")])
       })
     ],
     2

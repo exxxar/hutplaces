@@ -8,7 +8,7 @@
             <li>Победитель</li>
             <li>Дата заверщения</li>
         </ul>
-        <ul class="body" v-for="(item, index) in historyList" @click="selfHide()">
+        <ul v-if="historyList!=null&&historyList.length>0" class="body" v-for="(item, index) in historyList" @click="selfHide()">
             <li>{{++index}}</li>
 
             <li>
@@ -24,6 +24,7 @@
             </li>
             <li>{{item.end}}</li>
         </ul>
+        <h3 v-else>Не найдено ни одного победителя</h3>
     </div>
 </template>
 <script>

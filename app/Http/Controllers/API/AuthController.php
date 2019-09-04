@@ -154,9 +154,9 @@ class AuthController extends Controller
         return response()->json(['status' => 200]);
     }
 
-    public function getUser()
+    public function getUser($id=null)
     {
-        $user = User::with(["level"])->find(auth()->user()->id);
+        $user = User::with(["level"])->find($id==null?auth()->user()->id:$id);
         return $user;
     }
 }

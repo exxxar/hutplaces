@@ -5,106 +5,75 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7300405c-d11a-49c5-8c8a-b5b92f5b0902" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/achievements/bg/fkj-RB67WRY.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/achievements/bg/oYJyWvwlZvE.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/achievements/element/oYJyWvwlZvE.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/achievements/element/tezchvC_VR0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/avatars/arrowr.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/avatars/ezgif-1-3fa76ad68e31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/enums/trigger_types/1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/wheel-of-fortune-bg.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/Без имени-1.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/экран + макет карт.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/components/cabinet/Wins.vue" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/1280px-Qiwi_logo.svg.png" afterPath="$PROJECT_DIR$/public/img/1280px-Qiwi_logo.svg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/1280px-Логотип_Яндекс.Денег.svg.png" afterPath="$PROJECT_DIR$/public/img/1280px-Логотип_Яндекс.Денег.svg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/MasterCard_Logo.svg.png" afterPath="$PROJECT_DIR$/public/img/MasterCard_Logo.svg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/Visa_Inc._logo.svg.png" afterPath="$PROJECT_DIR$/public/img/Visa_Inc._logo.svg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/ach-1.png" afterPath="$PROJECT_DIR$/public/img/ach-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/ach-2.png" afterPath="$PROJECT_DIR$/public/img/ach-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/ach-3.png" afterPath="$PROJECT_DIR$/public/img/ach-3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/bg/vympel-germany.png" afterPath="$PROJECT_DIR$/public/img/achievements/bg/vympel-germany.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/bg/vympel-rf.png" afterPath="$PROJECT_DIR$/public/img/achievements/bg/vympel-rf.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/bg/vympel.png" afterPath="$PROJECT_DIR$/public/img/achievements/bg/vympel.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-1.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-10.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-10.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-11.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-11.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-12.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-12.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-13.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-13.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-2.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-3.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-4.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-5-18.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-5-18.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-6.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-7.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-7.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-8.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-8.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/achievements/element/ach-9.png" afterPath="$PROJECT_DIR$/public/img/achievements/element/ach-9.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/arrow-2.png" afterPath="$PROJECT_DIR$/public/img/arrow-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/arrow-down.png" afterPath="$PROJECT_DIR$/public/img/arrow-down.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/arrow-up.png" afterPath="$PROJECT_DIR$/public/img/arrow-up.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/auction-bg.png" afterPath="$PROJECT_DIR$/public/img/auction-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/background-landing-2.jpg" afterPath="$PROJECT_DIR$/public/img/background-landing-2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/background-landing-3.jpg" afterPath="$PROJECT_DIR$/public/img/background-landing-3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/background-landing.jpg" afterPath="$PROJECT_DIR$/public/img/background-landing.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/background.jpg" afterPath="$PROJECT_DIR$/public/img/background.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/card-example.jpg" afterPath="$PROJECT_DIR$/public/img/card-example.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-all-icon.png" afterPath="$PROJECT_DIR$/public/img/cards-all-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-block.png" afterPath="$PROJECT_DIR$/public/img/cards-block.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-count-icon.png" afterPath="$PROJECT_DIR$/public/img/cards-count-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-info-icon.png" afterPath="$PROJECT_DIR$/public/img/cards-info-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-occupied-icon.png" afterPath="$PROJECT_DIR$/public/img/cards-occupied-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-ovr-icon.png" afterPath="$PROJECT_DIR$/public/img/cards-ovr-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-price-icon.png" afterPath="$PROJECT_DIR$/public/img/cards-price-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-security-icon.png" afterPath="$PROJECT_DIR$/public/img/cards-security-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/cards-share-icon.png" afterPath="$PROJECT_DIR$/public/img/cards-share-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/chat-report.png" afterPath="$PROJECT_DIR$/public/img/chat-report.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/coins-bg.png" afterPath="$PROJECT_DIR$/public/img/coins-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/lock-open.png" afterPath="$PROJECT_DIR$/public/img/lock-open.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/logo.jpg" afterPath="$PROJECT_DIR$/public/img/logo.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/logo.png" afterPath="$PROJECT_DIR$/public/img/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/lottery-bg.png" afterPath="$PROJECT_DIR$/public/img/lottery-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/money-card-icon-1.png" afterPath="$PROJECT_DIR$/public/img/money-card-icon-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/money-icon-1.png" afterPath="$PROJECT_DIR$/public/img/money-icon-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/packs-bg.png" afterPath="$PROJECT_DIR$/public/img/packs-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/payment-logo.png" afterPath="$PROJECT_DIR$/public/img/payment-logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/promo-logo.png" afterPath="$PROJECT_DIR$/public/img/promo-logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/rect.png" afterPath="$PROJECT_DIR$/public/img/rect.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/report-logo.png" afterPath="$PROJECT_DIR$/public/img/report-logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/security-icon-1.png" afterPath="$PROJECT_DIR$/public/img/security-icon-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/time-icon-1.png" afterPath="$PROJECT_DIR$/public/img/time-icon-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/vk-login-icon.png" afterPath="$PROJECT_DIR$/public/img/vk-login-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/wager-bg.png" afterPath="$PROJECT_DIR$/public/img/wager-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/wheel-of-fortune-bg.png" afterPath="$PROJECT_DIR$/public/img/wheel-of-fortune-bg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/auth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/cabinet.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/cards.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/chat.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/coins.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/games.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/lottery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/menu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/modals.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/lang/ru/start.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/api.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/auth.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/components/Breadcrumbs.vue" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/pages/Help.vue" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/pages/History.vue" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/js/pages/Promo.vue" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PromocodesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PromocodesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SettingsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SettingsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StatsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StatsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Listeners/ProcessAchievements.php" afterPath="$PROJECT_DIR$/app/Listeners/ProcessAchievements.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LevelsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LevelsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-AsideMenu-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-AsideMenu-vue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-ChatBoxComponent-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-ChatBoxComponent-vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-MainMenu-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-MainMenu-vue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-Payment-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-Payment-vue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-components-modals-History-vue.js" afterPath="$PROJECT_DIR$/public/layout-components-modals-History-vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layout-layouts-default-vue.js" afterPath="$PROJECT_DIR$/public/layout-layouts-default-vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/mix-manifest.json" afterPath="$PROJECT_DIR$/public/mix-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/Main.vue" afterPath="$PROJECT_DIR$/resources/js/Main.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/app.js" afterPath="$PROJECT_DIR$/resources/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" afterPath="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/Chat.vue" afterPath="$PROJECT_DIR$/resources/js/components/Chat.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/ChatBoxComponent.vue" afterPath="$PROJECT_DIR$/resources/js/components/ChatBoxComponent.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/MainMenu.vue" afterPath="$PROJECT_DIR$/resources/js/components/MainMenu.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/Toggle.vue" afterPath="$PROJECT_DIR$/resources/js/components/Toggle.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/cabinet/Cards.vue" afterPath="$PROJECT_DIR$/resources/js/components/cabinet/Cards.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/cabinet/Info.vue" afterPath="$PROJECT_DIR$/resources/js/components/cabinet/Info.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/cabinet/Lottery.vue" afterPath="$PROJECT_DIR$/resources/js/components/cabinet/Lottery.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/cabinet/Promocodes.vue" afterPath="$PROJECT_DIR$/resources/js/components/cabinet/Promocodes.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/cabinet/Stats.vue" afterPath="$PROJECT_DIR$/resources/js/components/cabinet/Stats.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/cabinet/Tickets.vue" afterPath="$PROJECT_DIR$/resources/js/components/cabinet/Tickets.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/cabinet/Transactions.vue" afterPath="$PROJECT_DIR$/resources/js/components/cabinet/Transactions.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/lang/en/triggertypes.js" afterPath="$PROJECT_DIR$/resources/js/lang/en/triggertypes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/CardInfo.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/CardInfo.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/modals/History.vue" afterPath="$PROJECT_DIR$/resources/js/components/modals/History.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/lang/en/achievements.js" afterPath="$PROJECT_DIR$/resources/js/lang/en/achievements.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/lang/en/messages.js" afterPath="$PROJECT_DIR$/resources/js/lang/en/messages.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/lang/ru/achievements.js" afterPath="$PROJECT_DIR$/resources/js/lang/ru/achievements.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/lang/ru/messages.js" afterPath="$PROJECT_DIR$/resources/js/lang/ru/messages.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/lang/ru/triggertypes.js" afterPath="$PROJECT_DIR$/resources/js/lang/ru/triggertypes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/layouts/default.vue" afterPath="$PROJECT_DIR$/resources/js/layouts/default.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Achievement.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Achievement.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Cabinet.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Cabinet.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Coins.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Coins.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Games.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Games.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Login.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Login.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Lottery.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Lottery.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Main.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Main.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Market.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Market.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/PlayerInfo.vue" afterPath="$PROJECT_DIR$/resources/js/pages/PlayerInfo.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Register.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Register.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/pages/Start.vue" afterPath="$PROJECT_DIR$/resources/js/pages/Start.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/routes.js" afterPath="$PROJECT_DIR$/resources/js/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/achievements.scss" afterPath="$PROJECT_DIR$/resources/sass/achievements.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/cabinet.scss" afterPath="$PROJECT_DIR$/resources/sass/cabinet.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/games.scss" afterPath="$PROJECT_DIR$/resources/sass/games.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/main.scss" afterPath="$PROJECT_DIR$/resources/sass/main.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/sass/start.scss" afterPath="$PROJECT_DIR$/resources/sass/start.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -128,176 +97,108 @@
     <favorites_list name="hut-randoms.com" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6570881">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="492" column="27" lean-forward="false" selection-start-line="492" selection-start-column="27" selection-end-line="492" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#40#60#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/User.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ImageSelector.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/js/components/modals/ImageSelector.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1377">
-                  <caret line="81" column="27" lean-forward="false" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Cabinet.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/js/pages/Cabinet.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-986">
-                  <caret line="11" column="47" lean-forward="false" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#3394#3435#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Info.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Info.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="104" column="18" lean-forward="false" selection-start-line="104" selection-start-column="18" selection-end-line="104" selection-end-column="18" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="coins.scss" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/sass/coins.scss">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1496">
-                  <caret line="88" column="5" lean-forward="false" selection-start-line="74" selection-start-column="3" selection-end-line="88" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/views/admin/users/index.blade.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="default.vue" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/resources/js/layouts/default.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2533">
-                  <caret line="152" column="14" lean-forward="false" selection-start-line="147" selection-start-column="12" selection-end-line="152" selection-end-column="14" />
-                  <folding>
-                    <element signature="e#4387#4440#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="cabinet.scss" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/sass/cabinet.scss">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-102">
-                  <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-                  <folding>
-                    <element signature="e#1514#1698#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Cards.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Cards.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="51" column="2" lean-forward="false" selection-start-line="51" selection-start-column="2" selection-end-line="56" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/routes/api.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="36" column="31" lean-forward="false" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SettingsController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SettingsController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="223">
-                  <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/web.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Payment.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/js/components/modals/Payment.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="413">
-                  <caret line="70" column="22" lean-forward="false" selection-start-line="58" selection-start-column="16" selection-end-line="70" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="Cards.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Cards.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="52" column="10" lean-forward="true" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cabinet.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/sass/cabinet.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="213" column="3" lean-forward="true" selection-start-line="213" selection-start-column="3" selection-end-line="213" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lottery.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Lottery.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-148">
+              <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Stats.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Stats.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="43" column="28" lean-forward="false" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Promocodes.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Promocodes.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="44" column="33" lean-forward="false" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tickets.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Tickets.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="50" column="30" lean-forward="false" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Transactions.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Transactions.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Achievement.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/pages/Achievement.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Info.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Info.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-582">
+              <caret line="115" column="33" lean-forward="false" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="info.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/sass/info.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -311,36 +212,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cssPro</find>
-      <find>src</find>
-      <find>random</find>
-      <find>nav</find>
-      <find>table</find>
-      <find>levels</find>
-      <find>edit</find>
-      <find>td</find>
-      <find>-&gt;</find>
-      <find>_type</find>
-      <find>trigger</find>
-      <find>$stats-</find>
-      <find>Gain</find>
-      <find>getUsers</find>
-      <find>limitgh</find>
-      <find>name</find>
-      <find>room</find>
-      <find>.title</find>
-      <find>rec</find>
-      <find>image</find>
-      <find>recharge</find>
-      <find>bro</find>
-      <find>main</find>
-      <find>userId</find>
-      <find>br</find>
       <find>line</find>
       <find>input</find>
       <find>itle</find>
       <find>broad</find>
       <find>avatar</find>
+      <find>AXI</find>
+      <find>axios</find>
+      <find>route</find>
+      <find>res</find>
+      <find>console</find>
+      <find>auth</find>
+      <find>user</find>
+      <find>auth.</find>
+      <find>Event</find>
+      <find>logout</find>
+      <find>emit</find>
+      <find>profi</find>
+      <find>logo</find>
+      <find>stat</find>
+      <find>emmit</find>
+      <find>level</find>
+      <find>succet_</find>
+      <find>succes_1</find>
+      <find>slide</find>
+      <find>@import &quot;~/auth.scss&quot;;</find>
+      <find>$lang</find>
+      <find>title</find>
+      <find>main</find>
+      <find>main-</find>
+      <find>id</find>
     </findStrings>
     <replaceStrings>
       <replace>../</replace>
@@ -358,57 +259,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/app/Enums/ContentType.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" />
-        <option value="$PROJECT_DIR$/public/img/enums/trigger_types/.gitignore" />
-        <option value="$PROJECT_DIR$/resources/js/lang/en/trigger_types.js" />
-        <option value="$PROJECT_DIR$/app/Enums/TriggerType.php" />
-        <option value="$PROJECT_DIR$/resources/js/lang/en/messages.js" />
-        <option value="$PROJECT_DIR$/database/seeds/AchievementsTableSeeder.php" />
-        <option value="$PROJECT_DIR$/resources/js/lang/en/achievements.title.js" />
-        <option value="$PROJECT_DIR$/resources/js/lang/en/achievements.description.js" />
-        <option value="$PROJECT_DIR$/resources/js/lang/ru/achievements.js" />
-        <option value="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/Chat.vue" />
-        <option value="$PROJECT_DIR$/resources/js/lang/en/chat.js" />
-        <option value="$PROJECT_DIR$/resources/js/components/ChatBoxComponent.vue" />
-        <option value="$PROJECT_DIR$/resources/js/lang/en/achievements.js" />
-        <option value="$PROJECT_DIR$/resources/sass/utilits.scss" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Achievements.js" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/info.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/achievements.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Achievements.vue" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AchievementsController.php" />
-        <option value="$PROJECT_DIR$/resources/js/pages/Achievement.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/modals/Payment.vue" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/StatsController.php" />
-        <option value="$PROJECT_DIR$/resources/js/lang/en/triggertypes.js" />
-        <option value="$PROJECT_DIR$/app/Listeners/ProcessAchievements.php" />
-        <option value="$PROJECT_DIR$/resources/sass/main.scss" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PromocodesController.php" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Cards.vue" />
-        <option value="$PROJECT_DIR$/resources/sass/games.scss" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Lottery.vue" />
-        <option value="$PROJECT_DIR$/resources/js/layouts/default.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Promocodes.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Transactions.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Stats.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Tickets.vue" />
-        <option value="$PROJECT_DIR$/resources/sass/achievements.scss" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/resources/sass/cabinet.scss" />
-        <option value="$PROJECT_DIR$/resources/js/components/ImageSelector.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Info.vue" />
-        <option value="$PROJECT_DIR$/resources/js/pages/Cabinet.vue" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SettingsController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/coins.js" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/games.js" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Games.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Login.vue" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/auth.js" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Register.vue" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
-        <option value="$PROJECT_DIR$/resources/js/components/modals/ImageSelector.vue" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/lottery.js" />
+        <option value="$PROJECT_DIR$/resources/sass/start.scss" />
+        <option value="$PROJECT_DIR$/resources/js/Main.vue" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/achievements.js" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Start.vue" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/start.js" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/messages.js" />
         <option value="$PROJECT_DIR$/resources/js/components/MainMenu.vue" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/menu.js" />
+        <option value="$PROJECT_DIR$/resources/sass/chat.scss" />
+        <option value="$PROJECT_DIR$/resources/js/components/Chat.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/ChatBoxComponent.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/Toggle.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/AsideMenu.vue" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/cards.js" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Cabinet.vue" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/modals.js" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/modals/History.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/modals/CardInfo.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Coins.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Lottery.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Reports.vue" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/main.js" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Main.vue" />
+        <option value="$PROJECT_DIR$/resources/js/routes.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php" />
+        <option value="$PROJECT_DIR$/resources/js/store/modules/user.js" />
+        <option value="$PROJECT_DIR$/resources/js/pages/PlayerInfo.vue" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/LotteryController.php" />
+        <option value="$PROJECT_DIR$/resources/js/lang/en/cabinet.js" />
+        <option value="$PROJECT_DIR$/resources/sass/main.scss" />
+        <option value="$PROJECT_DIR$/resources/sass/info.scss" />
+        <option value="$PROJECT_DIR$/resources/sass/achievements.scss" />
+        <option value="$PROJECT_DIR$/resources/sass/cabinet.scss" />
+        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Cards.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Lottery.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Promocodes.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Tickets.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Transactions.vue" />
+        <option value="$PROJECT_DIR$/resources/js/pages/Achievement.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Info.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/cabinet/Stats.vue" />
       </list>
     </option>
   </component>
@@ -457,6 +358,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -485,35 +387,10 @@
             <path>
               <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modals" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hut-randoms.com" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="layouts" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="API" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="hut-randoms.com" type="b2602c69:ProjectViewProjectNode" />
@@ -529,7 +406,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -543,19 +419,19 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\lang\ru" />
+      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\components\modals" />
+      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\components" />
+      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\components\cabinet" />
+      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\lang\en" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\components\modals" />
       <recent name="D:\OpenServer\domains\hut-randoms.com\public\img\achievements\bg" />
       <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js" />
       <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\views" />
       <recent name="D:\OpenServer\domains\hut-randoms.com\resources\sass" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\components" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\components\cabinet" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\lang\ru" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\resources\js\lang\en" />
-      <recent name="D:\OpenServer\domains\hut-randoms.com\public\img\enums\trigger_types" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -665,12 +541,15 @@
       <workItem from="1566818905762" duration="8417000" />
       <workItem from="1566833945275" duration="37500000" />
       <workItem from="1567003101432" duration="31457000" />
-      <workItem from="1567176153586" duration="9097000" />
+      <workItem from="1567176153586" duration="37072000" />
+      <workItem from="1567357069974" duration="454000" />
+      <workItem from="1567367459549" duration="8465000" />
+      <workItem from="1567587831911" duration="34858000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1044505000" />
+    <option name="totallyTimeSpent" value="1116257000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -685,7 +564,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21028744" sideWeight="0.48072562" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28517398" sideWeight="0.48072562" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32258064" sideWeight="0.5030257" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -693,7 +572,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20045386" sideWeight="0.51927435" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21354167" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24886535" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32258064" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8202765" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -724,394 +603,417 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="25" />
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Events/GainAchievement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="37" column="28" lean-forward="true" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AchievementsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="234" column="13" lean-forward="true" selection-start-line="217" selection-start-column="8" selection-end-line="234" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Listeners/ProcessAchievements.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="50" column="6" lean-forward="false" selection-start-line="50" selection-start-column="6" selection-end-line="50" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TransactionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/promo.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="38" column="24" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="38" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/utilits.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3371">
-          <caret line="230" column="20" lean-forward="true" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-785">
-          <caret line="164" column="17" lean-forward="false" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/cards.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="26" column="21" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="26" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Promocode.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="41" column="26" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PromocodesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="204" column="45" lean-forward="true" selection-start-line="204" selection-start-column="45" selection-end-line="204" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/Achievement.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="26" column="55" lean-forward="false" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/wins.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="36" column="29" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="36" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/Games.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="85" column="11" lean-forward="true" selection-start-line="85" selection-start-column="11" selection-end-line="85" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/games.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-          <folding>
-            <element signature="e#2853#4515#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Place.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Wins.vue" />
-    <entry file="file://$PROJECT_DIR$/app/Enums/GameType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Lottery.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="29" column="19" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/tickets.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="39" column="31" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="39" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StatsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="96" column="43" lean-forward="false" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TicketController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-763">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Ticket.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-222">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Promocodes.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Transactions.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="4" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="19" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Stats.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="15" column="46" lean-forward="false" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Tickets.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="55" column="23" lean-forward="false" selection-start-line="51" selection-start-column="14" selection-end-line="55" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="48" column="15" lean-forward="false" selection-start-line="44" selection-start-column="12" selection-end-line="48" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/achievements.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="186" column="20" lean-forward="false" selection-start-line="186" selection-start-column="20" selection-end-line="186" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="159" column="20" lean-forward="false" selection-start-line="159" selection-start-column="20" selection-end-line="159" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="114" column="21" lean-forward="true" selection-start-line="34" selection-start-column="16" selection-end-line="114" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/coins.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" column="5" lean-forward="false" selection-start-line="74" selection-start-column="3" selection-end-line="88" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/img/enums/trigger_types/1.png" />
-    <entry file="file://$PROJECT_DIR$/public/img/enums/trigger_types/0.png" />
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Cards.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="51" column="2" lean-forward="false" selection-start-line="51" selection-start-column="2" selection-end-line="56" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotteryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5673">
-          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/Payment.vue">
+    <entry file="file://$PROJECT_DIR$/resources/js/components/Chat.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
-          <caret line="70" column="22" lean-forward="false" selection-start-line="58" selection-start-column="16" selection-end-line="70" selection-end-column="22" />
+          <caret line="104" column="5" lean-forward="true" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/cabinet.scss">
+    <entry file="file://$PROJECT_DIR$/resources/js/lang/en/coins.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding>
-            <element signature="e#1514#1698#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/js/components/AsideMenu.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="101" lean-forward="false" selection-start-line="20" selection-start-column="95" selection-end-line="20" selection-end-column="101" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/Toggle.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="42" column="28" lean-forward="false" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/WheelOfFortune.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/pages/Cabinet.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-986">
-          <caret line="11" column="47" lean-forward="false" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-          <folding>
-            <element signature="e#3394#3435#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SettingsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="492" column="27" lean-forward="false" selection-start-line="492" selection-start-column="27" selection-end-line="492" selection-end-column="27" />
-          <folding>
-            <element signature="e#40#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="36" column="31" lean-forward="false" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Info.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="104" column="18" lean-forward="false" selection-start-line="104" selection-start-column="18" selection-end-line="104" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/ImageSelector.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="81" column="27" lean-forward="false" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/MainMenu.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="91" column="46" lean-forward="false" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
+        <state relative-caret-position="833">
+          <caret line="49" column="33" lean-forward="true" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/lang/en/cards.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/lang/en/triggertypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/Levels.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/ImageSelector.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/Howtostart.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/lang/en/modals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/FAQ.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1938">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Playzone.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/History.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" column="61" lean-forward="false" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Cabinet.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="51" lean-forward="false" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="51" />
+          <folding>
+            <element signature="n#script#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Coins.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Games.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="59" lean-forward="false" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/modals/CardInfo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Market.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Register.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-952">
+          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Reports.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-867">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Start.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="34" column="58" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/lang/en/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Main.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="53" column="10" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="53" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/layouts/default.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2533">
-          <caret line="152" column="14" lean-forward="false" selection-start-line="147" selection-start-column="12" selection-end-line="152" selection-end-column="14" />
-          <folding>
-            <element signature="e#4387#4440#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="171" column="16" lean-forward="false" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="158" column="78" lean-forward="false" selection-start-line="158" selection-start-column="78" selection-end-line="158" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/store/modules/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="123" column="41" lean-forward="false" selection-start-line="123" selection-start-column="41" selection-end-line="123" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="81" column="10" lean-forward="true" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Lottery.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="91" column="10" lean-forward="true" selection-start-line="80" selection-start-column="7" selection-end-line="91" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/img/noavatar.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/PlayerInfo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="60" column="13" lean-forward="false" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LotteryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="367" column="0" lean-forward="false" selection-start-line="367" selection-start-column="0" selection-end-line="367" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/lang/ru/achievements.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/lang/en/achievements.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/lang/en/cabinet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="48" column="10" lean-forward="true" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="166" column="13" lean-forward="false" selection-start-line="166" selection-start-column="13" selection-end-line="166" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/info.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/achievements.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1156">
+          <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Cards.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="52" column="10" lean-forward="true" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Promocodes.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="44" column="33" lean-forward="false" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Tickets.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="50" column="30" lean-forward="false" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Transactions.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="42" column="35" lean-forward="false" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/pages/Achievement.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Info.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-582">
+          <caret line="115" column="33" lean-forward="false" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Lottery.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-148">
+          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/cabinet.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="213" column="3" lean-forward="true" selection-start-line="213" selection-start-column="3" selection-end-line="213" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/cabinet/Stats.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="43" column="28" lean-forward="false" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>

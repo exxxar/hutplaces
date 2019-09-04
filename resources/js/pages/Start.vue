@@ -6,34 +6,30 @@
                 <div class="logo-wrapper">
                     <div class="logo">
                         <a href="/index"> <img src="img/logo.png" alt=""></a>
-
                     </div>
                 </div>
-
-                <p>Начни с этого момента <i class="fas fa-arrow-right"></i></p>
-
+                <p>{{$lang.start.p1}} <i class="fas fa-arrow-right"></i></p>
                 <ul class="social">
                     <li><a href="/social-auth/vkontakte"><i class="fab fa-vk"></i></a></li>
                     <li><a href="/social-auth/facebook"><i class="fab fa-facebook-f"></i></a></li>
                     <li><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
                 </ul>
-
             </div>
         </header>
         <section class="section-1">
             <div class="center">
-                <h1><span>Дешелве, чем</span> когда-<br>либо!</h1>
-                <h3>Успей купить карточки любых игроков!</h3>
+                <h1 v-html="$lang.start.p2"></h1>
+                <h3>{{$lang.start.p3}}</h3>
                 <nav>
                     <ul>
                         <li>
-                            <h5>Быстрая доставка</h5>
-                            <p>Отправка выигрыша осуществляется оператором в течнии 15 минут после розыгрыша</p>
-                            <p>Получение карточек осуществляется в течении 24х часов.</p>
+                            <h5>{{$lang.start.p4}}</h5>
+                            <p>{{$lang.start.p5}}</p>
+                            <p>{{$lang.start.p6}}</p>
                         </li>
                         <li>
-                            <h5>Приз практически бесплатно</h5>
-                            <p>У нас Вы можете получить вещь в 100 раз дешевле!</p>
+                            <h5>{{$lang.start.p7}}</h5>
+                            <p>{{$lang.start.p8}}</p>
                         </li>
                         <li>
                             <h5>Уникальный рандом алгоритм</h5>
@@ -242,12 +238,10 @@
 </template>
 
 <script>
-
     import {Carousel3d, Slide} from 'vue-carousel-3d'
 
     import CardSearch from '../components/admin/CardSearch.vue'
     import Scroll from 'vue-custom-scrollbar'
-
     export default {
         name: 'Start',
         data() {
@@ -268,49 +262,10 @@
         components: {
             Carousel3d,
             Slide
-
         }
     }
 </script>
 
 <style lang="scss">
-
     @import "~/start.scss";
-
-    .carousel-3d-container {
-        height: 390px !important;
-        padding: 10px;
-        box-sizing: border-box;
-
-        .carousel-3d-slide {
-
-            border: none;
-            box-shadow: 0px 0px 5px 0px black;
-
-            img {
-                width: 100%;
-                height: 100%;
-                position: relative;
-                z-index: 0;
-
-            }
-
-            .shadow {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 1;
-                box-shadow: 0px 0px 11px 5px white inset;
-            }
-
-            background-color: red !important;
-
-            .title {
-                font-size: 222px;
-            }
-        }
-    }
-
 </style>

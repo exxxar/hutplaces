@@ -1,14 +1,14 @@
 <template>
-    <div>
+    <div  class="info-block">
         <h1 class="main-title" v-html="content.title"></h1>
         <p class="description" v-html="content.content"></p>
         <table v-if="promocodes!=null&&promocodes.length>0">
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Code</th>
-                <th>Prize</th>
-                <th>Date</th>
+                <th>{{$lang.cabinet.promocodes.title}}</th>
+                <th>{{$lang.cabinet.promocodes.description}}</th>
+                <th>{{$lang.cabinet.promocodes.code}}</th>
+                <th>{{$lang.cabinet.promocodes.prize}}</th>
+                <th>{{$lang.cabinet.promocodes.date}}</th>
             </tr>
             <tr v-for="promo in promocodes">
                 <td>{{ promo.title }}</td>
@@ -18,34 +18,41 @@
                 <td>{{ promo.created_at }}</td>
             </tr>
         </table>
-        <h3 v-if="promocodes==null||promocodes.length==0">У вас нет Баг-репортов:(</h3>
+        <h3 v-if="promocodes==null||promocodes.length==0">{{$lang.cabinet.promocodes.error_1}}</h3>
     </div>
 </template>
 <script>
     export default {
         name: "Promocodes",
+        props: ["user"],
         data() {
             return {
                 promocodes: null,
                 content: {
-                    title: "Введенные промокоды",
-                    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit."
+                    title: '',
+                    content: ''
                 },
             }
         },
-
         activated() {
             this.loadPromocodes()
+            this.prepareContent()
         },
         mounted() {
             Event.$on('updatePromocodes', () => {
                 this.loadPromocodes()
             });
+            this.loadPromocodes()
+            this.prepareContent()
         },
         methods: {
+            prepareContent() {
+                this.content.title = this.$lang.cabinet.promocodes.main_title
+                this.content.content = this.$lang.cabinet.promocodes.main_description
+            },
             loadPromocodes() {
                 axios
-                    .get(`/users/promo/${auth.user.id}`)
+                    .get(`/users/promo/${this.user.id}`)
                     .then(response => {
                         this.promocodes = response.data.promocodes;
                     });
@@ -104,17 +111,5 @@
     }
 </script>
 <style lang="scss" scoped>
-    table {
-        width: 100%;
-        tr {
-            color: white;
-            line-height: 150%;
-            border: 1px white solid;
-
-            th,
-            td {
-                padding: 10px;
-            }
-        }
-    }
+    @import "~/cabinet.scss";
 </style>

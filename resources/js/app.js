@@ -1,9 +1,5 @@
 import './bootstrap';
-import Auth from './auth';
-import Api from './api.js';
-
-
-
+import {store} from './store';
 import Vue from 'vue'
 
 import VueLazyload from "vue-lazyload";
@@ -12,8 +8,8 @@ Vue.use(VueLazyload, {
     preLoad: 1.3,
     error: 'img/error.png',
     loading: 'img/loading.gif',
-    attempt:5,
-    lazyComponent:true
+    attempt: 5,
+    lazyComponent: true
 })
 
 import App from './Main'
@@ -27,14 +23,10 @@ import VueScrollTo from 'vue-scrollto';
 import {Tabs, Tab} from 'vue-tabs-component';
 
 
-
 Lang.requireAll(require.context('./lang', true, /\.js$/));
 
 Vue.use(Lang);
 
-window.api = new Api();
-
-window.auth = new Auth();
 window.Event = new Vue;
 
 
@@ -45,10 +37,10 @@ Vue.use(VueClipboard)
 Vue.use(VTooltip)
 
 
-Vue.use(VueLoading,{
+Vue.use(VueLoading, {
     text: 'HUTPLACES',
     background: 'rgba(0,0,0,0.97)',
-    classes: ['hutplace-preloader'] // array, object or string
+    classes: ['hutplace-preloader']
 })
 
 Vue.use(VueReCaptcha, {
@@ -64,31 +56,33 @@ Vue.config.productionTip = false
 // eslint-disable-next-line no-new
 const app = new Vue({
     el: '#app',
+    store,
     router,
     components: {App},
-    template: '<App/>'
+    template: '<App/>',
+
 })
 
 
 router.beforeResolve((to, from, next) => {
     if (to.name) {
-    app.$loading(true)
-}
-next()
+        app.$loading(true)
+    }
+    next()
 })
 
 router.beforeEach((to, from, next) => {
+
     if (to.matched.some(record => record.meta.middlewareAuth)) {
-        if (!auth.check()) {
+        if (!store.getters.CHECK) {
             next({
                 path: '/signin',
-                query: { redirect: to.fullPath }
+                query: {redirect: to.fullPath}
             });
 
             return;
         }
     }
-
     next();
 })
 
@@ -96,6 +90,6 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from) => {
     setTimeout(function () {
         app.$loading(false)
-    },1000)
+    }, 1000)
 
 })
