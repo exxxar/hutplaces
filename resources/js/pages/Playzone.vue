@@ -8,16 +8,16 @@
 
     <ul>
       <router-link tag="li" v-lazy:background-image="'/img/lottery-bg.png'" class="btn randoms opened" to="/randoms">
-        {{$lang.messages.randoms}}
+        {{$lang.main.randoms}}
       </router-link>
 
       <li class="btn fortune closed" v-lazy:background-image="'/img/wheel-of-fortune-bg.png'"   @click="showError('Раздел Колесо фортуны не доступен')">
-        {{$lang.messages.wheel_of_fortune}}
+        {{$lang.main.wheel_of_fortune}}
         <span></span>
       </li>
 
       <li class="btn wager closed" v-lazy:background-image="'/img/wager-bg.png'"  @click="showError('Раздел Вагер-матчей не доступен')">
-        {{$lang.messages.wager_matches}}
+        {{$lang.main.wager_matches}}
         <span></span>
       </li>
 

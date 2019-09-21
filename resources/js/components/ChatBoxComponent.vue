@@ -92,7 +92,6 @@
                     roomId: this.roomId,
                     hooks: {
                         onMessage: message => {
-                            console.log(message);
                             let find = this.messages.find(msg => message.id == msg.id);
 
                             if (!find)
@@ -147,7 +146,7 @@
                 return moment(timestamp).fromNow();
             },
         },
-        created() {
+        mounted() {
             this.getUsers();
             this.connectToChatkit();
         },

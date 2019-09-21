@@ -88,6 +88,9 @@
                                     @can("card-list")
                                         <a class="dropdown-item" href="{{ route('users.cards',$user->id) }}">Cards</a>
                                     @endcan
+                                    @can("item-list")
+                                        <a class="dropdown-item" href="{{ route('users.items',$user->id) }}">Items</a>
+                                    @endcan
                                     @can("promocode-list")
                                         <a class="dropdown-item"
                                            href="{{ route('users.promo',$user->id) }}">Promocodes</a>

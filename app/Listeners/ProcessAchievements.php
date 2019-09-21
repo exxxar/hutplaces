@@ -85,11 +85,12 @@ class ProcessAchievements
                 $discount = $ach->discount==null?0:$ach->discount;
                 $exp = $ach->exp==null?0:$ach->exp;
                 $coins = $ach->coins ==null?0:$ach->coins;
+                $bonus = $ach->bonus ==null?0:$ach->bonus;
 
 
                 if ($ach->random_rewards) {
 
-                    $reward = random_int(0, 5);
+                    $reward = random_int(0, 6);
                     switch ($reward) {
                         case 0:
                             $user->money = $user->money == null ? $money : $user->money + $money;
@@ -106,10 +107,15 @@ class ProcessAchievements
                             $user->coins = $user->coins == null ? $coins : $user->coins + $coins;
                             break;
                         case 4:
-                            if ($ach->cards_id)
-                                $user->cards()->attach($ach->cards_id);
+                            if ($ach->card_id)
+                                $user->cards()->attach($ach->card_id);
                             break;
-                        case 5: //for item reward add
+                        case 5:
+                            if ($ach->item_id)
+                                $user->items()->attach($ach->item_id);
+                            break;
+                        case 6:
+                            $user->bonus = $user->bonus == null ? $bonus : $user->bonus + $bonus;
                             break;
                     }
 
@@ -120,12 +126,16 @@ class ProcessAchievements
                     $user->discount = $user->discount == null ? $discount : max($user->discount, $discount);
                     $user->exp = $user->exp == null ? $exp : $user->exp + $exp;
                     $user->coins = $user->coins == null ? $coins : $user->coins + $coins;
+                    $user->bonus = $user->bonus == null ? $bonus : $user->bonus + $bonus;
                     $user->save();
 
                     event(new GainExpirience($user->id));
 
-                    if ($ach->cards_id)
-                        $user->cards()->attach($ach->cards_id);
+                    if ($ach->card_id)
+                        $user->cards()->attach($ach->card_id);
+
+                    if ($ach->item_id)
+                        $user->items()->attach($ach->item_id);
 
                 }
 

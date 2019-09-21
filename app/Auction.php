@@ -13,6 +13,7 @@ class Auction extends Model
 {
     use CastsEnums;
 
+
     protected $enumCasts = [
         'console_type' => ConsoleType::class,
         'lot_type' => LotType::class,
@@ -34,10 +35,21 @@ class Auction extends Model
         'is_active',
         'seller_id',
         'updated_at',
+        'created_at',
     ];
 
     public function lot()
     {
         return $this->hasOne('App\Lot','id');
+    }
+
+    public function buyer()
+    {
+        return $this->hasOne('App\User','id','buyer_id');
+    }
+
+    public function seller()
+    {
+        return $this->hasOne('App\User','id','seller_id');
     }
 }

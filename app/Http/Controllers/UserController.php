@@ -226,6 +226,7 @@ class UserController extends Controller
         $money = $request->get("money");
         $user->exp += $money;
         $user->money += $money;
+        $user->bonus += (random_int(1, 20) * $money) / 100;
         $user->save();
 
         event(new GainExpirience($user->id));
@@ -233,6 +234,7 @@ class UserController extends Controller
 
         event(new AchievementEvent(TriggerType::Experience, $money, $user->id));
         event(new AchievementEvent(TriggerType::Spent_Money, $money, $user->id));
+        event(new AchievementEvent(TriggerType::Bonus_Count, $user->bonus, $user->id));
 
         Transaction::create([
             'user_id' => $user->id,
@@ -255,7 +257,7 @@ class UserController extends Controller
 
     public function lotteries(Request $request, $id)
     {
-        $lotteries = Place::with(["lottery", "lottery.lot", "lottery.lot.card"])
+        $lotteries = Place::with(["lottery", "lottery.lot", "lottery.lot.card", "lottery.lot.item"])
             ->where("user_id", $id)->get();
 
         $tmp = [];
@@ -280,12 +282,12 @@ class UserController extends Controller
             return response()
                 ->json([
                     "status" => 200,
-                    "lotteries" => (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card"])->find($id))->lotteries
+                    "lotteries" => (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card", "lottery.lot.item"])->find($id))->lotteries
                 ]);
 
         $itemsOnPage = 10;
 
-        $wins = (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card"])
+        $wins = (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card", "lottery.lot.item"])
             ->find($id))
             ->lotteries()
             ->orderBy('id', 'DESC')
@@ -319,6 +321,27 @@ class UserController extends Controller
 
     }
 
+    public function items(Request $request, $id)
+    {
+
+        if ($request->ajax())
+            return response()
+                ->json([
+                    "status" => 200,
+                    "items" => (User::with(["items"])->find($id))->items
+                ]);
+
+        $itemsOnPage = 10;
+
+        $cards = (User::with(["items"])->find($id))
+            ->items()
+            ->orderBy('id', 'DESC')
+            ->paginate($itemsOnPage);
+
+        return view("admin.users.items", compact("items"))
+            ->with('i', ($request->input('page', 1) - 1) * $itemsOnPage);
+
+    }
 
     public function stats(Request $request, $id)
     {
@@ -553,6 +576,16 @@ class UserController extends Controller
             ->json([
                 "status" => 200,
                 "message" => "Success info update"
+            ]);
+    }
+
+    public function avatarGet(Request $request, $id)
+    {
+        $user = User::find($id);
+        return response()
+            ->json([
+                "status" => 200,
+                "avatar" => $user->avatar
             ]);
     }
 }

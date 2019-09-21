@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\Enums\Lifetime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -159,5 +160,16 @@ class ContentController extends Controller
 
         return redirect()
             ->action("ContentController@show",["id"=>$id]);
+    }
+
+    public function lifetime(Request $request){
+        $tmp = [];
+        foreach(Lifetime::getInstances() as $key=>$value)
+            array_push($tmp,$value);
+        return response()
+            ->json([
+                "status"=>200,
+                "lifetime"=>$tmp
+            ]);
     }
 }

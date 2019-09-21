@@ -92,10 +92,6 @@
             }
         },
 
-        mounted() {
-            this.getCurrentUser();
-
-        },
         directives: {
             Draggable,
         },

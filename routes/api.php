@@ -30,11 +30,17 @@ Route::get('/test','ChatkitController@test');
 Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
+Route::get('/auction/all', 'AuctionController@index');
+Route::get('/users/avatar/get/{id}', 'UserController@avatarGet');
+
+
 Route::get('/achievements', 'AchievementsController@index');
 Route::get('/achievements/types', 'AchievementsController@types');
 Route::get('/achievements/progress/{id}', 'AchievementsController@progress');
 
 Route::get('/images/all', 'UserController@images');
+
+Route::get('/settings/lifetime', 'ContentController@lifetime');
 
 
 Route::post('/coinsrequest', 'CoinsController@coinsrequest');
@@ -67,6 +73,12 @@ Route::group(["prefix"=>"chat"],function (){
 
 Route::middleware('auth:api')->group(function () {
 
+    Route::post('/auction/add', 'AuctionController@addLot');
+    Route::get('/auction/mylots', 'AuctionController@myLots')->name("mylots");
+    Route::get('/auction/mybids', 'AuctionController@myBids');
+    Route::get('/auction/cancel/{id}', 'AuctionController@cancelLot');
+    Route::get('/auction/update/{id}/{time}', 'AuctionController@updateLot');
+
     Route::post('/promo/activate', 'PromocodesController@activate');
 
     Route::get('/users/promo/{id}', 'UserController@promo');
@@ -77,9 +89,11 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/users/stats/types', 'StatsController@types');
     Route::get('/users/stats/{id}', 'UserController@stats');
     Route::get('/users/cards/{id}', 'UserController@cards');
+    Route::get('/users/items/{id}', 'UserController@items');
     Route::get('/users/transactions/{id}', 'UserController@transactions');
     Route::get('/users/wins/{id}', 'UserController@wins');
     Route::get('/users/lotteries/{id}', 'UserController@lotteries');
+
     Route::get('/users/avatar/refresh', 'UserController@avatarRefresh');
     Route::post('/users/avatar/set', 'UserController@avatarSet');
 

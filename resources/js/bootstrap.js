@@ -1,5 +1,6 @@
 
 window._ = require('lodash');
+window.timeSolver = require('timesolver/timeSolver.min.js');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -58,4 +59,6 @@ var pusher = new Pusher('37f1cfbd4bda023198c9', {
     forceTLS: true
 });
 window.pusher = pusher;
+
+
 

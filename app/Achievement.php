@@ -28,6 +28,7 @@ class Achievement extends Model
         'exp',
         'coins',
         'money',
+        'bonus',
         'item_id',
         'card_id',
 

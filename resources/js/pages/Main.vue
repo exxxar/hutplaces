@@ -39,18 +39,10 @@
         data(){
           return {
               content: {
-                  title: this.contentTitle,
-                  content: this.contentDescription
+                  title: this.$lang.main.main_title,
+                  content: this.$lang.main.main_description
               },
           }
-        },
-        computed:{
-            contentTitle:function () {
-                return this.$lang.main.main_title
-            },
-            contentDescription:function () {
-                return this.$lang.main.main_description
-            }
         },
         methods: {
             message(message,) {

@@ -32,9 +32,6 @@ __webpack_require__.r(__webpack_exports__);
       promo: ""
     };
   },
-  mounted: function mounted() {
-    this.doRequest();
-  },
   methods: {
     message: function message(title, _message, type) {
       this.$notify({

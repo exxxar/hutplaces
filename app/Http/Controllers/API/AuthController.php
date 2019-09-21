@@ -30,6 +30,7 @@ class AuthController extends Controller
             'name' => request('name'),
             'email' => request('email'),
             'avatar' => '',
+            'is_trader' => false,
             'level_id' => (Level::where("level", "1")->first())->id,
             'password' => bcrypt(request('password'))
         ]);
@@ -48,7 +49,7 @@ class AuthController extends Controller
 
                 $user->stats()->save($stat);
             }
-            //todo: реализовать метод, который будет добавлять всем новый тип тригера для ачивок и статистики
+
         }
 
          $this->chatkit_createUser($user);

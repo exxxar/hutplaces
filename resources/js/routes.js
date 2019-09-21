@@ -5,6 +5,7 @@ import PageNotFound from '@/pages/PageNotFound'
 import Randoms from '@/pages/Randoms'
 import Market from '@/pages/Market'
 import Playzone from '@/pages/Playzone'
+import Auction from '@/pages/Auction'
 import Cabinet from '@/pages/Cabinet'
 import Games from '@/pages/Games'
 import WheelWin from '@/pages/WheelWin'
@@ -106,6 +107,11 @@ export default new Router({
             path: '/randoms',
             name: 'Randoms',
             component: Randoms
+        },
+        {
+            path: '/auction',
+            name: 'Auction',
+            component: Auction
         },
         {
             path: '/games/nhl',

@@ -21,8 +21,9 @@ class CreateAchievementsTable extends Migration
             $table->string("title")->default("");
             $table->string("description", 2000)->default("");
             $table->integer("discount" )->nullable();
-            $table->integer("exp" )->nullable();
-            $table->integer("coins" )->nullable();
+            $table->bigInteger("exp" )->nullable();
+            $table->bigInteger("coins" )->nullable();
+            $table->bigInteger("bonus" )->nullable();
             $table->double("money" )->nullable();
             $table->string("image" )->nullable();
             $table->string("background" )->nullable();

@@ -37,10 +37,12 @@
         },
         methods: {
             loadLevels() {
+                this.$loading(true)
                 axios
                     .get(`/levels`)
                     .then(response => {
                         this.levels = response.data.levels
+                        this.$loading(false)
                     });
             },
 

@@ -9,6 +9,8 @@ use Maksa988\FreeKassa\Facades\FreeKassa;
 
 Broadcast::routes();
 
+Route::get('/settings/lifetime', 'ContentController@lifetime');
+
 Route::get("/load", "SettingsController@images");
 Route::get("/event", function () {
 

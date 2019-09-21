@@ -138,55 +138,7 @@
       }
     }
 
-    .tabs-component {
-      width: 100%;
 
-      .tabs-component-tabs {
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
-        flex-wrap: wrap;
-
-        @media (max-width: 880px) {
-          & {
-            justify-content: center;
-          }
-        }
-
-        .tabs-component-tab {
-          padding: 10px;
-          border-bottom: 2px transparent solid;
-
-          &.is-active {
-            border-bottom: 2px $color3 solid;
-          }
-
-          .tabs-component-tab-a {
-            color: $color4;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 12px;
-            text-transform: uppercase;
-            position: relative;
-
-          }
-
-          &.is-disabled {
-            .tabs-component-tab-a {
-              font-color: $color6;
-            }
-          }
-        }
-      }
-      .tabs-component-panels {
-        .tabs-component-panel {
-          .scroll-area {
-            padding: 20px 0px 100px 0px;
-          }
-
-        }
-      }
-    }
   }
 
 }
@@ -229,5 +181,3 @@
   }
 
 }
-
-

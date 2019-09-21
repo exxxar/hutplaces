@@ -21,17 +21,18 @@ class UsersTableSeeder extends Seeder
             'name'=>'superadmin',
             'email'=>'superadmin@hutplaces.com',
             'password'=>Hash::make('admin'),
-            'skype'=>'skype',
+            'skype'=>'',
             'vk'=>'',
             'fb'=>'',
             'tw'=>'',
-            'money'=>100000,
+            'money'=>1000000,
             'level_id'=>1,
             'discount'=>100,
             'exp'=>0,
             'active'=>1,
-            'avatar'=>'',
-            'coins'=>10000
+            'avatar'=>'avatar-14.jpg',
+            'coins'=>1000000,
+            'is_trader'=>true
         ]);
 
         foreach (TriggerType::toArray() as $key => $value) {

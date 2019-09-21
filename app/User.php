@@ -35,7 +35,8 @@ class User extends Authenticatable
         'exp',
         'active',
         'avatar',
-        'coins'
+        'coins',
+        'is_trader'
     ];
 
     /**
@@ -62,6 +63,13 @@ class User extends Authenticatable
         return $this->belongsToMany('App\CardsStorage','user_card','user_id','card_id')
             ->withTimestamps();
     }
+
+    public function items()
+    {
+        return $this->belongsToMany('App\Item','user_items','user_id','item_id')
+            ->withTimestamps();
+    }
+
 
     public function achievements()
     {

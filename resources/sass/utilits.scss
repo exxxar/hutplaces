@@ -43,6 +43,7 @@ $color12:black; //number in slot
 $color13:lightgray;*/
 
 /*ТЕМА 3*/
+
 $mainBg: '/img/background-landing.jpg';
 $color1: #393939; //color
 $color2: #2c3e50; //bg color
@@ -60,6 +61,10 @@ $color13: lightgray;
 $color14: yellow; //partials block
 $color15: #2c3e50; //partials shadow color
 $color16: #2c3e50; //partials label color
+
+
+
+
 
 @mixin flex($horizontal:center, $vertical:center,$wrap:wrap) {
   display: flex;
@@ -259,4 +264,55 @@ img[lazy=loading] {
 img[lazy=error] {
   width:50px !important;
   height:50px !important;
+}
+
+
+.tabs-component {
+  width: 100%;
+
+  .tabs-component-tabs {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    @media (max-width: 880px) {
+      & {
+        justify-content: center;
+      }
+    }
+
+    .tabs-component-tab {
+      padding: 10px;
+      border-bottom: 2px transparent solid;
+
+      &.is-active {
+        border-bottom: 2px $color3 solid;
+      }
+
+      .tabs-component-tab-a {
+        color: $color4;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 12px;
+        text-transform: uppercase;
+        position: relative;
+
+      }
+
+      &.is-disabled {
+        .tabs-component-tab-a {
+          color: $color6;
+        }
+      }
+    }
+  }
+  .tabs-component-panels {
+    .tabs-component-panel {
+      .scroll-area {
+        padding: 20px 0px 100px 0px;
+      }
+
+    }
+  }
 }

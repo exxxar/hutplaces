@@ -212,8 +212,8 @@ class PromocodesController extends Controller
         if (!empty($promocode->money)&&$promocode->money>0)
             $user->money += $promocode->money;
 
-
-
+        if (!empty($promocode->bonus)&&$promocode->bonus>0)
+            $user->bonus += $promocode->bonus;
 
         if (!empty($promocode->coins)&&$promocode->coins>0) {
             $user->coins += $promocode->coins;

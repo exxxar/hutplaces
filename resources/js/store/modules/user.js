@@ -101,18 +101,68 @@ let actions = {
             resolve();
         });
     },
-
-    getAnyUser: async (context, payload) => {
-        if (context.getters.TOKEN == null && localStorage.getItem('token')==null)
+    lot: async (context, payload) => {
+        if (context.getters.TOKEN == null && localStorage.getItem('token') == null)
             return new Promise(function (resolve, reject) {
                 reject();
             });
 
-        if (context.getters.TOKEN == null && localStorage.getItem('token')!=null)
+        if (context.getters.TOKEN == null && localStorage.getItem('token') != null)
             await context.dispatch("retriveUser", localStorage.getItem('token'));
 
 
-        if (axios.defaults.headers.common['Authorization']==undefined)
+        if (axios.defaults.headers.common['Authorization'] == undefined)
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.getters.TOKEN;
+
+        if (payload.type == null)
+            return new Promise(function (resolve, reject) {
+                reject();
+            });
+
+        var url = '';
+        switch (payload.type) {
+            case 'mylots':
+                url = `/auction/mylots`;
+                break;
+            case 'cancel':
+                url = `/auction/cancel/${payload.id}`;
+                break;
+            case 'updateLot':
+                url = `/auction/update/${payload.id}/${payload.lifetime}`;
+                break;
+            case 'all':
+                url = `/auction/all`;
+                break;
+            case 'mybids':
+                url = `/auction/mybids`;
+                break;
+        }
+        var response =  await axios.get(url).then(res => {
+            return res;
+        })
+
+        return new Promise(function (resolve, reject) {
+            if (response.data == null || response.data.length == 0)
+                reject();
+
+            if (response.status == 200)
+                resolve(response);
+            reject();
+        });
+
+    },
+
+    getAnyUser: async (context, payload) => {
+        if (context.getters.TOKEN == null && localStorage.getItem('token') == null)
+            return new Promise(function (resolve, reject) {
+                reject();
+            });
+
+        if (context.getters.TOKEN == null && localStorage.getItem('token') != null)
+            await context.dispatch("retriveUser", localStorage.getItem('token'));
+
+
+        if (axios.defaults.headers.common['Authorization'] == undefined)
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.getters.TOKEN;
 
         var response = await axios.get(`/get-user/${payload.user_id}`).then(res => {
@@ -120,7 +170,7 @@ let actions = {
         })
 
         return new Promise(function (resolve, reject) {
-            if (response.data==null||response.data.length==0)
+            if (response.data == null || response.data.length == 0)
                 reject();
 
             if (response.status == 200)
@@ -130,16 +180,16 @@ let actions = {
 
     },
     getCurrentUser: async (context, payload) => {
-        if (context.getters.TOKEN == null && localStorage.getItem('token')==null)
+        if (context.getters.TOKEN == null && localStorage.getItem('token') == null)
             return new Promise(function (resolve, reject) {
                 reject();
             });
 
-        if (context.getters.TOKEN == null && localStorage.getItem('token')!=null)
+        if (context.getters.TOKEN == null && localStorage.getItem('token') != null)
             await context.dispatch("retriveUser", localStorage.getItem('token'));
 
 
-        if (axios.defaults.headers.common['Authorization']==undefined)
+        if (axios.defaults.headers.common['Authorization'] == undefined)
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.getters.TOKEN;
 
         var response = await axios.get('/get-user').then(res => {
@@ -158,7 +208,7 @@ let actions = {
 
     updateUser: async (context, payload) => {
 
-        var response = await axios.post('/user/update/info',{
+        var response = await axios.post('/user/update/info', {
             name: payload.name,
             skype: payload.skype,
             vk: payload.vk,
@@ -177,7 +227,7 @@ let actions = {
 
     updatePassword: async (context, payload) => {
 
-        var response = await axios.post('/user/update/pass',{
+        var response = await axios.post('/user/update/pass', {
             new: payload.new1,
             old: payload.old,
         }).then(res => {

@@ -25,9 +25,10 @@ class CreatePromocodesTable extends Migration
             $table->integer('activation_count')->default(0);
             $table->integer('count')->default(0);
             $table->double('money')->default(0);
-            $table->integer('exp')->default(0);
+            $table->bigInteger('exp')->default(0);
             $table->integer('discount')->default(0);
-            $table->integer('coins')->default(0);
+            $table->bigInteger('coins')->default(0);
+            $table->bigInteger('bonus')->default(0);
 
             $table->unsignedInteger("item_id" )->nullable();
             $table->unsignedInteger("card_id" )->nullable();

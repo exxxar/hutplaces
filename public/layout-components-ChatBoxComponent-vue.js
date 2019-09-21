@@ -115,8 +115,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         roomId: this.roomId,
         hooks: {
           onMessage: function onMessage(message) {
-            console.log(message);
-
             var find = _this2.messages.find(function (msg) {
               return message.id == msg.id;
             });
@@ -196,7 +194,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(timestamp).fromNow();
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     this.getUsers();
     this.connectToChatkit();
   },

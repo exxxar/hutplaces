@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Lifetime;
 use App\Events\BroadcastMessage;
 use App\Setting;
 use Illuminate\Http\Request;
