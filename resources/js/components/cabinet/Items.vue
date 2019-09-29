@@ -5,7 +5,7 @@
         <ul class="items-list" v-if="items!=null&&items.length>0">
             <li class="item" v-for="item in items"></li>
         </ul>
-        <h3 v-if="items==null||items.length==0">{{$lang.cabinet.cards.error_1}}</h3>
+        <div class="no-items" v-if="items==null||items.length==0"><img :src="$lang.cabinet.items.error_1" alt=""></div>
     </div>
 </template>
 
@@ -19,6 +19,8 @@
         },
         mounted() {
             this.prepareContent()
+            this.loadItems()
+
             Event.$on('updateItems', () => {
                 this.loadItems()
             });
@@ -29,6 +31,7 @@
                 axios
                     .get(`/users/items/${this.user.id}`)
                     .then(response => {
+                        console.log("items:",response)
                         this.items = response.data.items;
                     });
             },
@@ -45,7 +48,7 @@
                     title: '',
                     content: ''
                 },
-                cards: null,
+                items: null,
             }
         },
 

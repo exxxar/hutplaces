@@ -5,7 +5,8 @@
         <ul class="cards-list" v-if="cards!=null&&cards.length>0">
             <li class="card" v-for="card in cards" v-html="prepareCard(card)"></li>
         </ul>
-        <h3 v-if="cards==null||cards.length==0">{{$lang.cabinet.cards.error_1}}</h3>
+        <div class="no-items" v-if="cards==null||cards.length==0"><img :src="$lang.cabinet.cards.error_1" alt=""></div>
+
     </div>
 </template>
 

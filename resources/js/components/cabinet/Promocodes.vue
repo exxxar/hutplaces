@@ -18,7 +18,8 @@
                 <td>{{ promo.created_at }}</td>
             </tr>
         </table>
-        <h3 v-if="promocodes==null||promocodes.length==0">{{$lang.cabinet.promocodes.error_1}}</h3>
+        <div class="no-items" v-if="promocodes==null||promocodes.length==0"><img :src="$lang.cabinet.promocodes.error_1" alt=""></div>
+
     </div>
 </template>
 <script>

@@ -30,18 +30,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'defaultLayout',
   methods: {
     selfHide: function selfHide() {
       this.$emit("self-hide");
-    },
-    changeLang: function changeLang(lang) {
-      this.$lang.setLang(lang);
     },
     openModal: function openModal(name) {
       this.selfHide();
@@ -111,44 +104,18 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("li", { staticClass: "more-menu" }, [
-        _c("div", { staticClass: "lang" }, [
-          _c(
-            "a",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.changeLang("ru")
-                }
-              }
-            },
-            [_c("img", { attrs: { src: "/img/ru.jpg", alt: "" } })]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.changeLang("en")
-                }
-              }
-            },
-            [_c("img", { attrs: { src: "/img/en.jpg", alt: "" } })]
-          )
-        ]),
-        _vm._v(" "),
         _c("ul", { staticClass: "more" }, [
           _c(
             "li",
             {
               on: {
                 click: function($event) {
-                  return _vm.openModal("terms")
+                  return _vm.openModal("rules")
                 }
               }
             },
             [
-              _c("a", { attrs: { href: "#terms" } }, [
+              _c("a", { attrs: { href: "#rules" } }, [
                 _vm._v(_vm._s(_vm.$lang.menu.terms_of_use))
               ])
             ]
@@ -175,13 +142,13 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  return _vm.openModal("partner")
+                  return _vm.openModal("about")
                 }
               }
             },
             [
-              _c("a", { attrs: { href: "#partner" } }, [
-                _vm._v(_vm._s(_vm.$lang.menu.become_a_partner))
+              _c("a", { attrs: { href: "#about" } }, [
+                _vm._v(_vm._s(_vm.$lang.menu.about_us))
               ])
             ]
           ),

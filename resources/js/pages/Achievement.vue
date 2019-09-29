@@ -18,7 +18,7 @@
                 </div>
             </li>
         </ul>
-        <h3 v-if="achievements==null||achievements.length==0">{{$lang.achievements.no_ach}}</h3>
+        <div class="no-items" v-if="achievements==null||achievements.length==0"><img :src="$lang.achievements.no_ach" alt=""></div>
 
         <modal name="ach" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">

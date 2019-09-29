@@ -7,6 +7,9 @@
   font-weight: 900;
   z-index: 1002 !important;
 
+  width: 100% !important;
+  height: 100% !important;
+
   .loading-circle {
     border-left-color: red !important;
 
@@ -23,7 +26,11 @@
 body {
   overflow: hidden;
 
-
+  /* @media (max-height: 670px) {
+     & {
+       zoom:0.8;
+     }
+   }*/
 
 }
 
@@ -299,24 +306,35 @@ header {
       }
 
       .avatar {
-        border: 2px solid $color3;
-        padding: 5px;
+
         position: relative;
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         img {
           width: 100%;
           height: 100%;
         }
 
-        &:after {
-          content: '';
-          width: 20px;
-          height: 1px;
-          background: $color4;
+        &:before {
+          content: "";
+          width: 10px;
+          height: 2px;
+          background: white;
           position: absolute;
           bottom: -5px;
-          left: 22px;
+          right: 20px;
+          transform: rotate(-15deg)
+        }
+
+        &:after {
+          content: "";
+          width: 10px;
+          height: 2px;
+          background: white;
+          position: absolute;
+          bottom: -5px;
+          left: 20px;
+          transform: rotate(15deg);
         }
       }
 
@@ -415,8 +433,10 @@ aside {
   position: fixed;
   z-index: 100;
   top: 150px;
-  left: 10px;
+  left: 0px;
   width: 200px;
+  background-color: #2c3e507d;
+  padding: 10px;
 
   nav {
     width: 100%;
@@ -432,17 +452,11 @@ aside {
           width: 100%;
           padding: 10px;
           box-sizing: border-box;
-          .lang {
-            @include flex(center, center);
-
-            a {
-              padding: 5px;
-            }
-          }
 
           ul.more {
             li {
               cursor: pointer;
+              padding: 2px;
               a {
                 text-align: center;
                 color: $color13;
@@ -471,12 +485,28 @@ aside {
 
   }
 
-  @media (min-width: 601px) and (max-width: 1400px) {
+  @media (min-width: 601px) and (max-width: 1550px) {
     & {
       left: 0px;
       width: 50px;
+      background-color: transparent;
+      padding: 0px;
       &:hover {
         width: 200px;
+        background-color: #2c3e507d;
+        padding: 10px;
+
+        & > nav {
+          background: none;
+          box-shadow: none;
+          width: auto;
+          height: auto;
+          border-radius: initial;
+
+          & > ul {
+            display: block;
+          }
+        }
       }
       & > nav {
         width: 50px;
@@ -490,18 +520,6 @@ aside {
         height: 50px;
         border-radius: 0px 50% 50% 0px;
 
-        &:hover {
-          background: none;
-          box-shadow: none;
-          width: auto;
-          height: auto;
-          border-radius: initial;
-
-          & > ul {
-            display: block;
-          }
-        }
-
         & > ul {
           display: none;
         }
@@ -512,6 +530,8 @@ aside {
   @media (max-width: 600px) {
     & {
       left: 0px;
+      background-color: transparent;
+      padding: 0px;
 
       & > nav {
         width: 50px;
@@ -553,7 +573,28 @@ aside {
 
 }
 
+.no-items {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  img {
+    width: 500px;
+    height: 100%;
+  }
+  @media (max-width: 500px) {
+    & {
+      height: auto;
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
 
+}
 
 
 

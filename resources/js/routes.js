@@ -24,7 +24,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 
 Vue.use(VueAxios, axios);
-axios.defaults.baseURL = 'http://localhost:8000/api';
+axios.defaults.baseURL =  '/api';
 
 Lang.requireAll(require.context('../lang', true, /\.js$/))
 

@@ -1,6 +1,7 @@
 module.exports = {
     how_to_start: 'How to start?',
     history: 'History',
+    about_us: 'About Us',
     help: 'Help',
     f_a_q: 'F.A.Q.',
     recharge: 'Recharge',

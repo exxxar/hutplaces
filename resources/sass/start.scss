@@ -2,9 +2,15 @@
 @import "cardstyle.scss";
 @import "utilits.scss";
 @import "tooltip.scss";
+@import "modals.scss";
+
 
 body {
   font-family: 'Open Sans';
+
+/*  @media (max-height:670px) {
+    zoom:0.8;
+  }*/
 }
 
 header, section, footer {
@@ -36,6 +42,9 @@ ul.social {
     transition: 0.5s;
     @include flex(center, center);
 
+    a {
+      color: #393939;
+    }
     &:hover {
       background: white;
       transition: 0.5s;
@@ -45,7 +54,8 @@ ul.social {
 
 header {
   height: 80px;
-  background-color: #2c3e50;
+  background-color: $color2;
+  -webkit-box-shadow: 0px 3px 3px 0px black;
   box-shadow: 0px 3px 3px 0px black;
   z-index: 2;
 
@@ -54,8 +64,9 @@ header {
     height: inherit;
 
     .logo-wrapper {
-      background-color: #2c3e50;
+      background-color: $color2;
       padding: 0 10px 10px 10px;
+      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       position: relative;
       z-index: 2;
@@ -122,7 +133,7 @@ header {
 
 .section-1 {
   height: 100vh;
-  min-height: 650px;
+  min-height: 900px;
   z-index: 1;
 
   @include bg(#2c3e50, '/img/background-landing.jpg', cover, fixed);
@@ -132,6 +143,12 @@ header {
       width:100%;
       @include text(54px, white, 900, right, 150%, uppercase);
 
+      @media (max-width: 650px) {
+        & {
+          font-size:32px;
+          text-align: center;
+        }
+      }
       span {
         color: yellow;
       }
@@ -140,6 +157,13 @@ header {
     h3 {
       width:100%;
       @include text(18px, white, 900, right, 150%, uppercase);
+
+      @media (max-width: 650px) {
+        & {
+          font-size:12px;
+          text-align: center;
+        }
+      }
     }
 
     nav {
@@ -160,6 +184,10 @@ header {
           width: 100%;
           position: relative;
 
+          a {
+            color:yellow;
+            font-weight: 900;
+          }
           h5 {
             @include text(18px, yellow, 900, left, 150%, uppercase);
             padding-top: 10px;
@@ -198,7 +226,13 @@ header {
           }
 
           &:nth-of-type(3):after {
-            content: '\f1b3';
+            content: '\f51e';
+          }
+          &:nth-of-type(4):after {
+            content: '\f4c4';
+          }
+          &:nth-of-type(5):after {
+            content: '\f3ed';
           }
         }
       }
@@ -210,6 +244,15 @@ header {
 .section-2 {
   background-color: #2c3e50;
   height: 250px;
+  background-image: url(/img/bg-7.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 10;
+  background-blend-mode: luminosity;
+  box-shadow: 0px 0px 5px 0px black;
+
 
   .center {
     justify-content: space-around;
@@ -218,7 +261,7 @@ header {
       img {
         position: absolute;
         z-index: 3;
-        top: -95px;
+        top: -151px;
       }
 
 
@@ -251,29 +294,62 @@ header {
       width: 400px;
       @include flex(center, center);
 
+      .flip-clock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 0px 0px 20px 0px;
+
+        .flip-card {
+          font-size: 2.45rem !important;
+        }
+
+        .flip-clock__slot {
+          font-size: 12px;
+          text-transform: uppercase;
+          font-weight: 900;
+          color: yellow;
+          margin-top: 12px;
+        }
+      }
+
+      p {
+
+        font-size: 20px;
+        color: white;
+        padding-bottom: 10px;
+        font-weight: 600;
+        text-align: left;
+        line-height: 150%;
+        text-transform: uppercase;
+        font-family: 'Open Sans', sans-serif;
+        line-height: 150%;
+
+        strong {
+          font-size: 24px;
+        }
+
+        del {
+          font-size: 36px;
+          text-decoration-line: line-through;
+          text-decoration-color: yellow;
+          text-decoration-width: 5px;
+          font-weight: 900;
+          color: red;
+        }
+      }
+
       .text {
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
         border-left: 3px yellow solid;
 
-        p {
 
-          @include text(14px, white, 600, left, 150%, uppercase);
-
-          strong {
-            font-size: 24px;
-          }
-
-          del {
-            font-size: 36px;
-            text-decoration-line: line-through;
-            text-decoration-color: yellow;
-            text-decoration-width: 5px;
-            font-weight: 900;
-            color: red;
-          }
-        }
 
         ul {
           width: 100%;
@@ -291,11 +367,18 @@ header {
   }
 }
 
+
+
 .section-3 {
-  height: 650px;
-  min-height: 650px;
+  padding: 100px 0px 100px 0px;
+  min-height: 750px;
   z-index: 1;
-  @include bg(#2c3e50, '/img/background-landing-2.jpg', cover, fixed);
+  background-color: $color2;
+  background-image: url(/img/background-landing-2.jpg);
+  background-size: 100% 100%;
+  background-blend-mode: luminosity;
+  background-position: center center;
+  background-attachment: fixed;
 
 
   @media (max-width: 700px) {
@@ -322,6 +405,21 @@ header {
         @include flex(center, center);
         flex-direction: column;
 
+        @media (max-width: 970px) {
+          &:nth-child(3) {
+            order:5;
+          }
+        }
+
+
+        transition: .3s;
+        @media (max-width: 915px) {
+          & {
+            transition: .3s;
+            margin-top: 0px !important;
+          }
+        }
+
         h4 {
           padding-top: 10px;
           @include text(16px, white, 900, center, 150%, uppercase);
@@ -333,9 +431,11 @@ header {
           width: 100px;
           height: 100px;
           border-radius: 50%;
-          border: 10px yellow solid;
+          border: 10px #FFEB3B solid;
+          background-color: #1d3c51;
+
           @include flex(center, center);
-          background-color: #2c3e50;
+
           box-shadow: -3px 0px 2px 0px black, 0px 0px 8px 7px #000000 inset;
 
           p {
@@ -362,11 +462,38 @@ header {
 
 }
 
+.section-3 .center ul li:nth-of-type(1) {
+  margin-top: 100px;
+
+}
+
+.section-3 .center ul li:nth-of-type(5) {
+  margin-top: 100px;
+
+
+}
+
+.section-3 .center ul li:nth-of-type(3) {
+  order: 5;
+  margin-top: 40px;
+
+}
+
 .section-4 {
-  background-color: #2c3e50;
+  background-color: $color2;
   min-height: 250px;
   padding: 50px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  box-shadow: 0px 0px 5px 0px black;
+  z-index: 10;
+
+  background-image: url(/img/bg-7.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  position: relative;
+  background-blend-mode: soft-light;
 
   .center {
     h1 {
@@ -399,7 +526,7 @@ header {
   height: 650px;
   min-height: 650px;
   z-index: 1;
-  @include bg(rgba(8, 29, 50, 0.83), '/img/background-landing-3.jpg', cover, fixed);
+  @include bg(rgba(74, 34, 96, 0.71), '/img/background-landing-3.jpg', cover, fixed);
 
 
   .center {
@@ -415,7 +542,7 @@ header {
     height: 100%;
     position: absolute;
     z-index: 2;
-    background-color: rgba(8, 29, 50, 0.83);
+    background-color: rgba(23, 47, 64, 0.87);
     top: 0;
     left: 0;
     @include flex(center, center);
@@ -437,12 +564,19 @@ header {
   height: 100vh;
   min-height: 1000px;
 
+
+  background-image: url(/img/bg-2.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-attachment: scroll;
+  background-blend-mode: luminosity;
+
   .center {
     height: 100%;
     padding: 50px 0px;
     box-sizing: border-box;
 
-    @include bg(#1c3c50, '/img/bg-2.png', cover);
 
     h1 {
       align-self: flex-start;
@@ -547,8 +681,17 @@ header {
 }
 
 .section-7 {
+
   background-color: #1c3c50;
   padding:50px 0px;
+
+  background-image: url(/img/bg-7.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top center;
+
+  background-blend-mode: luminosity;
+  border-bottom: 2px yellow solid;
 
   .center {
     height: 100%;
@@ -655,8 +798,15 @@ header {
 }
 
 .section-8 {
-  background-color: #2c3e50;
+  background-color: #1c3c50;
   padding: 50px 0px;
+  background-image: url(/img/bg-7.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top center;
+
+  background-blend-mode: luminosity;
+  border-top: 2px yellow solid;
 
   .center {
     justify-content: space-around;
@@ -681,10 +831,24 @@ header {
     .row {
       width: 100%;
       @include flex(center, center);
+      flex-direction: column;
 
       .input-group {
         width: 400px;
 
+        p {
+          width: 100%;
+          padding: 20px;
+          box-sizing: border-box;
+          text-align: center;
+          font-size: 24px;
+          line-height: 150%;
+          color: white;
+          font-weight: 900;
+          span {
+            color:yellow;
+          }
+        }
         label {
           width: 100%;
           @include text(10px, white, 900, left, 150%, uppercase);
@@ -836,7 +1000,7 @@ header {
 
 footer {
   height: 200px;
-  background-color: #393939;
+  background-color: #000000;
 
   .center {
 
@@ -894,3 +1058,9 @@ footer {
     }
   }
 }
+
+
+
+
+
+

@@ -15,6 +15,7 @@ module.exports = {
     tickets_title:"Tickets",
     auction_mylots_title:"Auction",
     auction_mybids_title:"Bids",
+
     transactions: {
         main_title:"User's transactions",
         main_description:"User's transactions description",
@@ -22,12 +23,17 @@ module.exports = {
         payment_system:"Payment system",
         currency:"Currency",
         date:"Date",
-        error_1:"You have no Transactions :(",
+        error_1:'img/empty-ru.png',
     },
     cards: {
         main_title:"User's cards",
         main_description:"User's cards description",
-        error_1:'No cards found',
+        error_1:'img/empty-ru.png',
+    },
+    items: {
+        main_title:"User's items",
+        main_description:"User's items description",
+        error_1:'img/empty-ru.png',
     },
     info: {
         main_title:'Info section',
@@ -53,12 +59,12 @@ module.exports = {
     win: {
         main_title:'Win lottery section',
         main_description:'Description',
-        error_1:'You have not won anything yet :(',
+        error_1:'img/empty-ru.png',
     },
     lottery: {
         main_title:'Lottery section',
         main_description:'Description',
-        error_1:'You have not won anything yet :(',
+        error_1:'img/empty-ru.png',
     },
     promocodes: {
         main_title:'Promocodes section',
@@ -68,7 +74,7 @@ module.exports = {
         code:'Code',
         prize:'Prize',
         date:'Date',
-        error_1:'You do not have bug reports :('
+        error_1:'img/empty-ru.png',
     },
     stats: {
         main_title:'Sats section',
@@ -76,7 +82,7 @@ module.exports = {
         param:'Param',
         value:'Value',
         error_1:'Failed to get trigger types',
-        error_2:'You do not have Statistics :('
+        error_2:'img/empty-ru.png',
     },
     tickets: {
         main_title:'Tickets section',
@@ -88,6 +94,6 @@ module.exports = {
         created_at:'Date',
         complete:'Complete',
         in_progress:'In progress',
-        error_1:'You have no tickets'
+        error_1:'img/empty-ru.png',
     }
 }

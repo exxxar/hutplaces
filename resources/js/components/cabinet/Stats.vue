@@ -13,7 +13,7 @@
             </tr>
         </table>
         <h3 v-if="trigger_types==null||trigger_types.length==0">{{$lang.cabinet.stats.error_1}}</h3>
-        <h3 v-if="stats==null||stats.lenght==0">{{$lang.cabinet.stats.error_2}}</h3>
+        <div class="no-items" v-if="stats==null||stats.length==0"><img :src="$lang.cabinet.stats.error_2" alt=""></div>
     </div>
 </template>
 <script>

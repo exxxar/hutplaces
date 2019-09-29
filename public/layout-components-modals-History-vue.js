@@ -49,6 +49,14 @@ __webpack_require__.r(__webpack_exports__);
     this.loadHistory();
   },
   methods: {
+    message: function message(title, _message, type) {
+      this.$notify({
+        group: 'main',
+        type: type,
+        title: title,
+        text: _message
+      });
+    },
     selfHide: function selfHide() {
       this.$emit("self-hide");
     },
@@ -58,9 +66,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$loading(true);
       axios.get('/lottery/history').then(function (response) {
         _this.historyList = response.data.history;
-
-        _this.$loading(false);
-      })["catch"](function (err) {});
+      })["catch"](function (reason) {
+        _this.message("Авторизация", "\u0412\u044B \u043D\u0435 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u043D\u044B!", 'warn');
+      });
+      this.$loading(false);
     },
     getPlatform: function getPlatform(id) {
       switch (id) {

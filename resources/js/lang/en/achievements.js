@@ -11,7 +11,7 @@ module.exports = {
     r_many:"Все награды:",
     empty:"Нет доступных наград",
     completed:"Достижение получено!",
-    no_ach:"Нет доступных достижений",
+    no_ach:'img/empty-ru.png',
 
    description: {
        ach1: "description ach1",

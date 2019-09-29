@@ -106,6 +106,14 @@ $color16: #2c3e50; //partials label color
 
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 button,
 textarea,
 select,
@@ -214,6 +222,7 @@ input {
 /* modal window*/
 .v--modal-overlay {
   background: rgba(0, 0, 0, 0.999);
+  min-height: 100%;
 
   .v--modal-background-click {
     @include flex(center, center);

@@ -30,6 +30,7 @@ class User extends Authenticatable
         'fb',
         'tw', 
         'money',
+        'bonus',
         'level_id',
         'discount', 
         'exp',

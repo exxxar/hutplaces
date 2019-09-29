@@ -26,9 +26,18 @@
                 <aside-menu v-on:modal="show($event)"></aside-menu>
             </nav>
         </aside>
-        <footer id="pageFooter">
-           <chat :show="user!=null"></chat>
-        </footer>
+        <footer></footer>
+
+        <div class="lang">
+            <ul>
+                <li @click="lang('ru')"><img src="/img/ru.jpg" alt=""></li>
+                <li @click="lang('en')"><img src="/img/en.jpg" alt=""></li>
+                <li @click="lang('fi')"><img src="/img/fi.jpg" alt=""></li>
+                <li @click="lang('se')"><img src="/img/se.jpg" alt=""></li>
+                <li @click="lang('cz')"><img src="/img/cz.gif" alt=""></li>
+            </ul>
+        </div>
+        <chat :show="user!=null"></chat>
         <notifications group="main"/>
         <modal name="report" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
@@ -56,9 +65,11 @@
                 <history v-on:self-hide="hide('history')"></history>
             </scroll>
         </modal>
-        <modal name="help" height="auto">
-            <a href="#" @click="hide('help')" class="close"></a>
-            <help></help>
+        <modal name="help" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('help')" class="close"></a>
+                <help></help>
+            </scroll>
         </modal>
         <modal name="faq" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
@@ -76,6 +87,24 @@
             <scroll class="scroll-area">
                 <a href="#" @click="hide('registration')" class="close"></a>
                 <registration></registration>
+            </scroll>
+        </modal>
+        <modal name="rules" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('rules')" class="close"></a>
+                <rules></rules>
+            </scroll>
+        </modal>
+        <modal name="supplier" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('supplier')" class="close"></a>
+                <supplier></supplier>
+            </scroll>
+        </modal>
+        <modal name="about" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('about')" class="close"></a>
+                <about></about>
             </scroll>
         </modal>
         <modal name="aside-menu" :adaptive="true" width="100%" height="100%">
@@ -108,6 +137,9 @@
 </template>
 
 <script>
+    import Rules from '@/components/modals/Rules.vue'
+    import About from '@/components/modals/About.vue'
+    import Supplier from '@/components/modals/Supplier.vue'
     import Payment from '@/components/modals/Payment.vue'
     import Help from '@/components/modals/Help.vue'
     import History from '@/components/modals/History.vue'
@@ -136,6 +168,10 @@
             }
         },
         methods: {
+            lang(lang) {
+                this.$lang.setLang(lang)
+                localStorage.setItem('lang', lang)
+            },
             message(title, message, type) {
                 this.$notify({
                     group: 'main',
@@ -165,7 +201,7 @@
         },
         computed: {
             check() {
-                console.log("check",this.$store.getters.CHECK)
+                console.log("check", this.$store.getters.CHECK)
                 return this.$store.getters.CHECK;
             },
             getUser() {
@@ -174,15 +210,18 @@
         },
         mounted: function () {
 
-            this.$store.dispatch('getCurrentUser').then(()=>{
-                this.authenticated = this.check
-                this.user = this.getUser
-            });
+            if (this.check) {
+                this.$store.dispatch('getCurrentUser').then(() => {
+                    this.authenticated = this.check
+                    this.user = this.getUser
+                }).catch((reason) => {
+                    this.message("Авторизация", `Вы не авторизованы!`, 'warn');
+                });
+            }
 
-            window.addEventListener("resize", function(){
+            window.addEventListener("resize", function () {
                 document.querySelector(".ps-container").scrollTop = 0;
             });
-
 
 
             pusher.subscribe('pick-place-chanel').bind('pick-place-event', (data) => {
@@ -218,13 +257,18 @@
                     Event.$emit("updateLotteries");
                     Event.$emit("updateTickets");
 
-                    this.$store.dispatch('getCurrentUser');
+                    this.$store.dispatch('getCurrentUser').catch((reason) => {
+                        this.message("Авторизация", `Вы не авторизованы!`, 'warn');
+                    });
 
                 }
             });
 
             if (this.$route.query.token) {
-                this.$store.dispatch('retriveUser',this.$route.query.token);
+                this.$store.dispatch('retriveUser', this.$route.query.token).catch((reason) => {
+                    this.message("Авторизация", `Вы не авторизованы!`, 'warn');
+                });
+
                 this.$router.replace({query: ''});
             }
 
@@ -246,35 +290,37 @@
                 })
             }
 
-         /*   Event.$on('userLoggedIn', () => {
-                this.authenticated = true;
-                this.user = auth.user;
+            /*   Event.$on('userLoggedIn', () => {
+                   this.authenticated = true;
+                   this.user = auth.user;
 
-                this.$notify({
-                    group: 'main',
-                    type: 'success',
-                    title: 'Вход в систему',
-                    text: `Пользователь ${this.user.name} успешно вошел в систему!`
-                })
+                   this.$notify({
+                       group: 'main',
+                       type: 'success',
+                       title: 'Вход в систему',
+                       text: `Пользователь ${this.user.name} успешно вошел в систему!`
+                   })
 
-            });*/
+               });*/
 
             Event.$on('updateUserProfile', () => {
-                this.$store.dispatch('getCurrentUser').then(()=>{
+                this.$store.dispatch('getCurrentUser').then(() => {
                     this.authenticated = this.check
                     this.user = this.getUser
+                }).catch((reason) => {
+                    this.message("Авторизация", `Вы не авторизованы!`, 'warn');
                 });
             });
 
-            Event.$on("userLogout",()=>{
+            Event.$on("userLogout", () => {
                 this.authenticated = false
                 this.user = null
             });
 
-         /*   Event.$on('userLoggedOut', () => {
-                this.authenticated = false;
-                this.user = null;
-            });*/
+            /*   Event.$on('userLoggedOut', () => {
+                   this.authenticated = false;
+                   this.user = null;
+               });*/
         },
         components: {
             Chat,
@@ -290,6 +336,9 @@
             Scroll,
             AsideMenu,
             MainMenu,
+            Rules,
+            Supplier,
+            About
         }
     }
 </script>

@@ -31,7 +31,8 @@
                 </td>
             </tr>
         </table>
-        <h3 v-if="tickets==null||tickets.length==0">{{$lang.cabinet.tickets.error_1}}</h3>
+        <div class="no-items" v-if="tickets==null||tickets.length==0"><img :src="$lang.cabinet.tickets.error_1" alt=""></div>
+
     </div>
 </template>
 

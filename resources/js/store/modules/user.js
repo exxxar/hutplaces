@@ -196,10 +196,12 @@ let actions = {
             return res;
         })
 
+        console.log(response);
+
         context.commit('SET_USER', response.data);
 
         return new Promise(function (resolve, reject) {
-            if (response.status == 200)
+            if (response)
                 resolve();
             reject();
         });

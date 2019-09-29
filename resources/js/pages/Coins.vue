@@ -70,7 +70,7 @@
         <modal name="sell-to-us" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('sell-to-us')" class="close"></a>
-                <h1>{{$lang.coins.sell_to_us}}</h1>
+               <supplier></supplier>
             </scroll>
         </modal>
 
@@ -102,6 +102,7 @@
     import Toggle from '../components/Toggle.vue'
     import CardSearch from '../components/admin/CardSearch.vue'
     import Scroll from 'vue-custom-scrollbar'
+    import Supplier from '@/components/modals/Supplier.vue'
 
     export default {
         data() {
@@ -222,7 +223,7 @@
             }
         },
         components: {
-            Toggle, CardSearch, Scroll
+            Toggle, CardSearch, Scroll,Supplier
         }
     }
 </script>

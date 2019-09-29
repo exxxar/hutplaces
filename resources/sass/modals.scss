@@ -5,11 +5,11 @@
 
   min-height: 300px;
   height: auto;
-  width: 500px;
+  width: 800px;
   padding:20px;
   box-sizing: border-box;
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     & {
       width: 100%;
     }
@@ -31,6 +31,11 @@
     color:$color4;
     span {
       color:$color3;
+    }
+
+    a {
+      color:$color3;
+      font-weight: 900;
     }
   }
   hr {
@@ -69,6 +74,7 @@
     box-sizing: border-box;
     padding: 10px;
     @include flex(flex-start, center);
+
     label {
       font-weight: 600;
       font-size: 10px;
@@ -85,6 +91,7 @@
       font-weight:100 ;
       font-size:24px;
       width: 100%;
+      min-width:100%;
       text-align: center;
       background:transparent;
       padding: 15px;
@@ -96,9 +103,21 @@
       }
     }
 
+    input[type="file"]{
+      display:none;
+    }
+
+    input[type="file"] + label {
+      padding: 20px;
+      width: 100%;
+      cursor: pointer;
+      border: 1px yellow solid;
+    }
+
     textarea {
       font-size:16px;
       text-align: left;
+      resize: vertical;
     }
     select {
       font-size:16px;
@@ -110,6 +129,54 @@
 .promo-modal {
   width:500px;
 }
+
+.partner-modal {
+  width:500px;
+
+  p {
+    text-align: justify;
+    font-weight: 100;
+
+    &:first-letter {
+      margin-left:50px;
+    }
+  }
+}
+
+.supplier-modal {
+  width:500px;
+
+  p {
+    text-align: justify;
+    font-weight: 100;
+
+    &:first-letter {
+      margin-left:50px;
+    }
+  }
+
+}
+
+
+.report-modal,
+.help-modal {
+  width:500px;
+}
+.about-modal {
+  p {
+    text-align: justify;
+    font-weight: 100;
+
+    &:first-letter {
+      margin-left:50px;
+    }
+  }
+}
+
+.recharge-modal {
+  width:500px;
+}
+
 .questions-modal {
   padding:20px;
   box-sizing: border-box;
@@ -432,6 +499,60 @@
       }
 
 
+    }
+  }
+}
+
+.about-modal,
+.rules-modal {
+  width: 800px;
+  @media (max-width: 800px) {
+    & {
+      width: 100%;
+    }
+  }
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    li {
+      width:100%;
+    }
+  }
+  p {
+    color: white;
+    line-height: 150%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 100;
+    text-align: justify;
+
+    &:first-letter {
+      margin-left:50px;
+    }
+
+    strong {
+      font-weight: 800;
+    }
+
+    a {
+      color:yellow;
+      font-weight: 800;
+    }
+
+  }
+
+  h2 {
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 800;
+
+    strong {
+      color:yellow;
     }
   }
 }

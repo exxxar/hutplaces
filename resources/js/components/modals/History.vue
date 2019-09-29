@@ -39,6 +39,15 @@
             this.loadHistory();
         },
         methods: {
+            message(title, message, type) {
+                this.$notify({
+                    group: 'main',
+                    type: type,
+                    title: title,
+                    text: message
+                })
+            },
+
             selfHide(){
                 this.$emit("self-hide");
             },
@@ -47,9 +56,11 @@
                 axios.get('/lottery/history')
                     .then(response => {
                         this.historyList = response.data.history
-                        this.$loading(false)
-                    }).catch(err => {
-                })
+
+                    }).catch((reason)=> {
+                        this.message("Авторизация", `Вы не авторизованы!`, 'warn');
+                });
+                this.$loading(false)
             },
             getPlatform(id) {
                 switch (id) {

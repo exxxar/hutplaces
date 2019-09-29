@@ -15,7 +15,8 @@
                 </div>
             </li>
         </ul>
-        <h3 v-if="lotteries==null||lotteries.length==0">{{$lang.cabinet.lottery.error_1}}</h3>
+        <div class="no-items" v-if="lotteries==null||lotteries.length==0"><img :src="$lang.cabinet.lottery.error_1" alt=""></div>
+
     </div>
 </template>
 

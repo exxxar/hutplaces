@@ -14,6 +14,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'faq',
   props: ['show'],
@@ -44,8 +61,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("h1", [_vm._v("Помощь и обратная связь")])
+    return _c("div", { staticClass: "modal-body help-modal" }, [
+      _c("h1", [_vm._v("Помощь и обратная связь")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        _c("label", [_vm._v("Тема сообщение")]),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "text" } })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        _c("label", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "email" } })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        _c("label", [_vm._v("Сообщение")]),
+        _vm._v(" "),
+        _c("textarea", { attrs: { placeholder: "Введите ваше сообщение" } })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        _c("div", { staticClass: "btn btn-yellow full" }, [
+          _vm._v("Задать вопрос")
+        ])
+      ])
     ])
   }
 ]

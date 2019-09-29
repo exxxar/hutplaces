@@ -282,12 +282,12 @@ class UserController extends Controller
             return response()
                 ->json([
                     "status" => 200,
-                    "lotteries" => (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card", "lottery.lot.item"])->find($id))->lotteries
+                    "lotteries" => (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card", "lotteries.lot.item"])->find($id))->lotteries
                 ]);
 
         $itemsOnPage = 10;
 
-        $wins = (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card", "lottery.lot.item"])
+        $wins = (User::with(["lotteries", "lotteries.lot", "lotteries.lot.card", "lotteries.lot.item"])
             ->find($id))
             ->lotteries()
             ->orderBy('id', 'DESC')
