@@ -5,8 +5,9 @@
 .card-list {
   @include flex(center,center);
   padding-top:10px;
-  padding-bottom: 100px;
+  padding-bottom: 150px;
   box-sizing: border-box;
+  width:100%;
   h4 {
     width: 100%;
     text-align: center;
@@ -15,12 +16,17 @@
     color:$color4;
   }
   .filters {
-    width:100%;
+    width: 100%;
+    position: fixed;
+    z-index: 15;
+    padding-top:10px;
+    bottom: 10px;
+    background: radial-gradient(#081a2b, transparent);
     @include flex(center, center);
 
 
     .input-group {
-      width:400px;
+      width:250px;
       box-sizing: border-box;
       padding: 10px;
       @include flex(space-around, center);
@@ -36,9 +42,9 @@
 
       /* Stuff after this is only to make things more pretty */
       input[type=radio] + label>img {
-        width: 70px;
-        height: 70px;
-        padding:10px;
+        width: 45px;
+        height: 45px;
+        padding:5px;
         box-sizing: border-box;
         transition: 500ms all;
         background-color: $color2;

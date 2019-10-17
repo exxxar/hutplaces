@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 /*
-Route::post('/reportSubmit', 'SinglePageController@reportSubmit');
+
 
 Route::group(['prefix' => 'payment'], function(){
     Route::post('pay', 'SinglePageController@requestMoney');
@@ -23,6 +23,12 @@ Route::group(['prefix' => 'payment'], function(){
 });
 
 */
+
+Route::post('/reports/save', 'SinglePageController@reportsSave');
+Route::post('/reports/all', 'SinglePageController@reportsAll');
+
+Route::post('/partner/request', 'SinglePageController@requestPartner');
+Route::post('/help/ask', 'SinglePageController@requestHelp');
 
 Route::get('/test','ChatkitController@test');
 
@@ -35,6 +41,7 @@ Route::get('/users/avatar/get/{id}', 'UserController@avatarGet');
 
 
 Route::get('/achievements', 'AchievementsController@index');
+Route::get('/achievements/categories', 'AchievementsController@categories');
 Route::get('/achievements/types', 'AchievementsController@types');
 Route::get('/achievements/progress/{id}', 'AchievementsController@progress');
 
@@ -55,6 +62,12 @@ Route::get('/lottery/', 'LotteryController@index');
 Route::get('/lottery/winner/{id}', 'LotteryController@winner');
 Route::get('/lottery/show/{id}', 'LotteryController@show');
 Route::get('/lottery/history', 'LotteryController@history');
+Route::get('/lottery/drafts', 'LotteryController@drafts');
+
+
+Route::post('/lottery/update', 'LotteryController@store');//todo: for admin only
+Route::post('/lottery/remove', 'LotteryController@destroy');//todo: for admin only
+
 
 
 Route::get('/lot/get/{lotteryId}', 'LotsController@lot');
@@ -100,6 +113,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/user/update/info', 'UserController@updateInfo');
     Route::post('/user/update/pass', 'UserController@updatePass');
 
+    Route::post('/lottery/add', 'LotteryController@add');
     Route::post('/lottery/pick/', 'LotteryController@pick');
     Route::post('/lottery/pick/random', 'LotteryController@random');
     Route::post('/lottery/buy', 'LotteryController@buy');

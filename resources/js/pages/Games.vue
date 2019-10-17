@@ -1,62 +1,91 @@
 <template>
     <div class="card-list">
-        <h4>Сортировать по:</h4>
-        <div id="filters" class="filters">
-            <div class="input-group">
-                <input type="radio" name="sort" id="sort-1" class="input-hidden"/>
-                <label for="sort-1" v-tooltip.bottom="$lang.games.sort_1" @click="sort = 'places-up'">
-                    <img v-lazy="'/img/cards-count-icon.png'" alt="sort-3"/>
-                </label>
-                <input type="radio" name="sort" id="sort-2" class="input-hidden"/>
-                <label for="sort-2" @click="sort = 'price-down'" v-tooltip.bottom="$lang.games.sort_2">
-                    <img v-lazy="'/img/cards-price-icon.png'" alt="sort-2"/>
-                </label>
-                <input type="radio" name="sort" id="sort-3" class="input-hidden"/>
-                <label for="sort-3" @click="sort = 'occupied-places-up'" v-tooltip.bottom="$lang.games.sort_3">
-                    <img v-lazy="'/img/cards-occupied-icon.png'" alt="sort-3"/>
-                </label>
-                <input type="radio" name="sort" id="sort-4" class="input-hidden"/>
-                <label for="sort-4" @click="sort = 'ovr-up'" v-tooltip.bottom="$lang.games.sort_4">
-                    <img v-lazy="'/img/cards-ovr-icon.png'" alt="sort-4"/>
-                </label>
-            </div>
+
+        <h1 class="main-title">Выбери свою игру!</h1>
+        <p class="description">
+            Попробуй бесплатно и ощути преимущества данной платформы! Получай игрвые бонусы и достижения играя в рандомы с другими игроками.
+            Перед начало игры обязательно ознакомься с правилами нашей платформы.
+        </p>
+        <div class="large-promo">
+            <carousel :per-page="1" :loop="true" :autoplay="true" :mouse-drag="true">
+                <slide>
+                    <img :src="'/img/slides/1.jpg'" alt="">
+                </slide>
+                <slide>
+                    <img :src="'/img/slides/2.jpg'" alt="">
+                </slide>
+
+                <slide>
+                    <img :src="'/img/slides/3.jpg'" alt="">
+                </slide>
+            </carousel>
         </div>
 
-        <div v-for="category in categories" class="category"
-             v-if="getLotteriesList(category.min,category.max).length>0">
-            <h1 class="category"><span>{{category.title}} Pucks</span></h1>
-            <div class="cards">
-                <div class="card" v-for="c in getLotteriesList(category.min,category.max)">
-                    <div class="card-wrapper">
-                        <div v-html="prepareUrl(c)" class="card-data" @click="lotteryOpen(c.id)"></div>
-                        <div class="price">{{c.base_price }} {{$lang.games.money}}</div>
-                        <div class="places">{{c.places}}</div>
-                    </div>
-                    <div class="progress">
-                        <div class="line" :style="lineWidth(c.occupied_places,c.places)"></div>
-                        <div class="info">{{c.occupied_places}}/{{c.places}}</div>
-                    </div>
+        <div v-if="lotteries!=null&&lotteries.length>0">
+            <div id="filters" class="filters">
+                <h4>Сортировать по:</h4>
+                <div class="input-group">
+                    <input type="radio" name="sort" id="sort-1" class="input-hidden"/>
+                    <label for="sort-1" v-tooltip.bottom="$lang.games.sort_1" @click="sort = 'places-up'">
+                        <img src="/img/cards-count-icon.png" alt=""/>
+                    </label>
+                    <input type="radio" name="sort" id="sort-2" class="input-hidden"/>
+                    <label for="sort-2" @click="sort = 'price-down'" v-tooltip.bottom="$lang.games.sort_2">
+                        <img src="/img/cards-price-icon.png" alt=""/>
+                    </label>
+                    <input type="radio" name="sort" id="sort-3" class="input-hidden"/>
+                    <label for="sort-3" @click="sort = 'occupied-places-up'" v-tooltip.bottom="$lang.games.sort_3">
+                        <img src="/img/cards-occupied-icon.png" alt=""/>
+                    </label>
+                    <input type="radio" name="sort" id="sort-4" class="input-hidden"/>
+                    <label for="sort-4" @click="sort = 'ovr-up'" v-tooltip.bottom="$lang.games.sort_4">
+                        <img src="/img/cards-ovr-icon.png" alt=""/>
+                    </label>
                 </div>
-
             </div>
+            <div v-for="category in categories" class="category"
+                 v-if="getLotteriesList(category.min,category.max).length>0">
+                <h1 class="category"><span>{{category.title}} Pucks</span></h1>
+                <ul class="lots">
+                    <game :game="c" v-for="c in getLotteriesList(category.min,category.max)"
+                          v-if="isVisible(c)"
+                          :user="user"
+                          :controls="true">
+
+                    </game>
+                </ul>
+            </div>
+
         </div>
 
+        <div class="admin-btn" v-if="user.is_trader==1" @click="show('lottery-add')" v-html="$lang.menu.add_card_btn">
+        </div>
 
-        <a class="scrollTop" v-scroll-to="{
-         el: '#filters',
-         container: '#pageContent',
-         duration: 500,
-         easing: 'linear',
-         offset: -200,
-         force: true,
-         cancelable: true,
-         x: false,
-         y: true
-        }">Top</a>
+        <modal name="lottery-add" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('lottery-add')" class="close"></a>
+                <h1 v-html="$lang.modals.user_card_panel.h1"></h1>
+
+                <user-card-panel
+                        :user="user"
+                        v-on:close="hide('lottery-add')">
+
+                </user-card-panel>
+            </scroll>
+        </modal>
+
+
     </div>
 </template>
 
 <script>
+
+
+    import Game from '@/components/Game.vue'
+
+    import Scroll from 'vue-custom-scrollbar'
+    import {Carousel, Slide} from 'vue-carousel';
+    import UserCardPanel from '@/components/admin/UserCardPanel.vue'
 
     export default {
 
@@ -64,46 +93,61 @@
             return {
                 sort: 'places-down',
                 categories: [
-                    {min: 25, max: 50, title: '0-50'},
+                    {min: 0, max: 50, title: '0-50'},
                     {min: 50, max: 100, title: '50-100'},
                     {min: 100, max: 200, title: '100-200'},
                     {min: 200, max: 100000, title: '200+'},
                 ],
-                lotteries: [
-                    {
-                        active: 0,
-                        base_discount: 0,
-                        base_price: 12312,
-                        completed: 0,
-                        console_type: 0,
-                        created_at: "2019-08-07 21:22:22",
-                        game_type: "0",
-                        id: 4,
-                        is_only_one: 0,
-                        lifetime: 0,
-                        lot: {
-                            id: 4,
-                            lottery_id: 4,
-                            coins: null,
-                            items_id: null,
-                            cards_id: 4,
-                            card: {
-                                Card_data: null
-                            }
-                        },
-                        occupied_places: 0,
-                        places: 122,
-                        visible: 0,
-                        winner_id: null,
-                    },
-                ]
+                lotteries: null,
+                user:{
+                    is_trader:0
+                },
+                lifetime:[]
             }
         },
 
-        activated() {
-            this.loadLotteries();
+        mounted(){
+            this.$store.dispatch("loadLifetime")
+            this.$store.dispatch("loadGames")
+            this.$store.dispatch('getCurrentUser');
         },
+        computed: {
+            loadLifetime() {
+                return this.$store.getters.LIFETIME;
+            },
+            loadGames() {
+                return this.$store.getters.GAMES;
+            },
+            loadCurrentUser(){
+                return this.$store.getters.USER;
+            }
+        },
+        watch: {
+            loadGames(newValue, oldValue) {
+                this.lotteries = newValue
+            },
+            loadCurrentUser(newValue,oldValue){
+                this.user = newValue
+            },
+            loadLifetime(newValue,oldValue){
+                this.lifetime = newValue
+            }
+        },
+
         methods: {
+
+            isVisible(game) {
+                var date1 = Date.parse(game.updated_at);
+                var date2 = Date.now();
+                var time = [6, 12, 24, 36, 48, 96, 128, 10000];
+
+                date1 = date1 + time[game.lifetime] * 60 * 60 * 1000;
+
+                console.log("Date:", date1 - date2 > 0, " date1=", date1, " date2=", date2);
+                return date1 - date2 > 0;
+            },
+
+
             getLotteriesList: function (min, max) {
                 var sort = null
                 switch (this.sort) {
@@ -127,39 +171,37 @@
                         sort = (a, b) => a.occupied_places - b.occupied_places;
                         break;
                     case 'ovr-up':
-                        sort = (a, b) => a.lot.card.OVR - b.lot.card.OVR;
+                        sort = (a, b) => a.lot.card.ovr - b.lot.card.ovr;
                         break;
                     case 'ovr-down':
-                        sort = (a, b) => a.lot.card.OVR - b.lot.card.OVR;
+                        sort = (a, b) => a.lot.card.ovr - b.lot.card.ovr;
                         break;
                 }
                 var result = this.lotteries
-                    .filter(lottery => lottery.base_price >= min && lottery.base_price < max && lottery.lot.card.Card_data != null)
+                    .filter(lottery => lottery.base_price >= min && lottery.base_price < max && this.isVisible(lottery))
                     .sort(sort);
 
                 return result
-            },
-
-            prepareUrl: function (template) {
-                return (JSON.parse(template.lot.card.Card_data)).value;
-            },
-            lineWidth: function (c1, c2) {
-                return {
-                    '--line-width': ((c1 / c2) * 100) + '%'
-                }
             },
             loadLotteries() {
                 this.$loading(true)
                 axios
                     .get('/lottery').then(response => {
+                    console.log("lottery", response)
                     this.lotteries = response.data.games;
                     this.$loading(false)
                 });
             },
-            lotteryOpen: function (lotteryId) {
-                this.$router.push({name: 'Lottery', params: {gameId: lotteryId}})
-                /*   Event.$emit('load-new-game');*/
-            }
+            show(name) {
+                this.$modal.show(name)
+            },
+            hide(name) {
+                this.$modal.hide(name)
+            },
+        },
+        components: {
+            Scroll, UserCardPanel, Carousel,
+            Slide, Game
         }
 
     }
@@ -168,4 +210,32 @@
 <style lang="scss">
     @import "~/fonts.scss";
     @import "~/games.scss";
+
+    .large-promo {
+        box-sizing: border-box;
+        width: 100%;
+
+        .VueCarousel-slide {
+            border: 2px lightgray solid;
+            padding: 10px;
+            box-sizing: border-box;
+
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%
+            }
+        }
+
+    }
+
+    .lots {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
 </style>

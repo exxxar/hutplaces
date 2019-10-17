@@ -39,11 +39,14 @@
         }
       }
       .card {
-        width: 265px;
+        width: 100%;
         box-sizing: border-box;
-        padding: 10px;
-        border: 1px $color4 solid;
-        box-shadow: 0px 0px 11px 1px $color4 inset;
+        padding: 0px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
       }
 
       .block-info {
@@ -111,15 +114,15 @@
 
       .buttons {
         width: 100%;
-
+        padding: 0px 0px 10px 0px;
 
 
         .random {
-          height: 42px;
+          height: 55px;
           background-color: $color7;
           position: relative;
-          margin-top: 10px;
           cursor: pointer;
+          box-shadow: 1px 1px 5px 0px black;
 
           .line {
             position: absolute;
@@ -161,15 +164,20 @@
         }
 
         button {
-          height: 42px;
+          height: 55px;
           margin-top: 10px;
-          border:none;
-          @include flex(center,center);
+          border: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
           font-weight: 600;
           font-size: 18px;
           width: 100%;
-          color: $color4;
+          /* padding: 20px; */
+          color: white;
           cursor: pointer;
+          box-shadow: 1px 1px 5px 0px black;
           &.buy {
             background-color: $color9;
           }
@@ -288,17 +296,16 @@
         .controls {
           @include flex(center, center);
           .mini-btn {
-            width: 80px;
-            height: 80px;
+            width: 40px;
+            height: 40px;
             margin-left: 5px;
             margin-right: 5px;
-            padding:20px;
+            padding: 5px;
           }
         }
         .buttons {
           @include flex(center, center);
-          padding: 10px;
-          flex-direction: column;
+           flex-direction: column;
           .random,
           .buy {
             width: 260px;

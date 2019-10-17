@@ -1,13 +1,13 @@
 @import "utilits.scss";
 
 
-.modal-body {
 
-  min-height: 300px;
-  height: auto;
+.modal-body {
   width: 800px;
   padding:20px;
   box-sizing: border-box;
+  @include flex(flex-start, space-between);
+  flex-wrap: wrap;
 
   @media (max-width: 800px) {
     & {
@@ -69,15 +69,35 @@
     }
   }
 
+  .half {
+    width:50%;
+    @include flex(flex-start, space-between);
+    padding:0px;
+  }
+
   .input-group {
     width:100%;
     box-sizing: border-box;
     padding: 10px;
     @include flex(flex-start, center);
 
+    input[type="file"] + label {
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      cursor: pointer;
+      border: 1px yellow solid;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+    }
+
+
     label {
-      font-weight: 600;
-      font-size: 10px;
+      font-weight: 900;
+      font-size: 12px;
+      margin-bottom:5px;
       color:$color4;
     }
 
@@ -89,7 +109,7 @@
       border-bottom: 1px solid $color4;
       color:$color4;
       font-weight:100 ;
-      font-size:24px;
+      font-size:18px;
       width: 100%;
       min-width:100%;
       text-align: center;
@@ -98,6 +118,12 @@
       box-sizing: border-box;
       text-transform: uppercase;
       font-family: 'Open Sans';
+
+      &[disabled] {
+        border: 1px gray solid !important;
+        color: gray !important;
+      }
+
       option {
         color:$color2;
       }
@@ -108,10 +134,10 @@
     }
 
     input[type="file"] + label {
-      padding: 20px;
+      padding: 5px;
       width: 100%;
       cursor: pointer;
-      border: 1px yellow solid;
+      border:none;
     }
 
     textarea {
@@ -130,6 +156,214 @@
   width:500px;
 }
 
+.card-add-modal {
+  width:500px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .card-container {
+    width: 200px;
+    margin-left: 10px;
+    height: 275px;
+    border: 1px dashed yellow;
+    padding: 5px;
+    box-sizing: border-box;
+
+    @include flex(center,center);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  }
+
+  hr {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: white;
+  }
+
+  .row {
+    width:100%;
+    padding:0px;
+    box-sizing: border-box;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    a {
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      cursor:pointer;
+    }
+
+    & > .input-group {
+      padding:10px;
+      textarea,
+      select,
+      input {
+        border:1px white solid;
+      }
+    }
+
+    & > .half {
+      width:50%;
+      padding:5px;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+
+
+      & > .input-group {
+        padding: 5px;
+        textarea,
+        select,
+        input {
+          border: 1px white solid;
+        }
+      }
+
+      label {
+        font-size: 12px;
+        font-weight: 900;
+        width:100%;
+        text-align: left;
+        margin-bottom:5px;
+        color:white;
+      }
+
+
+      hr {
+        width:100%;
+        height:1px;
+        border:none;
+        background-color: white;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+}
+.card-modal {
+  width: 260px;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 8px 2px white inset;
+
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+
+  hr {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: white;
+  }
+
+  .row {
+    width:100%;
+    padding:5px;
+    box-sizing: border-box;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+
+    & > .half {
+      width:50%;
+      padding:5px;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+
+      label {
+        font-size: 12px;
+        font-weight: 900;
+        width:100%;
+        text-align: left;
+        margin-bottom:5px;
+        color:white;
+      }
+
+
+      hr {
+        width:100%;
+        height:1px;
+        border:none;
+        background-color: white;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+
+    thead {
+      th {
+        font-weight: 900;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          span {
+            font-weight: 900;
+            color:yellow;
+          }
+        }
+      }
+    }
+  }
+
+  .input-group {
+    padding: 0px;
+    label {
+      color:yellow !important;
+    }
+    a {
+      text-decoration-style: dashed;
+      text-decoration-color: yellow;
+      font-weight:100;
+    }
+    p {
+      text-align:left;
+    }
+  }
+}
+
+
+
 .partner-modal {
   width:500px;
 
@@ -143,24 +377,17 @@
   }
 }
 
-.supplier-modal {
-  width:500px;
-
-  p {
-    text-align: justify;
-    font-weight: 100;
-
-    &:first-letter {
-      margin-left:50px;
-    }
-  }
-
-}
-
-
 .report-modal,
 .help-modal {
   width:500px;
+
+  form {
+    width:100%;
+
+    input[type="file"]{
+      border: 1px yellow solid !important;
+    }
+  }
 }
 .about-modal {
   p {
@@ -271,9 +498,15 @@
 .history-modal {
   width:800px;
   ul {
-    border: 1px $color3 solid;
-    margin-top: 10px;
-    @include flex(space-between,center);
+    border: 1px yellow solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 40px;
+    margin-bottom:10px;
+
     li {
       width:16%;
        text-align: center;
@@ -282,6 +515,10 @@
       font-size:12px;
       padding:10px;
       box-sizing: border-box;
+
+      i {
+        font-size:24px;
+      }
 
       a {
         color:$color3;

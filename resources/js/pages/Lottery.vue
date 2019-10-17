@@ -12,7 +12,12 @@
                          @click="showModal('cardinfo')">
                         <img src="/img/cards-info-icon.png" alt=""></div>
                 </div>
-                <div class="card" v-html="prepareUrl()"></div>
+                <div class="card">
+                        <game :game="game"
+                              :controls="false"
+
+                        ></game>
+                </div>
                 <div class="buttons">
                     <div class="random" @click="pickRandom()" :disabled="randomDisabled">
                         <div class="line" :style="cssProps"></div>
@@ -22,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <vue-custom-scrollbar class="right-side" id="right-side">
+        <scroll class="right-side" id="right-side">
             <ul class="lottery">
                 <li class="slot" v-for="(p, index) in prepareSlots()" :id="`slot-${index}`">
                     <div v-if="typeof(p) === 'object'">
@@ -33,50 +38,57 @@
                 </li>
 
             </ul>
-            <a class="scrollTop" v-scroll-to="{
-                 el: '#right-side',
-                 container: '#pageContent',
-                 duration: 500,
-                 easing: 'linear',
-                 offset: -200,
-                 force: true,
-                 cancelable: true,
-                 x: false,
-                 y: true
-     }">Top</a>
 
-        </vue-custom-scrollbar>
+        </scroll>
 
-        <modal name="security" height="auto">
-            <a href="#" @click="hideModal('security')" class="close"></a>
-            <security></security>
+        <modal name="security" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hideModal('security')" class="close"></a>
+                <security></security>
+            </scroll>
         </modal>
 
-        <modal name="cardinfo" height="auto">
-            <a href="#" @click="hideModal('cardinfo')" class="close"></a>
-            <card-info :game="game"></card-info>
+        <modal name="cardinfo" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hideModal('cardinfo')" class="close"></a>
+                <card-info :game="game"></card-info>
+            </scroll>
+
         </modal>
 
-        <modal name="win" height="auto">
-            <a href="#" @click="hideModal('win')" class="close"></a>
-            <div class="modal-body">
-                <div class="winner" v-if="winner!=null"><img :src="winner.avatar" alt=""></div>
-            </div>
+        <modal name="win" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hideModal('win')" class="close"></a>
+                <div class="modal-body">
+                    <div class="winner" v-if="winner!=null"><img :src="winner.avatar" alt=""></div>
+                </div>
+            </scroll>
+
         </modal>
 
     </div>
 </template>
 
 <script>
-    import vueCustomScrollbar from 'vue-custom-scrollbar'
-    import CardInfo from '../components/modals/CardInfo'
+      import CardInfo from '../components/modals/CardInfo'
     import Security from '../components/modals/Security'
 
+    import FlipCountdown from 'vue2-flip-countdown'
+    import Card from '@/components/admin/Card.vue'
+    import Game from '@/components/Game.vue'
+
+    import Scroll from 'vue-custom-scrollbar'
+    import {Carousel, Slide} from 'vue-carousel';
+    import UserCardPanel from '@/components/admin/UserCardPanel.vue'
+
+      import {Tabs as CardTabs, Tab as CardSection} from 'vue-simple-tabs';
 
     export default {
         props: ['gameId'],
         components: {
-            vueCustomScrollbar, CardInfo, Security
+            CardInfo, Security,
+            Scroll, UserCardPanel, Carousel,
+            Slide, Card, CardTabs, CardSection, FlipCountdown, Game
         },
         watch: {
             'game.occupied_places': function (newVal, oldVal) {
@@ -92,6 +104,7 @@
         },
         mounted() {
             this.loadGame();
+
             Event.$on("updatePlaces", () => {
                 this.updatePlaces();
             });
@@ -124,10 +137,19 @@
         activated() {
             this.loadGame();
         },
-        deactivated() {
-            document.querySelectorAll(".scrollTop")[0].click();
-        },
         methods: {
+            prepareDeadline(game) {
+                var date = Date.parse(game.created_at);
+                var time = [6, 12, 24, 36, 48, 96, 128, 10000];
+
+                date = date + time[game.lifetime] * 60 * 60 * 1000;
+                return timeSolver.getString(new Date(date), "YYYY-MM-DD HH:MM:SS");
+            },
+            lineWidth: function (c1, c2) {
+                return {
+                    '--line-width': ((c1 / c2) * 100) + '%'
+                }
+            },
             message(title, message, type) {
                 this.$notify({
                     group: 'main',
@@ -155,6 +177,7 @@
                             return;
                         }
                         this.game = response.data.game;
+                        console.log("game:",this.game);
 
                         if (this.game.winner_id != null) {
                             axios
@@ -194,18 +217,7 @@
                 this.message(this.$lang.messages.copy_link, this.$lang.messages.lottery_success_3, "error")
             },
             getAvatar(img) {
-                return img == '' || img == null || img == undefined ? "/img/noavatar.png" : img;
-            },
-            getPlatform() {
-                switch (this.game.console_type) {
-                    default:
-                    case 1:
-                        return "/img/xbox-icon.png";
-                    case 2:
-                        return "/img/ps4-icon.png";
-                    case 3:
-                        return "/img/pc-icon.png";
-                }
+                return img == '' || img == null || img == undefined ? "/img/noavatar.png" : `/img/avatars/${img}`;
             },
             pickCard() {
                 this.message(this.$lang.messages.card_purchase, this.$lang.messages.lottery_warning_1, "error")
@@ -240,6 +252,9 @@
                 }
             },
             pickSlot(place) {
+               /* if (this.game.is_only_one==1){
+                    this.game.place_list.filter(place=>place->user->id)
+                }*/
                 var item = document.getElementById(`slot-${place}`);
                 if (item.getAttribute("disabled") == null) {
                     item.setAttribute("disabled", "");
@@ -262,33 +277,29 @@
                 }
             },
             clickUserSlot(slot, index) {
-                this.startAnim(index + 1);
-                setTimeout(() => this.showModal('win'), 10000);
+               // this.startAnim(index + 1);
+                //setTimeout(() => this.showModal('win'), 10000);
             },
             prepareSlots() {
                 var tmp = [];
                 for (var i = 0; i < this.game.places; i++) {
-                    var finde = false;
+                    var find = false;
                     for (var u in this.game.place_list) {
                         if (i == this.game.place_list[u].place_number) {
                             tmp.push(this.game.place_list[u].user);
-                            finde = true;
+                            find = true;
                             break;
                         }
                     }
 
-                    if (!finde) {
+                    if (!find) {
                         tmp.push(i + 1)
                     }
 
                 }
                 return tmp;
             },
-            prepareUrl: function () {
-                if (this.game.lot.card != null)
-                    return JSON.parse(this.game.lot.card.Card_data).value;
-                return '/img/noavatar.png';
-            },
+
         }
     }
 

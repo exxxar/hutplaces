@@ -2,14 +2,14 @@
 
     <div class="modal-body promo-modal">
         <div class="modal-logo"><img v-lazy="'/img/promo-logo.png'" alt=""></div>
-        <h1>Введите действительный промокод</h1>
+        <h1 v-html="$lang.modals.promocodes.title"></h1>
         <div class="input-group">
-            <label>Ваш промокод</label>
+            <label v-html="$lang.modals.promocodes.your_promo"></label>
             <input type="text" autocomplete="off" v-model="promo" maxlength="8">
         </div>
 
         <div class="input-group">
-            <button class="btn btn-yellow full" @click="doRequest()">Активировать</button>
+            <button class="btn btn-yellow full" @click="doRequest()" v-html="$lang.modals.promocodes.activate"></button>
         </div>
     </div>
 
@@ -24,25 +24,24 @@
             }
         },
         methods: {
-            message(title, message, type) {
+            message(message) {
                 this.$notify({
                     group: 'main',
-                    type: type,
-                    title: title,
+                    type: 'warn',
+                    title: this.$lang.modals.promocodes.error_title,
                     text: message
                 })
             },
             doRequest() {
                 if (this.promo.length != 8) {
-                    this.message("Ввод промокода", "А где промокод?", "warn");
+                    this.message(this.$lang.modals.promocodes.error_1);
                     return;
                 }
                 axios
                     .post('/promo/activate', {
                         code: this.promo
                     }).then(response => {
-                    console.log(response);
-                    this.message("Ввод промокода", response.data.message, "warn");
+                    this.message(response.data.message);
                 });
             }
         }

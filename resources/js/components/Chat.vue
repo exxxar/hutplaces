@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="chat-btn" @click="openChat()" v-if="show">{{$lang.chat.chat}}</div>
+        <div class="chat-btn" @click="openChat()" v-if="show" v-html="$lang.menu.chat_btn"></div>
 
         <div class="chat" v-draggable v-if="open">
             <div class="title">

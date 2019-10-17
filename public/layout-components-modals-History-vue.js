@@ -38,17 +38,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'faq',
+  name: 'history',
   data: function data() {
     return {
-      historyList: null
+      history: null
     };
   },
   mounted: function mounted() {
     this.loadHistory();
   },
   methods: {
+    close: function close() {
+      this.$emit("close");
+    },
     message: function message(title, _message, type) {
       this.$notify({
         group: 'main',
@@ -57,32 +64,16 @@ __webpack_require__.r(__webpack_exports__);
         text: _message
       });
     },
-    selfHide: function selfHide() {
-      this.$emit("self-hide");
-    },
     loadHistory: function loadHistory() {
       var _this = this;
 
       this.$loading(true);
       axios.get('/lottery/history').then(function (response) {
-        _this.historyList = response.data.history;
+        _this.history = response.data.history;
       })["catch"](function (reason) {
         _this.message("Авторизация", "\u0412\u044B \u043D\u0435 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u043D\u044B!", 'warn');
       });
       this.$loading(false);
-    },
-    getPlatform: function getPlatform(id) {
-      switch (id) {
-        default:
-        case 1:
-          return "/img/xbox-icon.png";
-
-        case 2:
-          return "/img/ps4-icon.png";
-
-        case 3:
-          return "/img/pc-icon.png";
-      }
     }
   }
 });
@@ -112,92 +103,85 @@ var render = function() {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _vm._l(_vm.historyList, function(item, index) {
-        return _vm.historyList != null && _vm.historyList.length > 0
-          ? _c(
-              "ul",
-              {
-                staticClass: "body",
-                on: {
-                  click: function($event) {
-                    return _vm.selfHide()
-                  }
-                }
-              },
-              [
-                _c("li", [_vm._v(_vm._s(++index))]),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "a",
-                          to: {
-                            name: "Lottery",
-                            params: { gameId: item.lottery_id }
-                          }
+      _vm._l(_vm.history, function(item, index) {
+        return _vm.history != null && _vm.history.length > 0
+          ? _c("ul", { staticClass: "body" }, [
+              _c("li", [_vm._v(_vm._s(++index))]),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        tag: "a",
+                        to: {
+                          name: "Lottery",
+                          params: { gameId: item.lottery_id }
                         }
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.lottery_title) +
-                            "\n            "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("li", [
-                  _c("img", {
-                    directives: [
-                      {
-                        name: "lazy",
-                        rawName: "v-lazy",
-                        value: _vm.getPlatform(item.console_type),
-                        expression: "getPlatform(item.console_type)"
                       }
-                    ],
-                    attrs: { alt: "" }
-                  })
-                ]),
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(item.lottery_title) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", [
+                item.console_type == 1
+                  ? _c("i", { staticClass: "fab fa-playstation" })
+                  : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "a",
-                          to: {
-                            name: "PlayerInfo",
-                            params: { userId: item.user_id }
-                          }
+                item.console_type == 0
+                  ? _c("i", { staticClass: "fab fa-xbox" })
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        tag: "a",
+                        to: {
+                          name: "PlayerInfo",
+                          params: { userId: item.user_id }
                         }
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.user_name) +
-                            "\n            "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("li", [_vm._v(_vm._s(item.end))])
-              ]
-            )
-          : _c("h3", [_vm._v("Не найдено ни одного победителя")])
-      })
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(item.user_name) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", [_vm._v(_vm._s(item.end))])
+            ])
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _vm.history == null || _vm.history.length == 0
+        ? _c("div", { staticClass: "no-items" }, [
+            _c("img", {
+              attrs: { src: _vm.$lang.modals.history.error_1, alt: "" }
+            })
+          ])
+        : _vm._e()
     ],
     2
   )

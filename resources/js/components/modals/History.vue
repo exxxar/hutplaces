@@ -8,7 +8,7 @@
             <li>Победитель</li>
             <li>Дата заверщения</li>
         </ul>
-        <ul v-if="historyList!=null&&historyList.length>0" class="body" v-for="(item, index) in historyList" @click="selfHide()">
+        <ul v-if="history!=null&&history.length>0" class="body" v-for="(item, index) in history" >
             <li>{{++index}}</li>
 
             <li>
@@ -16,7 +16,10 @@
                     {{item.lottery_title}}
                 </router-link>
             </li>
-            <li><img v-lazy="getPlatform(item.console_type)" alt=""></li>
+            <li>
+                <i v-if="item.console_type==1" class="fab fa-playstation"></i>
+                <i v-if="item.console_type==0" class="fab fa-xbox"></i>
+            </li>
             <li>
                 <router-link tag="a" :to="{ name: 'PlayerInfo',params: {userId:item.user_id} }" >
                     {{item.user_name}}
@@ -24,21 +27,25 @@
             </li>
             <li>{{item.end}}</li>
         </ul>
-        <h3 v-else>Не найдено ни одного победителя</h3>
+        <div class="no-items" v-if="history==null||history.length==0"><img :src="$lang.modals.history.error_1" alt=""></div>
+
     </div>
 </template>
 <script>
     export default {
-        name: 'faq',
+        name: 'history',
         data() {
             return {
-                historyList: null
+                history: null
             }
         },
         mounted() {
             this.loadHistory();
         },
         methods: {
+            close(){
+              this.$emit("close");
+            },
             message(title, message, type) {
                 this.$notify({
                     group: 'main',
@@ -48,30 +55,16 @@
                 })
             },
 
-            selfHide(){
-                this.$emit("self-hide");
-            },
             loadHistory() {
                 this.$loading(true)
                 axios.get('/lottery/history')
                     .then(response => {
-                        this.historyList = response.data.history
+                        this.history = response.data.history
 
                     }).catch((reason)=> {
                         this.message("Авторизация", `Вы не авторизованы!`, 'warn');
                 });
                 this.$loading(false)
-            },
-            getPlatform(id) {
-                switch (id) {
-                    default:
-                    case 1:
-                        return "/img/xbox-icon.png";
-                    case 2:
-                        return "/img/ps4-icon.png";
-                    case 3:
-                        return "/img/pc-icon.png";
-                }
             },
         }
     }

@@ -173,6 +173,11 @@ p.description {
   line-height: 150%;
   margin-bottom: 20px;
   width: 100%;
+  text-align: justify;
+  strong {
+    color:yellow;
+    font-weight:900;
+  }
 }
 
 header, section, footer {
@@ -597,6 +602,31 @@ aside {
 }
 
 
+.admin-btn {
+  box-shadow:0px 0px 5px 0px black;
+  position: fixed;
+  bottom: 155px;
+  right: -28px;
+  width: 100px;
+  transition: 0.5s;
+  height: 60px;
+  background-color: orangered;
+  color: #2c3e50;
+  font-weight: 900;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 5px 0px 0px 5px;
+  cursor: pointer;
+  padding: 0px 0px 0px 20px;
+  box-sizing: border-box;
+  z-index: 16;
+  &:hover {
+    right:0px;
+    transition:  .5s;
+
+  }
+}
 
 
 

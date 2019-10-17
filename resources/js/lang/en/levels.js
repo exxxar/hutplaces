@@ -1,0 +1,31 @@
+
+module.exports = {
+
+    title: 'Level table',
+    table_1: 'Title',
+    table_2: 'Experience',
+    table_3: 'Level',
+    table_4: 'Discount',
+    no_levels: 'img/empty-en.png',
+
+    level_0: 'Start level',
+    level_1: 'Glass level',
+    level_2: 'Paper level',
+    level_3: 'Leather level',
+    level_4: 'Wooden level',
+    level_5: 'Stone level',
+    level_6: 'Cast iron level',
+    level_7: 'Zinc level',
+    level_8: 'Iron level',
+    level_9: 'Steel level',
+    level_10: 'Aluminum level',
+    level_11: 'Copper level',
+    level_12: 'Brass level',
+    level_13: 'Bronze level',
+    level_14: 'Silver level',
+    level_15: 'Gold level',
+    level_16: 'Platinum level',
+    level_17: 'Sapphire level',
+    level_18: 'Ruby level',
+    level_19: 'Diamond level',
+}

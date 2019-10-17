@@ -1710,6 +1710,75 @@ module.exports = function isBuffer (obj) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Toggle.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Toggle.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      value: !( false || this.check)
+    };
+  },
+  props: {
+    id: {
+      type: String,
+      "default": 'id',
+      required: true
+    },
+    labelon: {
+      type: String,
+      "default": 'inherit',
+      required: true
+    },
+    labeloff: {
+      type: String,
+      "default": 'inherit',
+      required: true
+    },
+    width: {
+      type: Number,
+      "default": 160,
+      required: true
+    },
+    check: {
+      type: Boolean,
+      "default": false,
+      required: false
+    }
+  },
+  methods: {
+    click: function click() {
+      this.$emit('check', this.value);
+    }
+  },
+  computed: {
+    cssProps: function cssProps() {
+      return {
+        '--component-width': this.width + 'px'
+      };
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminCardPanel.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AdminCardPanel.vue?vue&type=script&lang=js& ***!
@@ -1796,10 +1865,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/Card.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/Card.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1844,6 +1913,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["card"],
+  mounted: function mounted() {
+    console.log("activate_Card=", this.card);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_Toggle_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/Toggle.vue */ "./resources/js/components/Toggle.vue");
+/* harmony import */ var _components_admin_Card_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/admin/Card.vue */ "./resources/js/components/admin/Card.vue");
 //
 //
 //
@@ -2059,334 +2148,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SearchForm',
   data: function data() {
@@ -2397,133 +2160,230 @@ __webpack_require__.r(__webpack_exports__);
         price: 0,
         card: null
       },
-      cardExample: "",
-      year: '19',
+      year: true,
       proxyurl: 'https://cors-anywhere.herokuapp.com/',
       request: '',
-      sort: 'DESC',
-      player: '',
+      playerName: '',
       league: 'Any',
-      pos: [],
-      shoots: 'Any',
-      hgt: [],
+      position: [],
+      handedness: [],
+      height: [],
       synergy: [],
-      synergyRate: [{
-        id: 0,
-        name: 'PP',
-        rate: 0
+      heightLabels: [{
+        id: 64,
+        name: "5'4"
       }, {
+        id: 65,
+        name: "5'5"
+      }, {
+        id: 66,
+        name: "5'6"
+      }, {
+        id: 67,
+        name: "5'7"
+      }, {
+        id: 68,
+        name: "5'8"
+      }, {
+        id: 69,
+        name: "5'9"
+      }, {
+        id: 70,
+        name: "5'10"
+      }, {
+        id: 71,
+        name: "5'11"
+      }, {
+        id: 72,
+        name: "6'0"
+      }, {
+        id: 73,
+        name: "6'1"
+      }, {
+        id: 74,
+        name: "6'2"
+      }, {
+        id: 75,
+        name: "6'3"
+      }, {
+        id: 76,
+        name: "6'4"
+      }, {
+        id: 77,
+        name: "6'5"
+      }, {
+        id: 78,
+        name: "6'6"
+      }, {
+        id: 79,
+        name: "6'7"
+      }, {
+        id: 80,
+        name: "6'8"
+      }, {
+        id: 81,
+        name: "6'9"
+      }],
+      leagueOptions: ["NHL", "AHL", "ECHL", "OHL", "QMJHL", "WHL", "SHL", "Liiga", "NL", "DEL", "EBEL", "CHL", "ELH", "Allsvenska", "National"],
+      nationalityOptions: ["Australia", "Austria", "Belarus", "Belgium", "Canada", "Croatia", "Czech Republic", "Denmark", "England", "Estonia", "Finland", "France", "Germany", "Hungary", "Italy", "Latvia", "Liberia", "Lithuania", "Netherlands", "Norway", "Poland", "Romania", "Russia", "Slovakia", "Slovenia", "Sweden", "Switzerland", "USA", "Ukraine"],
+      synergyLabels: [{
         id: 1,
-        name: 'S',
-        rate: 0
+        name: 'PP',
+        year: 19
       }, {
         id: 2,
-        name: 'NP',
-        rate: 0
+        name: 'S',
+        year: 19
       }, {
         id: 3,
-        name: 'FM',
-        rate: 0
+        name: 'NP',
+        year: 19
       }, {
         id: 4,
-        name: 'CS',
-        rate: 0
+        name: 'FM',
+        year: 19
       }, {
         id: 5,
-        name: 'DZ',
-        rate: 0
+        name: 'CS',
+        year: 19
       }, {
         id: 6,
-        name: 'HT',
-        rate: 0
+        name: 'DZ',
+        year: 19
       }, {
         id: 7,
-        name: 'BE',
-        rate: 0
+        name: 'HT',
+        year: 19
       }, {
         id: 8,
-        name: 'DW',
-        rate: 0
+        name: 'BE',
+        year: 19
       }, {
         id: 9,
-        name: 'BM',
-        rate: 0
+        name: 'DW',
+        year: 19
       }, {
         id: 10,
-        name: 'T',
-        rate: 0
+        name: 'BM',
+        year: 19
       }, {
         id: 11,
-        name: 'BR',
-        rate: 0
+        name: 'T',
+        year: 19
       }, {
         id: 12,
-        name: 'FB',
-        rate: 0
+        name: 'BR',
+        year: 19
       }, {
         id: 13,
-        name: 'TB',
-        rate: 0
+        name: 'FB',
+        year: 19
       }, {
         id: 14,
-        name: 'BU',
-        rate: 0
+        name: 'TB',
+        year: 19
       }, {
         id: 15,
-        name: 'HH',
-        rate: 0
+        name: 'BU',
+        year: 19
       }, {
         id: 16,
-        name: 'CP',
-        rate: 0
+        name: 'HH',
+        year: 19
       }, {
         id: 17,
+        name: 'CP',
+        year: 19
+      }, {
+        id: 18,
         name: 'FS',
-        rate: 0
+        year: 19
+      }, {
+        id: 19,
+        name: 'NP',
+        year: 20
+      }, {
+        id: 20,
+        name: 'X',
+        year: 20
+      }, {
+        id: 21,
+        name: 'BL',
+        year: 20
+      }, {
+        id: 22,
+        name: 'TN',
+        year: 20
+      }, {
+        id: 23,
+        name: 'AD',
+        year: 20
+      }, {
+        id: 24,
+        name: 'DK',
+        year: 20
+      }, {
+        id: 25,
+        name: 'BM',
+        year: 20
+      }, {
+        id: 26,
+        name: 'WK',
+        year: 20
+      }, {
+        id: 27,
+        name: 'RS',
+        year: 20
+      }, {
+        id: 28,
+        name: 'M',
+        year: 20
+      }, {
+        id: 29,
+        name: 'WM',
+        year: 20
+      }, {
+        id: 30,
+        name: '1T',
+        year: 20
+      }, {
+        id: 31,
+        name: 'WC',
+        year: 20
+      }, {
+        id: 32,
+        name: 'FB',
+        year: 20
+      }, {
+        id: 33,
+        name: 'SP',
+        year: 20
+      }, {
+        id: 34,
+        name: 'TK',
+        year: 20
       }],
-      ovrmin: '',
-      ovrmax: '',
+      minOvr: '',
+      maxOvr: '',
       team: 'Any',
-      stype: [],
-      scard: [],
-      wgtmin: '',
-      wgtmax: '',
+      playerType: [],
+      per_page: 100,
+      card: [],
+      card_example: null,
+      minWgt: '',
+      maxWgt: '',
+      synergy_id: [],
       nationality: 'Any',
       results: ''
     };
   },
-  watch: {
-    synergy: {
-      handler: function handler(newVal, oldVal) {
-        if (newVal.length > oldVal.length) {
-          var difference = newVal.filter(function (x) {
-            return !oldVal.includes(x);
-          });
-          var elem = difference[0];
-          this.synergyRate.find(function (syn) {
-            return syn.name === elem;
-          }).rate = 1;
-        }
-
-        if (newVal.length < oldVal.length) {
-          var _difference = oldVal.filter(function (x) {
-            return !newVal.includes(x);
-          });
-
-          var _elem = _difference[0];
-          this.synergyRate.find(function (syn) {
-            return syn.name === _elem;
-          }).rate = 0;
-        }
-      }
-    },
-    synergyRate: {
-      handler: function handler(val) {//
-      },
-      deep: true
-    }
-  },
   methods: {
+    getSynergy: function getSynergy() {
+      var year = this.year ? 19 : 20;
+      return this.synergyLabels.filter(function (s) {
+        return s.year == year;
+      });
+    },
     message: function message(title, _message, type) {
       this.$notify({
         group: 'main',
@@ -2545,12 +2405,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$loading(true);
-      this.request = "https://hutdb.net/ajax/id.php?size=0&id=".concat(id);
+      this.request = "https://api.hutdb.net/api/players/".concat(id);
       axios.post('search', {
         url: this.request
       }).then(function (res) {
         console.log(res);
-        _this.cardExample = JSON.parse(JSON.stringify(res.data.value).replace(/\/assets/gi, 'https://hutdb.net/assets'));
+        _this.card_example = res.data;
 
         _this.$loading(false);
 
@@ -2562,20 +2422,6 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.message("Ошибка загрузки карточки", "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E!", 'error');
       });
-    },
-    synDec: function synDec(id) {
-      if (this.synergyRate.find(function (syn) {
-        return syn.id === id;
-      }).rate > 1) {
-        this.synergyRate.find(function (syn) {
-          return syn.id === id;
-        }).rate--;
-      }
-    },
-    synInc: function synInc(id) {
-      this.synergyRate.find(function (syn) {
-        return syn.id === id;
-      }).rate++;
     },
     search: function search() {
       var _this2 = this;
@@ -2601,65 +2447,76 @@ __webpack_require__.r(__webpack_exports__);
     makeUrl: function makeUrl() {
       var _this3 = this;
 
-      this.request = "https://hutdb.net/ajax/stats.php?year=".concat(this.year, "&page=0&selected=OVR&sort=").concat(this.sort);
+      var year = this.year ? 20 : 19;
+      this.request = "https://api.hutdb.net/api/players?year=".concat(year, "&page=0&per_age=").concat(this.per_page);
 
-      if (this.player !== '') {
-        var player = this.player.replace(' ', '%20');
-        this.request += "&player=".concat(player);
+      if (this.playerName !== '') {
+        var player = this.playerName.replace(' ', '%20');
+        this.request += "&playerName=".concat(player);
       }
 
       if (this.league !== 'Any') {
         this.request += "&league=".concat(this.league);
       }
 
-      if (this.pos.length > 0) {
-        this.request += "&pos=".concat(this.pos);
-      }
-
-      if (this.shoots !== 'Any') {
-        this.request += "&shoots=".concat(this.shoots);
-      }
-
-      if (this.hgt.length > 0) {
-        this.request += "&hgt=".concat(this.hgt);
-      }
-
-      if (this.synergy.length > 0) {
-        this.request += "&synergy=";
-        this.synergy.map(function (synName) {
-          _this3.request += "".concat(synName, "-").concat(_this3.synergyRate.find(function (syn) {
-            return syn.name === synName;
-          }).rate, ",");
+      if (this.position.length > 0) {
+        this.request += "&position[]=";
+        this.position.map(function (pos) {
+          _this3.request += "".concat(pos, ",");
         });
         this.request = this.request.slice(0, -1);
       }
 
-      if (this.ovrmin !== '') {
-        this.request += "&ovrmin=".concat(ovrmin);
+      if (this.handedness !== 'Any') {
+        this.request += "&handedness=".concat(this.handedness);
       }
 
-      if (this.ovrmax !== '') {
-        this.request += "&ovrmax=".concat(ovrmax);
+      if (this.height.length > 0) {
+        this.request += "&height[]=";
+        this.height.map(function (h) {
+          _this3.request += "".concat(h, ",");
+        });
+        this.request = this.request.slice(0, -1);
+      }
+
+      if (this.synergy_id.length > 0) {
+        this.request += "&synergy_id[]=";
+        this.synergy_id.map(function (syn) {
+          _this3.request += "".concat(syn.id, ",");
+        });
+        this.request = this.request.slice(0, -1);
+      }
+
+      if (this.minOvr !== '') {
+        this.request += "&minOvr=".concat(minOvr);
+      }
+
+      if (this.maxOvr !== '') {
+        this.request += "&maxOvr=".concat(maxOvr);
       }
 
       if (this.team !== 'Any') {
         this.request += "&team=".concat(this.team);
       }
 
-      if (this.stype.length > 0) {
-        this.request += "&stype=".concat(this.stype);
+      if (this.playerType.length > 0) {
+        this.request += "&playerType[]=";
+        this.playerType.map(function (type) {
+          _this3.request += "".concat(type, ",");
+        });
+        this.request = this.request.slice(0, -1);
       }
 
-      if (this.scard.length > 0) {
-        this.request += "&scard=".concat(this.scard);
+      if (this.card.length > 0) {
+        this.request += "&card=".concat(this.card);
       }
 
-      if (this.wgtmin !== '') {
-        this.request += "&wgtmin=".concat(wgtmin);
+      if (this.minWgt !== '') {
+        this.request += "&minWgt=".concat(minWgt);
       }
 
-      if (this.wgtmax !== '') {
-        this.request += "&wgtmax=".concat(wgtmax);
+      if (this.maxWgt !== '') {
+        this.request += "&maxWgt=".concat(maxWgt);
       }
 
       if (this.nationality !== 'Any') {
@@ -2667,9 +2524,35 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       console.log(this.request);
+    },
+    checkYear: function checkYear(event) {
+      this.year = event;
     }
+  },
+  components: {
+    Toggle: _components_Toggle_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Card: _components_admin_Card_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n  min-height: 100%;\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tabs-component {\n  width: 100%;\n}\n.tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n.tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  color: gray;\n}\n.tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n.onoffswitch {\n  position: relative;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  width: var(--component-width);\n}\n.onoffswitch .onoffswitch-checkbox {\n  display: none;\n}\n.onoffswitch .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {\n  margin-left: 0;\n}\n.onoffswitch .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {\n  right: 0px;\n  padding: 0px 10px;\n}\n.onoffswitch .onoffswitch-checkbox + .onoffswitch-label .onoffswitch-switch:after {\n  content: attr(on);\n  font-size: 14px;\n  color: #2c3e50;\n  font-weight: 600;\n  display: flex;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  font-family: Trebuchet, Arial, sans-serif;\n}\n.onoffswitch .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch:after {\n  content: attr(off);\n  font-size: 14px;\n  color: #2c3e50;\n  display: flex;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  font-family: Trebuchet, Arial, sans-serif;\n}\n.onoffswitch .onoffswitch-label {\n  display: block;\n  overflow: hidden;\n  cursor: pointer;\n  border: 2px solid yellow;\n  border-radius: 5px;\n}\n.onoffswitch .onoffswitch-label .onoffswitch-inner {\n  display: block;\n  margin-left: -100%;\n  transition: margin 0.1s ease-in 0s;\n}\n.onoffswitch .onoffswitch-label .onoffswitch-inner:before {\n  content: attr(on);\n  padding-left: 15px;\n  background-color: #2c3e50;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n}\n.onoffswitch .onoffswitch-label .onoffswitch-inner:after {\n  content: attr(off);\n  padding-right: 15px;\n  background-color: #2c3e50;\n  color: white;\n  text-align: right;\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n}\n.onoffswitch .onoffswitch-label .onoffswitch-switch {\n  display: block;\n  padding: 0px 10px;\n  box-sizing: border-box;\n  margin: 4px;\n  height: 36px;\n  background: yellow;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  right: auto;\n  border: 2px solid yellow;\n  border-radius: 2px;\n  transition: all 0.1s ease-in 0s;\n}\n.onoffswitch .onoffswitch-label .onoffswitch-inner:before, .onoffswitch .onoffswitch-label .onoffswitch-inner:after {\n  display: block;\n  float: left;\n  width: 50%;\n  height: 40px;\n  padding: 6px 20px 5px 20px;\n  line-height: 30px;\n  font-size: 14px;\n  color: white;\n  font-family: Trebuchet, Arial, sans-serif;\n  font-weight: bold;\n  box-sizing: border-box;\n}", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -29297,6 +29180,36 @@ exports.getClusterConfig = function (clusterName) {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Toggle.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminCardPanel.vue?vue&type=style&index=0&lang=scss&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AdminCardPanel.vue?vue&type=style&index=0&lang=scss& ***!
@@ -30060,6 +29973,96 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Toggle.vue?vue&type=template&id=47b09f7f&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Toggle.vue?vue&type=template&id=47b09f7f& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "onoffswitch",
+      style: _vm.cssProps,
+      on: {
+        click: function($event) {
+          return _vm.click()
+        }
+      }
+    },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.value,
+            expression: "value"
+          }
+        ],
+        staticClass: "onoffswitch-checkbox",
+        attrs: { type: "checkbox", name: "onoffswitch", id: _vm.id },
+        domProps: {
+          checked: _vm.check,
+          checked: Array.isArray(_vm.value)
+            ? _vm._i(_vm.value, null) > -1
+            : _vm.value
+        },
+        on: {
+          change: function($event) {
+            var $$a = _vm.value,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 && (_vm.value = $$a.concat([$$v]))
+              } else {
+                $$i > -1 &&
+                  (_vm.value = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+              }
+            } else {
+              _vm.value = $$c
+            }
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "label",
+        { staticClass: "onoffswitch-label", attrs: { for: _vm.id } },
+        [
+          _c("span", {
+            staticClass: "onoffswitch-inner",
+            attrs: { on: _vm.labelon, off: _vm.labeloff }
+          }),
+          _vm._v(" "),
+          _c("span", {
+            staticClass: "onoffswitch-switch",
+            attrs: { on: _vm.labelon, off: _vm.labeloff }
+          })
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminCardPanel.vue?vue&type=template&id=8953f920&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AdminCardPanel.vue?vue&type=template&id=8953f920& ***!
@@ -30214,6 +30217,107 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "modal-body card-modal" }, [
+    _c("div", { staticClass: "ncard" }, [
+      _c("div", { staticClass: "backplate" }, [
+        _c("div", { staticClass: "background silver" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "silver_tag tag top" }, [
+          _c("div", { staticClass: "cardtype" }, [
+            _vm._v(_vm._s(_vm.card.card))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "overall" }, [_vm._v(_vm._s(_vm.card.ovr))])
+        ]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "headshot top",
+          staticStyle: { "background-image": "url('/img/head.png')" }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "name" }, [
+          _c("div", { staticClass: "firstname" }, [
+            _vm._v(_vm._s(_vm.card.player.split(" ")[0]))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "lastname" }, [
+            _vm._v(_vm._s(_vm.card.player.split(" ")[1]))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "info" }, [
+          _c("div", { staticClass: "position" }, [
+            _vm._v(_vm._s(_vm.card.position))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "bullet" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "type" }, [
+            _vm._v(_vm._s(_vm.card.player_type))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "attributes attributes-right" }, [
+          _c("div", { staticClass: "attr-name" }, [_vm._v("SKT")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-name" }, [_vm._v("SHT")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-name" }, [_vm._v("HND")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-name" }, [_vm._v("CHK")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-name" }, [_vm._v("DEF")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-value" }, [
+            _vm._v(_vm._s(_vm.card.skt_hgh))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-value" }, [
+            _vm._v(_vm._s(_vm.card.sht_low))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-value" }, [
+            _vm._v(_vm._s(_vm.card.hnd_qck))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-value" }, [
+            _vm._v(_vm._s(_vm.card.chk))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "attr-value" }, [
+            _vm._v(_vm._s(_vm.card.def_rbc))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "team-right" }, [
+          _vm._v(_vm._s(_vm.card.team))
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa& ***!
@@ -30231,1660 +30335,880 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "search-form" },
     [
-      _c("div", { staticClass: "row ff" }, [
-        _c("div", { staticClass: "col-6" }, [
+      _c("div", { staticClass: "search-form" }, [
+        _c("div", { staticClass: "row ff" }, [
           _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "sort" } },
-            [_vm._v("Sort")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.sort,
-                  expression: "sort"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "sort" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.sort = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
+            "div",
+            { staticClass: "col-6" },
             [
-              _c("option", { attrs: { value: "DESC", selected: "" } }, [
-                _vm._v("По убыванию")
-              ]),
+              _c(
+                "label",
+                { staticClass: "col-form-label", attrs: { for: "year" } },
+                [_vm._v("Year")]
+              ),
               _vm._v(" "),
-              _c("option", { attrs: { value: "ASC" } }, [
-                _vm._v("По возрастанию")
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "year" } },
-            [_vm._v("Year")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.year,
-                  expression: "year"
+              _c("toggle", {
+                attrs: {
+                  check: _vm.year,
+                  id: "year",
+                  labelon: "2019",
+                  labeloff: "2020",
+                  width: 140
+                },
+                on: {
+                  check: function($event) {
+                    return _vm.checkYear($event)
+                  }
                 }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "year" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.year = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", [_vm._v("18")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("19")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("20")])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-6 player" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "player" } },
-            [_vm._v("Player")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model.trim",
-                value: _vm.player,
-                expression: "player",
-                modifiers: { trim: true }
-              }
+              })
             ],
-            staticClass: "form-control",
-            attrs: { id: "player" },
-            domProps: { value: _vm.player },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.player = $event.target.value.trim()
-              },
-              blur: function($event) {
-                return _vm.$forceUpdate()
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "ovrmin" } },
-            [_vm._v("Ovrmin")]
+            1
           ),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model.number",
-                value: _vm.ovrmin,
-                expression: "ovrmin",
-                modifiers: { number: true }
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "ovrmin" },
-            domProps: { value: _vm.ovrmin },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.ovrmin = _vm._n($event.target.value)
-              },
-              blur: function($event) {
-                return _vm.$forceUpdate()
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "ovrmax" } },
-            [_vm._v("Ovrmax")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model.number",
-                value: _vm.ovrmax,
-                expression: "ovrmax",
-                modifiers: { number: true }
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "ovrmax" },
-            domProps: { value: _vm.ovrmax },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.ovrmax = _vm._n($event.target.value)
-              },
-              blur: function($event) {
-                return _vm.$forceUpdate()
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "league" } },
-            [_vm._v("League")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.league,
-                  expression: "league"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "league" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.league = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", [_vm._v("Any")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("NHL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("SHL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Liiga")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("AHL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("NL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("OHL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("DEL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("ELH")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("EBEL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("CHL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("ECHL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Allsvenska")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("WHL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("QMJHL")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("National")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "team" } },
-            [_vm._v("Team")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.team,
-                  expression: "team"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "team" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.team = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", [_vm._v("Any")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Pittsburgh Penguins")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Edmonton Oilers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Edmonton Oil Kings")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Washington Capitals")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Ottawa Senators")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Ottawa 67's")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Los Angeles Kings")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Tampa Bay Lightning")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Philadelphia Flyers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Toronto Maple Leafs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Toronto Marlies")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Nashville Predators")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("New Jersey Devils")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Colorado Avalanche")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Colorado Eagles")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("St. Louis Blues")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Boston Bruins")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("San Jose Sharks")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Winnipeg Jets")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Chicago Blackhawks")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Dallas Stars")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Calgary Flames")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Calgary Hitmen")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Columbus Blue Jackets")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Minnesota Wild")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Anaheim Ducks")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Vegas Golden Knights")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Arizona Coyotes")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Florida Panthers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Florida Everblades")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("New York Islanders")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Buffalo Sabres")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Montreal Canadiens")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Carolina Hurricanes")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Cardiff Devils")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Vancouver Canucks")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Vancouver Giants")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Detroit Red Wings")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("New York Rangers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("NHL Free Agents")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Frolunda Indians")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("TPS Turku")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Rockford IceHogs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("EV Zug")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Lugano")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("San Antonio Rampage")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Sarnia Sting")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Rochester Americans")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Manitoba Moose")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Manchester Monarchs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Barrie Colts")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Linkopings HC")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("ZSC Lions")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("EHC Munchen")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Eisbaren Berlin")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("SC Bern")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Plzen")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Djurgardens Hockey")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Geneve-Servette HC")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Iowa Wild")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("EHC Biel")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Grand Rapids Griffins")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Providence Bruins")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("SCL Tigers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Chicago Wolves")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Red Bull Salzburg")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Texas Stars")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Tucson Roadrunners")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Bakersfield Condors")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("San Diego Gulls")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Ontario Reign")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Bili Tygri Liberec")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Kometa Brno")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("JYP Jyvaskyla")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("ERC Ingolstadt")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Sparta Praha")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Vitkovice Steel")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Vita Hasten")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Dynamo Pardubice")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Bridgeport Sound Tigers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Banska Bystrica")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Kolner Haie")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Adler Mannheim")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Lehigh Valley Phantoms")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Laval Rockets")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Augsburger Panther")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Milwaukee Admirals")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Utica Comets")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Stockton Heat")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Storhamar Hamar")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Syracuse Crunch")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Hartford Wolf Pack")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Hartford Whalers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Cleveland Monsters")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Wilkes-Barre/Scranton Penguins")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Hershey Bears")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Charlotte Checkers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Belleville Senators")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Binghamton Devils")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Fribourg-Gotteron")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Brynas IF")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Skelleftea AIK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Vaxjo Lakers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Davos")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Ambri-Piotta")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Thomas Sabo Ice Tigers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Medicine Hat Tigers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Medvescak Zagreb")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC VERVA Litvinov")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Energie Karlovy Vary")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Pirati Chomutov")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Lausanne")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Grizzly Adams Wolfsburg")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Rapperswil-Jona Lakers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("San Jose Barracuda")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Fort Wayne Komets")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Springfield Thunderbirds")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Malmo Redhawks")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Almtuna IS")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Newfoundland Growlers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HV71")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Sodertalje SK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Helsingin IFK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Dusseldorfer EG")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Lulea Hockey")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Fischtown Pinguins")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Graz 99ers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Norway")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Norfolk Admirals")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Iserlohn Roosters")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("SaiPa Lappeenranta")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Mountfield HK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Olomouc")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC Ocelari Trinec")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Tri-City Americans")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Rogle BK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Vienna Capitals")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Orebro Hockey")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Straubing Tigers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("EC VSV")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Schwenninger Wild Wings")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("BK Mlada Boleslav")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Krefeld Pinguine")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Portland Pirates ")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Portland Winter Hawks")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Halifax Mooseheads")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Oulun Karpat")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("KooKoo Kouvala")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Kootenay Ice")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Leksands IF")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Rauman Lukko")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HPK Hameenlinna")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Hamilton Bulldogs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("PSG Zlin")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Karlskrona HK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Mora IK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Black Wings Linz")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Atlanta Gladiators")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Tampereen Tappara")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("IK Pantern")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Toledo Walleye")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Sudbury Wolves")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HCB Sudtirol Alperia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Great Britain")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Greenville Swamp Rabbits")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Tampereen Ilves")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Wheeling Nailers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Dornbirner EC")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Idaho Steelheads")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Mikkelin Jukurit")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("KalPa Kuopio")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Kalamazoo Wings")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Farjestad BK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Kansas City Mavericks")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Sault Ste. Marie Greyhounds")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Mississauga Steelheads")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Missouri Mavericks")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Cincinnati Cyclones")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("SAPA Fehervar AV 19")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Brandon Wheat Kings")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Brampton Beast")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("EC KAC")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Orlando Solar Bears")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Allen Americans")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Adirondack Thunder")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Reading Royals")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Rapid City Rush")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Maine Mariners")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Timra IK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Vaasan Sport")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Moose Jaw Warriors")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Kelowna Rockets")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("HC TWK Innsbruck")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("MODO Hockey")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Pelicans Lahti")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("South Carolina Stingrays")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Worcester Railers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("AIK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Indy Fuel")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Wichita Thunder")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Porin Assat")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Orli Znojmo")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Owen Sound Attack")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Kitchener Rangers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Regina Pats")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("IF Bjorkloven")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Kingston Frontenacs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Acadie-Bathurst Titan")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Vasterviks IK")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Utah Grizzlies")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Tulsa Oilers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("IK Oskarshamn")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Jacksonville IceMen")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Spokane Chiefs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Victoriaville Tigres")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Victoria Royals")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Saginaw Spirit")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Guelph Storm")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("London Knights")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Drummondville Voltigeurs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Tingsryds AIF")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("GKS Tychy")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Sherbrooke Phoenix")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Peterborough Petes")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Swift Current Broncos")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("North Bay Battalion")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Rimouski Oceanic")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Quebec Remparts")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Prince Albert Raiders")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Gatineau Olympiques")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Blainville-Boisbriand Armada")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Windsor Spitfires")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("BIK Karlskoga")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Neman Grodno")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Everett Silvertips")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Baie-Comeau Drakkar")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Charlottetown Islanders")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Kamloops Blazers")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Seattle Thunderbirds")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Red Deer Rebels")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Niagara IceDogs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Flint Firebirds")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("St. Johns Ice Caps")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Saint John Sea Dogs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Val-D'Or Foreurs")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Valerenga Ishockey")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Oshawa Generals")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Lethbridge Hurricanes")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Aalborg Pirates")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Cape Breton Screaming Eagles")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Saskatoon Blades")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Moncton Wildcats")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Prince George Cougars")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Erie Otters")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Chicoutimi Sagueneens")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Rouyn-Noranda Huskies")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Shawinigan Cataractes")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Minnesota North Stars")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Quebec Nordiques")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Austria")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Canada")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Czech Republic")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Finland")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("France")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Germany")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Denmark ")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Italy")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Russia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Slovakia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Sweden")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Switzerland")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("USA")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Atlantic All-Stars")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Pacific All-Stars")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Binghamton Senators")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Springfield Falcons")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Latvia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Lake Erie Monsters ")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Ukraine")])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "pos" } },
-            [_vm._v("Position")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.pos,
-                  expression: "pos"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "pos", multiple: "multiple" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.pos = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { value: "LW" } }, [_vm._v("Left Wing")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "C" } }, [_vm._v("Center")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "RW" } }, [_vm._v("Right Wing")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "LD" } }, [
-                _vm._v("Left Defensemen")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "RD" } }, [
-                _vm._v("Right Defensemen")
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "stype" } },
-            [_vm._v("Type")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.stype,
-                  expression: "stype"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "stype", multiple: "multiple" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.stype = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { value: "PLY" } }, [_vm._v("Playmaker")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "PWF" } }, [
-                _vm._v("Power Forward")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "TWF" } }, [
-                _vm._v("Two-Way Forward")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "TWD" } }, [
-                _vm._v("Two-Way Defensemen")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "OFD" } }, [
-                _vm._v("Offenive Defensemen")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "SNP" } }, [_vm._v("Sniper")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "DFD" } }, [
-                _vm._v("Defensive Defesemen")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "GRN" } }, [_vm._v("Grinder")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "ENF" } }, [_vm._v("Enforcer")])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "shoots" } },
-            [_vm._v("Shoots")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.shoots,
-                  expression: "shoots"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "shoots" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.shoots = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", [_vm._v("Any")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Left")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Right")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "hgt" } },
-            [_vm._v("Height")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.hgt,
-                  expression: "hgt"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "hgt", multiple: "multiple" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.hgt = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { value: "6%279" } }, [_vm._v("6'9")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%278" } }, [_vm._v("6'8")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%277" } }, [_vm._v("6'7")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%276" } }, [_vm._v("6'6")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%275" } }, [_vm._v("6'5")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%274" } }, [_vm._v("6'4")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%273" } }, [_vm._v("6'3")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%272" } }, [_vm._v("6'2")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%271" } }, [_vm._v("6'1")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "6%270" } }, [_vm._v("6'0")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5%2711" } }, [_vm._v("5'11")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5%2710" } }, [_vm._v("5'10")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5%279" } }, [_vm._v("5'9")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5%278" } }, [_vm._v("5'8")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5%277" } }, [_vm._v("5'7")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5%276" } }, [_vm._v("5'6")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "5%275" } }, [_vm._v("5'5")])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "synergy" } },
-            [_vm._v("Synergy")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.synergy,
-                  expression: "synergy"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "synergy", multiple: "multiple" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.synergy = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { value: "PP" } }, [
-                _vm._v("PP - Passing Playmaker")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "S" } }, [
-                _vm._v("S - Speedsters")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "NP" } }, [
-                _vm._v("NP - Net Front Presence")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "FM" } }, [
-                _vm._v("FM - Faceoff Master")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "CS" } }, [
-                _vm._v("CS - Call The Shot")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "DZ" } }, [
-                _vm._v("DZ - Dangle Zone")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "HT" } }, [
-                _vm._v("HT - Hammer Time")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "BE" } }, [
-                _vm._v("BE - The Beast")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "DW" } }, [
-                _vm._v("DW - Defensive Warrior")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "BM" } }, [
-                _vm._v("BM - Breakout Master")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "T" } }, [
-                _vm._v("T - It's a Trap")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "BR" } }, [
-                _vm._v("BR - Bruiser")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "FB" } }, [
-                _vm._v("FB - For The Boys")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "TB" } }, [
-                _vm._v("TB - The Beauty")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "BU" } }, [_vm._v("BU - Burner")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "HH" } }, [
-                _vm._v("HH - Heavy Hitter")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "CP" } }, [
-                _vm._v("CP - Clutch Player")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "FS" } }, [
-                _vm._v("FS - Fine Shooting")
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "scard" } },
-            [_vm._v("Card")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.scard,
-                  expression: "scard"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "scard", multiple: "multiple" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.scard = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { value: "sGold" } }, [
-                _vm._v("Rare Gold")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "Gold" } }, [_vm._v("Gold")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "sSilver" } }, [
-                _vm._v("Rare SIlver")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "Silver" } }, [_vm._v("Silver")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "sBronze" } }, [
-                _vm._v("Rare Bronze")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "Bronze" } }, [_vm._v("Bronze")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "TOTW" } }, [
-                _vm._v("Team of the Week (Gold)")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "STOTW" } }, [
-                _vm._v("Team of the Week (Silver)")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "BTOTW" } }, [
-                _vm._v("Team of the Week (Bronze)")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "LGD" } }, [_vm._v("Legends")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "ROOK" } }, [_vm._v("Rookies")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "COVER" } }, [_vm._v("Cover")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "ALM" } }, [_vm._v("Alumni")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "CS" } }, [
-                _vm._v("Competitive Seasons")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "HC" } }, [
-                _vm._v("Hut Champion")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "DC" } }, [
-                _vm._v("Draft Champions")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "GAT" } }, [_vm._v("Gatorade")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "EVO" } }, [_vm._v("Evolution")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "PT" } }, [_vm._v("Prime Time")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "MS" } }, [_vm._v("Milestone")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "HWN" } }, [_vm._v("Halloween")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "MSP" } }, [
-                _vm._v("Master Set Player")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "GSCGE" } }, [
-                _vm._v("Global Series Germany")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "GSCFI" } }, [
-                _vm._v("Global Series Finland")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "GSCSE" } }, [
-                _vm._v("Global Series Sweden")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "GSCSI" } }, [
-                _vm._v("Global Series Switzerland")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "TG" } }, [
-                _vm._v("Thanksgiving")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "DIAM" } }, [_vm._v("DIamond")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "XMAS" } }, [_vm._v("Christmas")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "IPOTG" } }, [
-                _vm._v("International Player of the Game")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "WC" } }, [
-                _vm._v("Winter Classic")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "EVO2" } }, [
-                _vm._v("Evolution 2")
-              ])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "wgtmin" } },
-            [_vm._v("Weight min")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model.number",
-                value: _vm.wgtmin,
-                expression: "wgtmin",
-                modifiers: { number: true }
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "wgtmin" },
-            domProps: { value: _vm.wgtmin },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.wgtmin = _vm._n($event.target.value)
-              },
-              blur: function($event) {
-                return _vm.$forceUpdate()
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "wgtmax" } },
-            [_vm._v("Weight max")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model.number",
-                value: _vm.wgtmax,
-                expression: "wgtmax",
-                modifiers: { number: true }
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "wgtmax" },
-            domProps: { value: _vm.wgtmax },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.wgtmax = _vm._n($event.target.value)
-              },
-              blur: function($event) {
-                return _vm.$forceUpdate()
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
-          _c(
-            "label",
-            { staticClass: "col-form-label", attrs: { for: "nationality" } },
-            [_vm._v("Nationality")]
-          ),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.nationality,
-                  expression: "nationality"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "nationality" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.nationality = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            [
-              _c("option", [_vm._v("Any")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Australia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Austria")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Belarus")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Belgium")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Canada")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Cezech Republic")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Croatia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Czech Republic")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Denmark")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("England")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Estonia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Finland")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("France")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Germany")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Hungary")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Italy")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Latvia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Liberia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Lithuania")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Netherlands")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Norway")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Poland")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Romania")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Russia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Slovakia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Slovenia")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Sweden")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Switzerland")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("Ukraine")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("USA")])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row synergy" },
-        _vm._l(_vm.synergyRate, function(syn, index) {
-          return _vm.synergy.includes(syn.name)
-            ? _c("div", { key: syn.id, staticClass: "col-3  mt-3 mb-3" }, [
-                _c("span", [
-                  _vm._v(_vm._s(syn.name) + " - " + _vm._s(syn.rate))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-info",
-                    on: {
-                      click: function($event) {
-                        return _vm.synDec(syn.id)
-                      }
-                    }
-                  },
-                  [_vm._v("-")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-info",
-                    on: {
-                      click: function($event) {
-                        return _vm.synInc(syn.id)
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                )
-              ])
-            : _vm._e()
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row mt-5 mb-5" }, [
-        _c("div", { staticClass: "col-12 d-flex justify-content-center" }, [
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", on: { click: _vm.search } },
-            [_vm._v("SEARCH")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _vm.results != ""
-        ? _c("table", { staticClass: "table table-striped table-lg" }, [
-            _vm._m(0),
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "per_page" } },
+              [_vm._v("Max elements")]
+            ),
             _vm._v(" "),
             _c(
-              "tbody",
-              _vm._l(_vm.results, function(result) {
-                return _c("tr", { key: result.id }, [
-                  _c(
-                    "td",
-                    {
-                      staticStyle: { cursor: "pointer" },
-                      on: {
-                        click: function($event) {
-                          return _vm.getCard(result.id)
-                        }
-                      }
-                    },
-                    [_c("span", [_vm._v(_vm._s(result.id))])]
-                  ),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(result.League))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(result.Team))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(result.Player))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(result.salary))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(result.OVR))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-info",
-                        on: {
-                          click: function($event) {
-                            return _vm.addCard(result)
-                          }
-                        }
-                      },
-                      [_vm._v("Выбрать")]
-                    )
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.per_page,
+                    expression: "per_page"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "per_page" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.per_page = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "100", selected: "" } }, [
+                  _vm._v("100")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "75" } }, [_vm._v("75")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "10" } }, [_vm._v("10")])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-6 player" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "player" } },
+              [_vm._v("Player")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.trim",
+                  value: _vm.playerName,
+                  expression: "playerName",
+                  modifiers: { trim: true }
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "player" },
+              domProps: { value: _vm.playerName },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.playerName = $event.target.value.trim()
+                },
+                blur: function($event) {
+                  return _vm.$forceUpdate()
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-3" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "minOvr" } },
+              [_vm._v("Ovrmin")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.number",
+                  value: _vm.minOvr,
+                  expression: "minOvr",
+                  modifiers: { number: true }
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "minOvr" },
+              domProps: { value: _vm.minOvr },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.minOvr = _vm._n($event.target.value)
+                },
+                blur: function($event) {
+                  return _vm.$forceUpdate()
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-3" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "maxOvr" } },
+              [_vm._v("Ovrmax")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.number",
+                  value: _vm.maxOvr,
+                  expression: "maxOvr",
+                  modifiers: { number: true }
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "maxOvr" },
+              domProps: { value: _vm.maxOvr },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.maxOvr = _vm._n($event.target.value)
+                },
+                blur: function($event) {
+                  return _vm.$forceUpdate()
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "league" } },
+              [_vm._v("League")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.league,
+                    expression: "league"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "league" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.league = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("Any")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.leagueOptions, function(leag) {
+                  return _c("option", { domProps: { value: leag } }, [
+                    _vm._v(_vm._s(leag))
                   ])
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "team" } },
+              [_vm._v("Team")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.team,
+                    expression: "team"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "team" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.team = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("Any")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "BAN" } }, [
+                  _vm._v("Banksa Bystrica")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "BEL" } }, [
+                  _vm._v("Belfast Giants")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "CAR" } }, [
+                  _vm._v("Cardiff Devils")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "FRI" } }, [
+                  _vm._v("Frisk Asker")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "GKS" } }, [
+                  _vm._v("GKS Tychy")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "GRN" } }, [
+                  _vm._v("Grenoble Bruleurs de Loups")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "RUN" } }, [
+                  _vm._v("Rungsted Seier Capital")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "MIN" } }, [
+                  _vm._v("Yunost Minsk")
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "position" } },
+              [_vm._v("Position")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.position,
+                    expression: "position"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "position", multiple: "multiple" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.position = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("Any")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "LW" } }, [_vm._v("Left Wing")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "C" } }, [_vm._v("Center")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "RW" } }, [
+                  _vm._v("Right Wing")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "LD" } }, [
+                  _vm._v("Left Defensemen")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "RD" } }, [
+                  _vm._v("Right Defensemen")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "playerType" } },
+              [_vm._v("Type")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.playerType,
+                    expression: "playerType"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "playerType", multiple: "multiple" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.playerType = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("Any")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "PLY" } }, [
+                  _vm._v("Playmaker")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "PWF" } }, [
+                  _vm._v("Power Forward")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "TWF" } }, [
+                  _vm._v("Two-Way Forward")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "TWD" } }, [
+                  _vm._v("Two-Way Defensemen")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "OFD" } }, [
+                  _vm._v("Offenive Defensemen")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "SNP" } }, [_vm._v("Sniper")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "DFD" } }, [
+                  _vm._v("Defensive Defesemen")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "GRN" } }, [_vm._v("Grinder")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "ENF" } }, [_vm._v("Enforcer")])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "handedness" } },
+              [_vm._v("Shoots")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.handedness,
+                    expression: "handedness"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "handedness", multiple: "multiple" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.handedness = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "Any", selected: "" } }, [
+                  _vm._v("Any")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Left")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Right")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "height" } },
+              [_vm._v("Height")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.height,
+                    expression: "height"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "height", multiple: "multiple" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.height = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.heightLabels, function(h) {
+                return _c("option", { domProps: { value: h.id } }, [
+                  _vm._v(_vm._s(h.name))
                 ])
               }),
               0
             )
           ])
-        : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "synergy" } },
+              [_vm._v("Synergy")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.synergy,
+                    expression: "synergy"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "synergy", multiple: "multiple" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.synergy = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.getSynergy(), function(syn) {
+                return _c("option", { domProps: { value: syn.id } }, [
+                  _vm._v(_vm._s(syn.name))
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "card" } },
+              [_vm._v("Card")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.card,
+                    expression: "card"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "card", multiple: "multiple" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.card = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("Any")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Gold" } }, [_vm._v("Gold")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Silver" } }, [
+                  _vm._v("Silver")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Bronze" } }, [
+                  _vm._v("Bronze")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "PT" } }, [_vm._v("Primetime")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "TOTW" } }, [
+                  _vm._v("Team of the Week")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "HTH" } }, [
+                  _vm._v("Hometown Hero")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "sICON" } }, [
+                  _vm._v("Standard Icon")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "ICON" } }, [
+                  _vm._v("Master Icon")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "Global" } }, [
+                  _vm._v("Global")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "CLS" } }, [_vm._v("Classic")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "mspCLS" } }, [
+                  _vm._v("MSP - Classic")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "FAN" } }, [
+                  _vm._v("Fantasy Hockey")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "mspFAN" } }, [
+                  _vm._v("MSP - Fantasy Hockey")
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-3" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "wgtmin" } },
+              [_vm._v("Weight min")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.number",
+                  value: _vm.minWgt,
+                  expression: "minWgt",
+                  modifiers: { number: true }
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "wgtmin" },
+              domProps: { value: _vm.minWgt },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.minWgt = _vm._n($event.target.value)
+                },
+                blur: function($event) {
+                  return _vm.$forceUpdate()
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-3" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "wgtmax" } },
+              [_vm._v("Weight max")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.number",
+                  value: _vm.maxWgt,
+                  expression: "maxWgt",
+                  modifiers: { number: true }
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "wgtmax" },
+              domProps: { value: _vm.maxWgt },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.maxWgt = _vm._n($event.target.value)
+                },
+                blur: function($event) {
+                  return _vm.$forceUpdate()
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "nationality" } },
+              [_vm._v("Nationality")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nationality,
+                    expression: "nationality"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "nationality" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.nationality = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("Any")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.nationalityOptions, function(n) {
+                  return _c("option", { domProps: { value: n } }, [
+                    _vm._v(_vm._s(n))
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-5 mb-5" }, [
+          _c("div", { staticClass: "col-12 d-flex justify-content-center" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", on: { click: _vm.search } },
+              [_vm._v("SEARCH")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.results != ""
+          ? _c("table", { staticClass: "table table-striped table-lg" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.results, function(result) {
+                  return _c("tr", { key: result.id }, [
+                    _c(
+                      "td",
+                      {
+                        staticStyle: { cursor: "pointer" },
+                        on: {
+                          click: function($event) {
+                            return _vm.getCard(result.id)
+                          }
+                        }
+                      },
+                      [_c("span", [_vm._v(_vm._s(result.id))])]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(result.league))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(result.team))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(result.player))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(result.salary))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(result.ovr))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info",
+                          on: {
+                            click: function($event) {
+                              return _vm.addCard(result)
+                            }
+                          }
+                        },
+                        [_vm._v("Выбрать")]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c(
         "modal",
-        { attrs: { name: "card", width: "240px", height: "340px" } },
+        { attrs: { name: "card", width: "100%", height: "100%" } },
         [
           _c("a", {
             staticClass: "close",
@@ -31896,8 +31220,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("div", { domProps: { innerHTML: _vm._s(_vm.cardExample) } })
-        ]
+          _c("card", { attrs: { card: _vm.card_example } })
+        ],
+        1
       )
     ],
     1
@@ -44289,6 +43614,93 @@ window.pusher = pusher;
 
 /***/ }),
 
+/***/ "./resources/js/components/Toggle.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/Toggle.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Toggle_vue_vue_type_template_id_47b09f7f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Toggle.vue?vue&type=template&id=47b09f7f& */ "./resources/js/components/Toggle.vue?vue&type=template&id=47b09f7f&");
+/* harmony import */ var _Toggle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Toggle.vue?vue&type=script&lang=js& */ "./resources/js/components/Toggle.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Toggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Toggle.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Toggle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Toggle_vue_vue_type_template_id_47b09f7f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Toggle_vue_vue_type_template_id_47b09f7f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Toggle.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Toggle.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Toggle.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Toggle.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Toggle.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss& ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Toggle.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Toggle.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Toggle.vue?vue&type=template&id=47b09f7f&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Toggle.vue?vue&type=template&id=47b09f7f& ***!
+  \***************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_template_id_47b09f7f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Toggle.vue?vue&type=template&id=47b09f7f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Toggle.vue?vue&type=template&id=47b09f7f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_template_id_47b09f7f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Toggle_vue_vue_type_template_id_47b09f7f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/AdminCardPanel.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/admin/AdminCardPanel.vue ***!
@@ -44371,6 +43783,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminCardPanel_vue_vue_type_template_id_8953f920___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminCardPanel_vue_vue_type_template_id_8953f920___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/Card.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/admin/Card.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card.vue?vue&type=template&id=137f5e7b& */ "./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b&");
+/* harmony import */ var _Card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Card.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/Card.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/Card.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/Card.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/admin/Card.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Card.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/Card.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Card.vue?vue&type=template&id=137f5e7b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

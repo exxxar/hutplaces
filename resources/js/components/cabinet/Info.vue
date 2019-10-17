@@ -48,7 +48,7 @@
 
                 <tr>
                     <td>{{$lang.cabinet.info.level}}</td>
-                    <td>{{user.level.title}}</td>
+                    <td>{{prepareLevelTitle()}}</td>
                 </tr>
 
                 <tr>
@@ -123,6 +123,9 @@
                     title: title,
                     text: message
                 })
+            },
+            prepareLevelTitle(title){
+                return eval(`this.$lang.levels.${this.user.level.title}`);
             },
             checkCurrent() {
                 return this.currentUser == null ? false :

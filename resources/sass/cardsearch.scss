@@ -64,6 +64,7 @@
       @media (max-width: 700px) {
         & {
           width:100%;
+          justify-content: center;
         }
       }
 
@@ -85,7 +86,7 @@
         color: white;
         width: 100%;
         border-radius: 5px;
-        padding: 15px;
+        padding: 10px;
         margin-bottom: 7px;
         box-sizing: border-box;
         &::placeholder {

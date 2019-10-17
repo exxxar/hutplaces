@@ -1,11 +1,21 @@
 <template>
     <div class="info-block">
-        <ul class="filters" v-if="types">
-            <li @click="filter(null)" v-if="types.length>0">#{{prepareTypeText('all')}}</li>
-            <li v-for="t in types" :count="t.count" @click="filter(t.trigger.value)">
+        <ul class="filters c-type" v-if="categories!=null">
+            <li v-for="cat in categories" @click="filterCategory(cat.value)">
+                #{{prepareCategoryText(cat.key)}}
+            </li>
+        </ul>
+
+        <hr>
+
+        <ul class="filters f-type" v-if="types">
+
+            <li v-for="t in types" :count="t.count" @click="filterTrigger(t.trigger.value)">
                 #{{prepareTypeText(t.trigger.key)}}
             </li>
         </ul>
+
+
         <h1 class="main-title">{{content.title}}</h1>
         <p class="description">{{content.content}}</p>
         <ul class="achievements" v-if="achievements!=null&&achievements.length>0">
@@ -18,7 +28,8 @@
                 </div>
             </li>
         </ul>
-        <div class="no-items" v-if="achievements==null||achievements.length==0"><img :src="$lang.achievements.no_ach" alt=""></div>
+        <div class="no-items" v-if="achievements==null||achievements.length==0"><img :src="$lang.achievements.no_ach"
+                                                                                     alt=""></div>
 
         <modal name="ach" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
@@ -55,10 +66,14 @@
     export default {
         props: ["userId"],
         activated() {
+            this.loadCategories()
             this.loadTypes()
             this.loadAchievements()
         },
         mounted() {
+
+
+            this.loadCategories()
             this.loadTypes()
             this.loadAchievements()
         },
@@ -97,7 +112,10 @@
             hide(name) {
                 this.$modal.hide(name)
             },
-            filter(type) {
+            filterCategory(type) {
+                this.category_type = type
+            },
+            filterTrigger(type) {
                 this.trigger_type = type
             },
             cssProps(bg) {
@@ -107,6 +125,9 @@
             },
             prepareImage(img) {
                 return `/img/achievements/element/${img}`;
+            },
+            prepareCategoryText(type) {
+                return eval(`this.$lang.achcategories.${type.toLowerCase()}`);
             },
             prepareTypeText(type) {
                 return eval(`this.$lang.triggertypes.${type.toLowerCase()}`);
@@ -161,6 +182,18 @@
                     tmp;
             },
 
+            loadCategories() {
+                axios
+                    .get('/achievements/categories')
+                    .then(response => {
+                        console.log("cat", response.data.categories)
+                        this.categories = response.data.categories;
+
+                        this.category_type = this.categories[0].value;
+                        this.prepareActivateCategory()
+                    });
+            },
+
             loadTypes() {
                 let url = this.userId == null ?
                     '/achievements/types' :
@@ -170,6 +203,9 @@
                     .get(url)
                     .then(response => {
                         this.types = response.data.trigger_types;
+
+                        this.trigger_type = this.types[0].trigger.value
+                        this.prepareActivateType();
                     });
             },
             loadAchievements() {
@@ -185,10 +221,44 @@
                     });
             },
             prepareAchievements() {
-                return this.trigger_type != null ?
+                return this.trigger_type != null && this.category_type != null ?
                     this.achievements
-                        .filter(ach => ach.trigger_type == this.trigger_type) :
+                        .filter(ach => ach.trigger_type == this.trigger_type && ach.category == this.category_type) :
                     this.achievements;
+            },
+            prepareActivateType() {
+                document.querySelectorAll(".filters.f-type li").forEach(function (a) {
+                    console.log("elem");
+                    a.onclick = function () {
+                        document.querySelectorAll(".filters.f-type li").forEach(function (b) {
+                            b.style.cssText = "color:white;font-weight:100;";
+                        });
+
+                        a.style.cssText = "font-weight:900;color:yellow;";
+                    }
+                });
+
+                var li = document.querySelectorAll(".filters.f-type li")[0];
+                if (li != undefined)
+                   li.style.cssText = "color:yellow;";
+
+
+            },
+            prepareActivateCategory() {
+
+                document.querySelectorAll(".filters.c-type li").forEach(function (a) {
+                    a.onclick = function () {
+                        document.querySelectorAll(".filters.c-type li").forEach(function (b) {
+                            b.style.cssText = "color:white;font-weight:100;";
+                        });
+
+                        a.style.cssText = "font-weight:900;color:yellow;";
+                    }
+                });
+
+                var li = document.querySelectorAll(".filters.c-type li")[0]
+                if (li != undefined)
+                    li.style.cssText = "color:yellow;";
             }
 
         },
@@ -200,7 +270,9 @@
                 },
                 achievements: null,
                 trigger_type: null,
+                category_type: null,
                 types: null,
+                categories: null,
                 selected: {
                     current: 0,
                     needed: 0,
@@ -218,5 +290,12 @@
 <style lang="scss" scoped>
     @import "~/achievements.scss";
     @import "~/cabinet.scss";
+
+    hr {
+        width: 100px;
+        height: 1px;
+        border: none;
+        background: yellow;
+    }
 </style>
 

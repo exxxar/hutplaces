@@ -75,9 +75,11 @@
                 this.$emit("modal",name);
             },
             logout() {
+                this.$loading(true)
                 this.$store.dispatch('logoutUser').then(()=>{
                     Event.$emit("userLogout")
                     this.$router.push({path:"/signin"});
+                    this.$loading(false)
                 });
             },
             getAvatar(img) {

@@ -33,11 +33,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    message: function message(title, _message, type) {
+    message: function message(_message) {
       this.$notify({
         group: 'main',
-        type: type,
-        title: title,
+        type: 'warn',
+        title: this.$lang.modals.promocodes.error_title,
         text: _message
       });
     },
@@ -45,16 +45,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.promo.length != 8) {
-        this.message("Ввод промокода", "А где промокод?", "warn");
+        this.message(this.$lang.modals.promocodes.error_1);
         return;
       }
 
       axios.post('/promo/activate', {
         code: this.promo
       }).then(function (response) {
-        console.log(response);
-
-        _this.message("Ввод промокода", response.data.message, "warn");
+        _this.message(response.data.message);
       });
     }
   }
@@ -92,10 +90,14 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("h1", [_vm._v("Введите действительный промокод")]),
+    _c("h1", {
+      domProps: { innerHTML: _vm._s(_vm.$lang.modals.promocodes.title) }
+    }),
     _vm._v(" "),
     _c("div", { staticClass: "input-group" }, [
-      _c("label", [_vm._v("Ваш промокод")]),
+      _c("label", {
+        domProps: { innerHTML: _vm._s(_vm.$lang.modals.promocodes.your_promo) }
+      }),
       _vm._v(" "),
       _c("input", {
         directives: [
@@ -120,18 +122,15 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "input-group" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-yellow full",
-          on: {
-            click: function($event) {
-              return _vm.doRequest()
-            }
+      _c("button", {
+        staticClass: "btn btn-yellow full",
+        domProps: { innerHTML: _vm._s(_vm.$lang.modals.promocodes.activate) },
+        on: {
+          click: function($event) {
+            return _vm.doRequest()
           }
-        },
-        [_vm._v("Активировать")]
-      )
+        }
+      })
     ])
   ])
 }

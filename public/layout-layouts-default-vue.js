@@ -129,12 +129,15 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this2 = this;
 
+      this.$loading(true);
       this.$store.dispatch('logoutUser').then(function () {
         Event.$emit("userLogout");
 
         _this2.$router.push({
           path: "/signin"
         });
+
+        _this2.$loading(false);
       });
     },
     getAvatar: function getAvatar(img) {
@@ -386,10 +389,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'faq',
-  props: ['show'],
-  methods: {}
+  name: 'help',
+  data: function data() {
+    return {
+      email: '',
+      text: '',
+      title: ''
+    };
+  },
+  methods: {
+    message: function message(_message) {
+      this.$notify({
+        group: 'main',
+        type: "warn",
+        title: this.$lang.modals.help.message_title,
+        text: _message
+      });
+    },
+    sendRequest: function sendRequest(e) {
+      var _this = this;
+
+      var currentObj = this;
+
+      if (this.email == '' || this.text == '' || this.title == '') {
+        this.message(this.$lang.modals.help.error_1);
+        return;
+      }
+
+      var formData = new FormData();
+      formData.append('email', this.email);
+      formData.append('title', this.title);
+      formData.append('message', this.text);
+      axios.post('/help/ask', formData).then(function (response) {
+        e.target.reset();
+
+        _this.message(_this.$lang.modals.help.success_2);
+      })["catch"](function (error) {
+        _this.message(_this.$lang.modals.help.error_2);
+      });
+      this.message(this.$lang.modals.help.success_1);
+      this.$emit('close');
+    }
+  }
 });
 
 /***/ }),
@@ -432,17 +476,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'faq',
+  name: 'history',
   data: function data() {
     return {
-      historyList: null
+      history: null
     };
   },
   mounted: function mounted() {
     this.loadHistory();
   },
   methods: {
+    close: function close() {
+      this.$emit("close");
+    },
     message: function message(title, _message, type) {
       this.$notify({
         group: 'main',
@@ -451,32 +502,16 @@ __webpack_require__.r(__webpack_exports__);
         text: _message
       });
     },
-    selfHide: function selfHide() {
-      this.$emit("self-hide");
-    },
     loadHistory: function loadHistory() {
       var _this = this;
 
       this.$loading(true);
       axios.get('/lottery/history').then(function (response) {
-        _this.historyList = response.data.history;
+        _this.history = response.data.history;
       })["catch"](function (reason) {
         _this.message("Авторизация", "\u0412\u044B \u043D\u0435 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u043D\u044B!", 'warn');
       });
       this.$loading(false);
-    },
-    getPlatform: function getPlatform(id) {
-      switch (id) {
-        default:
-        case 1:
-          return "/img/xbox-icon.png";
-
-        case 2:
-          return "/img/ps4-icon.png";
-
-        case 3:
-          return "/img/pc-icon.png";
-      }
     }
   }
 });
@@ -626,11 +661,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    message: function message(title, _message, type) {
+    message: function message(_message) {
       this.$notify({
         group: 'main',
-        type: type,
-        title: title,
+        type: 'warn',
+        title: this.$lang.modals.promocodes.error_title,
         text: _message
       });
     },
@@ -638,16 +673,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.promo.length != 8) {
-        this.message("Ввод промокода", "А где промокод?", "warn");
+        this.message(this.$lang.modals.promocodes.error_1);
         return;
       }
 
       axios.post('/promo/activate', {
         code: this.promo
       }).then(function (response) {
-        console.log(response);
-
-        _this.message("Ввод промокода", response.data.message, "warn");
+        _this.message(response.data.message);
       });
     }
   }
@@ -799,35 +832,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'report',
   props: ['show'],
   data: function data() {
     return {
       images: [],
-      title: '',
       description: '',
       email: '',
-      success: ''
+      error_type: '0'
     };
   },
   methods: {
-    close: function close() {
-      this.email = '';
-      this.description = '';
-      this.success = '';
-      this.$emit('close', false);
+    message: function message(_message) {
+      this.$notify({
+        group: 'main',
+        type: "warn",
+        title: this.$lang.modals.report.message_title,
+        text: _message
+      });
     },
     onImageChange: function onImageChange(e) {
       this.images = this.$refs.files.files;
     },
-    formSubmit: function formSubmit(e) {
+    sendReport: function sendReport(e) {
+      var _this = this;
+
       var currentObj = this;
+
+      if (this.email == '' || this.description == '') {
+        this.message(this.$lang.modals.report.error_1);
+        return;
+      }
+
       var config = {
         headers: {
           'content-type': 'multipart/form-data'
@@ -842,15 +879,18 @@ __webpack_require__.r(__webpack_exports__);
 
       formData.append('email', this.email);
       formData.append('description', this.description);
-      axios.post('/reportSubmit', formData, config).then(function (response) {
-        currentObj.success = response.data.success;
+      formData.append('error_type', this.error_type);
+      axios.post('/reports/save', formData, config).then(function (response) {
         e.target.reset();
-        this.email = '';
-        this.description = '';
-        this.success = '';
+        _this.email = '';
+        _this.description = '';
+
+        _this.message(_this.$lang.modals.report.success_2);
       })["catch"](function (error) {
-        currentObj.output = error;
+        _this.message(_this.$lang.modals.report.error_2);
       });
+      this.message(this.$lang.modals.report.success_1);
+      this.$emit('close');
     }
   }
 });
@@ -868,7 +908,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_modals_Rules_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/modals/Rules.vue */ "./resources/js/components/modals/Rules.vue");
 /* harmony import */ var _components_modals_About_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/modals/About.vue */ "./resources/js/components/modals/About.vue");
-/* harmony import */ var _components_modals_Supplier_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/modals/Supplier.vue */ "./resources/js/components/modals/Supplier.vue");
+/* harmony import */ var _components_modals_Partner_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/modals/Partner.vue */ "./resources/js/components/modals/Partner.vue");
 /* harmony import */ var _components_modals_Payment_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/modals/Payment.vue */ "./resources/js/components/modals/Payment.vue");
 /* harmony import */ var _components_modals_Help_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/modals/Help.vue */ "./resources/js/components/modals/Help.vue");
 /* harmony import */ var _components_modals_History_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/modals/History.vue */ "./resources/js/components/modals/History.vue");
@@ -1088,6 +1128,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    this.$store.dispatch("loadLifetime");
+    this.$store.dispatch("loadGames");
+    this.$store.dispatch("loadDrafts");
+    if (!localStorage.getItem('lang')) this.lang('ru');else this.lang(localStorage.getItem('lang'));
+
     if (this.check) {
       this.$store.dispatch('getCurrentUser').then(function () {
         _this.authenticated = _this.check;
@@ -1098,7 +1143,30 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     window.addEventListener("resize", function () {
-      document.querySelector(".ps-container").scrollTop = 0;
+      var containers = document.querySelectorAll('.scroll-area');
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = containers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var ccc = _step.value;
+          ccc.scrollTop = 0;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
     });
     pusher.subscribe('pick-place-chanel').bind('pick-place-event', function (data) {
       Event.$emit("updatePlaces");
@@ -1189,6 +1257,10 @@ __webpack_require__.r(__webpack_exports__);
            this.authenticated = false;
            this.user = null;
        });*/
+
+    Event.$on('message', function (m) {
+      _this.message(m.title, m.message, m.type);
+    });
   },
   components: {
     Chat: _components_Chat_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
@@ -1205,7 +1277,7 @@ __webpack_require__.r(__webpack_exports__);
     AsideMenu: _components_AsideMenu_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
     MainMenu: _components_MainMenu_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
     Rules: _components_modals_Rules_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Supplier: _components_modals_Supplier_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Partner: _components_modals_Partner_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     About: _components_modals_About_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
@@ -1224,7 +1296,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\nhtml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block;\n}\nbody {\n  line-height: 1;\n}\nol, ul {\n  list-style: none;\n}\nblockquote, q {\n  quotes: none;\n}\nblockquote:before, blockquote:after {\n  content: \"\";\n  content: none;\n}\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n  min-height: 100%;\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tabs-component {\n  width: 100%;\n}\n.tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n.tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  color: gray;\n}\n.tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n  min-height: 100%;\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tabs-component {\n  width: 100%;\n}\n.tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n.tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  color: gray;\n}\n.tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n.modal-body {\n  min-height: 300px;\n  height: auto;\n  width: 800px;\n  padding: 20px;\n  box-sizing: border-box;\n}\n@media (max-width: 800px) {\n.modal-body {\n    width: 100%;\n}\n}\n.modal-body .modal-logo {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  padding: 20px;\n  box-sizing: border-box;\n}\n.modal-body p {\n  width: 100%;\n  text-align: center;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n}\n.modal-body p span {\n  color: yellow;\n}\n.modal-body p a {\n  color: yellow;\n  font-weight: 900;\n}\n.modal-body hr {\n  border: none;\n  width: 100%;\n  height: 1px;\n  background-color: white;\n}\n.modal-body h1 {\n  width: 100%;\n  text-align: center;\n  font-weight: 100;\n  font-size: 24px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n  padding: 10px;\n  box-sizing: border-box;\n}\n.modal-body h2 {\n  width: 100%;\n  text-align: center;\n  font-weight: 900;\n  font-size: 24px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n}\n.modal-body h2 span {\n  color: yellow;\n}\n.modal-body .input-group {\n  width: 100%;\n  box-sizing: border-box;\n  padding: 10px;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.modal-body .input-group label {\n  font-weight: 600;\n  font-size: 10px;\n  color: white;\n}\n.modal-body .input-group textarea,\n.modal-body .input-group select,\n.modal-body .input-group input {\n  border: none;\n  border-bottom: 1px solid white;\n  color: white;\n  font-weight: 100;\n  font-size: 24px;\n  width: 100%;\n  min-width: 100%;\n  text-align: center;\n  background: transparent;\n  padding: 15px;\n  box-sizing: border-box;\n  text-transform: uppercase;\n  font-family: \"Open Sans\";\n}\n.modal-body .input-group textarea option,\n.modal-body .input-group select option,\n.modal-body .input-group input option {\n  color: #2c3e50;\n}\n.modal-body .input-group input[type=file] {\n  display: none;\n}\n.modal-body .input-group input[type=file] + label {\n  padding: 20px;\n  width: 100%;\n  cursor: pointer;\n  border: 1px yellow solid;\n}\n.modal-body .input-group textarea {\n  font-size: 16px;\n  text-align: left;\n  resize: vertical;\n}\n.modal-body .input-group select {\n  font-size: 16px;\n  text-transform: initial;\n}\n.promo-modal {\n  width: 500px;\n}\n.partner-modal {\n  width: 500px;\n}\n.partner-modal p {\n  text-align: justify;\n  font-weight: 100;\n}\n.partner-modal p:first-letter {\n  margin-left: 50px;\n}\n.supplier-modal {\n  width: 500px;\n}\n.supplier-modal p {\n  text-align: justify;\n  font-weight: 100;\n}\n.supplier-modal p:first-letter {\n  margin-left: 50px;\n}\n.report-modal,\n.help-modal {\n  width: 500px;\n}\n.about-modal p {\n  text-align: justify;\n  font-weight: 100;\n}\n.about-modal p:first-letter {\n  margin-left: 50px;\n}\n.recharge-modal {\n  width: 500px;\n}\n.questions-modal {\n  padding: 20px;\n  box-sizing: border-box;\n}\n.questions-modal > ul {\n  position: relative;\n  margin-top: 10px;\n  width: 100%;\n  padding: 10px 20px;\n  border: 1px yellow solid;\n  overflow: hidden;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition: 0.5s;\n}\n.questions-modal > ul.active:after {\n  content: \"\";\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  transform-origin: center center;\n  border-right: 2px solid yellow;\n  border-bottom: 2px solid yellow;\n  width: 10px;\n  height: 10px;\n  transform: rotate(45deg);\n  transition: 0.5s;\n}\n.questions-modal > ul:after {\n  content: \"\";\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  transform-origin: center center;\n  border-bottom: 2px solid yellow;\n  width: 10px;\n  height: 10px;\n  transition: 0.5s;\n}\n.questions-modal > ul.active {\n  height: auto;\n}\n.questions-modal > ul.active > li > ul {\n  display: block;\n}\n.questions-modal > ul:focus, .questions-modal > ul:active, .questions-modal > ul:hover {\n  height: auto;\n  transition: 0.5s;\n}\n.questions-modal > ul:focus:after, .questions-modal > ul:active:after, .questions-modal > ul:hover:after {\n  transform: rotate(45deg);\n  transition: 0.5s;\n  border-right: 2px solid yellow;\n}\n.questions-modal > ul:focus > li > ul, .questions-modal > ul:active > li > ul, .questions-modal > ul:hover > li > ul {\n  display: block;\n}\n.questions-modal > ul > li > p {\n  color: white;\n  line-height: 150%;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 10px;\n  text-align: left;\n  text-overflow: ellipsis;\n  word-break: keep-all;\n}\n.questions-modal > ul > li > ul {\n  width: 100%;\n  display: none;\n}\n.questions-modal > ul > li > ul li {\n  color: yellow;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 5px 5px;\n}\n.history-modal {\n  width: 800px;\n}\n.history-modal ul {\n  border: 1px yellow solid;\n  margin-top: 10px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.history-modal ul li {\n  width: 16%;\n  text-align: center;\n  color: white;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 10px;\n  box-sizing: border-box;\n}\n.history-modal ul li a {\n  color: yellow;\n}\n.aside-menu-modal > nav {\n  height: 100vh;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.aside-menu-modal > nav > ul {\n  display: block;\n  width: 100%;\n}\n.aside-menu-modal > nav > ul > li {\n  font-size: 24px;\n  transition: 0.5s;\n  background-color: transparent;\n}\n.aside-menu-modal > nav > ul > li.more-menu {\n  width: 100%;\n  padding: 10px;\n  box-sizing: border-box;\n  border-top: 1px white solid;\n}\n.aside-menu-modal > nav > ul > li.more-menu .lang {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.aside-menu-modal > nav > ul > li.more-menu .lang a {\n  padding: 5px;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li {\n  cursor: pointer;\n  text-align: center;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li a {\n  color: lightgray;\n  font-size: 16px;\n  text-decoration: none;\n  transition: 0.5s;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li a:hover {\n  color: yellow;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li a.report {\n  font-weight: 900;\n  color: yellow;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li a.report:hover {\n  color: darkred;\n}\n.aside-menu-modal > nav > ul .btn {\n  background-color: transparent;\n  box-shadow: none;\n  border: none;\n}\n.aside-menu-modal > nav > ul .btn.btn-black-2 {\n  box-shadow: none;\n}\n.aside-menu-modal > nav > ul .btn.btn-yellow {\n  color: yellow;\n}\n.aside-menu-modal > nav > ul .btn.btn-yellow:hover {\n  color: #2c3e50;\n}\n.main-menu-modal > nav {\n  height: 100vh;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.main-menu-modal > nav > ul {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100%;\n  flex-direction: column-reverse;\n}\n.main-menu-modal > nav > ul > li {\n  font-size: 24px;\n  transition: 0.5s;\n  background-color: transparent;\n  width: 100%;\n}\n.main-menu-modal > nav > ul > li.auth {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n  padding: 10px;\n  box-sizing: border-box;\n  border-bottom: 1px yellow solid;\n}\n.main-menu-modal > nav > ul > li.auth .btn {\n  width: 100%;\n}\n.main-menu-modal > nav > ul > li.auth .btn.btn-info {\n  background-color: #007fb3;\n}\n.main-menu-modal > nav > ul > li.auth .btn.btn-primary {\n  background-color: #7ab300;\n  margin-top: 10px;\n}\n.main-menu-modal > nav > ul > li.user {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n  border-bottom: 1px solid yellow;\n}\n.main-menu-modal > nav > ul > li.user .avatar {\n  width: 120px;\n  height: 120px;\n}\n.main-menu-modal > nav > ul > li.user .avatar img {\n  width: 100%;\n  height: 100%;\n}\n.main-menu-modal > nav > ul > li.user .info p {\n  width: 100%;\n  text-align: left;\n  font-weight: 600;\n  font-size: 16px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n}\n.main-menu-modal > nav > ul > li.user .info p strong {\n  color: yellow;\n}\n.main-menu-modal > nav > ul > li.user .dropdown {\n  width: 100%;\n  padding: 10px;\n  box-sizing: border-box;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul li {\n  width: 100%;\n  text-align: center;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul li a {\n  text-decoration: none;\n  font-size: 24px;\n  color: white;\n  padding: 20px;\n  display: block;\n  font-weight: 900;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul li:hover {\n  background-color: white;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul li:hover a {\n  color: #2c3e50;\n}\n.main-menu-modal > nav > ul .btn {\n  background-color: transparent;\n  box-shadow: none;\n  border: none;\n}\n.main-menu-modal > nav > ul .btn.btn-black:hover {\n  box-shadow: none;\n  background-color: yellow;\n  color: #2c3e50;\n}\n.main-menu-modal > nav > ul .btn.btn-black-2:hover {\n  box-shadow: none;\n  background-color: yellow;\n}\n.main-menu-modal > nav > ul .btn.btn-yellow {\n  color: yellow;\n}\n.main-menu-modal > nav > ul .btn.btn-yellow:hover {\n  box-shadow: none;\n  color: #2c3e50;\n}\n.about-modal,\n.rules-modal {\n  width: 800px;\n}\n@media (max-width: 800px) {\n.about-modal,\n.rules-modal {\n    width: 100%;\n}\n}\n.about-modal ul,\n.rules-modal ul {\n  display: flex;\n  justify-content: flex-start;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n.about-modal ul li,\n.rules-modal ul li {\n  width: 100%;\n}\n.about-modal p,\n.rules-modal p {\n  color: white;\n  line-height: 150%;\n  padding: 20px;\n  box-sizing: border-box;\n  font-size: 16px;\n  font-weight: 100;\n  text-align: justify;\n}\n.about-modal p:first-letter,\n.rules-modal p:first-letter {\n  margin-left: 50px;\n}\n.about-modal p strong,\n.rules-modal p strong {\n  font-weight: 800;\n}\n.about-modal p a,\n.rules-modal p a {\n  color: yellow;\n  font-weight: 800;\n}\n.about-modal h2,\n.rules-modal h2 {\n  color: white;\n  padding: 20px;\n  box-sizing: border-box;\n  font-size: 20px;\n  font-weight: 800;\n}\n.about-modal h2 strong,\n.rules-modal h2 strong {\n  color: yellow;\n}\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n  min-height: 100%;\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tabs-component {\n  width: 100%;\n}\n.tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n.tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  color: gray;\n}\n.tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n.tooltip {\n  display: block !important;\n  z-index: 10000;\n}\n.tooltip .tooltip-inner {\n  background: #2c3e50;\n  box-shadow: 0px 0px 2px 0px black;\n  color: yellow;\n  font-family: \"Open Sans\";\n  font-weight: 900;\n  padding: 10px 20px;\n  font-size: 14px;\n  text-align: center;\n  line-height: 150%;\n}\n.tooltip .tooltip-arrow {\n  width: 0;\n  height: 0;\n  border-style: solid;\n  position: absolute;\n  margin: 5px;\n  border-color: #2c3e50;\n  z-index: 1;\n}\n.tooltip[x-placement^=top] {\n  margin-bottom: 5px;\n}\n.tooltip[x-placement^=top] .tooltip-arrow {\n  border-width: 5px 5px 0 5px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  bottom: -5px;\n  left: calc(50% - 5px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=bottom] {\n  margin-top: 10px;\n}\n.tooltip[x-placement^=bottom] .tooltip-arrow {\n  border-width: 0 10px 10px 10px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-top-color: transparent !important;\n  top: -10px;\n  left: calc(50% - 10px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=right] {\n  margin-left: 5px;\n}\n.tooltip[x-placement^=right] .tooltip-arrow {\n  border-width: 5px 5px 5px 0;\n  border-left-color: transparent !important;\n  border-top-color: transparent !important;\n  border-bottom-color: transparent !important;\n  left: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip[x-placement^=left] {\n  margin-right: 5px;\n}\n.tooltip[x-placement^=left] .tooltip-arrow {\n  border-width: 5px 0 5px 5px;\n  border-top-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  right: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip.popover {\n  color: white;\n}\n.tooltip.popover .popover-inner {\n  background: white;\n  color: black;\n  padding: 24px;\n  border-radius: 5px;\n  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);\n}\n.tooltip.popover .popover-arrow {\n  border-color: white;\n}\n.tooltip[aria-hidden=true] {\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity 0.15s, visibility 0.15s;\n}\n.tooltip[aria-hidden=false] {\n  visibility: visible;\n  opacity: 1;\n  transition: opacity 0.15s;\n}\n.hutplace-preloader {\n  color: red;\n  font-weight: 900;\n  z-index: 1002 !important;\n  width: 100% !important;\n  height: 100% !important;\n}\n.hutplace-preloader .loading-circle {\n  border-left-color: red !important;\n}\n.hutplace-preloader .loading-text {\n  margin-top: 15px;\n  color: yellow;\n  font-size: 12px;\n  font-family: \"Open Sans\";\n}\nbody {\n  overflow: hidden;\n  /* @media (max-height: 670px) {\n     & {\n       zoom:0.8;\n     }\n   }*/\n}\n.full {\n  width: 100%;\n  box-sizing: border-box;\n}\n.btn {\n  padding: 20px 20px;\n  text-align: center;\n  font-weight: 800;\n  list-style: none;\n  cursor: pointer;\n  border: none;\n  box-shadow: 2px 2px 2px 0px black;\n  transition: 0.5s;\n  box-sizing: border-box;\n}\n.btn a {\n  text-decoration: none;\n}\n.btn:focus {\n  outline: none;\n}\n.btn.btn-yellow {\n  color: #2c3e50;\n  background-color: yellow;\n  box-shadow: 2px 2px 2px 0px black;\n}\n.btn.btn-yellow a {\n  color: #2c3e50;\n}\n.btn.btn-yellow:hover {\n  background-color: white;\n  transition: 0.5s;\n  color: #2c3e50;\n}\n.btn.btn-yellow:hover a {\n  color: #2c3e50;\n}\n.btn.btn-black {\n  color: white;\n  background-color: #2c3e50;\n  box-shadow: 2px 2px 2px 0px black, 0px 0px 5px 2px white inset;\n}\n.btn.btn-black a {\n  color: white;\n}\n.btn.btn-black:hover {\n  box-shadow: 2px 2px 2px 0px black, 0px 0px 5px 2px yellow inset;\n  transition: 0.5s;\n}\n.btn.btn-black-2 {\n  color: white;\n  background-color: #2c3e50;\n  box-shadow: 2px 2px 2px 0px black;\n}\n.btn.btn-black-2 a {\n  color: white;\n}\n.btn.btn-black-2:hover {\n  transition: 0.5s;\n  background-color: white;\n  color: #2c3e50;\n}\n.btn.btn-black-2:hover a {\n  color: #2c3e50;\n}\n.btn.btn-black-2.active {\n  background-color: yellow;\n  color: #2c3e50;\n}\n.btn.btn-primary {\n  color: white;\n  background-color: #7ab300;\n}\n.btn.btn-primary a {\n  color: white;\n}\n.btn.btn-primary:hover {\n  background-color: white;\n  transition: 0.5s;\n}\n.btn.btn-info {\n  color: white;\n  background-color: #007fb3;\n}\n.btn.btn-info a {\n  color: white;\n}\n.btn.btn-info:hover {\n  background-color: white;\n  transition: 0.5s;\n}\nh1.main-title {\n  font-weight: 100;\n  color: white;\n  text-transform: uppercase;\n  font-size: 36px;\n  line-height: 150%;\n  width: 100%;\n}\np.description {\n  border-left: 1px yellow solid;\n  padding: 20px;\n  box-sizing: border-box;\n  text-transform: uppercase;\n  font-style: italic;\n  font-size: 14px;\n  color: white;\n  line-height: 150%;\n  margin-bottom: 20px;\n  width: 100%;\n}\nheader, section, footer {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\nheader .center, section .center, footer .center {\n  padding: 10px;\n  box-sizing: border-box;\n  width: 1200px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n}\n@media (max-width: 1200px) {\nheader .center, section .center, footer .center {\n    width: 100%;\n}\n}\nheader {\n  height: 80px;\n}\nheader .center {\n  height: inherit;\n}\n#app {\n  font-family: \"Open Sans\", sans-serif;\n  text-align: center;\n  color: #393939;\n  width: 100%;\n  height: 100vh;\n  background-image: url(\"/img/background-landing.jpg\");\n  background-color: #2c3e50;\n  background-attachment: fixed;\n  background-position: center center;\n  background-size: cover;\n}\nheader {\n  height: 80px;\n  background-color: #2c3e50;\n  box-shadow: 0px 0px 6px 0px black;\n  position: relative;\n  z-index: 101;\n}\nheader .center {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\nheader .center .logo-wrapper {\n  background-color: #2c3e50;\n  padding: 0 10px 10px 10px;\n  box-sizing: border-box;\n  position: relative;\n  z-index: 2;\n}\nheader .center .logo-wrapper:after {\n  content: \"\";\n  width: 100%;\n  height: 54px;\n  bottom: 0;\n  left: 0;\n  z-index: 0;\n  position: absolute;\n  box-shadow: 7px 8px 2px -5px black;\n}\nheader .center .logo-wrapper .logo {\n  width: 100px;\n  transition: 0.5s;\n}\n@media (max-width: 1050px) {\nheader .center .logo-wrapper {\n    background-color: transparent;\n}\nheader .center .logo-wrapper:after {\n    content: none;\n}\nheader .center .logo-wrapper .logo {\n    width: 60px;\n    transition: 0.5s;\n}\n}\nheader .center .auth {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 300px;\n}\nheader .center .auth button {\n  margin-left: 10px;\n}\nheader .center .user {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 300px;\n  position: relative;\n  z-index: 0;\n}\nheader .center .user .info {\n  width: 200px;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  flex-direction: column;\n}\nheader .center .user .info p {\n  text-align: left;\n  color: white;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  font-size: 10pt;\n  line-height: 150%;\n  margin-top: 0px;\n}\nheader .center .user .info p.pucks {\n  color: yellow;\n  font-weight: 600;\n}\nheader .center .user .info p.pucks strong {\n  color: white;\n}\nheader .center .user .avatar {\n  position: relative;\n  width: 60px;\n  height: 60px;\n}\nheader .center .user .avatar img {\n  width: 100%;\n  height: 100%;\n}\nheader .center .user .avatar:before {\n  content: \"\";\n  width: 10px;\n  height: 2px;\n  background: white;\n  position: absolute;\n  bottom: -5px;\n  right: 20px;\n  transform: rotate(-15deg);\n}\nheader .center .user .avatar:after {\n  content: \"\";\n  width: 10px;\n  height: 2px;\n  background: white;\n  position: absolute;\n  bottom: -5px;\n  left: 20px;\n  transform: rotate(15deg);\n}\nheader .center .user .dropdown {\n  transition: 0.5s;\n  z-index: 2;\n  position: absolute;\n  left: 0;\n  bottom: -50px;\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\nheader .center .user .dropdown > ul > li {\n  padding: 10px 25px;\n  background-color: #2c3e50;\n}\nheader .center .user .dropdown > ul > li > a {\n  text-align: left;\n  text-decoration: none;\n  color: white;\n}\nheader .center .user .dropdown > ul > li > a:hover {\n  color: yellow;\n}\nheader .center .btn-mobile {\n  display: none;\n  width: 150px;\n  margin-left: -80px;\n}\n@media (max-width: 1050px) {\nheader .center .btn-mobile {\n    display: block;\n    padding: 15px 15px;\n    margin-top: 5px;\n}\n}\n@media (max-width: 700px) {\nheader .center .btn-mobile {\n    margin-left: -40px;\n}\n}\nheader .center nav {\n  position: relative;\n  border: none;\n}\nheader .center nav ul {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\nheader .center nav ul li {\n  margin-left: 10px;\n}\n@media (max-width: 1050px) {\nheader .center nav {\n    width: 25px;\n    height: 20px;\n    border-top: 1px white solid;\n    border-bottom: 1px white solid;\n    cursor: pointer;\n    top: 15px;\n    right: 20px;\n}\nheader .center nav:after {\n    content: \"\";\n    width: 100%;\n    position: absolute;\n    top: 10px;\n    left: 0;\n    height: 1px;\n    background: white;\n}\nheader .center nav ul {\n    display: none !important;\n}\n}\naside {\n  position: fixed;\n  z-index: 100;\n  top: 150px;\n  left: 0px;\n  width: 200px;\n  background-color: #2c3e507d;\n  padding: 10px;\n}\naside nav {\n  width: 100%;\n}\naside nav > ul {\n  width: 100%;\n}\naside nav > ul > li {\n  margin-bottom: 10px;\n  transition: 0.5s;\n  box-sizing: border-box;\n}\naside nav > ul > li.more-menu {\n  width: 100%;\n  padding: 10px;\n  box-sizing: border-box;\n}\naside nav > ul > li.more-menu ul.more li {\n  cursor: pointer;\n  padding: 2px;\n}\naside nav > ul > li.more-menu ul.more li a {\n  text-align: center;\n  color: lightgray;\n  font-size: 16px;\n  text-decoration: none;\n  transition: 0.5s;\n}\naside nav > ul > li.more-menu ul.more li a:hover {\n  color: yellow;\n}\naside nav > ul > li.more-menu ul.more li a.report {\n  font-weight: 900;\n  color: yellow;\n}\naside nav > ul > li.more-menu ul.more li a.report:hover {\n  color: darkred;\n}\n@media (min-width: 601px) and (max-width: 1550px) {\naside {\n    left: 0px;\n    width: 50px;\n    background-color: transparent;\n    padding: 0px;\n}\naside:hover {\n    width: 200px;\n    background-color: #2c3e507d;\n    padding: 10px;\n}\naside:hover > nav {\n    background: none;\n    box-shadow: none;\n    width: auto;\n    height: auto;\n    border-radius: initial;\n}\naside:hover > nav > ul {\n    display: block;\n}\naside > nav {\n    width: 50px;\n    background-image: url(\"/img/btn-menu.png\");\n    background-position: center center;\n    background-color: yellow;\n    background-size: 20px 20px;\n    background-repeat: no-repeat;\n    box-shadow: 2px 2px 2px 0px black;\n    height: 50px;\n    border-radius: 0px 50% 50% 0px;\n}\naside > nav > ul {\n    display: none;\n}\n}\n@media (max-width: 600px) {\naside {\n    left: 0px;\n    background-color: transparent;\n    padding: 0px;\n}\naside > nav {\n    width: 50px;\n    background-image: url(\"/img/btn-menu.png\");\n    background-position: center center;\n    background-color: yellow;\n    background-size: 20px 20px;\n    background-repeat: no-repeat;\n    box-shadow: 0px 0px 2px 0px black;\n    height: 50px;\n    border-radius: 0px 50% 50% 0px;\n    cursor: pointer;\n}\naside > nav > ul {\n    display: none;\n}\n}\n#pageContent {\n  height: 100vh;\n  width: 100%;\n}\n#pageContent .center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n@media (max-width: 600px) {\n#pageContent .center {\n    margin: 0;\n    padding: 20px;\n    box-sizing: border-box;\n    width: 100%;\n}\n}\n.no-items {\n  width: 100%;\n  height: 500px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  opacity: 0.5;\n}\n.no-items img {\n  width: 500px;\n  height: 100%;\n}\n@media (max-width: 500px) {\n.no-items {\n    height: auto;\n    width: 100%;\n}\n.no-items img {\n    width: 100%;\n}\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\nhtml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block;\n}\nbody {\n  line-height: 1;\n}\nol, ul {\n  list-style: none;\n}\nblockquote, q {\n  quotes: none;\n}\nblockquote:before, blockquote:after {\n  content: \"\";\n  content: none;\n}\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n  min-height: 100%;\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tabs-component {\n  width: 100%;\n}\n.tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n.tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  color: gray;\n}\n.tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n  min-height: 100%;\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tabs-component {\n  width: 100%;\n}\n.tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n.tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  color: gray;\n}\n.tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n.modal-body {\n  width: 800px;\n  padding: 20px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: flex-start;\n  align-items: space-between;\n  flex-wrap: wrap;\n  flex-wrap: wrap;\n}\n@media (max-width: 800px) {\n.modal-body {\n    width: 100%;\n}\n}\n.modal-body .modal-logo {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  padding: 20px;\n  box-sizing: border-box;\n}\n.modal-body p {\n  width: 100%;\n  text-align: center;\n  font-weight: 600;\n  font-size: 14px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n}\n.modal-body p span {\n  color: yellow;\n}\n.modal-body p a {\n  color: yellow;\n  font-weight: 900;\n}\n.modal-body hr {\n  border: none;\n  width: 100%;\n  height: 1px;\n  background-color: white;\n}\n.modal-body h1 {\n  width: 100%;\n  text-align: center;\n  font-weight: 100;\n  font-size: 24px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n  padding: 10px;\n  box-sizing: border-box;\n}\n.modal-body h2 {\n  width: 100%;\n  text-align: center;\n  font-weight: 900;\n  font-size: 24px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n}\n.modal-body h2 span {\n  color: yellow;\n}\n.modal-body .half {\n  width: 50%;\n  display: flex;\n  justify-content: flex-start;\n  align-items: space-between;\n  flex-wrap: wrap;\n  padding: 0px;\n}\n.modal-body .input-group {\n  width: 100%;\n  box-sizing: border-box;\n  padding: 10px;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.modal-body .input-group input[type=file] + label {\n  padding: 20px;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  cursor: pointer;\n  border: 1px yellow solid;\n  justify-content: center;\n  align-items: center;\n  display: flex;\n}\n.modal-body .input-group label {\n  font-weight: 900;\n  font-size: 12px;\n  margin-bottom: 5px;\n  color: white;\n}\n.modal-body .input-group textarea,\n.modal-body .input-group select,\n.modal-body .input-group input {\n  border: none;\n  border-bottom: 1px solid white;\n  color: white;\n  font-weight: 100;\n  font-size: 18px;\n  width: 100%;\n  min-width: 100%;\n  text-align: center;\n  background: transparent;\n  padding: 15px;\n  box-sizing: border-box;\n  text-transform: uppercase;\n  font-family: \"Open Sans\";\n}\n.modal-body .input-group textarea[disabled],\n.modal-body .input-group select[disabled],\n.modal-body .input-group input[disabled] {\n  border: 1px gray solid !important;\n  color: gray !important;\n}\n.modal-body .input-group textarea option,\n.modal-body .input-group select option,\n.modal-body .input-group input option {\n  color: #2c3e50;\n}\n.modal-body .input-group input[type=file] {\n  display: none;\n}\n.modal-body .input-group input[type=file] + label {\n  padding: 5px;\n  width: 100%;\n  cursor: pointer;\n  border: none;\n}\n.modal-body .input-group textarea {\n  font-size: 16px;\n  text-align: left;\n  resize: vertical;\n}\n.modal-body .input-group select {\n  font-size: 16px;\n  text-transform: initial;\n}\n.promo-modal {\n  width: 500px;\n}\n.card-add-modal {\n  width: 500px;\n  padding: 10px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n}\n.card-add-modal .card-container {\n  width: 200px;\n  margin-left: 10px;\n  height: 275px;\n  border: 1px dashed yellow;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.card-add-modal .card-container img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.card-add-modal hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.card-add-modal .row {\n  width: 100%;\n  padding: 0px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: flex-start;\n}\n.card-add-modal .row a {\n  width: 100%;\n  padding: 20px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  color: white;\n  -webkit-text-decoration-line: underline;\n          text-decoration-line: underline;\n  -webkit-text-decoration-style: solid;\n          text-decoration-style: solid;\n  cursor: pointer;\n}\n.card-add-modal .row > .input-group {\n  padding: 10px;\n}\n.card-add-modal .row > .input-group textarea,\n.card-add-modal .row > .input-group select,\n.card-add-modal .row > .input-group input {\n  border: 1px white solid;\n}\n.card-add-modal .row > .half {\n  width: 50%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  flex-wrap: wrap;\n}\n.card-add-modal .row > .half > .input-group {\n  padding: 5px;\n}\n.card-add-modal .row > .half > .input-group textarea,\n.card-add-modal .row > .half > .input-group select,\n.card-add-modal .row > .half > .input-group input {\n  border: 1px white solid;\n}\n.card-add-modal .row > .half label {\n  font-size: 12px;\n  font-weight: 900;\n  width: 100%;\n  text-align: left;\n  margin-bottom: 5px;\n  color: white;\n}\n.card-add-modal .row > .half hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.card-add-modal .row > .half button {\n  width: 100%;\n}\n.card-modal {\n  width: 260px;\n  padding: 10px;\n  box-sizing: border-box;\n  box-shadow: 0px 0px 8px 2px white inset;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: center;\n}\n.card-modal hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.card-modal .row {\n  width: 100%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  align-items: flex-start;\n}\n.card-modal .row > .half {\n  width: 50%;\n  padding: 5px;\n  box-sizing: border-box;\n  display: flex;\n  flex-wrap: wrap;\n}\n.card-modal .row > .half label {\n  font-size: 12px;\n  font-weight: 900;\n  width: 100%;\n  text-align: left;\n  margin-bottom: 5px;\n  color: white;\n}\n.card-modal .row > .half hr {\n  width: 100%;\n  height: 1px;\n  border: none;\n  background-color: white;\n}\n.card-modal .row > .half button {\n  width: 100%;\n}\n.card-modal table {\n  width: 100%;\n  color: white;\n  text-align: center;\n  border-collapse: separate;\n  border-spacing: 0 8px;\n}\n.card-modal table thead th {\n  font-weight: 900;\n}\n.card-modal table tbody tr td span {\n  font-weight: 900;\n  color: yellow;\n}\n.card-modal .input-group {\n  padding: 0px;\n}\n.card-modal .input-group label {\n  color: yellow !important;\n}\n.card-modal .input-group a {\n  -webkit-text-decoration-style: dashed;\n          text-decoration-style: dashed;\n  -webkit-text-decoration-color: yellow;\n          text-decoration-color: yellow;\n  font-weight: 100;\n}\n.card-modal .input-group p {\n  text-align: left;\n}\n.partner-modal {\n  width: 500px;\n}\n.partner-modal p {\n  text-align: justify;\n  font-weight: 100;\n}\n.partner-modal p:first-letter {\n  margin-left: 50px;\n}\n.report-modal,\n.help-modal {\n  width: 500px;\n}\n.report-modal form,\n.help-modal form {\n  width: 100%;\n}\n.report-modal form input[type=file],\n.help-modal form input[type=file] {\n  border: 1px yellow solid !important;\n}\n.about-modal p {\n  text-align: justify;\n  font-weight: 100;\n}\n.about-modal p:first-letter {\n  margin-left: 50px;\n}\n.recharge-modal {\n  width: 500px;\n}\n.questions-modal {\n  padding: 20px;\n  box-sizing: border-box;\n}\n.questions-modal > ul {\n  position: relative;\n  margin-top: 10px;\n  width: 100%;\n  padding: 10px 20px;\n  border: 1px yellow solid;\n  overflow: hidden;\n  box-sizing: border-box;\n  cursor: pointer;\n  transition: 0.5s;\n}\n.questions-modal > ul.active:after {\n  content: \"\";\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  transform-origin: center center;\n  border-right: 2px solid yellow;\n  border-bottom: 2px solid yellow;\n  width: 10px;\n  height: 10px;\n  transform: rotate(45deg);\n  transition: 0.5s;\n}\n.questions-modal > ul:after {\n  content: \"\";\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  transform-origin: center center;\n  border-bottom: 2px solid yellow;\n  width: 10px;\n  height: 10px;\n  transition: 0.5s;\n}\n.questions-modal > ul.active {\n  height: auto;\n}\n.questions-modal > ul.active > li > ul {\n  display: block;\n}\n.questions-modal > ul:focus, .questions-modal > ul:active, .questions-modal > ul:hover {\n  height: auto;\n  transition: 0.5s;\n}\n.questions-modal > ul:focus:after, .questions-modal > ul:active:after, .questions-modal > ul:hover:after {\n  transform: rotate(45deg);\n  transition: 0.5s;\n  border-right: 2px solid yellow;\n}\n.questions-modal > ul:focus > li > ul, .questions-modal > ul:active > li > ul, .questions-modal > ul:hover > li > ul {\n  display: block;\n}\n.questions-modal > ul > li > p {\n  color: white;\n  line-height: 150%;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 10px;\n  text-align: left;\n  text-overflow: ellipsis;\n  word-break: keep-all;\n}\n.questions-modal > ul > li > ul {\n  width: 100%;\n  display: none;\n}\n.questions-modal > ul > li > ul li {\n  color: yellow;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 5px 5px;\n}\n.history-modal {\n  width: 800px;\n}\n.history-modal ul {\n  border: 1px yellow solid;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100%;\n  height: 40px;\n  margin-bottom: 10px;\n}\n.history-modal ul li {\n  width: 16%;\n  text-align: center;\n  color: white;\n  font-weight: 600;\n  font-size: 12px;\n  padding: 10px;\n  box-sizing: border-box;\n}\n.history-modal ul li i {\n  font-size: 24px;\n}\n.history-modal ul li a {\n  color: yellow;\n}\n.aside-menu-modal > nav {\n  height: 100vh;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.aside-menu-modal > nav > ul {\n  display: block;\n  width: 100%;\n}\n.aside-menu-modal > nav > ul > li {\n  font-size: 24px;\n  transition: 0.5s;\n  background-color: transparent;\n}\n.aside-menu-modal > nav > ul > li.more-menu {\n  width: 100%;\n  padding: 10px;\n  box-sizing: border-box;\n  border-top: 1px white solid;\n}\n.aside-menu-modal > nav > ul > li.more-menu .lang {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.aside-menu-modal > nav > ul > li.more-menu .lang a {\n  padding: 5px;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li {\n  cursor: pointer;\n  text-align: center;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li a {\n  color: lightgray;\n  font-size: 16px;\n  text-decoration: none;\n  transition: 0.5s;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li a:hover {\n  color: yellow;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li a.report {\n  font-weight: 900;\n  color: yellow;\n}\n.aside-menu-modal > nav > ul > li.more-menu ul.more li a.report:hover {\n  color: darkred;\n}\n.aside-menu-modal > nav > ul .btn {\n  background-color: transparent;\n  box-shadow: none;\n  border: none;\n}\n.aside-menu-modal > nav > ul .btn.btn-black-2 {\n  box-shadow: none;\n}\n.aside-menu-modal > nav > ul .btn.btn-yellow {\n  color: yellow;\n}\n.aside-menu-modal > nav > ul .btn.btn-yellow:hover {\n  color: #2c3e50;\n}\n.main-menu-modal > nav {\n  height: 100vh;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.main-menu-modal > nav > ul {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100%;\n  flex-direction: column-reverse;\n}\n.main-menu-modal > nav > ul > li {\n  font-size: 24px;\n  transition: 0.5s;\n  background-color: transparent;\n  width: 100%;\n}\n.main-menu-modal > nav > ul > li.auth {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n  padding: 10px;\n  box-sizing: border-box;\n  border-bottom: 1px yellow solid;\n}\n.main-menu-modal > nav > ul > li.auth .btn {\n  width: 100%;\n}\n.main-menu-modal > nav > ul > li.auth .btn.btn-info {\n  background-color: #007fb3;\n}\n.main-menu-modal > nav > ul > li.auth .btn.btn-primary {\n  background-color: #7ab300;\n  margin-top: 10px;\n}\n.main-menu-modal > nav > ul > li.user {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n  border-bottom: 1px solid yellow;\n}\n.main-menu-modal > nav > ul > li.user .avatar {\n  width: 120px;\n  height: 120px;\n}\n.main-menu-modal > nav > ul > li.user .avatar img {\n  width: 100%;\n  height: 100%;\n}\n.main-menu-modal > nav > ul > li.user .info p {\n  width: 100%;\n  text-align: left;\n  font-weight: 600;\n  font-size: 16px;\n  line-height: 150%;\n  text-transform: uppercase;\n  color: white;\n}\n.main-menu-modal > nav > ul > li.user .info p strong {\n  color: yellow;\n}\n.main-menu-modal > nav > ul > li.user .dropdown {\n  width: 100%;\n  padding: 10px;\n  box-sizing: border-box;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul li {\n  width: 100%;\n  text-align: center;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul li a {\n  text-decoration: none;\n  font-size: 24px;\n  color: white;\n  padding: 20px;\n  display: block;\n  font-weight: 900;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul li:hover {\n  background-color: white;\n}\n.main-menu-modal > nav > ul > li.user .dropdown ul li:hover a {\n  color: #2c3e50;\n}\n.main-menu-modal > nav > ul .btn {\n  background-color: transparent;\n  box-shadow: none;\n  border: none;\n}\n.main-menu-modal > nav > ul .btn.btn-black:hover {\n  box-shadow: none;\n  background-color: yellow;\n  color: #2c3e50;\n}\n.main-menu-modal > nav > ul .btn.btn-black-2:hover {\n  box-shadow: none;\n  background-color: yellow;\n}\n.main-menu-modal > nav > ul .btn.btn-yellow {\n  color: yellow;\n}\n.main-menu-modal > nav > ul .btn.btn-yellow:hover {\n  box-shadow: none;\n  color: #2c3e50;\n}\n.about-modal,\n.rules-modal {\n  width: 800px;\n}\n@media (max-width: 800px) {\n.about-modal,\n.rules-modal {\n    width: 100%;\n}\n}\n.about-modal ul,\n.rules-modal ul {\n  display: flex;\n  justify-content: flex-start;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n.about-modal ul li,\n.rules-modal ul li {\n  width: 100%;\n}\n.about-modal p,\n.rules-modal p {\n  color: white;\n  line-height: 150%;\n  padding: 20px;\n  box-sizing: border-box;\n  font-size: 16px;\n  font-weight: 100;\n  text-align: justify;\n}\n.about-modal p:first-letter,\n.rules-modal p:first-letter {\n  margin-left: 50px;\n}\n.about-modal p strong,\n.rules-modal p strong {\n  font-weight: 800;\n}\n.about-modal p a,\n.rules-modal p a {\n  color: yellow;\n  font-weight: 800;\n}\n.about-modal h2,\n.rules-modal h2 {\n  color: white;\n  padding: 20px;\n  box-sizing: border-box;\n  font-size: 20px;\n  font-weight: 800;\n}\n.about-modal h2 strong,\n.rules-modal h2 strong {\n  color: yellow;\n}\n* {\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/*\nТЕМА 1\n$mainBg:'img/background.jpg';\n$color1:#2c3e50; //color\n$color2: #393939; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*\nТЕМА 2\n\n$mainBg:'img/background-landing-2.jpg';\n$color1:#393939; //color\n$color2: #4a2626; //bg color\n$color3:yellow; //color \\ btn-color\n$color4:white; // color \\ btn-color\n$color5:darkred; //color\n$color6:gray;\n$color7:#74b65f; //btn-random\n$color8:#5fa252; //btn-random line\n$color9:#d86a43; //btn-buy\n$color10:#393939af; //slot in lottery + opacity\n$color11:#50504f; //number in slot\n$color12:black; //number in slot\n$color13:lightgray;*/\n/*ТЕМА 3*/\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\ninput[type=number] {\n  -moz-appearance: textfield;\n}\nbutton:focus,\ntextarea:focus,\nselect:focus,\ninput:focus {\n  outline: none;\n}\n\n/* Close modal button*/\n.close {\n  position: fixed;\n  right: 32px;\n  top: 32px;\n  width: 32px;\n  height: 32px;\n  opacity: 0.8;\n}\n.close:hover {\n  opacity: 1;\n}\n.close:before, .close:after {\n  position: absolute;\n  left: 15px;\n  content: \" \";\n  height: 33px;\n  width: 2px;\n  background-color: #fff;\n}\n.close:before {\n  transform: rotate(45deg);\n}\n.close:after {\n  transform: rotate(-45deg);\n}\n\n/* Scroll top button*/\n.scrollTop {\n  position: fixed;\n  bottom: 80px;\n  right: 0px;\n  background: red;\n  opacity: 0.3;\n  z-index: 100;\n  padding: 20px;\n  color: white;\n  font-weight: 800;\n  transition: 0.5s;\n  cursor: pointer;\n}\n.scrollTop:hover {\n  transition: 0.5s;\n  opacity: 0.9;\n}\n\n/* Scroll area*/\n.scroll-area {\n  height: 100%;\n  width: 100%;\n  padding: 100px 0px;\n  box-sizing: border-box;\n}\n\n/* Google recaptcha btn*/\n.grecaptcha-badge {\n  z-index: 100;\n}\n\n/* notifications*/\n.vue-notification {\n  padding: 20px;\n  margin: 0 5px 5px;\n  z-index: 1200;\n  font-size: 14px;\n  color: #ffffff;\n  background: #44A4FC;\n  border-left: 5px solid #187FE7;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.vue-notification.warn {\n  background: #393939;\n  border-left-color: yellow;\n  color: yellow;\n}\n.vue-notification.error {\n  background: yellow;\n  color: #393939;\n  border-left-color: #393939;\n}\n.vue-notification.success {\n  background: #a0cd00;\n  border-left-color: #42A85F;\n}\n\n/* modal window*/\n.v--modal-overlay {\n  background: rgba(0, 0, 0, 0.999);\n  min-height: 100%;\n}\n.v--modal-overlay .v--modal-background-click {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n.v--modal-overlay .v--modal-background-click .v--modal {\n  background: transparent;\n  box-shadow: none;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 100% !important;\n  left: 0px !important;\n  top: 0px !important;\n}\n.v--modal-overlay.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  overflow-scrolling: touch;\n  -webkit-overflow-scrolling: touch;\n}\n.ps .ps__rail-x:hover,\n.ps .ps__rail-y:hover,\n.ps .ps__rail-x:focus,\n.ps .ps__rail-y:focus,\n.ps .ps__rail-x.ps--clicking,\n.ps .ps__rail-y.ps--clicking {\n  background-color: transparent;\n  opacity: 0.9;\n}\n.ps__rail-y:hover > .ps__thumb-y,\n.ps__rail-y:focus > .ps__thumb-y,\n.ps__rail-y.ps--clicking .ps__thumb-y {\n  background-color: yellow;\n  width: 7px;\n}\nimg[lazy=loading] {\n  width: 50px !important;\n  height: 50px !important;\n}\nimg[lazy=error] {\n  width: 50px !important;\n  height: 50px !important;\n}\n.tabs-component {\n  width: 100%;\n}\n.tabs-component .tabs-component-tabs {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\n@media (max-width: 880px) {\n.tabs-component .tabs-component-tabs {\n    justify-content: center;\n}\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab {\n  padding: 10px;\n  border-bottom: 2px transparent solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-active {\n  border-bottom: 2px yellow solid;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab .tabs-component-tab-a {\n  color: white;\n  text-decoration: none;\n  font-weight: 800;\n  font-size: 12px;\n  text-transform: uppercase;\n  position: relative;\n}\n.tabs-component .tabs-component-tabs .tabs-component-tab.is-disabled .tabs-component-tab-a {\n  color: gray;\n}\n.tabs-component .tabs-component-panels .tabs-component-panel .scroll-area {\n  padding: 20px 0px 100px 0px;\n}\n.tooltip {\n  display: block !important;\n  z-index: 10000;\n}\n.tooltip .tooltip-inner {\n  background: #2c3e50;\n  box-shadow: 0px 0px 2px 0px black;\n  color: yellow;\n  font-family: \"Open Sans\";\n  font-weight: 900;\n  padding: 10px 20px;\n  font-size: 14px;\n  text-align: center;\n  line-height: 150%;\n}\n.tooltip .tooltip-arrow {\n  width: 0;\n  height: 0;\n  border-style: solid;\n  position: absolute;\n  margin: 5px;\n  border-color: #2c3e50;\n  z-index: 1;\n}\n.tooltip[x-placement^=top] {\n  margin-bottom: 5px;\n}\n.tooltip[x-placement^=top] .tooltip-arrow {\n  border-width: 5px 5px 0 5px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  bottom: -5px;\n  left: calc(50% - 5px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=bottom] {\n  margin-top: 10px;\n}\n.tooltip[x-placement^=bottom] .tooltip-arrow {\n  border-width: 0 10px 10px 10px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-top-color: transparent !important;\n  top: -10px;\n  left: calc(50% - 10px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=right] {\n  margin-left: 5px;\n}\n.tooltip[x-placement^=right] .tooltip-arrow {\n  border-width: 5px 5px 5px 0;\n  border-left-color: transparent !important;\n  border-top-color: transparent !important;\n  border-bottom-color: transparent !important;\n  left: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip[x-placement^=left] {\n  margin-right: 5px;\n}\n.tooltip[x-placement^=left] .tooltip-arrow {\n  border-width: 5px 0 5px 5px;\n  border-top-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  right: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip.popover {\n  color: white;\n}\n.tooltip.popover .popover-inner {\n  background: white;\n  color: black;\n  padding: 24px;\n  border-radius: 5px;\n  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);\n}\n.tooltip.popover .popover-arrow {\n  border-color: white;\n}\n.tooltip[aria-hidden=true] {\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity 0.15s, visibility 0.15s;\n}\n.tooltip[aria-hidden=false] {\n  visibility: visible;\n  opacity: 1;\n  transition: opacity 0.15s;\n}\n.hutplace-preloader {\n  color: red;\n  font-weight: 900;\n  z-index: 1002 !important;\n  width: 100% !important;\n  height: 100% !important;\n}\n.hutplace-preloader .loading-circle {\n  border-left-color: red !important;\n}\n.hutplace-preloader .loading-text {\n  margin-top: 15px;\n  color: yellow;\n  font-size: 12px;\n  font-family: \"Open Sans\";\n}\nbody {\n  overflow: hidden;\n  /* @media (max-height: 670px) {\n     & {\n       zoom:0.8;\n     }\n   }*/\n}\n.full {\n  width: 100%;\n  box-sizing: border-box;\n}\n.btn {\n  padding: 20px 20px;\n  text-align: center;\n  font-weight: 800;\n  list-style: none;\n  cursor: pointer;\n  border: none;\n  box-shadow: 2px 2px 2px 0px black;\n  transition: 0.5s;\n  box-sizing: border-box;\n}\n.btn a {\n  text-decoration: none;\n}\n.btn:focus {\n  outline: none;\n}\n.btn.btn-yellow {\n  color: #2c3e50;\n  background-color: yellow;\n  box-shadow: 2px 2px 2px 0px black;\n}\n.btn.btn-yellow a {\n  color: #2c3e50;\n}\n.btn.btn-yellow:hover {\n  background-color: white;\n  transition: 0.5s;\n  color: #2c3e50;\n}\n.btn.btn-yellow:hover a {\n  color: #2c3e50;\n}\n.btn.btn-black {\n  color: white;\n  background-color: #2c3e50;\n  box-shadow: 2px 2px 2px 0px black, 0px 0px 5px 2px white inset;\n}\n.btn.btn-black a {\n  color: white;\n}\n.btn.btn-black:hover {\n  box-shadow: 2px 2px 2px 0px black, 0px 0px 5px 2px yellow inset;\n  transition: 0.5s;\n}\n.btn.btn-black-2 {\n  color: white;\n  background-color: #2c3e50;\n  box-shadow: 2px 2px 2px 0px black;\n}\n.btn.btn-black-2 a {\n  color: white;\n}\n.btn.btn-black-2:hover {\n  transition: 0.5s;\n  background-color: white;\n  color: #2c3e50;\n}\n.btn.btn-black-2:hover a {\n  color: #2c3e50;\n}\n.btn.btn-black-2.active {\n  background-color: yellow;\n  color: #2c3e50;\n}\n.btn.btn-primary {\n  color: white;\n  background-color: #7ab300;\n}\n.btn.btn-primary a {\n  color: white;\n}\n.btn.btn-primary:hover {\n  background-color: white;\n  transition: 0.5s;\n}\n.btn.btn-info {\n  color: white;\n  background-color: #007fb3;\n}\n.btn.btn-info a {\n  color: white;\n}\n.btn.btn-info:hover {\n  background-color: white;\n  transition: 0.5s;\n}\nh1.main-title {\n  font-weight: 100;\n  color: white;\n  text-transform: uppercase;\n  font-size: 36px;\n  line-height: 150%;\n  width: 100%;\n}\np.description {\n  border-left: 1px yellow solid;\n  padding: 20px;\n  box-sizing: border-box;\n  text-transform: uppercase;\n  font-style: italic;\n  font-size: 14px;\n  color: white;\n  line-height: 150%;\n  margin-bottom: 20px;\n  width: 100%;\n  text-align: justify;\n}\np.description strong {\n  color: yellow;\n  font-weight: 900;\n}\nheader, section, footer {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\nheader .center, section .center, footer .center {\n  padding: 10px;\n  box-sizing: border-box;\n  width: 1200px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  flex-wrap: wrap;\n}\n@media (max-width: 1200px) {\nheader .center, section .center, footer .center {\n    width: 100%;\n}\n}\nheader {\n  height: 80px;\n}\nheader .center {\n  height: inherit;\n}\n#app {\n  font-family: \"Open Sans\", sans-serif;\n  text-align: center;\n  color: #393939;\n  width: 100%;\n  height: 100vh;\n  background-image: url(\"/img/background-landing.jpg\");\n  background-color: #2c3e50;\n  background-attachment: fixed;\n  background-position: center center;\n  background-size: cover;\n}\nheader {\n  height: 80px;\n  background-color: #2c3e50;\n  box-shadow: 0px 0px 6px 0px black;\n  position: relative;\n  z-index: 101;\n}\nheader .center {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\nheader .center .logo-wrapper {\n  background-color: #2c3e50;\n  padding: 0 10px 10px 10px;\n  box-sizing: border-box;\n  position: relative;\n  z-index: 2;\n}\nheader .center .logo-wrapper:after {\n  content: \"\";\n  width: 100%;\n  height: 54px;\n  bottom: 0;\n  left: 0;\n  z-index: 0;\n  position: absolute;\n  box-shadow: 7px 8px 2px -5px black;\n}\nheader .center .logo-wrapper .logo {\n  width: 100px;\n  transition: 0.5s;\n}\n@media (max-width: 1050px) {\nheader .center .logo-wrapper {\n    background-color: transparent;\n}\nheader .center .logo-wrapper:after {\n    content: none;\n}\nheader .center .logo-wrapper .logo {\n    width: 60px;\n    transition: 0.5s;\n}\n}\nheader .center .auth {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 300px;\n}\nheader .center .auth button {\n  margin-left: 10px;\n}\nheader .center .user {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n  width: 300px;\n  position: relative;\n  z-index: 0;\n}\nheader .center .user .info {\n  width: 200px;\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n  flex-wrap: wrap;\n  flex-direction: column;\n}\nheader .center .user .info p {\n  text-align: left;\n  color: white;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  overflow: hidden;\n  font-size: 10pt;\n  line-height: 150%;\n  margin-top: 0px;\n}\nheader .center .user .info p.pucks {\n  color: yellow;\n  font-weight: 600;\n}\nheader .center .user .info p.pucks strong {\n  color: white;\n}\nheader .center .user .avatar {\n  position: relative;\n  width: 60px;\n  height: 60px;\n}\nheader .center .user .avatar img {\n  width: 100%;\n  height: 100%;\n}\nheader .center .user .avatar:before {\n  content: \"\";\n  width: 10px;\n  height: 2px;\n  background: white;\n  position: absolute;\n  bottom: -5px;\n  right: 20px;\n  transform: rotate(-15deg);\n}\nheader .center .user .avatar:after {\n  content: \"\";\n  width: 10px;\n  height: 2px;\n  background: white;\n  position: absolute;\n  bottom: -5px;\n  left: 20px;\n  transform: rotate(15deg);\n}\nheader .center .user .dropdown {\n  transition: 0.5s;\n  z-index: 2;\n  position: absolute;\n  left: 0;\n  bottom: -50px;\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-start;\n  flex-wrap: wrap;\n}\nheader .center .user .dropdown > ul > li {\n  padding: 10px 25px;\n  background-color: #2c3e50;\n}\nheader .center .user .dropdown > ul > li > a {\n  text-align: left;\n  text-decoration: none;\n  color: white;\n}\nheader .center .user .dropdown > ul > li > a:hover {\n  color: yellow;\n}\nheader .center .btn-mobile {\n  display: none;\n  width: 150px;\n  margin-left: -80px;\n}\n@media (max-width: 1050px) {\nheader .center .btn-mobile {\n    display: block;\n    padding: 15px 15px;\n    margin-top: 5px;\n}\n}\n@media (max-width: 700px) {\nheader .center .btn-mobile {\n    margin-left: -40px;\n}\n}\nheader .center nav {\n  position: relative;\n  border: none;\n}\nheader .center nav ul {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  flex-wrap: wrap;\n}\nheader .center nav ul li {\n  margin-left: 10px;\n}\n@media (max-width: 1050px) {\nheader .center nav {\n    width: 25px;\n    height: 20px;\n    border-top: 1px white solid;\n    border-bottom: 1px white solid;\n    cursor: pointer;\n    top: 15px;\n    right: 20px;\n}\nheader .center nav:after {\n    content: \"\";\n    width: 100%;\n    position: absolute;\n    top: 10px;\n    left: 0;\n    height: 1px;\n    background: white;\n}\nheader .center nav ul {\n    display: none !important;\n}\n}\naside {\n  position: fixed;\n  z-index: 100;\n  top: 150px;\n  left: 0px;\n  width: 200px;\n  background-color: #2c3e507d;\n  padding: 10px;\n}\naside nav {\n  width: 100%;\n}\naside nav > ul {\n  width: 100%;\n}\naside nav > ul > li {\n  margin-bottom: 10px;\n  transition: 0.5s;\n  box-sizing: border-box;\n}\naside nav > ul > li.more-menu {\n  width: 100%;\n  padding: 10px;\n  box-sizing: border-box;\n}\naside nav > ul > li.more-menu ul.more li {\n  cursor: pointer;\n  padding: 2px;\n}\naside nav > ul > li.more-menu ul.more li a {\n  text-align: center;\n  color: lightgray;\n  font-size: 16px;\n  text-decoration: none;\n  transition: 0.5s;\n}\naside nav > ul > li.more-menu ul.more li a:hover {\n  color: yellow;\n}\naside nav > ul > li.more-menu ul.more li a.report {\n  font-weight: 900;\n  color: yellow;\n}\naside nav > ul > li.more-menu ul.more li a.report:hover {\n  color: darkred;\n}\n@media (min-width: 601px) and (max-width: 1550px) {\naside {\n    left: 0px;\n    width: 50px;\n    background-color: transparent;\n    padding: 0px;\n}\naside:hover {\n    width: 200px;\n    background-color: #2c3e507d;\n    padding: 10px;\n}\naside:hover > nav {\n    background: none;\n    box-shadow: none;\n    width: auto;\n    height: auto;\n    border-radius: initial;\n}\naside:hover > nav > ul {\n    display: block;\n}\naside > nav {\n    width: 50px;\n    background-image: url(\"/img/btn-menu.png\");\n    background-position: center center;\n    background-color: yellow;\n    background-size: 20px 20px;\n    background-repeat: no-repeat;\n    box-shadow: 2px 2px 2px 0px black;\n    height: 50px;\n    border-radius: 0px 50% 50% 0px;\n}\naside > nav > ul {\n    display: none;\n}\n}\n@media (max-width: 600px) {\naside {\n    left: 0px;\n    background-color: transparent;\n    padding: 0px;\n}\naside > nav {\n    width: 50px;\n    background-image: url(\"/img/btn-menu.png\");\n    background-position: center center;\n    background-color: yellow;\n    background-size: 20px 20px;\n    background-repeat: no-repeat;\n    box-shadow: 0px 0px 2px 0px black;\n    height: 50px;\n    border-radius: 0px 50% 50% 0px;\n    cursor: pointer;\n}\naside > nav > ul {\n    display: none;\n}\n}\n#pageContent {\n  height: 100vh;\n  width: 100%;\n}\n#pageContent .center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: wrap;\n}\n@media (max-width: 600px) {\n#pageContent .center {\n    margin: 0;\n    padding: 20px;\n    box-sizing: border-box;\n    width: 100%;\n}\n}\n.no-items {\n  width: 100%;\n  height: 500px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  opacity: 0.5;\n}\n.no-items img {\n  width: 500px;\n  height: 100%;\n}\n@media (max-width: 500px) {\n.no-items {\n    height: auto;\n    width: 100%;\n}\n.no-items img {\n    width: 100%;\n}\n}\n.admin-btn {\n  box-shadow: 0px 0px 5px 0px black;\n  position: fixed;\n  bottom: 155px;\n  right: -28px;\n  width: 100px;\n  transition: 0.5s;\n  height: 60px;\n  background-color: orangered;\n  color: #2c3e50;\n  font-weight: 900;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  border-radius: 5px 0px 0px 5px;\n  cursor: pointer;\n  padding: 0px 0px 0px 20px;\n  box-sizing: border-box;\n  z-index: 16;\n}\n.admin-btn:hover {\n  right: 0px;\n  transition: 0.5s;\n}", ""]);
 
 // exports
 
@@ -1941,42 +2013,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body help-modal" }, [
-      _c("h1", [_vm._v("Помощь и обратная связь")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", [_vm._v("Тема сообщение")]),
+  return _c("div", { staticClass: "modal-body help-modal" }, [
+    _c("h1", {
+      domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.main_title) }
+    }),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "full",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.sendRequest($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.title) }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.title,
+                expression: "title"
+              }
+            ],
+            attrs: {
+              type: "text",
+              placeholder: _vm.$lang.modals.help.title_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.title = $event.target.value
+              }
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("input", { attrs: { type: "text" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", [_vm._v("Email")]),
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.email) }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            attrs: {
+              type: "email",
+              placeholder: _vm.$lang.modals.help.email_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("input", { attrs: { type: "email" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", [_vm._v("Сообщение")]),
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.message) }
+          }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.text,
+                expression: "text"
+              }
+            ],
+            attrs: {
+              placeholder: _vm.$lang.modals.help.message_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.text },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.text = $event.target.value
+              }
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("textarea", { attrs: { placeholder: "Введите ваше сообщение" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("div", { staticClass: "btn btn-yellow full" }, [
-          _vm._v("Задать вопрос")
+        _c("div", { staticClass: "input-group" }, [
+          _c("button", {
+            staticClass: "btn btn-yellow full",
+            attrs: { type: "submit" },
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.ask) }
+          })
         ])
-      ])
-    ])
-  }
-]
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -2006,92 +2163,85 @@ var render = function() {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _vm._l(_vm.historyList, function(item, index) {
-        return _vm.historyList != null && _vm.historyList.length > 0
-          ? _c(
-              "ul",
-              {
-                staticClass: "body",
-                on: {
-                  click: function($event) {
-                    return _vm.selfHide()
-                  }
-                }
-              },
-              [
-                _c("li", [_vm._v(_vm._s(++index))]),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "a",
-                          to: {
-                            name: "Lottery",
-                            params: { gameId: item.lottery_id }
-                          }
+      _vm._l(_vm.history, function(item, index) {
+        return _vm.history != null && _vm.history.length > 0
+          ? _c("ul", { staticClass: "body" }, [
+              _c("li", [_vm._v(_vm._s(++index))]),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        tag: "a",
+                        to: {
+                          name: "Lottery",
+                          params: { gameId: item.lottery_id }
                         }
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.lottery_title) +
-                            "\n            "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("li", [
-                  _c("img", {
-                    directives: [
-                      {
-                        name: "lazy",
-                        rawName: "v-lazy",
-                        value: _vm.getPlatform(item.console_type),
-                        expression: "getPlatform(item.console_type)"
                       }
-                    ],
-                    attrs: { alt: "" }
-                  })
-                ]),
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(item.lottery_title) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", [
+                item.console_type == 1
+                  ? _c("i", { staticClass: "fab fa-playstation" })
+                  : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "li",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          tag: "a",
-                          to: {
-                            name: "PlayerInfo",
-                            params: { userId: item.user_id }
-                          }
+                item.console_type == 0
+                  ? _c("i", { staticClass: "fab fa-xbox" })
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        tag: "a",
+                        to: {
+                          name: "PlayerInfo",
+                          params: { userId: item.user_id }
                         }
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.user_name) +
-                            "\n            "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("li", [_vm._v(_vm._s(item.end))])
-              ]
-            )
-          : _c("h3", [_vm._v("Не найдено ни одного победителя")])
-      })
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(item.user_name) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", [_vm._v(_vm._s(item.end))])
+            ])
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _vm.history == null || _vm.history.length == 0
+        ? _c("div", { staticClass: "no-items" }, [
+            _c("img", {
+              attrs: { src: _vm.$lang.modals.history.error_1, alt: "" }
+            })
+          ])
+        : _vm._e()
     ],
     2
   )
@@ -2463,10 +2613,14 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("h1", [_vm._v("Введите действительный промокод")]),
+    _c("h1", {
+      domProps: { innerHTML: _vm._s(_vm.$lang.modals.promocodes.title) }
+    }),
     _vm._v(" "),
     _c("div", { staticClass: "input-group" }, [
-      _c("label", [_vm._v("Ваш промокод")]),
+      _c("label", {
+        domProps: { innerHTML: _vm._s(_vm.$lang.modals.promocodes.your_promo) }
+      }),
       _vm._v(" "),
       _c("input", {
         directives: [
@@ -2491,18 +2645,15 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "input-group" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-yellow full",
-          on: {
-            click: function($event) {
-              return _vm.doRequest()
-            }
+      _c("button", {
+        staticClass: "btn btn-yellow full",
+        domProps: { innerHTML: _vm._s(_vm.$lang.modals.promocodes.activate) },
+        on: {
+          click: function($event) {
+            return _vm.doRequest()
           }
-        },
-        [_vm._v("Активировать")]
-      )
+        }
+      })
     ])
   ])
 }
@@ -2741,10 +2892,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&scoped=true&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&scoped=true& ***!
-  \****************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2756,144 +2907,187 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "modal-body report-modal" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("h1", [_vm._v(_vm._s(_vm.$lang.messages.report))]),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "reports-link",
-          attrs: { tag: "a", disabled: "", to: "/my-reports" }
-        },
-        [_vm._v("\n    " + _vm._s(_vm.$lang.messages.my_reports) + "\n  ")]
-      ),
-      _vm._v(" "),
-      _vm.success != ""
-        ? _c(
-            "p",
+  return _c("div", { staticClass: "modal-body report-modal" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("h1", { domProps: { innerHTML: _vm._s(_vm.$lang.messages.report) } }),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.sendReport($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            attrs: { for: "select-email" },
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.report.email) }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            attrs: {
+              autocomplete: "false",
+              type: "email",
+              id: "select-email",
+              placeholder: _vm.$lang.modals.report.email_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            attrs: { for: "select-errorType" },
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.report.error_type) }
+          }),
+          _vm._v(" "),
+          _c(
+            "select",
             {
-              staticClass: "alert",
-              attrs: { role: "alert" },
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.error_type,
+                  expression: "error_type"
+                }
+              ],
+              attrs: { id: "select-errorType", required: "" },
               on: {
-                click: function($event) {
-                  _vm.success = ""
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.error_type = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
                 }
               }
             },
-            [_vm._v("\n    " + _vm._s(_vm.success) + "\n  ")]
+            [
+              _c("option", {
+                attrs: { value: "0", selected: "" },
+                domProps: {
+                  innerHTML: _vm._s(_vm.$lang.modals.report.error_type_1)
+                }
+              }),
+              _vm._v(" "),
+              _c("option", {
+                attrs: { value: "1" },
+                domProps: {
+                  innerHTML: _vm._s(_vm.$lang.modals.report.error_type_2)
+                }
+              }),
+              _vm._v(" "),
+              _c("option", {
+                attrs: { value: "2" },
+                domProps: {
+                  innerHTML: _vm._s(_vm.$lang.modals.report.error_type_3)
+                }
+              })
+            ]
           )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.formSubmit($event)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            attrs: { for: "select-errorMessage" },
+            domProps: {
+              innerHTML: _vm._s(_vm.$lang.modals.report.error_message)
             }
-          }
-        },
-        [
-          _c("div", { staticClass: "input-group" }, [
-            _c("label", { attrs: { for: "select-email" } }, [_vm._v("Email:")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.email,
-                  expression: "email"
-                }
-              ],
-              attrs: {
-                autocomplete: "false",
-                type: "text",
-                id: "select-email",
-                placeholder: "Enter email",
-                required: ""
-              },
-              domProps: { value: _vm.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.email = $event.target.value
-                }
+          }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.description,
+                expression: "description"
               }
-            })
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "input-group" }, [
-            _c("label", { attrs: { for: "select-errorMessage" } }, [
-              _vm._v("Сообщение:")
-            ]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.description,
-                  expression: "description"
+            ],
+            attrs: {
+              autocomplete: "false",
+              id: "select-errorMessage",
+              placeholder: _vm.$lang.modals.report.error_message_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              ],
-              attrs: {
-                autocomplete: "false",
-                id: "select-errorMessage",
-                placeholder: "Enter problem description",
-                required: ""
-              },
-              domProps: { value: _vm.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.description = $event.target.value
-                }
+                _vm.description = $event.target.value
               }
-            })
-          ]),
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("input", {
+            ref: "files",
+            staticClass: "inputfile",
+            attrs: {
+              type: "file",
+              name: "file",
+              accept: ".gif,.jpg,.jpeg,.png",
+              id: "file",
+              multiple: ""
+            },
+            on: { change: _vm.onImageChange }
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "input-group" }, [
-            _c("input", {
-              ref: "files",
-              staticClass: "inputfile",
-              attrs: {
-                type: "file",
-                name: "file",
-                accept: ".gif,.jpg,.jpeg,.png",
-                id: "file",
-                multiple: ""
-              },
-              on: { change: _vm.onImageChange }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "file" } }, [
-              _vm.images.length == 0
-                ? _c("p", [_vm._v("Choose a file")])
-                : _c("p", [
-                    _vm._v("You choos " + _vm._s(_vm.images.length) + " files")
-                  ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(2)
-        ]
-      )
-    ],
-    1
-  )
+          _c("label", { attrs: { for: "file" } }, [
+            _vm.images.length == 0
+              ? _c("p", {
+                  domProps: {
+                    innerHTML: _vm._s(_vm.$lang.modals.report.choose_file)
+                  }
+                })
+              : _c("p", [
+                  _vm._v("You choos " + _vm._s(_vm.images.length) + " files")
+                ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("button", {
+            staticClass: "btn btn-yellow full",
+            attrs: { type: "submit" },
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.report.send_report) }
+          })
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -2902,36 +3096,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-logo" }, [
       _c("img", { attrs: { src: "/img/report-logo.png", alt: "" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group" }, [
-      _c("label", { attrs: { for: "select-errorType" } }, [
-        _vm._v("Тип ошибки:")
-      ]),
-      _vm._v(" "),
-      _c("select", { attrs: { id: "select-errorType" } }, [
-        _c("option", { attrs: { value: "" } }, [_vm._v("Ошибка интерфейса")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Сетевые ошибки")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Логические ошибки")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-yellow full", attrs: { type: "submit" } },
-        [_vm._v("Отправить")]
-      )
     ])
   }
 ]
@@ -2973,7 +3137,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.$lang.messages.recharge))]
+            [_vm._v(_vm._s(_vm.$lang.menu.recharge))]
           ),
           _vm._v(" "),
           _c(
@@ -3058,42 +3222,6 @@ var render = function() {
               }
             },
             [_c("img", { attrs: { src: "/img/en.jpg", alt: "" } })]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.lang("fi")
-                }
-              }
-            },
-            [_c("img", { attrs: { src: "/img/fi.jpg", alt: "" } })]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.lang("se")
-                }
-              }
-            },
-            [_c("img", { attrs: { src: "/img/se.jpg", alt: "" } })]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.lang("cz")
-                }
-              }
-            },
-            [_c("img", { attrs: { src: "/img/cz.gif", alt: "" } })]
           )
         ])
       ]),
@@ -3127,7 +3255,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("report")
+              _c("report", {
+                on: {
+                  close: function($event) {
+                    return _vm.hide("report")
+                  }
+                }
+              })
             ],
             1
           )
@@ -3271,7 +3405,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("help")
+              _c("help", {
+                on: {
+                  close: function($event) {
+                    return _vm.hide("help")
+                  }
+                }
+              })
             ],
             1
           )
@@ -3431,7 +3571,13 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("supplier")
+              _c("partner", {
+                on: {
+                  close: function($event) {
+                    return _vm.hide("supplier")
+                  }
+                }
+              })
             ],
             1
           )
@@ -4284,7 +4430,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Report_vue_vue_type_template_id_2f38cd62_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Report.vue?vue&type=template&id=2f38cd62&scoped=true& */ "./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&scoped=true&");
+/* harmony import */ var _Report_vue_vue_type_template_id_2f38cd62___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Report.vue?vue&type=template&id=2f38cd62& */ "./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&");
 /* harmony import */ var _Report_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Report.vue?vue&type=script&lang=js& */ "./resources/js/components/modals/Report.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -4296,11 +4442,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Report_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Report_vue_vue_type_template_id_2f38cd62_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Report_vue_vue_type_template_id_2f38cd62_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Report_vue_vue_type_template_id_2f38cd62___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Report_vue_vue_type_template_id_2f38cd62___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "2f38cd62",
+  null,
   null
   
 )
@@ -4326,19 +4472,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&scoped=true&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&scoped=true& ***!
-  \**********************************************************************************************/
+/***/ "./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62& ***!
+  \**********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Report_vue_vue_type_template_id_2f38cd62_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Report.vue?vue&type=template&id=2f38cd62&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Report_vue_vue_type_template_id_2f38cd62_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Report_vue_vue_type_template_id_2f38cd62___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Report.vue?vue&type=template&id=2f38cd62& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Report.vue?vue&type=template&id=2f38cd62&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Report_vue_vue_type_template_id_2f38cd62___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Report_vue_vue_type_template_id_2f38cd62_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Report_vue_vue_type_template_id_2f38cd62___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

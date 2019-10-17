@@ -30,6 +30,7 @@ class AuthController extends Controller
             'name' => request('name'),
             'email' => request('email'),
             'avatar' => '',
+            'bonus' => 0,
             'is_trader' => false,
             'level_id' => (Level::where("level", "1")->first())->id,
             'password' => bcrypt(request('password'))

@@ -35,6 +35,7 @@ class SettingsTableSeeder extends Seeder
         if (count($rooms)==0) {
             $chat1 = ($this->chatkit_createRoom(User::where("email", "superadmin@hutplaces.com")->first(), "Main Room"))["id"];
             $chat2 = ($this->chatkit_createRoom(User::where("email", "superadmin@hutplaces.com")->first(), "Help"))["id"];
+           // $chat3 = ($this->chatkit_createRoom(User::where("email", "superadmin@hutplaces.com")->first(), "News"))["id"];
 
             try {
 
@@ -104,7 +105,7 @@ class SettingsTableSeeder extends Seeder
             }
         }
 
-        $config = ["tax"=>"5","coins_exchange"=>"5","money_exchange"=>"1","coins_title"=>"pucks","years"=>'{"2018","2019","220"}'];
+        $config = ["tax"=>"5","coins_exchange"=>"5","money_exchange"=>"1","coins_title"=>"pucks","years"=>'{"2019","2020"}'];
 
         foreach ($config as $key=>$value){
             try {

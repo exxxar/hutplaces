@@ -31,10 +31,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'faq',
-  props: ['show'],
-  methods: {}
+  name: 'help',
+  data: function data() {
+    return {
+      email: '',
+      text: '',
+      title: ''
+    };
+  },
+  methods: {
+    message: function message(_message) {
+      this.$notify({
+        group: 'main',
+        type: "warn",
+        title: this.$lang.modals.help.message_title,
+        text: _message
+      });
+    },
+    sendRequest: function sendRequest(e) {
+      var _this = this;
+
+      var currentObj = this;
+
+      if (this.email == '' || this.text == '' || this.title == '') {
+        this.message(this.$lang.modals.help.error_1);
+        return;
+      }
+
+      var formData = new FormData();
+      formData.append('email', this.email);
+      formData.append('title', this.title);
+      formData.append('message', this.text);
+      axios.post('/help/ask', formData).then(function (response) {
+        e.target.reset();
+
+        _this.message(_this.$lang.modals.help.success_2);
+      })["catch"](function (error) {
+        _this.message(_this.$lang.modals.help.error_2);
+      });
+      this.message(this.$lang.modals.help.success_1);
+      this.$emit('close');
+    }
+  }
 });
 
 /***/ }),
@@ -54,42 +95,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body help-modal" }, [
-      _c("h1", [_vm._v("Помощь и обратная связь")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", [_vm._v("Тема сообщение")]),
+  return _c("div", { staticClass: "modal-body help-modal" }, [
+    _c("h1", {
+      domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.main_title) }
+    }),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "full",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.sendRequest($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.title) }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.title,
+                expression: "title"
+              }
+            ],
+            attrs: {
+              type: "text",
+              placeholder: _vm.$lang.modals.help.title_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.title = $event.target.value
+              }
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("input", { attrs: { type: "text" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", [_vm._v("Email")]),
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.email) }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            attrs: {
+              type: "email",
+              placeholder: _vm.$lang.modals.help.email_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("input", { attrs: { type: "email" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", [_vm._v("Сообщение")]),
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.message) }
+          }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.text,
+                expression: "text"
+              }
+            ],
+            attrs: {
+              placeholder: _vm.$lang.modals.help.message_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.text },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.text = $event.target.value
+              }
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("textarea", { attrs: { placeholder: "Введите ваше сообщение" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("div", { staticClass: "btn btn-yellow full" }, [
-          _vm._v("Задать вопрос")
+        _c("div", { staticClass: "input-group" }, [
+          _c("button", {
+            staticClass: "btn btn-yellow full",
+            attrs: { type: "submit" },
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.help.ask) }
+          })
         ])
-      ])
-    ])
-  }
-]
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

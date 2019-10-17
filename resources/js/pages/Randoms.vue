@@ -3,8 +3,8 @@
 
       <h1 class="main-title">Выбери свою игру!</h1>
       <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit.
-      </p>
+
+          </p>
     <ul class="games-list">
       <li class="game" v-for="game in games">
         <div class="row">
@@ -58,7 +58,7 @@ export default {
           logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ea/EA_Sports.svg/220px-EA_Sports.svg.png',
           url: 'http://www.easports.com/nhl',
           banner: 'img/logo.png',
-          title: 'NHL 19',
+          title: 'NHL 20',
           platforms: [
             {
               platform_id: 1,
@@ -70,12 +70,11 @@ export default {
             }
 
           ],
-          lottery_count: 78,
+          lottery_count: 10,
           slides: [
-            this.addSlide('/img/nhl-banner.jpg'),
-            this.addSlide('/img/nhl-banner.jpg'),
-            this.addSlide('/img/nhl-banner.jpg'),
-            this.addSlide('/img/nhl-banner.jpg')
+            this.addSlide('/img/slides/3.jpg'),
+            this.addSlide('/img/slides/2.jpg'),
+            this.addSlide('/img/slides/1.jpg'),
           ]
         },
 

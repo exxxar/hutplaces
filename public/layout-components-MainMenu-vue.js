@@ -84,12 +84,15 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this2 = this;
 
+      this.$loading(true);
       this.$store.dispatch('logoutUser').then(function () {
         Event.$emit("userLogout");
 
         _this2.$router.push({
           path: "/signin"
         });
+
+        _this2.$loading(false);
       });
     },
     getAvatar: function getAvatar(img) {

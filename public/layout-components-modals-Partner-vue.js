@@ -29,10 +29,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'faq',
+  name: 'report',
   props: ['show'],
-  methods: {}
+  data: function data() {
+    return {
+      email: '',
+      message: ''
+    };
+  },
+  methods: {
+    message: function message(_message) {
+      this.$notify({
+        group: 'main',
+        type: "warn",
+        title: this.$lang.modals.partner.message_title,
+        text: _message
+      });
+    },
+    sendReport: function sendReport(e) {
+      var _this = this;
+
+      var currentObj = this;
+
+      if (this.email == '' || this.message == '') {
+        this.message(this.$lang.modals.partner.error_1);
+        return;
+      }
+
+      formData.append('email', this.email);
+      formData.append('message', this.message);
+      axios.post('/partner/request', formData, config).then(function (response) {
+        e.target.reset();
+
+        _this.message(_this.$lang.modals.partner.success_2);
+      })["catch"](function (error) {
+        _this.message(_this.$lang.modals.partner.error_2);
+      });
+      this.message(this.$lang.modals.partner.success_1);
+      this.$emit('close');
+    }
+  }
 });
 
 /***/ }),
@@ -52,36 +92,99 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body partner-modal" }, [
-      _c("h1", [_vm._v("Стать партнером")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", [_vm._v("Email")]),
+  return _c("div", { staticClass: "modal-body partner-modal" }, [
+    _c("h1", {
+      domProps: { innerHTML: _vm._s(_vm.$lang.modals.partner.title) }
+    }),
+    _vm._v(" "),
+    _c("p", {
+      domProps: { innerHTML: _vm._s(_vm.$lang.modals.partner.description) }
+    }),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.sendReport($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.partner.email) }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            attrs: {
+              type: "email",
+              placeholder: _vm.$lang.modals.partner.email_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("input", { attrs: { type: "email" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("label", [_vm._v("Заголовок")]),
+        _c("div", { staticClass: "input-group" }, [
+          _c("label", {
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.partner.message) }
+          }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.message,
+                expression: "message"
+              }
+            ],
+            attrs: {
+              placeholder: _vm.$lang.modals.partner.message_placeholder,
+              required: ""
+            },
+            domProps: { value: _vm.message },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              }
+            }
+          })
+        ]),
         _vm._v(" "),
-        _c("textarea", { attrs: { placeholder: "Сообщение" } })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("div", { staticClass: "btn btn-yellow full" }, [
-          _vm._v("Отправить запрос")
+        _c("div", { staticClass: "input-group" }, [
+          _c("div", {
+            staticClass: "btn btn-yellow full",
+            attrs: { type: "submit" },
+            domProps: { innerHTML: _vm._s(_vm.$lang.modals.partner.send) }
+          })
         ])
-      ])
-    ])
-  }
-]
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

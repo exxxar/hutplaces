@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Coins from '@/pages/Coins'
 import PageNotFound from '@/pages/PageNotFound'
-import Randoms from '@/pages/Randoms'
+/*import Randoms from '@/pages/Randoms'*/
 import Market from '@/pages/Market'
 import Playzone from '@/pages/Playzone'
 import Auction from '@/pages/Auction'
@@ -103,23 +103,23 @@ export default new Router({
             name: 'Register',
             component: Register,
         },
-        {
+/*        {
             path: '/randoms',
             name: 'Randoms',
             component: Randoms
-        },
+        },*/
         {
             path: '/auction',
             name: 'Auction',
             component: Auction
         },
         {
-            path: '/games/nhl',
+            path: '/nhl',
             name: 'Games',
             component: Games
         },
         {
-            path: '/games/nhl/:gameId',
+            path: '/nhl/:gameId',
             name: 'Lottery',
             component: Lottery,
             props: true

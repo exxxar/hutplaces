@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\AchievementCategoryType;
 use App\Enums\TriggerType;
 use App\Enums\AchievementType;
 use BenSampo\Enum\Traits\CastsEnums;
@@ -12,6 +13,7 @@ class Achievement extends Model
     use CastsEnums;
 
     protected $enumCasts = [
+        'category' => AchievementCategoryType::class,
         'type' => AchievementType::class,
         'trigger_type' => TriggerType::class,
     ];
@@ -20,6 +22,7 @@ class Achievement extends Model
         'title',
         'description',
         'background',
+        'category',
         'image',
 
         'type',

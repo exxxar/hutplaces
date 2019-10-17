@@ -25,4 +25,6 @@ final class TriggerType extends Enum
     const Promocodes_Count = 16;
     const Items_Count = 17;
     const Bonus_Count = 18;
+    const Randoms_Free_Played_Count = 19;
+    const Randoms_Win_Count = 20;
 }

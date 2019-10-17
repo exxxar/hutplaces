@@ -15,9 +15,10 @@
 
         data() {
             return {
-                value: false
+                value: !(false || this.check)
             }
         },
+
         props: {
             id: {type: String, default: 'id', required: true},
             labelon: {type: String, default: 'inherit', required: true},
@@ -25,6 +26,7 @@
             width: {type: Number, default: 160, required: true},
             check: {type: Boolean, default: false, required: false}
         },
+
         methods: {
             click() {
                 this.$emit('check', this.value)

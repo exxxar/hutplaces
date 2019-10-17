@@ -1,0 +1,15 @@
+module.exports = {
+    completed:'Завершено',
+    visible:'Отображается',
+    active:'Активно',
+    is_only_one:'Только один',
+    remove:'Удалить',
+    yes:'Да',
+    no:'Нет',
+    success_1:'',
+    success_2:'',
+    success_3:'',
+    error_1:'',
+    error_2:'',
+    error_3:'',
+}

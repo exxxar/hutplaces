@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\CardsStorage;
 use App\Classes\CustomRandom;
+use App\Enums\ConsoleType;
+use App\Enums\GameType;
+use App\Enums\ItemType;
+use App\Enums\Lifetime;
+use App\Enums\LotType;
 use App\Events\RaffleNotification;
 use App\Events\BroadcastMessage;
 use App\Events\PickPlace;
+use App\Item;
 use App\Lot;
 use App\Place;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Lottery;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 use RandomOrg\Random;
 
 class LotteryController extends Controller
@@ -27,7 +37,12 @@ class LotteryController extends Controller
     {
         if ($request->ajax())
             return response()->json([
-                'games' => Lottery::with(["placeList", "lot", "lot.card", "placeList.user"])->get(),
+                'games' => Lottery::with(["placeList", "lot", "lot.card", "lot.item", "placeList.user"])
+                    ->where("active", "1")
+                    ->where("completed", "0")
+                    ->where("visible", "1")
+                    ->get(),
+
                 'status' => 200
             ]);
 
@@ -54,6 +69,26 @@ class LotteryController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->ajax()) {
+
+            $lottery = Lottery::find($request->get("id"));
+            $lottery->is_only_one = $request->get("is_only_one");
+            $lottery->completed = $request->get("completed");
+            $lottery->visible = $request->get("visible");
+            $lottery->active = $request->get("active");
+            $lottery->updated_at = Carbon::now();
+            $lottery->lifetime = Lifetime::getInstance(intval($request->get("lifetime")));
+            $lottery->save();
+
+            return response()
+                ->json([
+                    "status" => 200,
+                    "message" => "Store success"
+                ]);
+
+        }
+
+
         $request->validate([
             'base_price' => 'numeric',
             'base_discount' => 'integer|min:0|max:2147483647',
@@ -79,7 +114,7 @@ class LotteryController extends Controller
     public function show(Request $request, $id)
     {
 
-        $lottery = Lottery::with(["placeList", "lot", "lot.card", "placeList.user"])->find($id);
+        $lottery = Lottery::with(["placeList", "lot", "lot.card", "lot.item", "placeList.user"])->find($id);
 
         if (!$request->ajax())
             return view('admin.lottery.show', compact('lottery'));
@@ -118,6 +153,8 @@ class LotteryController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         $request->validate([
             'base_price' => 'numeric',
             'base_discount' => 'integer|min:0|max:2147483647',
@@ -141,9 +178,39 @@ class LotteryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        DB::table("lotteries")->where('id', $id)->delete();
+        if ($request->ajax()) {
+
+            $lottery = Lottery::with(["placeList.user"])->find($request->get("id"));
+
+            if ($lottery->completed != 1 || $lottery->occupied_places == 0) {
+
+                Schema::disableForeignKeyConstraints();
+                $price = ($lottery->base_price - $lottery->base_price * ($lottery->base_discount / 100)) / $lottery->places;
+
+                foreach ($lottery->placeList as $place) {
+
+                    $user = User::find($place->user->id);
+                    $user->money += $price;
+                    $user->save();
+
+                    $place->delete();
+
+
+                }
+
+                $lottery->delete();
+                Schema::enableForeignKeyConstraints();
+            }
+
+            return response()->json([
+                'message' => "Lottery success deleted",
+                'status' => 200
+            ]);
+        }
+
+        DB::table("lotteries")->where('id', $request->get("id"))->delete();
         return redirect()->route('lottery.index')
             ->with('success', 'Lottery deleted successfully');
     }
@@ -283,9 +350,24 @@ class LotteryController extends Controller
         //вычисляем цену с учетом базовой скидки на карточку
         $price = ($lottery->base_price - $lottery->base_price * ($lottery->base_discount / 100)) / $lottery->places;
 
+        if ($lottery->is_only_one == 0) {
+            $currentPlace = Place::with(["user"])->where("lottery_id", $lottery->id)
+                ->first();
+
+            if ($currentPlace == null)
+                return response()
+                    ->json([
+                        "status" => 200,
+                        "message" => "Can take only one place"
+                    ]);
+
+        }
+
+
         $selectedPlace = Place::where("lottery_id", $lottery->id)
             ->where("place_number", $place_number)
             ->first();
+
 
         // место уже занято
         if ($selectedPlace != null)
@@ -356,6 +438,16 @@ class LotteryController extends Controller
 
     }
 
+    public function drafts(Request $request)
+    {
+        return response()->json([
+            'games' => Lottery::with(["lot", "lot.card", "lot.item"])
+                ->where("completed", "0")
+                ->get(),
+            'status' => 200
+        ]);
+    }
+
     public function history()
     {
 
@@ -387,4 +479,82 @@ class LotteryController extends Controller
         ]);
     }
 
+    public function add(Request $request)
+    {
+
+        $imageName = null;
+
+        $user = User::find(auth('api')->user()->id);
+
+        if ($request->image != null && !is_string($request->image)) {
+
+            $image = $request->image;
+            $imageName = $image->hashName();
+            $image->move(public_path() . '/img/cards', $imageName);
+        }
+
+        $lotType = $request->get("lot_type");
+
+        $coins = null;
+        $item = null;
+        $card = null;
+
+        switch ($lotType) {
+
+            default:
+            case 0:
+            case 1:
+                $item = Item::create([
+                    "title" => $request->get("title"),
+                    "description" => $request->get("description"),
+                    "image" => $imageName,
+                    "value" => $request->get("value"),
+                    "type" => ItemType::getInstance(intval($request->get("lot_type")))->value,
+                ]);
+                break;
+            case 2:
+                $tmp = json_decode($request->get("card"), true);
+                $card = CardsStorage::create($tmp);
+                $card->card_synergies = json_encode($tmp["card_synergies"]);
+                $card->image = $imageName;
+                $card->save();
+                break;
+
+
+        }
+        $lot = Lot::create([
+            'coins' => $coins != null ? $coins : null,
+            'items_id' => $item != null ? $item->id : null,
+            'cards_id' => $card != null ? $card->id : null,
+        ]);
+
+
+        $lottery = Lottery::create([
+            'title' => $request->get("title"),
+            'console_type' => ConsoleType::getInstance(intval($request->get("console_type")))->value,
+            'lot_type' => LotType::getInstance(intval($request->get("lot_type")))->value,
+            'lot_id' => $lot->id,
+            'game_type' => GameType::getInstance(intval($request->get("game_type")))->value,
+            'base_price' => $request->get("base_price"),
+            'base_discount' => $request->get("base_discount"),
+            'places' => $request->get("places"),
+            'visible' => 1,
+            'is_only_one' => 0,
+            'completed' => 0,
+            'seller_id' => $user->id,
+            'active' => $request->get("active"),
+            'lifetime' => Lifetime::getInstance(intval($request->get("lifetime")))->value,
+            'updated_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+        ]);
+
+        $lot->lottery_id = $lottery->id;
+        $lot->save();
+
+        return response()->json([
+            'message' => 'Success lottery create!',
+            'status' => 200
+        ]);
+
+    }
 }

@@ -19,11 +19,13 @@ class Lot extends Model
 
     public function card()
     {
-       return $this->belongsTo('App\CardsStorage','id');
+        return $this->hasOne('App\CardsStorage','id','cards_id');
+      // return $this->belongsTo('App\CardsStorage','cards_id');
     }
 
     public function item()
     {
-        return $this->hasOne('App\Item','id');
+        return $this->hasOne('App\Item','id','items_id');
+        //return $this->hasOne('App\Item','items_id');
     }
 }

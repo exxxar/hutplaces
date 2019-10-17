@@ -1,45 +1,44 @@
 <template>
-  <div>
+    <div>
+        <h1 class="main-title" v-html="$lang.playzone.main_title"></h1>
+        <p class="description" v-html="this.$lang.playzone.main_description"></p>
+        <ul>
+            <router-link tag="li" v-lazy:background-image="'/img/lottery-bg.png'" class="btn randoms opened"
+                         to="/nhl">
+                {{$lang.playzone.randoms}}
+            </router-link>
 
-    <h1 class="main-title">Игровая зона</h1>
-    <p class="description">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid atque doloremque eius enim excepturi exercitationem expedita fugiat fugit hic in ipsam nemo nesciunt, omnis quaerat quisquam rerum tempore velit.
-    </p>
+            <li class="btn fortune closed" v-lazy:background-image="'/img/wheel-of-fortune-bg.png'"
+                @click="showError($lang.playzone.error_1)">
+                {{$lang.playzone.wheel_of_fortune}}
+                <span></span>
+            </li>
 
-    <ul>
-      <router-link tag="li" v-lazy:background-image="'/img/lottery-bg.png'" class="btn randoms opened" to="/randoms">
-        {{$lang.main.randoms}}
-      </router-link>
+            <li class="btn wager closed" v-lazy:background-image="'/img/wager-bg.png'"
+                @click="showError($lang.playzone.error_2)">
+                {{$lang.playzone.wager_matches}}
+                <span></span>
+            </li>
 
-      <li class="btn fortune closed" v-lazy:background-image="'/img/wheel-of-fortune-bg.png'"   @click="showError('Раздел Колесо фортуны не доступен')">
-        {{$lang.main.wheel_of_fortune}}
-        <span></span>
-      </li>
+        </ul>
 
-      <li class="btn wager closed" v-lazy:background-image="'/img/wager-bg.png'"  @click="showError('Раздел Вагер-матчей не доступен')">
-        {{$lang.main.wager_matches}}
-        <span></span>
-      </li>
-
-    </ul>
-
-  </div>
+    </div>
 </template>
 <script>
-  export default {
-    methods: {
-      showError: function (message) {
-        this.$notify({
-          group: 'main',
-          type: 'warn',
-          title: 'Important message',
-          text: message
-        })
-      }
+    export default {
+        methods: {
+            showError: function (message) {
+                this.$notify({
+                    group: 'main',
+                    type: 'warn',
+                    title: this.$lang.playzone.error_title,
+                    text: message
+                })
+            }
+        }
     }
-  }
 </script>
 
 <style scoped="true" lang="scss">
-  @import '~/partials.scss';
+    @import '~/partials.scss';
 </style>

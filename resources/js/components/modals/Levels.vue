@@ -1,17 +1,17 @@
 <template>
     <div class="modal-levels">
-        <h3>Таблица уровней</h3>
+        <h3 v-html="$lang.levels.title"></h3>
         <table v-if="levels!=null&&levels.length>0">
             <tr>
-                <td>title</td>
-                <td>experience</td>
-                <td>level</td>
-                <td>discount</td>
+                <td v-html="$lang.levels.table_1"></td>
+                <td v-html="$lang.levels.table_2"></td>
+                <td v-html="$lang.levels.table_3"></td>
+                <td v-html="$lang.levels.table_4"></td>
             </tr>
             <tr v-for="level in levels">
                 <td >
-                    <p v-if="level.level==user.level.level" class="current">{{level.title}}</p>
-                    <p v-else>{{level.title}}</p>
+                    <p v-if="level.level==user.level.level" class="current">{{prepareLevelTitle(level.title)}}</p>
+                    <p v-else>{{prepareLevelTitle(level.title)}}</p>
 
                 </td>
                  <td>{{level.experience}}</td>
@@ -19,7 +19,8 @@
                 <td>{{level.discount}}</td>
             </tr>
         </table>
-        <h3 v-else>Уровни не найдены!(:</h3>
+        <div class="no-items" v-else><img :src="$lang.levels.no_levels" alt=""></div>
+
     </div>
 </template>
 
@@ -36,6 +37,9 @@
             this.loadLevels()
         },
         methods: {
+            prepareLevelTitle(title){
+                return eval(`this.$lang.levels.${title}`);
+            },
             loadLevels() {
                 this.$loading(true)
                 axios

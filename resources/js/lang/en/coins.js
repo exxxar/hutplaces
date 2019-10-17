@@ -9,7 +9,7 @@ module.exports = {
     find_card: 'Find a card',
     enter_manually: ', or enter manually',
     purchase_sale_coins: 'PURCHASE \\ SALE OF COINS',
-    player: 'Player\'s second name',
+    player: 'Player\'s name',
     team: 'Player\'s league and team',
     rating: 'Player\'s rating',
     initial_price: 'The initial price of your card',

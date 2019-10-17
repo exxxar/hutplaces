@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Achievement;
 use App\CardsStorage;
+use App\Enums\AchievementCategoryType;
 use App\Enums\AchievementType;
 use App\Enums\TriggerType;
 use App\Stats;
@@ -205,6 +206,17 @@ class AchievementsController extends Controller
         DB::table("achievements")->where('id', $id)->delete();
         return redirect()->route('achievements.index')
             ->with('success', 'Achievement deleted successfully');
+    }
+
+    public function categories(Request $request){
+        $tmp = [];
+        foreach(AchievementCategoryType::getInstances() as $key=>$value)
+            array_push($tmp,$value);
+        return response()
+            ->json([
+                "status"=>200,
+                "categories"=>$tmp
+            ]);
     }
 
     public function types(Request $request,$id=null)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TicketType;
 use App\Jobs\SendReminderEmail;
 use App\Order;
 use App\Ticket;
@@ -19,91 +20,134 @@ class SinglePageController extends Controller
 {
     //
 
-    public function index() {
+    public function index()
+    {
         return view('app');
     }
 
 
-    public function admin() {
+    public function admin()
+    {
         return view('admin');
     }
 
-    public function reportSubmit(Request $request)
+    public function reportsAll(Request $request)
     {
+
+    }
+
+    public function reportsSave(Request $request)
+    {
+
         $attach_list = [];
 
-        $dirName = Carbon::now()->timestamp;
-        if (env("SEND_TO_GDRIVE")==true)
-             Storage::cloud()->makeDirectory($dirName);
+        $dirName = '/';
+        //$dirName = Carbon::now()->timestamp;
+        if (env("SEND_TO_GDRIVE") == true)
+            Storage::cloud()->makeDirectory($dirName);
 
 
-       // $dirName = Hash::make($dirName);
-        Storage::makeDirectory("public\\".$dirName);
+       /* $dirName = Hash::make($dirName);
+        Storage::makeDirectory("public\\" . $dirName);*/
 
         $description = $request->get("description");
+        $email =  $request->get("email");
         $ticket = new Ticket();
-        $ticket->email = $request->get("email");
+        $ticket->email =  $email;
         $ticket->description = $description;
-        $ticket->directory = $dirName;
+        $ticket->ticket_type = TicketType::getInstance(intval($request->get("error_type")));
         $ticket->save();
 
-        foreach ( $request->images as $image) {
-            $imageName = $image->hashName();
-            $storagePath  = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
+        $storagePath = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
 
-          //  $image->move(public_path('images'), $imageName);
-            Storage::put('public\\'.$dirName,$image,'public');
+        if ($request->images != null)
+            foreach ($request->images as $image) {
+                $imageName = $image->hashName();
+
+                //  $image->move(public_path('images'), $imageName);
+                Storage::put('public\\' , $image, 'public');
 
 
+                if (env("SEND_TO_GDRIVE") == true) {
 
-            if (env("SEND_TO_GDRIVE")==true) {
+                    $fileData = File::get($storagePath . '\\' . $dirName . '\\' . $imageName);
+                    $recursive = false; // Get subdirectories also?
+                    $contents = collect(Storage::cloud()->listContents('/', $recursive));
+                    $dir = $contents->where('type', '=', 'dir')
+                        ->where('filename', '=', $dirName)
+                        ->first(); // There could be duplicate directory names!
+                    if (!$dir) {
+                        return 'Directory does not exist!';
+                    }
+                    Storage::cloud()->put($dir['path'] . '/' . $imageName, $fileData);
 
-                $fileData = File::get($storagePath.'\\'.$dirName.'\\'.$imageName);
-                $recursive = false; // Get subdirectories also?
-                $contents = collect(Storage::cloud()->listContents('/', $recursive));
-                $dir = $contents->where('type', '=', 'dir')
-                    ->where('filename', '=', $dirName)
-                    ->first(); // There could be duplicate directory names!
-                if (!$dir) {
-                    return 'Directory does not exist!';
                 }
-                Storage::cloud()->put($dir['path'] . '/' . $imageName, $fileData);
+                array_push($attach_list, $dirName . '/' . $imageName);
 
             }
-            array_push($attach_list, $dirName.'/'.$imageName);
 
-        }
-
-        Mail::send('mails.report', ["description"=>  $description], function($message) use ($attach_list,$storagePath,$dirName)
-        {
+        Mail::send('mails.report', ["description" => $description,"email"=> $email], function ($message) use ($storagePath,$attach_list) {
             $message->to(env('APP_SERVICE_EMAIL'), env('APP_SERVICE_NAME'))->subject('New report!');
 
-            for ($i=0; $i < count($attach_list); $i++) {
-                $message->attach($storagePath.'/'.$attach_list[$i]);
+            if (count($attach_list)>0)
+            for ($i = 0; $i < count($attach_list); $i++) {
+                $message->attach($storagePath.$attach_list[$i]);
                 Storage::delete($attach_list[$i]);
-
             }
 
         });
 
-        return response()->json(['success'=>'You have successfully upload image.']);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Success!.'
+        ]);
     }
 
-    public function requestMoney(Request $request,G2APay $payment){
-            $order = new Order();
-            $order->title = "Coins";
-            $order->currency = "USA";
-            $order->count=0.0;
-            $order->price=0.0;
-            $order->quantity=1;
-            $order->payment_provider = "G2A";
-            $order->save();
+    public function requestPartner(Request $request){
 
+        $message = $request->get("message");
+        $email = $request->get("email");
+
+        Mail::send('mails.report', ["description" => $message,"email"=> $email], function ($message)  {
+            $message->to(env('APP_SERVICE_EMAIL'), env('APP_SERVICE_NAME'))->subject('Request partner!');
+        });
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Success!.'
+        ]);
+    }
+
+    public function requestHelp(Request $request){
+        $title = $request->get("title");
+        $message = $request->get("message");
+        $email = $request->get("email");
+
+        Mail::send('mails.report', ["description" => $message,"email"=> $email, "title"=>$title], function ($message) {
+            $message->to(env('APP_SERVICE_EMAIL'), env('APP_SERVICE_NAME'))->subject('Request help!');
+        });
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Success!.'
+        ]);
+    }
+
+    public function requestMoney(Request $request, G2APay $payment)
+    {
+        $order = new Order();
+        $order->title = "Coins";
+        $order->currency = "USA";
+        $order->count = 0.0;
+        $order->price = 0.0;
+        $order->quantity = 1;
+        $order->payment_provider = "G2A";
+        $order->save();
 
 
         $payment->addItem(1, 'Coins', 1, 1, 9.95);
         $extras = []; // Optional extras passed to order (Please refer G2APay docs)
-        if (env("G2A_SANDBOX")==false)
+        if (env("G2A_SANDBOX") == false)
             $response = $payment->createOrder($order->id, $extras);
         else
             $response = $payment->test()->createOrder($order->id, $extras);

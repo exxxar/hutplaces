@@ -123,7 +123,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".chat-btn {\n  box-shadow: 0px 0px 5px 0px black;\n  position: fixed;\n  bottom: 100px;\n  right: -28px;\n  width: 100px;\n  transition: 0.5s;\n  height: 60px;\n  background-color: yellow;\n  color: #2c3e50;\n  font-weight: 900;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  border-radius: 5px 0px 0px 5px;\n  cursor: pointer;\n  padding: 0px 0px 0px 20px;\n  box-sizing: border-box;\n}\n.chat-btn:hover {\n  right: 0px;\n  transition: 0.5s;\n}\n.title {\n  min-height: 30px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: yellow;\n  margin: 0px 0px 5px 0px;\n  text-transform: uppercase;\n  font-size: 12px;\n  font-weight: 900;\n  position: relative;\n}\n.title .close {\n  position: absolute;\n  top: 5px;\n  right: 12px;\n  width: 20px;\n  height: 20px;\n  cursor: pointer;\n}\n.title .close:before, .title .close:after {\n  height: 18px;\n  width: 1px;\n  background-color: #2c3e50;\n}\n.channels {\n  display: flex;\n  justify-content: center;\n  height: 50px;\n  padding: 5px;\n}\n.channels a {\n  width: 50px;\n  height: 50px;\n  background-color: #ffff00;\n  color: #2c3e50;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-right: 5px;\n  cursor: pointer;\n  border-radius: 5px;\n}\n.channels a.active {\n  background-color: #acff3b;\n}\n.chat {\n  height: 405px;\n  width: 300px;\n  position: fixed;\n  left: 20px;\n  bottom: 20px;\n  background-color: #2c3e50;\n  border: 1px solid yellow;\n  z-index: 15;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.chat .input-group {\n  display: flex;\n}\n.chat .input-group input {\n  width: 224px;\n  height: 59px;\n  border: none;\n  padding: 10px;\n  box-sizing: border-box;\n  background: #2c3e50;\n  color: white;\n}\n.chat .input-group .btn {\n  box-shadow: none;\n  border-radius: 5px 0px 0px 0px;\n}\n#chatbox {\n  height: 251px;\n  padding: 5px;\n  box-sizing: border-box;\n}\n#chatbox .scroll-area {\n  padding: 0px;\n  width: 100%;\n}\n#chatbox ul {\n  width: 100%;\n}\n#chatbox ul li {\n  border-radius: 5px;\n  width: 100%;\n  /* min-height: 50px; */\n  padding: 10px;\n  box-sizing: border-box;\n  color: yellow;\n  text-align: left;\n  background: #3d546b;\n  margin-bottom: 25px;\n  position: relative;\n  line-height: 150%;\n  word-break: break-all;\n}\n#chatbox ul li .message-footer {\n  color: white;\n  position: absolute;\n  width: 270px;\n  left: 0;\n  bottom: -15px;\n  background: #3d546b;\n  padding: 0px 10px 0px 10px;\n  border-radius: 0px 0px 5px 5px;\n  font-size: 12px;\n  font-style: italic;\n}\n#chatbox ul li span {\n  word-break: break-all;\n}", ""]);
+exports.push([module.i, ".chat-btn {\n  box-shadow: 0px 0px 5px 0px black;\n  position: fixed;\n  bottom: 85px;\n  right: -28px;\n  width: 100px;\n  transition: 0.5s;\n  height: 60px;\n  background-color: yellow;\n  color: #2c3e50;\n  font-weight: 900;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  border-radius: 5px 0px 0px 5px;\n  cursor: pointer;\n  padding: 0px 0px 0px 20px;\n  box-sizing: border-box;\n  z-index: 16;\n}\n.chat-btn:hover {\n  right: 0px;\n  transition: 0.5s;\n}\n.title {\n  min-height: 30px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: yellow;\n  margin: 0px 0px 5px 0px;\n  text-transform: uppercase;\n  font-size: 12px;\n  font-weight: 900;\n  position: relative;\n}\n.title .close {\n  position: absolute;\n  top: 5px;\n  right: 12px;\n  width: 20px;\n  height: 20px;\n  cursor: pointer;\n}\n.title .close:before, .title .close:after {\n  height: 18px;\n  width: 1px;\n  background-color: #2c3e50;\n}\n.channels {\n  display: flex;\n  justify-content: center;\n  height: 50px;\n  padding: 5px;\n}\n.channels a {\n  width: 50px;\n  height: 50px;\n  background-color: #ffff00;\n  color: #2c3e50;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-right: 5px;\n  cursor: pointer;\n  border-radius: 5px;\n}\n.channels a.active {\n  background-color: #acff3b;\n}\n.chat {\n  height: 405px;\n  width: 300px;\n  position: fixed;\n  left: 20px;\n  bottom: 20px;\n  background-color: #2c3e50;\n  border: 1px solid yellow;\n  z-index: 15;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.chat .input-group {\n  display: flex;\n}\n.chat .input-group input {\n  width: 224px;\n  height: 59px;\n  border: none;\n  padding: 10px;\n  box-sizing: border-box;\n  background: #2c3e50;\n  color: white;\n}\n.chat .input-group .btn {\n  box-shadow: none;\n  border-radius: 5px 0px 0px 0px;\n}\n#chatbox {\n  height: 251px;\n  padding: 5px;\n  box-sizing: border-box;\n}\n#chatbox .scroll-area {\n  padding: 0px;\n  width: 100%;\n}\n#chatbox ul {\n  width: 100%;\n}\n#chatbox ul li {\n  border-radius: 5px;\n  width: 100%;\n  /* min-height: 50px; */\n  padding: 10px;\n  box-sizing: border-box;\n  color: yellow;\n  text-align: left;\n  background: #3d546b;\n  margin-bottom: 25px;\n  position: relative;\n  line-height: 150%;\n  word-break: break-all;\n}\n#chatbox ul li .message-footer {\n  color: white;\n  position: absolute;\n  width: 270px;\n  left: 0;\n  bottom: -15px;\n  background: #3d546b;\n  padding: 0px 10px 0px 10px;\n  border-radius: 0px 0px 5px 5px;\n  font-size: 12px;\n  font-style: italic;\n}\n#chatbox ul li span {\n  word-break: break-all;\n}", ""]);
 
 // exports
 
@@ -382,18 +382,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.show
-      ? _c(
-          "div",
-          {
-            staticClass: "chat-btn",
-            on: {
-              click: function($event) {
-                return _vm.openChat()
-              }
+      ? _c("div", {
+          staticClass: "chat-btn",
+          domProps: { innerHTML: _vm._s(_vm.$lang.menu.chat_btn) },
+          on: {
+            click: function($event) {
+              return _vm.openChat()
             }
-          },
-          [_vm._v(_vm._s(_vm.$lang.chat.chat))]
-        )
+          }
+        })
       : _vm._e(),
     _vm._v(" "),
     _vm.open

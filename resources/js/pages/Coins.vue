@@ -11,8 +11,8 @@
             <toggle :check="info.year"
                     :id="'sw-year'"
                     v-on:check="checkYear($event)"
-                    :labelon="'2020'"
-                    :labeloff="'2021'"
+                    :labelon="'2019'"
+                    :labeloff="'2020'"
                     :width="140"></toggle>
             <toggle :check="info.currency"
                     :id="'sw-currency'"
@@ -70,7 +70,7 @@
         <modal name="sell-to-us" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('sell-to-us')" class="close"></a>
-               <supplier></supplier>
+               <partner v-on:close="hide('sell-to-us')"></partner>
             </scroll>
         </modal>
 
@@ -102,7 +102,7 @@
     import Toggle from '../components/Toggle.vue'
     import CardSearch from '../components/admin/CardSearch.vue'
     import Scroll from 'vue-custom-scrollbar'
-    import Supplier from '@/components/modals/Supplier.vue'
+    import Partner from '@/components/modals/Partner.vue'
 
     export default {
         data() {
@@ -170,12 +170,11 @@
                 this.show('coins-invoice');
             },
             message(title, message, type) {
-                this.$notify({
-                    group: 'main',
-                    type: type,
-                    title: title,
-                    text: message
-                })
+                Event.$emit("message",{
+                    title:title,
+                    message: message,
+                    type:type
+                });
             },
             requestCoins() {
 
@@ -190,9 +189,9 @@
                 this.hide('coins-invoice');
             },
             getCard(data) {
-                this.info.player = data.Player;
-                this.info.team = `${data.League} ${data.Team}`;
-                this.info.rating = data.OVR;
+                this.info.player = data.player;
+                this.info.team = `${data.league} ${data.team}`;
+                this.info.rating = data.ovr;
                 this.info.initial_price = data.salary;
                 this.hide("card-search")
             },
@@ -223,7 +222,7 @@
             }
         },
         components: {
-            Toggle, CardSearch, Scroll,Supplier
+            Toggle, CardSearch, Scroll,Partner
         }
     }
 </script>

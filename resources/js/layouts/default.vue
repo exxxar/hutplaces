@@ -5,7 +5,7 @@
                 <div class="logo-wrapper">
                     <a href="/"><img class="logo" src="/img/logo.jpg" alt=""></a>
                 </div>
-                <button @click="show('payment')" class="btn btn-yellow btn-mobile">{{$lang.messages.recharge}}</button>
+                <button @click="show('payment')" class="btn btn-yellow btn-mobile">{{$lang.menu.recharge}}</button>
                 <nav @click="showMainMenu()">
                     <main-menu v-on:modal="show($event)"
                                :authenticated="authenticated"
@@ -32,9 +32,9 @@
             <ul>
                 <li @click="lang('ru')"><img src="/img/ru.jpg" alt=""></li>
                 <li @click="lang('en')"><img src="/img/en.jpg" alt=""></li>
-                <li @click="lang('fi')"><img src="/img/fi.jpg" alt=""></li>
-                <li @click="lang('se')"><img src="/img/se.jpg" alt=""></li>
-                <li @click="lang('cz')"><img src="/img/cz.gif" alt=""></li>
+                <!--   <li @click="lang('fi')"><img src="/img/fi.jpg" alt=""></li>
+                   <li @click="lang('se')"><img src="/img/se.jpg" alt=""></li>
+                   <li @click="lang('cz')"><img src="/img/cz.gif" alt=""></li>-->
             </ul>
         </div>
         <chat :show="user!=null"></chat>
@@ -42,7 +42,7 @@
         <modal name="report" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('report')" class="close"></a>
-                <report></report>
+                <report v-on:close="hide('report')"></report>
             </scroll>
         </modal>
         <modal name="promo" height="auto">
@@ -68,7 +68,7 @@
         <modal name="help" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('help')" class="close"></a>
-                <help></help>
+                <help v-on:close="hide('help')"></help>
             </scroll>
         </modal>
         <modal name="faq" :adaptive="true" width="100%" height="100%">
@@ -98,7 +98,7 @@
         <modal name="supplier" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('supplier')" class="close"></a>
-                <supplier></supplier>
+                <partner v-on:close="hide('supplier')"></partner>
             </scroll>
         </modal>
         <modal name="about" :adaptive="true" width="100%" height="100%">
@@ -139,7 +139,7 @@
 <script>
     import Rules from '@/components/modals/Rules.vue'
     import About from '@/components/modals/About.vue'
-    import Supplier from '@/components/modals/Supplier.vue'
+    import Partner from '@/components/modals/Partner.vue'
     import Payment from '@/components/modals/Payment.vue'
     import Help from '@/components/modals/Help.vue'
     import History from '@/components/modals/History.vue'
@@ -210,6 +210,15 @@
         },
         mounted: function () {
 
+            this.$store.dispatch("loadLifetime")
+            this.$store.dispatch("loadGames")
+            this.$store.dispatch("loadDrafts")
+
+            if (!localStorage.getItem('lang'))
+                this.lang('ru');
+            else
+                this.lang(localStorage.getItem('lang'));
+
             if (this.check) {
                 this.$store.dispatch('getCurrentUser').then(() => {
                     this.authenticated = this.check
@@ -220,9 +229,10 @@
             }
 
             window.addEventListener("resize", function () {
-                document.querySelector(".ps-container").scrollTop = 0;
+                var containers = document.querySelectorAll('.scroll-area');
+                for (var ccc of containers)
+                    ccc.scrollTop = 0;
             });
-
 
             pusher.subscribe('pick-place-chanel').bind('pick-place-event', (data) => {
                 Event.$emit("updatePlaces")
@@ -321,6 +331,10 @@
                    this.authenticated = false;
                    this.user = null;
                });*/
+
+            Event.$on('message', (m) => {
+                this.message(m.title, m.message, m.type)
+            });
         },
         components: {
             Chat,
@@ -337,7 +351,7 @@
             AsideMenu,
             MainMenu,
             Rules,
-            Supplier,
+            Partner,
             About
         }
     }

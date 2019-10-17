@@ -13,14 +13,15 @@
     "/layout-components-modals-History-vue.js": "/layout-components-modals-History-vue.js",
     "/layout-components-modals-Howtostart-vue.js": "/layout-components-modals-Howtostart-vue.js",
     "/layout-components-modals-Login-vue.js": "/layout-components-modals-Login-vue.js",
-    "/layout-components-modals-Partner-vue.js": "/layout-components-modals-Partner-vue.js",
     "/layout-components-modals-Promo-vue.js": "/layout-components-modals-Promo-vue.js",
     "/layout-components-modals-Registration-vue.js": "/layout-components-modals-Registration-vue.js",
     "/layout-components-modals-Report-vue.js": "/layout-components-modals-Report-vue.js",
-    "/layout-components-modals-Supplier-vue.js": "/layout-components-modals-Supplier-vue.js",
     "/layout-layouts-auth-vue.js": "/layout-layouts-auth-vue.js",
     "/layout-layouts-default-vue.js": "/layout-layouts-default-vue.js",
     "/layout-layouts-start-vue.js": "/layout-layouts-start-vue.js",
-    "/layout-pages-Reports-vue.js": "/layout-pages-Reports-vue.js",
-    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js"
+    "/layout-pages-Randoms-vue.js": "/layout-pages-Randoms-vue.js",
+    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js",
+    "/vendors~layout-pages-Randoms-vue.js": "/vendors~layout-pages-Randoms-vue.js",
+    "/layout-components-admin-Drafts-vue.js": "/layout-components-admin-Drafts-vue.js",
+    "/layout-components-modals-Drafts-vue.js": "/layout-components-modals-Drafts-vue.js"
 }

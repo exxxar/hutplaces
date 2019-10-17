@@ -860,6 +860,7 @@ input[type='file'] {
   width: 240px;
   height: 340px;
   font-size: 20px;
+  background: linear-gradient(135deg, #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #2c2c2c 45%, black 53%, #111111 60%, #2b2b2b 76%, #1c1c1c 91%, #131313 100%);
 }
 
 @media (min-width: 1550px) {

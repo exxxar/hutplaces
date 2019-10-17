@@ -32,6 +32,11 @@ class CreateUsersTable extends Migration
             $table->bigInteger('bonus')->default(0);
             $table->boolean('active')->default(true);//todo: change to is_active
             $table->boolean('is_trader')->default(false);//todo: add to admin
+
+            $table->integer('trader_randoms_limit')->default(0);
+            $table->integer('trader_auction_limit')->default(0);
+            $table->integer('trader_wof_limit')->default(0);
+
             $table->string('avatar',500)->default('')->nullable();
 
             $table->unsignedInteger("level_id" );

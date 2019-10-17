@@ -28,4 +28,6 @@ module.exports = {
     logout: 'Logout',
     sign_in: 'Sign In',
     sign_up: 'Sign Up',
+    chat_btn:'Chat',
+    add_card_btn:'Lot',
 }

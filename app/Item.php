@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Enums\ItemType;
+use App\Enums\LotType;
 use BenSampo\Enum\Traits\CastsEnums;
 use Illuminate\Database\Eloquent\Model;
 

@@ -16,11 +16,11 @@
 
                 <div class="money">
                     <p>{{user.coins}} <span>{{$lang.cabinet.money}}</span></p>
-                    <p>{{user.bonus}} <span>{{$lang.cabinet.money}}</span></p>
+                    <p>{{user.bonus}} <span>{{$lang.cabinet.bonus}}</span></p>
                 </div>
 
                 <div class="level" @click="show('levels')">
-                    <div class="text">{{user.level.title}}  </div>
+                    <div class="text">{{prepareLevelTitle()}}  </div>
                     <div class="line" :style="cssProps()"></div>
                 </div>
             </div>
@@ -53,43 +53,46 @@
                         <users-promocodes :user="user"></users-promocodes>
                     </scroll>
                 </tab>
-                <tab :name="$lang.cabinet.cards_title">
+             <tab :name="$lang.cabinet.cards_title">
                     <scroll class="scroll-area">
                         <users-cards :user="user"></users-cards>
                     </scroll>
                 </tab>
 
-                <tab :name="$lang.cabinet.items_title">
-                    <scroll class="scroll-area">
-                        <users-items :user="user"></users-items>
-                    </scroll>
-                </tab>
+                              <tab :name="$lang.cabinet.items_title">
+                                  <scroll class="scroll-area">
+                                      <users-items :user="user"></users-items>
+                                  </scroll>
+                              </tab>
 
-                <tab :name="$lang.cabinet.lotteries_title">
-                    <scroll class="scroll-area">
-                        <users-lotteries :win="false" :user="user"></users-lotteries>
-                    </scroll>
-                </tab>
-                <tab :name="$lang.cabinet.wins_title">
-                    <scroll class="scroll-area">
-                        <users-lotteries :win="true" :user="user"></users-lotteries>
-                    </scroll>
-                </tab>
-                <tab :name="$lang.cabinet.tickets_title">
-                    <scroll class="scroll-area">
-                        <users-tickets :user="user"></users-tickets>
-                    </scroll>
-                </tab>
-                <tab :name="$lang.cabinet.auction_mylots_title">
-                    <scroll class="scroll-area">
-                        <users-auc-lots :type="'mylots'"></users-auc-lots>
-                    </scroll>
-                </tab>
-                <tab :name="$lang.cabinet.auction_mybids_title">
-                    <scroll class="scroll-area">
+                              <tab :name="$lang.cabinet.lotteries_title">
+                                  <scroll class="scroll-area">
+                                      <users-lotteries :win="false" :user="user"></users-lotteries>
+                                  </scroll>
+                              </tab>
 
-                    </scroll>
-                </tab>
+
+                              <tab :name="$lang.cabinet.wins_title">
+                                  <scroll class="scroll-area">
+                                      <users-lotteries :win="true" :user="user"></users-lotteries>
+                                  </scroll>
+                              </tab>
+                              <tab :name="$lang.cabinet.tickets_title">
+                                  <scroll class="scroll-area">
+                                      <users-tickets :user="user"></users-tickets>
+                                  </scroll>
+                              </tab>
+                              <tab :name="$lang.cabinet.auction_mylots_title">
+                                  <scroll class="scroll-area">
+                                      <users-auc-lots :type="'mylots'"></users-auc-lots>
+                                  </scroll>
+                              </tab>
+                <!--
+                              <tab :name="$lang.cabinet.auction_mybids_title">
+                                  <scroll class="scroll-area">
+
+                                  </scroll>
+                              </tab>-->
             </tabs>
         </div>
 
@@ -145,6 +148,9 @@
             },
         },
         methods: {
+            prepareLevelTitle(){
+              return eval(`this.$lang.levels.${this.user.level.title}`)
+            },
             cssProps() {
                 return {
                     '--line-width': this.user == null || this.next == null ? "0%" : (this.user.exp / this.next.experience) * 100 + "%",
@@ -166,7 +172,14 @@
                     })
                     .then(response => {
                         Event.$emit("updateUserProfile");
-                        this.message("System", response.data.message, "warn");
+
+                        Event.$emit("message",{
+                            title:'Кабинет',
+                            message: response.data.message,
+                            type:'warn'
+                        });
+
+
                         this.process_avatar = false;
                     });
             },
@@ -185,21 +198,19 @@
 
 
             },
-            message(title, message, type) {
-                this.$notify({
-                    group: 'main',
-                    type: type,
-                    title: title,
-                    text: message
-                })
-            },
+
             randomAvatar: function () {
                 this.process_avatar = true;
                 axios
                     .get('/users/avatar/refresh')
                     .then(response => {
                         this.user.avatar = response.data.avatar;
-                        this.message("System", response.data.message, "warn");
+                        Event.$emit("message",{
+                            title:'Кабинет',
+                            message: response.data.message,
+                            type:'warn'
+                        });
+
                         Event.$emit("updateUserProfile");
                         this.process_avatar = false;
 

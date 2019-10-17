@@ -36,8 +36,13 @@ class CreateLotteriesTable extends Migration
             $table->boolean('active')->default(true);
             $table->integer('lifetime')->default(0);//0 - unlimited, 1 - 12, 2 - 24, 3 - 36...
 
+            $table->boolean('auto_refresh')->default(true);
+            $table->timestamp('start_at')->nullable();
+
+            $table->unsignedInteger("seller_id" )->nullable();
 
             $table->foreign('lot_id')->references('id')->on('lots');
+            $table->foreign('seller_id')->references('id')->on('users');
 
             $table->timestamps();
         });

@@ -38,43 +38,54 @@ class Lottery extends Model
         'is_only_one',
         'completed',
         'active',
+        'seller_id',
         'lifetime',
         'updated_at',
 
+        'auto_refresh',
+        'start_at',
 
     ];
 
-    public function winner(){
-        if ($this->winner_id!=null) {
-            $winUser_id = (Place::where("place_number",$this->winner_id)
-                ->where("lottery_id",$this->id)
+    public function winner()
+    {
+        if ($this->winner_id != null) {
+            $winUser_id = (Place::where("place_number", $this->winner_id)
+                ->where("lottery_id", $this->id)
                 ->first())->user_id;
 
-            return  User::find($winUser_id);
+            return User::find($winUser_id);
         }
 
         return null;
 
     }
 
-    public function isFull(){
-        return $this->occupied_places==$this->places;
+    public function isFull()
+    {
+        return $this->occupied_places == $this->places;
     }
 
     public function lot()
     {
-        return $this->hasOne('App\Lot','id');
+        return $this->hasOne('App\Lot', 'id', 'lot_id');
+
+
     }
 
+    public function seller()
+    {
+        return $this->hasOne('App\User', 'id', 'seller_id');
+    }
 
-
-    public function users(){
-        return $this->belongsToMany('App\User','user_lotteries','lottery_id','user_id')
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'user_lotteries', 'lottery_id', 'user_id')
             ->withTimestamps();
     }
 
     public function placeList()
     {
-        return $this->hasMany('App\Place','lottery_id');
+        return $this->hasMany('App\Place', 'lottery_id');
     }
 }
