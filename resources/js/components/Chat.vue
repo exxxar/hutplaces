@@ -1,14 +1,17 @@
 <template>
     <div>
-        <div class="chat-btn" @click="openChat()" v-if="show" v-html="$lang.menu.chat_btn"></div>
+        <div class="chat-btn" @click="openChat()" v-if="show">
+            <i class="fas fa-comments"></i>
+        </div>
 
         <div class="chat" v-draggable v-if="open">
             <div class="title">
                 {{$lang.chat.chat}}
                 <a class="close" @click="open=false"></a>
             </div>
-            <div class="channels">
-                <a v-for="room in rooms" @click="changeChatRoom(room.id)" :id="prepareId(room.id)" :title="room.id" v-html="room.title"></a>
+            <div class="channels" v-if="user_id">
+                <a v-for="room in rooms" @click="changeChatRoom(room.id)" :id="prepareId(room.id)" :title="room.id"
+                   v-html="room.title"></a>
             </div>
             <chat-box-component :user-id='user_id' :room-id='selectedRoom' :initial='messages'></chat-box-component>
 
@@ -21,74 +24,99 @@
 
     export default {
         name: 'chat',
-        props:["show"],
+        props: ["show"],
         data() {
             return {
                 open: false,
-                rooms:null,
-                selectedRoom:null,
-                user_id:null,
+                rooms: null,
+                selectedRoom: null,
+                user_id: null,
                 messages: [],
             }
         },
-        watch: {
-            show: {
-                handler(newVal, oldVal) {
-                    this.getCurrentUser();
-                }
+        computed: {
+                loadChatRooms() {
+                    return this.$store.getters.ROOMS;
+                },
+                loadChatUser() {
+                    return this.$store.getters.CHAT_USER;
+                },
+                loadMessages() {
+                    return this.$store.getters.MESSAGES;
+                },
             },
-            user_id: {
-                handler(newVal, oldVal) {
-                    this.getChatRooms();
-                }
-            },
-            rooms: {
-                handler(newVal, oldVal) {
-                    this.loadMessages();
-                }
-            }
-
+            watch: {
+                loadChatRooms(newValue, oldValue) {
+                    this.rooms = newValue
+                    if (newValue[0] != undefined || newValue[0] != null)
+                        this.selectedRoom = newValue[0].id;
+                },
+                loadChatUser(newValue, oldValue) {
+                    this.user_id = newValue
+                },
+                loadMessages(newValue, oldValue) {
+                    this.messages = newValue
+                },
         },
+        activated() {
+            this.refreshCurrentUser()
+            this.refreshChatRooms()
+            this.refreshChatMessages()
+        },
+        mounted() {
+            this.refreshCurrentUser()
+            this.refreshChatRooms()
+            this.refreshChatMessages()
+        },
+
         methods: {
+            message(message) {
+                this.$notify({
+                    group: 'main',
+                    type: "warn",
+                    title: "Chat",
+                    text: message
+                })
+            },
             openChat() {
                 this.open = !this.open;
             },
-            loadMessages(){
-                axios
-                    .post('/chat/messages',{
-                        "room_id":this.selectedRoom
-                    }).then(response => {
-                    this.messages = response.data;
-                });
+            refreshChatMessages() {
+                this.$store.dispatch("loadChatMessages", {id: this.selectedRoom})
+                  /*  .catch((error) => {
+                        this.message(error)
+                    })*/
             },
             changeChatRoom(room) {
                 var elements = document.querySelectorAll(".channels a");
 
-                [].forEach.call(elements, function(el) {
+                [].forEach.call(elements, function (el) {
                     el.classList.remove("active");
                 });
 
                 document.querySelector(`#${this.prepareId(room)}`).classList.add("active");
 
                 this.selectedRoom = room;
-                this.loadMessages()
+                this.$store.dispatch("loadChatMessages", {id: this.selectedRoom})
+                   /* .catch((error) => {
+                        this.message(error)
+                    })*/
 
             },
-            prepareId(id){
-              return btoa(id);
+            prepareId(id) {
+                return btoa(id);
             },
-            getChatRooms(){
-                axios
-                    .get('/chat/rooms').then(response => {
-                    this.rooms = response.data.chats;
-                    this.selectedRoom = response.data.chats[0].id;
-                });
+            refreshChatRooms() {
+                this.$store.dispatch("loadChatRooms")
+                  /*  .catch((error) => {
+                        this.message(error)
+                    })*/
             },
-            getCurrentUser(){
-                axios
-                    .get('/chat/user').then(response => {
-                    this.user_id = response.data.current_user_id;
-                });
+            refreshCurrentUser() {
+                this.$store.dispatch("getCurrentChatUser")
+                  /*  .catch((error) => {
+                        this.message(error)
+                    })*/
             }
         },
 
@@ -102,5 +130,4 @@
 </script>
 <style lang="scss">
     @import "~/chat.scss";
-
 </style>

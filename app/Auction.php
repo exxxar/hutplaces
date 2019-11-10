@@ -40,7 +40,7 @@ class Auction extends Model
 
     public function lot()
     {
-        return $this->hasOne('App\Lot','id');
+        return $this->hasOne('App\Lot', 'id', 'lot_id');
     }
 
     public function buyer()

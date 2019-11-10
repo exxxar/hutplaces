@@ -1,7 +1,7 @@
 <template>
     <div  class="info-block">
-        <h1 class="main-title" v-html="content.title"></h1>
-        <p class="description" v-html="content.content"></p>
+        <h1 class="main-title" v-html="$lang.cabinet.promocodes.main_title"></h1>
+        <p class="description" v-html="$lang.cabinet.promocodes.main_description"></p>
         <table v-if="promocodes!=null&&promocodes.length>0">
             <tr>
                 <th>{{$lang.cabinet.promocodes.title}}</th>
@@ -29,40 +29,29 @@
         data() {
             return {
                 promocodes: null,
-                content: {
-                    title: '',
-                    content: ''
-                },
             }
         },
-        activated() {
-            this.loadPromocodes()
-            this.prepareContent()
+        created() {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData'
         },
         mounted() {
             Event.$on('updatePromocodes', () => {
-                this.loadPromocodes()
+                this.fetchData()
             });
-            this.loadPromocodes()
-            this.prepareContent()
         },
+
         methods: {
-            prepareContent() {
-                this.content.title = this.$lang.cabinet.promocodes.main_title
-                this.content.content = this.$lang.cabinet.promocodes.main_description
+            fetchData(){
+                this.loadPromocodes()
             },
             loadPromocodes() {
                 axios
                     .get(`/users/promo/${this.user.id}`)
                     .then(response => {
                         this.promocodes = response.data.promocodes;
-                    });
-            },
-            loadContent() {
-                axios
-                    .get('/content/promocodes/all')
-                    .then(response => {
-                        this.content = response.data.content;
                     });
             },
 

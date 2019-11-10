@@ -1,33 +1,34 @@
 <template>
     <div>
 
-        <div class="form">
+        <form @submit.prevent="sendRequest" class="form">
             <h1>{{$lang.auth.sign_up}}</h1>
+
             <div class="input-group">
                 <label>{{$lang.auth.name}}</label>
-                <input type="text" autocomplete="off" :placeholder="$lang.auth.enter_name" v-model="name">
+                <input type="text" autocomplete="off" :placeholder="$lang.auth.enter_name" v-model="name" required>
             </div>
 
             <div class="input-group">
                 <label>{{$lang.auth.email}}</label>
-                <input type="email" autocomplete="off" :placeholder="$lang.auth.enter_email" v-model="email">
+                <input type="email" autocomplete="off" :placeholder="$lang.auth.enter_email" v-model="email" required>
             </div>
 
             <div class="input-group">
                 <label>{{$lang.auth.password}}</label>
-                <input type="password" autocomplete="off" :placeholder="$lang.auth.enter_password" v-model="password">
-
+                <input type="password" autocomplete="off" :placeholder="$lang.auth.enter_password" v-model="password"
+                       required>
             </div>
 
             <div class="input-group">
                 <label>{{$lang.auth.confirm_password}}</label>
                 <input type="password" autocomplete="off" :placeholder="$lang.auth.confirm_password"
-                       v-model="confirm_password">
+                       v-model="confirm_password" required>
 
             </div>
 
             <div class="input-group buttons">
-                <button @click="register()" class="btn btn-yellow">{{$lang.auth.sign_up}}</button>
+                <button type="submit" class="btn btn-yellow">{{$lang.auth.sign_up}}</button>
                 <router-link tag="a" :to="{ name: 'Login' }" class="link">{{$lang.auth.sign_in}}</router-link>
 
             </div>
@@ -38,9 +39,9 @@
                 <li><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
             </ul>
             <div class="input-group">
-                <a href="" class="rules">{{$lang.auth.product_terms_of_use}}</a>
+                <a href="#rules" class="rules" @click="openRules()">{{$lang.auth.product_terms_of_use}}</a>
             </div>
-        </div>
+        </form>
 
 
     </div>
@@ -58,42 +59,44 @@
         },
 
         methods: {
-            register() {
+            openRules() {
+                Event.$emit('modal', 'rules');
+            },
+            sendRequest(e) {
                 if (this.password != this.confirm_password) {
                     Event.$emit("message", {
                         title: 'Регистрация',
                         message: 'Пароли не совпадают',
                         type: 'warn'
                     });
-
                     return;
                 }
 
+
                 this.$loading(true)
                 this.$store.dispatch('registerUser', {
-                    email: this.email,
-                    password: this.password,
-                    name: this.name,
-                }).then(() => {
+                    'email': this.email,
+                    'name': this.name,
+                    'password': this.password
+                })
+                    .then(() => {
+                        this.$store.dispatch('loginUser', {
+                            username: this.email,
+                            password: this.password,
+                        }).then(() => {
+                            this.$router.push({path: '/cabinet'})
+                            Event.$emit("updateUserProfile")
 
-                    this.$store.dispatch('loginUser', {
-                        username: this.email,
-                        password: this.password,
-                    }).then(() => {
-                        this.$router.push({path: '/cabinet'})
-                        Event.$emit("updateUserProfile")
-
-                        this.$loading(false)
+                            this.$loading(false)
+                        }).catch(() => {
+                            this.$loading(false)
+                        })
                     }).catch(() => {
-                        this.$loading(false)
-                    })
-
-                }).catch(() => {
                     this.$loading(false)
                 })
+            },
 
 
-            }
         }
     }
 </script>
@@ -101,8 +104,4 @@
 
 <style lang="scss" scoped>
     @import "~/auth.scss";
-
-    .form {
-        padding-bottom: 150px;
-    }
 </style>

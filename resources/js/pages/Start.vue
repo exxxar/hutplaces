@@ -137,21 +137,21 @@
                     <li>
                         <h4 v-html="$lang.start.s3_h4_1"></h4>
                         <div class="circle">
-                            <p>410</p>
+                            <p>{{cardsCounter}}</p>
                         </div>
                     </li>
 
                     <li>
                         <h4 v-html="$lang.start.s3_h4_2"></h4>
                         <div class="circle">
-                            <p>111</p>
+                            <p>{{packsCounter}}</p>
                         </div>
                     </li>
 
                     <li>
                         <h4 v-html="$lang.start.s3_h4_3"></h4>
                         <div class="circle large">
-                            <p>14580</p>
+                            <p>{{safeCounter}}<</p>
                             <p v-html="$lang.start.s3_money"></p>
                         </div>
                     </li>
@@ -159,14 +159,14 @@
                     <li>
                         <h4 v-html="$lang.start.s3_h4_4"></h4>
                         <div class="circle">
-                            <p>92</p>
+                            <p>{{randomsCounter}}<</p>
                         </div>
                     </li>
 
                     <li>
                         <h4 v-html="$lang.start.s3_h4_5"></h4>
                         <div class="circle">
-                            <p>120</p>
+                            <p>{{matchesCounter}}<</p>
                         </div>
                     </li>
 
@@ -289,15 +289,19 @@
         name: 'Start',
         data() {
             return {
-                playersCounter: 300
+                cardsCounter: 410,
+                packsCounter: 111,
+                safeCounter: 14580,
+                randomsCounter: 92,
+                matchesCounter: 120
             }
         },
         methods: {
             prepareDeadline() {
                 var date = Date.now();
-                var time = [6, 12, 24, 36, 48, 96, 128, 10000];
+                var time = [100000,6, 12, 24, 36, 48, 96, 128,256];
 
-                date = date + time[5] * 60 * 60 * 1000;
+                date = date + time[7] * 60 * 60 * 1000;
                 return timeSolver.getString(new Date(date), "YYYY-MM-DD HH:MM:SS");
             },
 
@@ -315,10 +319,10 @@
                 this.message('Скоро будет доступно!')
             },
             activatePlayzone() {
-                this.message('Скоро будет доступно!')
+                this.$router.push({path: 'Playzone'})
             },
             activateMarket() {
-                this.message('Скоро будет доступно!')
+                this.$router.push({path: 'Market'})
             },
             message(message) {
                 this.$notify({
@@ -329,9 +333,25 @@
                 })
             },
             recount: function () {
-                setInterval(function () {
-                    this.playersCounter += 1
-                }, 100)
+                setInterval(() => {
+                    this.cardsCounter += 1
+                }, Math.floor(Math.random() * ( Math.floor(30000) - Math.ceil(1000))) + Math.ceil(1000))
+
+                setInterval(() => {
+                    this.packsCounter += 1
+                }, Math.floor(Math.random() * ( Math.floor(30000) - Math.ceil(1000))) + Math.ceil(1000))
+
+                setInterval(() => {
+                    this.safeCounter += 100
+                }, Math.floor(Math.random() * ( Math.floor(30000) - Math.ceil(1000))) + Math.ceil(1000))
+
+                setInterval(() => {
+                    this.randomsCounter += 1
+                }, Math.floor(Math.random() * ( Math.floor(30000) - Math.ceil(1000))) + Math.ceil(1000))
+
+                setInterval(() => {
+                    this.matchesCounter += 1
+                }, Math.floor(Math.random() * ( Math.floor(30000) - Math.ceil(1000))) + Math.ceil(1000))
             }
         },
         mounted: function () {

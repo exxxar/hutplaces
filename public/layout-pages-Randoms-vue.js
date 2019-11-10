@@ -76,6 +76,9 @@ __webpack_require__.r(__webpack_exports__);
         slides: [this.addSlide('/img/slides/3.jpg'), this.addSlide('/img/slides/2.jpg'), this.addSlide('/img/slides/1.jpg')]
       }]
     };
+  },
+  mounted: function mounted() {
+    Event.$emit('updateData');
   }
 });
 

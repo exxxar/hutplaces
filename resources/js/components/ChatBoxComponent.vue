@@ -17,7 +17,7 @@
                 </ul>
             </scroll>
         </div>
-        <div class="input-group">
+        <div class="input-group" v-if="currentUser&&roomId">
             <input type="text" v-model="message" @keyup.enter="sendMessage" class="form-control"
                    :placeholder="$lang.chat.placeholder" autofocus>
             <button @click="sendMessage" class="btn btn-yellow">{{$lang.chat.send}}</button>
@@ -50,11 +50,36 @@
                 }
             }
         },
+        computed: {
+            chatMessages() {
+                return this.$store.getters.MESSAGES;
+            },
+            chatUsers() {
+                return this.$store.getters.ALL_CHAT_USERS;
+            },
+            chatUser() {
+                return this.$store.getters.CHAT_USER;
+            }
+
+        },
+
         watch: {
+            chatUser(newValue, oldValue) {
+                this.currentUser = newValue
+                this.chatLoading = false;
+            },
+            chatUsers(newValue, oldValue) {
+                this.users = newValue
+                this.chatLoading = false;
+            },
+            chatMessages(newValue, oldValue) {
+                this.messages = newValue
+                this.chatLoading = false;
+            },
             initial: {
                 handler(newVal, oldVal) {
                     this.messages = this.initial;
-                    document.querySelector('#chatbox').scrollTop = 100000
+                    // document.querySelector('#chatbox').scrollTop = 100000
                 }
             },
             roomId: {
@@ -102,7 +127,10 @@
                                     timestamp: message.createdAt
                                 })
 
-                            document.querySelector('#chatbox .scroll-area').scrollTop =document.querySelector('#chatbox .scroll-area').scrollHeight;
+                            let chatBox = document.querySelector('#chatbox .scroll-area');
+
+                            document.querySelector('#chatbox .scroll-area').scrollTop = chatBox == null ? 0 : document.querySelector('#chatbox .scroll-area').scrollHeight;
+
 
                         },
                         onUserJoined: async user => {
@@ -119,34 +147,37 @@
                 if (this.roomId == null)
                     return;
 
-                axios.post(`/chat/users`, {
-                    room_id: this.roomId
-                })
-                    .then(res => {
-                        this.users = res['data']['users']
-                    });
+                this.$store.dispatch("loadChatUsers", {id: this.roomId})
             },
             sendMessage() {
                 if (this.message.trim() === '') return;
-                axios.post('/chat/send', {
-                    user_id: this.userId,
-                    text: this.message,
-                    room_id: this.roomId
+
+
+                this.$store.dispatch("sendChatMessage", {
+                    message: this.message,
+                    id: this.roomId,
+                    user_id: this.userId
+                }).then(message => {
+                    this.message = ''
+                });
+
+                this.$store.dispatch("loadChatMessages", {id: this.roomId}).then(() => {
+                    let chatBox = document.querySelector('#chatbox .scroll-area');
+                    document.querySelector('#chatbox .scroll-area').scrollTop = chatBox == null ? 0 : document.querySelector('#chatbox .scroll-area').scrollHeight;
+
                 })
-                    .then(message => {
-                        this.message = ''
-                        document.querySelector('#chatbox .scroll-area').scrollTop =document.querySelector('#chatbox .scroll-area').scrollHeight;
-                    });
+
+
             },
             findSender(senderId) {
-                const sender = this.users.find(user => senderId == user.id);
-                return sender
+                return this.users.find(user => senderId == user.id);
             },
             formatTime(timestamp) {
                 return moment(timestamp).fromNow();
             },
         },
         mounted() {
+            this.$store.dispatch("getCurrentChatUser")
             this.getUsers();
             this.connectToChatkit();
         },

@@ -1,9 +1,9 @@
 <template>
     <div class="info-block">
-        <h1 class="main-title" v-html="content.title"></h1>
-        <p class="description" v-html="content.content"></p>
+        <h1 class="main-title" v-html="this.$lang.cabinet.cards.main_title"></h1>
+        <p class="description" v-html="this.$lang.cabinet.cards.main_description"></p>
         <ul class="cards-list" v-if="cards!=null&&cards.length>0">
-            <li class="card" v-for="card in cards" v-html="prepareCard(card)"></li>
+            <card v-for="card in cards" :card="card"></card>
         </ul>
         <div class="no-items" v-if="cards==null||cards.length==0"><img :src="$lang.cabinet.cards.error_1" alt=""></div>
 
@@ -11,21 +11,26 @@
 </template>
 
 <script>
+    import Card from '@/components/admin/Card.vue'
 
     export default {
         props: ["user"],
-        activated() {
-            this.loadCards()
-            this.prepareContent()
+        created () {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData'
         },
         mounted() {
-            this.prepareContent()
             Event.$on('updateCards', () => {
-                this.loadCards()
+                this.fetchData()
             });
         },
-
         methods: {
+            fetchData()
+            {
+                this.loadCards()
+            },
             loadCards() {
                 axios
                     .get(`/users/cards/${this.user.id}`)
@@ -33,22 +38,13 @@
                         this.cards = response.data.cards;
                     });
             },
-            prepareCard(card) {
-                return (JSON.parse(card.Card_data)).value
-            },
-            prepareContent() {
-                this.content.title = this.$lang.cabinet.cards.main_title
-                this.content.content = this.$lang.cabinet.cards.main_description
-            }
 
         },
-
+        components: {
+            Card
+        },
         data() {
             return {
-                content: {
-                    title: '',
-                    content: ''
-                },
                 cards: null,
             }
         },

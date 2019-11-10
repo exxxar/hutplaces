@@ -1,7 +1,7 @@
 <template>
     <div class="info-block">
-        <h1 class="main-title" v-html="content.title"></h1>
-        <p class="description" v-html="content.content"></p>
+        <h1 class="main-title" v-html="$lang.cabinet.info.main_title"></h1>
+        <p class="description" v-html="$lang.cabinet.info.main_descriptiont"></p>
         <h4>{{$lang.cabinet.info.title_1}}</h4>
         <div v-if="user!=null">
             <table>
@@ -109,12 +109,7 @@
 
     export default {
         props: ["user"],
-        mounted(){
-          this.prepareContent()
-        },
-        activated(){
-            this.prepareContent()
-        },
+
         methods: {
             message(title, message, type) {
                 this.$notify({
@@ -162,10 +157,6 @@
 
 
             },
-            prepareContent() {
-                this.content.title = this.$lang.cabinet.info.main_title
-                this.content.content = this.$lang.cabinet.info.main_description
-            }
 
         },
         computed: {
@@ -176,10 +167,6 @@
 
         data() {
             return {
-                content: {
-                    title: '',
-                    content:''
-                },
                 password: {
                     old: '',
                     new1: '',

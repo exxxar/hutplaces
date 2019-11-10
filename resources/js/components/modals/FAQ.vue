@@ -138,26 +138,6 @@
 <script>
     export default {
         name: 'faq',
-        props: ['show'],
-        data() {
-            return {
-                faq: null
-            }
-        },
-        mounted() {
-            this.loadFAQ();
-        },
-        methods: {
-            loadFAQ() {
-                axios
-                    .get(`/content/faq/all`)
-                    .then(response => {
-                        console.log(response)
-                        this.faq = response.data;
-
-                    });
-            }
-        }
     }
 </script>
 <style>

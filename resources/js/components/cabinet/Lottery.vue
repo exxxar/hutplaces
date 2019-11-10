@@ -1,7 +1,7 @@
 <template>
-    <div  class="info-block">
-        <h1 class="main-title" v-html="content.title"></h1>
-        <p class="description" v-html="content.content"></p>
+    <div class="info-block">
+        <h1 class="main-title" v-html="$lang.cabinet.lottery.main_title"></h1>
+        <p class="description" v-html="$lang.cabinet.lottery.main_description"></p>
         <ul class="cards" v-if="lotteries!=null&&lotteries.length>0">
             <li class="card" v-for="lottery in lotteries">
                 <div class="card-wrapper">
@@ -15,7 +15,8 @@
                 </div>
             </li>
         </ul>
-        <div class="no-items" v-if="lotteries==null||lotteries.length==0"><img :src="$lang.cabinet.lottery.error_1" alt=""></div>
+        <div class="no-items" v-if="lotteries==null||lotteries.length==0"><img :src="$lang.cabinet.lottery.error_1"
+                                                                               alt=""></div>
 
     </div>
 </template>
@@ -24,28 +25,20 @@
 
     export default {
         props: ["win", "user"],
-        activated() {
-            this.loadLotteries()
-            this.prepareContent();
+        created() {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData'
         },
         mounted() {
             Event.$on('updateLotteries', () => {
-                this.loadLotteries()
+                this.fetchData()
             });
-            this.loadLotteries()
-            this.prepareContent();
         },
         methods: {
-            loadContent() {
-                var url = this.win ?
-                    '/content/wins/all' :
-                    '/content/lotteries/all';
-
-                axios
-                    .get(url)
-                    .then(response => {
-                        this.content = response.data.content;
-                    });
+            fetchData() {
+                this.loadLotteries()
             },
             loadLotteries() {
                 var url = this.win ?
@@ -69,23 +62,11 @@
             lotteryOpen: function (lotteryId) {
                 this.$router.push({name: 'Lottery', params: {gameId: lotteryId}})
             },
-            prepareContent() {
-                this.content.title = this.win ?
-                    this.$lang.cabinet.win.main_title :
-                    this.$lang.cabinet.lottery.main_title
-                this.content.content = this.win ?
-                    this.$lang.cabinet.win.main_description :
-                    this.$lang.cabinet.lottery.main_description
-            }
 
 
         },
         data() {
             return {
-                content: {
-                    title: '',
-                    content: ''
-                },
                 lotteries: null,
             }
         },

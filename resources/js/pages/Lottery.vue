@@ -6,19 +6,28 @@
                     <div class="mini-btn" v-tooltip.bottom="$lang.lottery.share_game" @click="toClipboard()">
                         <img src="/img/cards-share-icon.png" alt=""></div>
                     <div class="mini-btn" v-tooltip.bottom="$lang.lottery.win_protection"
-                         @click="showModal('security')">
+                         @click="show('security')">
                         <img src="/img/cards-security-icon.png" alt=""></div>
                     <div class="mini-btn" v-tooltip.bottom="$lang.lottery.card_information"
-                         @click="showModal('cardinfo')">
+                         @click="show('cardinfo')">
                         <img src="/img/cards-info-icon.png" alt=""></div>
                 </div>
                 <div class="card">
-                        <game :game="game"
-                              :controls="false"
+                    <game-item :game="game"
+                               :controls="false">
 
-                        ></game>
+                    </game-item>
                 </div>
-                <div class="buttons">
+
+
+                <div class="buttons" v-if="!user">
+                    <router-link to="/signin" tag="button" class="btn btn-yellow rounded-left"><i class="fas fa-sign-in-alt"></i>
+                    </router-link>
+                    <router-link to="/signup" tag="button" class="btn btn-orange rounded-right"><i class="fas fa-user-plus"></i>
+                    </router-link>
+                </div>
+
+                <div class="buttons" v-if="user">
                     <div class="random" @click="pickRandom()" :disabled="randomDisabled">
                         <div class="line" :style="cssProps"></div>
                         <div class="text">{{$lang.lottery.random_place}}</div>
@@ -43,14 +52,14 @@
 
         <modal name="security" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
-                <a href="#" @click="hideModal('security')" class="close"></a>
+                <a href="#" @click="hide('security')" class="close"></a>
                 <security></security>
             </scroll>
         </modal>
 
         <modal name="cardinfo" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
-                <a href="#" @click="hideModal('cardinfo')" class="close"></a>
+                <a href="#" @click="hide('cardinfo')" class="close"></a>
                 <card-info :game="game"></card-info>
             </scroll>
 
@@ -58,7 +67,7 @@
 
         <modal name="win" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
-                <a href="#" @click="hideModal('win')" class="close"></a>
+                <a href="#" @click="hide('win')" class="close"></a>
                 <div class="modal-body">
                     <div class="winner" v-if="winner!=null"><img :src="winner.avatar" alt=""></div>
                 </div>
@@ -70,37 +79,50 @@
 </template>
 
 <script>
-      import CardInfo from '../components/modals/CardInfo'
+    import CardInfo from '../components/modals/CardInfo'
     import Security from '../components/modals/Security'
 
     import FlipCountdown from 'vue2-flip-countdown'
     import Card from '@/components/admin/Card.vue'
-    import Game from '@/components/Game.vue'
+    import GameItem from '@/components/GameItem.vue'
 
     import Scroll from 'vue-custom-scrollbar'
-    import {Carousel, Slide} from 'vue-carousel';
-    import UserCardPanel from '@/components/admin/UserCardPanel.vue'
+    import UserCardPanel from '@/components/admin/LotteryCardPanel.vue'
 
-      import {Tabs as CardTabs, Tab as CardSection} from 'vue-simple-tabs';
+    import {Tabs as CardTabs, Tab as CardSection} from 'vue-simple-tabs';
 
     export default {
         props: ['gameId'],
-        components: {
-            CardInfo, Security,
-            Scroll, UserCardPanel, Carousel,
-            Slide, Card, CardTabs, CardSection, FlipCountdown, Game
+
+        data() {
+            return {
+                winner: null,
+                randomDisabled: false,
+                settings: {
+                    maxScrollbarLength: 60
+                },
+                user: null,
+                game: null
+            }
+        },
+        computed: {
+            cssProps() {
+                return {
+                    '--line-width': (this.game.occupied_places / this.game.places) * 100 + "%",
+                }
+            },
+
+            loadCurrentUser() {
+                return this.$store.getters.USER;
+            }
         },
         watch: {
             'game.occupied_places': function (newVal, oldVal) {
-                if (this.game.occupied_places == this.game.places) {
-                    this.randomDisabled = true;
-                }
-                else {
-                    this.randomDisabled = false;
-                }
-
-
-            }
+                this.randomDisabled = this.game.occupied_places == this.game.places;
+            },
+            loadCurrentUser(newValue, oldValue) {
+                this.user = newValue
+            },
         },
         mounted() {
             this.loadGame();
@@ -117,23 +139,8 @@
                 setTimeout(() => this.showModal('win'), time + 1000);
             });
         },
-        data() {
-            return {
-                winner: null,
-                randomDisabled: false,
-                settings: {
-                    maxScrollbarLength: 60
-                },
-                game: null
-            }
-        },
-        computed: {
-            cssProps() {
-                return {
-                    '--line-width': (this.game.occupied_places / this.game.places) * 100 + "%",
-                }
-            },
-        },
+
+
         activated() {
             this.loadGame();
         },
@@ -177,7 +184,7 @@
                             return;
                         }
                         this.game = response.data.game;
-                        console.log("game:",this.game);
+                        console.log("game:", this.game);
 
                         if (this.game.winner_id != null) {
                             axios
@@ -205,10 +212,10 @@
                 }, 12000);
 
             },
-            showModal(name) {
+            show(name) {
                 this.$modal.show(name)
             },
-            hideModal(name) {
+            hide(name) {
                 this.$modal.hide(name)
             },
             toClipboard() {
@@ -252,9 +259,9 @@
                 }
             },
             pickSlot(place) {
-               /* if (this.game.is_only_one==1){
-                    this.game.place_list.filter(place=>place->user->id)
-                }*/
+                /* if (this.game.is_only_one==1){
+                     this.game.place_list.filter(place=>place->user->id)
+                 }*/
                 var item = document.getElementById(`slot-${place}`);
                 if (item.getAttribute("disabled") == null) {
                     item.setAttribute("disabled", "");
@@ -277,7 +284,7 @@
                 }
             },
             clickUserSlot(slot, index) {
-               // this.startAnim(index + 1);
+                // this.startAnim(index + 1);
                 //setTimeout(() => this.showModal('win'), 10000);
             },
             prepareSlots() {
@@ -300,7 +307,12 @@
                 return tmp;
             },
 
-        }
+        },
+        components: {
+            CardInfo, Security,
+            Scroll, UserCardPanel,
+            Card, CardTabs, CardSection, FlipCountdown, GameItem
+        },
     }
 
 </script>
@@ -308,5 +320,7 @@
 <style lang="scss">
     @import "~/fonts.scss";
     @import "~/lottery.scss";
+
+
 
 </style>

@@ -1,19 +1,17 @@
 @import "utilits.scss";
 @import "cardstyle.scss";
 
-
 .lottery-section {
   @include flex(space-between, center);
   width: 100%;
   height: 100%;
   .left-side {
-     width:265px;
-
+    width: 265px;
 
     .fixed {
       position: fixed;
-      width:inherit;
-      top:80px;
+      width: inherit;
+      top: 80px;
 
       .controls {
         padding: 10px 0px 10px 0px;
@@ -21,20 +19,20 @@
         @include flex(flex-end, center);
         .mini-btn {
           cursor: pointer;
-          width:35px;
-          height:35px;
+          width: 35px;
+          height: 35px;
           background-color: $color2;
           padding: 3px;
           box-sizing: border-box;
           margin-left: 10px;
-          box-shadow: 0px 0px 2px 0px $color12 ;
+          box-shadow: 0px 0px 2px 0px $color12;
           &:hover {
             transition: .5s;
-            box-shadow:  0px 0px 2px 0px $color12,0px 0px 5px 0px $color3 inset ;
+            box-shadow: 0px 0px 2px 0px $color12, 0px 0px 5px 0px $color3 inset;
           }
           img {
             width: 100%;
-            height:100%;
+            height: 100%;
           }
         }
       }
@@ -113,9 +111,11 @@
       }
 
       .buttons {
-        width: 100%;
+        width: 250px;
         padding: 0px 0px 10px 0px;
 
+        display: flex;
+        justify-content: space-between;
 
         .random {
           height: 55px;
@@ -135,7 +135,7 @@
           }
 
           &[disabled] {
-            cursor:progress;
+            cursor: progress;
             background-color: gray !important;
             transition: 1s;
             .line {
@@ -144,7 +144,7 @@
             }
 
             .text {
-              color:$color2 !important;
+              color: $color2 !important;
               transition: 1s;
             }
           }
@@ -174,22 +174,19 @@
           font-weight: 600;
           font-size: 18px;
           width: 100%;
-          /* padding: 20px; */
           color: white;
           cursor: pointer;
-          box-shadow: 1px 1px 5px 0px black;
           &.buy {
             background-color: $color9;
           }
         }
-
 
       }
     }
   }
 
   .right-side {
-    width:800px;
+    width: 800px;
     height: auto;
     padding-bottom: 100px;
     .lottery {
@@ -197,18 +194,18 @@
       align-content: space-evenly;
 
       .slot {
-        width:120px;
-        height:120px;
-        border:1px $color4 solid;
-        margin-bottom:10px;
-        margin-left:10px;
-        box-shadow: 0px 0px 11px 0px $color4 inset,0px 0px 2px 0px $color12;
+        width: 120px;
+        height: 120px;
+        border: 1px $color4 solid;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        box-shadow: 0px 0px 11px 0px $color4 inset, 0px 0px 2px 0px $color12;
         position: relative;
-        background-color:$color10;
+        background-color: $color10;
         cursor: pointer;
 
         &[disabled] {
-          cursor:progress;
+          cursor: progress;
           &:after {
             content: '\f023';
             font-family: 'Font Awesome 5 Free';
@@ -228,17 +225,16 @@
           }
         }
 
-
         div {
-          height:inherit;
+          height: inherit;
           width: inherit;
           position: absolute;
-          top:0;
-          left:0;
+          top: 0;
+          left: 0;
           padding: 10px;
           box-sizing: border-box;
           img {
-            width:100%;
+            width: 100%;
             height: 100%;
           }
         }
@@ -258,16 +254,13 @@
 
       }
 
-
     }
-
-
 
   }
 
   @media (max-width: 1090px) {
     & {
-      width:815px;
+      width: 815px;
 
       .right-side {
         width: 550px;
@@ -305,7 +298,9 @@
         }
         .buttons {
           @include flex(center, center);
-           flex-direction: column;
+
+          flex-wrap: nowrap;
+
           .random,
           .buy {
             width: 260px;
@@ -317,9 +312,10 @@
     .right-side {
       @include flex(space-around, center);
       width: 100%;
-      padding-top:10px;
+      padding-top: 10px;
       .lottery {
 
+        justify-content: center;
         .slot {
           width: 100px;
           height: 100px;
@@ -336,8 +332,8 @@
     .slot:nth-of-type(#{$i}) {
       &:after {
         content: '';
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         position: absolute;
@@ -353,23 +349,22 @@
       }
     }
 
-
   }
 
   .win-slot {
-     &:before {
-       content: '';
-       top:0;
-       left:0;
-       width: 100%;
-       height: 100%;
-       position: absolute;
-       z-index: 11;
-       background-color:  rgba(255, 165, 0, 0.85);
-       animation: AnimSlot 2s ease-in-out infinite;
-       animation-fill-mode: both;
-       animation-direction: alternate-reverse;
-     }
+    &:before {
+      content: '';
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 11;
+      background-color: rgba(255, 165, 0, 0.85);
+      animation: AnimSlot 2s ease-in-out infinite;
+      animation-fill-mode: both;
+      animation-direction: alternate-reverse;
+    }
   }
 
   @keyframes AnimSlot {

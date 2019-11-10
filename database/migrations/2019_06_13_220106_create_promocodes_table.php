@@ -21,7 +21,7 @@ class CreatePromocodesTable extends Migration
             $table->boolean('is_active')->default(0);
             $table->string('title')->default("");
             $table->string('code')->unique();
-            $table->string('description',2000)->nullable()->default("");
+            $table->string('description', 2000)->nullable()->default("");
             $table->integer('activation_count')->default(0);
             $table->integer('count')->default(0);
             $table->double('money')->default(0);
@@ -30,8 +30,11 @@ class CreatePromocodesTable extends Migration
             $table->bigInteger('coins')->default(0);
             $table->bigInteger('bonus')->default(0);
 
-            $table->unsignedInteger("item_id" )->nullable();
-            $table->unsignedInteger("card_id" )->nullable();
+            $table->unsignedInteger("item_id")->nullable();
+            $table->unsignedInteger("card_id")->nullable();
+
+            $table->unsignedInteger('creator_id');
+            $table->foreign('creator_id')->references('id')->on('users');
 
             $table->foreign('item_id')->references('id')->on('items');
             $table->foreign('card_id')->references('id')->on('cards_storage');

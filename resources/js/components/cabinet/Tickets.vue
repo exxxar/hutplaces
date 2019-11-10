@@ -1,8 +1,8 @@
 <template>
-    <div  class="info-block">
-        <h1 class="main-title" v-html="content.title"></h1>
-        <p class="description" v-html="content.content"></p>
-        <table  v-if="tickets!=null&&tickets.length>0">
+    <div class="info-block">
+        <h1 class="main-title" v-html="$lang.cabinet.stats.main_title"></h1>
+        <p class="description" v-html="$lang.cabinet.stats.main_description"></p>
+        <table v-if="tickets!=null&&tickets.length>0">
             <tr>
                 <th>{{$lang.cabinet.tickets.status}}</th>
                 <th>{{$lang.cabinet.tickets.title}}</th>
@@ -18,7 +18,7 @@
                     <h4 v-else>{{$lang.cabinet.tickets.complete}}</h4>
                 </td>
                 <td>
-                   {{ ticket.title }}
+                    {{ ticket.title }}
                 </td>
                 <td>
                     {{ ticket.description }}
@@ -31,7 +31,8 @@
                 </td>
             </tr>
         </table>
-        <div class="no-items" v-if="tickets==null||tickets.length==0"><img :src="$lang.cabinet.tickets.error_1" alt=""></div>
+        <div class="no-items" v-if="tickets==null||tickets.length==0"><img :src="$lang.cabinet.tickets.error_1" alt="">
+        </div>
 
     </div>
 </template>
@@ -39,40 +40,35 @@
 <script>
 
     export default {
-        props:["user"],
+        props: ["user"],
 
-        activated() {
-            this.loadTickets()
-            this.prepareContent()
+        created() {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData'
         },
         mounted() {
             Event.$on('updateTickets', () => {
-                this.loadTickets()
+                this.fetchData()
             });
-            this.loadTickets()
-            this.prepareContent()
         },
+
         methods: {
+            fetchData() {
+                this.loadTickets();
+            },
             loadTickets() {
                 axios
-                    .get( `/users/tickets/${this.user.id}`)
+                    .get(`/users/tickets/${this.user.id}`)
                     .then(response => {
                         this.tickets = response.data.tickets;
                     });
             },
 
-            prepareContent() {
-                this.content.title = this.$lang.cabinet.stats.main_title
-                this.content.content = this.$lang.cabinet.stats.main_description
-            },
-
         },
         data() {
             return {
-                content: {
-                    title: '',
-                    content: ''
-                },
                 tickets: null,
             }
         },

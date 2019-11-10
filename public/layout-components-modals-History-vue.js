@@ -49,30 +49,26 @@ __webpack_require__.r(__webpack_exports__);
       history: null
     };
   },
+  computed: {
+    loadHistory: function loadHistory() {
+      return this.$store.getters.HISTORY;
+    }
+  },
+  watch: {
+    loadHistory: function loadHistory(newValue, oldValue) {
+      this.history = newValue;
+    }
+  },
+  activated: function activated() {
+    this.refreshHistory();
+  },
   mounted: function mounted() {
-    this.loadHistory();
+    this.refreshHistory();
   },
   methods: {
-    close: function close() {
-      this.$emit("close");
-    },
-    message: function message(title, _message, type) {
-      this.$notify({
-        group: 'main',
-        type: type,
-        title: title,
-        text: _message
-      });
-    },
-    loadHistory: function loadHistory() {
-      var _this = this;
-
+    refreshHistory: function refreshHistory() {
       this.$loading(true);
-      axios.get('/lottery/history').then(function (response) {
-        _this.history = response.data.history;
-      })["catch"](function (reason) {
-        _this.message("Авторизация", "\u0412\u044B \u043D\u0435 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u043D\u044B!", 'warn');
-      });
+      this.$store.dispatch("loadHistory");
       this.$loading(false);
     }
   }

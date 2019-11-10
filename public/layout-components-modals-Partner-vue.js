@@ -34,11 +34,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'report',
-  props: ['show'],
   data: function data() {
     return {
       email: '',
-      message: ''
+      text: ''
     };
   },
   methods: {
@@ -50,19 +49,20 @@ __webpack_require__.r(__webpack_exports__);
         text: _message
       });
     },
-    sendReport: function sendReport(e) {
+    sendRequest: function sendRequest(e) {
       var _this = this;
 
       var currentObj = this;
 
-      if (this.email == '' || this.message == '') {
+      if (this.email == '' || this.text == '') {
         this.message(this.$lang.modals.partner.error_1);
         return;
       }
 
+      var formData = new FormData();
       formData.append('email', this.email);
-      formData.append('message', this.message);
-      axios.post('/partner/request', formData, config).then(function (response) {
+      formData.append('message', this.text);
+      axios.post('/partner/request', formData).then(function (response) {
         e.target.reset();
 
         _this.message(_this.$lang.modals.partner.success_2);
@@ -104,10 +104,11 @@ var render = function() {
     _c(
       "form",
       {
+        staticClass: "full",
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.sendReport($event)
+            return _vm.sendRequest($event)
           }
         }
       },
@@ -153,28 +154,28 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.message,
-                expression: "message"
+                value: _vm.text,
+                expression: "text"
               }
             ],
             attrs: {
               placeholder: _vm.$lang.modals.partner.message_placeholder,
               required: ""
             },
-            domProps: { value: _vm.message },
+            domProps: { value: _vm.text },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.message = $event.target.value
+                _vm.text = $event.target.value
               }
             }
           })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "input-group" }, [
-          _c("div", {
+          _c("button", {
             staticClass: "btn btn-yellow full",
             attrs: { type: "submit" },
             domProps: { innerHTML: _vm._s(_vm.$lang.modals.partner.send) }

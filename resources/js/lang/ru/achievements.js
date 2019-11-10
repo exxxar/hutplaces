@@ -3,6 +3,7 @@ module.exports = {
     main_description:'Description',
     discount:"Сидка",
     exp:"Опыт",
+    bonus:"Бонусы",
     coins:"Монеты",
     money:"Деньги",
     card:"Карточка",

@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-levels">
+    <div class="modal-body levels-modal">
         <h3 v-html="$lang.levels.title"></h3>
         <table v-if="levels!=null&&levels.length>0">
             <tr>
@@ -33,59 +33,36 @@
                 levels: null
             }
         },
+        computed: {
+            loadLevels() {
+                return this.$store.getters.LEVELS;
+            },
+        },
+        watch: {
+            loadLevels(newValue, oldValue) {
+                this.levels = newValue
+            },
+        },
+        activated() {
+            this.refreshLevels()
+        },
         mounted() {
-            this.loadLevels()
+            this.refreshLevels()
         },
         methods: {
             prepareLevelTitle(title){
                 return eval(`this.$lang.levels.${title}`);
             },
-            loadLevels() {
+            refreshLevels() {
                 this.$loading(true)
-                axios
-                    .get(`/levels`)
-                    .then(response => {
-                        this.levels = response.data.levels
-                        this.$loading(false)
-                    });
+                this.$store.dispatch("loadLevels")
+                this.$loading(false)
             },
 
         },
 
     }
 </script>
-<style lang="scss" scoped>
-    .modal-levels {
-        width: 1000px;
-        @media (max-width: 1000px) {
-            & {
-                width: 100%;
-            }
-        }
-    }
+<style lang="scss">
 
-    h3 {
-        font-weight: 100;
-        font-size: 36px;
-        color: white;
-        text-transform: uppercase;
-    }
-
-    table {
-        width: 100%;
-        margin-top:15px;
-        tr {
-            color: white;
-            line-height: 150%;
-            border: 1px white solid;
-            th,
-            td {
-                padding: 10px;
-                .current {
-                    font-weight:900;
-                    color:yellow;
-                }
-            }
-        }
-    }
 </style>

@@ -1,4 +1,5 @@
 let state = {
+    stats: null,
     user: null,
     token: localStorage.getItem('token'),
 };
@@ -12,6 +13,9 @@ let getters = {
     },
     CHECK: state => {
         return !!state.token;
+    },
+    STATS: state => {
+        return state.stats;
     }
 };
 
@@ -22,58 +26,57 @@ let mutations = {
     SET_TOKEN: (state, payload) => {
         state.token = payload;
     },
+    SET_STATS: (state, payload) => {
+        state.stats = payload;
+    },
 };
 
 let actions = {
-    loginUser: async (context, payload) => {
+    loadStats: (context, payload) => {
+        axios
+            .get(`/users/stats/${payload.user_id}`)
+            .then(response => {
+                context.commit('SET_STATS', response.data.stats);
+            });
+    },
+    loginUser: (context, payload) => {
 
-        let data = {
+            let data = {
             username: payload.username,
             password: payload.password,
             _token: axios.defaults.headers.common['X-CSRF-TOKEN']
         };
 
-
-        var response = await axios.post('/login', data)
+        return axios.post('/login', data)
             .then(res => {
-                return res;
-            });
 
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
-        localStorage.setItem('token', response.data.token)
+                if (res.data.status==422)
+                    return Promise.reject(res)
 
-        context.commit('SET_USER', response.data.token);
-        context.commit('SET_TOKEN', response.data.user);
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
+                localStorage.setItem('token', res.data.token)
 
-        return new Promise(function (resolve, reject) {
-            if (response == null)
-                reject()
-            resolve();
-        });
+                context.commit('SET_USER', res.data.user );
+                context.commit('SET_TOKEN', res.data.token);
+
+                return Promise.resolve(res);
+            })
 
     },
 
-    retriveUser: async (context, payload) => {
+    retriveUser: (context, payload) => {
 
         context.commit('SET_TOKEN', payload);
 
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + payload;
 
-        let {response} = await axios.get('/get-user')
+        return axios.get('/get-user')
             .then(res => {
-                return res;
+                context.commit('SET_USER', res.data);
             })
 
-        context.commit('SET_USER', response);
-
-        return new Promise(function (resolve, reject) {
-            if (response == null)
-                reject()
-            resolve();
-        });
-
     },
-    registerUser: async (context, payload) => {
+    registerUser: (context, payload) => {
         let data = {
             email: payload.email,
             password: payload.password,
@@ -81,31 +84,22 @@ let actions = {
             _token: axios.defaults.headers.common['X-CSRF-TOKEN']
         };
 
-        await axios.post('/registration', data);
-
-        return new Promise(function (resolve, reject) {
-            resolve();
-        });
+        return axios.post('/registration', data);
 
     },
 
-    logoutUser: async (context, payload) => {
+    logoutUser: (context, payload) => {
 
         context.commit('SET_USER', null);
         context.commit('SET_TOKEN', null);
         localStorage.removeItem('token')
 
-        let {data} = await axios.get('/logout');
-
-        return new Promise(function (resolve, reject) {
-            resolve();
-        });
+        return axios.get('/logout');
     },
     lot: async (context, payload) => {
         if (context.getters.TOKEN == null && localStorage.getItem('token') == null)
-            return new Promise(function (resolve, reject) {
-                reject();
-            });
+            return Promise.reject('Error token');
+
 
         if (context.getters.TOKEN == null && localStorage.getItem('token') != null)
             await context.dispatch("retriveUser", localStorage.getItem('token'));
@@ -115,9 +109,7 @@ let actions = {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.getters.TOKEN;
 
         if (payload.type == null)
-            return new Promise(function (resolve, reject) {
-                reject();
-            });
+            return Promise.reject('Error type');
 
         var url = '';
         switch (payload.type) {
@@ -137,7 +129,7 @@ let actions = {
                 url = `/auction/mybids`;
                 break;
         }
-        var response =  await axios.get(url).then(res => {
+        var response = await axios.get(url).then(res => {
             return res;
         })
 
@@ -152,95 +144,59 @@ let actions = {
 
     },
 
-    getAnyUser: async (context, payload) => {
+    getAnyUser: (context, payload) => {
         if (context.getters.TOKEN == null && localStorage.getItem('token') == null)
             return new Promise(function (resolve, reject) {
                 reject();
             });
 
         if (context.getters.TOKEN == null && localStorage.getItem('token') != null)
-            await context.dispatch("retriveUser", localStorage.getItem('token'));
+            context.dispatch("retriveUser", localStorage.getItem('token'));
 
 
         if (axios.defaults.headers.common['Authorization'] == undefined)
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.getters.TOKEN;
 
-        var response = await axios.get(`/get-user/${payload.user_id}`).then(res => {
-            return res;
-        })
 
-        return new Promise(function (resolve, reject) {
-            if (response.data == null || response.data.length == 0)
-                reject();
-
-            if (response.status == 200)
-                resolve(response);
-            reject();
-        });
+        return axios.get(`/get-user/${payload.user_id}`)
 
     },
-    getCurrentUser: async (context, payload) => {
+    getCurrentUser: (context, payload) => {
         if (context.getters.TOKEN == null && localStorage.getItem('token') == null)
             return new Promise(function (resolve, reject) {
                 reject();
             });
 
         if (context.getters.TOKEN == null && localStorage.getItem('token') != null)
-            await context.dispatch("retriveUser", localStorage.getItem('token'));
+            context.dispatch("retriveUser", localStorage.getItem('token'));
 
 
         if (axios.defaults.headers.common['Authorization'] == undefined)
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.getters.TOKEN;
 
-        var response = await axios.get('/get-user').then(res => {
-            return res;
+
+        return axios.get('/get-user').then(res => {
+            context.commit('SET_USER', res.data);
         })
-
-        console.log(response);
-
-        context.commit('SET_USER', response.data);
-
-        return new Promise(function (resolve, reject) {
-            if (response)
-                resolve();
-            reject();
-        });
-
     },
 
-    updateUser: async (context, payload) => {
+    updateUser: (context, payload) => {
 
-        var response = await axios.post('/user/update/info', {
+        return axios.post('/user/update/info', {
             name: payload.name,
             skype: payload.skype,
             vk: payload.vk,
             fb: payload.fb,
             tw: payload.tw,
-        }).then(res => {
-            return res;
-        })
-
-        return new Promise(function (resolve, reject) {
-            if (response.status == 200)
-                resolve(response);
-            reject();
         });
     },
 
-    updatePassword: async (context, payload) => {
+    updatePassword: (context, payload) => {
 
-        var response = await axios.post('/user/update/pass', {
+        return axios.post('/user/update/pass', {
             new: payload.new1,
             old: payload.old,
-        }).then(res => {
-            return res;
         })
-
-        return new Promise(function (resolve, reject) {
-            if (response.status == 200)
-                resolve(response);
-            reject();
-        });
     },
 };
 

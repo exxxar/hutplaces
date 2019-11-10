@@ -4,15 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Classes\CustomChatKit;
 use App\Setting;
+use App\User;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class ChatkitController extends Controller
 {
     use CustomChatKit;
 
+
     public function __construct()
     {
+        $user = null;
         $this->chatkit_init();
+
+        try {
+            $user = $this->chatkit_createUser("guest" . random_int(0, 100000))["body"]["id"];
+
+        } catch (\Chatkit\Exceptions\ChatkitException $e) {
+        }
+
+        Session::put('chatkit_guest_user', $user);
+
     }
 
     public function getCurrentUser(Request $request)
@@ -20,7 +35,9 @@ class ChatkitController extends Controller
         return response()
             ->json([
                 "status" => 200,
-                "current_user_id" => $this->prepareUserId(auth("api")->user()->id)
+                "current_user_id" => auth("api")->user() != null ?
+                    $this->prepareUserId(auth("api")->user()->id) :
+                    Session::get('chatkit_guest_user')
             ]);
     }
 
@@ -67,9 +84,12 @@ class ChatkitController extends Controller
      */
     public function sendMessage(Request $request)
     {
+        $chat_user_id = $request->get("user_id");
+        $room_id = $request->get("room_id");
+
         $message = $this->chatkit_sendSimpleMessage(
-            $request->get("room_id"),
-            $request->get("user_id"),
+            $room_id,
+            $chat_user_id,
             $request->get("text")
         );
 
@@ -128,11 +148,34 @@ class ChatkitController extends Controller
         $tmp = [];
         $chats = Setting::where("title", "like", "chatkit.channel.%")->get();
 
-        foreach ($chats as $chat) {
-            array_push($tmp, [
-                "id" => $chat->value,
-                "title" => (Setting::where("title", $chat->value)->first())->value
+        if ($chats != null && count($chats) > 0)
+            foreach ($chats as $chat) {
+                $title = Setting::where("title", $chat->value)->first();
+                array_push($tmp, [
+                    "id" => $chat->value,
+                    "title" => $title == null ? '<i class="fas fa-align-justify"></i>' : $title
+                ]);
+            }
+        else {
+
+
+            $chat1 = ($this->chatkit_createRoom(Session::get('chatkit_guest_user'), "Main Room"))["id"];
+
+            Setting::create([
+                'title' => 'chatkit.channel.chat1',
+                'value' => $chat1
             ]);
+
+            Setting::create([
+                'title' => $chat1,
+                'value' => `<i class="fas fa-align-justify"></i>`
+            ]);
+
+            array_push($tmp, [
+                "id" => $chat1,
+                "title" => (Setting::where("title", $chat1)->first())->value
+            ]);
+
         }
 
         return response()

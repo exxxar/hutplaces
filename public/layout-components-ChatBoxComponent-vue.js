@@ -72,11 +72,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  computed: {
+    chatMessages: function chatMessages() {
+      return this.$store.getters.MESSAGES;
+    },
+    chatUsers: function chatUsers() {
+      return this.$store.getters.ALL_CHAT_USERS;
+    },
+    chatUser: function chatUser() {
+      return this.$store.getters.CHAT_USER;
+    }
+  },
   watch: {
+    chatUser: function chatUser(newValue, oldValue) {
+      this.currentUser = newValue;
+      this.chatLoading = false;
+    },
+    chatUsers: function chatUsers(newValue, oldValue) {
+      this.users = newValue;
+      this.chatLoading = false;
+    },
+    chatMessages: function chatMessages(newValue, oldValue) {
+      this.messages = newValue;
+      this.chatLoading = false;
+    },
     initial: {
       handler: function handler(newVal, oldVal) {
-        this.messages = this.initial;
-        document.querySelector('#chatbox').scrollTop = 100000;
+        this.messages = this.initial; // document.querySelector('#chatbox').scrollTop = 100000
       }
     },
     roomId: {
@@ -125,7 +147,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               text: message['parts'][0]['payload']['content'],
               timestamp: message.createdAt
             });
-            document.querySelector('#chatbox .scroll-area').scrollTop = document.querySelector('#chatbox .scroll-area').scrollHeight;
+            var chatBox = document.querySelector('#chatbox .scroll-area');
+            document.querySelector('#chatbox .scroll-area').scrollTop = chatBox == null ? 0 : document.querySelector('#chatbox .scroll-area').scrollHeight;
           },
           onUserJoined: function () {
             var _onUserJoined = _asyncToGenerator(
@@ -162,39 +185,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     getUsers: function getUsers() {
-      var _this3 = this;
-
       if (this.roomId == null) return;
-      axios.post("/chat/users", {
-        room_id: this.roomId
-      }).then(function (res) {
-        _this3.users = res['data']['users'];
+      this.$store.dispatch("loadChatUsers", {
+        id: this.roomId
       });
     },
     sendMessage: function sendMessage() {
-      var _this4 = this;
+      var _this3 = this;
 
       if (this.message.trim() === '') return;
-      axios.post('/chat/send', {
-        user_id: this.userId,
-        text: this.message,
-        room_id: this.roomId
+      this.$store.dispatch("sendChatMessage", {
+        message: this.message,
+        id: this.roomId,
+        user_id: this.userId
       }).then(function (message) {
-        _this4.message = '';
-        document.querySelector('#chatbox .scroll-area').scrollTop = document.querySelector('#chatbox .scroll-area').scrollHeight;
+        _this3.message = '';
+      });
+      this.$store.dispatch("loadChatMessages", {
+        id: this.roomId
+      }).then(function () {
+        var chatBox = document.querySelector('#chatbox .scroll-area');
+        document.querySelector('#chatbox .scroll-area').scrollTop = chatBox == null ? 0 : document.querySelector('#chatbox .scroll-area').scrollHeight;
       });
     },
     findSender: function findSender(senderId) {
-      var sender = this.users.find(function (user) {
+      return this.users.find(function (user) {
         return senderId == user.id;
       });
-      return sender;
     },
     formatTime: function formatTime(timestamp) {
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(timestamp).fromNow();
     }
   },
   mounted: function mounted() {
+    this.$store.dispatch("getCurrentChatUser");
     this.getUsers();
     this.connectToChatkit();
   },
@@ -217,7 +241,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".chat-btn {\n  box-shadow: 0px 0px 5px 0px black;\n  position: fixed;\n  bottom: 85px;\n  right: -28px;\n  width: 100px;\n  transition: 0.5s;\n  height: 60px;\n  background-color: yellow;\n  color: #2c3e50;\n  font-weight: 900;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  border-radius: 5px 0px 0px 5px;\n  cursor: pointer;\n  padding: 0px 0px 0px 20px;\n  box-sizing: border-box;\n  z-index: 16;\n}\n.chat-btn:hover {\n  right: 0px;\n  transition: 0.5s;\n}\n.title {\n  min-height: 30px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: yellow;\n  margin: 0px 0px 5px 0px;\n  text-transform: uppercase;\n  font-size: 12px;\n  font-weight: 900;\n  position: relative;\n}\n.title .close {\n  position: absolute;\n  top: 5px;\n  right: 12px;\n  width: 20px;\n  height: 20px;\n  cursor: pointer;\n}\n.title .close:before, .title .close:after {\n  height: 18px;\n  width: 1px;\n  background-color: #2c3e50;\n}\n.channels {\n  display: flex;\n  justify-content: center;\n  height: 50px;\n  padding: 5px;\n}\n.channels a {\n  width: 50px;\n  height: 50px;\n  background-color: #ffff00;\n  color: #2c3e50;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-right: 5px;\n  cursor: pointer;\n  border-radius: 5px;\n}\n.channels a.active {\n  background-color: #acff3b;\n}\n.chat {\n  height: 405px;\n  width: 300px;\n  position: fixed;\n  left: 20px;\n  bottom: 20px;\n  background-color: #2c3e50;\n  border: 1px solid yellow;\n  z-index: 15;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.chat .input-group {\n  display: flex;\n}\n.chat .input-group input {\n  width: 224px;\n  height: 59px;\n  border: none;\n  padding: 10px;\n  box-sizing: border-box;\n  background: #2c3e50;\n  color: white;\n}\n.chat .input-group .btn {\n  box-shadow: none;\n  border-radius: 5px 0px 0px 0px;\n}\n#chatbox {\n  height: 251px;\n  padding: 5px;\n  box-sizing: border-box;\n}\n#chatbox .scroll-area {\n  padding: 0px;\n  width: 100%;\n}\n#chatbox ul {\n  width: 100%;\n}\n#chatbox ul li {\n  border-radius: 5px;\n  width: 100%;\n  /* min-height: 50px; */\n  padding: 10px;\n  box-sizing: border-box;\n  color: yellow;\n  text-align: left;\n  background: #3d546b;\n  margin-bottom: 25px;\n  position: relative;\n  line-height: 150%;\n  word-break: break-all;\n}\n#chatbox ul li .message-footer {\n  color: white;\n  position: absolute;\n  width: 270px;\n  left: 0;\n  bottom: -15px;\n  background: #3d546b;\n  padding: 0px 10px 0px 10px;\n  border-radius: 0px 0px 5px 5px;\n  font-size: 12px;\n  font-style: italic;\n}\n#chatbox ul li span {\n  word-break: break-all;\n}", ""]);
+exports.push([module.i, ".chat-btn {\n  box-shadow: 0px 0px 5px 0px black;\n  position: fixed;\n  bottom: 85px;\n  right: -28px;\n  width: 100px;\n  transition: 0.5s;\n  height: 60px;\n  background-color: #FF5722;\n  font-weight: 900;\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  border-radius: 5px 0px 0px 5px;\n  cursor: pointer;\n  padding: 0px 0px 0px 20px;\n  box-sizing: border-box;\n  z-index: 16;\n  color: white;\n  font-size: 24px;\n}\n.chat-btn:hover {\n  right: 0px;\n  transition: 0.5s;\n}\n.title {\n  min-height: 30px;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: yellow;\n  margin: 0px 0px 5px 0px;\n  text-transform: uppercase;\n  font-size: 12px;\n  font-weight: 900;\n  position: relative;\n}\n.title .close {\n  position: absolute;\n  top: 5px;\n  right: 12px;\n  width: 20px;\n  height: 20px;\n  cursor: pointer;\n}\n.title .close:before, .title .close:after {\n  height: 18px;\n  width: 1px;\n  background-color: #2c3e50;\n}\n.channels {\n  display: flex;\n  justify-content: center;\n  height: 50px;\n  padding: 5px;\n}\n.channels a {\n  width: 50px;\n  height: 50px;\n  background-color: #aaaaaa;\n  color: #2c3e50;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-right: 5px;\n  cursor: pointer;\n  border-radius: 5px;\n}\n.channels a.active {\n  background-color: #ffff00;\n}\n.chat {\n  height: 405px;\n  width: 300px;\n  position: fixed;\n  left: 20px;\n  bottom: 20px;\n  background-color: #2c3e50;\n  border: 1px solid yellow;\n  z-index: 15;\n  box-shadow: 0px 0px 5px 0px black;\n}\n.chat .input-group {\n  display: flex;\n}\n.chat .input-group input {\n  width: 224px;\n  height: 59px;\n  border: none;\n  padding: 10px;\n  box-sizing: border-box;\n  background: #2c3e50;\n  color: white;\n}\n.chat .input-group .btn {\n  box-shadow: none;\n  border-radius: 5px 0px 0px 0px;\n}\n#chatbox {\n  height: 251px;\n  padding: 5px;\n  box-sizing: border-box;\n}\n#chatbox .scroll-area {\n  padding: 0px;\n  width: 100%;\n}\n#chatbox ul {\n  width: 100%;\n}\n#chatbox ul li {\n  border-radius: 5px;\n  width: 100%;\n  /* min-height: 50px; */\n  padding: 10px;\n  box-sizing: border-box;\n  color: yellow;\n  text-align: left;\n  background: #3d546b;\n  margin-bottom: 25px;\n  position: relative;\n  line-height: 150%;\n  word-break: break-all;\n}\n#chatbox ul li .message-footer {\n  color: white;\n  position: absolute;\n  width: 270px;\n  left: 0;\n  bottom: -15px;\n  background: #3d546b;\n  padding: 0px 10px 0px 10px;\n  border-radius: 0px 0px 5px 5px;\n  font-size: 12px;\n  font-style: italic;\n}\n#chatbox ul li span {\n  word-break: break-all;\n}", ""]);
 
 // exports
 
@@ -605,48 +629,50 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "input-group" }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.message,
-            expression: "message"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          placeholder: _vm.$lang.chat.placeholder,
-          autofocus: ""
-        },
-        domProps: { value: _vm.message },
-        on: {
-          keyup: function($event) {
-            if (
-              !$event.type.indexOf("key") &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
+    _vm.currentUser && _vm.roomId
+      ? _c("div", { staticClass: "input-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.message,
+                expression: "message"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              placeholder: _vm.$lang.chat.placeholder,
+              autofocus: ""
+            },
+            domProps: { value: _vm.message },
+            on: {
+              keyup: function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm.sendMessage($event)
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              }
             }
-            return _vm.sendMessage($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.message = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-yellow", on: { click: _vm.sendMessage } },
-        [_vm._v(_vm._s(_vm.$lang.chat.send))]
-      )
-    ])
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-yellow", on: { click: _vm.sendMessage } },
+            [_vm._v(_vm._s(_vm.$lang.chat.send))]
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

@@ -2,15 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Coins from '@/pages/Coins'
 import PageNotFound from '@/pages/PageNotFound'
-/*import Randoms from '@/pages/Randoms'*/
 import Market from '@/pages/Market'
 import Playzone from '@/pages/Playzone'
+import Promotions from '@/pages/Promotions'
 import Auction from '@/pages/Auction'
 import Cabinet from '@/pages/Cabinet'
 import Games from '@/pages/Games'
 import WheelWin from '@/pages/WheelWin'
 import Start from '@/pages/Start'
 import Lottery from '@/pages/Lottery'
+import Packs from '@/pages/PacksSection'
 import Main from '@/pages/Main'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
@@ -66,10 +67,21 @@ export default new Router({
             name: 'Market',
             component: Market
         },
+
+        {
+            path: '/packs',
+            name: 'Packs',
+            component: Packs
+        },
         {
             path: '/coins',
             name: 'Coins',
             component: Coins
+        },
+        {
+            path: '/promotions',
+            name: 'Promotions',
+            component: Promotions
         },
         {
             path: '/playzone',

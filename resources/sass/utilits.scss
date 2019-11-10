@@ -175,10 +175,15 @@ input {
 }
 
 /* Scroll area*/
-.scroll-area {
+.scroll-area{
   height: 100%;
-  width: 100%;
-  padding: 100px 0px;
+  padding: 20px 0px 100px 0px;
+  box-sizing: border-box;
+}
+
+
+.ps-container {
+  padding: 20px 0px 100px 0px;
   box-sizing: border-box;
 }
 

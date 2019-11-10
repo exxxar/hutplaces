@@ -53,7 +53,7 @@
 
         methods: {
             selfHide(){
-                this.$emit("self-hide");
+              this.$emit("close");
             },
             closeMenu(){
                 if (this.alwaysShow)
@@ -71,7 +71,7 @@
                 this.menuHideTimer = setTimeout(()=>this.menuShow = false,time);
             },
             openModal(name){
-                this.selfHide();
+                this.$emit("close")
                 this.$emit("modal",name);
             },
             logout() {

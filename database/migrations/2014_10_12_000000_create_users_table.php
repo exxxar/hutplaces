@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
 
             $table->integer('trader_randoms_limit')->default(0);
             $table->integer('trader_auction_limit')->default(0);
+            $table->integer('trader_packs_limit')->default(0);
             $table->integer('trader_wof_limit')->default(0);
 
             $table->string('avatar',500)->default('')->nullable();

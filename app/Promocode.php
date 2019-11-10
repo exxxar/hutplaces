@@ -31,6 +31,7 @@ class Promocode extends Model
         'created_at',
         'updated_at',
         'code',
+        'creator_id'
 
     ];
 

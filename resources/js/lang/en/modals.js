@@ -10,7 +10,35 @@ module.exports = {
         error_2: '',
         error_3: ''
     },
+    auction_card_panel: {
+        h1: 'Adding a new lot',
+        choose_file: 'Choose a picture',
+        console_type: 'Console type',
+        lot_type: 'Lot type',
+        lot_1: 'Item',
+        lot_2: 'Coins',
+        lot_3: 'Card',
+        lifetime: 'lifetime',
+        search_card: 'Search for a card',
+        title: 'Lot name',
+        bid_price: 'bid price',
+        buy_price: 'Full card price',
+        step_price: 'bid step price',
+        save: 'Add',
+        active: 'Game Status',
+        description:'Lot description',
+        value:'Value',
 
+        error_title: 'Auction',
+
+
+        error_1: 'The fields “Bid price”, “Full price of the card” and “Bid step” must not have zero values!',
+        error_2: 'The game marked as "Inactive" will be launched separately by the administrator!',
+        error_3: 'You have chosen the “Card” type and must select the appropriate card through the search!',
+        error_4: 'Error adding lot! Tell the administrator! ',
+        success_1: 'You have successfully added a lot!',
+        success_2: 'Thank you for using our service!',
+    },
     user_card_panel: {
         h1:'Add new lot',
         choose_file:'Choose image',

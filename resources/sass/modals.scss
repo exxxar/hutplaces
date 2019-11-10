@@ -1,10 +1,8 @@
 @import "utilits.scss";
 
-
-
 .modal-body {
   width: 800px;
-  padding:20px;
+  padding: 20px;
   box-sizing: border-box;
   @include flex(flex-start, space-between);
   flex-wrap: wrap;
@@ -17,7 +15,7 @@
   .modal-logo {
     width: 100%;
     @include flex(center, center);
-    padding:20px;
+    padding: 20px;
     box-sizing: border-box;
   }
 
@@ -28,20 +26,20 @@
     font-size: 14px;
     line-height: 150%;
     text-transform: uppercase;
-    color:$color4;
+    color: $color4;
     span {
-      color:$color3;
+      color: $color3;
     }
 
     a {
-      color:$color3;
+      color: $color3;
       font-weight: 900;
     }
   }
   hr {
-    border:none;
-    width:100%;
-    height:1px;
+    border: none;
+    width: 100%;
+    height: 1px;
     background-color: $color4;
   }
   h1 {
@@ -51,7 +49,7 @@
     font-size: 24px;
     line-height: 150%;
     text-transform: uppercase;
-    color:$color4;
+    color: $color4;
     padding: 10px;
     box-sizing: border-box;
   }
@@ -63,20 +61,26 @@
     font-size: 24px;
     line-height: 150%;
     text-transform: uppercase;
-    color:$color4;
+    color: $color4;
     span {
-      color:$color3;
+      color: $color3;
     }
   }
 
+  .third {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
   .half {
-    width:50%;
+    width: 50%;
     @include flex(flex-start, space-between);
-    padding:0px;
+    padding: 0px;
   }
 
   .input-group {
-    width:100%;
+    width: 100%;
     box-sizing: border-box;
     padding: 10px;
     @include flex(flex-start, center);
@@ -93,30 +97,27 @@
       display: flex;
     }
 
-
     label {
       font-weight: 900;
       font-size: 12px;
-      margin-bottom:5px;
-      color:$color4;
+      margin-bottom: 5px;
+      color: $color4;
     }
-
 
     textarea,
     select,
     input {
       border: none;
       border-bottom: 1px solid $color4;
-      color:$color4;
-      font-weight:100 ;
-      font-size:18px;
+      color: $color4;
+      font-weight: 100;
+      font-size: 18px;
       width: 100%;
-      min-width:100%;
+      min-width: 100%;
       text-align: center;
-      background:transparent;
+      background: transparent;
       padding: 15px;
       box-sizing: border-box;
-      text-transform: uppercase;
       font-family: 'Open Sans';
 
       &[disabled] {
@@ -125,43 +126,81 @@
       }
 
       option {
-        color:$color2;
+        color: $color2;
       }
     }
 
-    input[type="file"]{
-      display:none;
+    input[type="file"] {
+      display: none;
     }
 
     input[type="file"] + label {
       padding: 5px;
       width: 100%;
       cursor: pointer;
-      border:none;
+      border: none;
     }
 
     textarea {
-      font-size:16px;
+      font-size: 16px;
       text-align: left;
       resize: vertical;
     }
     select {
-      font-size:16px;
+      font-size: 16px;
       text-transform: initial;
+    }
+
+    &.check {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: auto;
+      height: auto;
+
+      input {
+        display: none;
+      }
+
+      input + label {
+        margin-bottom: 0px;
+        color: #5c5c5c;
+        font-size: 18px;
+        width: 65px;
+        height: 65px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      input[type="checkbox"]:checked + label {
+        background: white;
+      }
+
+      input[type="checkbox"]:not(:checked) + label {
+        background: yellow;
+      }
+
     }
   }
 }
 
 .promo-modal {
-  width:500px;
+  width: 500px;
 }
 
+.promo-add-modal,
 .card-add-modal {
-  width:500px;
+  width: 500px;
   padding: 10px;
   box-sizing: border-box;
 
-  display:flex;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
@@ -174,7 +213,7 @@
     padding: 5px;
     box-sizing: border-box;
 
-    @include flex(center,center);
+    @include flex(center, center);
 
     img {
       width: 100%;
@@ -192,11 +231,11 @@
   }
 
   .row {
-    width:100%;
-    padding:0px;
+    width: 100%;
+    padding: 0px;
     box-sizing: border-box;
-    display:flex;
-    justify-content: center;
+    display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     align-items: flex-start;
 
@@ -210,25 +249,29 @@
       color: white;
       text-decoration-line: underline;
       text-decoration-style: solid;
-      cursor:pointer;
+      cursor: pointer;
     }
 
     & > .input-group {
-      padding:10px;
+      padding: 10px;
       textarea,
       select,
       input {
-        border:1px white solid;
+        border: 1px white solid;
       }
     }
 
     & > .half {
-      width:50%;
-      padding:5px;
+      width: 50%;
+      flex-wrap: wrap;
+    }
+
+    & > .third,
+    & > .half {
+
+      padding: 5px;
       box-sizing: border-box;
       display: flex;
-      flex-wrap: wrap;
-
 
       & > .input-group {
         padding: 5px;
@@ -242,17 +285,16 @@
       label {
         font-size: 12px;
         font-weight: 900;
-        width:100%;
+        width: 100%;
         text-align: left;
-        margin-bottom:5px;
-        color:white;
+        margin-bottom: 5px;
+        color: white;
       }
 
-
       hr {
-        width:100%;
-        height:1px;
-        border:none;
+        width: 100%;
+        height: 1px;
+        border: none;
         background-color: white;
       }
 
@@ -263,13 +305,14 @@
   }
 
 }
+
 .card-modal {
   width: 260px;
   padding: 10px;
   box-sizing: border-box;
   box-shadow: 0px 0px 8px 2px white inset;
 
-  display:flex;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
@@ -282,36 +325,38 @@
   }
 
   .row {
-    width:100%;
-    padding:5px;
+    width: 100%;
+    padding: 5px;
     box-sizing: border-box;
-    display:flex;
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: flex-start;
 
-
     & > .half {
-      width:50%;
-      padding:5px;
+      width: 50%;
+      flex-wrap: wrap;
+    }
+
+    & > .third,
+    & > .half {
+      padding: 5px;
       box-sizing: border-box;
       display: flex;
-      flex-wrap: wrap;
 
       label {
         font-size: 12px;
         font-weight: 900;
-        width:100%;
+        width: 100%;
         text-align: left;
-        margin-bottom:5px;
-        color:white;
+        margin-bottom: 5px;
+        color: white;
       }
 
-
       hr {
-        width:100%;
-        height:1px;
-        border:none;
+        width: 100%;
+        height: 1px;
+        border: none;
         background-color: white;
       }
 
@@ -339,7 +384,7 @@
         td {
           span {
             font-weight: 900;
-            color:yellow;
+            color: yellow;
           }
         }
       }
@@ -349,154 +394,154 @@
   .input-group {
     padding: 0px;
     label {
-      color:yellow !important;
+      color: yellow !important;
     }
     a {
       text-decoration-style: dashed;
       text-decoration-color: yellow;
-      font-weight:100;
+      font-weight: 100;
     }
     p {
-      text-align:left;
+      text-align: left;
     }
   }
 }
 
-
-
 .partner-modal {
-  width:500px;
+  width: 500px;
 
   p {
     text-align: justify;
     font-weight: 100;
 
     &:first-letter {
-      margin-left:50px;
+      margin-left: 50px;
     }
   }
 }
 
 .report-modal,
 .help-modal {
-  width:500px;
+  width: 500px;
 
   form {
-    width:100%;
+    width: 100%;
 
-    input[type="file"]{
+    input[type="file"] {
       border: 1px yellow solid !important;
     }
   }
 }
+
+.how-to-start-modal,
+.security-modal,
 .about-modal {
   p {
     text-align: justify;
     font-weight: 100;
 
     &:first-letter {
-      margin-left:50px;
+      margin-left: 50px;
     }
   }
 }
 
 .recharge-modal {
-  width:500px;
+  width: 500px;
 }
 
 .questions-modal {
-  padding:20px;
+  padding: 20px;
   box-sizing: border-box;
- & > ul {
-   position: relative;
-   margin-top: 10px;
+  & > ul {
+    position: relative;
+    margin-top: 10px;
     width: 100%;
-    padding:10px 20px;
-    border:1px $color3 solid;
+    padding: 10px 20px;
+    border: 1px $color3 solid;
     overflow: hidden;
-   box-sizing: border-box;
-   cursor:pointer;
-   transition: .5s;
-   &.active:after {
-     content: '';
-     position: absolute;
-     right: 10px;
-     top: 10px;
-     transform-origin: center center;
-     border-right: 2px solid $color3;
-     border-bottom: 2px solid $color3;
-     width: 10px;
-     height: 10px;
-     transform: rotate(45deg);
-     transition: .5s;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: .5s;
+    &.active:after {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      transform-origin: center center;
+      border-right: 2px solid $color3;
+      border-bottom: 2px solid $color3;
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+      transition: .5s;
 
-   }
+    }
 
-   &:after {
-     content: '';
-     position: absolute;
-     right: 10px;
-     top: 10px;
-     transform-origin: center center;
+    &:after {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      transform-origin: center center;
 
-     border-bottom: 2px solid $color3;
-     width: 10px;
-     height: 10px;
+      border-bottom: 2px solid $color3;
+      width: 10px;
+      height: 10px;
 
-     transition: .5s;
-   }
+      transition: .5s;
+    }
 
-   &.active {
-     height: auto;
-     & > li > ul {
-       display:block;
-     }
-   }
+    &.active {
+      height: auto;
+      & > li > ul {
+        display: block;
+      }
+    }
 
-   &:focus,
-   &:active,
-   &:hover {
-     height: auto;
-     transition: .5s;
-     &:after {
-       transform: rotate(45deg);
-       transition: .5s;
-       border-right: 2px solid $color3;
-     }
+    &:focus,
+    &:active,
+    &:hover {
+      height: auto;
+      transition: .5s;
+      &:after {
+        transform: rotate(45deg);
+        transition: .5s;
+        border-right: 2px solid $color3;
+      }
 
-     & > li > ul {
-       display:block;
-     }
-   }
+      & > li > ul {
+        display: block;
+      }
+    }
     & > li {
-     & > p {
-        color:$color4;
+      & > p {
+        color: $color4;
         line-height: 150%;
         font-weight: 600;
-        font-size:12px;
-       padding:10px;
-       text-align: left;
-       text-overflow: ellipsis;
-       word-break: keep-all;
+        font-size: 12px;
+        padding: 10px;
+        text-align: left;
+        text-overflow: ellipsis;
+        word-break: keep-all;
       }
 
       & > ul {
-        width:100%;
-        display:none;
+        width: 100%;
+        display: none;
         li {
-          color:$color3;
+          color: $color3;
           font-weight: 600;
-          font-size:12px;
-          padding:5px 5px;
+          font-size: 12px;
+          padding: 5px 5px;
         }
       }
     }
   }
 }
 
-
 .history-modal {
-  width:800px;
+  width: 800px;
   ul {
     border: 1px yellow solid;
     display: flex;
@@ -504,24 +549,24 @@
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    height: 40px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 
     li {
-      width:16%;
-       text-align: center;
-      color:$color4;
+      width: 16%;
+      text-align: center;
+      color: $color4;
       font-weight: 600;
-      font-size:12px;
-      padding:10px;
+      font-size: 12px;
+      padding: 10px;
       box-sizing: border-box;
+      word-break: break-word;
 
       i {
-        font-size:24px;
+        font-size: 24px;
       }
 
       a {
-        color:$color3;
+        color: $color3;
       }
     }
   }
@@ -531,12 +576,11 @@
   }
 }
 
-
 .aside-menu-modal {
   & > nav {
     height: 100vh;
     width: 100%;
-    @include flex(center,center);
+    @include flex(center, center);
 
     & > ul {
       display: block;
@@ -544,14 +588,14 @@
 
       & > li {
         font-size: 24px;
-        transition:.5s;
+        transition: .5s;
         background-color: transparent;
 
         &.more-menu {
           width: 100%;
           padding: 10px;
           box-sizing: border-box;
-          border-top:1px white solid;
+          border-top: 1px white solid;
           .lang {
             @include flex(center, center);
 
@@ -562,14 +606,13 @@
 
           ul.more {
             li {
-              cursor:pointer;
+              cursor: pointer;
               text-align: center;
               a {
                 color: $color13;
                 font-size: 16px;
                 text-decoration: none;
-                transition:.5s;
-
+                transition: .5s;
 
                 &:hover {
                   color: $color3;
@@ -588,24 +631,22 @@
           }
         }
 
-
       }
       .btn {
         background-color: transparent;
         box-shadow: none;
-        border:none;
+        border: none;
       }
       .btn.btn-black-2 {
         box-shadow: none;
       }
 
       .btn.btn-yellow {
-        color:$color3;
+        color: $color3;
         &:hover {
-          color:$color2;
+          color: $color2;
         }
       }
-
 
     }
   }
@@ -615,22 +656,21 @@
   & > nav {
     height: 100vh;
     width: 100%;
-    @include flex(center,center);
+    @include flex(center, center);
 
     & > ul {
-      @include flex(center,center);
+      @include flex(center, center);
       width: 100%;
       flex-direction: column-reverse;
 
       & > li {
         font-size: 24px;
-        transition:.5s;
+        transition: .5s;
         background-color: transparent;
         width: 100%;
 
-
         &.auth {
-          @include flex(space-around,center);
+          @include flex(space-around, center);
           padding: 10px;
           box-sizing: border-box;
           border-bottom: 1px yellow solid;
@@ -646,95 +686,93 @@
           }
         }
 
-       &.user {
-         @include flex(space-around,center);
-         border-bottom: 1px solid yellow;
-         .avatar {
-           width:120px;
-           height:120px;
-           img {
-             width:100%;
-             height:100%;
-           }
-         }
+        &.user {
+          @include flex(space-around, center);
+          border-bottom: 1px solid yellow;
+          .avatar {
+            width: 120px;
+            height: 120px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
 
-         .info {
-           p {
-             width: 100%;
-             text-align: left;
-             font-weight: 600;
-             font-size: 16px;
-             line-height: 150%;
-             text-transform: uppercase;
-             color: white;
-             strong {
-               color:yellow;
-             }
-           }
-         }
+          .info {
+            p {
+              width: 100%;
+              text-align: left;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 150%;
+              text-transform: uppercase;
+              color: white;
+              strong {
+                color: yellow;
+              }
+            }
+          }
 
-         .dropdown {
-           width:100%;
-           padding: 10px;
-           box-sizing: border-box;
-           ul {
-             width:100%;
-             display: flex;
-             flex-direction: column;
-             li {
-               width:100%;
-               text-align: center;
-               a {
-                 text-decoration: none;
-                 font-size:24px;
-                 color:white;
-                 padding:20px;
-                 display:block;
-                 font-weight:900;
-               }
+          .dropdown {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            ul {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              li {
+                width: 100%;
+                text-align: center;
+                a {
+                  text-decoration: none;
+                  font-size: 24px;
+                  color: white;
+                  padding: 20px;
+                  display: block;
+                  font-weight: 900;
+                }
 
-               &:hover {
-                 background-color: white;
-                 a {
-                   color:$color2;
-                 }
-               }
-             }
-           }
-         }
-       }
-
+                &:hover {
+                  background-color: white;
+                  a {
+                    color: $color2;
+                  }
+                }
+              }
+            }
+          }
+        }
 
       }
       .btn {
         background-color: transparent;
         box-shadow: none;
-        border:none;
+        border: none;
       }
 
       .btn.btn-black {
         &:hover {
-          box-shadow:none;
+          box-shadow: none;
           background-color: yellow;
-          color:$color2;
+          color: $color2;
         }
       }
 
       .btn.btn-black-2 {
         &:hover {
-          box-shadow:none;
+          box-shadow: none;
           background-color: yellow;
         }
       }
 
       .btn.btn-yellow {
-        color:$color3;
+        color: $color3;
         &:hover {
-          box-shadow:none;
-          color:$color2;
+          box-shadow: none;
+          color: $color2;
         }
       }
-
 
     }
   }
@@ -754,7 +792,7 @@
     align-items: flex-start;
     flex-wrap: wrap;
     li {
-      width:100%;
+      width: 100%;
     }
   }
   p {
@@ -767,7 +805,7 @@
     text-align: justify;
 
     &:first-letter {
-      margin-left:50px;
+      margin-left: 50px;
     }
 
     strong {
@@ -775,7 +813,7 @@
     }
 
     a {
-      color:yellow;
+      color: yellow;
       font-weight: 800;
     }
 
@@ -789,7 +827,113 @@
     font-weight: 800;
 
     strong {
-      color:yellow;
+      color: yellow;
     }
   }
 }
+
+.card-info-modal {
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .card {
+    padding: 20px 0px;
+  }
+
+  i {
+    font-size: 36px;
+    color: yellow;
+    line-height: 150%;
+  }
+
+  & > p {
+    strong {
+      color: yellow;
+    }
+  }
+
+  .history-item {
+    color: #b3b1b1;
+    font-size: 16px;
+    width: 100%;
+
+    p {
+      padding: 5px;
+      font-weight: 100;
+      strong {
+        color: white;
+        font-weight: 800;
+      }
+    }
+
+  }
+
+}
+
+.images-modal {
+  width: 1000px;
+  @media (max-width: 1000px) {
+    & {
+      width: 100%;
+    }
+  }
+
+  h3 {
+    font-weight: 100;
+    font-size: 36px;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    li {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+  }
+
+}
+
+.levels-modal {
+  width: 1000px;
+  @media (max-width: 1000px) {
+    & {
+      width: 100%;
+    }
+  }
+
+  h3 {
+    font-weight: 100;
+    font-size: 36px;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 15px;
+    tr {
+      color: white;
+      line-height: 150%;
+      border: 1px white solid;
+      th,
+      td {
+        padding: 10px;
+        .current {
+          font-weight: 900;
+          color: yellow;
+        }
+      }
+    }
+  }
+}
+
+

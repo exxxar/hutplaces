@@ -1,19 +1,19 @@
 <template>
     <div>
-        <div class="form">
+        <form @submit.prevent="sendRequest" class="form">
             <h1>{{$lang.auth.sign_in}}</h1>
             <div class="input-group">
                 <label>{{$lang.auth.email}}</label>
                 <input type="text" name="username" autocomplete="off" :placeholder="$lang.auth.enter_your_mail"
-                       v-model="username">
+                       v-model="username" required>
             </div>
             <div class="input-group">
                 <label>{{$lang.auth.password}}</label>
                 <input type="password" name="password" autocomplete="off" :placeholder="$lang.auth.enter_password"
-                       v-model="password">
+                       v-model="password" required>
             </div>
             <div class="input-group buttons">
-                <button @click="login()" class="btn btn-yellow">{{$lang.auth.sign_in}}</button>
+                <button type="submit" class="btn btn-yellow">{{$lang.auth.sign_in}}</button>
                 <router-link tag="a" :to="{ name: 'Register' }" class="link">{{$lang.auth.sign_up}}
                 </router-link>
             </div>
@@ -24,10 +24,10 @@
                 <li><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
             </ul>
             <div class="input-group">
-                <a href="" class="rules">{{$lang.auth.product_terms_of_use}}</a>
+                <a href="rules" class="rules" @click="openRules()">{{$lang.auth.product_terms_of_use}}</a>
             </div>
 
-        </div>
+        </form>
 
 
     </div>
@@ -42,19 +42,35 @@
             };
         },
         methods: {
-            login() {
+            message(message) {
+                this.$notify({
+                    group: 'main',
+                    type: 'warn',
+                    title: 'Авторизация',
+                    text: message
+                })
+            },
+            openRules() {
+                Event.$emit('modal', 'rules');
+            },
+            sendRequest(e) {
+
                 this.$loading(true)
                 this.$store.dispatch('loginUser', {
-                    username: this.username,
-                    password: this.password,
-                }).then(() => {
-                    this.$router.push({path: '/cabinet'})
-                    this.$loading(false)
-                    Event.$emit("updateUserProfile")
-                }).catch(() => {
-                    this.$loading(false)
+                    'username':this.username,
+                    'password': this.password
                 })
-            }
+                    .then((res) => {
+                        Event.$emit("updateUserProfile")
+                        this.$router.push({path: '/cabinet'})
+                        this.$loading(false)
+                    })
+                    .catch((msg) => {
+                        this.message(msg.data.message);
+                        this.$loading(false)
+                    })
+            },
+
         }
     }
 </script>

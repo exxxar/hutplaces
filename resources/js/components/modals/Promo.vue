@@ -11,6 +11,10 @@
         <div class="input-group">
             <button class="btn btn-yellow full" @click="doRequest()" v-html="$lang.modals.promocodes.activate"></button>
         </div>
+
+        <div class="input-group">
+            <a class="promotions" @click="allPromotions()">Все акции</a>
+        </div>
     </div>
 
 </template>
@@ -32,6 +36,10 @@
                     text: message
                 })
             },
+            allPromotions() {
+                this.$router.push({path: '/promotions'})
+                this.$emit("close")
+            },
             doRequest() {
                 if (this.promo.length != 8) {
                     this.message(this.$lang.modals.promocodes.error_1);
@@ -48,6 +56,18 @@
 
     }
 </script>
-<style>
+<style lang="scss">
 
+    a.promotions {
+        color: white;
+        font-weight: 900;
+        font-size: 10px;
+        line-height: 150%;
+        text-transform: uppercase;
+        text-align: center;
+        cursor: pointer;
+        text-decoration-style: dashed;
+        text-decoration-color: white;
+        text-decoration-line: underline;
+    }
 </style>

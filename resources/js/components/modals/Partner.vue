@@ -24,7 +24,6 @@
 <script>
     export default {
         name: 'report',
-        props: ['show'],
         data() {
             return {
                 email: '',
@@ -40,7 +39,6 @@
                     text: message
                 })
             },
-
 
             sendRequest(e) {
                 let currentObj = this

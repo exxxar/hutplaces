@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     selfHide: function selfHide() {
-      this.$emit("self-hide");
+      this.$emit("close");
     },
     closeMenu: function closeMenu() {
       if (this.alwaysShow) return;
@@ -78,7 +78,7 @@ __webpack_require__.r(__webpack_exports__);
       }, time);
     },
     openModal: function openModal(name) {
-      this.selfHide();
+      this.$emit("close");
       this.$emit("modal", name);
     },
     logout: function logout() {

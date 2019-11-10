@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Lifetime;
 use App\Enums\TriggerType;
 use App\Events\Achievement;
 use App\Events\UserUpdate;
@@ -21,8 +22,8 @@ class PromocodesController extends Controller
      */
     public function index(Request $request)
     {
-        $promocodes = Promocode::orderBy('id','DESC')->paginate(15);
-        return view('admin.promo.index',compact('promocodes'))
+        $promocodes = Promocode::orderBy('id', 'DESC')->paginate(15);
+        return view('admin.promo.index', compact('promocodes'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
@@ -39,7 +40,7 @@ class PromocodesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,44 +54,44 @@ class PromocodesController extends Controller
             'money' => 'numeric',
         ]);
 
-        $input = $request->all(); 
+        $input = $request->all();
 
         Promocode::create($input);
 
         return redirect()->route('promo.index')
-            ->with('success','Promocode created successfully');
+            ->with('success', 'Promocode created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Promocode  $promocodes
+     * @param  \App\Promocode $promocodes
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
 
         $promocode = Promocode::find($id);
-        return view('admin.promo.show',compact('promocode'));
+        return view('admin.promo.show', compact('promocode'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Promocode  $promocodes
+     * @param  \App\Promocode $promocodes
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $promocode = Promocode::find($id);
-        return view('admin.promo.edit',compact('promocode'));
+        return view('admin.promo.edit', compact('promocode'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Promocode  $promocodes
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Promocode $promocodes
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -103,100 +104,99 @@ class PromocodesController extends Controller
             'discount' => 'integer|min:0|max:2147483647',
             'money' => 'numeric',
         ]);
-        
-        $input = $request->all(); 
+
+        $input = $request->all();
 
         $promocodes = Promocode::find($id);
         $promocodes->update($input);
 
         return redirect()->route('promo.index')
-            ->with('success','Promocode updated successfully');
+            ->with('success', 'Promocode updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Promocode  $promocodes
+     * @param  \App\Promocode $promocodes
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        DB::table("promocodes")->where('id',$id)->delete();
+        DB::table("promocodes")->where('id', $id)->delete();
         return redirect()->route('promo.index')
-            ->with('success','Promocode deleted successfully');
+            ->with('success', 'Promocode deleted successfully');
     }
 
-    public function activate(Request $request){
+    public function activate(Request $request)
+    {
 
-        if (auth("api")->user()==null)
+        if (auth("api")->user() == null)
             return response()
                 ->json([
-                    'status'=>200,
-                    'message'=>'User must autorize'
+                    'status' => 200,
+                    'message' => 'User must autorize'
                 ]);
 
         $code = $request->get("code");
 
         $isActivated = (User::with(["promocodes"])
                 ->find(auth("api")->user()->id))
-            ->promocodes()
-            ->where("code",$code)
-            ->first()!=null;
+                ->promocodes()
+                ->where("code", $code)
+                ->first() != null;
 
         if ($isActivated)
             return response()
                 ->json([
-                    'status'=>200,
-                    'message'=>'This promocode was activated!!'
+                    'status' => 200,
+                    'message' => 'This promocode was activated!!'
                 ]);
 
         if (!$request->ajax())
             return response()
                 ->json([
-                   'status'=>200,
-                   'message'=>'Must be AJAX request'
+                    'status' => 200,
+                    'message' => 'Must be AJAX request'
                 ]);
 
 
-
-        $promocode = Promocode::where("code",$code)->first();
+        $promocode = Promocode::where("code", $code)->first();
 
         if (!$promocode)
             return response()
                 ->json([
-                    'status'=>200,
-                    'message'=>'Promocode not found'
+                    'status' => 200,
+                    'message' => 'Promocode not found'
                 ]);
-
 
 
         if (!$promocode->is_active)
             return response()
                 ->json([
-                    'status'=>200,
-                    'message'=>'Promocode is inactive'
+                    'status' => 200,
+                    'message' => 'Promocode is inactive'
                 ]);
 
-        if ($promocode->activation_count>=$promocode->count)
+        if ($promocode->activation_count >= $promocode->count)
             return response()
                 ->json([
-                    'status'=>200,
-                    'message'=>'Your promotional code limit has been reached.'
+                    'status' => 200,
+                    'message' => 'Your promotional code limit has been reached.'
                 ]);
 
         $time = $promocode->lifetime->key;
-        $time_1 = (intval(substr($time,5,strlen($time)-5))*60*60)+date_timestamp_get(new DateTime($promocode->created_at));
+        $time_1 = (intval(substr($time, 5, strlen($time) - 5)) * 60 * 60) + date_timestamp_get(new DateTime($promocode->created_at));
         $time_2 = date_timestamp_get(now());
 
-        if ($time_1<$time_2)
+        if ($time_1 < $time_2)
             return response()
                 ->json([
-                    'status'=>200,
-                    'message'=>'The code expired.'
+                    'status' => 200,
+                    'message' => 'The code expired.'
                 ]);
 
 
-        $promocode->activation_count+=1;
+        $promocode->activation_count += 1;
         $promocode->save();
 
         $user = User::find(auth("api")->user()->id);
@@ -206,42 +206,82 @@ class PromocodesController extends Controller
 
         if (!empty($promocode->card_id)) {
             $user->cards()->attach($promocode->card_id);
-            event(new Achievement(TriggerType::CardsCount,1,$user->id));
+            event(new Achievement(TriggerType::CardsCount, 1, $user->id));
         }
 
-        if (!empty($promocode->money)&&$promocode->money>0)
+        if (!empty($promocode->money) && $promocode->money > 0)
             $user->money += $promocode->money;
 
-        if (!empty($promocode->bonus)&&$promocode->bonus>0)
+        if (!empty($promocode->bonus) && $promocode->bonus > 0)
             $user->bonus += $promocode->bonus;
 
-        if (!empty($promocode->coins)&&$promocode->coins>0) {
+        if (!empty($promocode->coins) && $promocode->coins > 0) {
             $user->coins += $promocode->coins;
-            event(new Achievement(TriggerType::CoinsCount,$promocode->coins,$user->id));
+            event(new Achievement(TriggerType::CoinsCount, $promocode->coins, $user->id));
         }
 
-        if (!empty($promocode->exp)&&$promocode->exp>0) {
+        if (!empty($promocode->exp) && $promocode->exp > 0) {
             $user->exp += $promocode->exp;
-            event(new Achievement(TriggerType::Experience,$promocode->exp,$user->id));
+            event(new Achievement(TriggerType::Experience, $promocode->exp, $user->id));
         }
 
-        if (!empty($promocode->discount)&&$promocode->discount>0) {
+        if (!empty($promocode->discount) && $promocode->discount > 0) {
             $user->discount = max($user->discount, $promocode->discount);
-            event(new Achievement(TriggerType::Discount,$promocode->discount,$user->id));
+            event(new Achievement(TriggerType::Discount, $promocode->discount, $user->id));
         }
 
-        if ($promocode->activation_count>=$promocode->count)
-        {
+        if ($promocode->activation_count >= $promocode->count) {
             $promocode->is_active = false;
             $promocode->save();
         }
 
-        event(new Achievement(TriggerType::PromocodesCount,1,$user->id));
+        event(new Achievement(TriggerType::PromocodesCount, 1, $user->id));
 
         return response()
             ->json([
-                'status'=>200,
-                'message'=>'Promocode was success activated'
+                'status' => 200,
+                'message' => 'Promocode was success activated'
             ]);
+    }
+
+
+    public function add(Request $request)
+    {
+
+        Promocode::create([
+            'lifetime' => Lifetime::getInstance(intval($request->duplicate()))->value,
+            'is_active' => true,
+            'title' => $request->get("title"),
+            'description' => $request->get("description"),
+            'activation_count' => 0,
+            'count' => $request->get("count"),
+            'money' => $request->has("money") ? $request->get("money") : 0,
+            'exp' => $request->has("exp") ? $request->get("exp") : 0,
+            'discount' => $request->has("discount") ? $request->get("discount") : 0,
+            'coins' => $request->has("coins") ? $request->get("coins") : 0,
+            'bonus' => $request->has("bonus") ? $request->get("bonus") : 0,
+            'code' => $request->has("code") ? $request->get("code") :
+                strtoupper(substr(base64_encode(random_int(0, 9999999)), 0, 8)),
+        ]);
+
+        return response()
+            ->json([
+                "status" => 200,
+                "message" => "Success!"
+            ]);
+    }
+
+    public function promotions(Request $request)
+    {
+
+        $promocodes = Promocode::where("is_active", 1)->get();
+        $promocodes->makeHidden(['code']);
+
+        return response()
+            ->json([
+                "promotions" => $promocodes,
+                "status" => 200,
+            ]);
+
     }
 }

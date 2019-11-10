@@ -26,18 +26,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'defaultLayout',
   methods: {
-    selfHide: function selfHide() {
-      this.$emit("self-hide");
+    openPath: function openPath(name) {
+      this.$router.push({
+        path: name
+      });
+      this.$emit('close');
     },
     openModal: function openModal(name) {
-      this.selfHide();
+      this.$emit('close');
       this.$emit("modal", name);
     }
   }
@@ -60,119 +59,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "ul",
-    [
-      _c(
-        "router-link",
-        {
-          staticClass: "btn btn-black-2",
-          attrs: { to: { name: "Playzone" }, tag: "li" }
-        },
-        [_vm._v(_vm._s(_vm.$lang.menu.playzone) + "\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "btn btn-black-2",
-          attrs: { to: { name: "Market" }, tag: "li" }
-        },
-        [_vm._v(_vm._s(_vm.$lang.menu.market) + "\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "btn btn-black-2",
-          on: {
-            click: function($event) {
-              return _vm.openModal("promo")
-            }
+  return _c("ul", [
+    _c(
+      "li",
+      {
+        staticClass: "btn btn-black-2",
+        on: {
+          click: function($event) {
+            return _vm.openPath("/playzone")
           }
-        },
-        [_vm._v(_vm._s(_vm.$lang.menu.promocodes))]
-      ),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "btn btn-black-2",
-          attrs: { to: { name: "Achievements" }, tag: "li" }
-        },
-        [_vm._v(_vm._s(_vm.$lang.menu.achievement) + "\n    ")]
-      ),
-      _vm._v(" "),
-      _c("li", { staticClass: "more-menu" }, [
-        _c("ul", { staticClass: "more" }, [
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.openModal("rules")
-                }
+        }
+      },
+      [_vm._v(_vm._s(_vm.$lang.menu.playzone))]
+    ),
+    _vm._v(" "),
+    _c(
+      "li",
+      {
+        staticClass: "btn btn-black-2",
+        on: {
+          click: function($event) {
+            return _vm.openPath("/market")
+          }
+        }
+      },
+      [_vm._v(_vm._s(_vm.$lang.menu.market))]
+    ),
+    _vm._v(" "),
+    _c(
+      "li",
+      {
+        staticClass: "btn btn-black-2",
+        on: {
+          click: function($event) {
+            return _vm.openModal("/promo")
+          }
+        }
+      },
+      [_vm._v(_vm._s(_vm.$lang.menu.promocodes))]
+    ),
+    _vm._v(" "),
+    _c(
+      "li",
+      {
+        staticClass: "btn btn-black-2",
+        on: {
+          click: function($event) {
+            return _vm.openPath("/achievements")
+          }
+        }
+      },
+      [_vm._v(_vm._s(_vm.$lang.menu.achievement))]
+    ),
+    _vm._v(" "),
+    _c("li", { staticClass: "more-menu" }, [
+      _c("ul", { staticClass: "more" }, [
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                return _vm.openModal("rules")
               }
-            },
-            [
-              _c("a", { attrs: { href: "#rules" } }, [
-                _vm._v(_vm._s(_vm.$lang.menu.terms_of_use))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.openModal("supplier")
-                }
+            }
+          },
+          [
+            _c("a", { attrs: { href: "#rules" } }, [
+              _vm._v(_vm._s(_vm.$lang.menu.terms_of_use))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                return _vm.openModal("supplier")
               }
-            },
-            [
-              _c("a", { attrs: { href: "#supplier" } }, [
-                _vm._v(_vm._s(_vm.$lang.menu.become_a_supplier))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.openModal("about")
-                }
+            }
+          },
+          [
+            _c("a", { attrs: { href: "#supplier" } }, [
+              _vm._v(_vm._s(_vm.$lang.menu.become_a_supplier))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                return _vm.openModal("about")
               }
-            },
-            [
-              _c("a", { attrs: { href: "#about" } }, [
-                _vm._v(_vm._s(_vm.$lang.menu.about_us))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.openModal("report")
-                }
+            }
+          },
+          [
+            _c("a", { attrs: { href: "#about" } }, [
+              _vm._v(_vm._s(_vm.$lang.menu.about_us))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                return _vm.openModal("report")
               }
-            },
-            [
-              _c("a", { staticClass: "report", attrs: { href: "#report" } }, [
-                _vm._v(_vm._s(_vm.$lang.menu.report))
-              ])
-            ]
-          )
-        ])
+            }
+          },
+          [
+            _c("a", { staticClass: "report", attrs: { href: "#report" } }, [
+              _vm._v(_vm._s(_vm.$lang.menu.report))
+            ])
+          ]
+        )
       ])
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

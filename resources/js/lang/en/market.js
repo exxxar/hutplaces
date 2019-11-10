@@ -3,6 +3,7 @@ module.exports = {
     main_description:'Welcome to our market. <strong>Auction</strong> - a section in which you can buy or sell your players. For convenient buying coins with fast delivery, go to the - <strong>coins section</strong>. <strong>Players Packs</strong> - packs with a random drop of various game items (player cards, coins, etc.)',
     auction: 'Auction',
     coins: 'Coins',
+    promotions: 'Promotions',
     players_packs: 'Players packs',
 
     error_title: 'Play Market',

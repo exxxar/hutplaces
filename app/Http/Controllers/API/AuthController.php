@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -53,32 +54,32 @@ class AuthController extends Controller
 
         }
 
-         $this->chatkit_createUser($user);
-
+        $this->chatkit_createUser($user);
 
 
         return response()->json(['status' => 201]);
     }
 
-    public function login()
+    public function login(Request $request)
     {
+
         // Проверяем существует ли пользователь с указанным email адресом
         $user = User::whereEmail(request('username'))->first();
 
         if (!$user) {
             return response()->json([
-                'message' => 'Wrong email or password',
+                'message' => 'Wrong email',
                 'status' => 422
-            ], 422);
+            ]);
         }
 
         // Если пользователь с таким email адресом найден - проверим совпадает
         // ли его пароль с указанным
         if (!Hash::check(request('password'), $user->password)) {
             return response()->json([
-                'message' => 'Wrong email or password',
+                'message' => 'Wrong password',
                 'status' => 422
-            ], 422);
+            ]);
         }
 
         // Внутренний API запрос для получения токенов
@@ -92,7 +93,7 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Laravel Passport is not setup properly.',
                 'status' => 500
-            ], 500);
+            ]);
         }
 
         $data = [
@@ -120,9 +121,25 @@ class AuthController extends Controller
 
         $chats = Setting::where("title", "like", "chatkit.channel.%")->get();
 
-        foreach ($chats as $chat) {
-            $this->chatkit_addUserToRoom($chat->value, [$this->prepareUserId($user->id)]);
+        try {
+
+            if ($chats != null && count($chats) > 0)
+                foreach ($chats as $chat) {
+                    $this->chatkit_addUserToRoom($chat->value, [$this->prepareUserId($user->id)]);
+                }
+
+
+
+        } catch (\Chatkit\Exceptions\ChatkitException $e) {
+            $chat_user = $this->chatkit_createUser($user->name)["body"]["id"];
+
+            if ($chats != null && count($chats) > 0)
+                foreach ($chats as $chat) {
+                    $this->chatkit_addUserToRoom($chat->value, [$chat_user]);
+                }
         }
+
+
         // Формируем окончательный ответ в нужном формате
         return response()->json([
             'token' => $data->access_token,
@@ -134,7 +151,7 @@ class AuthController extends Controller
     public function logout()
     {
         $accessToken = auth()->user()->token();
-        $userId =  auth("api")->user()->id;
+        $userId = auth("api")->user()->id;
 
         $refreshToken = DB::table('oauth_refresh_tokens')
             ->where('access_token_id', $accessToken->id)
@@ -156,9 +173,9 @@ class AuthController extends Controller
         return response()->json(['status' => 200]);
     }
 
-    public function getUser($id=null)
+    public function getUser($id = null)
     {
-        $user = User::with(["level"])->find($id==null?auth()->user()->id:$id);
+        $user = User::with(["level"])->find($id == null ? auth()->user()->id : $id);
         return $user;
     }
 }

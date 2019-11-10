@@ -3,7 +3,7 @@
 @import 'tooltip.scss';
 
 .form {
-  padding: 25px;
+  padding: 25px 25px 150px 25px;
   width: 400px;
   box-sizing: border-box;
   @include flex(center, center);
@@ -30,10 +30,16 @@
       width: 100%;
       padding: 15px;
       box-sizing: border-box;
-      border: none;
-      border-bottom: 1px $color4 solid;
-      background-color: transparent;
-      @include text(14px, $color4, 400, center, 150%);
+      border: 2px yellow solid;
+      font-size: 14px;
+      color: white;
+      font-weight: 400;
+      text-align: center;
+      line-height: 150%;
+      border-radius: 5px;
+      font-family: "Open Sans", sans-serif;
+      background-color: #2c3e50;
+
       &::placeholder {
         @include text(14px, lightgray, 100, left, 150%, uppercase);
       }

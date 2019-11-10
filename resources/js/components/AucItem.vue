@@ -1,136 +1,129 @@
 <template>
     <div class="card-wrapper">
-        <div class="lot-item">
-            <div class="progress">
-                <div class="line" :style="lineWidth(game.occupied_places,game.places)"></div>
-                <div class="info">{{game.occupied_places}}/{{game.places}}</div>
+        <div class="lot-item" v-if="auc">
+
+            <div class="buyer" v-if="auc.buyer_id!=null">
+                <router-link tag="div" class="user"
+                             :to="{ name: 'PlayerInfo',params: {userId:auc.buyer_id==null} }">
+                    <img :src="prepareAvatar(auc.buyer.avatar)" alt="">
+                </router-link>
             </div>
-            <div class="card-info" v-if="game.lot_type=='2'"
-                 @click="show(`card-show-${game.id}`)">i
+
+            <div class="card-info" v-if="auc.lot_type=='2'"
+                 @click="show(`card-show-${auc.id}`)">i
             </div>
-            <div class="card-info" v-if="game.lot_type=='1'||game.lot_type=='0'"
-                 @click="show(`card-show-item-${game.id}`)">i
+            <div class="card-info" v-if="auc.lot_type=='1'||auc.lot_type=='0'"
+                 @click="show(`card-show-item-${auc.id}`)">i
             </div>
+
             <card-tabs>
                 <card-section title="" active="true">
-                    <div class="card" v-if="game.lot_type=='2'">
-                        <img v-if="game.lot.card.image==null" v-lazy="'/img/item-element.jpg'" alt="">
-                        <img v-else v-lazy="`/img/cards/${game.lot.card.image}`" alt="">
-                    </div>
-                    <div class="item" v-if="game.lot_type=='0'">
-                        <img v-if="game.lot.item.image==null" v-lazy="'/img/item-element.jpg'" alt="">
-                        <img v-else v-lazy="`/img/cards/${game.lot.item.image}`" alt="">
-                    </div>
-                    <div class="coins" v-if="game.lot_type=='1'">
-                        <img v-if="game.lot.item.image==null" v-lazy="'/img/coins-element.jpg'" alt="">
-                        <img v-else v-lazy="`/img/cards/${game.lot.item.image}`" alt="">
+                    <div class="card" v-if="auc.lot_type=='2'">
+                        <img v-if="auc.lot.card.image==null" v-lazy="'/img/item-element.jpg'" alt="">
+                        <img v-else v-lazy="`/img/cards/${auc.lot.card.image}`" alt="">
                     </div>
 
-                    <div class="sale" :data-sale="`-${game.base_discount}%`" v-if="game.base_discount>0"></div>
-
-                    <div class="price">{{game.base_price }} {{$lang.games.money}}</div>
-
-
-                    <div class="controlls" v-if="controls">
-                        <button class="btn btn-yellow" @click="lotteryOpen()">Open</button>
+                    <div class="item" v-if="auc.lot_type=='0'">
+                        <img v-if="auc.lot.item.image==null" v-lazy="'/img/item-element.jpg'" alt="">
+                        <img v-else v-lazy="`/img/cards/${auc.lot.item.image}`" alt="">
                     </div>
 
-                    <div class="deadline" v-if="game.completed!=1&&game.lifetime!=0">
+                    <div class="coins" v-if="auc.lot_type=='1'">
+                        <img v-if="auc.lot.item.image==null" v-lazy="'/img/coins-element.jpg'" alt="">
+                        <img v-else v-lazy="`/img/cards/${auc.lot.item.image}`" alt="">
+                    </div>
+
+                    <div class="price">
+                        <p class="step-price">
+                            <span> step  </span>{{auc.step_price}} <span> {{$lang.games.money}}  </span></p>
+                        <p class="bid-price"><span> bid  </span>{{auc.bid_price}} <span> {{$lang.games.money}}  </span>
+                        </p>
+                        <p class="buy-price"><span> buy  </span>{{auc.buy_price}} <span> {{$lang.games.money}}  </span>
+                        </p>
+
+                    </div>
+
+
+                    <div class="controlls" v-if="user">
+                        <div class="bid btn btn-yellow" @click="bidLot()">Bid</div>
+                        <div class="buy btn btn-orange" @click="buyLot()">Buy</div>
+                    </div>
+                    <div class="controlls" v-if="!user">
+                        <router-link to="/signin" tag="button" class="btn btn-yellow "><i
+                                class="fas fa-sign-in-alt"></i></router-link>
+                        <router-link to="/signup" tag="button" class="btn btn-orange "><i class="fas fa-user-plus"></i>
+                        </router-link>
+                    </div>
+
+                    <div class="deadline" v-if="auc.lifetime!=0">
                         <flip-countdown :deadline="prepareDeadline()"></flip-countdown>
                     </div>
 
-                    <div class="win" v-if="game.completed==1">
-                        <h1 v-html="$lang.game.completed"></h1>
-                    </div>
-
                     <div class="console">
-                        <i v-if="game.console_type==1" class="fab fa-playstation"></i>
-                        <i v-if="game.console_type==0" class="fab fa-xbox"></i>
+                        <i v-if="auc.console_type==1" class="fab fa-playstation"></i>
+                        <i v-if="auc.console_type==0" class="fab fa-xbox"></i>
                     </div>
                 </card-section>
 
-                <card-section title="" v-if="controls&&user.is_trader">
-                    <scroll class="scroll-area-2">
-                        <div class="input-group">
-                            <label :for="`status-completed-${game.id}`" class="col-form-label"
-                                   v-html="$lang.game.completed"></label>
-                            <toggle :check="game.completed==1?true:false"
-                                    :id="`status-completed-${game.id}`"
-                                    v-on:check="setCompleted($event)"
-                                    :labelon="$lang.game.yes"
-                                    :labeloff="$lang.game.no"
-                                    :width="120"></toggle>
-                        </div>
+                <div v-if="controls&&user">
+                    <card-section title="" v-if="user.is_trader">
+                        <scroll class="scroll-area-2">
 
-                        <div class="input-group">
-                            <label :for="`visible-type-${game.id}`" class="col-form-label"
-                                   v-html="$lang.game.visible"></label>
+                            <div class="input-group">
+                                <div class="cancel" @click="cancelLot(auc.id)"
+                                     v-if="auc.seller_id==user.id&&auc.buyer_id==null">
+                                    <i
+                                            class="far fa-times-circle"></i></div>
+                            </div>
 
-                            <toggle :check="game.visible==1?true:false"
-                                    :id="`visible-type-${game.id}`"
-                                    v-on:check="setVisible($event)"
-                                    :labelon="$lang.game.yes"
-                                    :labeloff="$lang.game.no"
-                                    :width="120"></toggle>
-                        </div>
+                            <div class="input-group">
+                                <label :for="`active-type-${auc.id}`" class="col-form-label"
+                                       v-html="$lang.game.active"></label>
 
-                        <div class="input-group">
-                            <label :for="`active-type-${game.id}`" class="col-form-label"
-                                   v-html="$lang.game.active"></label>
-
-                            <toggle :check="game.active==1?true:false"
-                                    :id="`active-type-${game.id}`"
-                                    v-on:check="setActive($event)"
-                                    :labelon="$lang.game.yes"
-                                    :labeloff="$lang.game.no"
-                                    :width="120"></toggle>
-                        </div>
+                                <toggle :check="auc.active==1?true:false"
+                                        :id="`active-type-${auc.id}`"
+                                        v-on:check="setActive($event)"
+                                        :labelon="$lang.game.yes"
+                                        :labeloff="$lang.game.no"
+                                        :width="120"></toggle>
+                            </div>
 
 
-                        <div class="input-group">
-                            <label :for="`only-one-type-${game.id}`" class="col-form-label"
-                                   v-html="$lang.game.is_only_one"></label>
+                            <div class="input-group">
+                                <label for="lifetime" v-html="$lang.game.lifetime"></label>
+                                <select id="lifetime" class="form-control" @change="setLifetime($event)"
+                                        v-model="selected_lifetime">
+                                    <option v-if="lifetime!=null&&lifetime.length>0" v-for="time in lifetime"
+                                            :value="time.value">
+                                        {{prepareLifetime(time.key)}}
+                                    </option>
+                                </select>
+                            </div>
 
-                            <toggle :check="game.is_only_one==1?true:false"
-                                    :id="`only-one-type-${game.id}`"
-                                    v-on:check="setIsOnlyOne($event)"
-                                    :labelon="$lang.game.yes"
-                                    :labeloff="$lang.game.no"
-                                    :width="120"></toggle>
-                        </div>
+                            <div class="input-group">
+                                <button class="btn btn-yellow" v-html="$lang.game.remove" @click="remove()"></button>
+                            </div>
 
-                        <div class="input-group">
-                            <label for="lifetime" v-html="$lang.game.lifetime"></label>
-                            <select id="lifetime" class="form-control" @change="setLifetime($event)" v-model="selected_lifetime">
-                                <option v-if="lifetime!=null&&lifetime.length>0" v-for="time in lifetime"
-                                        :value="time.value">
-                                    {{prepareLifetime(time.key)}}
-                                </option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <button class="btn btn-yellow" v-html="$lang.game.remove" @click="remove()"></button>
-                        </div>
-
-                    </scroll>
-                </card-section>
+                        </scroll>
+                    </card-section>
+                </div>
             </card-tabs>
 
-            <modal :name="`card-show-${game.id}`" :adaptive="true" width="100%" height="100%">
+            <modal :name="`card-show-${auc.id}`" :adaptive="true" width="100%" height="100%">
                 <scroll class="scroll-area">
-                    <a href="#" @click="hide(`card-show-${game.id}`)" class="close"></a>
-                    <card :card="getCard()" v-on:close="hide(`card-show-${game.id}`)"></card>
+                    <a href="#" @click="hide(`card-show-${auc.id}`)" class="close"></a>
+                    <card :card="getCard()" v-on:close="hide(`card-show-${auc.id}`)"></card>
                 </scroll>
             </modal>
 
-            <modal v-if="game.lot_type=='1'||game.lot_type=='0'" :name="`card-show-item-${game.id}`" :adaptive="true" width="100%" height="100%">
+            <modal v-if="auc.lot_type=='1'||auc.lot_type=='0'" :name="`card-show-item-${auc.id}`" :adaptive="true"
+                   width="100%" height="100%">
                 <scroll class="scroll-area">
-                    <a href="#" @click="hide(`card-show-item-${game.id}`)" class="close"></a>
+                    <a href="#" @click="hide(`card-show-item-${auc.id}`)" class="close"></a>
                     <div class="modal-body">
-                        <h1>{{game.title}}</h1>
-                        <p v-if="game.lot.item.description!=null" v-html="game.lot.item.description"></p>
-                        <p v-if="game.lot_type=='1'">{{game.lot.item.value}}</p>
+                        <h1>{{auc.title}}</h1>
+                        <p v-if="auc.lot.item.description!=null" v-html="auc.lot.item.description"></p>
+                        <p v-if="auc.lot_type=='1'">{{auc.lot.item.value}}</p>
                     </div>
 
                 </scroll>
@@ -149,67 +142,53 @@
     import Toggle from '@/components/Toggle.vue'
 
     export default {
-        props: ['game', 'controls','user'],
-
+        props: ["auc", "controls", "lifetime", "user"],
         data() {
             return {
-                active: 0 || this.game.active,
-                visible: 0 || this.game.visible,
-                completed: 0 || this.game.completed,
-                is_only_one: 0 || this.game.is_only_one,
-                lifetime:this.loadLifetime,
-                selected_lifetime:this.game.lifetime,
-            }
-        },
-        computed: {
-            loadLifetime() {
-                return this.$store.getters.LIFETIME;
-            },
-                   },
-        watch: {
-            loadLifetime(newValue,oldValue){
-                this.lifetime = newValue
+                active: 0 || this.auc.active,
+                selected_lifetime: this.auc.lifetime,
             }
         },
         methods: {
+            bidLot() {
+                this.$store.dispatch("doBidLot", {id: this.auc.id})
+                    .then(() => {
+                        this.message("Вы сделали ставку!")
+                    }).catch(() => {
+                    this.message("Сделать ставку не удалось, обратитесь к администратору!")
+                });
+
+            },
+            buyLot() {
+                this.$store.dispatch("doBuyLot", {id: this.auc.id})
+                    .then(() => {
+                        this.message("Вы преобрели данный лот!")
+                    }).catch(() => {
+                    this.message("Неудалось преобрести лот, обратитесь к администрации")
+                });
+
+            },
             prepareLifetime(time) {
                 return eval(`this.$lang.lifetime.${time}`);
             },
             remove() {
-                axios.post('/lottery/remove', {
-                    id: this.game.id
-                })
-                    .then((response) => {
+                this.$store.dispatch("removeAuctionLot", {id: this.auc.id})
+                    .then(() => {
                         this.message(this.$lang.game.success_3)
-                        this.$store.dispatch("loadGames")
-                        this.$store.dispatch("loadDrafts")
 
-                        document.querySelectorAll(".lot-item ul li:nth-of-type(1)").forEach(function(a){
+                        this.$store.dispatch("loadAuctions")
+
+                        document.querySelectorAll(".lot-item ul li:nth-of-type(1)").forEach(function (a) {
                             a.click();
                         });
-                    })
-                    .catch((error) => {
-                        this.message(this.$lang.game.error_2)
-                    })
-                this.message(this.$lang.game.success_2)
+                    }).catch(() => {
+                    this.message(this.$lang.game.error_2)
+                })
+
             },
             setLifetime(event) {
                 this.selected_lifetime = event.target.value;
-
                 this.save()
-            },
-            setIsOnlyOne(onlyOne) {
-                this.is_only_one = onlyOne
-                this.save()
-            },
-            setCompleted(completed) {
-                this.completed = completed
-                this.save()
-            },
-            setVisible(visible) {
-                this.visible = visible
-                this.save()
-
             },
             setActive(active) {
                 this.active = active
@@ -219,43 +198,30 @@
                 let formData = new FormData()
 
                 formData.append('id', this.game.id)
-                formData.append('is_only_one', this.is_only_one ? 1 : 0)
-                formData.append('completed', this.completed ? 1 : 0)
-                formData.append('visible', this.visible ? 1 : 0)
                 formData.append('active', this.active ? 1 : 0)
                 formData.append('lifetime', this.selected_lifetime)
 
-                axios.post('/lottery/update', formData)
-                    .then((response) => {
+                this.$store.dispatch("updateAuctionLot", {id: this.auc.id})
+                    .then(() => {
                         this.message(this.$lang.game.success_1)
-                        this.$store.dispatch("loadGames")
-                        this.$store.dispatch("loadDrafts")
-
-                    })
-                    .catch((error) => {
-                        this.message(this.$lang.game.error_1)
-                    })
-
+                        this.$store.dispatch("loadAuctions")
+                    }).catch(() => {
+                    this.message(this.$lang.game.error_1)
+                })
                 this.message(this.$lang.game.success_2)
             },
             getCard() {
-                return this.game.lot.card;
+                return this.auc.lot.card;
             },
-            lotteryOpen: function () {
-                this.$router.push({name: 'Lottery', params: {gameId: this.game.id}})
-            },
+
             prepareDeadline() {
-                let date = Date.parse(this.game.updated_at);
+                let date = Date.parse(this.auc.updated_at);
                 let time = [1000, 6, 12, 24, 36, 48, 96, 128];
 
-                date = date + time[this.game.lifetime] * 60 * 60 * 1000;
+                date = date + time[this.auc.lifetime] * 60 * 60 * 1000;
                 return timeSolver.getString(new Date(date), "YYYY-MM-DD HH:MM:SS");
             },
-            lineWidth: function (c1, c2) {
-                return {
-                    '--line-width': ((c1 / c2) * 100) + '%'
-                }
-            },
+
             show(name) {
                 this.$modal.show(name)
             },
@@ -281,7 +247,7 @@
 
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
     @import "~/fonts.scss";
     @import "~/lottery.scss";
 
@@ -315,7 +281,7 @@
                 border-radius: 5px;
                 font-weight: 900;
                 option {
-                    color:white  !important;
+                    color: white !important;
                 }
             }
         }
@@ -337,15 +303,25 @@
 
         .controlls {
             position: absolute;
-            bottom: 0;
-            left: 0px;
+            bottom: 80px;
+            right: 0px;
+            display: flex;
+            justify-content: center;
+            height: 59px;
+            width: 100%;
+            z-index: 10;
+            color: white;
+            font-size: 16px;
+            line-height: 120%;
 
-            button {
-                color: #2c3e50;
-                background-color: yellow;
-                box-shadow: 1px 0px 2px 0px black;
-                border-radius: 0px 5px 0px 0px;
-                padding: 10px 20px;
+            .btn {
+                &:nth-of-type(1) {
+                    border-radius: 5px 0px 0px 5px;
+                }
+
+                &:nth-of-type(2) {
+                    border-radius: 0px 5px 5px 0px;
+                }
             }
         }
 
@@ -358,7 +334,6 @@
             border-radius: 0% 50% 50% 0%;
             border: 1px yellow solid;
             box-shadow: 0px 0px 2px 0px black;
-            /* text-shadow: 1px 1px 1px black; */
             z-index: 14;
             color: white;
             font-weight: 900;
@@ -381,7 +356,7 @@
             border-top: 35px solid yellow;
             border-right: 35px solid yellow;
             position: absolute;
-            z-index: 14;
+            z-index: 12;
             top: 0;
             right: 0;
             &:after {
@@ -397,14 +372,31 @@
         }
         .price {
             z-index: 14;
+            width: 100%;
             position: absolute;
-            color: #2c3e50;
+            color: #ffffff;
             font-weight: bold;
             bottom: 0px;
+            height: 70px;
             right: 0px;
-            background: yellow;
+            background: rgba(54, 54, 54, 0.56);
             padding: 10px;
-            border-radius: 5px 0px 0px 0px;
+            box-sizing: border-box;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 140%;
+            p {
+                width: 32%;
+                display: flex;
+                flex-direction: column;
+                span {
+                    text-transform: uppercase;
+                    font-size: 10px;
+                    color: yellow;
+                }
+            }
         }
 
         .progress {
@@ -439,11 +431,13 @@
         .coins,
         .item {
             overflow: hidden;
+            background-color: #2c3e50;
+
             img {
                 width: 253px;
-                height: 350px;
+                height: 344px;
                 object-fit: cover;
-
+                mix-blend-mode: luminosity;
             }
         }
 
@@ -555,11 +549,11 @@
             padding: 20px;
             position: absolute;
             z-index: 12;
-            top: 20px;
+            top: -60px;
             opacity: 0.1;
-            transition: .3s;
-            left: 0;
-            width: 100%;
+            transition: 0.3s;
+            right: -78px;
+            width: 250px;
             color: #FFEB3B;
             text-transform: uppercase;
             text-shadow: 2px 2px 2px black;
@@ -568,7 +562,7 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            font-size: 11px !important;
+            transform: scale(0.5);
 
             &:hover {
                 transition: .3s;
@@ -655,7 +649,7 @@
             }
         }
         .cancel {
-            position: absolute;
+            position: relative;
             z-index: 20;
             font-size: 72px;
             color: red;
@@ -676,12 +670,13 @@
             width: 100%;
             height: 100%;
             box-sizing: border-box;
-
+            background-color: #2c3e50;
             overflow: hidden;
             img {
                 width: 253px;
                 height: 350px;
                 object-fit: cover;
+                mix-blend-mode: luminosity;
             }
         }
 

@@ -147,26 +147,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'faq',
-  props: ['show'],
-  data: function data() {
-    return {
-      faq: null
-    };
-  },
-  mounted: function mounted() {
-    this.loadFAQ();
-  },
-  methods: {
-    loadFAQ: function loadFAQ() {
-      var _this = this;
-
-      axios.get("/content/faq/all").then(function (response) {
-        console.log(response);
-        _this.faq = response.data;
-      });
-    }
-  }
+  name: 'faq'
 });
 
 /***/ }),

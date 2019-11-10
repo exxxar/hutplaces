@@ -6,74 +6,174 @@
             Попробуй бесплатно и ощути преимущества данной платформы! Получай игрвые бонусы и достижения играя в рандомы с другими игроками.
             Перед начало игры обязательно ознакомься с правилами нашей платформы.
         </p>
-        <div class="large-promo">
-            <carousel :per-page="1" :loop="true" :autoplay="true" :mouse-drag="true">
-                <slide>
-                    <img :src="'/img/slides/1.jpg'" alt="">
-                </slide>
-                <slide>
-                    <img :src="'/img/slides/2.jpg'" alt="">
-                </slide>
 
-                <slide>
-                    <img :src="'/img/slides/3.jpg'" alt="">
-                </slide>
-            </carousel>
-        </div>
 
-        <div v-if="lotteries!=null&&lotteries.length>0">
-            <div id="filters" class="filters">
-                <h4>Сортировать по:</h4>
-                <div class="input-group">
-                    <input type="radio" name="sort" id="sort-1" class="input-hidden"/>
-                    <label for="sort-1" v-tooltip.bottom="$lang.games.sort_1" @click="sort = 'places-up'">
-                        <img src="/img/cards-count-icon.png" alt=""/>
-                    </label>
-                    <input type="radio" name="sort" id="sort-2" class="input-hidden"/>
-                    <label for="sort-2" @click="sort = 'price-down'" v-tooltip.bottom="$lang.games.sort_2">
-                        <img src="/img/cards-price-icon.png" alt=""/>
-                    </label>
-                    <input type="radio" name="sort" id="sort-3" class="input-hidden"/>
-                    <label for="sort-3" @click="sort = 'occupied-places-up'" v-tooltip.bottom="$lang.games.sort_3">
-                        <img src="/img/cards-occupied-icon.png" alt=""/>
-                    </label>
-                    <input type="radio" name="sort" id="sort-4" class="input-hidden"/>
-                    <label for="sort-4" @click="sort = 'ovr-up'" v-tooltip.bottom="$lang.games.sort_4">
-                        <img src="/img/cards-ovr-icon.png" alt=""/>
-                    </label>
+        <div v-if="lotteries!=null">
+            <div class="filters-btn">
+                <i class="fas fa-funnel-dollar"></i>
+                <div class="filters-panel-wrapper">
+                    <div class="filters-panel">
+                        <div class="form-group">
+                            <label>Card title</label>
+                            <input type="text" maxlength="30" v-model="filters.title">
+                        </div>
+                        <div class="row">
+                            <div class="half">
+                                <div class="form-group">
+                                    <label>Min Base price</label>
+                                    <input type="number" min="0" max="99999999" v-model="filters.min_base_price">
+                                </div>
+                            </div>
+                            <div class="half">
+                                <div class="form-group">
+                                    <label>Max Base price</label>
+                                    <input type="number" min="0" max="99999999" v-model="filters.max_base_price">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="half">
+                                <div class="form-group">
+                                    <label>Min Discount</label>
+                                    <input type="number" min="0" max="99999999" v-model="filters.min_base_discount">
+                                </div>
+                            </div>
+                            <div class="half">
+
+                                <div class="form-group">
+                                    <label>Max Discount</label>
+                                    <input type="number" min="0" max="99999999" v-model="filters.max_base_discount">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="half">
+                                <div class="form-group">
+                                    <label>Min Places</label>
+                                    <input type="number" min="0" max="99999999" v-model="filters.min_places">
+                                </div>
+                            </div>
+                            <div class="half">
+                                <div class="form-group">
+                                    <label>Max Places</label>
+                                    <input type="number" min="0" max="99999999" v-model="filters.max_places">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="half">
+                                <div class="form-group">
+                                    <label>Min Occupied Places</label>
+                                    <input type="number" min="0" max="99999999" v-model="filters.min_occupied_places">
+                                </div>
+                            </div>
+                            <div class="half">
+                                <div class="form-group">
+                                    <label>Max Occupied Places</label>
+                                    <input type="number" min="0" max="99999999" v-model="filters.max_occupied_places">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div v-if="lifetime!=null&&lifetime.length>0" class="form-group">
+                                <label>Lifetime</label>
+                                <select v-model="filters.lifetime">
+                                    <option v-for="time in lifetime" :value="time.value">{{prepareLifetime(time.key)}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="all-consoles">Тип консоли</label>
+                                <toggle :check="filters.all_consoles"
+                                        :id="'all-consoles'"
+                                        v-on:check="setAllConsoles($event)"
+                                        :labelon="'Любой'"
+                                        :labeloff="'Выбрать'"
+                                        :width="200"></toggle>
+                            </div>
+                        </div>
+
+                        <div class="row" v-if="!filters.all_consoles">
+                            <div class="form-group">
+                                <toggle :check="filters.console_type"
+                                        :id="'console-type'"
+                                        v-on:check="checkConsole($event)"
+                                        :labelon="'XBOX'"
+                                        :labeloff="'PS4'"
+                                        :width="147"></toggle>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group">
+                                <div class="btn btn-yellow " @click="refresh()"><i class="fas fa-sync"></i>
+                                </div>
+                                <div class="btn btn-yellow " @click="reset()"><i class="fas fa-ban"></i></div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
+
             <div v-for="category in categories" class="category"
-                 v-if="getLotteriesList(category.min,category.max).length>0">
+                 v-if="prepareLots(category.min,category.max).length>0">
                 <h1 class="category"><span>{{category.title}} Pucks</span></h1>
                 <ul class="lots">
-                    <game :game="c" v-for="c in getLotteriesList(category.min,category.max)"
-                          v-if="isVisible(c)"
-                          :user="user"
-                          :controls="true">
-
-                    </game>
+                    <game-item :game="lot" v-for="lot in prepareLots(category.min,category.max)"
+                               v-if="isActiveDate(lot)"
+                               :user="user"
+                               :lifetime="lifetime"
+                               :controls="true">
+                    </game-item>
                 </ul>
             </div>
+            <div class="no-items" v-if="prepareLots().length==0">
+                <img src="img/empty-ru.png" alt="">
+            </div>
 
+            <div v-if="user">
+                <div class="admin-btn" v-if="user.is_trader==1" @click="show('lottery-add')">
+                    <i class="fas fa-plus"></i>
+                </div>
+
+                <div class="drafts-btn" v-if="user.is_trader==1" @click="show('drafts')">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+            </div>
+
+            <modal name="lottery-add" :adaptive="true" width="100%" height="100%">
+                <scroll class="scroll-area">
+                    <a href="#" @click="hide('lottery-add')" class="close"></a>
+                    <h1 v-html="$lang.modals.user_card_panel.h1"></h1>
+
+                    <user-card-panel
+                            :user="user"
+                            v-on:close="hide('lottery-add')">
+
+                    </user-card-panel>
+                </scroll>
+            </modal>
+
+            <modal name="drafts" width="100%" height="100%">
+                <scroll class="scroll-area">
+                    <a href="#" @click="hide('drafts')" class="close"></a>
+                    <drafts v-on:close="hide('drafts')" :user="user"></drafts>
+                </scroll>
+            </modal>
         </div>
-
-        <div class="admin-btn" v-if="user.is_trader==1" @click="show('lottery-add')" v-html="$lang.menu.add_card_btn">
-        </div>
-
-        <modal name="lottery-add" :adaptive="true" width="100%" height="100%">
-            <scroll class="scroll-area">
-                <a href="#" @click="hide('lottery-add')" class="close"></a>
-                <h1 v-html="$lang.modals.user_card_panel.h1"></h1>
-
-                <user-card-panel
-                        :user="user"
-                        v-on:close="hide('lottery-add')">
-
-                </user-card-panel>
-            </scroll>
-        </modal>
-
 
     </div>
 </template>
@@ -81,35 +181,71 @@
 <script>
 
 
-    import Game from '@/components/Game.vue'
+    import GameItem from '@/components/GameItem.vue'
 
     import Scroll from 'vue-custom-scrollbar'
-    import {Carousel, Slide} from 'vue-carousel';
-    import UserCardPanel from '@/components/admin/UserCardPanel.vue'
+
+    import UserCardPanel from '@/components/admin/LotteryCardPanel.vue'
+    import Drafts from '@/components/modals/Drafts.vue'
+
+    import Toggle from '@/components/Toggle.vue'
+
 
     export default {
 
         data() {
             return {
-                sort: 'places-down',
+                sliderLoaded: false,
+                deadlineList: [],
                 categories: [
                     {min: 0, max: 50, title: '0-50'},
                     {min: 50, max: 100, title: '50-100'},
                     {min: 100, max: 200, title: '100-200'},
-                    {min: 200, max: 100000, title: '200+'},
+                    {min: 200, max: 1000, title: '200-1000'},
+                    {min: 1000, max: 10000, title: '1000-10000'},
+                    {min: 10000, max: 100000, title: '10000+'},
                 ],
-                lotteries: null,
-                user:{
-                    is_trader:0
-                },
-                lifetime:[]
+                user: this.loadCurrentUser,
+                lotteries: this.loadGames,
+                lifetime: this.loadLifetime,
+                filters: {
+                    title: '',
+                    min_base_price: 0,
+                    max_base_price: 0,
+                    min_base_discount: 0,
+                    max_base_discount: 0,
+                    min_places: 0,
+                    max_places: 0,
+                    min_occupied_places: 0,
+                    max_occupied_places: 0,
+                    lifetime: 0,
+                    console_type: true,
+                    all_consoles: true,
+                    sort: 0
+                }
+
             }
         },
 
-        mounted(){
-            this.$store.dispatch("loadLifetime")
-            this.$store.dispatch("loadGames")
-            this.$store.dispatch('getCurrentUser');
+        created() {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData',
+            loadGames(newValue, oldValue) {
+                this.lotteries = newValue
+            },
+            loadCurrentUser(newValue, oldValue) {
+                this.user = newValue
+            },
+            loadLifetime(newValue, oldValue) {
+                this.lifetime = newValue
+            }
+        },
+        mounted() {
+            Event.$on('updateGames', () => {
+                this.fetchData()
+            });
         },
         computed: {
             loadLifetime() {
@@ -118,90 +254,162 @@
             loadGames() {
                 return this.$store.getters.GAMES;
             },
-            loadCurrentUser(){
+            loadCurrentUser() {
                 return this.$store.getters.USER;
             }
         },
-        watch: {
-            loadGames(newValue, oldValue) {
-                this.lotteries = newValue
-            },
-            loadCurrentUser(newValue,oldValue){
-                this.user = newValue
-            },
-            loadLifetime(newValue,oldValue){
-                this.lifetime = newValue
-            }
-        },
-
-        methods: {
-
-            isVisible(game) {
-                var date1 = Date.parse(game.updated_at);
-                var date2 = Date.now();
-                var time = [6, 12, 24, 36, 48, 96, 128, 10000];
-
-                date1 = date1 + time[game.lifetime] * 60 * 60 * 1000;
-
-                console.log("Date:", date1 - date2 > 0, " date1=", date1, " date2=", date2);
-                return date1 - date2 > 0;
-            },
 
 
-            getLotteriesList: function (min, max) {
-                var sort = null
-                switch (this.sort) {
-                    default:
-                    case 'price-down':
-                        sort = (a, b) => b.price - a.price;
-                        break;
-                    case 'price-up':
-                        sort = (a, b) => a.price - b.price;
-                        break;
-                    case 'places-up':
-                        sort = (a, b) => b.places - a.places;
-                        break;
-                    case 'places-down':
-                        sort = (a, b) => a.places - b.places;
-                        break;
-                    case 'occupied-places-up':
-                        sort = (a, b) => b.occupied_places - a.occupied_places;
-                        break;
-                    case 'occupied-places-down':
-                        sort = (a, b) => a.occupied_places - b.occupied_places;
-                        break;
-                    case 'ovr-up':
-                        sort = (a, b) => a.lot.card.ovr - b.lot.card.ovr;
-                        break;
-                    case 'ovr-down':
-                        sort = (a, b) => a.lot.card.ovr - b.lot.card.ovr;
-                        break;
-                }
-                var result = this.lotteries
-                    .filter(lottery => lottery.base_price >= min && lottery.base_price < max && this.isVisible(lottery))
-                    .sort(sort);
-
-                return result
-            },
-            loadLotteries() {
-                this.$loading(true)
-                axios
-                    .get('/lottery').then(response => {
-                    console.log("lottery", response)
-                    this.lotteries = response.data.games;
-                    this.$loading(false)
+        mounted() {
+            setInterval(() => {
+                this.deadlineList.forEach((game, index) => {
+                    if (game)
+                        if (!this.isActiveDate(game)) {
+                            this.deadlineList.splice(index, 1);
+                            this.$store.dispatch("loadGames")
+                        }
                 });
+            }, 10000);
+        },
+        methods: {
+            fetchData() {
+                this.$loading(true)
+                this.$store.dispatch("loadGames")
+                    .then(() => {
+                        this.$loading(false)
+                    })
+                    .catch(() => {
+                        this.$loading(false)
+                        this.message("оз")
+                    })
             },
+            message(message) {
+                this.$notify({
+                    group: 'main',
+                    type: 'warn',
+                    title: 'Рандомы',
+                    text: message
+                })
+            },
+            isActiveDate(game) {
+                let date1 = Date.parse(game.updated_at == null ? game.created_at : game.updated_at);
+                let date2 = Date.now();
+                let time = [100000, 6, 12, 24, 36, 48, 96, 128];
+                date1 = date1 + time[game.lifetime] * 60 * 60 * 1000;
+                return date2 < date1;
+            },
+
+            prepareLots(min, max) {
+                this.deadlineList = [];
+
+                if (this.lotteries == null || this.lotteries == undefined)
+                    return [];
+
+                var tmp_summary = this.lotteries;
+
+                tmp_summary = tmp_summary.filter(lot => this.isActiveDate(lot));
+
+                if (this.filters != null) {
+
+                    if (this.filters.title.trim().length > 0)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.title != null ? lot.title.indexOf(this.filters.title) != -1 : false ||
+                            lot.card != null ? lot.card.player.indexOf(this.filters.title) != -1 : false ||
+                            lot.item != null ? lot.item.title.indexOf(this.filters.title) != -1 : false
+                        );
+
+
+                    if (this.filters.max_base_price > 0)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.base_price >= this.filters.min_base_price &&
+                            lot.base_price <= this.filters.max_base_price);
+
+
+                    if (this.filters.max_base_discount > 0)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.base_discount >= this.filters.min_base_discount &&
+                            lot.base_discount <= this.filters.max_base_discount);
+
+
+                    if (this.filters.max_places > 0)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.places >= this.filters.min_places &&
+                            lot.places <= this.filters.max_places);
+
+
+                    if (this.filters.max_occupied_places > 0)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.occupied_places >= this.filters.min_occupied_places &&
+                            lot.occupied_places <= this.filters.max_occupied_places);
+
+                    if (!this.filters.all_consoles)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.console_type == (this.filters.console_type ? 1 : 0));
+
+
+                    if (this.filters.lifetime > 0)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.lifetime == this.filters.lifetime);
+
+
+                    this.deadlineList = tmp_summary.filter(lot =>
+                        lot.lifetime > 0);
+                }
+
+
+                if (min && max)
+                    tmp_summary = tmp_summary
+                        .filter(lottery => lottery.base_price >= min && lottery.base_price < max);
+
+
+                return tmp_summary;
+            },
+
             show(name) {
                 this.$modal.show(name)
             },
             hide(name) {
                 this.$modal.hide(name)
             },
+            prepareLifetime(time) {
+                return eval(`this.$lang.lifetime.${time}`);
+            },
+
+            setAllConsoles(event) {
+                this.filters.all_consoles = event;
+            },
+            checkConsole(event) {
+                this.filters.console_type = event;
+            },
+            refresh() {
+                this.reset()
+                this.$store.dispatch("loadGames")
+                document.getElementById("pageContent").scrollTop = 620;
+                this.message("Обновление лотов!")
+            },
+            reset() {
+                this.filters = {
+                    title: '',
+                    min_base_price: 0,
+                    max_base_price: 0,
+                    min_base_discount: 0,
+                    max_base_discount: 0,
+                    min_places: 0,
+                    max_places: 0,
+                    min_occupied_places: 0,
+                    max_occupied_places: 0,
+                    lifetime: 0,
+                    console_type: true,
+                    all_consoles: true,
+                    sort: 0
+                };
+                document.getElementById("pageContent").scrollTop = 0;
+
+                this.message("Фильтры сброшены на значения по умолчанию.")
+            },
         },
         components: {
-            Scroll, UserCardPanel, Carousel,
-            Slide, Game
+            Scroll, UserCardPanel, GameItem, Drafts, Toggle
         }
 
     }
@@ -211,24 +419,6 @@
     @import "~/fonts.scss";
     @import "~/games.scss";
 
-    .large-promo {
-        box-sizing: border-box;
-        width: 100%;
-
-        .VueCarousel-slide {
-            border: 2px lightgray solid;
-            padding: 10px;
-            box-sizing: border-box;
-
-            img {
-                object-fit: cover;
-                width: 100%;
-                height: 100%
-            }
-        }
-
-    }
-
     .lots {
         width: 100%;
         display: flex;
@@ -236,6 +426,153 @@
         flex-wrap: wrap;
         padding: 20px;
         box-sizing: border-box;
+    }
+
+    .filters-btn {
+        box-shadow: 0px 0px 5px 0px black;
+        position: fixed;
+        bottom: 55px;
+        left: -28px;
+        width: 100px;
+        transition: 0.5s;
+        height: 60px;
+        background-color: orangered;
+        font-weight: 900;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        cursor: pointer;
+        box-sizing: border-box;
+        z-index: 102;
+        padding: 10px 20px 10px 10px;
+        border-radius: 0px 5px 5px 0px;
+        color: white;
+        font-size: 34px;
+
+        .filters-panel-wrapper {
+
+            position: fixed;
+            display: none;
+            width: 300px;
+            top: 0px;
+            left: 0px;
+            height: 100vh;
+            z-index: 1000;
+            background: #2c3e50;
+            border-right: 2px yellow solid;
+            box-shadow: 0px 0px 5px 0px black;
+            padding: 20px 0px;
+
+            .filters-panel {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                hr {
+                    width: 100%;
+                    border: none;
+                    border-bottom: 1px yellow solid;
+                    height: 1px;
+                }
+
+                .row {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    padding: 0px 10px;
+                    box-sizing: border-box;
+
+                    .half {
+                        width: 50%;
+                    }
+
+                }
+
+                .form-group {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    flex-wrap: wrap;
+                    padding: 5px;
+                    box-sizing: border-box;
+
+                    width: auto;
+                    max-width: 200px;
+
+                    & > label {
+                        color: white;
+                        width: 100%;
+                        text-align: left;
+                        line-height: 150%;
+                        font-weight: 800;
+                        font-size: 10px;
+                        text-transform: uppercase;
+                    }
+
+                    select,
+                    input {
+                        border: 2px yellow solid;
+                        width: 100%;
+                        padding: 10px;
+                        border-radius: 5px;
+                        background-color: #2c3e50;
+                        color: white;
+                        max-width: 200px;
+
+                    }
+
+                    input[type="number"] {
+                        text-align: right;
+
+                    }
+
+                    .btn {
+                        padding: 0px;
+                        margin: 0;
+                        line-height: 100%;
+                        height: 50px;
+                        width: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-right: 10px;
+                    }
+                }
+
+                .sort-type {
+                    input[type="radio"] {
+                        display: none;
+
+                        & + label {
+                            width: 40px;
+                            height: 40px;
+                            padding: 4px;
+                            box-sizing: border-box;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        &:hover {
+            left: 0px;
+            transition: .5s;
+
+            .filters-panel-wrapper {
+                display: block;
+            }
+
+        }
+
     }
 
 </style>

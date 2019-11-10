@@ -16,8 +16,8 @@
         </ul>
 
 
-        <h1 class="main-title">{{content.title}}</h1>
-        <p class="description">{{content.content}}</p>
+        <h1 class="main-title" v-html="$lang.achievements.main_title"></h1>
+        <p class="description" v-html="$lang.achievements.main_description"></p>
         <ul class="achievements" v-if="achievements!=null&&achievements.length>0">
             <li v-for="a in prepareAchievements()" :style="cssProps(a.background)" v-if="a.is_active">
                 <div class="image" v-tooltip.bottom="prepareRewards(a)" @click="show('ach',a)">
@@ -65,19 +65,34 @@
 
     export default {
         props: ["userId"],
-        activated() {
-            this.loadCategories()
-            this.loadTypes()
-            this.loadAchievements()
+        created() {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData',
+            loadAchievements(newValue, oldValue) {
+                this.achievements = newValue
+            },
         },
         mounted() {
-
-
-            this.loadCategories()
-            this.loadTypes()
-            this.loadAchievements()
+            Event.$on('updateAchievements', () => {
+                this.fetchData()
+            });
         },
+        computed: {
+            loadAchievements() {
+                return this.$store.getters.ACHIEVEMENTS;
+            },
+        },
+
         methods: {
+            fetchData() {
+                this.loadCategories()
+                this.loadTypes()
+
+                if (this.userId != null)
+                    this.$store.dispatch("loadAchievements", {userId: this.userId})
+            },
             lineWidth: function (c1, c2) {
                 var c0 = c1 > c2 ? c2 : c1;
                 return {
@@ -204,22 +219,12 @@
                     .then(response => {
                         this.types = response.data.trigger_types;
 
+                        console.log("this.types=", this.types)
                         this.trigger_type = this.types[0].trigger.value
                         this.prepareActivateType();
                     });
             },
-            loadAchievements() {
 
-                let url = this.userId == null ?
-                    '/achievements' :
-                    `/users/achievements/${this.userId}`;
-
-                axios
-                    .get(url)
-                    .then(response => {
-                        this.achievements = response.data.achievements;
-                    });
-            },
             prepareAchievements() {
                 return this.trigger_type != null && this.category_type != null ?
                     this.achievements
@@ -240,7 +245,7 @@
 
                 var li = document.querySelectorAll(".filters.f-type li")[0];
                 if (li != undefined)
-                   li.style.cssText = "color:yellow;";
+                    li.style.cssText = "color:yellow;";
 
 
             },
@@ -264,10 +269,7 @@
         },
         data() {
             return {
-                content: {
-                    title: this.$lang.achievements.main_title,
-                    content: this.$lang.achievements.main_description
-                },
+
                 achievements: null,
                 trigger_type: null,
                 category_type: null,

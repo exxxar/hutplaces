@@ -29,4 +29,6 @@ module.exports = {
     sign_up: 'Регистрация',
     chat_btn:'Чат',
     add_card_btn:'Лот',
+    drafts_btn:'Черновики',
+    auction_lot_btn:'Новый лот',
 }

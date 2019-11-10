@@ -24,13 +24,19 @@ Route::group(['prefix' => 'payment'], function(){
 
 */
 
+Route::get('/packs/all', 'PacksController@all');
+Route::post('/packs/add', 'PacksController@add');
+Route::get('/packs/demo/{id}', 'PacksController@demoOpen');
+Route::get('/packs/open/{id}', 'PacksController@buyPack');
+Route::get('/packs/del/{id}', 'PacksController@removePack');
+
 Route::post('/reports/save', 'SinglePageController@reportsSave');
 Route::post('/reports/all', 'SinglePageController@reportsAll');
 
 Route::post('/partner/request', 'SinglePageController@requestPartner');
 Route::post('/help/ask', 'SinglePageController@requestHelp');
 
-Route::get('/test','ChatkitController@test');
+Route::get('/test', 'ChatkitController@test');
 
 
 Route::post('/registration', 'API\AuthController@register');
@@ -46,6 +52,9 @@ Route::get('/achievements/types', 'AchievementsController@types');
 Route::get('/achievements/progress/{id}', 'AchievementsController@progress');
 
 Route::get('/images/all', 'UserController@images');
+
+Route::get('/promo/all', 'PromocodesController@promotions');
+Route::post('/promo/add', 'PromocodesController@add');
 
 Route::get('/settings/lifetime', 'ContentController@lifetime');
 
@@ -64,31 +73,33 @@ Route::get('/lottery/show/{id}', 'LotteryController@show');
 Route::get('/lottery/history', 'LotteryController@history');
 Route::get('/lottery/drafts', 'LotteryController@drafts');
 
+Route::get('/users/stats/types', 'StatsController@types');
 
 Route::post('/lottery/update', 'LotteryController@store');//todo: for admin only
 Route::post('/lottery/remove', 'LotteryController@destroy');//todo: for admin only
-
 
 
 Route::get('/lot/get/{lotteryId}', 'LotsController@lot');
 
 Route::post('/search', 'CardsStorageController@search');
 
-Route::group(["prefix"=>"chat"],function (){
-    Route::post('/authenticate','ChatkitController@authenticate');
+Route::post('/auction/all', 'AuctionController@all');
+
+Route::group(["prefix" => "chat"], function () {
+    Route::post('/authenticate', 'ChatkitController@authenticate');
     Route::post('/users', 'ChatkitController@getUsers');
-    Route::post('/send','ChatkitController@sendMessage');
-    Route::post('/messages','ChatkitController@getMessages');
-    Route::get('/rooms','ChatkitController@getRooms');
-    Route::get('/user','ChatkitController@getCurrentUser');
-    Route::get('/logout','ChatkitController@test');
+    Route::post('/send', 'ChatkitController@sendMessage');
+    Route::post('/messages', 'ChatkitController@getMessages');
+    Route::get('/rooms', 'ChatkitController@getRooms');
+    Route::get('/user', 'ChatkitController@getCurrentUser');
+    Route::get('/logout', 'ChatkitController@test');
 });
 
 Route::middleware('auth:api')->group(function () {
 
     Route::post('/auction/add', 'AuctionController@addLot');
-    Route::get('/auction/mylots', 'AuctionController@myLots')->name("mylots");
-    Route::get('/auction/mybids', 'AuctionController@myBids');
+
+
     Route::get('/auction/cancel/{id}', 'AuctionController@cancelLot');
     Route::get('/auction/update/{id}/{time}', 'AuctionController@updateLot');
 
@@ -99,7 +110,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/users/achievements/types/{id}', 'AchievementsController@types');
     Route::get('/users/achievements/{id}', 'UserController@achievements');
     Route::get('/users/tickets/{id}', 'UserController@tickets');
-    Route::get('/users/stats/types', 'StatsController@types');
+
     Route::get('/users/stats/{id}', 'UserController@stats');
     Route::get('/users/cards/{id}', 'UserController@cards');
     Route::get('/users/items/{id}', 'UserController@items');

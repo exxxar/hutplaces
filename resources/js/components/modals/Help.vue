@@ -42,7 +42,6 @@
                 })
             },
 
-
             sendRequest(e) {
                 let currentObj = this
 

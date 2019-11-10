@@ -173,9 +173,10 @@
             </div>
             <div class="row mt-5 mb-5">
                 <div class="col-12 d-flex justify-content-center">
-                    <button class="btn btn-primary" v-on:click="search">SEARCH</button>
+                    <button class="btn btn-primary" v-on:click="search()">Search</button>
                 </div>
             </div>
+
             <table class="table table-striped table-lg" v-if="results!=''">
                 <thead>
                 <th>Card</th>

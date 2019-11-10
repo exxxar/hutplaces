@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_GameItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/GameItem.vue */ "./resources/js/components/GameItem.vue");
 //
 //
 //
@@ -28,37 +29,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["user"],
   data: function data() {
     return {
-      levels: null
+      step: 4,
+      page: 0,
+      lotteries: null
     };
   },
   mounted: function mounted() {
-    this.loadLevels();
+    this.$store.dispatch("loadDrafts");
+  },
+  computed: {
+    loadGames: function loadGames() {
+      return this.$store.getters.DRAFTS;
+    }
+  },
+  watch: {
+    loadGames: function loadGames(newValue, oldValue) {
+      this.lotteries = newValue;
+    }
   },
   methods: {
-    prepareLevelTitle: function prepareLevelTitle(title) {
-      return eval("this.$lang.levels.".concat(title));
+    nextPage: function nextPage() {
+      this.page += 1;
     },
-    loadLevels: function loadLevels() {
-      var _this = this;
-
-      this.$loading(true);
-      axios.get("/lottery/drafts").then(function (response) {
-        _this.games = response.data.games;
-
-        _this.$loading(false);
-      });
+    prepareLotteries: function prepareLotteries() {
+      console.log("array slice", this.lotteries != null ? this.lotteries.slice(0, this.page * this.step + this.step) : []);
+      return this.lotteries != null ? this.lotteries.slice(0, this.page * this.step + this.step) : [];
     }
+  },
+  components: {
+    GameItem: _components_GameItem_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -76,7 +80,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".modal-levels[data-v-6bc02420] {\n  width: 1000px;\n}\n@media (max-width: 1000px) {\n.modal-levels[data-v-6bc02420] {\n    width: 100%;\n}\n}\nh3[data-v-6bc02420] {\n  font-weight: 100;\n  font-size: 36px;\n  color: white;\n  text-transform: uppercase;\n}\ntable[data-v-6bc02420] {\n  width: 100%;\n  margin-top: 15px;\n}\ntable tr[data-v-6bc02420] {\n  color: white;\n  line-height: 150%;\n  border: 1px white solid;\n}\ntable tr th[data-v-6bc02420],\ntable tr td[data-v-6bc02420] {\n  padding: 10px;\n}\ntable tr th .current[data-v-6bc02420],\ntable tr td .current[data-v-6bc02420] {\n  font-weight: 900;\n  color: yellow;\n}", ""]);
+exports.push([module.i, ".modal-drafts[data-v-6bc02420] {\n  width: 100%;\n  justify-content: center;\n}\n.modal-drafts .input-group[data-v-6bc02420] {\n  justify-content: center;\n}", ""]);
 
 // exports
 
@@ -128,58 +132,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "modal-levels" }, [
-    _c("h3", { domProps: { innerHTML: _vm._s(_vm.$lang.levels.title) } }),
-    _vm._v(" "),
-    _vm.levels != null && _vm.levels.length > 0
-      ? _c(
-          "table",
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._l(_vm.levels, function(level) {
-              return _c("tr", [
-                _c("td", [
-                  level.level == _vm.user.level.level
-                    ? _c("p", { staticClass: "current" }, [
-                        _vm._v(_vm._s(_vm.prepareLevelTitle(level.title)))
-                      ])
-                    : _c("p", [
-                        _vm._v(_vm._s(_vm.prepareLevelTitle(level.title)))
-                      ])
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(level.experience))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(level.level))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(level.discount))])
-              ])
-            })
-          ],
-          2
+  return _c(
+    "div",
+    { staticClass: "modal-body modal-drafts" },
+    [
+      _c("h1", [
+        _vm._v(
+          "Черновики [" +
+            _vm._s(_vm.lotteries != null ? _vm.lotteries.length : 0) +
+            "]"
         )
-      : _c("div", { staticClass: "no-items" }, [
-          _c("img", { attrs: { src: _vm.$lang.levels.no_levels, alt: "" } })
-        ])
-  ])
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.prepareLotteries(), function(game) {
+        return _vm.prepareLotteries() != null &&
+          _vm.prepareLotteries().length > 0
+          ? _c("game-item", {
+              attrs: { game: game, controls: true, user: _vm.user }
+            })
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group" }, [
+        this.lotteries.length >= this.step * this.page + this.step
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-yellow",
+                on: {
+                  click: function($event) {
+                    return _vm.nextPage()
+                  }
+                }
+              },
+              [_vm._v("\n            Показать еще\n        ")]
+            )
+          : _vm._e()
+      ])
+    ],
+    2
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td"),
-      _vm._v(" "),
-      _c("td"),
-      _vm._v(" "),
-      _c("td"),
-      _vm._v(" "),
-      _c("td")
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -3,13 +3,14 @@
         <header id="pageHeader">
             <div class="center">
                 <div class="logo-wrapper">
-                    <a href="/"><img class="logo" src="/img/logo.jpg" alt=""></a>
+                    <a href="/"><img class="logo" :src="'/img/logo.jpg'"  rel="preload"></a>
                 </div>
                 <button @click="show('payment')" class="btn btn-yellow btn-mobile">{{$lang.menu.recharge}}</button>
                 <nav @click="showMainMenu()">
                     <main-menu v-on:modal="show($event)"
                                :authenticated="authenticated"
-                               :user="user">
+                               :user="user"
+                               v-on:close="hide('main-menu')">
                     </main-menu>
                 </nav>
             </div>
@@ -23,7 +24,7 @@
         </scroll>
         <aside>
             <nav @click="showAsideMenu()">
-                <aside-menu v-on:modal="show($event)"></aside-menu>
+                <aside-menu v-on:modal="show($event)" v-on:close="hide('aside-menu')"></aside-menu>
             </nav>
         </aside>
         <footer></footer>
@@ -32,12 +33,9 @@
             <ul>
                 <li @click="lang('ru')"><img src="/img/ru.jpg" alt=""></li>
                 <li @click="lang('en')"><img src="/img/en.jpg" alt=""></li>
-                <!--   <li @click="lang('fi')"><img src="/img/fi.jpg" alt=""></li>
-                   <li @click="lang('se')"><img src="/img/se.jpg" alt=""></li>
-                   <li @click="lang('cz')"><img src="/img/cz.gif" alt=""></li>-->
             </ul>
         </div>
-        <chat :show="user!=null"></chat>
+        <chat :show="user"></chat>
         <notifications group="main"/>
         <modal name="report" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
@@ -47,11 +45,11 @@
         </modal>
         <modal name="promo" height="auto">
             <a href="#" @click="hide('promo')" class="close"></a>
-            <promo></promo>
+            <promo v-on:close="hide('promo')"></promo>
         </modal>
         <modal name="payment" height="auto">
             <a href="#" @click="hide('payment')" class="close"></a>
-            <payment v-on:self-hide="hide('payment')"></payment>
+            <payment v-on:close="hide('payment')"></payment>
         </modal>
         <modal name="howtostart" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
@@ -62,7 +60,7 @@
         <modal name="history" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('history')" class="close"></a>
-                <history v-on:self-hide="hide('history')"></history>
+                <history v-on:close="hide('history')"></history>
             </scroll>
         </modal>
         <modal name="help" :adaptive="true" width="100%" height="100%">
@@ -112,7 +110,7 @@
             <div class="modal-body aside-menu-modal">
                 <nav>
                     <aside-menu v-on:modal="show($event)"
-                                v-on:self-hide="hide('aside-menu')">
+                                v-on:close="hide('aside-menu')">
                     </aside-menu>
                 </nav>
             </div>
@@ -126,7 +124,7 @@
                                :authenticated="authenticated"
                                :user="user"
                                :alwaysShow="true"
-                               v-on:self-hide="hide('main-menu')">
+                               v-on:close="hide('main-menu')">
                     </main-menu>
                 </nav>
             </div>
@@ -147,8 +145,6 @@
     import FAQ from '@/components/modals/FAQ.vue'
     import Promo from '@/components/modals/Promo.vue'
     import Report from '@/components/modals/Report.vue'
-    import Login from '@/components/modals/Login.vue'
-    import Registration from '@/components/modals/Registration.vue'
     import AsideMenu from '@/components/AsideMenu.vue'
     import MainMenu from '@/components/MainMenu.vue'
     import Chat from '@/components/Chat.vue'
@@ -160,13 +156,14 @@
         name: 'defaultLayout',
         data() {
             return {
-                authenticated: this.check,
-                user: this.getUser,
+                authenticated: null,
+                user: null,
                 settings: {
                     maxScrollbarLength: 60
                 }
             }
         },
+
         methods: {
             lang(lang) {
                 this.$lang.setLang(lang)
@@ -199,49 +196,36 @@
                 this.show("main-menu");
             }
         },
-        computed: {
-            check() {
-                console.log("check", this.$store.getters.CHECK)
-                return this.$store.getters.CHECK;
+
+        watch: {
+            getUser(newValue, oldValue) {
+                this.user = newValue
+                this.authenticated = this.user != null;
             },
+        },
+        computed: {
             getUser() {
                 return this.$store.getters.USER;
             },
+
+        },
+        created() {
+            Event.$emit('updateData');
         },
         mounted: function () {
+            if (localStorage.getItem('token') != null)
+                this.$store.dispatch("retriveUser", localStorage.getItem('token'))
 
-            this.$store.dispatch("loadLifetime")
-            this.$store.dispatch("loadGames")
-            this.$store.dispatch("loadDrafts")
+            Event.$emit('updateData');
 
-            if (!localStorage.getItem('lang'))
-                this.lang('ru');
-            else
-                this.lang(localStorage.getItem('lang'));
-
-            if (this.check) {
-                this.$store.dispatch('getCurrentUser').then(() => {
-                    this.authenticated = this.check
-                    this.user = this.getUser
-                }).catch((reason) => {
-                    this.message("Авторизация", `Вы не авторизованы!`, 'warn');
-                });
-            }
-
-            window.addEventListener("resize", function () {
-                var containers = document.querySelectorAll('.scroll-area');
-                for (var ccc of containers)
-                    ccc.scrollTop = 0;
-            });
+            this.lang(!localStorage.getItem('lang') ? 'ru' : localStorage.getItem('lang'));
 
             pusher.subscribe('pick-place-chanel').bind('pick-place-event', (data) => {
                 Event.$emit("updatePlaces")
                 if (this.user != null)
                     if (data.user.id == this.user.id)
                         return;
-
                 this.message("Лотерея", `${data.user.name} занял место в лотерее ${data.lottery.title}`, 'warn');
-
             });
 
             pusher.subscribe('achievement-gain-chanel').bind('achievement-gain-event', (data) => {
@@ -250,7 +234,7 @@
 
             pusher.subscribe('raffle-chanel').bind('raffle-event', (data) => {
                 Event.$emit("startRaffle", data)
-                this.message("Сообщение от администрации", `${data.message}`, 'warn');
+                this.message("Начало розыгрыша", `${data.message}`, 'warn');
             });
 
             pusher.subscribe('message-chanel').bind('message-event', (data) => {
@@ -259,7 +243,6 @@
 
             pusher.subscribe(`user-update-chanel`).bind('user-update-event', (data) => {
                 if (this.user.id == data.userId) {
-
                     Event.$emit("updateStats");
                     Event.$emit("updateAchievements");
                     Event.$emit("updateTransactions");
@@ -270,17 +253,9 @@
                     this.$store.dispatch('getCurrentUser').catch((reason) => {
                         this.message("Авторизация", `Вы не авторизованы!`, 'warn');
                     });
-
                 }
             });
 
-            if (this.$route.query.token) {
-                this.$store.dispatch('retriveUser', this.$route.query.token).catch((reason) => {
-                    this.message("Авторизация", `Вы не авторизованы!`, 'warn');
-                });
-
-                this.$router.replace({query: ''});
-            }
 
             if (this.$route.query.error) {
                 var error = "";
@@ -291,68 +266,63 @@
                         break;
                 }
                 this.$router.replace({query: ''});
-
-                this.$notify({
-                    group: 'main',
-                    type: 'error',
-                    title: 'Вход в систему',
-                    text: `Ошибка входа в систему!${error}`
-                })
+                this.message(`Вход в систему`, `Ошибка входа в систему!`, 'warn');
             }
 
-            /*   Event.$on('userLoggedIn', () => {
-                   this.authenticated = true;
-                   this.user = auth.user;
 
-                   this.$notify({
-                       group: 'main',
-                       type: 'success',
-                       title: 'Вход в систему',
-                       text: `Пользователь ${this.user.name} успешно вошел в систему!`
-                   })
-
-               });*/
+            Event.$on("modal", (name) => {
+                this.show(name);
+            });
 
             Event.$on('updateUserProfile', () => {
-                this.$store.dispatch('getCurrentUser').then(() => {
-                    this.authenticated = this.check
-                    this.user = this.getUser
-                }).catch((reason) => {
+                this.$store.dispatch('getCurrentUser').catch((reason) => {
                     this.message("Авторизация", `Вы не авторизованы!`, 'warn');
                 });
             });
 
-            Event.$on("userLogout", () => {
-                this.authenticated = false
-                this.user = null
-            });
-
-            /*   Event.$on('userLoggedOut', () => {
-                   this.authenticated = false;
-                   this.user = null;
-               });*/
-
             Event.$on('message', (m) => {
                 this.message(m.title, m.message, m.type)
             });
+
+
+            Event.$on('updateData', () => {
+                this.$store.dispatch("loadLifetime")
+
+                this.$store.dispatch("loadTriggerType")
+
+                this.$store.dispatch("loadHistory")
+
+
+
+                this.$store.dispatch("loadAchievements")
+
+                this.$store.dispatch("loadAuctions", {type: 0})
+                this.$store.dispatch("loadAuctions", {type: 1})
+                this.$store.dispatch("loadAuctions", {type: 2})
+
+                console.log("updated-data")
+            });
+
+
+            if (this.authenticated)
+                this.$store.dispatch('getCurrentUser')
+
+
+            if (this.$route.query.token) {
+                this.$store.dispatch('retriveUser', this.$route.query.token).catch((reason) => {
+                    this.message("Авторизация", `Вы не авторизованы!`, 'warn');
+                });
+
+                this.$router.replace({query: ''});
+            }
+
+            window.addEventListener("resize", function () {
+                document.getElementById("pageContent").scrollTop = 0;
+            });
         },
         components: {
-            Chat,
-            Payment,
-            Help,
-            HowToStart,
-            History,
-            FAQ,
-            Promo,
-            Report,
-            Login,
-            Registration,
-            Scroll,
-            AsideMenu,
-            MainMenu,
-            Rules,
-            Partner,
-            About
+            Chat, Payment, Help, HowToStart, History, FAQ, Promo, Report, Scroll,
+            AsideMenu, MainMenu, Rules, Partner, About
         }
     }
 </script>
@@ -360,5 +330,4 @@
 <style lang="scss">
     @import '~/reset.scss';
     @import '~/main.scss';
-
 </style>

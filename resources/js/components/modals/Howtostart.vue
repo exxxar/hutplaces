@@ -1,6 +1,6 @@
 <template>
 
-  <div class="modal-body">
+  <div class="modal-body how-to-start-modal">
     <p>Для принятия участия в розыгрыше,<br>
       необходимо авторизоваться через ВК</p>
     <div class="modal-logo"><img v-lazy="'/img/vk-login-icon.png'" alt=""></div>
@@ -21,23 +21,12 @@
     <p>Быстрая доставка выигрыша<br>
       в течении 24-х часов</p>
     <div class="modal-logo"><img v-lazy="'/img/time-icon-1.png'" alt=""></div>
-
   </div>
 
 </template>
 <script>
-
   export default {
-    name: 'promo',
-    data() {
-      return {
-        settings: {
-          maxScrollbarLength: 60
-        }
-      }
-    },
-    methods: {}
-
+    name: 'how-to-start',
   }
 </script>
 <style>

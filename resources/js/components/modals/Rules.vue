@@ -1,5 +1,5 @@
 <template>
-    <div class="rules-modal">
+    <div class="modal-body rules-modal">
         <h1>
             Пользовательское соглашение и правила
         </h1>

@@ -1,14 +1,10 @@
 <template>
     <ul>
-        <router-link :to="{ name: 'Playzone' }" tag="li" class="btn btn-black-2">{{$lang.menu.playzone}}
-        </router-link>
+        <li class="btn btn-black-2" @click="openPath('/playzone')">{{$lang.menu.playzone}}</li>
+        <li class="btn btn-black-2" @click="openPath('/market')">{{$lang.menu.market}}</li>
+        <li class="btn btn-black-2" @click="openModal('/promo')">{{$lang.menu.promocodes}}</li>
+        <li class="btn btn-black-2" @click="openPath('/achievements')">{{$lang.menu.achievement}}</li>
 
-        <router-link :to="{ name: 'Market' }" tag="li" class="btn btn-black-2">{{$lang.menu.market}}
-        </router-link>
-
-        <li class="btn btn-black-2" @click="openModal('promo')">{{$lang.menu.promocodes}}</li>
-        <router-link :to="{ name: 'Achievements' }" tag="li" class="btn btn-black-2">{{$lang.menu.achievement}}
-        </router-link>
         <li class="more-menu">
             <ul class="more">
                 <li @click="openModal('rules')"><a href="#rules">{{$lang.menu.terms_of_use}}</a></li>
@@ -23,11 +19,12 @@
     export default {
         name: 'defaultLayout',
         methods: {
-            selfHide() {
-                this.$emit("self-hide");
+            openPath(name) {
+                this.$router.push({path: name})
+                this.$emit('close');
             },
             openModal(name) {
-                this.selfHide();
+                this.$emit('close');
                 this.$emit("modal", name);
             }
         }

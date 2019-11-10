@@ -24,7 +24,6 @@
 <script>
     export default {
         name: 'about',
-        methods: {}
     }
 </script>
 <style>

@@ -27,6 +27,7 @@
             check: {type: Boolean, default: false, required: false}
         },
 
+
         methods: {
             click() {
                 this.$emit('check', this.value)

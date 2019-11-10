@@ -44,7 +44,7 @@
                     <div><span>{{final_price_money}}</span> {{$lang.messages.rub}}</div>
                 </div>
             </div>
-            <a class="link-yellow" href="#" @click="show('how-to-buy')">{{$lang.messages.how_to_buy}}</a>
+            <a class="link-yellow" href="#" @click="openModal('how-to-buy')">{{$lang.messages.how_to_buy}}</a>
         </div>
         <p><a href="#" @click="show('card-search')">{{$lang.coins.find_card}}</a> {{$lang.coins.enter_manually}}</p>
         <form class="player">
@@ -56,7 +56,7 @@
             <input :placeholder="$lang.coins.team_hut" type="text" v-model="info.team_hut">
             <div class="buy-row">
                 <button class="btn btn-yellow" type="button" @click="doInvoice()">{{$lang.coins.buy}}</button>
-                <a class="link-light" href="#" @click="show('sell-to-us')">{{$lang.coins.sell_to_us}}</a>
+                <a class="link-light" href="#" @click="openModal('supplier')">{{$lang.coins.sell_to_us}}</a>
             </div>
         </form>
         <modal name="card-search" :adaptive="true" width="100%" height="100%">
@@ -67,19 +67,6 @@
             </scroll>
         </modal>
 
-        <modal name="sell-to-us" :adaptive="true" width="100%" height="100%">
-            <scroll class="scroll-area">
-                <a href="#" @click="hide('sell-to-us')" class="close"></a>
-               <partner v-on:close="hide('sell-to-us')"></partner>
-            </scroll>
-        </modal>
-
-        <modal name="how-to-buy" :adaptive="true" width="100%" height="100%">
-            <scroll class="scroll-area">
-                <a href="#" @click="hide('how-to-buy')" class="close"></a>
-                <h1>{{$lang.coins.how_to_buy}}</h1>
-            </scroll>
-        </modal>
 
         <modal name="coins-invoice" :adaptive="true" width="100%" height="100%">
             <div class="modal-content">
@@ -102,7 +89,6 @@
     import Toggle from '../components/Toggle.vue'
     import CardSearch from '../components/admin/CardSearch.vue'
     import Scroll from 'vue-custom-scrollbar'
-    import Partner from '@/components/modals/Partner.vue'
 
     export default {
         data() {
@@ -141,7 +127,13 @@
                 return this.$store.getters.USER;
             },
         },
+        mounted() {
+            Event.$emit('updateData');
+        },
         methods: {
+            openModal(name) {
+                Event.$emit("modal", name)
+            },
             reset() {
                 Object.assign(this.$data, this.$options.data.call(this));
             },
@@ -170,10 +162,10 @@
                 this.show('coins-invoice');
             },
             message(title, message, type) {
-                Event.$emit("message",{
-                    title:title,
+                Event.$emit("message", {
+                    title: title,
                     message: message,
-                    type:type
+                    type: type
                 });
             },
             requestCoins() {
@@ -222,7 +214,7 @@
             }
         },
         components: {
-            Toggle, CardSearch, Scroll,Partner
+            Toggle, CardSearch, Scroll
         }
     }
 </script>

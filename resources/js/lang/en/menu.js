@@ -30,4 +30,6 @@ module.exports = {
     sign_up: 'Sign Up',
     chat_btn:'Chat',
     add_card_btn:'Lot',
+    drafts_btn:'Drafts',
+    auction_lot_btn:'New lot',
 }

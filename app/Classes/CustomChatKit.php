@@ -26,83 +26,103 @@ trait CustomChatKit
         $this->chatkit = app('ChatKit');
     }
 
-    public function chatkit_createUser(User $user) {
+    public function chatkit_createUser($user)
+    {
 
-        $hash = $this->prepareUserId($user->id);
+        $hash = $user instanceof User ?
+            $this->prepareUserId($user->id) :
+            $this->prepareUserId($user);
+
+        $title = $user instanceof User ?
+            $user->name :
+            $user;
+
 
         return $this->chatkit->createUser([
-            'id' =>  $hash,
-            'name' => $user->name,
+            'id' => $hash,
+            'name' => $title,
         ]);
     }
 
+    public function prepareUserId($userId)
+    {
+        return substr(base64_encode($userId), 0, $this->nameLength);
+    }
 
-    public function chatkit_createRoom(User $user,$title){
-        $hash = $this->prepareUserId($user->id);
+    public function chatkit_createRoom($user, $title)
+    {
 
-        $room = ( $this->chatkit->createRoom([
-            'creator_id'=>$hash,
-            'name'=>$title,
+        $hash = $user instanceof User ?
+            $this->prepareUserId($user->id) :
+            $user;
+
+        $room = ($this->chatkit->createRoom([
+            'creator_id' => $hash,
+            'name' => $title,
         ]))["body"];
         return $room;
     }
 
-    public function chatkit_getRooms(){
+    public function chatkit_getRooms()
+    {
         $tmp = [];
         $rooms = $this->chatkit->getRooms();
-        foreach($rooms["body"] as $room)
+        foreach ($rooms["body"] as $room)
             array_push($tmp, $room);
         return $tmp;
     }
 
-    public function chatkit_getUsers($params){
+    public function chatkit_getUsers($params)
+    {
         $tmp = [];
         $rooms = $this->chatkit->getUsers($params);
-        foreach($rooms["body"] as $room)
+        foreach ($rooms["body"] as $room)
             array_push($tmp, $room);
         return $tmp;
     }
 
-    public function chatkit_removeUser($userId){
-        $this->chatkit->deleteUser(["id"=>$userId]);
+    public function chatkit_removeUser($userId)
+    {
+        $this->chatkit->deleteUser(["id" => $userId]);
     }
 
-    public function chatkit_removeRoom($roomId){
-        $this->chatkit->deleteRoom(["id"=>$roomId]);
+    public function chatkit_removeRoom($roomId)
+    {
+        $this->chatkit->deleteRoom(["id" => $roomId]);
     }
 
-    public function chatkit_addUserToRoom($roomId,array $userIds){
+    public function chatkit_addUserToRoom($roomId, array $userIds)
+    {
         return ($this->chatkit->addUsersToRoom([
-            "room_id"=>$roomId,
-            "user_ids"=>$userIds
+            "room_id" => $roomId,
+            "user_ids" => $userIds
         ]))["body"];
     }
 
-    public function chatkit_removeUserFromRoom($roomId,array $userIds){
+    public function chatkit_removeUserFromRoom($roomId, array $userIds)
+    {
         return ($this->chatkit->removeUsersFromRoom([
-            "room_id"=>$roomId,
-            "user_ids"=>$userIds
+            "room_id" => $roomId,
+            "user_ids" => $userIds
         ]))["body"];
     }
 
-    public function chatkit_getRoomMessages($roomId,$limit = 100,$direction = "newer"){
+    public function chatkit_getRoomMessages($roomId, $limit = 100, $direction = "newer")
+    {
         return ($this->chatkit->getRoomMessages([
-            "room_id"=>$roomId,
-            "limit"=>$limit,
-            "direction"=>$direction,
+            "room_id" => $roomId,
+            "limit" => $limit,
+            "direction" => $direction,
         ]))["body"];
     }
 
-    public function chatkit_sendSimpleMessage($roomId,$userId,$message){
+    public function chatkit_sendSimpleMessage($roomId, $userId, $message)
+    {
 
         return ($this->chatkit->sendSimpleMessage([
-            "room_id"=>$roomId,
-            "sender_id"=>$userId,
-            "text"=>$message,
+            "room_id" => $roomId,
+            "sender_id" => $userId,
+            "text" => $message,
         ]))["body"];
-    }
-
-    public function prepareUserId($userId){
-        return substr(base64_encode($userId),0,$this->nameLength);
     }
 }

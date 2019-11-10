@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-body">
+  <div class="modal-body security-modal">
     <h1>ЗАЩИТА ВЫИГРЫША</h1>
 
 

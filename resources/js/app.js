@@ -52,6 +52,10 @@ Vue.use(VueReCaptcha, {
 
 Vue.config.productionTip = false
 
+import LoadScript from 'vue-plugin-load-script';
+
+Vue.use(LoadScript);
+
 
 // eslint-disable-next-line no-new
 const app = new Vue({

@@ -2,14 +2,15 @@
     <div class="modal-body modal-drafts">
         <h1>Черновики [{{lotteries != null ? lotteries.length : 0}}]</h1>
 
-        <game v-if="prepareLotteries()!=null&&prepareLotteries().length>0"
-              :game="game"
-              :controls="true"
-              :user="user"
-              v-for="game in prepareLotteries()"></game>
+        <game-item v-if="prepareLotteries()!=null&&prepareLotteries().length>0"
+                   :game="game"
+                   :controls="true"
+                   :user="user"
+                   v-for="game in prepareLotteries()"></game-item>
 
         <div class="input-group">
-            <button class="btn btn-yellow" @click="nextPage()" v-if="this.lotteries.length>=(this.step*this.page+this.step)">
+            <button class="btn btn-yellow" @click="nextPage()"
+                    v-if="this.lotteries.length>=(this.step*this.page+this.step)">
                 Показать еще
             </button>
         </div>
@@ -19,7 +20,7 @@
 
 <script>
 
-    import Game from '@/components/Game.vue'
+    import GameItem from '@/components/GameItem.vue'
 
     export default {
         props: ["user"],
@@ -30,31 +31,39 @@
                 lotteries: null,
             }
         },
+        created() {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData',
+            loadGames(newValue, oldValue) {
+                this.lotteries = newValue
+            }
+        },
         mounted() {
-            this.$store.dispatch("loadDrafts")
+            Event.$on('updateDrafts', () => {
+                this.fetchData()
+            });
         },
         computed: {
             loadGames() {
                 return this.$store.getters.DRAFTS;
             }
         },
-        watch: {
-            loadGames(newValue, oldValue) {
-                this.lotteries = newValue
-            }
-        },
+
         methods: {
+            fetchData() {
+                this.$store.dispatch("loadDrafts")
+            },
             nextPage() {
                 this.page += 1;
             },
             prepareLotteries() {
-
-                console.log("array slice", this.lotteries != null ? this.lotteries.slice(0, this.page * this.step + this.step) : []);
                 return this.lotteries != null ? this.lotteries.slice(0, this.page * this.step + this.step) : [];
             }
         },
         components: {
-            Game
+            GameItem
         }
 
     }
@@ -66,7 +75,7 @@
         justify-content: center;
 
         .input-group {
-            justify-content:center;
+            justify-content: center;
         }
     }
 

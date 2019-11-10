@@ -39,31 +39,26 @@
                 history: null
             }
         },
+        computed: {
+            loadHistory() {
+                return this.$store.getters.HISTORY;
+            },
+        },
+        watch: {
+            loadHistory(newValue, oldValue) {
+                this.history = newValue
+            },
+        },
+        activated(){
+            this.refreshHistory()
+        },
         mounted() {
-            this.loadHistory();
+            this.refreshHistory()
         },
         methods: {
-            close(){
-              this.$emit("close");
-            },
-            message(title, message, type) {
-                this.$notify({
-                    group: 'main',
-                    type: type,
-                    title: title,
-                    text: message
-                })
-            },
-
-            loadHistory() {
+            refreshHistory() {
                 this.$loading(true)
-                axios.get('/lottery/history')
-                    .then(response => {
-                        this.history = response.data.history
-
-                    }).catch((reason)=> {
-                        this.message("Авторизация", `Вы не авторизованы!`, 'warn');
-                });
+                this.$store.dispatch("loadHistory")
                 this.$loading(false)
             },
         }

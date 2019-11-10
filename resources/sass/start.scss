@@ -115,7 +115,7 @@ header {
       margin-top: -47px;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 830px) {
       & {
         p {
           display: none;
@@ -710,7 +710,7 @@ header {
       &.top:after {
         @include psClass($left: 10%, $top: 25px, $height: 207px, $width: 65px);
         @include bg(transparent, '/img/arrow-down.png', cover);
-
+        mix-blend-mode: exclusion;
 
         @media (max-width: 900px) {
           & {
@@ -723,6 +723,7 @@ header {
       &.bottom:after {
         @include psClass($right: 15%, $bottom: 26px, $height: 215px, $width: 65px);
         @include bg(transparent, '/img/arrow-up.png', cover);
+        mix-blend-mode: exclusion;
 
         @media (max-width: 900px) {
           & {

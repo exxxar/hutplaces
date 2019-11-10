@@ -53,40 +53,40 @@
                         <users-promocodes :user="user"></users-promocodes>
                     </scroll>
                 </tab>
-             <tab :name="$lang.cabinet.cards_title">
+                <tab :name="$lang.cabinet.cards_title">
                     <scroll class="scroll-area">
                         <users-cards :user="user"></users-cards>
                     </scroll>
                 </tab>
 
-                              <tab :name="$lang.cabinet.items_title">
-                                  <scroll class="scroll-area">
-                                      <users-items :user="user"></users-items>
-                                  </scroll>
-                              </tab>
+                <tab :name="$lang.cabinet.items_title">
+                    <scroll class="scroll-area">
+                        <users-items :user="user"></users-items>
+                    </scroll>
+                </tab>
 
-                              <tab :name="$lang.cabinet.lotteries_title">
-                                  <scroll class="scroll-area">
-                                      <users-lotteries :win="false" :user="user"></users-lotteries>
-                                  </scroll>
-                              </tab>
+                <tab :name="$lang.cabinet.lotteries_title">
+                    <scroll class="scroll-area">
+                        <users-lotteries :win="false" :user="user"></users-lotteries>
+                    </scroll>
+                </tab>
 
 
-                              <tab :name="$lang.cabinet.wins_title">
-                                  <scroll class="scroll-area">
-                                      <users-lotteries :win="true" :user="user"></users-lotteries>
-                                  </scroll>
-                              </tab>
-                              <tab :name="$lang.cabinet.tickets_title">
-                                  <scroll class="scroll-area">
-                                      <users-tickets :user="user"></users-tickets>
-                                  </scroll>
-                              </tab>
-                              <tab :name="$lang.cabinet.auction_mylots_title">
-                                  <scroll class="scroll-area">
-                                      <users-auc-lots :type="'mylots'"></users-auc-lots>
-                                  </scroll>
-                              </tab>
+                <tab :name="$lang.cabinet.wins_title">
+                    <scroll class="scroll-area">
+                        <users-lotteries :win="true" :user="user"></users-lotteries>
+                    </scroll>
+                </tab>
+                <tab :name="$lang.cabinet.tickets_title">
+                    <scroll class="scroll-area">
+                        <users-tickets :user="user"></users-tickets>
+                    </scroll>
+                </tab>
+                <tab :name="$lang.cabinet.auction_mylots_title">
+                    <scroll class="scroll-area">
+                        <users-auc-lots :type="'mylots'"></users-auc-lots>
+                    </scroll>
+                </tab>
                 <!--
                               <tab :name="$lang.cabinet.auction_mybids_title">
                                   <scroll class="scroll-area">
@@ -99,7 +99,7 @@
         <modal name="image-selector" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('image-selector')" class="close"></a>
-                <image-selector v-on:self-hide="hide('image-selector')" v-on:image="setImage($event)"></image-selector>
+                <image-selector v-on:close="hide('image-selector')" v-on:image="setImage($event)"></image-selector>
             </scroll>
         </modal>
 
@@ -134,22 +134,27 @@
         data() {
             return {
                 process_avatar: false,
-                user: this.getUser,
+                user: null,
                 next: null
             }
 
         },
         computed: {
-            check() {
-                return this.$store.getters.CHECK;
-            },
-            getUser() {
+            loadCurrentUser() {
                 return this.$store.getters.USER;
+            }
+        },
+        watch: {
+            loadCurrentUser(newValue, oldValue) {
+                this.user = newValue
             },
         },
+        mounted(){
+            Event.$emit('updateData');
+        },
         methods: {
-            prepareLevelTitle(){
-              return eval(`this.$lang.levels.${this.user.level.title}`)
+            prepareLevelTitle() {
+                return this.user != null ? eval(`this.$lang.levels.${this.user.level.title}`) : '<empty>';
             },
             cssProps() {
                 return {
@@ -173,10 +178,10 @@
                     .then(response => {
                         Event.$emit("updateUserProfile");
 
-                        Event.$emit("message",{
-                            title:'Кабинет',
+                        Event.$emit("message", {
+                            title: 'Кабинет',
                             message: response.data.message,
-                            type:'warn'
+                            type: 'warn'
                         });
 
 
@@ -190,14 +195,6 @@
                     return `/img/avatars/${this.user.avatar}`;
 
             },
-            loadCurrentUser() {
-                this.$store.dispatch('getCurrentUser')
-                    .then(() => {
-                        this.user = this.$store.getters.USER
-                    });
-
-
-            },
 
             randomAvatar: function () {
                 this.process_avatar = true;
@@ -205,10 +202,10 @@
                     .get('/users/avatar/refresh')
                     .then(response => {
                         this.user.avatar = response.data.avatar;
-                        Event.$emit("message",{
-                            title:'Кабинет',
+                        Event.$emit("message", {
+                            title: 'Кабинет',
                             message: response.data.message,
-                            type:'warn'
+                            type: 'warn'
                         });
 
                         Event.$emit("updateUserProfile");
@@ -224,12 +221,7 @@
                 this.$modal.hide(name)
             },
         },
-        mounter() {
-            this.loadCurrentUser();
-        },
-        activated() {
-            this.loadCurrentUser();
-        },
+
         components: {
             UsersAchievements,
             UsersTransactions,

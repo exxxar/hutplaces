@@ -6,8 +6,7 @@
   width: 100px;
   transition: 0.5s;
   height: 60px;
-  background-color: yellow;
-  color: #2c3e50;
+  background-color: #FF5722;
   font-weight: 900;
   display: flex;
   justify-content: flex-start;
@@ -17,6 +16,8 @@
   padding: 0px 0px 0px 20px;
   box-sizing: border-box;
   z-index: 16;
+  color: white;
+  font-size: 24px;
   &:hover {
     right:0px;
     transition:  .5s;
@@ -59,7 +60,7 @@
   a {
     width: 50px;
     height: 50px;
-    background-color: #ffff00;
+    background-color: rgba(170, 170, 170, 1);
     color: #2c3e50;
     display: flex;
     justify-content: center;
@@ -68,7 +69,7 @@
     cursor: pointer;
     border-radius: 5px;
     &.active {
-      background-color: #acff3b;
+      background-color: #ffff00;
     }
   }
 }

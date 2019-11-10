@@ -32,14 +32,21 @@
         name: 'payment',
         data() {
             return {
+                authenticated: false,
                 payment_system: "test",
                 money: ''
             }
         },
-        computed: {
-            check() {
-                return this.$store.getters.CHECK;
+        watch: {
+            getAuthenticated(newValue, oldValue) {
+                this.authenticated = newValue != null;
             },
+        },
+        computed: {
+            getAuthenticated() {
+                return this.$store.getters.USER;
+            },
+
         },
         methods: {
             message(title, message, type) {
@@ -50,14 +57,11 @@
                     text: message
                 })
             },
-            selfHide() {
-                this.$emit("self-hide");
-            },
             requestPayment() {
 
-                if (!this.check) {
+                if (!this.authenticated) {
                     this.message("Ошибка", `Для пополнения счета авторизуйтесь!`, "warn");
-                    this.$emit('hide', "payment");
+                    this.$emit('close');
                     return
                 }
 
@@ -77,8 +81,7 @@
                     .catch(function (error) {
 
                     });
-
-                this.selfHide()
+                this.$emit("close");
             }
 
         }

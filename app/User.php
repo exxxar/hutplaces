@@ -22,17 +22,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
+        'name',
         'email',
         'password',
-        'skype', 
+        'skype',
         'vk',
         'fb',
-        'tw', 
+        'tw',
         'money',
         'bonus',
         'level_id',
-        'discount', 
+        'discount',
         'exp',
         'active',
         'avatar',
@@ -49,32 +49,41 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function lotteries() {
-        return $this->belongsToMany('App\Lottery','user_lotteries','user_id','lottery_id')
+    public function packs()
+    {
+        return $this->belongsToMany('App\Packs', 'packs_users', 'user_id', 'packs_id')
             ->withTimestamps();
     }
 
-    public function promocodes() {
-        return $this->belongsToMany('App\Promocode','user_promos','user_id','promocodes_id')
+
+    public function lotteries()
+    {
+        return $this->belongsToMany('App\Lottery', 'user_lotteries', 'user_id', 'lottery_id')
+            ->withTimestamps();
+    }
+
+    public function promocodes()
+    {
+        return $this->belongsToMany('App\Promocode', 'user_promos', 'user_id', 'promocodes_id')
             ->withTimestamps();
     }
 
     public function cards()
     {
-        return $this->belongsToMany('App\CardsStorage','user_card','user_id','card_id')
+        return $this->belongsToMany('App\CardsStorage', 'user_card', 'user_id', 'card_id')
             ->withTimestamps();
     }
 
     public function items()
     {
-        return $this->belongsToMany('App\Item','user_items','user_id','item_id')
+        return $this->belongsToMany('App\Item', 'user_items', 'user_id', 'item_id')
             ->withTimestamps();
     }
 
 
     public function achievements()
     {
-        return $this->belongsToMany('App\Achievement','user_achievement','user_id','achievement_id')
+        return $this->belongsToMany('App\Achievement', 'user_achievement', 'user_id', 'achievement_id')
             ->withTimestamps();
     }
 

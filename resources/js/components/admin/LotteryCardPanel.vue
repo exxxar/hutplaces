@@ -163,21 +163,8 @@
 
             </div>
 
-            <div class="row">
-
-                <div class="input-group">
-                    <a @click="show('drafts')">Черновики</a>
-                </div>
-
-
-            </div>
         </form>
-        <modal name="drafts" width="100%" height="100%">
-            <scroll class="scroll-area">
-                <a href="#" @click="hide('drafts')" class="close"></a>
-                <drafts v-on:close="hide('drafts')" :user="user"></drafts>
-            </scroll>
-        </modal>
+
 
         <modal name="card-add" width="100%" height="100%">
             <scroll class="scroll-area">
@@ -201,7 +188,7 @@
     import Scroll from 'vue-custom-scrollbar'
     import CardSearch from '@/components/admin/CardSearch.vue'
     import Card from '@/components/admin/Card.vue'
-    import Drafts from '@/components/modals/Drafts.vue'
+
 
     export default {
         name: 'UserCardPanel',
@@ -352,7 +339,7 @@
         },
 
         components: {
-            Scroll, CardSearch, Toggle, Card, Drafts
+            Scroll, CardSearch, Toggle, Card
         }
 
     }

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\CardsStorage;
 use App\Enums\ConsoleType;
+use App\Enums\GameType;
+use App\Enums\ItemType;
 use App\Enums\Lifetime;
+use App\Enums\LotType;
+use App\Item;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -24,7 +28,7 @@ class AuctionController extends Controller
     {
         if ($request->ajax())
             return response()->json([
-                'lots' => Auction::with(["lot", "lot.card", "buyer", "seller"])->get(),
+                'auctions' => Auction::with(["lot", "lot.card", "buyer", "seller"])->get(),
                 'status' => 200
             ]);
 
@@ -143,33 +147,62 @@ class AuctionController extends Controller
                     "message" => "You aren't trader! Please request trader's role!"
                 ]);
 
+        $imageName = null;
 
-        $id = $request->get("card")["id"];
-        $card = CardsStorage::create($request->get("card"));
+        if ($request->image != null && !is_string($request->image)) {
 
-        $content = file_get_contents("https://hutdb.net/ajax/id.php?size=0&id=" . $id);
-        $content = str_replace("/assets", "https://hutdb.net/assets", json_decode($content)->value);
-        $result = json_encode(["value" => $content]);
+            $image = $request->image;
+            $imageName = $image->hashName();
+            $image->move(public_path() . '/img/cards', $imageName);
+        }
 
-        $card->Card_data = $result;
-        $card->save();
+        $lotType = $request->get("lot_type");
 
+        $coins = null;
+        $item = null;
+        $card = null;
+
+        switch ($lotType) {
+
+            default:
+            case 0:
+            case 1:
+                $item = Item::create([
+                    "title" => $request->get("title"),
+                    "description" => $request->get("description"),
+                    "image" => $imageName,
+                    "value" => $request->get("value"),
+                    "type" => ItemType::getInstance(intval($request->get("lot_type")))->value,
+                ]);
+                break;
+            case 2:
+                $tmp = json_decode($request->get("card"), true);
+                $card = CardsStorage::create($tmp);
+                $card->card_synergies = json_encode($tmp["card_synergies"]);
+                $card->image = $imageName;
+                $card->save();
+                break;
+
+
+        }
         $lot = Lot::create([
-            'cards_id' => $card->id
+            'coins' => $coins != null ? $coins : null,
+            'items_id' => $item != null ? $item->id : null,
+            'cards_id' => $card != null ? $card->id : null,
         ]);
 
 
         Auction::create([
             'title' => $request->get("title"),
-            'console_type' => ConsoleType::getInstance(intval($request->get("console_type"))),
-            'lot_type' => 0,
+            'console_type' => ConsoleType::getInstance(intval($request->get("console_type")))->value,
+            'lot_type' => LotType::getInstance(intval($request->get("lot_type")))->value,
             'lot_id' => $lot->id,
-            'game_type' => 0,
+            'game_type' => GameType::getInstance(intval($request->get("game_type")))->value,
             'step_price' => $request->get("step_price"),
             'bid_price' => $request->get("bid_price"),
             'buy_price' => $request->get("buy_price"),
-            'lifetime' => Lifetime::getInstance(intval($request->get("lifetime"))),
-            'is_active' => true,
+            'lifetime' => Lifetime::getInstance(intval($request->get("lifetime")))->value,
+            'is_active' => $request->get("active"),
             'seller_id' => $user->id,
         ]);
 
@@ -179,6 +212,48 @@ class AuctionController extends Controller
                 "message" => "Success"
             ]);
 
+    }
+
+    public function all(Request $request)
+    {
+        if (!$request->ajax())
+            response()->json([
+                'message' => "Error",
+                'status' => 200]);
+
+
+        $type = $request->get("type");
+
+        if (auth("api")->user() == null && $request->get("type") != 0)
+            return response()->json([
+                'auctions' => [],
+                'status' => 200
+            ]);
+
+        switch (intval($type)) {
+            default:
+            case 0: //all
+                return response()->json([
+                    'auctions' => Auction::with(["lot", "lot.card", "lot.item", "buyer", "seller"])->get(),
+                    'status' => 200
+                ]);
+
+            case 1: //bids
+                return response()->json([
+                    'auctions' => Auction::with(["lot", "lot.card", "lot.item"])
+                        ->where("buyer_id", auth("api")->user()->id)
+                        ->get(),
+                    'status' => 200
+                ]);
+            case 2: //mylots
+
+                return response()->json([
+                    'auctions' => Auction::with(["lot", "lot.card", "lot.item", "buyer", "seller"])
+                        ->where("seller_id", auth("api")->user()->id)
+                        ->get(),
+                    'status' => 200
+                ]);
+        }
     }
 
     public function cancelLot(Request $request, $id)
@@ -191,38 +266,13 @@ class AuctionController extends Controller
             ->route("mylots");
     }
 
-    public function myLots(Request $request)
-    {
-        $auctions = Auction::with(["lot", "lot.card", "buyer", "seller"])
-            ->where("seller_id", auth("api")->user()->id)
-            ->get();
-
-        return response()
-            ->json([
-                "status" => 200,
-                "lots" => $auctions
-            ]);
-    }
-
-    public function myBids(Request $request)
-    {
-        $auctions = Auction::with(["lot", "lot.card"])
-            ->where("buyer_id", auth("api")->user()->id)
-            ->get();
-
-        return response()
-            ->json([
-                "status" => 200,
-                "bids" => $auctions
-            ]);
-    }
 
     public function updateLot(Request $request, $id, $time)
     {
-        try{
+        try {
             $auc = Auction::find($id);
             $auc->lifetime = Lifetime::getInstance(intval($time));
-            $auc->updated_at =  date('Y-m-d G:i:s');
+            $auc->updated_at = date('Y-m-d G:i:s');
             $auc->save();
 
             return response()
@@ -230,7 +280,7 @@ class AuctionController extends Controller
                     "status" => 200,
                     "message" => "Lot update success!"
                 ]);
-        }catch (QueryException $e){
+        } catch (QueryException $e) {
             return response()
                 ->json([
                     "status" => 200,

@@ -5,7 +5,10 @@
       <h2>Sorry... <br>
         Page not found</h2>
 
-      <button class="btn btn-yellow">На главную</button>
+        <router-link tag="button" class="btn btn-yellow"
+                     to="/index">
+            На главную
+        </router-link>
     </div>
 </template>
 <script>
