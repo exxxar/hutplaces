@@ -248,7 +248,7 @@ class PromocodesController extends Controller
     public function add(Request $request)
     {
 
-        Promocode::create([
+        $promo = Promocode::create([
             'lifetime' => Lifetime::getInstance(intval($request->duplicate()))->value,
             'is_active' => true,
             'title' => $request->get("title"),
@@ -263,6 +263,14 @@ class PromocodesController extends Controller
             'code' => $request->has("code") ? $request->get("code") :
                 strtoupper(substr(base64_encode(random_int(0, 9999999)), 0, 8)),
         ]);
+
+        $this->msg(
+            sprintf(
+                "Создан новый промокод\n<b>%s</b>\n<i>%s</i>\nhttp://hutplace.net/promotions",
+                $promo->title,
+                $promo->description
+            )
+        );
 
         return response()
             ->json([

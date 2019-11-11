@@ -570,6 +570,13 @@ class LotteryController extends Controller
         $lot->lottery_id = $lottery->id;
         $lot->save();
 
+        $this->msg(
+            sprintf(
+                "Создан новый лот в разделе рандомов!\n<b>%s</b>\n\nhttp://hutplace.net/nhl",
+                $lottery->title
+            )
+        );
+
         return response()->json([
             'message' => 'Success lottery create!',
             'status' => 200

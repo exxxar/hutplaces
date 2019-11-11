@@ -270,6 +270,7 @@
                 var item = document.getElementById(`slot-${place}`);
                 if (item.getAttribute("disabled") == null) {
                     item.setAttribute("disabled", "");
+
                     axios
                         .post('/lottery/pick/', {
                             id: this.gameId,

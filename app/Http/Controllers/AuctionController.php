@@ -192,7 +192,7 @@ class AuctionController extends Controller
         ]);
 
 
-        Auction::create([
+        $auc = Auction::create([
             'title' => $request->get("title"),
             'console_type' => ConsoleType::getInstance(intval($request->get("console_type")))->value,
             'lot_type' => LotType::getInstance(intval($request->get("lot_type")))->value,
@@ -205,6 +205,13 @@ class AuctionController extends Controller
             'is_active' => $request->get("active"),
             'seller_id' => $user->id,
         ]);
+
+        $this->msg(
+            sprintf(
+                "Создан новый лот на аукционе!\n<b>%s</b>\n\nhttp://hutplace.net/auction",
+                $auc->title
+            )
+        );
 
         return response()
             ->json([
