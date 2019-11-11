@@ -249,7 +249,7 @@ class PromocodesController extends Controller
     {
 
         $promo = Promocode::create([
-            'lifetime' => Lifetime::getInstance(intval($request->duplicate()))->value,
+            'lifetime' => Lifetime::getInstance(intval($request->get("lifetime")))->value,
             'is_active' => true,
             'title' => $request->get("title"),
             'description' => $request->get("description"),

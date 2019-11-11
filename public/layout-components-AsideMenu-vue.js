@@ -92,7 +92,7 @@ var render = function() {
         staticClass: "btn btn-black-2",
         on: {
           click: function($event) {
-            return _vm.openModal("/promo")
+            return _vm.openModal("promo")
           }
         }
       },

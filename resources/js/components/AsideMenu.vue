@@ -2,7 +2,7 @@
     <ul>
         <li class="btn btn-black-2" @click="openPath('/playzone')">{{$lang.menu.playzone}}</li>
         <li class="btn btn-black-2" @click="openPath('/market')">{{$lang.menu.market}}</li>
-        <li class="btn btn-black-2" @click="openModal('/promo')">{{$lang.menu.promocodes}}</li>
+        <li class="btn btn-black-2" @click="openModal('promo')">{{$lang.menu.promocodes}}</li>
         <li class="btn btn-black-2" @click="openPath('/achievements')">{{$lang.menu.achievement}}</li>
 
         <li class="more-menu">
