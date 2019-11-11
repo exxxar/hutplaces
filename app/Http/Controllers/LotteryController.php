@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CardsStorage;
 use App\Classes\CustomRandom;
+use App\Classes\TelegramNotify;
 use App\Enums\ConsoleType;
 use App\Enums\GameType;
 use App\Enums\ItemType;
@@ -28,6 +29,8 @@ use RandomOrg\Random;
 
 class LotteryController extends Controller
 {
+    use TelegramNotify;
+
     /**
      * Display a listing of the resource.
      *
@@ -350,11 +353,11 @@ class LotteryController extends Controller
         //вычисляем цену с учетом базовой скидки на карточку
         $price = ($lottery->base_price - $lottery->base_price * ($lottery->base_discount / 100)) / $lottery->places;
 
-        if ($lottery->is_only_one == 0) {
+        if ($lottery->is_only_one == 1) {
             $currentPlace = Place::with(["user"])->where("lottery_id", $lottery->id)
                 ->first();
 
-            if ($currentPlace == null)
+            if ($currentPlace != null)
                 return response()
                     ->json([
                         "status" => 200,
@@ -401,7 +404,15 @@ class LotteryController extends Controller
             $lottery->active = false;
             $lottery->visible = false;
             $random = new CustomRandom();
-            $lottery->winner_id = $random->getIntegers(1, 1, $lottery->places, false)[0];
+
+            $tmp = $random->getIntegers(1, 1, $lottery->places, false);
+
+            $random_string = json_encode($tmp["random"]);
+            $signature = $tmp["signature"];
+
+            $lottery->winner_id = $tmp["random"]["data"][0];
+            $lottery->signature = $signature;
+            $lottery->random = $random_string;
             $lottery->save();
 
             $winUser_id = (Place::where("place_number", $lottery->winner_id)
@@ -416,7 +427,15 @@ class LotteryController extends Controller
             //отправляем всем пользоватемя в выбранной лотерее запрос на обновление данных
             broadcast(new RaffleNotification($lottery, $winner));
 
+            $this->msg(
+                sprintf(
+                    "Последнее место занято, не пропусти розыгрыш!\nhttp://hutplace.net/nhl/%s ",
+                    $lottery->id
+                )
+            );
+
         }
+
 
         //отправляем всем пользователям на сайте инфуормацию о том что какой-то пользователя в лотерее выбрал определенное место
         broadcast(new PickPlace($user, $lottery, $place))->toOthers();

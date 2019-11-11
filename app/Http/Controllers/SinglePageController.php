@@ -86,7 +86,7 @@ class SinglePageController extends Controller
 
             }
 
-        Mail::send('mails.report', ["description" => $description,"email"=> $email], function ($message) use ($storagePath,$attach_list) {
+        Mail::send('mails.report', ["description" => $description,"email"=> $email,"title"=>"Отчет об ошибках"], function ($message) use ($storagePath,$attach_list) {
             $message->to(env('APP_SERVICE_EMAIL'), env('APP_SERVICE_NAME'))->subject('New report!');
 
             if (count($attach_list)>0)

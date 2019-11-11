@@ -24,6 +24,6 @@ class CustomRandom extends Random
     }
 
     public function getIntegers($n,$min,$max,$replacement){
-       return $this->generateIntegers($n, $min, $max, $replacement)["result"]["random"]["data"];
+       return $this->generateIntegers($n, $min, $max, $replacement)["result"];
     }
 }

@@ -166,7 +166,7 @@ return [
         \App\Providers\GoogleDriveServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
         Maksa988\FreeKassa\FreeKassaServiceProvider::class,
-
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -237,6 +237,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'RandomOrg' => RandomOrg\Facades\Random::class,
         'FreeKassa' => Maksa988\FreeKassa\Facades\FreeKassa::class,
+        'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
 
     ],
 

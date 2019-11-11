@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CardsStorage;
+use App\Classes\TelegramNotify;
 use App\Enums\AchievementType;
 use App\Enums\ConsoleType;
 use App\Enums\GameType;
@@ -15,6 +16,8 @@ use Illuminate\Http\Request;
 
 class PacksController extends Controller
 {
+    use TelegramNotify;
+
     /**
      * Display a listing of the resource.
      *
@@ -149,6 +152,19 @@ class PacksController extends Controller
                 'rate' => $rate["rate"],
             ]);
         }
+
+
+        $this->msg(
+            sprintf(
+                "Создан новый пак\n<b>%s</b>\n<i>%s</i>\nЦена <b>%s</b> Packs\nВсего <b>%s</b>\nГарантия <b>%s</b>\n%s",
+                $pack->title,
+                $pack->description,
+                $pack->price,
+                $pack->lots_in_pack,
+                $pack->lots_guaranteed,
+                "http://hutplace.net/packs"
+            )
+        );
 
         return response()
             ->json([

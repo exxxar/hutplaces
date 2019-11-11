@@ -59,4 +59,7 @@ return [
         'secret' => '1d267974-02a8-4ba4-ad6c-1727d7710b14:/t8p8etiCLRkDGICq4Ed0m8Vbh8/C1NK3VinTFAIHkc=',
         'locator' => 'v1:us1:a885adfd-b99c-43f6-a989-0f619c9cb12e',
     ],
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN', '941689427:AAHJNraQjJRwET3bP30qI94fR7RhVgiXYEQ')
+    ],
 ];

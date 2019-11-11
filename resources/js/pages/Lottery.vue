@@ -21,18 +21,20 @@
 
 
                 <div class="buttons" v-if="!user">
-                    <router-link to="/signin" tag="button" class="btn btn-yellow rounded-left"><i class="fas fa-sign-in-alt"></i>
+                    <router-link to="/signin" tag="button" class="btn btn-yellow rounded-left"><i
+                            class="fas fa-sign-in-alt"></i>
                     </router-link>
-                    <router-link to="/signup" tag="button" class="btn btn-orange rounded-right"><i class="fas fa-user-plus"></i>
+                    <router-link to="/signup" tag="button" class="btn btn-orange rounded-right"><i
+                            class="fas fa-user-plus"></i>
                     </router-link>
                 </div>
 
                 <div class="buttons" v-if="user">
-                    <div class="random" @click="pickRandom()" :disabled="randomDisabled">
+                    <button class="random" @click="pickRandom()" :disabled="randomDisabled">
                         <div class="line" :style="cssProps"></div>
-                        <div class="text">{{$lang.lottery.random_place}}</div>
-                    </div>
-                    <button class="buy" @click="pickCard()">{{$lang.lottery.buy_immediately}}</button>
+                        <div class="text">Случайное место</div>
+                    </button>
+                    <button class="buy" @click="pickCard()">Купить сразу</button>
                 </div>
             </div>
         </div>
@@ -53,7 +55,10 @@
         <modal name="security" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('security')" class="close"></a>
-                <security></security>
+                <security
+                        :random="game.random==null?'':game.random"
+                        :signature="game.signature==null?'':game.signature">
+                </security>
             </scroll>
         </modal>
 
@@ -117,6 +122,7 @@
             }
         },
         watch: {
+            '$route': 'fetchData',
             'game.occupied_places': function (newVal, oldVal) {
                 this.randomDisabled = this.game.occupied_places == this.game.places;
             },
@@ -125,8 +131,6 @@
             },
         },
         mounted() {
-            this.loadGame();
-
             Event.$on("updatePlaces", () => {
                 this.updatePlaces();
             });
@@ -139,12 +143,13 @@
                 setTimeout(() => this.showModal('win'), time + 1000);
             });
         },
-
-
-        activated() {
-            this.loadGame();
+        created() {
+            this.fetchData();
         },
         methods: {
+            fetchData(){
+                this.loadGame();
+            },
             prepareDeadline(game) {
                 var date = Date.parse(game.created_at);
                 var time = [6, 12, 24, 36, 48, 96, 128, 10000];
@@ -277,7 +282,7 @@
                                 this.message(this.$lang.messages.lottery_warning_2, `${response.data.message}`, "error")
                                 return;
                             }
-                            this.message(this.$lang.messages.lottery_warning_2, `${response.data.message} ${response.data.place}`, "error")
+                            this.message(this.$lang.messages.lottery_warning_2, `${response.data.message} ${response.data.place+1}`, "error")
                             Event.$emit("updateUserProfile");
 
                         });
@@ -320,7 +325,6 @@
 <style lang="scss">
     @import "~/fonts.scss";
     @import "~/lottery.scss";
-
 
 
 </style>

@@ -13,6 +13,8 @@
         "davismiculis/g2apay": "^1.1",
         "defiant/randomorg": "^1.0",
         "fideloper/proxy": "^4.0",
+        "irazasyed/telegram-bot-sdk": "^3.0",
+        "laravel-notification-channels/telegram": "^0.1.1",
         "laravel/browser-kit-testing": "^5.1",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.3",

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,6 +39,7 @@ Route::post('/help/ask', 'SinglePageController@requestHelp');
 
 Route::get('/test', 'ChatkitController@test');
 
+Route::get("/telegram",'ChatkitController@telegram' );
 
 Route::post('/registration', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');

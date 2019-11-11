@@ -37,6 +37,9 @@
                 money: ''
             }
         },
+        created(){
+            this.$store.dispatch('getCurrentUser')
+        },
         watch: {
             getAuthenticated(newValue, oldValue) {
                 this.authenticated = newValue != null;

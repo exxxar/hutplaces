@@ -45,7 +45,7 @@
   h1 {
     width: 100%;
     text-align: center;
-    font-weight: 100;
+    font-weight: 900;
     font-size: 24px;
     line-height: 150%;
     text-transform: uppercase;
@@ -436,6 +436,8 @@
 .how-to-start-modal,
 .security-modal,
 .about-modal {
+
+  justify-content: center;
   p {
     text-align: justify;
     font-weight: 100;
@@ -443,6 +445,9 @@
     &:first-letter {
       margin-left: 50px;
     }
+  }
+  form {
+    width: 100%;
   }
 }
 

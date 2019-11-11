@@ -112,17 +112,19 @@
 
       .buttons {
         width: 250px;
-        padding: 0px 0px 10px 0px;
-
+        padding: 10px 10px 10px 10px;
         display: flex;
-        justify-content: space-between;
+
+        justify-content: center;
 
         .random {
           height: 55px;
           background-color: $color7;
           position: relative;
           cursor: pointer;
-          box-shadow: 1px 1px 5px 0px black;
+
+          width: 150px;
+          border: none;
 
           .line {
             position: absolute;
@@ -146,6 +148,7 @@
             .text {
               color: $color2 !important;
               transition: 1s;
+
             }
           }
 
@@ -158,27 +161,36 @@
             height: 100%;
             color: $color4;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 12px;
+            padding:10px;
+            box-sizing:border-box;
             transition: 1s;
+            top: 0;
+            left:0;
           }
         }
 
-        button {
+        .buy {
           height: 55px;
-          margin-top: 10px;
           border: none;
+          border-radius: 0;
           display: flex;
           justify-content: center;
           align-items: center;
           flex-wrap: wrap;
           font-weight: 600;
-          font-size: 18px;
-          width: 100%;
+          font-size: 12px;
+
           color: white;
           cursor: pointer;
-          &.buy {
-            background-color: $color9;
-          }
+
+          width: 150px;
+
+          padding:10px;
+          box-sizing:border-box;
+
+          background-color: $color9;
+
         }
 
       }
@@ -301,10 +313,10 @@
 
           flex-wrap: nowrap;
 
-          .random,
+         /* .random,
           .buy {
             width: 260px;
-          }
+          }*/
         }
       }
     }
