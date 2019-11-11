@@ -314,7 +314,7 @@
             },
 
             setLifetime(event) {
-                this.auction_data.lifetime = event.target.value;
+                this.promo_data.lifetime = event.target.value;
             },
 
 
