@@ -127,7 +127,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/user/update/pass', 'UserController@updatePass');
 
     Route::post('/lottery/add', 'LotteryController@add');
-    Route::post('/lottery/pick/', 'LotteryController@pick');
+    Route::post('/lottery/pick', 'LotteryController@pick');
     Route::post('/lottery/pick/random', 'LotteryController@random');
     Route::post('/lottery/buy', 'LotteryController@buy');
     Route::get('/lottery/places/{id}', 'LotteryController@places');

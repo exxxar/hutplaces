@@ -63,13 +63,13 @@ module.exports = {
         success_2:'Спасибо что пользуетесь нашим сервисом!',
     },
     card_info: {
-        title: 'Card information',
+        title: 'Информация о карточек',
         console_1: 'XBOX',
         console_2: 'PS4',
-        base_price: 'Full price',
-        place_price: 'Bid price',
+        base_price: 'Полная стоимость',
+        place_price: 'Цена места',
         money: 'Pucks',
-        pick_place: 'pick place',
+        pick_place: 'Случайное место',
 
     },
     report: {

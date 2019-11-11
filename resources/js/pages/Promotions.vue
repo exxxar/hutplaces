@@ -16,8 +16,8 @@
             </div>
         </div>
 
-        <ul class="promo-list" v-for="promo in promotions">
-            <li class="promo-item">
+        <ul class="promo-list" >
+            <li class="promo-item" v-for="promo in promotions">
                 <div class="wrapper" v-lazy:background-image="'/img/promo-bg.png'">
 
 

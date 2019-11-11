@@ -116,7 +116,6 @@
                     '--line-width': (this.game.occupied_places / this.game.places) * 100 + "%",
                 }
             },
-
             loadCurrentUser() {
                 return this.$store.getters.USER;
             }
@@ -147,8 +146,9 @@
             this.fetchData();
         },
         methods: {
-            fetchData(){
+            fetchData() {
                 this.loadGame();
+                this.$store.dispatch('getCurrentUser')
             },
             prepareDeadline(game) {
                 var date = Date.parse(game.created_at);
@@ -272,7 +272,7 @@
                     item.setAttribute("disabled", "");
 
                     axios
-                        .post('/lottery/pick/', {
+                        .post('/lottery/pick', {
                             id: this.gameId,
                             place_number: place
                         })
@@ -283,7 +283,7 @@
                                 this.message(this.$lang.messages.lottery_warning_2, `${response.data.message}`, "error")
                                 return;
                             }
-                            this.message(this.$lang.messages.lottery_warning_2, `${response.data.message} ${response.data.place+1}`, "error")
+                            this.message(this.$lang.messages.lottery_warning_2, `${response.data.message} ${response.data.place + 1}`, "error")
                             Event.$emit("updateUserProfile");
 
                         });
