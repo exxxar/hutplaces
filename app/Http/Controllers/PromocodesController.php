@@ -260,6 +260,7 @@ class PromocodesController extends Controller
             'discount' => $request->has("discount") ? $request->get("discount") : 0,
             'coins' => $request->has("coins") ? $request->get("coins") : 0,
             'bonus' => $request->has("bonus") ? $request->get("bonus") : 0,
+            'creator_id' => auth("api")->user()->id,
             'code' => $request->has("code") ? $request->get("code") :
                 strtoupper(substr(base64_encode(random_int(0, 9999999)), 0, 8)),
         ]);
