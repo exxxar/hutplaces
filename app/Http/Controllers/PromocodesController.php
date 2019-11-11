@@ -186,8 +186,10 @@ class PromocodesController extends Controller
                     'message' => 'Your promotional code limit has been reached.'
                 ]);
 
-        $time = $promocode->lifetime->key;
-        $time_1 = (intval(substr($time, 5, strlen($time) - 5)) * 60 * 60) + date_timestamp_get(new DateTime($promocode->created_at));
+        $time = $promocode->lifetime->value;
+        $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
+
+        $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(new DateTime($promocode->created_at)));
         $time_2 = date_timestamp_get(now());
 
         if ($time_1 < $time_2)
