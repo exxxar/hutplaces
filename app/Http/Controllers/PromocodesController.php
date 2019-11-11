@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\TelegramNotify;
 use App\Enums\Lifetime;
 use App\Enums\TriggerType;
 use App\Events\Achievement;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 
 class PromocodesController extends Controller
 {
+    use TelegramNotify;
     /**
      * Display a listing of the resource.
      *

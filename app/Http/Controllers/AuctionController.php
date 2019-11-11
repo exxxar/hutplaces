@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CardsStorage;
+use App\Classes\TelegramNotify;
 use App\Enums\ConsoleType;
 use App\Enums\GameType;
 use App\Enums\ItemType;
@@ -19,6 +20,8 @@ use App\Lot;
 
 class AuctionController extends Controller
 {
+
+    use TelegramNotify;
     /**
      * Display a listing of the resource.
      *
