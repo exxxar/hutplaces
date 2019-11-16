@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\CardsStorage;
 use App\Lottery;
+use ErrorException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+
 
 class CardsStorageController extends Controller
 {
@@ -17,8 +19,8 @@ class CardsStorageController extends Controller
      */
     public function index(Request $request)
     {
-        $cardstorages = CardsStorage::orderBy('id','DESC')->paginate(15);
-        return view('admin.cardstorage.index',compact('cardstorages'))
+        $cardstorages = CardsStorage::orderBy('id', 'DESC')->paginate(15);
+        return view('admin.cardstorage.index', compact('cardstorages'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
@@ -35,7 +37,7 @@ class CardsStorageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -86,38 +88,38 @@ class CardsStorageController extends Controller
         $cardstorage = CardsStorage::create($input);
 
         return redirect()->route('cardstorage.index')
-            ->with('success','Card created successfully');
+            ->with('success', 'Card created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\CardsStorage  $cardsStorage
+     * @param  \App\CardsStorage $cardsStorage
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $cardstorage = CardsStorage::find($id);
-        return view('admin.cardstorage.show',compact('cardstorage'));
+        return view('admin.cardstorage.show', compact('cardstorage'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CardsStorage  $cardsStorage
+     * @param  \App\CardsStorage $cardsStorage
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $cardstorage = CardsStorage::find($id);
-        return view('admin.cardstorage.edit',compact('cardstorage'));
+        return view('admin.cardstorage.edit', compact('cardstorage'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CardsStorage  $cardsStorage
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\CardsStorage $cardsStorage
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -169,25 +171,30 @@ class CardsStorageController extends Controller
         $cardstorage->update($input);
 
         return redirect()->route('cardstorage.index')
-            ->with('success','Card updated successfully');
+            ->with('success', 'Card updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CardsStorage  $cardsStorage
+     * @param  \App\CardsStorage $cardsStorage
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        DB::table("cards_storage")->where('id',$id)->delete();
+        DB::table("cards_storage")->where('id', $id)->delete();
         return redirect()->route('cardstorage.index')
-            ->with('success','Card deleted successfully');
+            ->with('success', 'Card deleted successfully');
     }
 
     public function search(Request $request)
     {
-        $content = file_get_contents($request->url);
+        try {
+            $content = file_get_contents($request->url);
+        } catch (ErrorException $e) {
+            $content = [];
+        }
+
 
         return $content;
     }
@@ -195,12 +202,13 @@ class CardsStorageController extends Controller
     public function cards()
     {
         $cards = [];
-        return view('admin.cards',compact('cards'));
+        return view('admin.cards', compact('cards'));
     }
 
-    public function add(Request $request){
+    public function add(Request $request)
+    {
 
-       // Log::info(var_dump($request->get("data")));
+        // Log::info(var_dump($request->get("data")));
 
         $price = $request->get("data")["price"];
         $places = $request->get("data")["places"];
@@ -209,32 +217,32 @@ class CardsStorageController extends Controller
         $id = $request->get("data")["card"]["id"];
         $card = CardsStorage::create($request->get("data")["card"]);
 
-        $content = file_get_contents("https://hutdb.net/ajax/id.php?size=0&id=".$id);
-        $content = str_replace("/assets" , "https://hutdb.net/assets", json_decode($content)->value  );
-        $result = json_encode(["value"=>$content]);
+        $content = file_get_contents("https://hutdb.net/ajax/id.php?size=0&id=" . $id);
+        $content = str_replace("/assets", "https://hutdb.net/assets", json_decode($content)->value);
+        $result = json_encode(["value" => $content]);
 
         $card->Card_data = $result;
         $card->save();
 
         $lottery = Lottery::create([
-            'title'=>"",
-            'console_type'=>$console,
-            'lot_type'=>0,
-            'game_type'=>0,
-            'base_price'=>$price,
-            'base_discount'=>0,
-            'places'=>$places,
-            'occupied_places'>0,
-            'visible'=>0,
-            'is_only_one'=>false,
-            'completed'=>false,
-            'active'=>false,
-            'lifetime'=>0
+            'title' => "",
+            'console_type' => $console,
+            'lot_type' => 0,
+            'game_type' => 0,
+            'base_price' => $price,
+            'base_discount' => 0,
+            'places' => $places,
+            'occupied_places' > 0,
+            'visible' => 0,
+            'is_only_one' => false,
+            'completed' => false,
+            'active' => false,
+            'lifetime' => 0
         ]);
 
         $lot = $lottery->lot()->create([
-            'cards_id'=>$card->id,
-            'lottery_id'=>$lottery->id
+            'cards_id' => $card->id,
+            'lottery_id' => $lottery->id
         ]);
 
         $lottery->lot_id = $lot->id;

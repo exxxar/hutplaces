@@ -130,8 +130,9 @@
                         <div class="controlls">
                             <router-link to="/signin" tag="button" v-if="!user" class="btn btn-yellow "><i
                                     class="fas fa-sign-in-alt"></i></router-link>
-                            <button class="btn btn-yellow" v-if="user" @click="openPack(pack.id)">Открыть</button>
-                            <button class="btn btn-yellow" @click="demoPack(pack.id)"><i class="far fa-eye"></i>
+                            <button class="btn btn-yellow" v-if="user" @click="showConfirm('confirm',pack)">Открыть
+                            </button>
+                            <button class="btn btn-yellow" @click="demoPack(pack)"><i class="far fa-eye"></i>
                             </button>
                         </div>
                         <div class="counters">
@@ -226,20 +227,27 @@
         </modal>
 
 
-        <modal :name="'show-packs-card'" :adaptive="true" width="100%" height="100%" style="z-index: 1000">
-            <scroll class="scroll-area">
-                <a href="#" @click="hide('show-packs-card')" class="close"></a>
-                <card :card="selected_card" v-on:close="hide('show-packs-card')"></card>
-            </scroll>
-        </modal>
-
         <modal :name="'anim-pack'" :adaptive="true" width="100%" height="100%" style="z-index: 1000">
             <packs-anim></packs-anim>
         </modal>
+
+        <modal name="confirm" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area" v-if="selected_pack!=null">
+                <a href="#" @click="hide('confirm')" class="close"></a>
+                <confirm :buttons="{ok:'Подтвердить',cancel:'Отменить'}"
+                         :title="'Подтверждение действия'"
+                         :description="`Вы хотите купить пак за ${selected_pack.price} Pucks`"
+                         v-on:close="hide('confirm')"
+                         v-on:result="openPack($event)">
+                </confirm>
+            </scroll>
+
+        </modal>
+
     </div>
 </template>
 <script>
-
+    import Confirm from '@/components/modals/ConfirmDialog.vue'
     import Scroll from 'vue-custom-scrollbar'
     import PacksPanel from '@/components/packs/PacksPanel.vue'
     import PacksAnim from '@/components/animations/AnimPacks.vue'
@@ -257,6 +265,7 @@
                 selected_card: null,
                 packs: null,
                 user: this.loadCurrentUser,
+                selected_pack: null,
                 filters: {
                     title: '',
                     min_price: 0,
@@ -270,15 +279,12 @@
                 },
             }
         },
-        activated() {
-            this.loadPacks()
-            this.$store.dispatch('getCurrentUser')
-        },
-        mounted() {
-            this.loadPacks()
-            this.$store.dispatch('getCurrentUser')
+
+        created() {
+            this.fetchData();
+
             Event.$on("loadPacks", () => {
-                this.loadPacks()
+                this.fetchData();
             })
         },
         computed: {
@@ -287,13 +293,17 @@
             }
         },
         watch: {
+            '$route': 'fetchData',
             loadCurrentUser(newValue, oldValue) {
                 this.user = newValue
             },
 
         },
         methods: {
-
+            fetchData() {
+                this.loadPacks()
+                this.$store.dispatch('getCurrentUser')
+            },
             cancelPack(id) {
                 this.drops = _.remove(this.drops, {id: id})
 
@@ -305,12 +315,25 @@
                         this.message("Пак успешно удален!")
                     });
             },
-            openPack(id) {
+            openPack(event) {
+                if (!event) {
+                    this.message("Покупка отменена")
+                    return
+                }
 
+                if (this.user.money <= this.selected_pack.price) {
+                    this.message("Недостаточно денег для совершения покупки!")
+                    return
+                }
+
+                if (this.selected_pack.lots_guaranteed == 0) {
+                    this.message("Гарантировано 0... Нельзя открыть.")
+                    return
+                }
                 this.show('anim-pack')
 
                 axios
-                    .get(`/packs/open/${id}`)
+                    .get(`/packs/open/${this.selected_pack.id}`)
                     .then(response => {
                         this.show("open-pack");
 
@@ -318,6 +341,7 @@
                         this.selected_raitings = response.data.raitings
                         this.hide('anim-pack')
                         this.message("Пак успешно преобретен!")
+
                     })
                     .catch(() => {
                         this.hide('anim-pack')
@@ -331,15 +355,18 @@
 
 
             },
-            openCard(card) {
-                this.selected_card = card;
-                this.show('show-packs-card')
-            },
-            demoPack(id) {
+
+            demoPack(pack) {
+
+                if (pack.lots_in_pack == 0) {
+                    this.message("Лотов в паке 0... Нельзя открыть.")
+                    return
+                }
+
                 this.show('anim-pack')
 
                 axios
-                    .get(`/packs/demo/${id}`)
+                    .get(`/packs/demo/${pack.id}`)
                     .then(response => {
                         this.show("demo-open");
 
@@ -442,6 +469,12 @@
             show(name) {
                 this.$modal.show(name)
             },
+            showConfirm(name, pack) {
+                this.selected_pack = pack;
+                this.$modal.show(name)
+
+
+            },
             hide(name) {
                 this.$modal.hide(name)
             },
@@ -457,7 +490,7 @@
         },
 
         components: {
-            FlipCountdown, PacksPanel, Scroll, Toggle, Card, PacksAnim
+            FlipCountdown, PacksPanel, Scroll, Toggle, Card, PacksAnim, Confirm
         },
     }
 </script>

@@ -296,9 +296,6 @@
 
                 this.$store.dispatch("loadAchievements")
 
-                this.$store.dispatch("loadAuctions", {type: 0})
-                this.$store.dispatch("loadAuctions", {type: 1})
-                this.$store.dispatch("loadAuctions", {type: 2})
 
                 console.log("updated-data")
             });

@@ -274,13 +274,13 @@
         methods: {
             fetchData() {
                 this.$loading(true)
+                this.$store.dispatch("loadLifetime")
                 this.$store.dispatch("loadGames")
                     .then(() => {
                         this.$loading(false)
                     })
                     .catch(() => {
                         this.$loading(false)
-                        this.message("оз")
                     })
             },
             message(message) {

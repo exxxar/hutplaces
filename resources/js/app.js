@@ -27,6 +27,8 @@ Lang.requireAll(require.context('./lang', true, /\.js$/));
 
 Vue.use(Lang);
 
+
+
 window.Event = new Vue;
 
 

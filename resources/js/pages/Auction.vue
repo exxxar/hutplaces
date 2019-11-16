@@ -187,9 +187,7 @@
             }
         },
 
-        mounted(){
-            Event.$emit('updateData');
-        },
+
         computed: {
             loadLifetime() {
                 return this.$store.getters.LIFETIME;
@@ -199,6 +197,7 @@
             }
         },
         watch: {
+            '$route': 'fetchData',
             loadCurrentUser(newValue, oldValue) {
                 this.user = newValue
             },
@@ -206,7 +205,20 @@
                 this.lifetime = newValue
             }
         },
+        created() {
+            this.fetchData()
+        },
         methods: {
+            fetchData() {
+                this.$store.dispatch('getCurrentUser')
+
+                this.$store.dispatch("loadLifetime")
+
+                this.$store.dispatch("loadAuctions", {type: 0})
+                this.$store.dispatch("loadAuctions", {type: 1})
+                this.$store.dispatch("loadAuctions", {type: 2})
+
+            },
             setAllConsoles(event) {
                 this.filters.all_consoles = event;
             },
@@ -226,7 +238,7 @@
             refresh() {
                 this.reset()
                 this.$store.dispatch("loadAuctions", {type: 0})
-                document.getElementById("pageContent").scrollTop =0;
+                document.getElementById("pageContent").scrollTop = 0;
                 this.message("Обновление лотов!")
             },
             reset() {
@@ -242,11 +254,11 @@
                     console_type: true,
                     all_consoles: true
                 };
-                document.getElementById("pageContent").scrollTop =0;
+                document.getElementById("pageContent").scrollTop = 0;
 
                 this.message("Фильтры сброшены на значения по умолчанию.")
             },
-            message( message) {
+            message(message) {
                 this.$notify({
                     group: 'main',
                     type: 'warn',

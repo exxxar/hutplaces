@@ -30,10 +30,16 @@
 
 
     export default {
-        mounted(){
-            Event.$emit('updateData');
+        watch: {
+            '$route': 'fetchData'
+        },
+        created(){
+            this.fetchData()
         },
         methods: {
+            fetchData() {
+                this.$store.dispatch('getCurrentUser')
+            },
             message: function (message) {
                 this.$notify({
                     group: 'main',

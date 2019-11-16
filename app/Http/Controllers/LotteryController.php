@@ -18,6 +18,7 @@ use App\Lot;
 use App\Place;
 use App\User;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -300,6 +301,34 @@ class LotteryController extends Controller
     {
 
         $lottery = Lottery::find($request->get("id"));
+
+        $time = $lottery->lifetime->value;
+        $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
+
+        $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(new DateTime($lottery->updated_at == null ? $lottery->created_at : $lottery->updated_at)));
+        $time_2 = date_timestamp_get(now());
+
+        //лотерея уже законечена или не активна
+        if ($lottery->isFull() || !$lottery->active || $lottery->completed || $time_1 < $time_2)
+            return response()->json([
+                'message' => 'Лотерея уже полная или закончилась',
+                'status' => 400
+            ]);
+
+        if ($lottery->is_only_one == 1) {
+            $currentPlace = Place::with(["user"])->where("lottery_id", $lottery->id)
+                ->first();
+
+            if ($currentPlace != null)
+                return response()
+                    ->json([
+                        "status" => 200,
+                        "message" => "Can take only one place"
+                    ]);
+
+        }
+
+
         $places = [];
         $occupied_places = Place::where("lottery_id", $request->get("id"))->get();
         if (count($occupied_places) > 0)
@@ -342,12 +371,20 @@ class LotteryController extends Controller
 
         $user = User::find(auth('api')->user()->id);
 
+        $time = $lottery->lifetime->value;
+        $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
+
+        $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(new DateTime($lottery->updated_at == null ? $lottery->created_at : $lottery->updated_at)));
+        $time_2 = date_timestamp_get(now());
+
+
         //лотерея уже законечена или не активна
-        if ($lottery->isFull() || !$lottery->active || $lottery->completed)
+        if ($lottery->isFull() || !$lottery->active || $lottery->completed || $time_1 < $time_2)
             return response()->json([
                 'message' => 'Лотерея уже полная или закончилась',
                 'status' => 400
             ]);
+
 
         //todo: добавить обработку скидк пользователя, учет процента владельца
         //вычисляем цену с учетом базовой скидки на карточку

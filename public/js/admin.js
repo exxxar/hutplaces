@@ -2144,11 +2144,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2167,7 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
       playerName: '',
       league: 'Any',
       position: [],
-      handedness: [],
+      handedness: '',
       height: [],
       synergy: [],
       heightLabels: [{
@@ -2225,7 +2220,9 @@ __webpack_require__.r(__webpack_exports__);
         id: 81,
         name: "6'9"
       }],
-      leagueOptions: ["NHL", "AHL", "ECHL", "OHL", "QMJHL", "WHL", "SHL", "Liiga", "NL", "DEL", "EBEL", "CHL", "ELH", "Allsvenska", "National"],
+      leagueOptions: this.leagueOptions20,
+      leagueOptions20: ["NHL", "AHL", "ECHL", "OHL", "QMJHL", "WHL", "SHL", "Liiga", "NL", "DEL", "EBEL", "CHL", "ELH", "Allsvenska", "National"],
+      leagueOptions19: ["NHL", "SHL", "Liiga", "AHL", "NL", "OHL", "DEL", "ELH", "EBEL", "CHL", "ECHL", "Allsvenska", "WHL", "QMJHL", "National"],
       nationalityOptions: ["Australia", "Austria", "Belarus", "Belgium", "Canada", "Croatia", "Czech Republic", "Denmark", "England", "Estonia", "Finland", "France", "Germany", "Hungary", "Italy", "Latvia", "Liberia", "Lithuania", "Netherlands", "Norway", "Poland", "Romania", "Russia", "Slovakia", "Slovenia", "Sweden", "Switzerland", "USA", "Ukraine"],
       synergyLabels: [{
         id: 1,
@@ -2364,6 +2361,1103 @@ __webpack_require__.r(__webpack_exports__);
         name: 'TK',
         year: 20
       }],
+      all_teams: [{
+        league: 'NHL',
+        value: "ANA",
+        text: "Anaheim Ducks"
+      }, {
+        league: 'NHL',
+        value: "ARZ",
+        text: "Arizona Coyotes"
+      }, {
+        league: 'NHL',
+        value: "NHLA",
+        text: "Atlantic All-Stars"
+      }, {
+        league: 'NHL',
+        value: "BOS",
+        text: "Boston Bruins"
+      }, {
+        league: 'NHL',
+        value: "BUF",
+        text: "Buffalo Sabres"
+      }, {
+        league: 'NHL',
+        value: "CGY",
+        text: "Calgary Flames"
+      }, {
+        league: 'NHL',
+        value: "CAR",
+        text: "Carolina Hurricanes"
+      }, {
+        league: 'NHL',
+        value: "CHI",
+        text: "Chicago Blackhawks"
+      }, {
+        league: 'NHL',
+        value: "COL",
+        text: "Colorado Avalanche"
+      }, {
+        league: 'NHL',
+        value: "CBJ",
+        text: "Columbus Blue Jackets"
+      }, {
+        league: 'NHL',
+        value: "DAL",
+        text: "Dallas Stars"
+      }, {
+        league: 'NHL',
+        value: "DET",
+        text: "Detroit Red Wings"
+      }, {
+        league: 'NHL',
+        value: "EDM",
+        text: "Edmonton Oilers"
+      }, {
+        league: 'NHL',
+        value: "FLA",
+        text: "Florida Panthers"
+      }, {
+        league: 'NHL',
+        value: "HAR",
+        text: "Hartford Whalers"
+      }, {
+        league: 'NHL',
+        value: "LAK",
+        text: "Los Angeles Kings"
+      }, {
+        league: 'NHL',
+        value: "MNS",
+        text: "Minnesota North Stars"
+      }, {
+        league: 'NHL',
+        value: "MIN",
+        text: "Minnesota Wild"
+      }, {
+        league: 'NHL',
+        value: "MTL",
+        text: "Montreal Canadiens"
+      }, {
+        league: 'NHL',
+        value: "NSH",
+        text: "Nashville Predators"
+      }, {
+        league: 'NHL',
+        value: "NJD",
+        text: "New Jersey Devils"
+      }, {
+        league: 'NHL',
+        value: "NYI",
+        text: "New York Islanders"
+      }, {
+        league: 'NHL',
+        value: "NYR",
+        text: "New York Rangers"
+      }, {
+        league: 'NHL',
+        value: "FA",
+        text: "NHL Free Agents"
+      }, {
+        league: 'NHL',
+        value: "OTT",
+        text: "Ottawa Senators"
+      }, {
+        league: 'NHL',
+        value: "NHLP",
+        text: "Pacific All-Stars"
+      }, {
+        league: 'NHL',
+        value: "PHI",
+        text: "Philadelphia Flyers"
+      }, {
+        league: 'NHL',
+        value: "PIT",
+        text: "Pittsburgh Penguins"
+      }, {
+        league: 'NHL',
+        value: "QC",
+        text: "Quebec Nordiques"
+      }, {
+        league: 'NHL',
+        value: "SJS",
+        text: "San Jose Sharks"
+      }, {
+        league: 'NHL',
+        value: "STL",
+        text: "St. Louis Blues"
+      }, {
+        league: 'NHL',
+        value: "TBL",
+        text: "Tampa Bay Lightning"
+      }, {
+        league: 'NHL',
+        value: "TOR",
+        text: "Toronto Maple Leafs"
+      }, {
+        league: 'NHL',
+        value: "VAN",
+        text: "Vancouver Canucks"
+      }, {
+        league: 'NHL',
+        value: "VGK",
+        text: "Vegas Golden Knights"
+      }, {
+        league: 'NHL',
+        value: "WSH",
+        text: "Washington Capitals"
+      }, {
+        league: 'NHL',
+        value: "WPG",
+        text: "Winnipeg Jets"
+      }, {
+        league: 'AHL',
+        value: "BAK",
+        text: "Bakersfield Condors"
+      }, {
+        league: 'AHL',
+        value: "BES",
+        text: "Belleville Senators"
+      }, {
+        league: 'AHL',
+        value: "BID",
+        text: "Binghamton Devils"
+      }, {
+        league: 'AHL',
+        value: "BIN",
+        text: "Binghamton Senators"
+      }, {
+        league: 'AHL',
+        value: "BRI",
+        text: "Bridgeport Sound Tigers"
+      }, {
+        league: 'AHL',
+        value: "CHA",
+        text: "Charlotte Checkers"
+      }, {
+        league: 'AHL',
+        value: "CHW",
+        text: "Chicago Wolves"
+      }, {
+        league: 'AHL',
+        value: "CLE",
+        text: "Cleveland Monsters"
+      }, {
+        league: 'AHL',
+        value: "COL",
+        text: "Colorado Eagles"
+      }, {
+        league: 'AHL',
+        value: "GRA",
+        text: "Grand Rapids Griffins"
+      }, {
+        league: 'AHL',
+        value: "HAR",
+        text: "Hartford Wolf Pack"
+      }, {
+        league: 'AHL',
+        value: "HER",
+        text: "Hershey Bears"
+      }, {
+        league: 'AHL',
+        value: "IOW",
+        text: "Iowa Wild"
+      }, {
+        league: 'AHL',
+        value: "LAV",
+        text: "Laval Rockets"
+      }, {
+        league: 'AHL',
+        value: "LEH",
+        text: "Lehigh Valley Phantoms"
+      }, {
+        league: 'AHL',
+        value: "MAN",
+        text: "Manitoba Moose"
+      }, {
+        league: 'AHL',
+        value: "MIL",
+        text: "Milwaukee Admirals"
+      }, {
+        league: 'AHL',
+        value: "ONT",
+        text: "Ontario Reign"
+      }, {
+        league: 'AHL',
+        value: "PRO",
+        text: "Providence Bruins"
+      }, {
+        league: 'AHL',
+        value: "RCH",
+        text: "Rochester Americans"
+      }, {
+        league: 'AHL',
+        value: "ROC",
+        text: "Rockford IceHogs"
+      }, {
+        league: 'AHL',
+        value: "SAR",
+        text: "San Antonio Rampage"
+      }, {
+        league: 'AHL',
+        value: "SDG",
+        text: "San Diego Gulls"
+      }, {
+        league: 'AHL',
+        value: "SJB",
+        text: "San Jose Barracuda"
+      }, {
+        league: 'AHL',
+        value: "SPT",
+        text: "Springfield Thunderbirds"
+      }, {
+        league: 'AHL',
+        value: "STO",
+        text: "Stockton Heat"
+      }, {
+        league: 'AHL',
+        value: "SYR",
+        text: "Syracuse Crunch"
+      }, {
+        league: 'AHL',
+        value: "TEX",
+        text: "Texas Stars"
+      }, {
+        league: 'AHL',
+        value: "TOR",
+        text: "Toronto Marlies"
+      }, {
+        league: 'AHL',
+        value: "TUC",
+        text: "Tucson Roadrunners"
+      }, {
+        league: 'AHL',
+        value: "UTI",
+        text: "Utica Comets"
+      }, {
+        league: 'AHL',
+        value: "WBS",
+        text: "Wilkes-Barre/Scranton Penguins"
+      }, {
+        league: 'ECHL',
+        value: "ADT",
+        text: "Adirondack Thunder"
+      }, {
+        league: 'ECHL',
+        value: "ALL",
+        text: "Allen Americans"
+      }, {
+        league: 'ECHL',
+        value: "ATL",
+        text: "Atlanta Gladiators"
+      }, {
+        league: 'ECHL',
+        value: "BRA",
+        text: "Brampton Beast"
+      }, {
+        league: 'ECHL',
+        value: "CIN",
+        text: "Cincinnati Cyclones"
+      }, {
+        league: 'ECHL',
+        value: "FLA",
+        text: "Florida Everblades"
+      }, {
+        league: 'ECHL',
+        value: "FWK",
+        text: "Fort Wayne Komets"
+      }, {
+        league: 'ECHL',
+        value: "GRE",
+        text: "Greenville Swamp Rabbits"
+      }, {
+        league: 'ECHL',
+        value: "IDS",
+        text: "Idaho Steelheads"
+      }, {
+        league: 'ECHL',
+        value: "IND",
+        text: "Indy Fuel"
+      }, {
+        league: 'ECHL',
+        value: "JAC",
+        text: "Jacksonville IceMen"
+      }, {
+        league: 'ECHL',
+        value: "KAL",
+        text: "Kalamazoo Wings"
+      }, {
+        league: 'ECHL',
+        value: "KC",
+        text: "Kansas City Mavericks"
+      }, {
+        league: 'ECHL',
+        value: "MAI",
+        text: "Maine Mariners"
+      }, {
+        league: 'ECHL',
+        value: "NFLD",
+        text: "Newfoundland Growlers"
+      }, {
+        league: 'ECHL',
+        value: "NOR",
+        text: "Norfolk Admirals"
+      }, {
+        league: 'ECHL',
+        value: "ORL",
+        text: "Orlando Solar Bears"
+      }, {
+        league: 'ECHL',
+        value: "RAP",
+        text: "Rapid City Rush"
+      }, {
+        league: 'ECHL',
+        value: "REA",
+        text: "Reading Royals"
+      }, {
+        league: 'ECHL',
+        value: "SCS",
+        text: "South Carolina Stingrays"
+      }, {
+        league: 'ECHL',
+        value: "TOL",
+        text: "Toledo Walleye"
+      }, {
+        league: 'ECHL',
+        value: "TUL",
+        text: "Tulsa Oilers"
+      }, {
+        league: 'ECHL',
+        value: "UTA",
+        text: "Utah Grizzlies"
+      }, {
+        league: 'ECHL',
+        value: "WHE",
+        text: "Wheeling Nailers"
+      }, {
+        league: 'ECHL',
+        value: "WIC",
+        text: "Wichita Thunder"
+      }, {
+        league: 'ECHL',
+        value: "WOR",
+        text: "Worcester Railers"
+      }, {
+        league: 'OHL',
+        value: "BAR",
+        text: "Barrie Colts"
+      }, {
+        league: 'OHL',
+        value: "ERE",
+        text: "Erie Otters"
+      }, {
+        league: 'OHL',
+        value: "FLI",
+        text: "Flint Firebirds"
+      }, {
+        league: 'OHL',
+        value: "GUE",
+        text: "Guelph Storm"
+      }, {
+        league: 'OHL',
+        value: "HAM",
+        text: "Hamilton Bulldogs"
+      }, {
+        league: 'OHL',
+        value: "KIN",
+        text: "Kingston Frontenacs"
+      }, {
+        league: 'OHL',
+        value: "KIT",
+        text: "Kitchener Rangers"
+      }, {
+        league: 'OHL',
+        value: "LON",
+        text: "London Knights"
+      }, {
+        league: 'OHL',
+        value: "MIS",
+        text: "Mississauga Steelheads"
+      }, {
+        league: 'OHL',
+        value: "NIA",
+        text: "Niagara IceDogs"
+      }, {
+        league: 'OHL',
+        value: "NOB",
+        text: "North Bay Battalion"
+      }, {
+        league: 'OHL',
+        value: "OSH",
+        text: "Oshawa Generals"
+      }, {
+        league: 'OHL',
+        value: "OTT",
+        text: "Ottawa 67's"
+      }, {
+        league: 'OHL',
+        value: "OWE",
+        text: "Owen Sound Attack"
+      }, {
+        league: 'OHL',
+        value: "PET",
+        text: "Peterborough Petes"
+      }, {
+        league: 'OHL',
+        value: "SAG",
+        text: "Saginaw Spirit"
+      }, {
+        league: 'OHL',
+        value: "SAR",
+        text: "Sarnia Sting"
+      }, {
+        league: 'OHL',
+        value: "SSM",
+        text: "Sault Ste. Marie Greyhounds"
+      }, {
+        league: 'OHL',
+        value: "SUD",
+        text: "Sudbury Wolves"
+      }, {
+        league: 'OHL',
+        value: "WIN",
+        text: "Windsor Spitfires"
+      }, {
+        league: 'QMJHL',
+        value: "ACA",
+        text: "Acadie-Bathurst Titan"
+      }, {
+        league: 'QMJHL',
+        value: "BAI",
+        text: "Baie-Comeau Drakkar"
+      }, {
+        league: 'QMJHL',
+        value: "BLA",
+        text: "Blainville-Boisbriand Armada"
+      }, {
+        league: 'QMJHL',
+        value: "CB",
+        text: "Cape Breton Screaming Eagles"
+      }, {
+        league: 'QMJHL',
+        value: "CHR",
+        text: "Charlottetown Islanders"
+      }, {
+        league: 'QMJHL',
+        value: "CHC",
+        text: "Chicoutimi Sagueneens"
+      }, {
+        league: 'QMJHL',
+        value: "DRU",
+        text: "Drummondville Voltigeurs"
+      }, {
+        league: 'QMJHL',
+        value: "GAT",
+        text: "Gatineau Olympiques"
+      }, {
+        league: 'QMJHL',
+        value: "HFX",
+        text: "Halifax Mooseheads"
+      }, {
+        league: 'QMJHL',
+        value: "MON",
+        text: "Moncton Wildcats"
+      }, {
+        league: 'QMJHL',
+        value: "QUE",
+        text: "Quebec Remparts"
+      }, {
+        league: 'QMJHL',
+        value: "RIM",
+        text: "Rimouski Oceanic"
+      }, {
+        league: 'QMJHL',
+        value: "ROU",
+        text: "Rouyn-Noranda Huskies"
+      }, {
+        league: 'QMJHL',
+        value: "STJ",
+        text: "Saint John Sea Dogs"
+      }, {
+        league: 'QMJHL',
+        value: "SHA",
+        text: "Shawinigan Cataractes"
+      }, {
+        league: 'QMJHL',
+        value: "SHE",
+        text: "Sherbrooke Phoenix"
+      }, {
+        league: 'QMJHL',
+        value: "VAL",
+        text: "Val-D'Or Foreurs"
+      }, {
+        league: 'QMJHL',
+        value: "VIC",
+        text: "Victoriaville Tigres"
+      }, {
+        league: 'WHL',
+        value: "BRA",
+        text: "Brandon Wheat Kings"
+      }, {
+        league: 'WHL',
+        value: "CGY",
+        text: "Calgary Hitmen"
+      }, {
+        league: 'WHL',
+        value: "EDM",
+        text: "Edmonton Oil Kings"
+      }, {
+        league: 'WHL',
+        value: "EVE",
+        text: "Everett Silvertips"
+      }, {
+        league: 'WHL',
+        value: "KAM",
+        text: "Kamloops Blazers"
+      }, {
+        league: 'WHL',
+        value: "KEL",
+        text: "Kelowna Rockets"
+      }, {
+        league: 'WHL',
+        value: "LET",
+        text: "Lethbridge Hurricanes"
+      }, {
+        league: 'WHL',
+        value: "MED",
+        text: "Medicine Hat Tigers"
+      }, {
+        league: 'WHL',
+        value: "MOO",
+        text: "Moose Jaw Warriors"
+      }, {
+        league: 'WHL',
+        value: "POR",
+        text: "Portland Winter Hawks"
+      }, {
+        league: 'WHL',
+        value: "PRA",
+        text: "Prince Albert Raiders"
+      }, {
+        league: 'WHL',
+        value: "PRG",
+        text: "Prince George Cougars"
+      }, {
+        league: 'WHL',
+        value: "RED",
+        text: "Red Deer Rebels"
+      }, {
+        league: 'WHL',
+        value: "REG",
+        text: "Regina Pats"
+      }, {
+        league: 'WHL',
+        value: "SAS",
+        text: "Saskatoon Blades"
+      }, {
+        league: 'WHL',
+        value: "SEA",
+        text: "Seattle Thunderbirds"
+      }, {
+        league: 'WHL',
+        value: "SPO",
+        text: "Spokane Chiefs"
+      }, {
+        league: 'WHL',
+        value: "SWC",
+        text: "Swift Current Broncos"
+      }, {
+        league: 'WHL',
+        value: "TRI",
+        text: "Tri-City Americans"
+      }, {
+        league: 'WHL',
+        value: "VAN",
+        text: "Vancouver Giants"
+      }, {
+        league: 'WHL',
+        value: "VIC",
+        text: "Victoria Royals"
+      }, {
+        league: 'WHL',
+        value: "WPI",
+        text: "Winnipeg Ice"
+      }, {
+        league: 'SHL',
+        value: "BRY",
+        text: "Brynas IF"
+      }, {
+        league: 'SHL',
+        value: "DJU",
+        text: "Djugardens Hockey"
+      }, {
+        league: 'SHL',
+        value: "FAR",
+        text: "Farjestad BK"
+      }, {
+        league: 'SHL',
+        value: "FRO",
+        text: "Frolunda Indians"
+      }, {
+        league: 'SHL',
+        value: "HV",
+        text: "HV71"
+      }, {
+        league: 'SHL',
+        value: "OSK",
+        text: "IK Oskarshamn"
+      }, {
+        league: 'SHL',
+        value: "LEK",
+        text: "Leksands IF"
+      }, {
+        league: 'SHL',
+        value: "LIN",
+        text: "Linkopings HC"
+      }, {
+        league: 'SHL',
+        value: "LUL",
+        text: "Lulea Hockey"
+      }, {
+        league: 'SHL',
+        value: "MAL",
+        text: "Malmo Redhawks"
+      }, {
+        league: 'SHL',
+        value: "ORE",
+        text: "Orebro Hockey"
+      }, {
+        league: 'SHL',
+        value: "ROG",
+        text: "Rogle BK"
+      }, {
+        league: 'SHL',
+        value: "SKE",
+        text: "Skelleftea AK"
+      }, {
+        league: 'SHL',
+        value: "VAX",
+        text: "Vaxjo Lakers"
+      }, {
+        league: 'Liiga',
+        value: "HEL",
+        text: "Helsingin IFK"
+      }, {
+        league: 'Liiga',
+        value: "HAM",
+        text: "HPK Hameenlinna"
+      }, {
+        league: 'Liiga',
+        value: "JYV",
+        text: "JYP Jyvaskyla"
+      }, {
+        league: 'Liiga',
+        value: "KAL",
+        text: "KalPa Kuopio"
+      }, {
+        league: 'Liiga',
+        value: "KOO",
+        text: "KooKoo Kouvala"
+      }, {
+        league: 'Liiga',
+        value: "MIK",
+        text: "Mikkelin Jukurit"
+      }, {
+        league: 'Liiga',
+        value: "OUL",
+        text: "Oulun Karpat"
+      }, {
+        league: 'Liiga',
+        value: "LAH",
+        text: "Pelicans Lahti"
+      }, {
+        league: 'Liiga',
+        value: "POA",
+        text: "Porin Assat"
+      }, {
+        league: 'Liiga',
+        value: "RAU",
+        text: "Rauman Lukko"
+      }, {
+        league: 'Liiga',
+        value: "LAP",
+        text: "SaiPa Lappeenranta"
+      }, {
+        league: 'Liiga',
+        value: "TAI",
+        text: "Tampereen Ilves"
+      }, {
+        league: 'Liiga',
+        value: "TAT",
+        text: "Tampereen Tappara"
+      }, {
+        league: 'Liiga',
+        value: "TUR",
+        text: "TPS Turku"
+      }, {
+        league: 'Liiga',
+        value: "VAA",
+        text: "Vaasan Sport"
+      }, {
+        league: 'NL',
+        value: "EHC",
+        text: "EHC Biel"
+      }, {
+        league: 'NL',
+        value: "EV",
+        text: "EV Zug"
+      }, {
+        league: 'NL',
+        value: "GES",
+        text: "Geneve-Servette HC"
+      }, {
+        league: 'NL',
+        value: "AMP",
+        text: "HC Ambri-Piotta"
+      }, {
+        league: 'NL',
+        value: "DAV",
+        text: "HC Davos"
+      }, {
+        league: 'NL',
+        value: "FRG",
+        text: "HC Fribourg-Gotteron"
+      }, {
+        league: 'NL',
+        value: "LAU",
+        text: "HC Lausanne"
+      }, {
+        league: 'NL',
+        value: "LUG",
+        text: "HC Lugano"
+      }, {
+        league: 'NL',
+        value: "RAJ",
+        text: "Rapperswil-Jona Lakers"
+      }, {
+        league: 'NL',
+        value: "BER",
+        text: "SC Bern"
+      }, {
+        league: 'NL',
+        value: "SCL",
+        text: "SCL Tigers"
+      }, {
+        league: 'NL',
+        value: "ZSC",
+        text: "ZSC Lions"
+      }, {
+        league: 'DEL',
+        value: "ADL",
+        text: "Adler Mannheim"
+      }, {
+        league: 'DEL',
+        value: "AUG",
+        text: "Augsburger Panther"
+      }, {
+        league: 'DEL',
+        value: "DUS",
+        text: "Dusseldorfer EG"
+      }, {
+        league: 'DEL',
+        value: "MUN",
+        text: "EHC Munchen"
+      }, {
+        league: 'DEL',
+        value: "BER",
+        text: "Eisbaren Berlin"
+      }, {
+        league: 'DEL',
+        value: "ING",
+        text: "ERC Ingolstadt"
+      }, {
+        league: 'DEL',
+        value: "FIP",
+        text: "Fischtown Pinguins"
+      }, {
+        league: 'DEL',
+        value: "WOL",
+        text: "Grizzly Adams Wolfsburg"
+      }, {
+        league: 'DEL',
+        value: "ISE",
+        text: "Iserlohn Roosters"
+      }, {
+        league: 'DEL',
+        value: "KOL",
+        text: "Kolner Haie"
+      }, {
+        league: 'DEL',
+        value: "KRE",
+        text: "Krefeld Pinguine"
+      }, {
+        league: 'DEL',
+        value: "SWW",
+        text: "Schwenninger Wild Wings"
+      }, {
+        league: 'DEL',
+        value: "STR",
+        text: "Straubing Tigers"
+      }, {
+        league: 'DEL',
+        value: "THO",
+        text: "Thomas Sabo Ice Tigers"
+      }, {
+        league: 'EBEL',
+        value: "LBW",
+        text: "Black Wings Linz"
+      }, {
+        league: 'EBEL',
+        value: "DOB",
+        text: "Dornbirner EC"
+      }, {
+        league: 'EBEL',
+        value: "KAC",
+        text: "EC KAC"
+      }, {
+        league: 'EBEL',
+        value: "VSV",
+        text: "EC VSV"
+      }, {
+        league: 'EBEL',
+        value: "MMG",
+        text: "Graz 99ers"
+      }, {
+        league: 'EBEL',
+        value: "TWK",
+        text: "HC TWK Innsbruck"
+      }, {
+        league: 'EBEL',
+        value: "SUD",
+        text: "HCB Sudtirol Alperia"
+      }, {
+        league: 'EBEL',
+        value: "ORZ",
+        text: "Orli Znojmo"
+      }, {
+        league: 'EBEL',
+        value: "RBS",
+        text: "Red Bull Salzburg"
+      }, {
+        league: 'EBEL',
+        value: "FEH",
+        text: "SAPA Fehervar AV 19"
+      }, {
+        league: 'EBEL',
+        value: "VIE",
+        text: "Vienna Capitals"
+      }, {
+        league: 'CHL',
+        value: "BAN",
+        text: "Banksa Bystrica"
+      }, {
+        league: 'CHL',
+        value: "BEL",
+        text: "Belfast Giants"
+      }, {
+        league: 'CHL',
+        value: "CAR",
+        text: "Cardiff Devils"
+      }, {
+        league: 'CHL',
+        value: "FRI",
+        text: "Frisk Asker"
+      }, {
+        league: 'CHL',
+        value: "GKS",
+        text: "GKS Tychy"
+      }, {
+        league: 'CHL',
+        value: "GRN",
+        text: "Grenoble Bruleurs de Loups"
+      }, {
+        league: 'CHL',
+        value: "RUN",
+        text: "Rungsted Seier Capital"
+      }, {
+        league: 'CHL',
+        value: "MIN",
+        text: "Yunost Minsk"
+      }, {
+        league: 'ELH',
+        value: "PSG",
+        text: "Aukro Berani Zlin"
+      }, {
+        league: 'ELH',
+        value: "TYG",
+        text: "Bili Tygri Liberec"
+      }, {
+        league: 'ELH',
+        value: "MLA",
+        text: "BK Mlada Boleslav"
+      }, {
+        league: 'ELH',
+        value: "PAR",
+        text: "Dynamo Pardubice"
+      }, {
+        league: 'ELH',
+        value: "KRL",
+        text: "HC Energie Karlovy Vary"
+      }, {
+        league: 'ELH',
+        value: "OLO",
+        text: "HC Olomouc"
+      }, {
+        league: 'ELH',
+        value: "SKO",
+        text: "HC Skoda Plzen"
+      }, {
+        league: 'ELH',
+        value: "VIT",
+        text: "HC Vitkovice Steel"
+      }, {
+        league: 'ELH',
+        value: "BRN",
+        text: "Kometa Brno"
+      }, {
+        league: 'ELH',
+        value: "MTF",
+        text: "Mountfield HK"
+      }, {
+        league: 'ELH',
+        value: "TRI",
+        text: "Ocelari Trinec"
+      }, {
+        league: 'ELH',
+        value: "KLD",
+        text: "Rytiri Kladno"
+      }, {
+        league: 'ELH',
+        value: "SPA",
+        text: "Sparta Praha"
+      }, {
+        league: 'ELH',
+        value: "VER",
+        text: "Verva Litvinov"
+      }, {
+        league: 'Allsvenska',
+        value: "AIK",
+        text: "AIK"
+      }, {
+        league: 'Allsvenska',
+        value: "AIS",
+        text: "Almtuna IS"
+      }, {
+        league: 'Allsvenska',
+        value: "BIK",
+        text: "BIK Karlskoga"
+      }, {
+        league: 'Allsvenska',
+        value: "VIT",
+        text: "HC Vita Hasten"
+      }, {
+        league: 'Allsvenska',
+        value: "BJO",
+        text: "IF Bjorkloven"
+      }, {
+        league: 'Allsvenska',
+        value: "KHK",
+        text: "Karlskrona HK"
+      }, {
+        league: 'Allsvenska',
+        value: "KRI",
+        text: "Kristianstad IK"
+      }, {
+        league: 'Allsvenska',
+        value: "MOD",
+        text: "MODO Hockey"
+      }, {
+        league: 'Allsvenska',
+        value: "MOR",
+        text: "Mora IK"
+      }, {
+        league: 'Allsvenska',
+        value: "SOD",
+        text: "Sodertalje SK"
+      }, {
+        league: 'Allsvenska',
+        value: "TIM",
+        text: "Timra IK"
+      }, {
+        league: 'Allsvenska',
+        value: "TIN",
+        text: "Tingsryds AIF"
+      }, {
+        league: 'Allsvenska',
+        value: "VIK",
+        text: "Vasterviks IK"
+      }, {
+        league: 'Allsvenska',
+        value: "VAS",
+        text: "VIK Vasteras HK"
+      }, {
+        league: 'National',
+        value: "AUS",
+        text: "Austria"
+      }, {
+        league: 'National',
+        value: "CAN",
+        text: "Canada"
+      }, {
+        league: 'National',
+        value: "CZE",
+        text: "Czech Republic"
+      }, {
+        league: 'National',
+        value: "DEN",
+        text: "Denmark"
+      }, {
+        league: 'National',
+        value: "FIN",
+        text: "Finland"
+      }, {
+        league: 'National',
+        value: "FRA",
+        text: "France"
+      }, {
+        league: 'National',
+        value: "GER",
+        text: "Germany"
+      }, {
+        league: 'National',
+        value: "GRE",
+        text: "Great Britain"
+      }, {
+        league: 'National',
+        value: "ITL",
+        text: "Italy"
+      }, {
+        league: 'National',
+        value: "LAT",
+        text: "Latvia"
+      }, {
+        league: 'National',
+        value: "NOR",
+        text: "Norway"
+      }, {
+        league: 'National',
+        value: "RUS",
+        text: "Russia"
+      }, {
+        league: 'National',
+        value: "SLO",
+        text: "Slovakia"
+      }, {
+        league: 'National',
+        value: "SWE",
+        text: "Sweden"
+      }, {
+        league: 'National',
+        value: "SZL",
+        text: "Switzerland"
+      }, {
+        league: 'National',
+        value: "UKR",
+        text: "Ukraine"
+      }, {
+        league: 'National',
+        value: "USA",
+        text: "United States of America"
+      }],
       minOvr: '',
       maxOvr: '',
       team: 'Any',
@@ -2378,7 +3472,17 @@ __webpack_require__.r(__webpack_exports__);
       results: ''
     };
   },
+  created: function created() {
+    this.leagueOptions = this.leagueOptions19;
+  },
   methods: {
+    getFilteredTeams: function getFilteredTeams() {
+      var _this = this;
+
+      return this.all_teams.filter(function (item) {
+        return item.league == _this.league;
+      });
+    },
     getSynergy: function getSynergy() {
       var year = this.year ? 19 : 20;
       return this.synergyLabels.filter(function (s) {
@@ -2403,7 +3507,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.hide(name);
     },
     getCard: function getCard(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.$loading(true);
       this.request = "https://api.hutdb.net/api/players/".concat(id);
@@ -2411,44 +3515,44 @@ __webpack_require__.r(__webpack_exports__);
         url: this.request
       }).then(function (res) {
         console.log(res);
-        _this.card_example = res.data;
+        _this2.card_example = res.data;
 
-        _this.$loading(false);
+        _this2.$loading(false);
 
-        _this.show("card");
+        _this2.show("card");
       })["catch"](function (err) {
         console.log(err);
 
-        _this.$loading(false);
+        _this2.$loading(false);
 
-        _this.message("Ошибка загрузки карточки", "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E!", 'error');
+        _this2.message("Ошибка загрузки карточки", "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E!", 'error');
       });
     },
     search: function search() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$loading(true);
       this.makeUrl();
       axios.post('search', {
         url: this.request
       }).then(function (res) {
-        _this2.results = res.data;
+        _this3.results = res.data;
 
-        _this2.results.shift();
+        _this3.results.shift();
 
-        _this2.$loading(false);
+        _this3.$loading(false);
       })["catch"](function (err) {
-        _this2.message("Ошибка поиска", "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E!", 'error');
+        _this3.message("Ошибка поиска", "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E!", 'error');
 
-        _this2.$loading(false);
+        _this3.$loading(false);
 
         console.log(err);
       });
     },
     makeUrl: function makeUrl() {
-      var _this3 = this;
+      var _this4 = this;
 
-      var year = this.year ? 20 : 19;
+      var year = this.year ? 19 : 20;
       this.request = "https://api.hutdb.net/api/players?year=".concat(year, "&page=0&per_age=").concat(this.per_page);
 
       if (this.playerName !== '') {
@@ -2463,37 +3567,38 @@ __webpack_require__.r(__webpack_exports__);
       if (this.position.length > 0) {
         this.request += "&position[]=";
         this.position.map(function (pos) {
-          _this3.request += "".concat(pos, ",");
+          _this4.request += "".concat(pos, ",");
         });
         this.request = this.request.slice(0, -1);
       }
 
-      if (this.handedness !== 'Any') {
+      if (this.handedness != 'Any' && this.handedness != '') {
         this.request += "&handedness=".concat(this.handedness);
       }
 
-      if (this.height.length > 0) {
+      if (this.height.length > 0 && this.height.indexOf("Any") == -1) {
         this.request += "&height[]=";
         this.height.map(function (h) {
-          _this3.request += "".concat(h, ",");
+          _this4.request += "".concat(h, ",");
         });
         this.request = this.request.slice(0, -1);
       }
 
-      if (this.synergy_id.length > 0) {
+      if (this.synergy.length > 0) {
+        console.log("synergy", this.synergy);
         this.request += "&synergy_id[]=";
-        this.synergy_id.map(function (syn) {
-          _this3.request += "".concat(syn.id, ",");
+        this.synergy.map(function (syn) {
+          _this4.request += "".concat(syn, ",");
         });
         this.request = this.request.slice(0, -1);
       }
 
       if (this.minOvr !== '') {
-        this.request += "&minOvr=".concat(minOvr);
+        this.request += "&minOvr=".concat(this.minOvr);
       }
 
       if (this.maxOvr !== '') {
-        this.request += "&maxOvr=".concat(maxOvr);
+        this.request += "&maxOvr=".concat(this.maxOvr);
       }
 
       if (this.team !== 'Any') {
@@ -2503,7 +3608,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.playerType.length > 0) {
         this.request += "&playerType[]=";
         this.playerType.map(function (type) {
-          _this3.request += "".concat(type, ",");
+          _this4.request += "".concat(type, ",");
         });
         this.request = this.request.slice(0, -1);
       }
@@ -2513,11 +3618,11 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.minWgt !== '') {
-        this.request += "&minWgt=".concat(minWgt);
+        this.request += "&minWgt=".concat(this.minWgt);
       }
 
       if (this.maxWgt !== '') {
-        this.request += "&maxWgt=".concat(maxWgt);
+        this.request += "&maxWgt=".concat(this.maxWgt);
       }
 
       if (this.nationality !== 'Any') {
@@ -2528,6 +3633,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkYear: function checkYear(event) {
       this.year = event;
+      this.leagueOptions = event ? this.leagueOptions19 : this.leagueOptions20;
+      this.results = [];
     }
   },
   components: {
@@ -30619,38 +31726,13 @@ var render = function() {
                   _vm._v("Any")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "BAN" } }, [
-                  _vm._v("Banksa Bystrica")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "BEL" } }, [
-                  _vm._v("Belfast Giants")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "CAR" } }, [
-                  _vm._v("Cardiff Devils")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "FRI" } }, [
-                  _vm._v("Frisk Asker")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "GKS" } }, [
-                  _vm._v("GKS Tychy")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "GRN" } }, [
-                  _vm._v("Grenoble Bruleurs de Loups")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "RUN" } }, [
-                  _vm._v("Rungsted Seier Capital")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "MIN" } }, [
-                  _vm._v("Yunost Minsk")
-                ])
-              ]
+                _vm._l(_vm.getFilteredTeams(), function(team) {
+                  return _c("option", { domProps: { value: team.value } }, [
+                    _vm._v(_vm._s(team.text))
+                  ])
+                })
+              ],
+              2
             )
           ])
         ]),
@@ -30811,7 +31893,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { id: "handedness", multiple: "multiple" },
+                attrs: { id: "handedness" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -30876,12 +31958,16 @@ var render = function() {
                   }
                 }
               },
-              _vm._l(_vm.heightLabels, function(h) {
-                return _c("option", { domProps: { value: h.id } }, [
-                  _vm._v(_vm._s(h.name))
-                ])
-              }),
-              0
+              [
+                _c("option", { attrs: { selected: "" } }, [_vm._v("Any")]),
+                _vm._v(" "),
+                _vm._l(_vm.heightLabels, function(h) {
+                  return _c("option", { domProps: { value: h.id } }, [
+                    _vm._v(_vm._s(h.name))
+                  ])
+                })
+              ],
+              2
             )
           ])
         ]),

@@ -34,7 +34,7 @@
                         <div class="line" :style="cssProps"></div>
                         <div class="text">Случайное место</div>
                     </button>
-                    <button class="buy" @click="pickCard()">Купить сразу</button>
+                    <button class="buy" @click="show('confirm')">Купить сразу</button>
                 </div>
             </div>
         </div>
@@ -80,10 +80,28 @@
 
         </modal>
 
+
+        <modal name="confirm" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('confirm')" class="close"></a>
+                <confirm :buttons="{ok:'Подтвердить',cancel:'Отменить'}"
+                         :title="'Подтверждение действия'"
+                         :description="'Покупка карточки'"
+                            v-on:close="hide('confirm')"
+                            v-on:result="pickCard($event)">
+                </confirm>
+            </scroll>
+
+        </modal>
+
     </div>
 </template>
 
 <script>
+
+
+    import Confirm from '@/components/modals/ConfirmDialog.vue'
+
     import CardInfo from '../components/modals/CardInfo'
     import Security from '../components/modals/Security'
 
@@ -185,7 +203,6 @@
                     .then(response => {
                         if (response.data.status == 404) {
                             this.$router.push({name: 'Games'})
-                            this.$loading(true)
                             return;
                         }
                         this.game = response.data.game;
@@ -231,8 +248,13 @@
             getAvatar(img) {
                 return img == '' || img == null || img == undefined ? "/img/noavatar.png" : `/img/avatars/${img}`;
             },
-            pickCard() {
-                this.message(this.$lang.messages.card_purchase, this.$lang.messages.lottery_warning_1, "error")
+            pickCard(event) {
+                if (!event)
+                {
+                    this.message("Рандомы", "Покупка отменена", "error")
+                    return
+                }
+
                 axios
                     .post('/lottery/buy', {
                         id: this.gameId
@@ -248,6 +270,7 @@
                         .post('/lottery/pick/random', {
                             id: this.gameId
                         }).then(response => {
+                        this.randomDisabled = false;
                         if (response.data.status != 200) {
                             this.message(this.$lang.messages.lottery_warning_2, `${response.data.message}`, "error")
                             return;
@@ -255,7 +278,7 @@
                         Event.$emit("updateUserProfile");
                         this.message(this.$lang.messages.lottery_warning_2, `${response.data.message} ${response.data.place}`, "error")
 
-                        this.randomDisabled = false;
+
                     });
 
                 }
@@ -286,7 +309,9 @@
                             this.message(this.$lang.messages.lottery_warning_2, `${response.data.message} ${response.data.place + 1}`, "error")
                             Event.$emit("updateUserProfile");
 
-                        });
+                        }).catch(() => {
+                        item.removeAttribute("disabled");
+                    });
                 }
             },
             clickUserSlot(slot, index) {
@@ -317,7 +342,8 @@
         components: {
             CardInfo, Security,
             Scroll, UserCardPanel,
-            Card, CardTabs, CardSection, FlipCountdown, GameItem
+            Card, CardTabs, CardSection, FlipCountdown, GameItem,
+            Confirm
         },
     }
 

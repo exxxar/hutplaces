@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <ul class="promo-list" >
+        <ul class="promo-list">
             <li class="promo-item" v-for="promo in promotions">
                 <div class="wrapper" v-lazy:background-image="'/img/promo-bg.png'">
 
@@ -81,13 +81,8 @@
                 user: this.loadCurrentUser,
             }
         },
-        activated() {
-            this.loadPromotions()
-            this.$store.dispatch('getCurrentUser')
-        },
-        mounted() {
-            this.loadPromotions()
-            this.$store.dispatch('getCurrentUser')
+        created() {
+            this.fetchData();
         },
         computed: {
             loadCurrentUser() {
@@ -95,12 +90,18 @@
             }
         },
         watch: {
+            '$route': 'fetchData',
+
             loadCurrentUser(newValue, oldValue) {
                 this.user = newValue
             },
 
         },
         methods: {
+            fetchData() {
+                this.loadPromotions()
+                this.$store.dispatch('getCurrentUser')
+            },
             message(message) {
                 this.$notify({
                     group: 'main',
@@ -178,11 +179,16 @@
             },
 
             loadPromotions() {
+                this.$loading(true)
                 axios
                     .get(`/promo/all`)
                     .then(response => {
                         this.promotions = response.data.promotions;
-                    });
+                        this.$loading(false)
+                    })
+                    .catch(() => {
+                        this.$loading(false)
+                    })
             },
 
             prepareDeadline(promo) {
@@ -197,7 +203,7 @@
         },
 
         components: {
-            FlipCountdown, PromotionsPanel,Scroll
+            FlipCountdown, PromotionsPanel, Scroll
         },
     }
 </script>
@@ -248,14 +254,14 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        flex-wrap:wrap;
+        flex-wrap: wrap;
 
         padding: 10px;
         box-sizing: border-box;
         .promo-item {
             width: 260px;
             height: 400px;
-            padding:10px;
+            padding: 10px;
             box-sizing: border-box;
 
             .wrapper {

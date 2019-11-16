@@ -1106,18 +1106,6 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.$store.dispatch("loadAchievements");
 
-      _this.$store.dispatch("loadAuctions", {
-        type: 0
-      });
-
-      _this.$store.dispatch("loadAuctions", {
-        type: 1
-      });
-
-      _this.$store.dispatch("loadAuctions", {
-        type: 2
-      });
-
       console.log("updated-data");
     });
     if (this.authenticated) this.$store.dispatch('getCurrentUser');
