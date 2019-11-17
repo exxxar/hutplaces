@@ -31,6 +31,7 @@ class Lottery extends Model
         'base_discount',
         'places',
         'winner_id',
+        'winner_place',
         'occupied_places',
         'next_lottery_id',
         'prev_lottery_id',
@@ -49,15 +50,7 @@ class Lottery extends Model
 
     public function winner()
     {
-        if ($this->winner_id != null) {
-            $winUser_id = (Place::where("place_number", $this->winner_id)
-                ->where("lottery_id", $this->id)
-                ->first())->user_id;
-
-            return User::find($winUser_id);
-        }
-
-        return null;
+        return $this->hasOne('App\User', 'id', 'winner_id');
 
     }
 

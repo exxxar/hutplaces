@@ -539,23 +539,22 @@
         .win {
             position: absolute;
             z-index: 12;
-            top: 60px;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 200px;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            background: #ffeb3be6;
 
             h1 {
                 text-transform: uppercase;
-                color: #2c3e50;
+                color: #607D8B;
                 font-weight: 900;
                 font-size: 24px;
                 padding: 20px;
-                background: yellow;
-                box-shadow: 0px 0px 5px 0px black;
                 width: 100%;
             }
         }

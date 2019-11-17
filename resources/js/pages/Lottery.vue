@@ -57,8 +57,11 @@
                 <a href="#" @click="hide('security')" class="close"></a>
                 <security
                         :random="game.random==null?'':game.random"
-                        :signature="game.signature==null?'':game.signature">
+                        :signature="game.signature==null?'':game.signature"
+                        :winner="game.winner"
+                        :winner_place="game.winner_place">
                 </security>
+
             </scroll>
         </modal>
 
@@ -70,12 +73,13 @@
 
         </modal>
 
-        <modal name="win" :adaptive="true" width="100%" height="100%">
+        <modal name="winner" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('win')" class="close"></a>
-                <div class="modal-body">
-                    <div class="winner" v-if="winner!=null"><img :src="winner.avatar" alt=""></div>
-                </div>
+                <h1>TESTST</h1>
+              <!--  <div class="modal-body">
+                    <div class="winner" v-if="game.winner!=null"><img :src="game.winner.avatar" alt=""></div>
+                </div>-->
             </scroll>
 
         </modal>
@@ -87,8 +91,8 @@
                 <confirm :buttons="{ok:'Подтвердить',cancel:'Отменить'}"
                          :title="'Подтверждение действия'"
                          :description="'Покупка карточки'"
-                            v-on:close="hide('confirm')"
-                            v-on:result="pickCard($event)">
+                         v-on:close="hide('confirm')"
+                         v-on:result="pickCard($event)">
                 </confirm>
             </scroll>
 
@@ -119,7 +123,6 @@
 
         data() {
             return {
-                winner: null,
                 randomDisabled: false,
                 settings: {
                     maxScrollbarLength: 60
@@ -140,6 +143,10 @@
         },
         watch: {
             '$route': 'fetchData',
+            'game.winner': function (newVal, oldVal) {
+                console.log("winner!!!!");
+                this.show('winner');
+            },
             'game.occupied_places': function (newVal, oldVal) {
                 this.randomDisabled = this.game.occupied_places == this.game.places;
             },
@@ -157,7 +164,7 @@
                 var lottery = data.lottery;
                 var time = 9000;
                 this.startAnim(lottery.winner_id, time);
-                setTimeout(() => this.showModal('win'), time + 1000);
+                setTimeout(() => this.show('win'), time + 1000);
             });
         },
         created() {
@@ -201,24 +208,12 @@
                 axios
                     .get(`/lottery/show/${this.gameId}`)
                     .then(response => {
-                        if (response.data.status == 404) {
-                            this.$router.push({name: 'Games'})
-                            return;
-                        }
                         this.game = response.data.game;
-                        console.log("game:", this.game);
-
-                        if (this.game.winner_id != null) {
-                            axios
-                                .get(`/lottery/winner/${this.gameId}`)
-                                .then(response => {
-                                    this.winner = response.data.winner;
-                                    this.showModal('win');
-                                });
-                        }
-
-                        setTimeout(() => this.$loading(false), 2000);
-                    });
+                        this.$loading(false)
+                    })
+                    .catch(() => {
+                        this.$router.push({name: 'Games'})
+                    })
             },
             startAnim(stopNumber, time) {
                 document.querySelectorAll(".lottery")[0]
@@ -249,8 +244,7 @@
                 return img == '' || img == null || img == undefined ? "/img/noavatar.png" : `/img/avatars/${img}`;
             },
             pickCard(event) {
-                if (!event)
-                {
+                if (!event) {
                     this.message("Рандомы", "Покупка отменена", "error")
                     return
                 }
@@ -287,9 +281,11 @@
                 }
             },
             pickSlot(place) {
-                /* if (this.game.is_only_one==1){
-                     this.game.place_list.filter(place=>place->user->id)
-                 }*/
+                if (this.user == null) {
+                    this.message("Рандомы", "Авторизируйтесь сперва!", "error")
+                    return
+                }
+
                 var item = document.getElementById(`slot-${place}`);
                 if (item.getAttribute("disabled") == null) {
                     item.setAttribute("disabled", "");

@@ -140,7 +140,7 @@
                     </game-item>
                 </ul>
             </div>
-            <div class="no-items" v-if="prepareLots().length==0">
+            <div class="no-items" v-if="lotteries.length==0">
                 <img src="img/empty-ru.png" alt="">
             </div>
 
@@ -198,11 +198,11 @@
                 sliderLoaded: false,
                 deadlineList: [],
                 categories: [
-                    {min: 0, max: 50, title: '0-50'},
-                    {min: 50, max: 100, title: '50-100'},
-                    {min: 100, max: 200, title: '100-200'},
-                    {min: 200, max: 1000, title: '200-1000'},
-                    {min: 1000, max: 10000, title: '1000-10000'},
+                    {min: 0, max: 49, title: '0-50'},
+                    {min: 50, max: 99, title: '50-100'},
+                    {min: 100, max: 199, title: '100-200'},
+                    {min: 200, max: 999, title: '200-1000'},
+                    {min: 1000, max: 9999, title: '1000-10000'},
                     {min: 10000, max: 100000, title: '10000+'},
                 ],
                 user: this.loadCurrentUser,
@@ -309,6 +309,10 @@
 
                 tmp_summary = tmp_summary.filter(lot => this.isActiveDate(lot));
 
+                tmp_summary = tmp_summary.filter(lot => lot.occupied_places < lot.places);
+
+                tmp_summary = tmp_summary.filter(lot => lot.winner_id == null && lot.winner_place == null);
+
                 if (this.filters != null) {
 
                     if (this.filters.title.trim().length > 0)
@@ -356,11 +360,8 @@
                         lot.lifetime > 0);
                 }
 
-
-                if (min && max)
-                    tmp_summary = tmp_summary
-                        .filter(lottery => lottery.base_price >= min && lottery.base_price < max);
-
+               tmp_summary = tmp_summary
+                        .filter(lottery => lottery.base_price >= parseInt(min) && lottery.base_price < parseInt(max));
 
                 return tmp_summary;
             },

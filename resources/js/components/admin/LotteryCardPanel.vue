@@ -143,23 +143,13 @@
             </div>
 
             <div class="row">
-                <div class="half">
+
                     <div class="input-group">
-                        <label for="">Начать в</label>
-                        <input type="datetime-local">
+                        <label for="start_at">Начать в</label>
+                        <input type="datetime-local" id="start_at" v-model="lottery_data.start_at">
                     </div>
-                </div>
-                <div class="half">
-                    <div class="input-group">
-                        <label for="active" class="col-form-label" v-html="$lang.modals.user_card_panel.active"></label>
-                        <toggle :check="active"
-                                :id="'active'"
-                                v-on:check="setActive($event)"
-                                :labelon="'On'"
-                                :labeloff="'Off'"
-                                :width="120"></toggle>
-                    </div>
-                </div>
+
+
 
             </div>
 
@@ -211,6 +201,7 @@
                     title: '',
                     description: '',
                     value: '',
+                    start_at:'',
                     card: null,
                 },
             }
@@ -266,11 +257,11 @@
                 formData.append('value', this.lottery_data.value)
                 formData.append('card', JSON.stringify(this.lottery_data.card))
                 formData.append('active', this.active ? 1 : 0)
+                formData.append('start_at', this.lottery_data.start_at)
 
                 axios.post('/lottery/add', formData, config)
                     .then((response) => {
                         this.message(this.$lang.modals.user_card_panel.success_1)
-
                         this.$store.dispatch("loadGames")
                     })
                     .catch((error) => {

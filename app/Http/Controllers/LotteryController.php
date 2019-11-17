@@ -118,7 +118,7 @@ class LotteryController extends Controller
     public function show(Request $request, $id)
     {
 
-        $lottery = Lottery::with(["placeList", "lot", "lot.card", "lot.item", "placeList.user"])->find($id);
+        $lottery = Lottery::with(["placeList", "lot", "lot.card", "lot.item", "placeList.user", "winner"])->find($id);
 
         if (!$request->ajax())
             return view('admin.lottery.show', compact('lottery'));
@@ -131,8 +131,7 @@ class LotteryController extends Controller
 
         return response()->json([
             'message' => "Лотерея не найдена",
-            'status' => 404
-        ]);
+        ], 404);
     }
 
     /**
@@ -447,7 +446,12 @@ class LotteryController extends Controller
             $random_string = json_encode($tmp["random"]);
             $signature = $tmp["signature"];
 
-            $lottery->winner_id = $tmp["random"]["data"][0];
+            $lottery->winner_place = $tmp["random"]["data"][0];
+
+            $lottery->winner_id = (Place::where("place_number", $lottery->winner_place)
+                ->where("lottery_id", $lottery->id)
+                ->first())->user_id;
+
             $lottery->signature = $signature;
             $lottery->random = $random_string;
             $lottery->save();
@@ -600,6 +604,7 @@ class LotteryController extends Controller
             'seller_id' => $user->id,
             'active' => $request->get("active"),
             'lifetime' => Lifetime::getInstance(intval($request->get("lifetime")))->value,
+            'start_at' => Carbon::parse($request->get("start_at")),
             'updated_at' => Carbon::now(),
             'created_at' => Carbon::now(),
         ]);

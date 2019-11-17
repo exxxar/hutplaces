@@ -26,7 +26,8 @@ class CreateLotteriesTable extends Migration
             $table->double('base_price')->default(0);
             $table->integer('base_discount')->default(0);
             $table->integer('places')->default(1);
-            $table->integer('winner_id')->nullable();
+            $table->unsignedInteger('winner_id')->nullable();
+            $table->integer('winner_place')->nullable();
             $table->integer('occupied_places')->default(0);
             $table->integer('next_lottery_id')->nullable();
             $table->integer('prev_lottery_id')->nullable();
@@ -37,7 +38,7 @@ class CreateLotteriesTable extends Migration
             $table->integer('lifetime')->default(0);//0 - unlimited, 1 - 12, 2 - 24, 3 - 36...
 
             $table->boolean('auto_refresh')->default(true);
-            $table->timestamp('start_at')->nullable();
+            $table->timestamp('start_at')->default('0000-00-00 00:00:00')->nullable();
 
             $table->string('signature', 1000)->nullable();
             $table->string('random', 1500)->nullable();
@@ -46,6 +47,7 @@ class CreateLotteriesTable extends Migration
 
             $table->foreign('lot_id')->references('id')->on('lots');
             $table->foreign('seller_id')->references('id')->on('users');
+            $table->foreign('winner_id')->references('id')->on('users');
 
             $table->timestamps();
         });
