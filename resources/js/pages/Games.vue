@@ -157,8 +157,6 @@
             <modal name="lottery-add" :adaptive="true" width="100%" height="100%">
                 <scroll class="scroll-area">
                     <a href="#" @click="hide('lottery-add')" class="close"></a>
-                    <h1 v-html="$lang.modals.user_card_panel.h1"></h1>
-
                     <user-card-panel
                             :user="user"
                             v-on:close="hide('lottery-add')">
