@@ -75,11 +75,11 @@
 
         <modal name="winner" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
-                <a href="#" @click="hide('win')" class="close"></a>
-                <h1>TESTST</h1>
-              <!--  <div class="modal-body">
-                    <div class="winner" v-if="game.winner!=null"><img :src="game.winner.avatar" alt=""></div>
-                </div>-->
+                <a href="#" @click="hide('winner')" class="close"></a>
+                <div class="modal-body">
+                    <div class="winner" v-if="game.winner!=null"><img :src="`/img/avatars/${game.winner.avatar}`"
+                                                                      alt=""></div>
+                </div>
             </scroll>
 
         </modal>
@@ -143,10 +143,6 @@
         },
         watch: {
             '$route': 'fetchData',
-            'game.winner': function (newVal, oldVal) {
-                console.log("winner!!!!");
-                this.show('winner');
-            },
             'game.occupied_places': function (newVal, oldVal) {
                 this.randomDisabled = this.game.occupied_places == this.game.places;
             },
@@ -160,11 +156,14 @@
             });
 
             Event.$on("startRaffle", (data) => {
-                this.winner = data.winner;
                 var lottery = data.lottery;
                 var time = 9000;
-                this.startAnim(lottery.winner_id, time);
-                setTimeout(() => this.show('win'), time + 1000);
+                this.startAnim(lottery.winner_place, time);
+                setTimeout(() => {
+                    this.show('winner')
+                    this.loadGame();
+                }, time + 2000);
+
             });
         },
         created() {
@@ -219,10 +218,12 @@
                 document.querySelectorAll(".lottery")[0]
                     .classList.add("lottery-animation");
                 setTimeout(() => {
-                    document.querySelectorAll(`.slot:nth-of-type(${stopNumber})`)[0]
-                        .classList.add("win-slot");
-                    this.message(this.$lang.messages.lottery_success_title, `${stopNumber} ${this.$lang.messages.lottery_success_2}`, "error")
-                }, 9000);
+                        document.querySelectorAll(`.slot:nth-of-type(${stopNumber})`)[0]
+                            .classList.add("win-slot");
+                        this.message(this.$lang.messages.lottery_success_title, `${stopNumber} ${this.$lang.messages.lottery_success_2}`, "error")
+
+                    }
+                    , 9000);
                 setTimeout(() => {
                     document.querySelectorAll(".lottery")[0]
                         .classList.remove("lottery-animation");

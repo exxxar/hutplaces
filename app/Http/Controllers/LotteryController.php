@@ -441,7 +441,7 @@ class LotteryController extends Controller
             $lottery->visible = false;
             $random = new CustomRandom();
 
-            $tmp = $random->getIntegers(1, 1, $lottery->places, false);
+            $tmp = $random->getIntegers(1, 0, $lottery->places-1, false);
 
             $random_string = json_encode($tmp["random"]);
             $signature = $tmp["signature"];
@@ -456,11 +456,8 @@ class LotteryController extends Controller
             $lottery->random = $random_string;
             $lottery->save();
 
-            $winUser_id = (Place::where("place_number", $lottery->winner_id)
-                ->where("lottery_id", $lottery->id)
-                ->first())->user_id;
 
-            $winner = User::find($winUser_id);
+            $winner = User::find($lottery->winner_id);
 
             $winner->lotteries()->attach($lottery->id);
             $winner->cards()->attach((Lot::where("lottery_id", $lottery->id)->first())->cards_id);
