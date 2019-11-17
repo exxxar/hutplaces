@@ -1040,7 +1040,9 @@ __webpack_require__.r(__webpack_exports__);
     this.lang(!localStorage.getItem('lang') ? 'ru' : localStorage.getItem('lang'));
     pusher.subscribe('pick-place-chanel').bind('pick-place-event', function (data) {
       Event.$emit("updatePlaces");
-      if (_this.user != null) if (data.user.id == _this.user.id) return;
+      /*if (this.user != null)
+          if (data.user.id == this.user.id)
+              return;*/
 
       _this.message("Лотерея", "".concat(data.user.name, " \u0437\u0430\u043D\u044F\u043B \u043C\u0435\u0441\u0442\u043E \u0432 \u043B\u043E\u0442\u0435\u0440\u0435\u0435 ").concat(data.lottery.title), 'warn');
     });
@@ -1049,8 +1051,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     pusher.subscribe('raffle-chanel').bind('raffle-event', function (data) {
       Event.$emit("startRaffle", data);
+      console.log("startRaffle", data);
 
-      _this.message("Начало розыгрыша", "".concat(data.message), 'warn');
+      _this.message("Рандомы", "\u041D\u0430\u0447\u0430\u043B\u043E \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0430!", 'warn');
     });
     pusher.subscribe('message-chanel').bind('message-event', function (data) {
       _this.message("".concat(data.title), "".concat(data.message), 'warn');
@@ -1098,9 +1101,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.message(m.title, m.message, m.type);
     });
     Event.$on('updateData', function () {
-      _this.$store.dispatch("loadLifetime");
-
-      _this.$store.dispatch("loadTriggerType");
+      _this.$store.dispatch("loadAllSettings");
 
       _this.$store.dispatch("loadHistory");
 

@@ -9,8 +9,8 @@ let state = {
     lot_type: null,
     ticket_type: null,
     trigger_type: null,
-    images:null,
-    levels:null,
+    images: null,
+    levels: null,
 };
 
 let getters = {
@@ -93,6 +93,16 @@ let mutations = {
 };
 
 let actions = {
+    loadAllSettings: (context, payload) => {
+
+        return axios.get('/settings/all').then(response => {
+            context.commit('SET_LIFETIME', response.data.lifetime);
+            context.commit('SET_TRIGGER_TYPE', response.data.trigger_types);
+            context.commit('SET_IMAGES', response.data.images);
+            context.commit('SET_LEVELS', response.data.levels);
+
+        });
+    },
     loadLifetime: (context, payload) => {
         return axios.get('/settings/lifetime').then(response => {
             context.commit('SET_LIFETIME', response.data.lifetime);

@@ -55,7 +55,7 @@
             },
             refreshLevels() {
                 this.$loading(true)
-                this.$store.dispatch("loadLevels")
+                this.$store.dispatch("loadAllSettings")
                 this.$loading(false)
             },
 

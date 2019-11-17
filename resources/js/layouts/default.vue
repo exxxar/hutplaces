@@ -222,9 +222,9 @@
 
             pusher.subscribe('pick-place-chanel').bind('pick-place-event', (data) => {
                 Event.$emit("updatePlaces")
-                if (this.user != null)
+                /*if (this.user != null)
                     if (data.user.id == this.user.id)
-                        return;
+                        return;*/
                 this.message("Лотерея", `${data.user.name} занял место в лотерее ${data.lottery.title}`, 'warn');
             });
 
@@ -234,7 +234,8 @@
 
             pusher.subscribe('raffle-chanel').bind('raffle-event', (data) => {
                 Event.$emit("startRaffle", data)
-                this.message("Начало розыгрыша", `${data.message}`, 'warn');
+                console.log("startRaffle", data)
+                this.message("Рандомы", `Начало розыгрыша!`, 'warn');
             });
 
             pusher.subscribe('message-chanel').bind('message-event', (data) => {
@@ -286,13 +287,9 @@
 
 
             Event.$on('updateData', () => {
-                this.$store.dispatch("loadLifetime")
-
-                this.$store.dispatch("loadTriggerType")
+                this.$store.dispatch("loadAllSettings")
 
                 this.$store.dispatch("loadHistory")
-
-
 
                 this.$store.dispatch("loadAchievements")
 

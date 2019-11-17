@@ -212,7 +212,7 @@
             fetchData() {
                 this.$store.dispatch('getCurrentUser')
 
-                this.$store.dispatch("loadLifetime")
+                this.$store.dispatch("loadAllSettings")
 
                 this.$store.dispatch("loadAuctions", {type: 0})
                 this.$store.dispatch("loadAuctions", {type: 1})

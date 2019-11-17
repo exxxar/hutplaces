@@ -25,6 +25,8 @@ Route::group(['prefix' => 'payment'], function(){
 
 */
 
+Route::get('/settings/all', 'ContentController@allSettings');
+
 Route::get('/packs/all', 'PacksController@all');
 Route::post('/packs/add', 'PacksController@add');
 Route::get('/packs/demo/{id}', 'PacksController@demoOpen');

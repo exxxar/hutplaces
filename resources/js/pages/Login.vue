@@ -57,10 +57,11 @@
 
                 this.$loading(true)
                 this.$store.dispatch('loginUser', {
-                    'username':this.username,
+                    'username': this.username,
                     'password': this.password
                 })
                     .then((res) => {
+                        this.message("Авторизация прошла успешно!");
                         Event.$emit("updateUserProfile")
                         this.$router.push({path: '/cabinet'})
                         this.$loading(false)

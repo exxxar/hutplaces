@@ -59,19 +59,22 @@
         },
 
         methods: {
+            message(message) {
+                this.$notify({
+                    group: 'main',
+                    type: "warn",
+                    title: "Регистрация",
+                    text: message
+                })
+            },
             openRules() {
                 Event.$emit('modal', 'rules');
             },
             sendRequest(e) {
                 if (this.password != this.confirm_password) {
-                    Event.$emit("message", {
-                        title: 'Регистрация',
-                        message: 'Пароли не совпадают',
-                        type: 'warn'
-                    });
+                    this.message('Пароли не совпадают')
                     return;
                 }
-
 
                 this.$loading(true)
                 this.$store.dispatch('registerUser', {
@@ -84,16 +87,18 @@
                             username: this.email,
                             password: this.password,
                         }).then(() => {
+                            this.message('Спасибо за регистрацию!')
                             this.$router.push({path: '/cabinet'})
                             Event.$emit("updateUserProfile")
-
                             this.$loading(false)
                         }).catch(() => {
                             this.$loading(false)
                         })
-                    }).catch(() => {
-                    this.$loading(false)
-                })
+                    })
+                    .catch((msg) => {
+                        this.message(msg.data.message)
+                        this.$loading(false)
+                    })
             },
 
 

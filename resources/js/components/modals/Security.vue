@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="modal-body security-modal">
         <div class="logo">
             <img v-lazy="'/img/security-icon-1.png'" alt="">

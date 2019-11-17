@@ -34,7 +34,7 @@
         methods: {
             refreshImages() {
                 this.$loading(true)
-                this.$store.dispatch("loadImages")
+                this.$store.dispatch("loadAllSettings")
                 this.$loading(false)
             },
             selectImage(img) {

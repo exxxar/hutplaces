@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Content;
 use App\Enums\AchievementCategoryType;
 use App\Enums\Lifetime;
+use App\Enums\TriggerType;
+use App\Level;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class ContentController extends Controller
 {
@@ -132,6 +135,39 @@ class ContentController extends Controller
         return redirect()->route('content.index')
             ->with('success','Content deleted successfully');
     }
+
+
+    public function allSettings(Request $request){
+        /*context.commit('SET_LIFETIME', response.data.lifetime);
+        context.commit('SET_TRIGGER_TYPE', response.data.trigger_types);
+        context.commit('SET_IMAGES', response.data.images);
+        context.commit('SET_LEVELS', response.data.levels);*/
+
+        $tmp_lifetime = [];
+        foreach(Lifetime::getInstances() as $key=>$value)
+            array_push($tmp_lifetime,$value);
+
+        $tmp_images = [];
+        $filesInFolder = File::files(public_path() . '/img/avatars');
+        foreach ($filesInFolder as $f) {
+            $file = pathinfo($f);
+            array_push($tmp_images, $file['filename'] . "." . $file['extension']);
+        }
+
+        $tmp_trigger_types = [];
+        foreach (TriggerType::getInstances() as $trigger)
+            array_push($tmp_trigger_types, $trigger);
+
+        return response()
+            ->json([
+                "status"=>200,
+                "lifetime"=>$tmp_lifetime,
+                'images' => $tmp_images,
+                "levels"=> Level::all(),
+               " trigger_types" => $tmp_trigger_types
+            ]);
+    }
+
 
     public function all(Request $request,$type) {
 

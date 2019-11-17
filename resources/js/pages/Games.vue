@@ -140,7 +140,7 @@
                     </game-item>
                 </ul>
             </div>
-            <div class="no-items" v-if="lotteries.length==0">
+            <div class="no-items" v-if="prepareLots(0,10000).length==0">
                 <img src="img/empty-ru.png" alt="">
             </div>
 
@@ -200,8 +200,8 @@
                     {min: 50, max: 99, title: '50-100'},
                     {min: 100, max: 199, title: '100-200'},
                     {min: 200, max: 999, title: '200-1000'},
-                    {min: 1000, max: 9999, title: '1000-10000'},
-                    {min: 10000, max: 100000, title: '10000+'},
+                    {min: 1000, max: 9999, title: '1000+'},
+
                 ],
                 user: this.loadCurrentUser,
                 lotteries: this.loadGames,
@@ -272,7 +272,7 @@
         methods: {
             fetchData() {
                 this.$loading(true)
-                this.$store.dispatch("loadLifetime")
+                this.$store.dispatch("loadAllSettings")
                 this.$store.dispatch("loadGames")
                     .then(() => {
                         this.$loading(false)

@@ -124,8 +124,8 @@
             <div class="row">
                 <div class="half">
                     <div class="input-group">
-                        <button class="btn btn-yellow full" type="submit"
-                                v-html="$lang.modals.user_card_panel.save"></button>
+                        <label for="start_at">Начать в</label>
+                        <input type="datetime-local" id="start_at" v-model="lottery_data.start_at">
                     </div>
                 </div>
                 <div class="half">
@@ -143,14 +143,10 @@
             </div>
 
             <div class="row">
-
-                    <div class="input-group">
-                        <label for="start_at">Начать в</label>
-                        <input type="datetime-local" id="start_at" v-model="lottery_data.start_at">
-                    </div>
-
-
-
+                <div class="input-group">
+                    <button class="btn btn-yellow full" type="submit"
+                            v-html="$lang.modals.user_card_panel.save"></button>
+                </div>
             </div>
 
         </form>
@@ -182,10 +178,10 @@
 
     export default {
         name: 'UserCardPanel',
-        props:["user"],
+        props: ["user"],
         data: function () {
             return {
-                lifetime:this.$store.getters.LIFETIME,
+                lifetime: this.$store.getters.LIFETIME,
                 isCard: true,
                 console: false,
                 active: true,
@@ -201,7 +197,7 @@
                     title: '',
                     description: '',
                     value: '',
-                    start_at:'',
+                    start_at: '',
                     card: null,
                 },
             }
