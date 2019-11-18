@@ -195,13 +195,12 @@
                 this.save()
             },
             save() {
-                let formData = new FormData()
+                this.$store.dispatch("updateAuctionLot", {
+                    id: this.auc.id,
+                    lifetime: this.selected_lifetime,
+                    active: this.active ? 1 : 0,
 
-                formData.append('id', this.game.id)
-                formData.append('active', this.active ? 1 : 0)
-                formData.append('lifetime', this.selected_lifetime)
-
-                this.$store.dispatch("updateAuctionLot", {id: this.auc.id})
+                })
                     .then(() => {
                         this.message(this.$lang.game.success_1)
                         this.$store.dispatch("loadAuctions")

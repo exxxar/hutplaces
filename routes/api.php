@@ -103,9 +103,12 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('/auction/add', 'AuctionController@addLot');
 
+    Route::post('/auction/bid', 'AuctionController@bidLot');
+    Route::post('/auction/buy', 'AuctionController@buyLot');
+
 
     Route::get('/auction/cancel/{id}', 'AuctionController@cancelLot');
-    Route::get('/auction/update/{id}/{time}', 'AuctionController@updateLot');
+    Route::post('/auction/update', 'AuctionController@updateLot');
 
     Route::post('/promo/activate', 'PromocodesController@activate');
 

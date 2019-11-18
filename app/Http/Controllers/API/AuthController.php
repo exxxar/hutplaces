@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
@@ -27,10 +28,17 @@ class AuthController extends Controller
 
     public function register()
     {
+        $tmp_images = [];
+        $filesInFolder = File::files(public_path() . '/img/avatars');
+        foreach ($filesInFolder as $f) {
+            $file = pathinfo($f);
+            array_push($tmp_images, $file['filename'] . "." . $file['extension']);
+        }
+
         $user = User::create([
             'name' => request('name'),
             'email' => request('email'),
-            'avatar' => '',
+            'avatar' => $tmp_images[random_int(0,count($tmp_images)-1)],
             'bonus' => 0,
             'is_trader' => false,
             'level_id' => (Level::where("level", "1")->first())->id,

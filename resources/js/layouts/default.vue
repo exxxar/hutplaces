@@ -238,6 +238,10 @@
                 this.message("Рандомы", `Начало розыгрыша!`, 'warn');
             });
 
+            pusher.subscribe('auction-chanel').bind('auction-event', (data) => {
+                this.$store.dispatch("loadAuctions", {type: 0})
+              });
+
             pusher.subscribe('message-chanel').bind('message-event', (data) => {
                 this.message(`${data.title}`, `${data.message}`, 'warn');
             });

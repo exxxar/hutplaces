@@ -9,8 +9,10 @@ use App\Enums\GameType;
 use App\Enums\ItemType;
 use App\Enums\Lifetime;
 use App\Enums\LotType;
+use App\Events\AuctionNotification;
 use App\Item;
 use App\User;
+use DateTime;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -22,6 +24,7 @@ class AuctionController extends Controller
 {
 
     use TelegramNotify;
+
     /**
      * Display a listing of the resource.
      *
@@ -240,6 +243,42 @@ class AuctionController extends Controller
                 'status' => 200
             ]);
 
+
+        foreach (Auction::all() as $auc) {
+            $time = $auc->lifetime->value;
+            $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
+
+            $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(
+                    new DateTime($auc->updated_at == null ? $auc->created_at : $auc->updated_at))
+            );
+
+            $time_2 = date_timestamp_get(now());
+
+            if ($auc->is_active == 1 && $time_1 < $time_2 && $auc->buyer_id != null) {
+                $user = User::find($auc->buyer_id);
+
+                $lot = (Lot::where("id", $auc->lot_id)->first());
+                $card_id = $lot->cards_id;
+                $item_id = $lot->items_id;
+
+                if ($card_id != null)
+                    $user->cards()->attach($card_id);
+
+                if ($item_id != null)
+                    $user->items()->attach($item_id);
+
+                $auc->is_active = 0;
+
+                $auc->save();
+            }
+
+            if ($auc->is_active == 1 && $time_1 < $time_2 && $auc->buyer_id == null) {
+                $auc->is_active = 0;
+                $auc->save();
+            }
+        }
+
+
         switch (intval($type)) {
             default:
             case 0: //all
@@ -277,11 +316,12 @@ class AuctionController extends Controller
     }
 
 
-    public function updateLot(Request $request, $id, $time)
+    public function updateLot(Request $request)
     {
         try {
-            $auc = Auction::find($id);
-            $auc->lifetime = Lifetime::getInstance(intval($time));
+            $auc = Auction::find($request->get("id"));
+            $auc->is_active = $request->get("active");
+            $auc->lifetime = Lifetime::getInstance(intval($request->get("lifetime")))->value;
             $auc->updated_at = date('Y-m-d G:i:s');
             $auc->save();
 
@@ -297,6 +337,131 @@ class AuctionController extends Controller
                     "message" => "Lot update error!"
                 ]);
         }
+
+    }
+
+    public function buyLot(Request $request)
+    {
+
+        $user = User::find(auth("api")->user()->id);
+
+
+        $id = $request->get("id");
+        $auc = Auction::whith(["lot", "lot.card", "lot.item"])->find($id);
+
+        $time = $auc->lifetime->value;
+        $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
+
+        $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(
+                new DateTime($auc->updated_at == null ? $auc->created_at : $auc->updated_at))
+        );
+
+        $time_2 = date_timestamp_get(now());
+
+
+        if ($auc->is_active == 0 || $time_1 < $time_2)
+            return response()
+                ->json([
+                    "message" => "Auction is not active at this moment!",
+                    "status" => 200,
+                ]);
+
+        if ($user->money < $auc->buy_price)
+            return response()
+                ->json([
+                    "message" => "You haven't money to buy this lot!",
+                    "status" => 200,
+                ]);
+
+        $user->money -= $auc->buy_price;
+
+        $auc->buyer_id = $user->id;
+
+        $lot = (Lot::where("id", $auc->lot_id)->first());
+        $card_id = $lot->cards_id;
+        $item_id = $lot->items_id;
+
+        if ($card_id != null)
+            $user->cards()->attach($card_id);
+
+        if ($item_id != null)
+            $user->items()->attach($item_id);
+
+        $auc->is_active = 0;
+        $auc->save();
+
+        broadcast(new AuctionNotification($auc));
+
+        return response()
+            ->json([
+                "message" => "Success!",
+                "status" => 200,
+            ]);
+    }
+
+    public function bidLot(Request $request)
+    {
+        $user = User::find(auth("api")->user()->id);
+
+
+        $id = $request->get("id");
+        $auc = Auction::whith(["lot", "lot.card", "lot.item"])->find($id);
+
+        $time = $auc->lifetime->value;
+        $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
+
+        $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(
+                new DateTime($auc->updated_at == null ? $auc->created_at : $auc->updated_at))
+        );
+
+        $time_2 = date_timestamp_get(now());
+
+
+        if ($auc->is_active == 0 || $time_1 < $time_2)
+            return response()
+                ->json([
+                    "message" => "Auction is not active at this moment!",
+                    "status" => 200,
+                ]);
+
+        if ($user->money < ($auc->bid_price + $auc->step_price))
+            return response()
+                ->json([
+                    "message" => "You haven't money to make bid on this lot!",
+                    "status" => 200,
+                ]);
+
+
+        if ($auc->bid_price + $auc->step_price >= $auc->buy_price) {
+            $user->money -= $auc->buy_price;
+
+            $auc->buyer_id = $user->id;
+
+            $lot = (Lot::where("id", $auc->lot_id)->first());
+            $card_id = $lot->cards_id;
+            $item_id = $lot->items_id;
+
+            if ($card_id != null)
+                $user->cards()->attach($card_id);
+
+            if ($item_id != null)
+                $user->items()->attach($item_id);
+
+            $auc->is_active = 0;
+        } else {
+            $auc->bid_price += $auc->step_price;
+            $auc->buyer_id = $user->id;
+        }
+
+        $auc->save();
+
+        broadcast(new AuctionNotification($auc));
+
+        return response()
+            ->json([
+                "message" => "Success!",
+                "status" => 200,
+            ]);
 
     }
 }

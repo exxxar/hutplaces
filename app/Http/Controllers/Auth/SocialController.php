@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
@@ -48,9 +49,9 @@ class SocialController extends Controller
         $data = json_decode($response->getContent());
 
         if (isset($data->error))
-            return redirect()->to(env('APP_URL').'/signin?error=409');
+            return redirect()->to(env('APP_URL') . '/signin?error=409');
 
-        return redirect()->to(env('APP_URL').'/cabinet?token='.$data->access_token);
+        return redirect()->to(env('APP_URL') . '/cabinet?token=' . $data->access_token);
 
     }
 
@@ -64,8 +65,8 @@ class SocialController extends Controller
         if (isset($socialiteUser->accessTokenResponseBody["email"]))
             $email = $socialiteUser->accessTokenResponseBody["email"];
 
-        if ($email==null)
-            $email =  $socialiteUser->getId().'@'.env('APP_NAME');
+        if ($email == null)
+            $email = $socialiteUser->getId() . '@' . env('APP_NAME');
 
         if ($user = $this->findUserByEmail($provider, $email)) {
             $this->addSocialAccount($provider, $user, $socialiteUser);
@@ -73,14 +74,19 @@ class SocialController extends Controller
             return $user;
         }
 
-
+        $tmp_images = [];
+        $filesInFolder = File::files(public_path() . '/img/avatars');
+        foreach ($filesInFolder as $f) {
+            $file = pathinfo($f);
+            array_push($tmp_images, $file['filename'] . "." . $file['extension']);
+        }
 
         $user = User::create([
             'name' => $socialiteUser->getName(),
             'email' => $email,
-            'avatar' => $socialiteUser->getAvatar(),
+            'avatar' => $tmp_images[random_int(0, count($tmp_images) - 1)],
             'password' => bcrypt($socialiteUser->getId()),
-            'level_id'=>(Level::where("level","1")->first())->id
+            'level_id' => (Level::where("level", "1")->first())->id
         ]);
 
         $this->addSocialAccount($provider, $user, $socialiteUser);
