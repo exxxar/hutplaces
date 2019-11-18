@@ -347,7 +347,7 @@ class AuctionController extends Controller
 
 
         $id = $request->get("id");
-        $auc = Auction::whith(["lot", "lot.card", "lot.item"])->find($id);
+        $auc = Auction::with(["lot", "lot.card", "lot.item"])->find($id);
 
         $time = $auc->lifetime->value;
         $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
@@ -405,7 +405,7 @@ class AuctionController extends Controller
 
 
         $id = $request->get("id");
-        $auc = Auction::whith(["lot", "lot.card", "lot.item"])->find($id);
+        $auc = Auction::with(["lot", "lot.card", "lot.item"])->find($id);
 
         $time = $auc->lifetime->value;
         $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
