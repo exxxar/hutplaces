@@ -152,8 +152,8 @@
         methods: {
             bidLot() {
                 this.$store.dispatch("doBidLot", {id: this.auc.id})
-                    .then(() => {
-                        this.message("Вы сделали ставку!")
+                    .then((res) => {
+                        this.message(res.data.message)
                     }).catch(() => {
                     this.message("Сделать ставку не удалось, обратитесь к администратору!")
                 });
@@ -161,8 +161,8 @@
             },
             buyLot() {
                 this.$store.dispatch("doBuyLot", {id: this.auc.id})
-                    .then(() => {
-                        this.message("Вы преобрели данный лот!")
+                    .then((res) => {
+                        this.message(res.data.message)
                     }).catch(() => {
                     this.message("Неудалось преобрести лот, обратитесь к администрации")
                 });

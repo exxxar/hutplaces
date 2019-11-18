@@ -88,7 +88,7 @@ let actions = {
         })
     },
     updateAuctionLot: (context, payload) => {
-        return axios.post(' /auction/update', payload)
+        return axios.post('/auction/update', payload)
     }
 
 };

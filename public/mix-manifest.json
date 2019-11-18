@@ -19,8 +19,5 @@
     "/layout-layouts-auth-vue.js": "/layout-layouts-auth-vue.js",
     "/layout-layouts-default-vue.js": "/layout-layouts-default-vue.js",
     "/layout-layouts-start-vue.js": "/layout-layouts-start-vue.js",
-    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js",
-    "/layout-components-modals-ConfirmDialog-vue.js": "/layout-components-modals-ConfirmDialog-vue.js",
-    "/layout-components-modals-CardInfo-vue.js": "/layout-components-modals-CardInfo-vue.js",
-    "/layout-components-modals-Security-vue.js": "/layout-components-modals-Security-vue.js"
+    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js"
 }

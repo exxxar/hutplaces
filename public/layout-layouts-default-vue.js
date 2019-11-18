@@ -1055,6 +1055,11 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.message("Рандомы", "\u041D\u0430\u0447\u0430\u043B\u043E \u0440\u043E\u0437\u044B\u0433\u0440\u044B\u0448\u0430!", 'warn');
     });
+    pusher.subscribe('auction-chanel').bind('auction-event', function (data) {
+      _this.$store.dispatch("loadAuctions", {
+        type: 0
+      });
+    });
     pusher.subscribe('message-chanel').bind('message-event', function (data) {
       _this.message("".concat(data.title), "".concat(data.message), 'warn');
     });
