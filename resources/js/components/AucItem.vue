@@ -5,7 +5,8 @@
             <div class="buyer" v-if="auc.buyer_id!=null">
                 <router-link tag="div" class="user"
                              :to="{ name: 'PlayerInfo',params: {userId:auc.buyer_id==null} }">
-                    <img :src="prepareAvatar(auc.buyer.avatar)" alt="">
+                    <img v-if="auc.buyer.avatar==null||auc.buyer.avatar==''" :src="'/img/noavatar.png'" alt="">
+                    <img v-else :src="`/img/avatars/${auc.buyer.avatar}`" alt="">
                 </router-link>
             </div>
 
@@ -300,6 +301,20 @@
         justify-content: center;
         align-items: center;
 
+        &:hover {
+            .controlls {
+                opacity:1.0;
+                transition: opacity .3s;
+            }
+
+            .price {
+                height: 70px;
+                transition: .3s;
+                font-size:10px;
+
+            }
+        }
+
         .controlls {
             position: absolute;
             bottom: 80px;
@@ -312,6 +327,8 @@
             color: white;
             font-size: 16px;
             line-height: 120%;
+            opacity:0.0;
+            transition: opacity .3s;
 
             .btn {
                 &:nth-of-type(1) {
@@ -376,7 +393,9 @@
             color: #ffffff;
             font-weight: bold;
             bottom: 0px;
-            height: 70px;
+            height: 5px;
+            overflow: hidden;
+            transition: .3s;
             right: 0px;
             background: rgba(54, 54, 54, 0.56);
             padding: 10px;
@@ -518,10 +537,10 @@
 
         .console {
             position: absolute;
-            top: 10px;
+            top: -28px;
             left: 0px;
             padding: 0px 10px;
-            font-size: 40px;
+            font-size: 20px;
             color: #ffff00;
             text-shadow: 2px 2px 2px black;
         }

@@ -329,10 +329,22 @@
         justify-content: center;
         align-items: center;
 
+        &:hover {
+            .price,
+            .sale,
+            .controlls {
+                opacity: 1;
+                transition: 0.3s;
+            }
+        }
+
         .controlls {
             position: absolute;
             bottom: 0;
             left: 0px;
+
+            opacity: 0;
+            transition: 0.3s;
 
             button {
                 color: #2c3e50;
@@ -378,6 +390,9 @@
             z-index: 14;
             top: 0;
             right: 0;
+            opacity: 0;
+            transition: 0.3s;
+
             &:after {
                 content: attr(data-sale);
                 position: absolute;
@@ -399,6 +414,9 @@
             background: yellow;
             padding: 10px;
             border-radius: 5px 0px 0px 0px;
+
+            opacity: 0;
+            transition: 0.3s;
         }
 
         .progress {
@@ -418,6 +436,9 @@
             .info {
                 position: absolute;
                 z-index: 5;
+                left: 50px;
+                top: 13px;
+                font-size: 12px;
             }
             .line {
                 height: 100%;
@@ -528,11 +549,12 @@
 
         .console {
             position: absolute;
-            top: 10px;
+            top: -28px;
             left: 0px;
             padding: 0px 10px;
-            font-size: 40px;
+            font-size: 20px;
             color: #ffff00;
+            z-index: 10;
             text-shadow: 2px 2px 2px black;
         }
 

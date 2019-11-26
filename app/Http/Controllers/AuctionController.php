@@ -327,6 +327,7 @@ class AuctionController extends Controller
             $auc->updated_at = date('Y-m-d G:i:s');
             $auc->save();
 
+            broadcast(new AuctionNotification($auc));
             return response()
                 ->json([
                     "status" => 200,
