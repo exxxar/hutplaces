@@ -310,7 +310,7 @@
             .price {
                 height: 70px;
                 transition: .3s;
-                font-size:10px;
+                font-size:14px;
 
             }
         }
@@ -403,7 +403,8 @@
             border-radius: 0;
             display: flex;
             align-items: center;
-            font-size: 14px;
+            font-size: 10px;
+            opacity: 1;
             line-height: 140%;
             p {
                 width: 32%;
