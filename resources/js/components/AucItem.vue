@@ -1,14 +1,14 @@
 <template>
     <div class="card-wrapper">
-        <div class="lot-item" v-if="auc">
-
+        <div class="lot-item" :style="cssProps" v-if="auc">
+<!--
             <div class="buyer" v-if="auc.buyer_id!=null">
                 <router-link tag="div" class="user"
                              :to="{ name: 'PlayerInfo',params: {userId:auc.buyer_id==null} }">
                     <img v-if="auc.buyer.avatar==null||auc.buyer.avatar==''" :src="'/img/noavatar.png'" alt="">
                     <img v-else :src="`/img/avatars/${auc.buyer.avatar}`" alt="">
                 </router-link>
-            </div>
+            </div>-->
 
             <div class="card-info" v-if="auc.lot_type=='2'"
                  @click="show(`card-show-${auc.id}`)">i
@@ -19,6 +19,14 @@
 
             <card-tabs>
                 <card-section title="" active="true">
+                    <div class="buyer" v-if="auc.buyer_id!=null">
+                        <router-link tag="div" class="user"
+                                     :to="{ name: 'PlayerInfo',params: {userId:auc.buyer_id==null} }">
+                            <img v-if="auc.buyer.avatar==null||auc.buyer.avatar==''" :src="'/img/noavatar.png'" alt="">
+                            <img v-else :src="`/img/avatars/${auc.buyer.avatar}`" alt="">
+                        </router-link>
+                    </div>
+
                     <div class="card" v-if="auc.lot_type=='2'">
                         <img v-if="auc.lot.card.image==null" v-lazy="'/img/item-element.jpg'" alt="">
                         <img v-else v-lazy="`/img/cards/${auc.lot.card.image}`" alt="">
@@ -70,18 +78,18 @@
                     <card-section title="" v-if="user.is_trader">
                         <scroll class="scroll-area-2">
 
-                            <div class="input-group">
-                                <div class="cancel" @click="cancelLot(auc.id)"
-                                     v-if="auc.seller_id==user.id&&auc.buyer_id==null">
-                                    <i
-                                            class="far fa-times-circle"></i></div>
-                            </div>
+                            <!--  <div class="input-group">
+                                  <div class="cancel" @click="cancelLot(auc.id)"
+                                       v-if="auc.seller_id==user.id&&auc.buyer_id!=null">
+                                      <i
+                                              class="far fa-times-circle"></i></div>
+                              </div>-->
 
                             <div class="input-group">
                                 <label :for="`active-type-${auc.id}`" class="col-form-label"
                                        v-html="$lang.game.active"></label>
 
-                                <toggle :check="auc.active==1?true:false"
+                                <toggle :check="auc.is_active==1"
                                         :id="`active-type-${auc.id}`"
                                         v-on:check="setActive($event)"
                                         :labelon="$lang.game.yes"
@@ -146,7 +154,7 @@
         props: ["auc", "controls", "lifetime", "user"],
         data() {
             return {
-                active: 0 || this.auc.active,
+                is_active: 0 || this.auc.is_active,
                 selected_lifetime: this.auc.lifetime,
             }
         },
@@ -192,23 +200,23 @@
                 this.save()
             },
             setActive(active) {
-                this.active = active
+                this.is_active = active
                 this.save()
             },
             save() {
                 this.$store.dispatch("updateAuctionLot", {
                     id: this.auc.id,
                     lifetime: this.selected_lifetime,
-                    active: this.active ? 1 : 0,
+                    active: this.is_active ? 1 : 0,
 
                 })
                     .then(() => {
-                        this.message(this.$lang.game.success_1)
+
                         this.$store.dispatch("loadAuctions")
-                    }).catch(() => {
-                    this.message(this.$lang.game.error_1)
+                    }).catch((msg) => {
+                    console.log(msg);
                 })
-                this.message(this.$lang.game.success_2)
+                this.message(this.$lang.game.success_1)
             },
             getCard() {
                 return this.auc.lot.card;
@@ -238,6 +246,13 @@
             },
 
 
+        },
+        computed: {
+            cssProps() {
+                return {
+                    '--opacity': (this.auc.is_active?1:0.5)
+                }
+            }
         },
         components: {
             Card, CardTabs, CardSection, FlipCountdown, Scroll, Toggle
@@ -300,17 +315,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        opacity: var(--opacity);
 
         &:hover {
             .controlls {
-                opacity:1.0;
+                opacity: 1.0;
                 transition: opacity .3s;
             }
 
             .price {
                 height: 70px;
                 transition: .3s;
-                font-size:14px;
+                font-size: 14px;
 
             }
         }
@@ -327,7 +343,7 @@
             color: white;
             font-size: 16px;
             line-height: 120%;
-            opacity:0.0;
+            opacity: 0.0;
             transition: opacity .3s;
 
             .btn {
@@ -659,7 +675,6 @@
                 background-color: #d3d3d3c4;
                 box-shadow: 0px 0px 5px 0px black;
                 cursor: pointer;
-                border-radius: 10px 0px;
                 overflow: hidden;
                 img {
                     width: 100%;

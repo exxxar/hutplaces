@@ -55,6 +55,8 @@ let actions = {
             }
 
         });
+
+        return Promise.resolve();
     },
     doBidLot: (context, payload) => {
         let lotId = payload.id;

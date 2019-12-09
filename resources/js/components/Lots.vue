@@ -136,8 +136,13 @@
                         tmp_summary = tmp_summary.filter(lot =>
                             lot.lifetime == this.filters.lifetime);
 
+                    if (this.user.is_trader == 0)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.is_active == 1);
+
                     this.deadlineList = tmp_summary.filter(lot =>
                         lot.lifetime > 0);
+
 
                 }
 

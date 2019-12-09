@@ -284,7 +284,7 @@ class AuctionController extends Controller
             case 0: //all
                 return response()->json([
                     'auctions' => Auction::with(["lot", "lot.card", "lot.item", "buyer", "seller"])
-                        ->where("is_active",1)
+
                         ->get(),
                     'status' => 200
                 ]);
