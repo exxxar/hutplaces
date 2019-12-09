@@ -126,6 +126,15 @@ class AuctionController extends Controller
             ->with('success', 'Auction updated successfully');
     }
 
+    public function remove(Request $request){
+        DB::table("auctions")->where('id', $request->get('id'))->delete();
+
+        return response()
+            ->json([
+                "message"=>"success",
+                "status"=>200
+            ]);
+    }
     /**
      * Remove the specified resource from storage.
      *
