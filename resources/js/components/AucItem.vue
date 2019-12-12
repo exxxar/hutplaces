@@ -19,12 +19,11 @@
 
             <card-tabs>
                 <card-section title="" active="true">
-                    <div class="buyer" v-if="auc.buyer_id!=null">
-                        <router-link tag="div" class="user"
-                                     :to="{ name: 'PlayerInfo',params: {userId:auc.buyer_id==null} }">
-                            <img v-if="auc.buyer.avatar==null||auc.buyer.avatar==''" :src="'/img/noavatar.png'" alt="">
-                            <img v-else :src="`/img/avatars/${auc.buyer.avatar}`" alt="">
-                        </router-link>
+                    <div class="buyer" v-if="auc.buyer_id!=null&&user.id==auc.buyer_id">
+                        <i class="far fa-arrow-alt-circle-up"></i>
+                    </div>
+                    <div class="buyer new-buyer" v-if="auc.buyer_id!=null&&user.id!=auc.buyer_id">
+                        <i class="fas fa-exclamation-triangle"></i>
                     </div>
 
                     <div class="card" v-if="auc.lot_type=='2'">
@@ -53,10 +52,15 @@
                     </div>
 
 
-                    <div class="controlls" v-if="user">
-                        <div class="bid btn btn-yellow" @click="bidLot()">Bid</div>
-                        <div class="buy btn btn-orange" @click="buyLot()">Buy</div>
+                    <div class="controlls" v-if="user&&auc.lifetime!=0">
+                        <div class="bid btn btn-yellow" @click="bidLot()">Ставка</div>
+                        <div class="buy btn btn-orange" @click="buyLot()">Выкуп</div>
                     </div>
+
+                    <div class="controlls" v-if="user&&auc.lifetime==0">
+                             <div class="buy btn btn-yellow btn-rounded" @click="buyLot()">Выкуп</div>
+                    </div>
+
                     <div class="controlls" v-if="!user">
                         <router-link to="/signin" tag="button" class="btn btn-yellow "><i
                                 class="fas fa-sign-in-alt"></i></router-link>
@@ -353,6 +357,10 @@
 
                 &:nth-of-type(2) {
                     border-radius: 0px 5px 5px 0px;
+                }
+
+                &.btn-rounded {
+                    border-radius:5px;
                 }
             }
         }
@@ -655,32 +663,18 @@
         }
         .buyer {
             position: absolute;
-            z-index: 14;
-            top: 10px;
-            width: 100%;
-            left: 0px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
+            top: -28px;
+            left: 25px;
+            padding: 0;
+            font-size: 18px;
+            color: #03A9F4;
+            text-shadow: 2px 2px 2px black;
+            width: 50px;
 
-            .user {
-                width: 80px;
-                height: 80px;
-                border: 1px yellow solid;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                background-color: #d3d3d3c4;
-                box-shadow: 0px 0px 5px 0px black;
-                cursor: pointer;
-                overflow: hidden;
-                img {
-                    width: 100%;
-                    height: 100%;
-                }
+            &.new-buyer {
+                color: #FF9800;
             }
+
         }
         .cancel {
             position: relative;
