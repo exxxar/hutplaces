@@ -1,14 +1,14 @@
 <template>
     <div class="card-wrapper">
         <div class="lot-item" :style="cssProps" v-if="auc">
-<!--
-            <div class="buyer" v-if="auc.buyer_id!=null">
-                <router-link tag="div" class="user"
-                             :to="{ name: 'PlayerInfo',params: {userId:auc.buyer_id==null} }">
-                    <img v-if="auc.buyer.avatar==null||auc.buyer.avatar==''" :src="'/img/noavatar.png'" alt="">
-                    <img v-else :src="`/img/avatars/${auc.buyer.avatar}`" alt="">
-                </router-link>
-            </div>-->
+            <!--
+                        <div class="buyer" v-if="auc.buyer_id!=null">
+                            <router-link tag="div" class="user"
+                                         :to="{ name: 'PlayerInfo',params: {userId:auc.buyer_id==null} }">
+                                <img v-if="auc.buyer.avatar==null||auc.buyer.avatar==''" :src="'/img/noavatar.png'" alt="">
+                                <img v-else :src="`/img/avatars/${auc.buyer.avatar}`" alt="">
+                            </router-link>
+                        </div>-->
 
             <div class="card-info" v-if="auc.lot_type=='2'"
                  @click="show(`card-show-${auc.id}`)">i
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="controlls" v-if="user&&auc.lifetime==0">
-                             <div class="buy btn btn-yellow btn-rounded" @click="buyLot()">Выкуп</div>
+                        <div class="buy btn btn-yellow btn-rounded" @click="buyLot()">Выкуп</div>
                     </div>
 
                     <div class="controlls" v-if="!user">
@@ -186,17 +186,13 @@
             },
             remove() {
                 this.$store.dispatch("removeAuctionLot", {id: this.auc.id})
-                    .then(() => {
-                        this.message(this.$lang.game.success_3)
-
-                        this.$store.dispatch("loadAuctions")
-
+                    .then((res) => {
+                        this.message(res.data.message)
+                        this.$store.dispatch("loadAuctions",{type: this.auc.id})
                         document.querySelectorAll(".lot-item ul li:nth-of-type(1)").forEach(function (a) {
                             a.click();
                         });
-                    }).catch(() => {
-                    this.message(this.$lang.game.error_2)
-                })
+                    });
 
             },
             setLifetime(event) {
@@ -240,12 +236,12 @@
             hide(name) {
                 this.$modal.hide(name)
             },
-            message(message) {
+            message(msg) {
                 this.$notify({
                     group: 'main',
                     type: 'warn',
                     title: this.$lang.game.error_title,
-                    text: message
+                    text: msg
                 })
             },
 
@@ -254,7 +250,7 @@
         computed: {
             cssProps() {
                 return {
-                    '--opacity': (this.auc.is_active?1:0.5)
+                    '--opacity': (this.auc.is_active ? 1 : 0.5)
                 }
             }
         },
@@ -360,7 +356,7 @@
                 }
 
                 &.btn-rounded {
-                    border-radius:5px;
+                    border-radius: 5px;
                 }
             }
         }

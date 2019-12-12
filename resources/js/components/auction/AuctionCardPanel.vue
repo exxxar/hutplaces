@@ -312,10 +312,10 @@
                 this.auction_data.card = data;
                 this.auction_data.title = data.player;
                 this.auction_data.description = data.nationality;
-                this.auction_data.value = data.salary;
-                this.auction_data.buy_price = data.salary;
-                this.auction_data.bid_price = data.salary*0.1;
-                this.auction_data.step_price = data.salary*0.1;
+                this.auction_data.value = data.ovr;
+                this.auction_data.buy_price = 0;
+                this.auction_data.bid_price = 0;
+                this.auction_data.step_price = 0;
                 this.hide("card-add")
             },
 

@@ -34,13 +34,10 @@ let mutations = {
 
 let actions = {
     loadAuctions: (context, payload) => {
-        let formData = new FormData()
-
-        let type = payload.type == null || payload.type == undefined ? 0 : payload.type;
-
-        formData.append('type', type)
-
-        axios.post('/auction/all', formData).then(res => {
+        let type = payload.type;
+        axios.post('/auction/all', {
+            type: type
+        }).then(res => {
             switch (type) {
                 default:
                 case 0:

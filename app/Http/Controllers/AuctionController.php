@@ -126,15 +126,41 @@ class AuctionController extends Controller
             ->with('success', 'Auction updated successfully');
     }
 
-    public function remove(Request $request){
-        DB::table("auctions")->where('id', $request->get('id'))->delete();
+    public function remove(Request $request)
+    {
+        $user = User::find(auth("api")->user()->id);
 
-        return response()
-            ->json([
-                "message"=>"success",
-                "status"=>200
-            ]);
+        $auc = Auction::where("id", $request->get("id"))
+            ->first();
+
+        if (!$auc)
+            return response()
+                ->json([
+                    "message" => "Auction not found!",
+                    "status" => 404
+                ]);
+
+        if ($user->is_trader && $user->id == $auc->seller_id) {
+            $auc->delete();
+
+            broadcast(new AuctionNotification($auc));
+
+            return response()
+                ->json([
+                    "message" => "success",
+                    "status" => 200
+                ]);
+        }
+
+        if ($user->is_trader && $user->id != $auc->seller_id)
+            return response()
+                ->json([
+                    "message" => "You are not Seller of this card!",
+                    "status" => 200
+                ]);
+
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -221,6 +247,8 @@ class AuctionController extends Controller
             'seller_id' => $user->id,
         ]);
 
+        broadcast(new AuctionNotification($auc));
+
         $this->msg(
             sprintf(
                 "Создан новый лот на аукционе!\n<b>%s</b>\n\nhttp://hutplace.net/auction",
@@ -293,7 +321,6 @@ class AuctionController extends Controller
             case 0: //all
                 return response()->json([
                     'auctions' => Auction::with(["lot", "lot.card", "lot.item", "buyer", "seller"])
-
                         ->get(),
                     'status' => 200
                 ]);
@@ -387,6 +414,8 @@ class AuctionController extends Controller
 
         $user->money -= $auc->buy_price;
 
+        $user->save();
+
         $auc->buyer_id = $user->id;
 
         $lot = (Lot::where("id", $auc->lot_id)->first());
@@ -446,6 +475,7 @@ class AuctionController extends Controller
 
         if ($auc->bid_price + $auc->step_price >= $auc->buy_price) {
             $user->money -= $auc->buy_price;
+            $user->save();
 
             $auc->buyer_id = $user->id;
 
