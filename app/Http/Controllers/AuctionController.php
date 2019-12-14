@@ -242,7 +242,9 @@ class AuctionController extends Controller
             'step_price' => $request->get("step_price"),
             'bid_price' => $request->get("bid_price"),
             'buy_price' => $request->get("buy_price"),
-            'lifetime' => Lifetime::getInstance(intval($request->get("lifetime")))->value,
+            'lifetime' => $request->get("buy_price") == 0 ?
+                max(1, Lifetime::getInstance(intval($request->get("lifetime")))->value) :
+                Lifetime::getInstance(intval($request->get("lifetime")))->value,
             'is_active' => $request->get("active"),
             'seller_id' => $user->id,
         ]);
@@ -268,7 +270,7 @@ class AuctionController extends Controller
     {
         if (!$request->ajax())
             response()->json([
-                'message' => "Error",
+                'message' => "Ошибка доступа",
                 'status' => 200]);
 
 
@@ -307,6 +309,7 @@ class AuctionController extends Controller
                 $auc->is_active = 0;
 
                 $auc->save();
+
             }
 
             if ($auc->is_active == 1 && $time_1 < $time_2 && $auc->buyer_id == null) {
@@ -359,7 +362,9 @@ class AuctionController extends Controller
         try {
             $auc = Auction::find($request->get("id"));
             $auc->is_active = $request->get("active");
-            $auc->lifetime = Lifetime::getInstance(intval($request->get("lifetime")))->value;
+            $auc->lifetime = $auc->buy_price == 0 ?
+                min(1, Lifetime::getInstance(intval($request->get("lifetime")))->value) :
+                Lifetime::getInstance(intval($request->get("lifetime")))->value;
             $auc->updated_at = date('Y-m-d G:i:s');
             $auc->save();
 
@@ -391,7 +396,7 @@ class AuctionController extends Controller
         $time = $auc->lifetime->value;
         $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
 
-        $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(
+        $time_1 = (intval($timesArray[$time] * 60 * 60*1000) + date_timestamp_get(
                 new DateTime($auc->updated_at == null ? $auc->created_at : $auc->updated_at))
         );
 
@@ -442,42 +447,61 @@ class AuctionController extends Controller
 
     public function bidLot(Request $request)
     {
+
         $user = User::find(auth("api")->user()->id);
 
 
         $id = $request->get("id");
+        $step = $request->get("step");
+
         $auc = Auction::with(["lot", "lot.card", "lot.item"])->find($id);
+
+
+        $step = max($auc->step_price, $step);
+
 
         $time = $auc->lifetime->value;
         $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
 
-        $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(
+        $time_1 = (intval($timesArray[$time] * 60 * 60*1000) + date_timestamp_get(
                 new DateTime($auc->updated_at == null ? $auc->created_at : $auc->updated_at))
         );
 
         $time_2 = date_timestamp_get(now());
 
 
-        if ($auc->is_active == 0 || $time_1 < $time_2)
+
+        if ($auc->is_active == 0)
             return response()
                 ->json([
-                    "message" => "Auction is not active at this moment!",
+                    "message" => "Аукцион не активен!",
                     "status" => 200,
                 ]);
 
-        if ($user->money < ($auc->bid_price + $auc->step_price))
+        if ($time_1 < $time_2)
             return response()
                 ->json([
-                    "message" => "You haven't money to make bid on this lot!",
+                    "message" => "Время аукциона закончилось!",
+                    "status" => 200,
+                ]);
+
+        if ($user->money < ($auc->bid_price + $step))
+            return response()
+                ->json([
+                    "message" => "У вас недостаточно средств, пополните свой счет!",
                     "status" => 200,
                 ]);
 
 
-        if ($auc->bid_price + $auc->step_price >= $auc->buy_price) {
-            $user->money -= $auc->buy_price;
-            $user->save();
+        $user->money -= $auc->bid_price + $step;
+        $user->save();
 
-            $auc->buyer_id = $user->id;
+        $auc->bid_price += $step;
+        $auc->buyer_id = $user->id;
+        $auc->updated_at = Carbon::createFromTimestamp(date_timestamp_get(now())+30*1000)
+            ->toDateTimeString();
+
+        if ($auc->bid_price + $step >= $auc->buy_price&&$auc->buy_price>0) {
 
             $lot = (Lot::where("id", $auc->lot_id)->first());
             $card_id = $lot->cards_id;
@@ -490,12 +514,11 @@ class AuctionController extends Controller
                 $user->items()->attach($item_id);
 
             $auc->is_active = 0;
-        } else {
-            $auc->bid_price += $auc->step_price;
-            $auc->buyer_id = $user->id;
         }
 
         $auc->save();
+
+
 
         broadcast(new AuctionNotification($auc));
 

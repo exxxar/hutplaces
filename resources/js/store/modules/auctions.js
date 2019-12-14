@@ -57,12 +57,14 @@ let actions = {
     },
     doBidLot: (context, payload) => {
         let lotId = payload.id;
+        let step = payload.step;
 
         if (lotId == null || lotId == undefined)
             return Promise.reject(new Error("Не указан идентификатор лота!"))
 
         return axios.post('/auction/bid', {
-            id: lotId
+            id: lotId,
+            step:step
         })
 
     },

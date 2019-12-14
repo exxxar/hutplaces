@@ -6,20 +6,20 @@
             <div class="filters-panel-wrapper">
                 <div class="filters-panel">
                     <div class="form-group">
-                        <label>Card title</label>
+                        <label>Название карты</label>
                         <input type="text" maxlength="30" v-model="filters.title">
                     </div>
 
                     <div class="row">
                         <div class="half">
                             <div class="form-group">
-                                <label>Min Step price</label>
+                                <label>Минимальный щаг ставки</label>
                                 <input type="number" min="0" max="99999999" v-model="filters.min_step_price">
                             </div>
                         </div>
                         <div class="half">
                             <div class="form-group">
-                                <label>Max Step price</label>
+                                <label>Максимальный шаг ставки</label>
                                 <input type="number" min="0" max="99999999" v-model="filters.max_step_price">
                             </div>
                         </div>
@@ -28,14 +28,14 @@
                     <div class="row">
                         <div class="half">
                             <div class="form-group">
-                                <label>Min Bid price</label>
+                                <label>Минимальная цена ставки</label>
                                 <input type="number" min="0" max="99999999" v-model="filters.min_bid_price">
                             </div>
                         </div>
                         <div class="half">
 
                             <div class="form-group">
-                                <label>Max Bid price</label>
+                                <label>Максимальная цена ставки</label>
                                 <input type="number" min="0" max="99999999" v-model="filters.max_bid_price">
                             </div>
                         </div>
@@ -44,21 +44,36 @@
                     <div class="row">
                         <div class="half">
                             <div class="form-group">
-                                <label>Min Buy price</label>
+                                <label>Минимальная цена выкупа</label>
                                 <input type="number" min="0" max="99999999" v-model="filters.min_buy_price">
                             </div>
                         </div>
                         <div class="half">
                             <div class="form-group">
-                                <label>Max Buy price</label>
+                                <label>Максимальная цена выкупа</label>
                                 <input type="number" min="0" max="99999999" v-model="filters.max_buy_price">
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
+                        <div class="half">
+                            <div class="form-group">
+                                <label>Минимальный OVR</label>
+                                <input type="number" min="0" max="99999999" v-model="filters.min_ovr">
+                            </div>
+                        </div>
+                        <div class="half">
+                            <div class="form-group">
+                                <label>Максимальный OVR</label>
+                                <input type="number" min="0" max="99999999" v-model="filters.max_ovr">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div v-if="lifetime!=null&&lifetime.length>0" class="form-group">
-                            <label>Lifetime</label>
+                            <label>Срок жизни</label>
                             <select v-model="filters.lifetime">
                                 <option v-for="time in lifetime" :value="time.value">{{prepareLifetime(time.key)}}
                                 </option>
@@ -179,6 +194,8 @@
                     max_buy_price: 0,
                     min_step_price: 0,
                     max_step_price: 0,
+                    min_ovr: 0,
+                    max_ovr: 0,
                     lifetime: 0,
                     console_type: true,
                     all_consoles: true

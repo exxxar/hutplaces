@@ -46,18 +46,29 @@
                             <span> step  </span>{{auc.step_price}} <span> {{$lang.games.money}}  </span></p>
                         <p class="bid-price"><span> bid  </span>{{auc.bid_price}} <span> {{$lang.games.money}}  </span>
                         </p>
-                        <p class="buy-price"><span> buy  </span>{{auc.buy_price}} <span> {{$lang.games.money}}  </span>
+                        <p v-if="auc.buy_price>0" class="buy-price"><span> buy  </span>{{auc.buy_price}} <span> {{$lang.games.money}}  </span>
+                        </p>
+
+                        <p v-if="auc.buy_price==0" class="buy-price"><span> buy  </span> <i class="fas fa-infinity"></i> <span> {{$lang.games.money}}  </span>
                         </p>
 
                     </div>
 
 
-                    <div class="controlls" v-if="user&&auc.lifetime!=0">
-                        <div class="bid btn btn-yellow" @click="bidLot()">Ставка</div>
+                    <div class="controlls" v-if="user&&auc.lifetime!=0&&auc.buy_price!=0">
+                        <div class="bid btn btn-yellow" @click="show(`calc-card-${auc.id}`)">Ставка</div>
                         <div class="buy btn btn-orange" @click="buyLot()">Выкуп</div>
                     </div>
 
-                    <div class="controlls" v-if="user&&auc.lifetime==0">
+                    <div class="controlls" v-if="user&&auc.lifetime!=0&&auc.buy_price==0">
+                        <div class="bid btn btn-yellow btn-rounded" @click="show(`calc-card-${auc.id}`)">Ставка</div>
+                    </div>
+
+                    <div class="controlls" v-if="user&&auc.lifetime==0&&auc.buy_price!=0">
+                        <div class="buy btn btn-yellow btn-rounded" @click="buyLot()">Выкуп</div>
+                    </div>
+
+                    <div class="controlls" v-if="user&&auc.lifetime==0&&auc.buy_price!=0">
                         <div class="buy btn btn-yellow btn-rounded" @click="buyLot()">Выкуп</div>
                     </div>
 
@@ -129,6 +140,23 @@
                 </scroll>
             </modal>
 
+
+            <modal :name="`calc-card-${auc.id}`" :adaptive="true" width="100%" height="100%">
+                <scroll class="scroll-area">
+                    <a href="#" @click="hide(`calc-card-${auc.id}`)" class="close"></a>
+                    <calc
+                            :start="auc.step_price"
+                            :buttons="{ok:'Сделать ставку',cancel:'Отменить'}"
+                            :title="'Выбор шага ставки'"
+                            :description="'Позволяет выставить случайный шаг ставки'"
+                            v-on:result="bidLot($event)"
+                            v-on:close="hide(`calc-card-${auc.id}`)">
+
+                    </calc>
+                </scroll>
+            </modal>
+
+
             <modal v-if="auc.lot_type=='1'||auc.lot_type=='0'" :name="`card-show-item-${auc.id}`" :adaptive="true"
                    width="100%" height="100%">
                 <scroll class="scroll-area">
@@ -149,6 +177,7 @@
 <script>
     import FlipCountdown from 'vue2-flip-countdown'
     import Card from '@/components/admin/Card.vue'
+    import Calc from '@/components/modals/MoneyCalcDialog.vue'
     import {Tabs as CardTabs, Tab as CardSection} from 'vue-simple-tabs';
     import Scroll from 'vue-custom-scrollbar'
 
@@ -163,8 +192,13 @@
             }
         },
         methods: {
-            bidLot() {
-                this.$store.dispatch("doBidLot", {id: this.auc.id})
+            bidLot(step) {
+                console.log(step);
+
+                this.$store.dispatch("doBidLot", {
+                    id: this.auc.id,
+                    step: Math.max(this.auc.step_price, step)
+                })
                     .then((res) => {
                         this.message(res.data.message)
                     }).catch(() => {
@@ -188,7 +222,7 @@
                 this.$store.dispatch("removeAuctionLot", {id: this.auc.id})
                     .then((res) => {
                         this.message(res.data.message)
-                        this.$store.dispatch("loadAuctions",{type: this.auc.id})
+                        this.$store.dispatch("loadAuctions", {type: this.auc.id})
                         document.querySelectorAll(".lot-item ul li:nth-of-type(1)").forEach(function (a) {
                             a.click();
                         });
@@ -255,7 +289,7 @@
             }
         },
         components: {
-            Card, CardTabs, CardSection, FlipCountdown, Scroll, Toggle
+            Card, CardTabs, CardSection, FlipCountdown, Scroll, Toggle, Calc
         },
 
     }
@@ -327,6 +361,7 @@
                 height: 70px;
                 transition: .3s;
                 font-size: 14px;
+
 
             }
         }
@@ -434,6 +469,10 @@
                     text-transform: uppercase;
                     font-size: 10px;
                     color: yellow;
+                }
+
+                i {
+                    line-height: 150%;
                 }
             }
         }

@@ -128,6 +128,11 @@
                             lot.step_price >= this.filters.min_step_price &&
                             lot.step_price <= this.filters.max_step_price);
 
+                    if (this.filters.max_ovr > 0)
+                        tmp_summary = tmp_summary.filter(lot =>
+                            lot.value >= this.filters.min_ovr &&
+                            lot.value <= this.filters.max_ovr);
+
                     if (!this.filters.all_consoles)
                         tmp_summary = tmp_summary.filter(lot =>
                             lot.console_type == (this.filters.console_type ? 1 : 0));

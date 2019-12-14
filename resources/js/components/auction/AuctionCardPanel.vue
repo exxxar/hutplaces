@@ -231,7 +231,7 @@
                 if (!this.active)
                     this.message(this.$lang.modals.auction_card_panel.error_2)
 
-                if (this.auction_data.bid_price == 0 || this.auction_data.buy_price == 0 || this.auction_data.step_price == 0) {
+                if (this.auction_data.bid_price == 0 || this.auction_data.step_price == 0) {
                     this.message(this.$lang.modals.auction_card_panel.error_1)
                     return
                 }
