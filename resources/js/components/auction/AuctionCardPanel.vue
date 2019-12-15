@@ -265,7 +265,7 @@
                     .then((response) => {
                         this.message(this.$lang.modals.auction_card_panel.success_1)
 
-                        this.$store.dispatch("loadAuction")
+                        this.$store.dispatch("loadAuctions", {type: 0})
                     })
                     .catch((error) => {
                         this.message(this.$lang.modals.auction_card_panel.error_4)

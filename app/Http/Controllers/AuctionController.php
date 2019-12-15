@@ -10,6 +10,7 @@ use App\Enums\ItemType;
 use App\Enums\Lifetime;
 use App\Enums\LotType;
 use App\Events\AuctionNotification;
+use App\Events\AuctionWinNotification;
 use App\Item;
 use App\User;
 use DateTime;
@@ -327,6 +328,8 @@ class AuctionController extends Controller
 
                 $auc->is_active = 0;
 
+                broadcast(new AuctionWinNotification($auc, $user));
+
                 $auc->save();
 
             }
@@ -351,6 +354,7 @@ class AuctionController extends Controller
                 return response()->json([
                     'auctions' => Auction::with(["lot", "lot.card", "lot.item"])
                         ->where("buyer_id", auth("api")->user()->id)
+                        ->where("is_active", 1)
                         ->get(),
                     'status' => 200
                 ]);
@@ -478,6 +482,9 @@ class AuctionController extends Controller
         $auc->save();
 
         broadcast(new AuctionNotification($auc));
+        broadcast(new AuctionWinNotification($auc, $user));
+
+        $auc->delete();
 
         return response()
             ->json([
@@ -567,6 +574,8 @@ class AuctionController extends Controller
 
             if ($item_id != null)
                 $user->items()->attach($item_id);
+
+            broadcast(new AuctionWinNotification($auc, $user));
 
             $auc->buyer_id =null;
             $auc->is_active = 0;

@@ -32,7 +32,7 @@
 
                 <div class="half">
                     <div class="input-group">
-                        <button type="submit" class="btn btn-primary" @click="sendResult(false)">{{buttons.cancel}}
+                        <button class="btn btn-primary" @click="hide()">{{buttons.cancel}}
                         </button>
                     </div>
                 </div>
@@ -59,6 +59,9 @@
             },
         },
         methods: {
+            hide(){
+                this.$emit("close")
+            },
             sendResult() {
                 this.$emit("close")
                 this.$emit("result", Math.max(this.sum, this.auc.step_price));

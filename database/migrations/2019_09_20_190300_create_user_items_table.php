@@ -19,7 +19,7 @@ class CreateUserItemsTable extends Migration
             $table->unsignedInteger("user_id" );
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger("item_id" );
-            $table->foreign('item_id')->references('id')->on('item');
+            $table->foreign('item_id')->references('id')->on('items');
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();

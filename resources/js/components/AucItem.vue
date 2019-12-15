@@ -59,7 +59,7 @@
 
                     <div class="controlls" v-if="user&&auc.lifetime!=0&&auc.buy_price!=0">
                         <div class="bid btn btn-yellow" @click="show(`calc-card-${auc.id}`)">Ставка</div>
-                        <div class="buy btn btn-orange" @click="buyLot()">Выкуп</div>
+                        <div class="buy btn btn-orange" @click="show('confirm')">Выкуп</div>
                     </div>
 
                     <div class="controlls" v-if="user&&auc.lifetime!=0&&auc.buy_price==0">
@@ -67,11 +67,11 @@
                     </div>
 
                     <div class="controlls" v-if="user&&auc.lifetime==0&&auc.buy_price!=0">
-                        <div class="buy btn btn-yellow btn-rounded" @click="buyLot()">Выкуп</div>
+                        <div class="buy btn btn-yellow btn-rounded" @click="show('confirm')">Выкуп</div>
                     </div>
 
                     <div class="controlls" v-if="user&&auc.lifetime==0&&auc.buy_price!=0">
-                        <div class="buy btn btn-yellow btn-rounded" @click="buyLot()">Выкуп</div>
+                        <div class="buy btn btn-yellow btn-rounded" @click="show('confirm')">Выкуп</div>
                     </div>
 
                     <div class="controlls" v-if="!user">
@@ -174,11 +174,25 @@
 
             </scroll>
         </modal>
+
+        <modal name="confirm" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('confirm')" class="close"></a>
+                <confirm :buttons="{ok:'Подтвердить',cancel:'Отменить'}"
+                         :title="'Подтверждение действия'"
+                         :description="`Вы хотите купить карточку за ${auc.buy_price} Pucks`"
+                         v-on:close="hide('confirm')"
+                         v-on:result="buyLot($event)">
+                </confirm>
+            </scroll>
+
+        </modal>
     </div>
 
 </template>
 
 <script>
+    import Confirm from '@/components/modals/ConfirmDialog.vue'
     import FlipCountdown from 'vue2-flip-countdown'
     import Card from '@/components/admin/Card.vue'
     import Calc from '@/components/modals/MoneyCalcDialog.vue'
@@ -210,7 +224,12 @@
                 });
 
             },
-            buyLot() {
+            buyLot(event) {
+                if (!event) {
+                    this.message("Покупка отменена")
+                    return
+                }
+
                 this.$store.dispatch("doBuyLot", {id: this.auc.id})
                     .then((res) => {
                         this.message(res.data.message)
@@ -293,7 +312,7 @@
             }
         },
         components: {
-            Card, CardTabs, CardSection, FlipCountdown, Scroll, Toggle, Calc
+            Card, CardTabs, CardSection, FlipCountdown, Scroll, Toggle, Calc,Confirm
         },
 
     }

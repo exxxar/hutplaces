@@ -19,5 +19,9 @@
     "/layout-layouts-auth-vue.js": "/layout-layouts-auth-vue.js",
     "/layout-layouts-default-vue.js": "/layout-layouts-default-vue.js",
     "/layout-layouts-start-vue.js": "/layout-layouts-start-vue.js",
-    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js"
+    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue~layout-layouts-default-vue.js",
+    "/layout-components-modals-WinDialog-vue.js": "/layout-components-modals-WinDialog-vue.js",
+    "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue.js": "/vendors~layout-components-Chat-vue~layout-components-ChatBoxComponent-vue.js",
+    "/layout-components-AucItem-vue.js": "/layout-components-AucItem-vue.js",
+    "/layout-components-modals-MoneyCalcDialog-vue.js": "/layout-components-modals-MoneyCalcDialog-vue.js"
 }

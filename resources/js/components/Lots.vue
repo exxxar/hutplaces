@@ -113,25 +113,37 @@
                             lot.item != null ? lot.item.title.indexOf(this.filters.title) != -1 : false
                         );
 
+
+                    tmp_summary = tmp_summary.filter(lot =>
+                        lot.bid_price >= this.filters.min_bid_price
+                    );
+
                     if (this.filters.max_bid_price > 0)
                         tmp_summary = tmp_summary.filter(lot =>
-                            lot.bid_price >= this.filters.min_bid_price &&
                             lot.bid_price <= this.filters.max_bid_price);
+
+                    tmp_summary = tmp_summary.filter(lot =>
+                        lot.buy_price >= this.filters.min_buy_price);
 
                     if (this.filters.max_buy_price > 0)
                         tmp_summary = tmp_summary.filter(lot =>
-                            lot.buy_price >= this.filters.min_buy_price &&
                             lot.buy_price <= this.filters.max_buy_price);
+
+
+                    tmp_summary = tmp_summary.filter(lot =>
+                        lot.step_price >= this.filters.min_step_price);
 
                     if (this.filters.max_step_price > 0)
                         tmp_summary = tmp_summary.filter(lot =>
-                            lot.step_price >= this.filters.min_step_price &&
                             lot.step_price <= this.filters.max_step_price);
+
+
+                    tmp_summary = tmp_summary.filter(lot =>
+                        (lot.card != null ? lot.card.ovr : lot.item != null ? lot.item.value : 0) >= this.filters.min_ovr);
 
                     if (this.filters.max_ovr > 0)
                         tmp_summary = tmp_summary.filter(lot =>
-                            lot.value >= this.filters.min_ovr &&
-                            lot.value <= this.filters.max_ovr);
+                            (lot.card != null ? lot.card.ovr : lot.item != null ? lot.item.value : 0) <= this.filters.max_ovr);
 
                     if (!this.filters.all_consoles)
                         tmp_summary = tmp_summary.filter(lot =>

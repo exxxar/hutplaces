@@ -115,6 +115,17 @@
                 </nav>
             </div>
         </modal>
+
+        <modal name="auc-win" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide('auc-win')" class="close"></a>
+                <win :title="'Выигрыш на аукционе'"
+                     :description="'Спасибо за участие в аукционе! Ваш приз находится в личном кабинете!'"
+                     v-on:close="hide('auc-win')">
+                </win>
+            </scroll>
+        </modal>
+
         <modal name="main-menu" :adaptive="true" width="100%" height="100%">
 
             <a href="#" @click="hide('main-menu')" class="close"></a>
@@ -143,6 +154,7 @@
     import History from '@/components/modals/History.vue'
     import HowToStart from '@/components/modals/Howtostart.vue'
     import FAQ from '@/components/modals/FAQ.vue'
+    import Win from '@/components/modals/WinDialog.vue'
     import Promo from '@/components/modals/Promo.vue'
     import Report from '@/components/modals/Report.vue'
     import AsideMenu from '@/components/AsideMenu.vue'
@@ -243,6 +255,17 @@
                 Event.$emit("updateUserProfile");
             });
 
+            pusher.subscribe('auction-chanel').bind('auction-win-event', (data) => {
+                if (this.user) {
+                    if (this.user.id == data.winner.id) {
+                        this.message("Вы выиграли", `Вы успешно выиграли лот на аукционе!`, 'warn');
+                        this.show("auc-win");
+                    }
+                }
+
+                this.$store.dispatch("loadAuctions", {type: 0})
+            });
+
             pusher.subscribe('message-chanel').bind('message-event', (data) => {
                 this.message(`${data.title}`, `${data.message}`, 'warn');
             });
@@ -321,7 +344,7 @@
         },
         components: {
             Chat, Payment, Help, HowToStart, History, FAQ, Promo, Report, Scroll,
-            AsideMenu, MainMenu, Rules, Partner, About
+            AsideMenu, MainMenu, Rules, Partner, About, Win
         }
     }
 </script>
