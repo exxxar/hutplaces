@@ -140,10 +140,25 @@ class AuctionController extends Controller
                     "status" => 404
                 ]);
 
-        if ($user->is_trader && $user->id == $auc->seller_id) {
-            $auc->delete();
+        if ($user->is_trader==0)
+            return response()
+                ->json([
+                    "message" => "Данная операция для вас недоступна!",
+                    "status" => 404
+                ]);
+
+        if ($user->id == $auc->seller_id) {
+
 
             broadcast(new AuctionNotification($auc));
+
+            if ($auc->buyer_id!=null&&$auc->is_active==1) {
+                $user_on_bid = User::find($auc->buyer_id);
+                $user_on_bid->money += $auc->bid_price;
+                $user_on_bid->save();
+            }
+
+            $auc->delete();
 
             return response()
                 ->json([
@@ -151,6 +166,10 @@ class AuctionController extends Controller
                     "status" => 200
                 ]);
         }
+
+
+
+
 
         if ($user->is_trader && $user->id != $auc->seller_id)
             return response()
@@ -348,9 +367,21 @@ class AuctionController extends Controller
 
     public function cancelLot(Request $request, $id)
     {
-        Auction::where("seller_id", auth("api")->user()->id)
+        $auc = Auction::where("seller_id", auth("api")->user()->id)
             ->where("id", $id)
-            ->delete();
+            ->first();
+
+
+
+        if ($auc->buyer_id!=null&&$auc->is_active==1) {
+            $user_on_bid = User::find($auc->buyer_id);
+            $user_on_bid->money += $auc->bid_price;
+            $user_on_bid->save();
+        }
+
+        if ($auc->is_active==0) {
+            $auc->delete();
+        }
 
         return redirect()
             ->route("mylots");
@@ -495,6 +526,12 @@ class AuctionController extends Controller
 
         $user->money -= $auc->bid_price + $step;
         $user->save();
+
+        if ($auc->buyer_id!=null) {
+            $user_on_bid = User::find($auc->buyer_id);
+            $user_on_bid->money += $auc->bid_price;
+            $user_on_bid->save();
+        }
 
         $auc->bid_price += $step;
         $auc->buyer_id = $user->id;

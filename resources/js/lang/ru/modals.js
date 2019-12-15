@@ -23,7 +23,7 @@ module.exports = {
         title: 'Название лота',
         description:'Описание лота',
         value:'Значение OVR',
-        bid_price: 'Начальная ставка',
+        bid_price: 'Начальная цена',
         buy_price: 'Цена выкупа',
         step_price: 'Цена шага ставки',
         save: 'Добавить',

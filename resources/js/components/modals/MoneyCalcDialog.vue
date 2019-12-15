@@ -5,11 +5,13 @@
             <h1>{{title}}</h1>
 
             <p>{{description}}</p>
+            <hr>
+            <p>Текущая цена ставки <span>{{auc.bid_price}}</span> pucks.</p>
 
             <div class="calc">
                 <div class="row">
                     <button v-on:click="decrease">-</button>
-                    <input type="number" min="0" v-model.number="sum">
+                    <input type="number" :min="auc.step_price" v-model.number="sum">
                     <button v-on:click="increase">+</button>
                 </div>
                 <div class="row">
@@ -42,23 +44,23 @@
 <script>
     export default {
         name: 'confirm',
-        props: ["buttons", "title", "description", "start"],
+        props: ["buttons", "title", "description", "auc"],
         data() {
             return {
-                sum: this.start ? this.start : 0
+                sum: this.auc.step_price ? this.auc.step_price : 0
             };
         },
         methods: {
             sendResult() {
                 this.$emit("close")
-                this.$emit("result", Math.max(this.sum, this.start));
+                this.$emit("result", Math.max(this.sum, this.auc.step_price));
             },
             increase: function () {
-                this.sum += 500
+                this.sum += this.auc.step_price
             },
             decrease: function () {
-                if (this.sum - 500 >= this.start) {
-                    this.sum -= 500
+                if (this.sum - this.auc.step_price >= this.auc.step_price) {
+                    this.sum -= this.auc.step_price
                 }
             }
         }

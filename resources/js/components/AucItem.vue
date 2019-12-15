@@ -19,11 +19,13 @@
 
             <card-tabs>
                 <card-section title="" active="true">
-                    <div class="buyer" v-if="auc.buyer_id!=null&&user.id==auc.buyer_id">
-                        <i class="far fa-arrow-alt-circle-up"></i>
-                    </div>
-                    <div class="buyer new-buyer" v-if="auc.buyer_id!=null&&user.id!=auc.buyer_id">
-                        <i class="fas fa-exclamation-triangle"></i>
+                    <div v-if="user">
+                        <div class="buyer" v-if="auc.buyer_id!=null&&user.id==auc.buyer_id">
+                            <i class="far fa-arrow-alt-circle-up"></i>
+                        </div>
+                        <div class="buyer new-buyer" v-if="auc.buyer_id!=null&&user.id!=auc.buyer_id">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
                     </div>
 
                     <div class="card" v-if="auc.lot_type=='2'">
@@ -145,7 +147,7 @@
                 <scroll class="scroll-area">
                     <a href="#" @click="hide(`calc-card-${auc.id}`)" class="close"></a>
                     <calc
-                            :start="auc.step_price"
+                            :auc="auc"
                             :buttons="{ok:'Сделать ставку',cancel:'Отменить'}"
                             :title="'Выбор шага ставки'"
                             :description="'Позволяет выставить случайный шаг ставки'"
