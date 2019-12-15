@@ -53,7 +53,8 @@
         },
         watch: {
             'sum':function(newValue, oldValue) {
-                if (newValue + this.auc.bid_price >= this.auc.buy_price)
+
+                if (newValue + this.auc.bid_price >= this.auc.buy_price&&$this.auc.buy_price>0)
                     this.sum = this.auc.buy_price - this.auc.bid_price;
             },
         },
