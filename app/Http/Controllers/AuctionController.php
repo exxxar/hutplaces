@@ -492,11 +492,18 @@ class AuctionController extends Controller
         $user = User::find(auth("api")->user()->id);
 
 
+
         $id = $request->get("id");
         $step = $request->get("step");
 
         $auc = Auction::with(["lot", "lot.card", "lot.item"])->find($id);
 
+        if ($auc->buyer_id==$user->id)
+            return response()
+                ->json([
+                    "message" => "Вы уже сделали ставку ранее! Дождитесь пока вашу ставку перебьют!",
+                    "status" => 200,
+                ]);
 
         $step = max($auc->step_price, $step);
 
@@ -533,15 +540,16 @@ class AuctionController extends Controller
                     "status" => 200,
                 ]);
 
-
-        $user->money -= $auc->bid_price + $step;
-        $user->save();
-
         if ($auc->buyer_id!=null) {
             $user_on_bid = User::find($auc->buyer_id);
             $user_on_bid->money += $auc->bid_price;
             $user_on_bid->save();
         }
+
+        $user->money -= $auc->bid_price + $step;
+        $user->save();
+
+
 
         $auc->bid_price +=  $step;
         $auc->buyer_id = $user->id;
