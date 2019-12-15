@@ -306,7 +306,7 @@ class AuctionController extends Controller
             $time = $auc->lifetime->value;
             $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
 
-            $time_1 = (intval($timesArray[$time] * 60 * 60) + date_timestamp_get(
+            $time_1 = (intval($timesArray[$time] * 60 * 60 * 1000) + date_timestamp_get(
                     new DateTime($auc->updated_at == null ? $auc->created_at : $auc->updated_at))
             );
 

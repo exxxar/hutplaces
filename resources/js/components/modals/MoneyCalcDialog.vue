@@ -8,6 +8,7 @@
             <hr>
             <p>Текущая цена ставки <span>{{auc.bid_price}}</span> pucks.</p>
 
+
             <div class="calc">
                 <div class="row">
                     <button v-on:click="decrease">-</button>
@@ -49,6 +50,12 @@
             return {
                 sum: this.auc.step_price ? this.auc.step_price : 0
             };
+        },
+        watch: {
+            'sum':function(newValue, oldValue) {
+                if (newValue + this.auc.bid_price >= this.auc.buy_price)
+                    this.sum = this.auc.buy_price - this.auc.bid_price;
+            },
         },
         methods: {
             sendResult() {
