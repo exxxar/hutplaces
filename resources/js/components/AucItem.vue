@@ -135,43 +135,45 @@
                 </div>
             </card-tabs>
 
-            <modal :name="`card-show-${auc.id}`" :adaptive="true" width="100%" height="100%">
-                <scroll class="scroll-area">
-                    <a href="#" @click="hide(`card-show-${auc.id}`)" class="close"></a>
-                    <card :card="getCard()" v-on:close="hide(`card-show-${auc.id}`)"></card>
-                </scroll>
-            </modal>
 
-
-            <modal :name="`calc-card-${auc.id}`" :adaptive="true" width="100%" height="100%">
-                <scroll class="scroll-area">
-                    <a href="#" @click="hide(`calc-card-${auc.id}`)" class="close"></a>
-                    <calc
-                            :auc="auc"
-                            :buttons="{ok:'Сделать ставку',cancel:'Отменить'}"
-                            :title="'Выбор шага ставки'"
-                            :description="'Позволяет выставить случайный шаг ставки'"
-                            v-on:result="bidLot($event)"
-                            v-on:close="hide(`calc-card-${auc.id}`)">
-
-                    </calc>
-                </scroll>
-            </modal>
-
-
-            <modal v-if="auc.lot_type=='1'||auc.lot_type=='0'" :name="`card-show-item-${auc.id}`" :adaptive="true"
-                   width="100%" height="100%">
-                <scroll class="scroll-area">
-                    <a href="#" @click="hide(`card-show-item-${auc.id}`)" class="close"></a>
-                    <div class="modal-body">
-                        <h1>{{auc.title}}</h1>
-                        <p v-if="auc.lot.item.description!=null" v-html="auc.lot.item.description"></p>
-                        <p v-if="auc.lot_type=='1'">{{auc.lot.item.value}}</p>
-                    </div>
-
-                </scroll>
-            </modal>
         </div>
+
+        <modal :name="`card-show-${auc.id}`" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide(`card-show-${auc.id}`)" class="close"></a>
+                <card :card="getCard()" v-on:close="hide(`card-show-${auc.id}`)"></card>
+            </scroll>
+        </modal>
+
+
+        <modal :name="`calc-card-${auc.id}`" :adaptive="true" width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide(`calc-card-${auc.id}`)" class="close"></a>
+                <calc
+                        :auc="auc"
+                        :buttons="{ok:'Сделать ставку',cancel:'Отменить'}"
+                        :title="'Выбор шага ставки'"
+                        :description="'Позволяет выставить случайный шаг ставки'"
+                        v-on:result="bidLot($event)"
+                        v-on:close="hide(`calc-card-${auc.id}`)">
+
+                </calc>
+            </scroll>
+        </modal>
+
+
+        <modal v-if="auc.lot_type=='1'||auc.lot_type=='0'" :name="`card-show-item-${auc.id}`" :adaptive="true"
+               width="100%" height="100%">
+            <scroll class="scroll-area">
+                <a href="#" @click="hide(`card-show-item-${auc.id}`)" class="close"></a>
+                <div class="modal-body">
+                    <h1>{{auc.title}}</h1>
+                    <p v-if="auc.lot.item.description!=null" v-html="auc.lot.item.description"></p>
+                    <p v-if="auc.lot_type=='1'">{{auc.lot.item.value}}</p>
+                </div>
+
+            </scroll>
+        </modal>
     </div>
 
 </template>

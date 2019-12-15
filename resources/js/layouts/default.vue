@@ -3,7 +3,7 @@
         <header id="pageHeader">
             <div class="center">
                 <div class="logo-wrapper">
-                    <a href="/"><img class="logo" :src="'/img/logo.jpg'"  rel="preload"></a>
+                    <a href="/"><img class="logo" :src="'/img/logo.jpg'" rel="preload"></a>
                 </div>
                 <button @click="show('payment')" class="btn btn-yellow btn-mobile">{{$lang.menu.recharge}}</button>
                 <nav @click="showMainMenu()">
@@ -240,7 +240,8 @@
 
             pusher.subscribe('auction-chanel').bind('auction-event', (data) => {
                 this.$store.dispatch("loadAuctions", {type: 0})
-              });
+                Event.$emit("updateUserProfile");
+            });
 
             pusher.subscribe('message-chanel').bind('message-event', (data) => {
                 this.message(`${data.title}`, `${data.message}`, 'warn');

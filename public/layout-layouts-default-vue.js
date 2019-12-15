@@ -1059,6 +1059,8 @@ __webpack_require__.r(__webpack_exports__);
       _this.$store.dispatch("loadAuctions", {
         type: 0
       });
+
+      Event.$emit("updateUserProfile");
     });
     pusher.subscribe('message-chanel').bind('message-event', function (data) {
       _this.message("".concat(data.title), "".concat(data.message), 'warn');

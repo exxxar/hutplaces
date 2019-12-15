@@ -390,14 +390,24 @@ class AuctionController extends Controller
 
     public function updateLot(Request $request)
     {
+        $is_active = $request->get("active");
+
         try {
             $auc = Auction::find($request->get("id"));
-            $auc->is_active = $request->get("active");
+            $auc->is_active = $is_active;
             $auc->lifetime = $auc->buy_price == 0 ?
                 min(1, Lifetime::getInstance(intval($request->get("lifetime")))->value) :
                 Lifetime::getInstance(intval($request->get("lifetime")))->value;
             $auc->updated_at = date('Y-m-d G:i:s');
             $auc->save();
+
+            if ($is_active==0){
+                $user_on_bid = User::find($auc->buyer_id);
+                $user_on_bid->money += $auc->bid_price;
+                $user_on_bid->save();
+                $auc->buyer_id = null;
+                $auc->save();
+            }
 
             broadcast(new AuctionNotification($auc));
             return response()
@@ -452,7 +462,6 @@ class AuctionController extends Controller
 
         $user->save();
 
-        $auc->buyer_id = $user->id;
 
         $lot = (Lot::where("id", $auc->lot_id)->first());
         $card_id = $lot->cards_id;
@@ -465,6 +474,7 @@ class AuctionController extends Controller
             $user->items()->attach($item_id);
 
         $auc->is_active = 0;
+        $auc->buyer_id =null;
         $auc->save();
 
         broadcast(new AuctionNotification($auc));
@@ -533,7 +543,7 @@ class AuctionController extends Controller
             $user_on_bid->save();
         }
 
-        $auc->bid_price += $step;
+        $auc->bid_price += $auc->bid_price + $step;
         $auc->buyer_id = $user->id;
         $auc->updated_at = Carbon::createFromTimestamp(date_timestamp_get(now())+30*1000)
             ->toDateTimeString();
@@ -550,6 +560,7 @@ class AuctionController extends Controller
             if ($item_id != null)
                 $user->items()->attach($item_id);
 
+            $auc->buyer_id =null;
             $auc->is_active = 0;
         }
 
