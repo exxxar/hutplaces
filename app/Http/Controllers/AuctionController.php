@@ -543,7 +543,7 @@ class AuctionController extends Controller
             $user_on_bid->save();
         }
 
-        $auc->bid_price += $auc->bid_price + $step;
+        $auc->bid_price +=  $step;
         $auc->buyer_id = $user->id;
         $auc->updated_at = Carbon::createFromTimestamp(date_timestamp_get(now())+30*1000)
             ->toDateTimeString();
