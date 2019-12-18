@@ -50,14 +50,17 @@
         watch: {
 
             loadMyBids(newValue, oldValue) {
+                console.log("bids=",newValue)
                 if (this.type == 1)
                     this.auctions = newValue
             },
             loadMyLots(newValue, oldValue) {
+                console.log("lots=",newValue)
                 if (this.type == 2)
                     this.auctions = newValue
             },
             loadAuctions(newValue, oldValue) {
+                console.log("auction=",newValue)
                 if (this.type == 0 || this.type == undefined || this.type == null)
                     this.auctions = newValue
             },
@@ -69,6 +72,8 @@
                         if (!this.isActiveDate(game)) {
                             this.deadlineList.splice(index, 1);
                             this.$store.dispatch("loadAuctions", {type: 0})
+                            this.$store.dispatch("loadAuctions", {type: 1})
+                            this.$store.dispatch("loadAuctions", {type: 2})
                         }
                 });
             }, 10000);
@@ -154,7 +159,7 @@
                             lot.lifetime == this.filters.lifetime);
 
                     if (this.user)
-                        if (this.user.is_trader == 0)
+                        if (this.user.is_trader == 0||!this.filters.show_all_hiddens)
                             tmp_summary = tmp_summary.filter(lot =>
                                 lot.is_active == 1);
 

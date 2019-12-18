@@ -219,6 +219,7 @@
                 })
                     .then((res) => {
                         this.message(res.data.message)
+                        this.$store.dispatch("loadAuctions", {type: 1})
                     }).catch(() => {
                     this.message("Сделать ставку не удалось, обратитесь к администратору!")
                 });

@@ -81,6 +81,22 @@
                         </div>
                     </div>
 
+                    <div v-if="user">
+                        <div class="row" v-if="user.is_trader==1">
+                            <div class="form-group">
+                                <label>Показывать скрытое</label>
+                                <toggle :check="filters.show_all_hiddens"
+                                        :id="'show-all-hiddens'"
+                                        v-on:check="setHiddens($event)"
+                                        :labelon="'Показать'"
+                                        :labeloff="'Скрывать'"
+                                        :width="210"></toggle>
+
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <div class="row">
                         <div class="form-group">
@@ -198,7 +214,8 @@
                     max_ovr: 0,
                     lifetime: 0,
                     console_type: true,
-                    all_consoles: true
+                    all_consoles: true,
+                    show_all_hiddens: true
                 },
 
             }
@@ -238,6 +255,9 @@
             },
             setAllConsoles(event) {
                 this.filters.all_consoles = event;
+            },
+            setHiddens(event) {
+                this.filters.show_all_hiddens = event;
             },
             checkConsole(event) {
                 this.filters.console_type = event;

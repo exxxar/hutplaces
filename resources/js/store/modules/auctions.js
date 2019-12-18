@@ -34,7 +34,7 @@ let mutations = {
 
 let actions = {
     loadAuctions: (context, payload) => {
-        let type = payload.type;
+        var type = payload.type;
         axios.post('/auction/all', {
             type: type
         }).then(res => {
