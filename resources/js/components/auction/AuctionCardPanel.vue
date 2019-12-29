@@ -59,7 +59,7 @@
                 <div class="half">
                     <div class="input-group">
                         <p v-if="auction_data.card==null">No select card</p>
-                        <a @click="show('card')" v-else>Show selected card</a>
+                        <a @click=" getCard('card')" v-else>Show selected card</a>
                     </div>
                 </div>
 
@@ -168,7 +168,7 @@
         <modal name="card" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('card')" class="close"></a>
-                <card :card="prepareCardInfo(auction_data.card)"></card>
+                <card :card="card_example"></card>
             </scroll>
         </modal>
     </div>
@@ -192,6 +192,7 @@
                 console: false,
                 active: true,
                 prew: null,
+                card_example:'',
                 auction_data: {
                     console_type: 0,
                     lot_type: 2,
@@ -209,7 +210,37 @@
         },
 
         methods: {
+            getCard(modal) {
+                //<a id="3481" href
+                let start = this.auction_data.card.indexOf(`<a id="`)+7;
+                let end = this.auction_data.card.indexOf(`" href`);
+                let id = this.auction_data.card.substr(start,end-start);
 
+                this.$loading(true)
+                this.request_url = `https://nhlhutbuilder.com/player-stats.php?sb=1&id=${id}`;
+                axios.post('search_nhlhut_player', {url: this.request_url})
+                    .then(res => {
+                        let start = res.data.indexOf(`<div id="player_stats_page" class="container">`);
+                        let end = res.data.indexOf(`</body>`);
+
+                        this.card_example = res.data.substr(start,end-start);
+
+                        start = this.card_example.indexOf("<img");
+                        end = this.card_example.indexOf("/>")+2;
+                        let img = this.card_example.substr(start,end-start);
+
+                        this.card_example = this.card_example.replace(/src="/gi,`src="https://nhlhutbuilder.com/`)
+
+                        this.$loading(false)
+                        this.show(modal)
+
+                    }).catch(err => {
+                    console.log(err)
+                    this.$loading(false)
+                    this.message("Ошибка загрузки карточки", `Ничего не найдено!`, 'error');
+
+                })
+            },
             readURL() {
                 const input = this.$refs.files
                 const files = input.files
