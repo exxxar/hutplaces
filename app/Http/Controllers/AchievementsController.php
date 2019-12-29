@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Achievement;
-use App\CardsStorage;
+use App\CardsStorageHUTDB;
 use App\Enums\AchievementCategoryType;
 use App\Enums\AchievementType;
 use App\Enums\TriggerType;
@@ -41,7 +41,7 @@ class AchievementsController extends Controller
      */
     public function create()
     {
-        $cards = CardsStorage::all();
+        $cards = CardsStorageHUTDB::all();
         return view('admin.achievements.create', compact("cards"));
     }
 
@@ -127,7 +127,7 @@ class AchievementsController extends Controller
     public function edit($id)
     {
         $achievement = Achievement::find($id);
-        $cards = CardsStorage::all();
+        $cards = CardsStorageHUTDB::all();
 
         return view('admin.achievements.edit', compact('achievement', 'cards'));
     }

@@ -52,6 +52,6 @@ class Achievement extends Model
     }
 
     public function card(){
-        return $this->belongsTo('App\CardsStorage');
+        return $this->belongsTo('App\CardsStorageHUTDB');
     }
 }

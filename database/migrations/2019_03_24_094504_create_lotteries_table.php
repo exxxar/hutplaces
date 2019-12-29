@@ -38,7 +38,7 @@ class CreateLotteriesTable extends Migration
             $table->integer('lifetime')->default(0);//0 - unlimited, 1 - 12, 2 - 24, 3 - 36...
 
             $table->boolean('auto_refresh')->default(true);
-            $table->timestamp('start_at')->default('0000-00-00 00:00:00')->nullable();
+            $table->timestamp('start_at')->nullable();
 
             $table->string('signature', 1000)->nullable();
             $table->string('random', 1500)->nullable();

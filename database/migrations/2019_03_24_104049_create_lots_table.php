@@ -29,7 +29,7 @@ class CreateLotsTable extends Migration
             $table->foreign('lottery_id')->references('id')->on('lotteries');
 
             $table->foreign('items_id')->references('id')->on('items');
-            $table->foreign('cards_id')->references('id')->on('cards_storage');
+            $table->foreign('cards_id')->references('id')->on('cards_storage_nhlhut');
 
 
             $table->timestamps();

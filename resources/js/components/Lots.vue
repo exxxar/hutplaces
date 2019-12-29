@@ -22,7 +22,7 @@
 
 
     import FlipCountdown from 'vue2-flip-countdown'
-    import CardSearch from '@/components/admin/CardSearch.vue'
+    import CardSearch from '@/components/admin/CardSearchNHLHUT.vue'
     import AucItem from '@/components/AucItem.vue'
     import {Tabs as CardTabs, Tab as CardSection} from 'vue-simple-tabs';
 
@@ -107,7 +107,10 @@
 
                 var tmp_summary = this.auctions;
 
+               // tmp_summary = tmp_summary.filter(lot => lot.card!=null);
+
                 tmp_summary = tmp_summary.filter(lot => this.isActiveDate(lot));
+
 
                 if (this.filters != null) {
 

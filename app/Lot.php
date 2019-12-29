@@ -19,8 +19,8 @@ class Lot extends Model
 
     public function card()
     {
-        return $this->hasOne('App\CardsStorage','id','cards_id');
-      // return $this->belongsTo('App\CardsStorage','cards_id');
+        return $this->hasOne('App\CardsStorageNHLHUT','id','cards_id');
+      // return $this->belongsTo('App\CardsStorageHUTDB','cards_id');
     }
 
     public function item()
@@ -31,7 +31,7 @@ class Lot extends Model
 
     public function packs()
     {
-        return $this->belongsToMany('App\Pacls', 'packs_lots', 'lot_id', 'packs_id')
+        return $this->belongsToMany('App\Packs', 'packs_lots', 'lot_id', 'packs_id')
             ->withTimestamps();
     }
 }

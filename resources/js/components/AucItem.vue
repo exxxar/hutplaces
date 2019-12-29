@@ -11,7 +11,7 @@
                         </div>-->
 
             <div class="card-info" v-if="auc.lot_type=='2'"
-                 @click="show(`card-show-${auc.id}`)">i
+                 @click="getCard(`card-show-${auc.id}`)">i
             </div>
             <div class="card-info" v-if="auc.lot_type=='1'||auc.lot_type=='0'"
                  @click="show(`card-show-item-${auc.id}`)">i
@@ -29,8 +29,8 @@
                     </div>
 
                     <div class="card" v-if="auc.lot_type=='2'">
-                        <img v-if="auc.lot.card.image==null" v-lazy="'/img/item-element.jpg'" alt="">
-                        <img v-else v-lazy="`/img/cards/${auc.lot.card.image}`" alt="">
+                        <img v-if="auc.lot.card==null" v-lazy="'/img/item-element.jpg'" alt="">
+                        <img v-else v-lazy="prepareCardArt(auc.lot.card.card_art)" alt="">
                     </div>
 
                     <div class="item" v-if="auc.lot_type=='0'">
@@ -51,7 +51,8 @@
                         <p v-if="auc.buy_price>0" class="buy-price"><span> buy  </span>{{auc.buy_price}} <span> {{$lang.games.money}}  </span>
                         </p>
 
-                        <p v-if="auc.buy_price==0" class="buy-price"><span> buy  </span> <i class="fas fa-infinity"></i> <span> {{$lang.games.money}}  </span>
+                        <p v-if="auc.buy_price==0" class="buy-price"><span> buy  </span> <i class="fas fa-infinity"></i>
+                            <span> {{$lang.games.money}}  </span>
                         </p>
 
                     </div>
@@ -76,7 +77,7 @@
 
                     <div class="controlls" v-if="!user">
                         <router-link to="/signin" tag="button" class="btn btn-yellow "><i
-                                class="fas fa-sign-in-alt"></i></router-link>
+                            class="fas fa-sign-in-alt"></i></router-link>
                         <router-link to="/signup" tag="button" class="btn btn-orange "><i class="fas fa-user-plus"></i>
                         </router-link>
                     </div>
@@ -141,7 +142,7 @@
         <modal :name="`card-show-${auc.id}`" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide(`card-show-${auc.id}`)" class="close"></a>
-                <card :card="getCard()" v-on:close="hide(`card-show-${auc.id}`)"></card>
+                <card :card="card_example" v-on:close="hide(`card-show-${auc.id}`)"></card>
             </scroll>
         </modal>
 
@@ -150,12 +151,12 @@
             <scroll class="scroll-area">
                 <a href="#" @click="hide(`calc-card-${auc.id}`)" class="close"></a>
                 <calc
-                        :auc="auc"
-                        :buttons="{ok:'Сделать ставку',cancel:'Отменить'}"
-                        :title="'Выбор шага ставки'"
-                        :description="'Позволяет выставить случайный шаг ставки'"
-                        v-on:result="bidLot($event)"
-                        v-on:close="hide(`calc-card-${auc.id}`)">
+                    :auc="auc"
+                    :buttons="{ok:'Сделать ставку',cancel:'Отменить'}"
+                    :title="'Выбор шага ставки'"
+                    :description="'Позволяет выставить случайный шаг ставки'"
+                    v-on:result="bidLot($event)"
+                    v-on:close="hide(`calc-card-${auc.id}`)">
 
                 </calc>
             </scroll>
@@ -194,7 +195,7 @@
 <script>
     import Confirm from '@/components/modals/ConfirmDialog.vue'
     import FlipCountdown from 'vue2-flip-countdown'
-    import Card from '@/components/admin/Card.vue'
+    import Card from '@/components/admin/CardNHLHUT.vue'
     import Calc from '@/components/modals/MoneyCalcDialog.vue'
     import {Tabs as CardTabs, Tab as CardSection} from 'vue-simple-tabs';
     import Scroll from 'vue-custom-scrollbar'
@@ -205,11 +206,57 @@
         props: ["auc", "controls", "lifetime", "user"],
         data() {
             return {
+                card_example: '',
                 is_active: 0 || this.auc.is_active,
                 selected_lifetime: this.auc.lifetime,
             }
         },
         methods: {
+            getCard(modal) {
+
+                if (this.auc.lot.card == null)
+                    return;
+
+                let html = this.auc.lot.card.card_art;
+                //<a id="3481" href
+                let start = html.indexOf(`<a id="`) + 7;
+                let end = html.indexOf(`" href`);
+                let id = html.substr(start, end - start);
+
+                this.$loading(true)
+                this.request_url = `https://nhlhutbuilder.com/player-stats.php?sb=1&id=${id}`;
+                axios.post('search_nhlhut_player', {url: this.request_url})
+                    .then(res => {
+                        let start = res.data.indexOf(`<div id="player_stats_page" class="container">`);
+                        let end = res.data.indexOf(`</body>`);
+
+                        this.card_example = res.data.substr(start, end - start);
+
+                        start = this.card_example.indexOf("<img");
+                        end = this.card_example.indexOf("/>") + 2;
+                        let img = this.card_example.substr(start, end - start);
+
+                        this.card_example = this.card_example.replace(/src="/gi, `src="https://nhlhutbuilder.com/`)
+
+                        this.$loading(false)
+                        this.show(modal)
+
+                    }).catch(err => {
+                    this.$loading(false)
+                    this.message("Ошибка загрузки карточки", `Ничего не найдено!`, 'error');
+
+                })
+            },
+            prepareCardArt(cardArt) {
+
+                let start = cardArt.indexOf(`id="`) + 4;
+                let end = cardArt.indexOf(`" href`);
+                let imgId = cardArt.substr(start, end - start);
+
+                console.log(`https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`);
+
+                return `https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`;
+            },
             bidLot(step) {
                 console.log(step);
 
@@ -276,9 +323,7 @@
                 })
                 this.message(this.$lang.game.success_1)
             },
-            getCard() {
-                return this.auc.lot.card;
-            },
+
 
             prepareDeadline() {
                 let date = Date.parse(this.auc.updated_at);
@@ -313,7 +358,7 @@
             }
         },
         components: {
-            Card, CardTabs, CardSection, FlipCountdown, Scroll, Toggle, Calc,Confirm
+            Card, CardTabs, CardSection, FlipCountdown, Scroll, Toggle, Calc, Confirm
         },
 
     }
@@ -338,6 +383,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+
             label {
                 color: white;
                 line-height: 150%;
@@ -353,6 +399,7 @@
                 padding: 10px;
                 border-radius: 5px;
                 font-weight: 900;
+
                 option {
                     color: white !important;
                 }
@@ -446,6 +493,7 @@
                 color: #2c3e50;
             }
         }
+
         .sale {
             border: 35px solid transparent;
             border-top: 35px solid yellow;
@@ -454,6 +502,7 @@
             z-index: 12;
             top: 0;
             right: 0;
+
             &:after {
                 content: attr(data-sale);
                 position: absolute;
@@ -465,6 +514,7 @@
                 transform: rotate(45deg)
             }
         }
+
         .price {
             z-index: 14;
             width: 100%;
@@ -485,10 +535,12 @@
             font-size: 10px;
             opacity: 1;
             line-height: 140%;
+
             p {
                 width: 32%;
                 display: flex;
                 flex-direction: column;
+
                 span {
                     text-transform: uppercase;
                     font-size: 10px;
@@ -519,6 +571,7 @@
                 position: absolute;
                 z-index: 5;
             }
+
             .line {
                 height: 100%;
                 background: #054608ad;
@@ -539,7 +592,6 @@
                 width: 253px;
                 height: 344px;
                 object-fit: cover;
-                mix-blend-mode: luminosity;
             }
         }
 
@@ -558,6 +610,7 @@
             flex-wrap: wrap;
             text-transform: uppercase;
             font-weight: 900;
+
             li {
                 padding: 10px;
                 cursor: pointer;
@@ -572,6 +625,7 @@
                     font-weight: 900;
                     text-shadow: 1px 1px 1px black;
                 }
+
                 &.active {
                     color: yellow;
                 }
@@ -647,6 +701,7 @@
                 font-size: 24px;
             }
         }
+
         .deadline {
             padding: 20px;
             position: absolute;
@@ -678,6 +733,7 @@
                 flex-wrap: wrap;
                 width: 100%;
                 box-sizing: border-box;
+
                 .flip-card {
                     font-size: 2.25rem !important;
                 }
@@ -720,6 +776,7 @@
             top: 20px;
             font-size: 18px;
         }
+
         .buyer {
             position: absolute;
             top: -28px;
@@ -735,6 +792,7 @@
             }
 
         }
+
         .cancel {
             position: relative;
             z-index: 20;
@@ -744,6 +802,7 @@
             cursor: pointer;
             transition: .5s;
             top: 15px;
+
             &:hover {
                 transition: .5s;
                 color: orangered;
@@ -759,11 +818,11 @@
             box-sizing: border-box;
             background-color: #2c3e50;
             overflow: hidden;
+
             img {
                 width: 253px;
                 height: 350px;
                 object-fit: cover;
-                mix-blend-mode: luminosity;
             }
         }
 

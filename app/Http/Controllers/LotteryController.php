@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\CardsStorage;
+use App\CardsStorageHUTDB;
+use App\CardsStorageNHLHUT;
 use App\Classes\CustomRandom;
 use App\Classes\TelegramNotify;
 use App\Enums\ConsoleType;
@@ -571,10 +572,10 @@ class LotteryController extends Controller
                 break;
             case 2:
                 $tmp = json_decode($request->get("card"), true);
-                $card = CardsStorage::create($tmp);
-                $card->card_synergies = json_encode($tmp["card_synergies"]);
-                $card->image = $imageName;
-                $card->save();
+                $card = CardsStorageNHLHUT::create($tmp);
+              //  $card->card_synergies = json_encode($tmp["card_synergies"]);
+                //$card->image = $imageName;
+               // $card->save();
                 break;
 
 

@@ -8,12 +8,6 @@
                     :labelon="'XBOX'"
                     :labeloff="'PS4'"
                     :width="148"></toggle>
-            <toggle :check="info.year"
-                    :id="'sw-year'"
-                    v-on:check="checkYear($event)"
-                    :labelon="'2019'"
-                    :labeloff="'2020'"
-                    :width="140"></toggle>
             <toggle :check="info.currency"
                     :id="'sw-currency'"
                     v-on:check="checkCurrency($event)"
@@ -87,7 +81,7 @@
 <script>
 
     import Toggle from '../components/Toggle.vue'
-    import CardSearch from '../components/admin/CardSearch.vue'
+    import CardSearch from '../components/admin/CardSearchNHLHUT.vue'
     import Scroll from 'vue-custom-scrollbar'
 
     export default {
@@ -99,7 +93,7 @@
                 money_koef: 0.0005,
                 info: {
                     console: true,
-                    year: false,
+                    year: true,
                     currency: true,
                     sum: 0,
                     player: '',
@@ -181,10 +175,12 @@
                 this.hide('coins-invoice');
             },
             getCard(data) {
-                this.info.player = data.player;
+                console.log(data.full_name)
+                let start = data.full_name.indexOf(`">`)+2;
+                let end = data.full_name.indexOf(`</`);
+                this.info.player = data.full_name.substr(start,end-start);
                 this.info.team = `${data.league} ${data.team}`;
-                this.info.rating = data.ovr;
-                this.info.initial_price = data.salary;
+                this.info.rating = data.overall;
                 this.hide("card-search")
             },
             show(name) {

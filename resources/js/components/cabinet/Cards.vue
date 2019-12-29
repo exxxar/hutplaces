@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import Card from '@/components/admin/Card.vue'
+    import Card from '@/components/admin/CardHUTDB.vue'
 
     export default {
         props: ["user"],

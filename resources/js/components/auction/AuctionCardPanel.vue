@@ -168,7 +168,7 @@
         <modal name="card" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('card')" class="close"></a>
-                <card :card="auction_data.card"></card>
+                <card :card="prepareCardInfo(auction_data.card)"></card>
             </scroll>
         </modal>
     </div>
@@ -178,8 +178,8 @@
 
     import Toggle from '@/components/Toggle.vue'
     import Scroll from 'vue-custom-scrollbar'
-    import CardSearch from '@/components/admin/CardSearch.vue'
-    import Card from '@/components/admin/Card.vue'
+    import CardSearch from '@/components/admin/CardSearchNHLHUT.vue'
+    import Card from '@/components/admin/CardNHLHUT.vue'
 
 
     export default {
@@ -203,13 +203,13 @@
                     title: '',
                     description: '',
                     value: '',
-
                     card: null,
                 },
             }
         },
 
         methods: {
+
             readURL() {
                 const input = this.$refs.files
                 const files = input.files
@@ -308,15 +308,28 @@
                 }
             },
             onCardFind(data) {
+                let start = data.card_art.indexOf(`id="`)+4;
+                let end = data.card_art.indexOf(`" href`);
+                let imgId = data.card_art.substr(start,end-start);
+
+                this.prew = `https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`;
                 console.log("card", data)
                 this.auction_data.card = data;
-                this.auction_data.title = data.player;
+
+                start = data.full_name.indexOf(`">`)+2;
+                end = data.full_name.indexOf(`</`);
+                let full_name = data.full_name.substr(start,end-start);
+
+                this.auction_data.title = full_name;
+
                 this.auction_data.description = data.nationality;
-                this.auction_data.value = data.ovr;
+                this.auction_data.value = data.overall;
                 this.auction_data.buy_price = 0;
                 this.auction_data.bid_price = 0;
                 this.auction_data.step_price = 0;
                 this.hide("card-add")
+
+
             },
 
             show(name) {

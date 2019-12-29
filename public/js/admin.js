@@ -1865,50 +1865,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/Card.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/Card.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardNHLHUT.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardNHLHUT.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1922,17 +1887,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Toggle_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/Toggle.vue */ "./resources/js/components/Toggle.vue");
-/* harmony import */ var _components_admin_Card_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/admin/Card.vue */ "./resources/js/components/admin/Card.vue");
+/* harmony import */ var _components_admin_CardNHLHUT_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/admin/CardNHLHUT.vue */ "./resources/js/components/admin/CardNHLHUT.vue");
+/* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-custom-scrollbar */ "./node_modules/vue-custom-scrollbar/dist/vueScrollbar.umd.min.js");
+/* harmony import */ var vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2144,6 +2111,122 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2156,18 +2239,27 @@ __webpack_require__.r(__webpack_exports__);
         price: 0,
         card: null
       },
-      year: true,
-      proxyurl: 'https://cors-anywhere.herokuapp.com/',
-      request: '',
+      request_url: '',
+      query: '',
       playerName: '',
-      league: 'Any',
+      league: '',
       position: [],
       handedness: '',
-      height: [],
+      minHeight: 91,
+      maxHeight: 241,
       synergy: [],
       heightLabels: [{
+        id: 61,
+        name: "5'0"
+      }, {
+        id: 62,
+        name: "5'1"
+      }, {
+        id: 63,
+        name: "5'2"
+      }, {
         id: 64,
-        name: "5'4"
+        name: "5'3"
       }, {
         id: 65,
         name: "5'5"
@@ -2219,6 +2311,48 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         id: 81,
         name: "6'9"
+      }, {
+        id: 82,
+        name: "6'10"
+      }, {
+        id: 83,
+        name: "6'11"
+      }, {
+        id: 84,
+        name: "7'0"
+      }, {
+        id: 85,
+        name: "7'1"
+      }, {
+        id: 86,
+        name: "7'2"
+      }, {
+        id: 87,
+        name: "7'3"
+      }, {
+        id: 88,
+        name: "7'4"
+      }, {
+        id: 89,
+        name: "7'5"
+      }, {
+        id: 90,
+        name: "7'6"
+      }, {
+        id: 91,
+        name: "7'7"
+      }, {
+        id: 92,
+        name: "7'8"
+      }, {
+        id: 93,
+        name: "7'9"
+      }, {
+        id: 94,
+        name: "7'10"
+      }, {
+        id: 95,
+        name: "7'11"
       }],
       leagueOptions: this.leagueOptions20,
       leagueOptions20: ["NHL", "AHL", "ECHL", "OHL", "QMJHL", "WHL", "SHL", "Liiga", "NL", "DEL", "EBEL", "CHL", "ELH", "Allsvenska", "National"],
@@ -3458,17 +3592,17 @@ __webpack_require__.r(__webpack_exports__);
         value: "USA",
         text: "United States of America"
       }],
-      minOvr: '',
-      maxOvr: '',
-      team: 'Any',
-      playerType: [],
-      per_page: 100,
-      card: [],
+      minOvr: '70',
+      maxOvr: '99',
+      team: '',
+      playerType: '',
+      per_page: 25,
+      card: '',
       card_example: null,
       minWgt: '',
       maxWgt: '',
       synergy_id: [],
-      nationality: 'Any',
+      nationality: '',
       results: ''
     };
   },
@@ -3476,6 +3610,12 @@ __webpack_require__.r(__webpack_exports__);
     this.leagueOptions = this.leagueOptions19;
   },
   methods: {
+    prepareCardArt: function prepareCardArt(cardArt) {
+      var start = cardArt.indexOf("<img");
+      var end = cardArt.indexOf("/>") + 2;
+      var img = cardArt.substr(start, end - start);
+      return img.replace("src=\"", "src=\"https://nhlhutbuilder.com/"); // retrun  "<a id="3481`https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`="?id=3481" class="advanced-stats"><img src="images/card_art/players/3481.jpg" width="100px" /></a>"
+    },
     getFilteredTeams: function getFilteredTeams() {
       var _this = this;
 
@@ -3484,9 +3624,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getSynergy: function getSynergy() {
-      var year = this.year ? 19 : 20;
       return this.synergyLabels.filter(function (s) {
-        return s.year == year;
+        return s.year == 20;
       });
     },
     message: function message(title, _message, type) {
@@ -3506,16 +3645,27 @@ __webpack_require__.r(__webpack_exports__);
     hide: function hide(name) {
       this.$modal.hide(name);
     },
-    getCard: function getCard(id) {
+    getCard: function getCard(html) {
       var _this2 = this;
 
+      //<a id="3481" href
+      var start = html.indexOf("<a id=\"") + 7;
+      var end = html.indexOf("\" href");
+      var id = html.substr(start, end - start);
       this.$loading(true);
-      this.request = "https://api.hutdb.net/api/players/".concat(id);
-      axios.post('search', {
-        url: this.request
+      this.request_url = "https://nhlhutbuilder.com/player-stats.php?sb=1&id=".concat(id);
+      axios.post('search_nhlhut_player', {
+        url: this.request_url
       }).then(function (res) {
-        console.log(res);
-        _this2.card_example = res.data;
+        var start = res.data.indexOf("<div id=\"player_stats_page\" class=\"container\">");
+        var end = res.data.indexOf("</body>");
+        _this2.card_example = res.data.substr(start, end - start);
+        start = _this2.card_example.indexOf("<img");
+        end = _this2.card_example.indexOf("/>") + 2;
+
+        var img = _this2.card_example.substr(start, end - start);
+
+        _this2.card_example = _this2.card_example.replace(/src="/gi, "src=\"https://nhlhutbuilder.com/");
 
         _this2.$loading(false);
 
@@ -3533,12 +3683,12 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$loading(true);
       this.makeUrl();
-      axios.post('search', {
-        url: this.request
+      axios.post('search_nhlhut', {
+        url: this.request_url,
+        query: this.query
       }).then(function (res) {
-        _this3.results = res.data;
-
-        _this3.results.shift();
+        _this3.results = res.data.data;
+        console.log(_this3.results); // this.results.shift();
 
         _this3.$loading(false);
       })["catch"](function (err) {
@@ -3550,96 +3700,45 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     makeUrl: function makeUrl() {
-      var _this4 = this;
+      var index = 0;
+      this.query = "";
+      this.request_url = "https://nhlhutbuilder.com/php/player_stats.php";
 
-      var year = this.year ? 19 : 20;
-      this.request = "https://api.hutdb.net/api/players?year=".concat(year, "&page=0&per_age=").concat(this.per_page);
+      var additional = function additional(index) {
+        return "&columns[".concat(index, "][searchable]=true&olumns[").concat(index, "][orderable]=true&columns[").concat(index, "][search][regex]=true");
+      };
 
-      if (this.playerName !== '') {
-        var player = this.playerName.replace(' ', '%20');
-        this.request += "&playerName=".concat(player);
-      }
-
-      if (this.league !== 'Any') {
-        this.request += "&league=".concat(this.league);
-      }
-
-      if (this.position.length > 0) {
-        this.request += "&position[]=";
-        this.position.map(function (pos) {
-          _this4.request += "".concat(pos, ",");
-        });
-        this.request = this.request.slice(0, -1);
-      }
-
-      if (this.handedness != 'Any' && this.handedness != '') {
-        this.request += "&handedness=".concat(this.handedness);
-      }
-
-      if (this.height.length > 0 && this.height.indexOf("Any") == -1) {
-        this.request += "&height[]=";
-        this.height.map(function (h) {
-          _this4.request += "".concat(h, ",");
-        });
-        this.request = this.request.slice(0, -1);
-      }
+      this.query += "draw=5&start=0&length=".concat(this.per_page);
+      this.query += "&columns[".concat(index, "][data]=overall&columns[").concat(index, "][search][value]=").concat(this.minOvr, "<").concat(this.maxOvr).concat(additional(index));
+      this.query += "&columns[".concat(++index, "][data]=full_name&columns[").concat(index, "][search][value]=").concat(this.playerName.replace(' ', '%20'));
+      this.query += "&columns[".concat(++index, "][data]=league&columns[").concat(index, "][search][value]=").concat(this.league);
+      var pos = "";
+      this.position.map(function (posItem) {
+        pos += "".concat(posItem, "|");
+      });
+      this.query += "&columns[".concat(++index, "][data]=position&columns[").concat(index, "][search][value]=").concat(this.position.length > 0 ? pos.slice(0, -1) : "");
+      this.query += "&columns[".concat(++index, "][data]=hand&columns[").concat(index, "][search][value]=").concat(this.handedness.toLowerCase());
+      this.query += "&columns[".concat(++index, "][data]=height&columns[").concat(index, "][search][value]=").concat(this.minHeight, "<").concat(this.maxHeight);
+      var syn = "0!";
 
       if (this.synergy.length > 0) {
-        console.log("synergy", this.synergy);
-        this.request += "&synergy_id[]=";
-        this.synergy.map(function (syn) {
-          _this4.request += "".concat(syn, ",");
+        this.synergy.map(function (synItem) {
+          syn += "".concat(synItem, ",");
         });
-        this.request = this.request.slice(0, -1);
       }
 
-      if (this.minOvr !== '') {
-        this.request += "&minOvr=".concat(this.minOvr);
-      }
-
-      if (this.maxOvr !== '') {
-        this.request += "&maxOvr=".concat(this.maxOvr);
-      }
-
-      if (this.team !== 'Any') {
-        this.request += "&team=".concat(this.team);
-      }
-
-      if (this.playerType.length > 0) {
-        this.request += "&playerType[]=";
-        this.playerType.map(function (type) {
-          _this4.request += "".concat(type, ",");
-        });
-        this.request = this.request.slice(0, -1);
-      }
-
-      if (this.card.length > 0) {
-        this.request += "&card=".concat(this.card);
-      }
-
-      if (this.minWgt !== '') {
-        this.request += "&minWgt=".concat(this.minWgt);
-      }
-
-      if (this.maxWgt !== '') {
-        this.request += "&maxWgt=".concat(this.maxWgt);
-      }
-
-      if (this.nationality !== 'Any') {
-        this.request += "&nationality=".concat(this.nationality);
-      }
-
-      console.log(this.request);
-    },
-    checkYear: function checkYear(event) {
-      this.year = event;
-      this.leagueOptions = event ? this.leagueOptions19 : this.leagueOptions20;
-      this.results = [];
+      this.query += "&columns[".concat(++index, "][data]=synergies&columns[").concat(index, "][search][value]=").concat(syn.slice(0, -1));
+      this.query += "&columns[".concat(++index, "][data]=team&columns[").concat(index, "][search][value]=").concat(this.team);
+      this.query += "&columns[".concat(++index, "][data]=ptype&columns[").concat(index, "][search][value]=").concat(this.playerType);
+      this.query += "&columns[".concat(++index, "][data]=card&columns[").concat(index, "][search][value]=").concat(this.card);
+      this.query += "&columns[".concat(++index, "][data]=weight&columns[").concat(index, "][search][value]=").concat(this.minWgt, "<").concat(this.maxWgt);
+      this.query += "&columns[".concat(++index, "][data]=nationality&columns[").concat(index, "][search][value]=").concat(this.nationality); // this.query += `&order[${++index}][dir]=desc`;
     }
   },
   components: {
     Toggle: _components_Toggle_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Card: _components_admin_Card_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Card: _components_admin_CardNHLHUT_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Scroll: vue_custom_scrollbar__WEBPACK_IMPORTED_MODULE_2___default.a
   }
 });
 
@@ -3677,6 +3776,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, ".center-modal {\n  padding: 20px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "#player_stats_page {\n  width: 100%;\n}\n#player_stats_page #toggle_synergies,\n#player_stats_page #player_header {\n  color: white;\n  text-transform: uppercase;\n  text-align: center;\n  font-weight: 800;\n}\n#player_stats_page table {\n  width: 100%;\n}\n#player_stats_page table tr td {\n  color: white;\n  text-transform: uppercase;\n  padding: 0;\n}\n#player_stats_page #card_art {\n  width: 240px;\n}\n#player_stats_page .clear.center {\n  display: none;\n}\n#player_stats_page .order_card_syns,\n#player_stats_page #other_cards {\n  color: white;\n  text-transform: uppercase;\n  text-align: center;\n}\n#player_stats_page .other_card_container {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n#player_stats_page .other_card_container img {\n  width: 240px;\n}", ""]);
 
 // exports
 
@@ -30348,6 +30466,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardNHLHUT.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vuejs-loading-plugin/Loading.vue?vue&type=style&index=0&id=7ab65994&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vuejs-loading-plugin/Loading.vue?vue&type=style&index=0&id=7ab65994&scoped=true&lang=css& ***!
@@ -30981,6 +31129,24 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-custom-scrollbar/dist/vueScrollbar.umd.min.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/vue-custom-scrollbar/dist/vueScrollbar.umd.min.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function(t,e){ true?module.exports=e():undefined})("undefined"!==typeof self?self:this,function(){return function(t){var e={};function n(r){if(e[r])return e[r].exports;var i=e[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,n),i.l=!0,i.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!==typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"===typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)n.d(r,i,function(e){return t[e]}.bind(null,i));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t["default"]}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s="a667")}({"3ae1":function(t,e,n){"use strict";var r=n("f5fc"),i=n.n(r);i.a},"4ccc":function(t,e,n){e=t.exports=n("690e")(!1),e.push([t.i,".ps{overflow:hidden!important;overflow-anchor:none;-ms-overflow-style:none;touch-action:auto;-ms-touch-action:auto}.ps__rail-x{height:15px;bottom:0}.ps__rail-x,.ps__rail-y{display:none;opacity:0;transition:background-color .2s linear,opacity .2s linear;-webkit-transition:background-color .2s linear,opacity .2s linear;position:absolute}.ps__rail-y{width:15px;right:0}.ps--active-x>.ps__rail-x,.ps--active-y>.ps__rail-y{display:block;background-color:transparent}.ps--focus>.ps__rail-x,.ps--focus>.ps__rail-y,.ps--scrolling-x>.ps__rail-x,.ps--scrolling-y>.ps__rail-y,.ps:hover>.ps__rail-x,.ps:hover>.ps__rail-y{opacity:.6}.ps .ps__rail-x.ps--clicking,.ps .ps__rail-x:focus,.ps .ps__rail-x:hover,.ps .ps__rail-y.ps--clicking,.ps .ps__rail-y:focus,.ps .ps__rail-y:hover{background-color:#eee;opacity:.9}.ps__thumb-x{transition:background-color .2s linear,height .2s ease-in-out;-webkit-transition:background-color .2s linear,height .2s ease-in-out;height:6px;bottom:2px}.ps__thumb-x,.ps__thumb-y{background-color:#aaa;border-radius:6px;position:absolute}.ps__thumb-y{transition:background-color .2s linear,width .2s ease-in-out;-webkit-transition:background-color .2s linear,width .2s ease-in-out;width:6px;right:2px}.ps__rail-x.ps--clicking .ps__thumb-x,.ps__rail-x:focus>.ps__thumb-x,.ps__rail-x:hover>.ps__thumb-x{background-color:#999;height:11px}.ps__rail-y.ps--clicking .ps__thumb-y,.ps__rail-y:focus>.ps__thumb-y,.ps__rail-y:hover>.ps__thumb-y{background-color:#999;width:11px}@supports (-ms-overflow-style:none){.ps{overflow:auto!important}}@media (-ms-high-contrast:none),screen and (-ms-high-contrast:active){.ps{overflow:auto!important}}",""])},"690e":function(t,e){function n(t,e){var n=t[1]||"",i=t[3];if(!i)return n;if(e&&"function"===typeof btoa){var o=r(i),l=i.sources.map(function(t){return"/*# sourceURL="+i.sourceRoot+t+" */"});return[n].concat(l).concat([o]).join("\n")}return[n].join("\n")}function r(t){var e=btoa(unescape(encodeURIComponent(JSON.stringify(t)))),n="sourceMappingURL=data:application/json;charset=utf-8;base64,"+e;return"/*# "+n+" */"}t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var r=n(e,t);return e[2]?"@media "+e[2]+"{"+r+"}":r}).join("")},e.i=function(t,n){"string"===typeof t&&(t=[[null,t,""]]);for(var r={},i=0;i<this.length;i++){var o=this[i][0];"number"===typeof o&&(r[o]=!0)}for(i=0;i<t.length;i++){var l=t[i];"number"===typeof l[0]&&r[l[0]]||(n&&!l[2]?l[2]=n:n&&(l[2]="("+l[2]+") and ("+n+")"),e.push(l))}},e}},"85cb":function(t,e,n){"use strict";function r(t,e){for(var n=[],r={},i=0;i<e.length;i++){var o=e[i],l=o[0],s=o[1],a=o[2],c=o[3],h={id:t+":"+i,css:s,media:a,sourceMap:c};r[l]?r[l].parts.push(h):n.push(r[l]={id:l,parts:[h]})}return n}n.r(e),n.d(e,"default",function(){return f});var i="undefined"!==typeof document;if("undefined"!==typeof DEBUG&&DEBUG&&!i)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var o={},l=i&&(document.head||document.getElementsByTagName("head")[0]),s=null,a=0,c=!1,h=function(){},u=null,d="data-vue-ssr-id",p="undefined"!==typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());function f(t,e,n,i){c=n,u=i||{};var l=r(t,e);return b(l),function(e){for(var n=[],i=0;i<l.length;i++){var s=l[i],a=o[s.id];a.refs--,n.push(a)}e?(l=r(t,e),b(l)):l=[];for(i=0;i<n.length;i++){a=n[i];if(0===a.refs){for(var c=0;c<a.parts.length;c++)a.parts[c]();delete o[a.id]}}}}function b(t){for(var e=0;e<t.length;e++){var n=t[e],r=o[n.id];if(r){r.refs++;for(var i=0;i<r.parts.length;i++)r.parts[i](n.parts[i]);for(;i<n.parts.length;i++)r.parts.push(v(n.parts[i]));r.parts.length>n.parts.length&&(r.parts.length=n.parts.length)}else{var l=[];for(i=0;i<n.parts.length;i++)l.push(v(n.parts[i]));o[n.id]={id:n.id,refs:1,parts:l}}}}function g(){var t=document.createElement("style");return t.type="text/css",l.appendChild(t),t}function v(t){var e,n,r=document.querySelector("style["+d+'~="'+t.id+'"]');if(r){if(c)return h;r.parentNode.removeChild(r)}if(p){var i=a++;r=s||(s=g()),e=y.bind(null,r,i,!1),n=y.bind(null,r,i,!0)}else r=g(),e=_.bind(null,r),n=function(){r.parentNode.removeChild(r)};return e(t),function(r){if(r){if(r.css===t.css&&r.media===t.media&&r.sourceMap===t.sourceMap)return;e(t=r)}else n()}}var m=function(){var t=[];return function(e,n){return t[e]=n,t.filter(Boolean).join("\n")}}();function y(t,e,n,r){var i=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=m(e,i);else{var o=document.createTextNode(i),l=t.childNodes;l[e]&&t.removeChild(l[e]),l.length?t.insertBefore(o,l[e]):t.appendChild(o)}}function _(t,e){var n=e.css,r=e.media,i=e.sourceMap;if(r&&t.setAttribute("media",r),u.ssrId&&t.setAttribute(d,e.id),i&&(n+="\n/*# sourceURL="+i.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(i))))+" */"),t.styleSheet)t.styleSheet.cssText=n;else{while(t.firstChild)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}},"9d3c":function(t,e,n){e=t.exports=n("690e")(!1),e.i(n("4ccc"),""),e.push([t.i,".ps-container{position:relative}",""])},a667:function(t,e,n){"use strict";var r;(n.r(e),"undefined"!==typeof window)&&(n("e67d"),(r=window.document.currentScript)&&(r=r.src.match(/(.+\/)[^\/]+\.js(\?.*)?$/))&&(n.p=r[1]));var i=function(){var t=this,e=t.$createElement,n=t._self._c||e;return n(t.$props.tagname,{tag:"section",staticClass:"ps-container",on:{"ps-scroll-y":t.scrollHandle,"ps-scroll-x":t.scrollHandle,"ps-scroll-up":t.scrollHandle,"ps-scroll-down":t.scrollHandle,"ps-scroll-left":t.scrollHandle,"ps-scroll-right":t.scrollHandle,"ps-y-reach-start":t.scrollHandle,"ps-y-reach-end":t.scrollHandle,"ps-x-reach-start":t.scrollHandle,"ps-x-reach-end":t.scrollHandle}},[t._t("default")],2)},o=[];
+/*!
+ * perfect-scrollbar v1.4.0
+ * (c) 2018 Hyunje Jun
+ * @license MIT
+ */
+function l(t){return getComputedStyle(t)}function s(t,e){for(var n in e){var r=e[n];"number"===typeof r&&(r+="px"),t.style[n]=r}return t}function a(t){var e=document.createElement("div");return e.className=t,e}var c="undefined"!==typeof Element&&(Element.prototype.matches||Element.prototype.webkitMatchesSelector||Element.prototype.mozMatchesSelector||Element.prototype.msMatchesSelector);function h(t,e){if(!c)throw new Error("No element matching method supported");return c.call(t,e)}function u(t){t.remove?t.remove():t.parentNode&&t.parentNode.removeChild(t)}function d(t,e){return Array.prototype.filter.call(t.children,function(t){return h(t,e)})}var p={main:"ps",element:{thumb:function(t){return"ps__thumb-"+t},rail:function(t){return"ps__rail-"+t},consuming:"ps__child--consume"},state:{focus:"ps--focus",clicking:"ps--clicking",active:function(t){return"ps--active-"+t},scrolling:function(t){return"ps--scrolling-"+t}}},f={x:null,y:null};function b(t,e){var n=t.element.classList,r=p.state.scrolling(e);n.contains(r)?clearTimeout(f[e]):n.add(r)}function g(t,e){f[e]=setTimeout(function(){return t.isAlive&&t.element.classList.remove(p.state.scrolling(e))},t.settings.scrollingThreshold)}function v(t,e){b(t,e),g(t,e)}var m=function(t){this.element=t,this.handlers={}},y={isEmpty:{configurable:!0}};m.prototype.bind=function(t,e){"undefined"===typeof this.handlers[t]&&(this.handlers[t]=[]),this.handlers[t].push(e),this.element.addEventListener(t,e,!1)},m.prototype.unbind=function(t,e){var n=this;this.handlers[t]=this.handlers[t].filter(function(r){return!(!e||r===e)||(n.element.removeEventListener(t,r,!1),!1)})},m.prototype.unbindAll=function(){var t=this;for(var e in t.handlers)t.unbind(e)},y.isEmpty.get=function(){var t=this;return Object.keys(this.handlers).every(function(e){return 0===t.handlers[e].length})},Object.defineProperties(m.prototype,y);var _=function(){this.eventElements=[]};function w(t){if("function"===typeof window.CustomEvent)return new CustomEvent(t);var e=document.createEvent("CustomEvent");return e.initCustomEvent(t,!1,!1,void 0),e}_.prototype.eventElement=function(t){var e=this.eventElements.filter(function(e){return e.element===t})[0];return e||(e=new m(t),this.eventElements.push(e)),e},_.prototype.bind=function(t,e,n){this.eventElement(t).bind(e,n)},_.prototype.unbind=function(t,e,n){var r=this.eventElement(t);r.unbind(e,n),r.isEmpty&&this.eventElements.splice(this.eventElements.indexOf(r),1)},_.prototype.unbindAll=function(){this.eventElements.forEach(function(t){return t.unbindAll()}),this.eventElements=[]},_.prototype.once=function(t,e,n){var r=this.eventElement(t),i=function(t){r.unbind(e,i),n(t)};r.bind(e,i)};var Y=function(t,e,n,r,i){var o;if(void 0===r&&(r=!0),void 0===i&&(i=!1),"top"===e)o=["contentHeight","containerHeight","scrollTop","y","up","down"];else{if("left"!==e)throw new Error("A proper axis should be provided");o=["contentWidth","containerWidth","scrollLeft","x","left","right"]}X(t,n,o,r,i)};function X(t,e,n,r,i){var o=n[0],l=n[1],s=n[2],a=n[3],c=n[4],h=n[5];void 0===r&&(r=!0),void 0===i&&(i=!1);var u=t.element;t.reach[a]=null,u[s]<1&&(t.reach[a]="start"),u[s]>t[o]-t[l]-1&&(t.reach[a]="end"),e&&(u.dispatchEvent(w("ps-scroll-"+a)),e<0?u.dispatchEvent(w("ps-scroll-"+c)):e>0&&u.dispatchEvent(w("ps-scroll-"+h)),r&&v(t,a)),t.reach[a]&&(e||i)&&u.dispatchEvent(w("ps-"+a+"-reach-"+t.reach[a]))}function x(t){return parseInt(t,10)||0}function W(t){return h(t,"input,[contenteditable]")||h(t,"select,[contenteditable]")||h(t,"textarea,[contenteditable]")||h(t,"button,[contenteditable]")}function S(t){var e=l(t);return x(e.width)+x(e.paddingLeft)+x(e.paddingRight)+x(e.borderLeftWidth)+x(e.borderRightWidth)}var L={isWebKit:"undefined"!==typeof document&&"WebkitAppearance"in document.documentElement.style,supportsTouch:"undefined"!==typeof window&&("ontouchstart"in window||window.DocumentTouch&&document instanceof window.DocumentTouch),supportsIePointer:"undefined"!==typeof navigator&&navigator.msMaxTouchPoints,isChrome:"undefined"!==typeof navigator&&/Chrome/i.test(navigator&&navigator.userAgent)},R=function(t){var e=t.element,n=Math.floor(e.scrollTop);t.containerWidth=e.clientWidth,t.containerHeight=e.clientHeight,t.contentWidth=e.scrollWidth,t.contentHeight=e.scrollHeight,e.contains(t.scrollbarXRail)||(d(e,p.element.rail("x")).forEach(function(t){return u(t)}),e.appendChild(t.scrollbarXRail)),e.contains(t.scrollbarYRail)||(d(e,p.element.rail("y")).forEach(function(t){return u(t)}),e.appendChild(t.scrollbarYRail)),!t.settings.suppressScrollX&&t.containerWidth+t.settings.scrollXMarginOffset<t.contentWidth?(t.scrollbarXActive=!0,t.railXWidth=t.containerWidth-t.railXMarginWidth,t.railXRatio=t.containerWidth/t.railXWidth,t.scrollbarXWidth=T(t,x(t.railXWidth*t.containerWidth/t.contentWidth)),t.scrollbarXLeft=x((t.negativeScrollAdjustment+e.scrollLeft)*(t.railXWidth-t.scrollbarXWidth)/(t.contentWidth-t.containerWidth))):t.scrollbarXActive=!1,!t.settings.suppressScrollY&&t.containerHeight+t.settings.scrollYMarginOffset<t.contentHeight?(t.scrollbarYActive=!0,t.railYHeight=t.containerHeight-t.railYMarginHeight,t.railYRatio=t.containerHeight/t.railYHeight,t.scrollbarYHeight=T(t,x(t.railYHeight*t.containerHeight/t.contentHeight)),t.scrollbarYTop=x(n*(t.railYHeight-t.scrollbarYHeight)/(t.contentHeight-t.containerHeight))):t.scrollbarYActive=!1,t.scrollbarXLeft>=t.railXWidth-t.scrollbarXWidth&&(t.scrollbarXLeft=t.railXWidth-t.scrollbarXWidth),t.scrollbarYTop>=t.railYHeight-t.scrollbarYHeight&&(t.scrollbarYTop=t.railYHeight-t.scrollbarYHeight),H(e,t),t.scrollbarXActive?e.classList.add(p.state.active("x")):(e.classList.remove(p.state.active("x")),t.scrollbarXWidth=0,t.scrollbarXLeft=0,e.scrollLeft=0),t.scrollbarYActive?e.classList.add(p.state.active("y")):(e.classList.remove(p.state.active("y")),t.scrollbarYHeight=0,t.scrollbarYTop=0,e.scrollTop=0)};function T(t,e){return t.settings.minScrollbarLength&&(e=Math.max(e,t.settings.minScrollbarLength)),t.settings.maxScrollbarLength&&(e=Math.min(e,t.settings.maxScrollbarLength)),e}function H(t,e){var n={width:e.railXWidth},r=Math.floor(t.scrollTop);e.isRtl?n.left=e.negativeScrollAdjustment+t.scrollLeft+e.containerWidth-e.contentWidth:n.left=t.scrollLeft,e.isScrollbarXUsingBottom?n.bottom=e.scrollbarXBottom-r:n.top=e.scrollbarXTop+r,s(e.scrollbarXRail,n);var i={top:r,height:e.railYHeight};e.isScrollbarYUsingRight?e.isRtl?i.right=e.contentWidth-(e.negativeScrollAdjustment+t.scrollLeft)-e.scrollbarYRight-e.scrollbarYOuterWidth:i.right=e.scrollbarYRight-t.scrollLeft:e.isRtl?i.left=e.negativeScrollAdjustment+t.scrollLeft+2*e.containerWidth-e.contentWidth-e.scrollbarYLeft-e.scrollbarYOuterWidth:i.left=e.scrollbarYLeft+t.scrollLeft,s(e.scrollbarYRail,i),s(e.scrollbarX,{left:e.scrollbarXLeft,width:e.scrollbarXWidth-e.railBorderXWidth}),s(e.scrollbarY,{top:e.scrollbarYTop,height:e.scrollbarYHeight-e.railBorderYWidth})}var E=function(t){t.event.bind(t.scrollbarY,"mousedown",function(t){return t.stopPropagation()}),t.event.bind(t.scrollbarYRail,"mousedown",function(e){var n=e.pageY-window.pageYOffset-t.scrollbarYRail.getBoundingClientRect().top,r=n>t.scrollbarYTop?1:-1;t.element.scrollTop+=r*t.containerHeight,R(t),e.stopPropagation()}),t.event.bind(t.scrollbarX,"mousedown",function(t){return t.stopPropagation()}),t.event.bind(t.scrollbarXRail,"mousedown",function(e){var n=e.pageX-window.pageXOffset-t.scrollbarXRail.getBoundingClientRect().left,r=n>t.scrollbarXLeft?1:-1;t.element.scrollLeft+=r*t.containerWidth,R(t),e.stopPropagation()})},M=function(t){k(t,["containerWidth","contentWidth","pageX","railXWidth","scrollbarX","scrollbarXWidth","scrollLeft","x","scrollbarXRail"]),k(t,["containerHeight","contentHeight","pageY","railYHeight","scrollbarY","scrollbarYHeight","scrollTop","y","scrollbarYRail"])};function k(t,e){var n=e[0],r=e[1],i=e[2],o=e[3],l=e[4],s=e[5],a=e[6],c=e[7],h=e[8],u=t.element,d=null,f=null,v=null;function m(e){u[a]=d+v*(e[i]-f),b(t,c),R(t),e.stopPropagation(),e.preventDefault()}function y(){g(t,c),t[h].classList.remove(p.state.clicking),t.event.unbind(t.ownerDocument,"mousemove",m)}t.event.bind(t[l],"mousedown",function(e){d=u[a],f=e[i],v=(t[r]-t[n])/(t[o]-t[s]),t.event.bind(t.ownerDocument,"mousemove",m),t.event.once(t.ownerDocument,"mouseup",y),t[h].classList.add(p.state.clicking),e.stopPropagation(),e.preventDefault()})}var A=function(t){var e=t.element,n=function(){return h(e,":hover")},r=function(){return h(t.scrollbarX,":focus")||h(t.scrollbarY,":focus")};function i(n,r){var i=Math.floor(e.scrollTop);if(0===n){if(!t.scrollbarYActive)return!1;if(0===i&&r>0||i>=t.contentHeight-t.containerHeight&&r<0)return!t.settings.wheelPropagation}var o=e.scrollLeft;if(0===r){if(!t.scrollbarXActive)return!1;if(0===o&&n<0||o>=t.contentWidth-t.containerWidth&&n>0)return!t.settings.wheelPropagation}return!0}t.event.bind(t.ownerDocument,"keydown",function(o){if(!(o.isDefaultPrevented&&o.isDefaultPrevented()||o.defaultPrevented)&&(n()||r())){var l=document.activeElement?document.activeElement:t.ownerDocument.activeElement;if(l){if("IFRAME"===l.tagName)l=l.contentDocument.activeElement;else while(l.shadowRoot)l=l.shadowRoot.activeElement;if(W(l))return}var s=0,a=0;switch(o.which){case 37:s=o.metaKey?-t.contentWidth:o.altKey?-t.containerWidth:-30;break;case 38:a=o.metaKey?t.contentHeight:o.altKey?t.containerHeight:30;break;case 39:s=o.metaKey?t.contentWidth:o.altKey?t.containerWidth:30;break;case 40:a=o.metaKey?-t.contentHeight:o.altKey?-t.containerHeight:-30;break;case 32:a=o.shiftKey?t.containerHeight:-t.containerHeight;break;case 33:a=t.containerHeight;break;case 34:a=-t.containerHeight;break;case 36:a=t.contentHeight;break;case 35:a=-t.contentHeight;break;default:return}t.settings.suppressScrollX&&0!==s||t.settings.suppressScrollY&&0!==a||(e.scrollTop-=a,e.scrollLeft+=s,R(t),i(s,a)&&o.preventDefault())}})},C=function(t){var e=t.element;function n(n,r){var i,o=Math.floor(e.scrollTop),l=0===e.scrollTop,s=o+e.offsetHeight===e.scrollHeight,a=0===e.scrollLeft,c=e.scrollLeft+e.offsetWidth===e.scrollWidth;return i=Math.abs(r)>Math.abs(n)?l||s:a||c,!i||!t.settings.wheelPropagation}function r(t){var e=t.deltaX,n=-1*t.deltaY;return"undefined"!==typeof e&&"undefined"!==typeof n||(e=-1*t.wheelDeltaX/6,n=t.wheelDeltaY/6),t.deltaMode&&1===t.deltaMode&&(e*=10,n*=10),e!==e&&n!==n&&(e=0,n=t.wheelDelta),t.shiftKey?[-n,-e]:[e,n]}function i(t,n,r){if(!L.isWebKit&&e.querySelector("select:focus"))return!0;if(!e.contains(t))return!1;var i=t;while(i&&i!==e){if(i.classList.contains(p.element.consuming))return!0;var o=l(i),s=[o.overflow,o.overflowX,o.overflowY].join("");if(s.match(/(scroll|auto)/)){var a=i.scrollHeight-i.clientHeight;if(a>0&&!(0===i.scrollTop&&r>0)&&!(i.scrollTop===a&&r<0))return!0;var c=i.scrollWidth-i.clientWidth;if(c>0&&!(0===i.scrollLeft&&n<0)&&!(i.scrollLeft===c&&n>0))return!0}i=i.parentNode}return!1}function o(o){var l=r(o),s=l[0],a=l[1];if(!i(o.target,s,a)){var c=!1;t.settings.useBothWheelAxes?t.scrollbarYActive&&!t.scrollbarXActive?(a?e.scrollTop-=a*t.settings.wheelSpeed:e.scrollTop+=s*t.settings.wheelSpeed,c=!0):t.scrollbarXActive&&!t.scrollbarYActive&&(s?e.scrollLeft+=s*t.settings.wheelSpeed:e.scrollLeft-=a*t.settings.wheelSpeed,c=!0):(e.scrollTop-=a*t.settings.wheelSpeed,e.scrollLeft+=s*t.settings.wheelSpeed),R(t),c=c||n(s,a),c&&!o.ctrlKey&&(o.stopPropagation(),o.preventDefault())}}"undefined"!==typeof window.onwheel?t.event.bind(e,"wheel",o):"undefined"!==typeof window.onmousewheel&&t.event.bind(e,"mousewheel",o)},P=function(t){if(L.supportsTouch||L.supportsIePointer){var e=t.element,n={},r=0,i={},o=null;L.supportsTouch?(t.event.bind(e,"touchstart",u),t.event.bind(e,"touchmove",f),t.event.bind(e,"touchend",b)):L.supportsIePointer&&(window.PointerEvent?(t.event.bind(e,"pointerdown",u),t.event.bind(e,"pointermove",f),t.event.bind(e,"pointerup",b)):window.MSPointerEvent&&(t.event.bind(e,"MSPointerDown",u),t.event.bind(e,"MSPointerMove",f),t.event.bind(e,"MSPointerUp",b)))}function s(n,r){var i=Math.floor(e.scrollTop),o=e.scrollLeft,l=Math.abs(n),s=Math.abs(r);if(s>l){if(r<0&&i===t.contentHeight-t.containerHeight||r>0&&0===i)return 0===window.scrollY&&r>0&&L.isChrome}else if(l>s&&(n<0&&o===t.contentWidth-t.containerWidth||n>0&&0===o))return!0;return!0}function a(n,r){e.scrollTop-=r,e.scrollLeft-=n,R(t)}function c(t){return t.targetTouches?t.targetTouches[0]:t}function h(t){return(!t.pointerType||"pen"!==t.pointerType||0!==t.buttons)&&(!(!t.targetTouches||1!==t.targetTouches.length)||!(!t.pointerType||"mouse"===t.pointerType||t.pointerType===t.MSPOINTER_TYPE_MOUSE))}function u(t){if(h(t)){var e=c(t);n.pageX=e.pageX,n.pageY=e.pageY,r=(new Date).getTime(),null!==o&&clearInterval(o)}}function d(t,n,r){if(!e.contains(t))return!1;var i=t;while(i&&i!==e){if(i.classList.contains(p.element.consuming))return!0;var o=l(i),s=[o.overflow,o.overflowX,o.overflowY].join("");if(s.match(/(scroll|auto)/)){var a=i.scrollHeight-i.clientHeight;if(a>0&&!(0===i.scrollTop&&r>0)&&!(i.scrollTop===a&&r<0))return!0;var c=i.scrollLeft-i.clientWidth;if(c>0&&!(0===i.scrollLeft&&n<0)&&!(i.scrollLeft===c&&n>0))return!0}i=i.parentNode}return!1}function f(t){if(h(t)){var e=c(t),o={pageX:e.pageX,pageY:e.pageY},l=o.pageX-n.pageX,u=o.pageY-n.pageY;if(d(t.target,l,u))return;a(l,u),n=o;var p=(new Date).getTime(),f=p-r;f>0&&(i.x=l/f,i.y=u/f,r=p),s(l,u)&&t.preventDefault()}}function b(){t.settings.swipeEasing&&(clearInterval(o),o=setInterval(function(){t.isInitialized?clearInterval(o):i.x||i.y?Math.abs(i.x)<.01&&Math.abs(i.y)<.01?clearInterval(o):(a(30*i.x,30*i.y),i.x*=.8,i.y*=.8):clearInterval(o)},10))}},j=function(){return{handlers:["click-rail","drag-thumb","keyboard","wheel","touch"],maxScrollbarLength:null,minScrollbarLength:null,scrollingThreshold:1e3,scrollXMarginOffset:0,scrollYMarginOffset:0,suppressScrollX:!1,suppressScrollY:!1,swipeEasing:!0,useBothWheelAxes:!1,wheelPropagation:!0,wheelSpeed:1}},N={"click-rail":E,"drag-thumb":M,keyboard:A,wheel:C,touch:P},D=function(t,e){var n=this;if(void 0===e&&(e={}),"string"===typeof t&&(t=document.querySelector(t)),!t||!t.nodeName)throw new Error("no element is specified to initialize PerfectScrollbar");for(var r in this.element=t,t.classList.add(p.main),this.settings=j(),e)n.settings[r]=e[r];this.containerWidth=null,this.containerHeight=null,this.contentWidth=null,this.contentHeight=null;var i=function(){return t.classList.add(p.state.focus)},o=function(){return t.classList.remove(p.state.focus)};this.isRtl="rtl"===l(t).direction,this.isNegativeScroll=function(){var e=t.scrollLeft,n=null;return t.scrollLeft=-1,n=t.scrollLeft<0,t.scrollLeft=e,n}(),this.negativeScrollAdjustment=this.isNegativeScroll?t.scrollWidth-t.clientWidth:0,this.event=new _,this.ownerDocument=t.ownerDocument||document,this.scrollbarXRail=a(p.element.rail("x")),t.appendChild(this.scrollbarXRail),this.scrollbarX=a(p.element.thumb("x")),this.scrollbarXRail.appendChild(this.scrollbarX),this.scrollbarX.setAttribute("tabindex",0),this.event.bind(this.scrollbarX,"focus",i),this.event.bind(this.scrollbarX,"blur",o),this.scrollbarXActive=null,this.scrollbarXWidth=null,this.scrollbarXLeft=null;var c=l(this.scrollbarXRail);this.scrollbarXBottom=parseInt(c.bottom,10),isNaN(this.scrollbarXBottom)?(this.isScrollbarXUsingBottom=!1,this.scrollbarXTop=x(c.top)):this.isScrollbarXUsingBottom=!0,this.railBorderXWidth=x(c.borderLeftWidth)+x(c.borderRightWidth),s(this.scrollbarXRail,{display:"block"}),this.railXMarginWidth=x(c.marginLeft)+x(c.marginRight),s(this.scrollbarXRail,{display:""}),this.railXWidth=null,this.railXRatio=null,this.scrollbarYRail=a(p.element.rail("y")),t.appendChild(this.scrollbarYRail),this.scrollbarY=a(p.element.thumb("y")),this.scrollbarYRail.appendChild(this.scrollbarY),this.scrollbarY.setAttribute("tabindex",0),this.event.bind(this.scrollbarY,"focus",i),this.event.bind(this.scrollbarY,"blur",o),this.scrollbarYActive=null,this.scrollbarYHeight=null,this.scrollbarYTop=null;var h=l(this.scrollbarYRail);this.scrollbarYRight=parseInt(h.right,10),isNaN(this.scrollbarYRight)?(this.isScrollbarYUsingRight=!1,this.scrollbarYLeft=x(h.left)):this.isScrollbarYUsingRight=!0,this.scrollbarYOuterWidth=this.isRtl?S(this.scrollbarY):null,this.railBorderYWidth=x(h.borderTopWidth)+x(h.borderBottomWidth),s(this.scrollbarYRail,{display:"block"}),this.railYMarginHeight=x(h.marginTop)+x(h.marginBottom),s(this.scrollbarYRail,{display:""}),this.railYHeight=null,this.railYRatio=null,this.reach={x:t.scrollLeft<=0?"start":t.scrollLeft>=this.contentWidth-this.containerWidth?"end":null,y:t.scrollTop<=0?"start":t.scrollTop>=this.contentHeight-this.containerHeight?"end":null},this.isAlive=!0,this.settings.handlers.forEach(function(t){return N[t](n)}),this.lastScrollTop=Math.floor(t.scrollTop),this.lastScrollLeft=t.scrollLeft,this.event.bind(this.element,"scroll",function(t){return n.onScroll(t)}),R(this)};D.prototype.update=function(){this.isAlive&&(this.negativeScrollAdjustment=this.isNegativeScroll?this.element.scrollWidth-this.element.clientWidth:0,s(this.scrollbarXRail,{display:"block"}),s(this.scrollbarYRail,{display:"block"}),this.railXMarginWidth=x(l(this.scrollbarXRail).marginLeft)+x(l(this.scrollbarXRail).marginRight),this.railYMarginHeight=x(l(this.scrollbarYRail).marginTop)+x(l(this.scrollbarYRail).marginBottom),s(this.scrollbarXRail,{display:"none"}),s(this.scrollbarYRail,{display:"none"}),R(this),Y(this,"top",0,!1,!0),Y(this,"left",0,!1,!0),s(this.scrollbarXRail,{display:""}),s(this.scrollbarYRail,{display:""}))},D.prototype.onScroll=function(t){this.isAlive&&(R(this),Y(this,"top",this.element.scrollTop-this.lastScrollTop),Y(this,"left",this.element.scrollLeft-this.lastScrollLeft),this.lastScrollTop=Math.floor(this.element.scrollTop),this.lastScrollLeft=this.element.scrollLeft)},D.prototype.destroy=function(){this.isAlive&&(this.event.unbindAll(),u(this.scrollbarX),u(this.scrollbarY),u(this.scrollbarXRail),u(this.scrollbarYRail),this.removePsClasses(),this.element=null,this.scrollbarX=null,this.scrollbarY=null,this.scrollbarXRail=null,this.scrollbarYRail=null,this.isAlive=!1)},D.prototype.removePsClasses=function(){this.element.className=this.element.className.split(" ").filter(function(t){return!t.match(/^ps([-_].+|)$/)}).join(" ")};var O=D,B={name:"vue-custom-scrollbar",props:{settings:{default:null},swicher:{type:Boolean,default:!0},tagname:{type:String,default:"section"}},data:function(){return{ps:null}},methods:{scrollHandle:function(t){this.$emit(t.type,t)},update:function(){this.ps&&this.ps.update()},__init:function(){this.swicher&&(this._ps_inited?this.ps.update():(this._ps_inited=!0,this.ps=new O(this.$el,this.settings)))},__uninit:function(){this.ps&&(this.ps.destroy(),this.ps=null,this._ps_inited=!1)}},watch:{swicher:function(t){t&&!this._ps_inited&&this.__init(),!t&&this._ps_inited&&this.__uninit()},settings:{deep:!0,handler:function(){this.__uninit(),this.__init()}},$route:function(){this.update()}},mounted:function(){this.$isServer||this.__init()},updated:function(){this.$nextTick(this.update)},activated:function(){this.__init()},deactivated:function(){this.__uninit()},beforeDestroy:function(){this.__uninit()}},I=B;n("3ae1");function U(t,e,n,r,i,o,l,s){var a,c="function"===typeof t?t.options:t;if(e&&(c.render=e,c.staticRenderFns=n,c._compiled=!0),r&&(c.functional=!0),o&&(c._scopeId="data-v-"+o),l?(a=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"===typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),i&&i.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(l)},c._ssrRegister=a):i&&(a=s?function(){i.call(this,this.$root.$options.shadowRoot)}:i),a)if(c.functional){c._injectStyles=a;var h=c.render;c.render=function(t,e){return a.call(e),h(t,e)}}else{var u=c.beforeCreate;c.beforeCreate=u?[].concat(u,a):[a]}return{exports:t,options:c}}var $=U(I,i,o,!1,null,null,null),K=$.exports;e["default"]=K},e67d:function(t,e){(function(t){var e="currentScript",n=t.getElementsByTagName("script");e in t||Object.defineProperty(t,e,{get:function(){try{throw new Error}catch(r){var t,e=(/.*at [^\(]*\((.*):.+:.+\)$/gi.exec(r.stack)||[!1])[1];for(t in n)if(n[t].src==e||"interactive"==n[t].readyState)return n[t];return null}}})})(document)},f5fc:function(t,e,n){var r=n("9d3c");"string"===typeof r&&(r=[[t.i,r,""]]),r.locals&&(t.exports=r.locals);var i=n("85cb").default;i("4cb9b1f6",r,!0,{sourceMap:!1,shadowMode:!1})}})["default"]});
+//# sourceMappingURL=vueScrollbar.umd.min.js.map
+
+/***/ }),
+
 /***/ "./node_modules/vue-js-modal/dist/index.js":
 /*!*************************************************!*\
   !*** ./node_modules/vue-js-modal/dist/index.js ***!
@@ -31325,10 +31491,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b&":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b& ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardNHLHUT.vue?vue&type=template&id=061ef790&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardNHLHUT.vue?vue&type=template&id=061ef790& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -31340,84 +31506,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "modal-body card-modal" }, [
-    _c("div", { staticClass: "ncard" }, [
-      _c("div", { staticClass: "backplate" }, [
-        _c("div", { staticClass: "background silver" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "silver_tag tag top" }, [
-          _c("div", { staticClass: "cardtype" }, [
-            _vm._v(_vm._s(_vm.card.card))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "overall" }, [_vm._v(_vm._s(_vm.card.ovr))])
-        ]),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "headshot top",
-          staticStyle: { "background-image": "url('/img/head.png')" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "name" }, [
-          _c("div", { staticClass: "firstname" }, [
-            _vm._v(_vm._s(_vm.card.player.split(" ")[0]))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "lastname" }, [
-            _vm._v(_vm._s(_vm.card.player.split(" ")[1]))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "info" }, [
-          _c("div", { staticClass: "position" }, [
-            _vm._v(_vm._s(_vm.card.position))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "bullet" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "type" }, [
-            _vm._v(_vm._s(_vm.card.player_type))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "attributes attributes-right" }, [
-          _c("div", { staticClass: "attr-name" }, [_vm._v("SKT")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-name" }, [_vm._v("SHT")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-name" }, [_vm._v("HND")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-name" }, [_vm._v("CHK")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-name" }, [_vm._v("DEF")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-value" }, [
-            _vm._v(_vm._s(_vm.card.skt_hgh))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-value" }, [
-            _vm._v(_vm._s(_vm.card.sht_low))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-value" }, [
-            _vm._v(_vm._s(_vm.card.hnd_qck))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-value" }, [
-            _vm._v(_vm._s(_vm.card.chk))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "attr-value" }, [
-            _vm._v(_vm._s(_vm.card.def_rbc))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "team-right" }, [
-          _vm._v(_vm._s(_vm.card.team))
-        ])
-      ])
-    ])
-  ])
+  return _c("div", {
+    staticClass: "modal-body card-modal",
+    domProps: { innerHTML: _vm._s(_vm.card) }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -31426,10 +31518,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=template&id=fc76add0&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=template&id=fc76add0& ***!
+  \*************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -31446,39 +31538,11 @@ var render = function() {
     [
       _c("div", { staticClass: "search-form" }, [
         _c("div", { staticClass: "row ff" }, [
-          _c(
-            "div",
-            { staticClass: "col-6" },
-            [
-              _c(
-                "label",
-                { staticClass: "col-form-label", attrs: { for: "year" } },
-                [_vm._v("Year")]
-              ),
-              _vm._v(" "),
-              _c("toggle", {
-                attrs: {
-                  check: _vm.year,
-                  id: "year",
-                  labelon: "2019",
-                  labeloff: "2020",
-                  width: 140
-                },
-                on: {
-                  check: function($event) {
-                    return _vm.checkYear($event)
-                  }
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
             _c(
               "label",
               { staticClass: "col-form-label", attrs: { for: "per_page" } },
-              [_vm._v("Max elements")]
+              [_vm._v("Максимально элементов")]
             ),
             _vm._v(" "),
             _c(
@@ -31524,10 +31588,56 @@ var render = function() {
                 _c("option", { attrs: { value: "10" } }, [_vm._v("10")])
               ]
             )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
+            _c(
+              "label",
+              { staticClass: "col-form-label", attrs: { for: "handedness" } },
+              [_vm._v("Shoots")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.handedness,
+                    expression: "handedness"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "handedness" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.handedness = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "" } }, [
+                  _vm._v("Any")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Left")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("Right")])
+              ]
+            )
           ])
         ]),
-        _vm._v(" "),
-        _c("hr"),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-6 player" }, [
@@ -31757,7 +31867,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { id: "position", multiple: "multiple" },
+                attrs: { id: "position" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -31817,7 +31927,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { id: "playerType", multiple: "multiple" },
+                attrs: { id: "playerType" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -31877,8 +31987,8 @@ var render = function() {
           _c("div", { staticClass: "col-6" }, [
             _c(
               "label",
-              { staticClass: "col-form-label", attrs: { for: "handedness" } },
-              [_vm._v("Shoots")]
+              { staticClass: "col-form-label", attrs: { for: "minHeight" } },
+              [_vm._v("Min height")]
             ),
             _vm._v(" "),
             _c(
@@ -31888,12 +31998,12 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.handedness,
-                    expression: "handedness"
+                    value: _vm.minHeight,
+                    expression: "minHeight"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { id: "handedness" },
+                attrs: { id: "minHeight" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -31904,20 +32014,134 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.handedness = $event.target.multiple
+                    _vm.minHeight = $event.target.multiple
                       ? $$selectedVal
                       : $$selectedVal[0]
                   }
                 }
               },
               [
-                _c("option", { attrs: { value: "Any", selected: "" } }, [
-                  _vm._v("Any")
-                ]),
+                _c("option", { attrs: { value: "241" } }, [_vm._v(" 7' 11\"")]),
                 _vm._v(" "),
-                _c("option", [_vm._v("Left")]),
+                _c("option", { attrs: { value: "239" } }, [_vm._v(" 7' 10\"")]),
                 _vm._v(" "),
-                _c("option", [_vm._v("Right")])
+                _c("option", { attrs: { value: "236" } }, [_vm._v(" 7' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "234" } }, [_vm._v(" 7' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "231" } }, [_vm._v(" 7' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "229" } }, [_vm._v(" 7' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "226" } }, [_vm._v(" 7' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "224" } }, [_vm._v(" 7' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "221" } }, [_vm._v(" 7' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "218" } }, [_vm._v(" 7' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "216" } }, [_vm._v(" 7' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "213" } }, [_vm._v(" 7' 0\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "211" } }, [_vm._v(" 6' 11\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "208" } }, [_vm._v(" 6' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "206" } }, [_vm._v(" 6' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "203" } }, [_vm._v(" 6' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "201" } }, [_vm._v(" 6' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "198" } }, [_vm._v(" 6' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "196" } }, [_vm._v(" 6' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "193" } }, [_vm._v(" 6' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "190" } }, [_vm._v(" 6' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "188" } }, [_vm._v(" 6' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "185" } }, [_vm._v(" 6' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "183" } }, [_vm._v(" 6' 0\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "180" } }, [_vm._v(" 5' 11\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "178" } }, [_vm._v(" 5' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "175" } }, [_vm._v(" 5' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "173" } }, [_vm._v(" 5' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "170" } }, [_vm._v(" 5' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "168" } }, [_vm._v(" 5' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "165" } }, [_vm._v(" 5' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "163" } }, [_vm._v(" 5' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "160" } }, [_vm._v(" 5' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "157" } }, [_vm._v(" 5' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "155" } }, [_vm._v(" 5' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "152" } }, [_vm._v(" 5' 0\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "150" } }, [_vm._v(" 4' 11\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "147" } }, [_vm._v(" 4' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "145" } }, [_vm._v(" 4' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "142" } }, [_vm._v(" 4' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "140" } }, [_vm._v(" 4' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "137" } }, [_vm._v(" 4' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "135" } }, [_vm._v(" 4' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "132" } }, [_vm._v(" 4' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "130" } }, [_vm._v(" 4' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "127" } }, [_vm._v(" 4' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "124" } }, [_vm._v(" 4' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "122" } }, [_vm._v(" 4' 0\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "119" } }, [_vm._v(" 3' 11\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "117" } }, [_vm._v(" 3' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "114" } }, [_vm._v(" 3' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "112" } }, [_vm._v(" 3' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "109" } }, [_vm._v(" 3' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "107" } }, [_vm._v(" 3' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "104" } }, [_vm._v(" 3' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "102" } }, [_vm._v(" 3' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "99" } }, [_vm._v(" 3' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "97" } }, [_vm._v(" 3' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "94" } }, [_vm._v(" 3' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "91", selected: "" } }, [
+                  _vm._v(" 3' 0\"")
+                ])
               ]
             )
           ]),
@@ -31925,8 +32149,8 @@ var render = function() {
           _c("div", { staticClass: "col-6" }, [
             _c(
               "label",
-              { staticClass: "col-form-label", attrs: { for: "height" } },
-              [_vm._v("Height")]
+              { staticClass: "col-form-label", attrs: { for: "maxHeight" } },
+              [_vm._v("Max height")]
             ),
             _vm._v(" "),
             _c(
@@ -31936,12 +32160,12 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.height,
-                    expression: "height"
+                    value: _vm.maxHeight,
+                    expression: "maxHeight"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { id: "height", multiple: "multiple" },
+                attrs: { id: "maxHeight" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -31952,22 +32176,135 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.height = $event.target.multiple
+                    _vm.maxHeight = $event.target.multiple
                       ? $$selectedVal
                       : $$selectedVal[0]
                   }
                 }
               },
               [
-                _c("option", { attrs: { selected: "" } }, [_vm._v("Any")]),
+                _c("option", { attrs: { value: "241", selected: "" } }, [
+                  _vm._v(" 7' 11\"")
+                ]),
                 _vm._v(" "),
-                _vm._l(_vm.heightLabels, function(h) {
-                  return _c("option", { domProps: { value: h.id } }, [
-                    _vm._v(_vm._s(h.name))
-                  ])
-                })
-              ],
-              2
+                _c("option", { attrs: { value: "239" } }, [_vm._v(" 7' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "236" } }, [_vm._v(" 7' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "234" } }, [_vm._v(" 7' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "231" } }, [_vm._v(" 7' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "229" } }, [_vm._v(" 7' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "226" } }, [_vm._v(" 7' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "224" } }, [_vm._v(" 7' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "221" } }, [_vm._v(" 7' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "218" } }, [_vm._v(" 7' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "216" } }, [_vm._v(" 7' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "213" } }, [_vm._v(" 7' 0\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "211" } }, [_vm._v(" 6' 11\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "208" } }, [_vm._v(" 6' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "206" } }, [_vm._v(" 6' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "203" } }, [_vm._v(" 6' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "201" } }, [_vm._v(" 6' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "198" } }, [_vm._v(" 6' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "196" } }, [_vm._v(" 6' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "193" } }, [_vm._v(" 6' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "190" } }, [_vm._v(" 6' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "188" } }, [_vm._v(" 6' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "185" } }, [_vm._v(" 6' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "183" } }, [_vm._v(" 6' 0\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "180" } }, [_vm._v(" 5' 11\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "178" } }, [_vm._v(" 5' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "175" } }, [_vm._v(" 5' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "173" } }, [_vm._v(" 5' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "170" } }, [_vm._v(" 5' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "168" } }, [_vm._v(" 5' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "165" } }, [_vm._v(" 5' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "163" } }, [_vm._v(" 5' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "160" } }, [_vm._v(" 5' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "157" } }, [_vm._v(" 5' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "155" } }, [_vm._v(" 5' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "152" } }, [_vm._v(" 5' 0\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "150" } }, [_vm._v(" 4' 11\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "147" } }, [_vm._v(" 4' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "145" } }, [_vm._v(" 4' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "142" } }, [_vm._v(" 4' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "140" } }, [_vm._v(" 4' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "137" } }, [_vm._v(" 4' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "135" } }, [_vm._v(" 4' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "132" } }, [_vm._v(" 4' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "130" } }, [_vm._v(" 4' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "127" } }, [_vm._v(" 4' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "124" } }, [_vm._v(" 4' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "122" } }, [_vm._v(" 4' 0\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "119" } }, [_vm._v(" 3' 11\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "117" } }, [_vm._v(" 3' 10\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "114" } }, [_vm._v(" 3' 9\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "112" } }, [_vm._v(" 3' 8\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "109" } }, [_vm._v(" 3' 7\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "107" } }, [_vm._v(" 3' 6\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "104" } }, [_vm._v(" 3' 5\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "102" } }, [_vm._v(" 3' 4\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "99" } }, [_vm._v(" 3' 3\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "97" } }, [_vm._v(" 3' 2\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "94" } }, [_vm._v(" 3' 1\"")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "91" } }, [_vm._v(" 3' 0\"")])
+              ]
             )
           ])
         ]),
@@ -32037,7 +32374,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { id: "card", multiple: "multiple" },
+                attrs: { id: "card" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -32261,22 +32598,30 @@ var render = function() {
                         staticStyle: { cursor: "pointer" },
                         on: {
                           click: function($event) {
-                            return _vm.getCard(result.id)
+                            return _vm.getCard(result.card_art)
                           }
                         }
                       },
-                      [_c("span", [_vm._v(_vm._s(result.id))])]
+                      [
+                        _c("span", {
+                          domProps: {
+                            innerHTML: _vm._s(
+                              _vm.prepareCardArt(result.card_art)
+                            )
+                          }
+                        })
+                      ]
                     ),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(result.league))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(result.team))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(result.player))]),
+                    _c("td", {
+                      domProps: { innerHTML: _vm._s(result.full_name) }
+                    }),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(result.salary))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(result.ovr))]),
+                    _c("td", [_vm._v(_vm._s(result.overall))]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -32304,17 +32649,24 @@ var render = function() {
         "modal",
         { attrs: { name: "card", width: "100%", height: "100%" } },
         [
-          _c("a", {
-            staticClass: "close",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                return _vm.hide("card")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("card", { attrs: { card: _vm.card_example } })
+          _c(
+            "scroll",
+            { staticClass: "scroll-area" },
+            [
+              _c("a", {
+                staticClass: "close",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.hide("card")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("card", { attrs: { card: _vm.card_example } })
+            ],
+            1
+          )
         ],
         1
       )
@@ -32335,8 +32687,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Team")]),
       _vm._v(" "),
       _c("th", [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Salary")]),
       _vm._v(" "),
       _c("th", [_vm._v("OVR")]),
       _vm._v(" "),
@@ -44634,7 +44984,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuejs_loading_plugin__WEBPACK_IMP
 
 });
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_2___default.a);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('card-search', __webpack_require__(/*! ./components/admin/CardSearch.vue */ "./resources/js/components/admin/CardSearch.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('card-search', __webpack_require__(/*! ./components/admin/CardSearchNHLHUT.vue */ "./resources/js/components/admin/CardSearchNHLHUT.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('admin-card-panel', __webpack_require__(/*! ./components/admin/AdminCardPanel.vue */ "./resources/js/components/admin/AdminCardPanel.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   el: '#app'
@@ -44882,87 +45232,20 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/Card.vue":
-/*!************************************************!*\
-  !*** ./resources/js/components/admin/Card.vue ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card.vue?vue&type=template&id=137f5e7b& */ "./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b&");
-/* harmony import */ var _Card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Card.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/Card.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/admin/Card.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/admin/Card.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/admin/Card.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Card.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/Card.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b& ***!
-  \*******************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Card.vue?vue&type=template&id=137f5e7b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/Card.vue?vue&type=template&id=137f5e7b&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_template_id_137f5e7b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/admin/CardSearch.vue":
+/***/ "./resources/js/components/admin/CardNHLHUT.vue":
 /*!******************************************************!*\
-  !*** ./resources/js/components/admin/CardSearch.vue ***!
+  !*** ./resources/js/components/admin/CardNHLHUT.vue ***!
   \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardSearch.vue?vue&type=template&id=38ea53fa& */ "./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&");
-/* harmony import */ var _CardSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardSearch.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _CardNHLHUT_vue_vue_type_template_id_061ef790___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardNHLHUT.vue?vue&type=template&id=061ef790& */ "./resources/js/components/admin/CardNHLHUT.vue?vue&type=template&id=061ef790&");
+/* harmony import */ var _CardNHLHUT_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardNHLHUT.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/CardNHLHUT.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _CardNHLHUT_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CardNHLHUT.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -44970,10 +45253,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CardSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _CardNHLHUT_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CardNHLHUT_vue_vue_type_template_id_061ef790___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CardNHLHUT_vue_vue_type_template_id_061ef790___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -44983,38 +45266,123 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/admin/CardSearch.vue"
+component.options.__file = "resources/js/components/admin/CardNHLHUT.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/admin/CardNHLHUT.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
-  !*** ./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/admin/CardNHLHUT.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardSearch.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardNHLHUT.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardNHLHUT.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&":
+/***/ "./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss& ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardNHLHUT.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardNHLHUT.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CardNHLHUT.vue?vue&type=template&id=061ef790&":
 /*!*************************************************************************************!*\
-  !*** ./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa& ***!
+  !*** ./resources/js/components/admin/CardNHLHUT.vue?vue&type=template&id=061ef790& ***!
   \*************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardSearch.vue?vue&type=template&id=38ea53fa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearch.vue?vue&type=template&id=38ea53fa&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_template_id_061ef790___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardNHLHUT.vue?vue&type=template&id=061ef790& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardNHLHUT.vue?vue&type=template&id=061ef790&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_template_id_061ef790___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearch_vue_vue_type_template_id_38ea53fa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardNHLHUT_vue_vue_type_template_id_061ef790___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CardSearchNHLHUT.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/admin/CardSearchNHLHUT.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CardSearchNHLHUT_vue_vue_type_template_id_fc76add0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardSearchNHLHUT.vue?vue&type=template&id=fc76add0& */ "./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=template&id=fc76add0&");
+/* harmony import */ var _CardSearchNHLHUT_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardSearchNHLHUT.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CardSearchNHLHUT_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CardSearchNHLHUT_vue_vue_type_template_id_fc76add0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CardSearchNHLHUT_vue_vue_type_template_id_fc76add0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/CardSearchNHLHUT.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearchNHLHUT_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardSearchNHLHUT.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearchNHLHUT_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=template&id=fc76add0&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=template&id=fc76add0& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearchNHLHUT_vue_vue_type_template_id_fc76add0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardSearchNHLHUT.vue?vue&type=template&id=fc76add0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/CardSearchNHLHUT.vue?vue&type=template&id=fc76add0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearchNHLHUT_vue_vue_type_template_id_fc76add0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardSearchNHLHUT_vue_vue_type_template_id_fc76add0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -45027,7 +45395,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\OpenServer\domains\hut-randoms.com\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! D:\xampp\htdocs\hutplaces\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

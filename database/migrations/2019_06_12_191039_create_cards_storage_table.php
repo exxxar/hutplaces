@@ -4,17 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCardsStorageTable extends Migration
+class CreateCardsStorageHUTDBTable extends Migration
 {
     /**
-     * 
+     *
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('cards_storage', function (Blueprint $table) {
+        Schema::create('cards_storage_hutdb', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('aOVR')->nullable()->default(0);
             $table->integer('acc_agi')->nullable()->default(0);
@@ -80,6 +80,6 @@ class CreateCardsStorageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards_storage');
+        Schema::dropIfExists('cards_storage_hutdb');
     }
 }

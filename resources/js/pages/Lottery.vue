@@ -110,7 +110,7 @@
     import Security from '../components/modals/Security'
 
     import FlipCountdown from 'vue2-flip-countdown'
-    import Card from '@/components/admin/Card.vue'
+    import Card from '@/components/admin/CardHUTDB.vue'
     import GameItem from '@/components/GameItem.vue'
 
     import Scroll from 'vue-custom-scrollbar'

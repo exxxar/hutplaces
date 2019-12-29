@@ -6,7 +6,7 @@
                 <div class="info">{{game.occupied_places}}/{{game.places}}</div>
             </div>
             <div class="card-info"  v-if="game.lot_type=='2'&&controls"
-                 @click="show(`card-show-${game.id}`)">i
+                 @click="getCard(`card-show-${game.id}`)">i
             </div>
             <div class="card-info" v-if="(game.lot_type=='1'||game.lot_type=='0')&&controls"
                  @click="show(`card-show-item-${game.id}`)">i
@@ -14,9 +14,10 @@
             <card-tabs>
                 <card-section title="" active="true">
                     <div class="card" v-if="game.lot_type=='2'">
-                        <img v-if="game.lot.card.image==null" v-lazy="'/img/item-element.jpg'" alt="">
-                        <img v-else v-lazy="`/img/cards/${game.lot.card.image}`" alt="">
+                        <img v-if="game.lot.card==null" v-lazy="'/img/item-element.jpg'" alt="">
+                        <img v-else v-lazy="prepareCardArt(game.lot.card.card_art)" alt="">
                     </div>
+
                     <div class="item" v-if="game.lot_type=='0'">
                         <img v-if="game.lot.item.image==null" v-lazy="'/img/item-element.jpg'" alt="">
                         <img v-else v-lazy="`/img/cards/${game.lot.item.image}`" alt="">
@@ -124,7 +125,7 @@
             <modal :name="`card-show-${game.id}`" :adaptive="true" width="100%" height="100%">
                 <scroll class="scroll-area">
                     <a href="#" @click="hide(`card-show-${game.id}`)" class="close"></a>
-                    <card :card="getCard()" v-on:close="hide(`card-show-${game.id}`)"></card>
+                    <card :card="card_example" v-on:close="hide(`card-show-${game.id}`)"></card>
                 </scroll>
             </modal>
 
@@ -147,7 +148,7 @@
 
 <script>
     import FlipCountdown from 'vue2-flip-countdown'
-    import Card from '@/components/admin/Card.vue'
+    import Card from '@/components/admin/CardNHLHUT.vue'
     import {Tabs as CardTabs, Tab as CardSection} from 'vue-simple-tabs';
     import Scroll from 'vue-custom-scrollbar'
 
@@ -158,6 +159,7 @@
 
         data() {
             return {
+                card_example:'',
                 active: 0 || this.game.active,
                 visible: 0 || this.game.visible,
                 completed: 0 || this.game.completed,
@@ -166,6 +168,53 @@
             }
         },
         methods: {
+            getCard(modal) {
+
+                console.log("OPEN MODAL=",modal)
+                console.log("game.lot.card=",this.game.lot.card)
+                if (this.game.lot.card == null)
+                    return;
+
+                let html = this.game.lot.card.card_art;
+                //<a id="3481" href
+                let start = html.indexOf(`<a id="`) + 7;
+                let end = html.indexOf(`" href`);
+                let id = html.substr(start, end - start);
+
+                this.$loading(true)
+                this.request_url = `https://nhlhutbuilder.com/player-stats.php?sb=1&id=${id}`;
+                axios.post('search_nhlhut_player', {url: this.request_url})
+                    .then(res => {
+                        let start = res.data.indexOf(`<div id="player_stats_page" class="container">`);
+                        let end = res.data.indexOf(`</body>`);
+
+                        this.card_example = res.data.substr(start, end - start);
+
+                        start = this.card_example.indexOf("<img");
+                        end = this.card_example.indexOf("/>") + 2;
+                        let img = this.card_example.substr(start, end - start);
+
+                        this.card_example = this.card_example.replace(/src="/gi, `src="https://nhlhutbuilder.com/`)
+
+                        this.$loading(false)
+                        this.show(modal)
+
+                    }).catch(err => {
+                    this.$loading(false)
+                    this.message("Ошибка загрузки карточки", `Ничего не найдено!`, 'error');
+
+                })
+            },
+            prepareCardArt(cardArt) {
+
+                let start = cardArt.indexOf(`id="`) + 4;
+                let end = cardArt.indexOf(`" href`);
+                let imgId = cardArt.substr(start, end - start);
+
+                console.log(`https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`);
+
+                return `https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`;
+            },
             prepareLifetime(time) {
                 return eval(`this.$lang.lifetime.${time}`);
             },
@@ -251,6 +300,7 @@
                 }
             },
             show(name) {
+                console.log(name)
                 this.$modal.show(name)
             },
             hide(name) {

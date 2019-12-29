@@ -59,7 +59,7 @@
                 <div class="half">
                     <div class="input-group">
                         <p v-if="lottery_data.card==null">No select card</p>
-                        <a @click="show('card')" v-else>Show selected card</a>
+                        <a @click="getCard('card')" v-else>Show selected card</a>
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@
             </div>
 
 
-            <div class="row">
+     <!--       <div class="row">
                 <div class="half">
                     <div class="input-group">
                         <label for="start_at">Начать в</label>
@@ -140,7 +140,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div>-->
 
             <div class="row">
                 <div class="input-group">
@@ -162,7 +162,7 @@
         <modal name="card" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('card')" class="close"></a>
-                <card :card="lottery_data.card"></card>
+                <card :card="card_example"></card>
             </scroll>
         </modal>
     </div>
@@ -172,8 +172,8 @@
 
     import Toggle from '@/components/Toggle.vue'
     import Scroll from 'vue-custom-scrollbar'
-    import CardSearch from '@/components/admin/CardSearch.vue'
-    import Card from '@/components/admin/Card.vue'
+    import CardSearch from '@/components/admin/CardSearchNHLHUT.vue'
+    import Card from '@/components/admin/CardNHLHUT.vue'
 
 
     export default {
@@ -181,6 +181,7 @@
         props: ["user"],
         data: function () {
             return {
+                card_example:'',
                 lifetime: this.$store.getters.LIFETIME,
                 isCard: true,
                 console: false,
@@ -204,6 +205,41 @@
         },
 
         methods: {
+            getCard(modal) {
+
+                if (this.auc.lot.card == null)
+                    return;
+
+                let html = this.auc.lot.card.card_art;
+                //<a id="3481" href
+                let start = html.indexOf(`<a id="`) + 7;
+                let end = html.indexOf(`" href`);
+                let id = html.substr(start, end - start);
+
+                this.$loading(true)
+                this.request_url = `https://nhlhutbuilder.com/player-stats.php?sb=1&id=${id}`;
+                axios.post('search_nhlhut_player', {url: this.request_url})
+                    .then(res => {
+                        let start = res.data.indexOf(`<div id="player_stats_page" class="container">`);
+                        let end = res.data.indexOf(`</body>`);
+
+                        this.card_example = res.data.substr(start, end - start);
+
+                        start = this.card_example.indexOf("<img");
+                        end = this.card_example.indexOf("/>") + 2;
+                        let img = this.card_example.substr(start, end - start);
+
+                        this.card_example = this.card_example.replace(/src="/gi, `src="https://nhlhutbuilder.com/`)
+
+                        this.$loading(false)
+                        this.show(modal)
+
+                    }).catch(err => {
+                    this.$loading(false)
+                    this.message("Ошибка загрузки карточки", `Ничего не найдено!`, 'error');
+
+                })
+            },
             readURL() {
                 const input = this.$refs.files
                 const files = input.files
@@ -303,9 +339,21 @@
                 }
             },
             onCardFind(data) {
-                console.log("card", data)
+
+                console.log(data);
+
+                let start = data.card_art.indexOf(`id="`)+4;
+                let end = data.card_art.indexOf(`" href`);
+                let imgId = data.card_art.substr(start,end-start);
+
+                this.prew = `https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`;
+
+                start = data.full_name.indexOf(`">`)+2;
+                end = data.full_name.indexOf(`</`);
+                let full_name = data.full_name.substr(start,end-start);
+
                 this.lottery_data.card = data;
-                this.lottery_data.title = this.lottery_data.card.player
+                this.lottery_data.title = full_name
                 this.hide("card-add")
             },
 

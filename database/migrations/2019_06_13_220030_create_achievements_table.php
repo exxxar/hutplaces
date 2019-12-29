@@ -37,7 +37,7 @@ class CreateAchievementsTable extends Migration
             $table->boolean("is_active" )->default(1);
 
             $table->foreign('item_id')->references('id')->on('items');
-            $table->foreign('card_id')->references('id')->on('cards_storage');
+            $table->foreign('card_id')->references('id')->on('cards_storage_nhlhut');
 
 
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CardsStorage;
+use App\CardsStorageHUTDB;
 use App\Classes\TelegramNotify;
 use App\Enums\AchievementType;
 use App\Enums\ConsoleType;
@@ -385,12 +385,12 @@ class PacksController extends Controller
                 $drop_card = $tmp_cards[random_int(0, count($tmp_cards) - 1)];
 
                 $arr = (array)json_decode(json_encode($drop_card, true));
-                $card = new CardsStorage;
+                $card = new CardsStorageHUTDB;
                 $card->fill($arr);
                 //$card->card_synergies = json_encode($drop_card["card_synergies"]);
                 $card->save();
 
-                /* $card = CardsStorage::create(\GuzzleHttp\json_encode($drop_card));
+                /* $card = CardsStorageHUTDB::create(\GuzzleHttp\json_encode($drop_card));
                  $card->card_synergies = json_encode($drop_card["card_synergies"]);
                  $card->save();*/
 

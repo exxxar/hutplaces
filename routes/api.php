@@ -85,7 +85,9 @@ Route::post('/lottery/remove', 'LotteryController@destroy');//todo: for admin on
 
 Route::get('/lot/get/{lotteryId}', 'LotsController@lot');
 
-Route::post('/search', 'CardsStorageController@search');
+Route::post('/search_hutdb', 'CardsStorageHUTDBController@search');
+Route::post('/search_nhlhut', 'CardsStorageNHLHUTController@search');
+Route::post('/search_nhlhut_player', 'CardsStorageNHLHUTController@searchPlayer');
 
 Route::post('/auction/all', 'AuctionController@all');
 

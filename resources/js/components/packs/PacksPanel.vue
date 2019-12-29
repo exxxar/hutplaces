@@ -149,8 +149,8 @@
 
     import Toggle from '@/components/Toggle.vue'
     import Scroll from 'vue-custom-scrollbar'
-    import CardSearch from '@/components/admin/CardSearch.vue'
-    import Card from '@/components/admin/Card.vue'
+    import CardSearch from '@/components/admin/CardSearchNHLHUT.vue'
+    import Card from '@/components/admin/CardNHLHUT.vue'
 
 
     export default {

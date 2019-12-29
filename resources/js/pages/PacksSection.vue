@@ -254,7 +254,7 @@
     import FlipCountdown from 'vue2-flip-countdown'
     import Toggle from '@/components/Toggle.vue'
 
-    import Card from '@/components/admin/Card.vue'
+    import Card from '@/components/admin/CardHUTDB.vue'
 
     export default {
         data() {

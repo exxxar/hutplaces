@@ -20,7 +20,7 @@ class CreateUserCardsTable extends Migration
             $table->unsignedInteger("user_id" );
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger("card_id" );
-            $table->foreign('card_id')->references('id')->on('cards_storage');
+            $table->foreign('card_id')->references('id')->on('cards_storage_nhlhut');
 
             $table->timestamps();
         });

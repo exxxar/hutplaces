@@ -14,9 +14,6 @@ Route::get('/settings/lifetime', 'ContentController@lifetime');
 
 Route::get("/load", "SettingsController@images");
 Route::get("/event", function () {
-
-
-
    // event(new \App\Events\GainExpirience(4));
     //event(new Achievement(TriggerType::Level, 10, 11));
    // event(new Achievement(TriggerType::Coins_Count, 10, 11));
@@ -57,9 +54,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     Route::get('/', 'SettingsController@main')->name('main');
 
     Route::post('/broadcast', 'SettingsController@broadcast')->name("broadcast.message");
-    Route::post('/search', 'CardsStorageController@search')->name('card.search');
-    Route::post('/addcard', 'CardsStorageController@add')->name('card.add');
-    Route::get('/cards', 'CardsStorageController@cards')->name('card.index');
+    Route::post('/search', 'CardsStorageHUTDBController@search')->name('card.search');
+    Route::post('/addcard', 'CardsStorageHUTDBController@add')->name('card.add');
+    Route::get('/cards', 'CardsStorageHUTDBController@cards')->name('card.index');
 
     Route::get('/achievements/users/{achId}', 'AchievementsController@users')->name('achievement.users');
 
@@ -90,7 +87,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         'tickets' => 'TicketController',
         'settings' => 'SettingsController',
         'roles' => 'RoleController',
-        'storage' => 'CardsStorageController',
+        'storage' => 'CardsStorageHUTDBController',
         'images' => 'ImagesStorageController',
         'transactions' => 'TransactionController',
         'content' => 'ContentController',

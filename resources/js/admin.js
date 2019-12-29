@@ -12,7 +12,7 @@ Vue.use(VueLoading,{
 
 Vue.use(VModal)
 
-Vue.component('card-search', require('./components/admin/CardSearch.vue').default);
+Vue.component('card-search', require('./components/admin/CardSearchNHLHUT.vue').default);
 Vue.component('admin-card-panel', require('./components/admin/AdminCardPanel.vue').default);
 
 const app = new Vue({

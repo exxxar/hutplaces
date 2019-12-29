@@ -37,7 +37,7 @@ class CreatePromocodesTable extends Migration
             $table->foreign('creator_id')->references('id')->on('users');
 
             $table->foreign('item_id')->references('id')->on('items');
-            $table->foreign('card_id')->references('id')->on('cards_storage');
+            $table->foreign('card_id')->references('id')->on('cards_storage_nhlhut');
 
             $table->timestamps();
         });

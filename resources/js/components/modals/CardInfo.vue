@@ -25,7 +25,7 @@
 </template>
 <script>
 
-    import Card from '@/components/admin/Card.vue'
+    import Card from '@/components/admin/CardNHLHUT.vue'
 
     export default {
         name: 'faq',

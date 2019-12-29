@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function cards()
     {
-        return $this->belongsToMany('App\CardsStorage', 'user_card', 'user_id', 'card_id')
+        return $this->belongsToMany('App\CardsStorageNHLHUT', 'user_card', 'user_id', 'card_id')
             ->withTimestamps();
     }
 
