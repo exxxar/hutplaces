@@ -961,6 +961,13 @@ __webpack_require__.r(__webpack_exports__);
 
       Event.$emit("updateUserProfile");
     });
+    pusher.subscribe('lottery-chanel').bind('lottery-event', function (data) {
+      _this.$store.dispatch("loadGames", {
+        type: 0
+      });
+
+      Event.$emit("updateUserProfile");
+    });
     pusher.subscribe('auction-chanel').bind('auction-win-event', function (data) {
       if (_this.user) {
         if (_this.user.id == data.winner.id) {

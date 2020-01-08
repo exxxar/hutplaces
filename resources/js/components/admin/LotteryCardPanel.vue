@@ -20,8 +20,8 @@
                         <toggle :check="console"
                                 :id="'console-type'"
                                 v-on:check="setConsole($event)"
-                                :labelon="'XBOX'"
-                                :labeloff="'PS4'"
+                                :labelon="'PS4'"
+                                :labeloff="'XBOX'"
                                 :width="140"></toggle>
                     </div>
 
@@ -308,7 +308,7 @@
                 return eval(`this.$lang.lifetime.${time}`);
             },
             setConsole(event) {
-                this.lottery_data.console_type = event ? 0 : 1;
+                this.lottery_data.console_type = (event ? 1:0);
             },
             setActive(event) {
                 this.lottery_data.active = event;

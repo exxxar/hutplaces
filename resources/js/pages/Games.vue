@@ -240,11 +240,6 @@
                 this.lifetime = newValue
             }
         },
-        mounted() {
-            Event.$on('updateGames', () => {
-                this.fetchData()
-            });
-        },
         computed: {
             loadLifetime() {
                 return this.$store.getters.LIFETIME;
@@ -259,6 +254,10 @@
 
 
         mounted() {
+            Event.$on('updateGames', () => {
+                this.fetchData()
+            });
+
             setInterval(() => {
                 this.deadlineList.forEach((game, index) => {
                     if (game)

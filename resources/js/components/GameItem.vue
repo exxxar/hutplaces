@@ -5,17 +5,22 @@
                 <div class="line" :style="lineWidth(game.occupied_places,game.places)"></div>
                 <div class="info">{{game.occupied_places}}/{{game.places}}</div>
             </div>
-            <div class="card-info"  v-if="game.lot_type=='2'&&controls"
-                 @click="getCard(`card-show-${game.id}`)">i
+            <div class="card-info"  v-if="controls"
+                 @click="getCardInfo(`card-show-${game.id}`)">i
             </div>
-            <div class="card-info" v-if="(game.lot_type=='1'||game.lot_type=='0')&&controls"
+
+            <div class="console">
+                <i v-if="game.console_type==1" class="fab fa-playstation"></i>
+                <i v-if="game.console_type==0" class="fab fa-xbox"></i>
+            </div>
+           <!-- <div class="card-info" v-if="(game.lot_type=='1'||game.lot_type=='0')&&controls"
                  @click="show(`card-show-item-${game.id}`)">i
-            </div>
+            </div>-->
             <card-tabs>
                 <card-section title="" active="true">
                     <div class="card" v-if="game.lot_type=='2'">
                         <img v-if="game.lot.card==null" v-lazy="'/img/item-element.jpg'" alt="">
-                        <img v-else v-lazy="prepareCardArt(game.lot.card.card_art)" alt="">
+                        <img v-else :style="cardStatus()" v-lazy="prepareCardArt(game.lot.card.card_art)" alt="">
                     </div>
 
                     <div class="item" v-if="game.lot_type=='0'">
@@ -33,7 +38,7 @@
 
 
                     <div class="controlls" v-if="controls">
-                        <button class="btn btn-yellow" @click="lotteryOpen()">Open</button>
+                        <button class="btn btn-yellow" v-if="game.active==1" @click="lotteryOpen()">Open</button>
                     </div>
 
                     <div class="deadline" v-if="game.completed!=1&&game.lifetime!=0">
@@ -44,10 +49,7 @@
                         <h1 v-html="$lang.game.completed"></h1>
                     </div>
 
-                    <div class="console">
-                        <i v-if="game.console_type==1" class="fab fa-playstation"></i>
-                        <i v-if="game.console_type==0" class="fab fa-xbox"></i>
-                    </div>
+
                 </card-section>
 
                 <div v-if="user">
@@ -88,7 +90,6 @@
                                         :width="120"></toggle>
                             </div>
 
-
                             <div class="input-group">
                                 <label :for="`only-one-type-${game.id}`" class="col-form-label"
                                        v-html="$lang.game.is_only_one"></label>
@@ -99,6 +100,18 @@
                                         :labelon="$lang.game.yes"
                                         :labeloff="$lang.game.no"
                                         :width="120"></toggle>
+                            </div>
+
+                            <div class="input-group">
+                                <label :for="`console-type-${game.id}`" class="col-form-label"
+                                       v-html="'Тип консоли'"></label>
+
+                                <toggle :check="game.console_type==1?true:false"
+                                        :id="`console-type-${game.id}`"
+                                        v-on:check="setConsoleType($event)"
+                                        :labelon="'PS4'"
+                                        :labeloff="'XBOX'"
+                                        :width="140"></toggle>
                             </div>
 
                             <div class="input-group">
@@ -128,6 +141,7 @@
                     <card :card="card_example" v-on:close="hide(`card-show-${game.id}`)"></card>
                 </scroll>
             </modal>
+
 
             <modal v-if="game.lot_type=='1'||game.lot_type=='0'" :name="`card-show-item-${game.id}`" :adaptive="true"
                    width="100%" height="100%">
@@ -165,15 +179,25 @@
                 completed: 0 || this.game.completed,
                 is_only_one: 0 || this.game.is_only_one,
                 selected_lifetime: this.game.lifetime,
+                console_type: this.game.console_type,
             }
         },
         methods: {
-            getCard(modal) {
 
-                console.log("OPEN MODAL=",modal)
-                console.log("game.lot.card=",this.game.lot.card)
+            cardStatus(){
+                return this.active? {
+                    '--blend_mode': 'unset'
+                }: {
+                    '--blend_mode': 'luminosity'
+                };
+
+                //return this.active?var(--blend_mode)
+            },
+            getCardInfo(modal) {
+
                 if (this.game.lot.card == null)
                     return;
+
 
                 let html = this.game.lot.card.card_art;
                 //<a id="3481" href
@@ -211,8 +235,6 @@
                 let end = cardArt.indexOf(`" href`);
                 let imgId = cardArt.substr(start, end - start);
 
-                console.log(`https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`);
-
                 return `https://nhlhutbuilder.com/images/card_art/players/${imgId}.jpg`;
             },
             prepareLifetime(time) {
@@ -245,6 +267,10 @@
                 this.is_only_one = onlyOne
                 this.save()
             },
+            setConsoleType(consoleType) {
+                this.console_type = consoleType
+                this.save()
+            },
             setCompleted(completed) {
                 this.completed = completed
                 this.save()
@@ -267,6 +293,7 @@
                 formData.append('visible', this.visible ? 1 : 0)
                 formData.append('active', this.active ? 1 : 0)
                 formData.append('lifetime', this.selected_lifetime)
+                formData.append('console_type', this.console_type? 1 : 0)
 
                 axios.post('/lottery/update', formData)
                     .then((response) => {
@@ -281,9 +308,7 @@
 
                 this.message(this.$lang.game.success_2)
             },
-            getCard() {
-                return this.game.lot.card;
-            },
+
             lotteryOpen: function () {
                 this.$router.push({name: 'Lottery', params: {gameId: this.game.id}})
             },
@@ -300,7 +325,6 @@
                 }
             },
             show(name) {
-                console.log(name)
                 this.$modal.show(name)
             },
             hide(name) {
@@ -516,7 +540,7 @@
                 width: 253px;
                 height: 350px;
                 object-fit: cover;
-                mix-blend-mode: luminosity;
+                mix-blend-mode: var(--blend_mode);
 
             }
         }
@@ -762,7 +786,7 @@
                 width: 253px;
                 height: 350px;
                 object-fit: cover;
-                mix-blend-mode: luminosity;
+                mix-blend-mode: var(--blend_mode);
             }
         }
 

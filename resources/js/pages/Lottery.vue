@@ -76,7 +76,8 @@
         <modal name="winner" :adaptive="true" width="100%" height="100%">
             <scroll class="scroll-area">
                 <a href="#" @click="hide('winner')" class="close"></a>
-                <div class="modal-body">
+                <div class="modal-body lottery-winner-modal">
+                    <h1>Поздравляем победителя!</h1>
                     <div class="winner" v-if="game.winner!=null"><img :src="`/img/avatars/${game.winner.avatar}`"
                                                                       alt=""></div>
                 </div>
@@ -351,4 +352,10 @@
     @import "~/lottery.scss";
 
 
+    .lottery-winner-modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 </style>

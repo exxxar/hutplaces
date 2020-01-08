@@ -255,6 +255,11 @@
                 Event.$emit("updateUserProfile");
             });
 
+            pusher.subscribe('lottery-chanel').bind('lottery-event', (data) => {
+                this.$store.dispatch("loadGames", {type: 0})
+                Event.$emit("updateUserProfile");
+            });
+
             pusher.subscribe('auction-chanel').bind('auction-win-event', (data) => {
                 if (this.user) {
                     if (this.user.id == data.winner.id) {

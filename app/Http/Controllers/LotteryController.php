@@ -11,6 +11,8 @@ use App\Enums\GameType;
 use App\Enums\ItemType;
 use App\Enums\Lifetime;
 use App\Enums\LotType;
+use App\Events\AuctionNotification;
+use App\Events\LotteryNotification;
 use App\Events\RaffleNotification;
 use App\Events\BroadcastMessage;
 use App\Events\PickPlace;
@@ -43,7 +45,6 @@ class LotteryController extends Controller
         if ($request->ajax())
             return response()->json([
                 'games' => Lottery::with(["placeList", "lot", "lot.card", "lot.item", "placeList.user"])
-                    ->where("active", "1")
                     ->where("completed", "0")
                     ->where("visible", "1")
                     ->get(),
@@ -81,6 +82,7 @@ class LotteryController extends Controller
             $lottery->completed = $request->get("completed");
             $lottery->visible = $request->get("visible");
             $lottery->active = $request->get("active");
+            $lottery->console_type =  ConsoleType::getInstance(intval($request->get("console_type")))->value;
             $lottery->updated_at = Carbon::now();
             $lottery->lifetime = Lifetime::getInstance(intval($request->get("lifetime")));
             $lottery->save();
@@ -218,7 +220,6 @@ class LotteryController extends Controller
         return redirect()->route('lottery.index')
             ->with('success', 'Lottery deleted successfully');
     }
-
 
     public function places($lotteryId)
     {
@@ -378,27 +379,35 @@ class LotteryController extends Controller
         $time_2 = date_timestamp_get(now());
 
 
+
         //лотерея уже законечена или не активна
-        if ($lottery->isFull() || !$lottery->active || $lottery->completed || $time_1 < $time_2)
+        if ($lottery->isFull() || $lottery->completed || $time_1 < $time_2)
             return response()->json([
                 'message' => 'Лотерея уже полная или закончилась',
                 'status' => 400
             ]);
 
+        if (!$lottery->active)
+            return response()->json([
+                'message' => 'Данная карточка временно недоступна!',
+                'status' => 400
+            ]);
 
         //todo: добавить обработку скидк пользователя, учет процента владельца
         //вычисляем цену с учетом базовой скидки на карточку
         $price = ($lottery->base_price - $lottery->base_price * ($lottery->base_discount / 100)) / $lottery->places;
 
         if ($lottery->is_only_one == 1) {
-            $currentPlace = Place::with(["user"])->where("lottery_id", $lottery->id)
+            $currentPlace = Place::with(["user"])
+                ->where("lottery_id", $lottery->id)
+                ->where("user_id", $user->id)
                 ->first();
 
             if ($currentPlace != null)
                 return response()
                     ->json([
                         "status" => 200,
-                        "message" => "Can take only one place"
+                        "message" => "В данном розыгрыше вы можете занять только одно место!"
                     ]);
 
         }
@@ -463,6 +472,8 @@ class LotteryController extends Controller
             $winner->lotteries()->attach($lottery->id);
             $winner->cards()->attach((Lot::where("lottery_id", $lottery->id)->first())->cards_id);
 
+            $this->restart($lottery->id);
+
             //отправляем всем пользоватемя в выбранной лотерее запрос на обновление данных
             broadcast(new RaffleNotification($lottery, $winner));
 
@@ -474,7 +485,6 @@ class LotteryController extends Controller
             );
 
         }
-
 
         //отправляем всем пользователям на сайте инфуормацию о том что какой-то пользователя в лотерее выбрал определенное место
         broadcast(new PickPlace($user, $lottery, $place))->toOthers();
@@ -501,6 +511,11 @@ class LotteryController extends Controller
         return response()->json([
             'games' => Lottery::with(["lot", "lot.card", "lot.item"])
                 ->where("completed", "0")
+                ->where(function ($query) {
+                    $query->where('visible',  0)
+                        ->orWhere('active', 0);
+                })
+                ->orderBy("id","DESC")
                 ->get(),
             'status' => 200
         ]);
@@ -536,6 +551,7 @@ class LotteryController extends Controller
             'status' => 200
         ]);
     }
+
 
     public function add(Request $request)
     {
@@ -617,10 +633,28 @@ class LotteryController extends Controller
             )
         );
 
+        broadcast(new LotteryNotification($lottery));
+
         return response()->json([
             'message' => 'Success lottery create!',
             'status' => 200
         ]);
 
+    }
+
+    protected function restart($id){
+        $win_lottery = Lottery::find($id);
+        $draft_lottery = $win_lottery->replicate();
+
+        $draft_lottery->completed = false;
+        $draft_lottery->active = false;
+        $draft_lottery->visible = false;
+        $draft_lottery->random = "";
+        $draft_lottery->signature = "";
+        $draft_lottery->winner_place = null;
+        $draft_lottery->winner_id = null;
+        $draft_lottery->occupied_places = 0;
+
+        $draft_lottery->save();
     }
 }
