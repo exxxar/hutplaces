@@ -89,8 +89,8 @@
             return {
                 final_price_pucks: 0,
                 final_price_money: 0,
-                pucks_koef: 0.0005,
-                money_koef: 0.0005,
+                pucks_koef: 0.0075,
+                money_koef: 0.0075,
                 info: {
                     console: true,
                     year: true,
@@ -133,7 +133,7 @@
             },
             doInvoice() {
                 if (this.info.sum == 0) {
-                    this.message(this.$lang.messages.send_coins, $lang.messages.error_coins_3, "error");
+                    this.message("Укажите желаемое колличество монет!");
                     return
                 }
 
@@ -144,38 +144,37 @@
                     this.info.buyout_price.trim() == '' ||
                     this.info.team_hut.trim() == ''
                 ) {
-                    this.message(this.$lang.messages.send_coins, this.$lang.messages.error_coins_2, "error");
+                    this.message("Не все поля указаны");
                     return
                 }
 
                 if (!this.check && this.info.currency) {
-                    this.message(this.$lang.messages.send_coins, this.$lang.messages.error_coins_1, "error");
+                    this.message("Ошибка");
                     return
                 }
 
                 this.show('coins-invoice');
             },
-            message(title, message, type) {
+            message( message) {
                 Event.$emit("message", {
-                    title: title,
+                    title: "Покупка монет",
                     message: message,
-                    type: type
+                    type: "warn"
                 });
             },
             requestCoins() {
 
                 axios.post('coinsrequest', {info: this.info})
                     .then(res => {
-                        this.message(this.$lang.messages.send_coins, this.$lang.messages.send_coins_success_1, "error");
+                        this.message("Отлично! Запрос отправлен!");
                         this.reset()
                     }).catch(err => {
-                    this.message(this.$lang.messages.send_coins, this.$lang.messages.error_coins_4, "error");
+                    this.message("Ошибочка вышла!");
                 })
 
                 this.hide('coins-invoice');
             },
             getCard(data) {
-                console.log(data.full_name)
                 let start = data.full_name.indexOf(`">`)+2;
                 let end = data.full_name.indexOf(`</`);
                 this.info.player = data.full_name.substr(start,end-start);
