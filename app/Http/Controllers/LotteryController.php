@@ -70,7 +70,7 @@ class LotteryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -82,7 +82,7 @@ class LotteryController extends Controller
             $lottery->completed = $request->get("completed");
             $lottery->visible = $request->get("visible");
             $lottery->active = $request->get("active");
-            $lottery->console_type =  ConsoleType::getInstance(intval($request->get("console_type")))->value;
+            $lottery->console_type = ConsoleType::getInstance(intval($request->get("console_type")))->value;
             $lottery->updated_at = Carbon::now();
             $lottery->lifetime = Lifetime::getInstance(intval($request->get("lifetime")));
             $lottery->save();
@@ -115,7 +115,7 @@ class LotteryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
@@ -140,7 +140,7 @@ class LotteryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -153,8 +153,8 @@ class LotteryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -181,7 +181,7 @@ class LotteryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
@@ -219,6 +219,28 @@ class LotteryController extends Controller
         DB::table("lotteries")->where('id', $request->get("id"))->delete();
         return redirect()->route('lottery.index')
             ->with('success', 'Lottery deleted successfully');
+    }
+
+    protected function sendOrderRequest($lotteryId,$cardId, $userId)
+    {
+        $user = User::find($userId);
+
+        $card = CardsStorageNHLHUT::find($cardId);
+
+        $start = strpos($card->card_art, "<img src=\"") + 10;
+        $end = strpos($card->card_art, "\" width");
+        $image = "https://nhlhutbuilder.com/" . substr($card->card_art, $start, $end - $start);
+
+        Log::info($image);
+
+        $this->photoMessage(sprintf(
+            "<b>Выигрыш в лотерею!</b>\n"
+            . "<b>Почта пользователя:</b> %s [%s]\n"
+            ."http://hutplace.net/nhl/%s"
+            ,
+            $user->email, $user->name,$$lotteryId
+        ),
+            $image, env("TELEGRAM_ORDER_REQUEST_CHAT_ID"));
     }
 
     public function places($lotteryId)
@@ -279,6 +301,8 @@ class LotteryController extends Controller
 
         $user->cards()->attach($lottery->lot->card->id);
         $user->save();
+
+        $this->sendOrderRequest($lottery->id,$lottery->lot->card->id, $user->id);
 
         return response()->json([
             'message' => 'Вы успешно купили товар!',
@@ -379,7 +403,6 @@ class LotteryController extends Controller
         $time_2 = date_timestamp_get(now());
 
 
-
         //лотерея уже законечена или не активна
         if ($lottery->isFull() || $lottery->completed || $time_1 < $time_2)
             return response()->json([
@@ -451,7 +474,7 @@ class LotteryController extends Controller
             $lottery->visible = false;
             $random = new CustomRandom();
 
-            $tmp = $random->getIntegers(1, 0, $lottery->places-1, false);
+            $tmp = $random->getIntegers(1, 0, $lottery->places - 1, false);
 
             $random_string = json_encode($tmp["random"]);
             $signature = $tmp["signature"];
@@ -474,6 +497,8 @@ class LotteryController extends Controller
 
             $this->restart($lottery->id);
 
+            $this->sendOrderRequest($lottery->lot->card->id, $winner->id);
+
             //отправляем всем пользоватемя в выбранной лотерее запрос на обновление данных
             broadcast(new RaffleNotification($lottery, $winner));
 
@@ -481,7 +506,9 @@ class LotteryController extends Controller
                 sprintf(
                     "Последнее место занято, не пропусти розыгрыш!\nhttp://hutplace.net/nhl/%s ",
                     $lottery->id
-                )
+
+                ),
+                env("TELEGRAM_CHAT_ID")
             );
 
         }
@@ -512,10 +539,10 @@ class LotteryController extends Controller
             'games' => Lottery::with(["lot", "lot.card", "lot.item"])
                 ->where("completed", "0")
                 ->where(function ($query) {
-                    $query->where('visible',  0)
+                    $query->where('visible', 0)
                         ->orWhere('active', 0);
                 })
-                ->orderBy("id","DESC")
+                ->orderBy("id", "DESC")
                 ->get(),
             'status' => 200
         ]);
@@ -589,9 +616,9 @@ class LotteryController extends Controller
             case 2:
                 $tmp = json_decode($request->get("card"), true);
                 $card = CardsStorageNHLHUT::create($tmp);
-              //  $card->card_synergies = json_encode($tmp["card_synergies"]);
+                //  $card->card_synergies = json_encode($tmp["card_synergies"]);
                 //$card->image = $imageName;
-               // $card->save();
+                // $card->save();
                 break;
 
 
@@ -630,7 +657,8 @@ class LotteryController extends Controller
             sprintf(
                 "Создан новый лот в разделе рандомов!\n<b>%s</b>\n\nhttp://hutplace.net/nhl",
                 $lottery->title
-            )
+            ),
+            env("TELEGRAM_CHAT_ID")
         );
 
         broadcast(new LotteryNotification($lottery));
@@ -642,7 +670,8 @@ class LotteryController extends Controller
 
     }
 
-    protected function restart($id){
+    protected function restart($id)
+    {
         $win_lottery = Lottery::find($id);
         $draft_lottery = $win_lottery->replicate();
 

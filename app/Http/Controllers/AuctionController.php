@@ -58,7 +58,7 @@ class AuctionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -75,7 +75,7 @@ class AuctionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
@@ -100,7 +100,7 @@ class AuctionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -113,8 +113,8 @@ class AuctionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -142,7 +142,7 @@ class AuctionController extends Controller
                     "status" => 404
                 ]);
 
-        if ($user->is_trader==0)
+        if ($user->is_trader == 0)
             return response()
                 ->json([
                     "message" => "Данная операция для вас недоступна!",
@@ -154,7 +154,7 @@ class AuctionController extends Controller
 
             broadcast(new AuctionNotification($auc));
 
-            if ($auc->buyer_id!=null&&$auc->is_active==1) {
+            if ($auc->buyer_id != null && $auc->is_active == 1) {
                 $user_on_bid = User::find($auc->buyer_id);
                 $user_on_bid->money += $auc->bid_price;
                 $user_on_bid->save();
@@ -170,9 +170,6 @@ class AuctionController extends Controller
         }
 
 
-
-
-
         if ($user->is_trader && $user->id != $auc->seller_id)
             return response()
                 ->json([
@@ -185,7 +182,7 @@ class AuctionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -240,7 +237,7 @@ class AuctionController extends Controller
             case 2:
                 $tmp = json_decode($request->get("card"), true);
                 $card = CardsStorageNHLHUT::create($tmp);
-               // $card->card_synergies = json_encode($tmp["card_synergies"]);
+                // $card->card_synergies = json_encode($tmp["card_synergies"]);
                 //$ard->image = $imageName;
                 //$card->save();
                 break;
@@ -276,7 +273,8 @@ class AuctionController extends Controller
             sprintf(
                 "Создан новый лот на аукционе!\n<b>%s</b>\n\nhttp://hutplace.net/auction",
                 $auc->title
-            )
+            ),
+            env("TELEGRAM_CHAT_ID")
         );
 
         return response()
@@ -285,6 +283,26 @@ class AuctionController extends Controller
                 "message" => "Success"
             ]);
 
+    }
+
+    protected function sendOrderRequest($cardId, $userId)
+    {
+        $user = User::find($userId);
+
+        $card = CardsStorageNHLHUT::find($cardId);
+
+        $start = strpos($card->card_art, "<img src=\"") + 10;
+        $end = strpos($card->card_art, "\" width");
+        $image = "https://nhlhutbuilder.com/" . substr($card->card_art, $start, $end - $start);
+
+
+        $this->photoMessage(sprintf(
+            "<b>Выигрыш на аукционе!</b>\n"
+            . "<b>Почта пользователя:</b> %s [%s]\n"
+            ,
+            $user->email, $user->name
+        ),
+            $image, env("TELEGRAM_ORDER_REQUEST_CHAT_ID"));
     }
 
     public function all(Request $request)
@@ -330,6 +348,8 @@ class AuctionController extends Controller
                 $auc->is_active = 0;
 
                 broadcast(new AuctionWinNotification($auc, $user));
+
+                $this->sendOrderRequest($auc->lot->card->id, $user->id);
 
                 $auc->save();
 
@@ -377,14 +397,13 @@ class AuctionController extends Controller
             ->first();
 
 
-
-        if ($auc->buyer_id!=null&&$auc->is_active==1) {
+        if ($auc->buyer_id != null && $auc->is_active == 1) {
             $user_on_bid = User::find($auc->buyer_id);
             $user_on_bid->money += $auc->bid_price;
             $user_on_bid->save();
         }
 
-        if ($auc->is_active==0) {
+        if ($auc->is_active == 0) {
             $auc->delete();
         }
 
@@ -406,7 +425,7 @@ class AuctionController extends Controller
             $auc->updated_at = date('Y-m-d G:i:s');
             $auc->save();
 
-            if ($is_active==0){
+            if ($is_active == 0) {
                 $user_on_bid = User::find($auc->buyer_id);
                 $user_on_bid->money += $auc->bid_price;
                 $user_on_bid->save();
@@ -442,7 +461,7 @@ class AuctionController extends Controller
         $time = $auc->lifetime->value;
         $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
 
-        $time_1 = (intval($timesArray[$time] * 60 * 60*1000) + date_timestamp_get(
+        $time_1 = (intval($timesArray[$time] * 60 * 60 * 1000) + date_timestamp_get(
                 new DateTime($auc->updated_at == null ? $auc->created_at : $auc->updated_at))
         );
 
@@ -479,8 +498,10 @@ class AuctionController extends Controller
             $user->items()->attach($item_id);
 
         $auc->is_active = 0;
-        $auc->buyer_id =null;
+        $auc->buyer_id = null;
         $auc->save();
+
+        $this->sendOrderRequest($auc->lot->card->id, $user->id);
 
         broadcast(new AuctionNotification($auc));
         broadcast(new AuctionWinNotification($auc, $user));
@@ -500,13 +521,12 @@ class AuctionController extends Controller
         $user = User::find(auth("api")->user()->id);
 
 
-
         $id = $request->get("id");
         $step = $request->get("step");
 
         $auc = Auction::with(["lot", "lot.card", "lot.item"])->find($id);
 
-        if ($auc->buyer_id==$user->id)
+        if ($auc->buyer_id == $user->id)
             return response()
                 ->json([
                     "message" => "Вы уже сделали ставку ранее! Дождитесь пока вашу ставку перебьют!",
@@ -519,12 +539,11 @@ class AuctionController extends Controller
         $time = $auc->lifetime->value;
         $timesArray = [1000, 6, 12, 24, 36, 48, 96, 128];
 
-        $time_1 = (intval($timesArray[$time] * 60 * 60*1000) + date_timestamp_get(
+        $time_1 = (intval($timesArray[$time] * 60 * 60 * 1000) + date_timestamp_get(
                 new DateTime($auc->updated_at == null ? $auc->created_at : $auc->updated_at))
         );
 
         $time_2 = date_timestamp_get(now());
-
 
 
         if ($auc->is_active == 0)
@@ -548,7 +567,7 @@ class AuctionController extends Controller
                     "status" => 200,
                 ]);
 
-        if ($auc->buyer_id!=null) {
+        if ($auc->buyer_id != null) {
             $user_on_bid = User::find($auc->buyer_id);
             $user_on_bid->money += $auc->bid_price;
             $user_on_bid->save();
@@ -558,13 +577,12 @@ class AuctionController extends Controller
         $user->save();
 
 
-
-        $auc->bid_price +=  $step;
+        $auc->bid_price += $step;
         $auc->buyer_id = $user->id;
-        $auc->updated_at = Carbon::createFromTimestamp(date_timestamp_get(now())+30*1000)
+        $auc->updated_at = Carbon::createFromTimestamp(date_timestamp_get(now()) + 30 * 1000)
             ->toDateTimeString();
 
-        if ($auc->bid_price + $step >= $auc->buy_price&&$auc->buy_price>0) {
+        if ($auc->bid_price + $step >= $auc->buy_price && $auc->buy_price > 0) {
 
             $lot = (Lot::where("id", $auc->lot_id)->first());
             $card_id = $lot->cards_id;
@@ -578,12 +596,13 @@ class AuctionController extends Controller
 
             broadcast(new AuctionWinNotification($auc, $user));
 
-            $auc->buyer_id =null;
+            $auc->buyer_id = null;
             $auc->is_active = 0;
+
+            $this->sendOrderRequest($auc->lot->card->id, $user->id);
         }
 
         $auc->save();
-
 
 
         broadcast(new AuctionNotification($auc));

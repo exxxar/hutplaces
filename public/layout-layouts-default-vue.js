@@ -2665,34 +2665,6 @@ var render = function() {
       _vm._v(" "),
       _c("footer"),
       _vm._v(" "),
-      _c("div", { staticClass: "lang" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.lang("ru")
-                }
-              }
-            },
-            [_c("img", { attrs: { src: "/img/ru.jpg", alt: "" } })]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.lang("en")
-                }
-              }
-            },
-            [_c("img", { attrs: { src: "/img/en.jpg", alt: "" } })]
-          )
-        ])
-      ]),
-      _vm._v(" "),
       _c("chat", { attrs: { show: _vm.user } }),
       _vm._v(" "),
       _c("notifications", { attrs: { group: "main" } }),

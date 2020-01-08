@@ -15,7 +15,7 @@
                     :labeloff="$lang.messages.rub"
                     :width="160"></toggle>
         </div>
-        <h2>{{$lang.messages.coins_h2}}</h2>
+        <h2>{{$lang.coins.h2}}</h2>
         <div class="calc">
             <div class="row">
                 <button v-on:click="decrease">-</button>
@@ -32,13 +32,13 @@
         </div>
         <div class="price">
             <div class="main-price">
-                <div class="price-text">{{$lang.messages.price}}:</div>
+                <div class="price-text">{{$lang.coins.price}}:</div>
                 <div class="price-amount">
                     <div><span>{{final_price_pucks}}</span> {{$lang.coins.money}}</div>
-                    <div><span>{{final_price_money}}</span> {{$lang.messages.rub}}</div>
+                    <div><span>{{final_price_money}}</span> {{$lang.coins.rub}}</div>
                 </div>
             </div>
-            <a class="link-yellow" href="#" @click="openModal('how-to-buy')">{{$lang.messages.how_to_buy}}</a>
+            <a class="link-yellow" href="#" @click="openModal('faq')">{{$lang.coins.how_to_buy}}</a>
         </div>
         <p><a href="#" @click="show('card-search')">{{$lang.coins.find_card}}</a> {{$lang.coins.enter_manually}}</p>
         <form class="player">
@@ -75,6 +75,7 @@
 
             </div>
         </modal>
+
     </div>
 </template>
 
@@ -83,6 +84,7 @@
     import Toggle from '../components/Toggle.vue'
     import CardSearch from '../components/admin/CardSearchNHLHUT.vue'
     import Scroll from 'vue-custom-scrollbar'
+    import FAQ from '@/components/modals/FAQ.vue'
 
     export default {
         data() {
@@ -164,7 +166,21 @@
             },
             requestCoins() {
 
-                axios.post('coinsrequest', {info: this.info})
+                let formData = new FormData()
+
+
+                formData.append('console', this.info.console?1:0);
+                formData.append('currency', this.info.currency );
+                formData.append('sum', this.info.sum);
+                formData.append('player', this.info.player );
+                formData.append('team', this.info.team );
+                formData.append('rating', this.info.rating);
+                formData.append('initial_price', this.info.initial_price);
+                formData.append('buyout_price', this.info.buyout_price);
+                formData.append('team_hut', this.info.team_hut);
+
+
+                axios.post('/coinsrequest', formData)
                     .then(res => {
                         this.message("Отлично! Запрос отправлен!");
                         this.reset()
@@ -209,7 +225,7 @@
             }
         },
         components: {
-            Toggle, CardSearch, Scroll
+            Toggle, CardSearch, Scroll,FAQ
         }
     }
 </script>

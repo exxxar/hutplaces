@@ -29,12 +29,12 @@
         </aside>
         <footer></footer>
 
-        <div class="lang">
+  <!--      <div class="lang">
             <ul>
                 <li @click="lang('ru')"><img src="/img/ru.jpg" alt=""></li>
                 <li @click="lang('en')"><img src="/img/en.jpg" alt=""></li>
             </ul>
-        </div>
+        </div>-->
         <chat :show="user"></chat>
         <notifications group="main"/>
         <modal name="report" :adaptive="true" width="100%" height="100%">

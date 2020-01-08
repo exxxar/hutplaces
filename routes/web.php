@@ -6,10 +6,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\File;
 use Maksa988\FreeKassa\Facades\FreeKassa;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 Broadcast::routes();
 
 
+Route::get('/update', function (){
+    $activity = Telegram::getUpdates();
+    dd($activity);
+});
 Route::get('/settings/lifetime', 'ContentController@lifetime');
 
 Route::get("/load", "SettingsController@images");
