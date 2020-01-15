@@ -41,7 +41,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'history',
   data: function data() {
@@ -66,6 +65,15 @@ __webpack_require__.r(__webpack_exports__);
     this.refreshHistory();
   },
   methods: {
+    openLottery: function openLottery(id) {
+      this.$router.push({
+        name: 'Lottery',
+        params: {
+          gameId: id
+        }
+      });
+      this.$emit("close");
+    },
     refreshHistory: function refreshHistory() {
       this.$loading(true);
       this.$store.dispatch("loadHistory");
@@ -104,31 +112,20 @@ var render = function() {
           ? _c("ul", { staticClass: "body" }, [
               _c("li", [_vm._v(_vm._s(++index))]),
               _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        tag: "a",
-                        to: {
-                          name: "Lottery",
-                          params: { gameId: item.lottery_id }
-                        }
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#lottery" },
+                    on: {
+                      click: function($event) {
+                        return _vm.openLottery(item.lottery_id)
                       }
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(item.lottery_title) +
-                          "\n            "
-                      )
-                    ]
-                  )
-                ],
-                1
-              ),
+                    }
+                  },
+                  [_vm._v(_vm._s(item.lottery_title))]
+                )
+              ]),
               _vm._v(" "),
               _c("li", [
                 item.console_type == 1

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CardsStorageHUTDB;
+use App\CardsStorageNHLHUT;
 use App\Classes\TelegramNotify;
 use App\Enums\AchievementType;
 use App\Enums\ConsoleType;
@@ -202,19 +203,35 @@ class PacksController extends Controller
         if (count($raitings) > 0) {
             $tmp_cards = [];
             foreach ($raitings as $rate) {
-                $endpoint = "https://api.hutdb.net/api/players";
-                $client = new Client();
+                $index = -1;
 
-                $response = $client->request('GET', $endpoint, ['query' => [
-                    'year' => '20',
-                    'per_page' => '100000',
-                    'minOvr' => $rate->min_ovr,
-                    'maxOvr' => $rate->max_ovr
-                ]]);
+                $query = "draw=5";
 
+                $overall_min =  $rate->min_ovr;
+                $overall_max = $rate->max_ovr;
+                $overall = ($overall_min || $overall_max) ?? null;
 
-                $statusCode = $response->getStatusCode();
-                $content = json_decode($response->getBody());
+                if ($overall)
+                    $query .= "&columns[" . (++$index) . "][data]=overall&columns[$index][search][value]=$overall_min<$overall_max&columns[${index}][searchable]=true&columns[$index][orderable]=true&columns[$index][search][regex]=true";
+
+                try {
+                    $context = stream_context_create(array(
+                        'http' => array(
+                            'method' => 'POST',
+                            'header' => 'Content-Type: application/x-www-form-urlencoded' . PHP_EOL,
+                            'content' => $query
+                        ),
+                    ));
+                    ini_set('max_execution_time', 1000000);
+                    $content = file_get_contents(
+                        $file = 'https://nhlhutbuilder.com/php/player_stats.php',
+                        $use_include_path = false,
+                        $context);
+                    ini_set('max_execution_time', 60);
+                } catch (\Exception $e) {
+                    $content = [];
+                }
+                $content = json_decode($content)->data;
 
 
                 $count_in_rate = min(
@@ -334,19 +351,35 @@ class PacksController extends Controller
         if (count($raitings) > 0) {
             $tmp_cards = [];
             foreach ($raitings as $rate) {
-                $endpoint = "https://api.hutdb.net/api/players";
-                $client = new Client();
+                $index = -1;
 
-                $response = $client->request('GET', $endpoint, ['query' => [
-                    'year' => '20',
-                    'per_page' => '100000',
-                    'minOvr' => $rate->min_ovr,
-                    'maxOvr' => $rate->max_ovr
-                ]]);
+                $query = "draw=5";
 
+                $overall_min =  $rate->min_ovr;
+                $overall_max = $rate->max_ovr;
+                $overall = ($overall_min || $overall_max) ?? null;
 
-                $statusCode = $response->getStatusCode();
-                $content = json_decode($response->getBody());
+                if ($overall)
+                    $query .= "&columns[" . (++$index) . "][data]=overall&columns[$index][search][value]=$overall_min<$overall_max&columns[${index}][searchable]=true&columns[$index][orderable]=true&columns[$index][search][regex]=true";
+
+                try {
+                    $context = stream_context_create(array(
+                        'http' => array(
+                            'method' => 'POST',
+                            'header' => 'Content-Type: application/x-www-form-urlencoded' . PHP_EOL,
+                            'content' => $query
+                        ),
+                    ));
+                    ini_set('max_execution_time', 1000000);
+                    $content = file_get_contents(
+                        $file = 'https://nhlhutbuilder.com/php/player_stats.php',
+                        $use_include_path = false,
+                        $context);
+                    ini_set('max_execution_time', 60);
+                } catch (\Exception $e) {
+                    $content = [];
+                }
+                $content = json_decode($content)->data;
 
 
                 $count_in_rate = min(
@@ -385,7 +418,7 @@ class PacksController extends Controller
                 $drop_card = $tmp_cards[random_int(0, count($tmp_cards) - 1)];
 
                 $arr = (array)json_decode(json_encode($drop_card, true));
-                $card = new CardsStorageHUTDB;
+                $card = new CardsStorageNHLHUT();
                 $card->fill($arr);
                 //$card->card_synergies = json_encode($drop_card["card_synergies"]);
                 $card->save();

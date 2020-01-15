@@ -192,7 +192,7 @@
                             <li class="demo-item" v-for="card in prepareDrops(rate)">
                                 <div class="wrapper">
 
-                                    <card :card="card"></card>
+                                    <card :card="prepareCard(card.card_art)"></card>
                                     <!--<h5>{{card.player}}</h5>
                                     <h6>{{card.ovr}}</h6>-->
                                 </div>
@@ -216,7 +216,7 @@
                     <li class="demo-item" v-for="card in drops">
                         <div class="wrapper">
 
-                            <card :card="card"></card>
+                            <card :card="prepareCard(card.card_art)"></card>
 
                         </div>
                     </li>
@@ -254,7 +254,7 @@
     import FlipCountdown from 'vue2-flip-countdown'
     import Toggle from '@/components/Toggle.vue'
 
-    import Card from '@/components/admin/CardHUTDB.vue'
+    import Card from '@/components/admin/CardNHLHUT.vue'
 
     export default {
         data() {
@@ -350,12 +350,19 @@
             },
             prepareDrops(raiting) {
                 return this.drops.filter(drop => {
-                    return drop.ovr >= raiting.min_ovr && drop.ovr <= raiting.max_ovr
+                    return drop.overall >= raiting.min_ovr && drop.overall <= raiting.max_ovr
                 });
 
 
             },
 
+            prepareCard(cardArt){
+                let start = cardArt.indexOf("<img");
+                let end = cardArt.indexOf("/>")+2;
+                let img = cardArt.substr(start,end-start);
+
+                return img.replace(`src="`,`src="https://nhlhutbuilder.com/`)
+            },
             demoPack(pack) {
 
                 if (pack.lots_in_pack == 0) {
@@ -433,7 +440,7 @@
                 this.$notify({
                     group: 'main',
                     type: 'warn',
-                    title: this.$lang.modals.promocodes.error_title,
+                    title: "Паки карточек",
                     text: message
                 })
             },
@@ -496,7 +503,14 @@
 </script>
 
 <style lang="scss">
+    .card-modal {
+        padding: 0px !important;
 
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 
     .packs-list {
         width: 100%;

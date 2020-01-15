@@ -12,9 +12,8 @@
             <li>{{++index}}</li>
 
             <li>
-                <router-link tag="a" :to="{ name: 'Lottery',params: {gameId:item.lottery_id} }" >
-                    {{item.lottery_title}}
-                </router-link>
+                <a href="#lottery" @click="openLottery(item.lottery_id)">{{item.lottery_title}}</a>
+
             </li>
             <li>
                 <i v-if="item.console_type==1" class="fab fa-playstation"></i>
@@ -56,6 +55,10 @@
             this.refreshHistory()
         },
         methods: {
+            openLottery(id){
+                this.$router.push({ name: 'Lottery', params: { gameId: id } })
+                this.$emit("close");
+            },
             refreshHistory() {
                 this.$loading(true)
                 this.$store.dispatch("loadHistory")
