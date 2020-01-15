@@ -380,7 +380,7 @@ class PacksController extends Controller
                     $content = [];
                 }
                 //$content = json_decode($content)->data;
-                $content = $content["data"];
+                $content = $content->data;
 
 
                 $count_in_rate = min(
