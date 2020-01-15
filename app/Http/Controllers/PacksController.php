@@ -379,7 +379,8 @@ class PacksController extends Controller
                 } catch (\Exception $e) {
                     $content = [];
                 }
-                $content = json_decode($content)->data;
+                //$content = json_decode($content)->data;
+                $content = $content["data"];
 
 
                 $count_in_rate = min(
