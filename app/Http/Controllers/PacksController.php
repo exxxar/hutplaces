@@ -379,7 +379,7 @@ class PacksController extends Controller
                 } catch (\Exception $e) {
                     $content = [];
                 }
-                $content = json_decode(json_encode($content))->data;
+                $content = json_decode($content,true)["data"];
                 //$content = $content->data;
 
 
